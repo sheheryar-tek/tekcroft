@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import meta from "@/lib/homepage-meta.json";
 import "./tekcroft.css";
+import "./perf.css";
 
 const fontHref =
   "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap";
@@ -64,6 +65,15 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* LCP: hero photograph must win the first network race */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-1.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+        <link rel="preload" as="image" href="/images/logo-white.webp" type="image/webp" />
         <link rel="preload" as="style" href={fontHref} />
         <link rel="stylesheet" href={fontHref} />
         {meta.jsonLd.map((data, i) => (

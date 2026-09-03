@@ -239,8 +239,6 @@
     document.body.classList.add("booting");
     window.scrollTo(0, 0);
 
-    var ready = document.fonts && document.fonts.ready
-      ? document.fonts.ready : Promise.resolve();
     var started = false;
 
     function runBoot(){
@@ -277,11 +275,12 @@
       }, 2200);
     }
 
-    ready.then(runBoot);
-    setTimeout(runBoot, 1200);          /* fonts never resolved — go anyway */
-    setTimeout(function(){              /* last resort: never trap the page */
+    /* PERF: start boot on next frame — do not gate first paint on webfonts */
+    requestAnimationFrame(function(){ requestAnimationFrame(runBoot); });
+    setTimeout(runBoot, 400);
+    setTimeout(function(){
       if (document.body.classList.contains("booting")) skipBoot();
-    }, 4500);
+    }, 2800);
   }
 
   /* ---------------- count-up ---------------- */
@@ -1170,15 +1169,24 @@
        of the rail — measured, not counted, so the counter can never drift
        from what is actually on screen. Nothing is dimmed: the middle sheet
        is lifted and grown, and the six around it are left as they are. */
+    /* PERF: cache card centers; only mutate DOM when active index changes */
+    var centers = [];
+    var lastOn = -1;
+    function measureCenters(){
+      centers = all.map(function(c){ return c.offsetLeft + c.offsetWidth / 2; });
+    }
     function sync(){
+      if (!centers.length) measureCenters();
       var mid = rail.scrollLeft + rail.clientWidth / 2, i = 0, near = Infinity;
-
-      all.forEach(function(c, k){
-        var d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+      for (var k = 0; k < centers.length; k++){
+        var d = Math.abs(centers[k] - mid);
         if (d < near){ near = d; i = k; }
-      });
-      all.forEach(function(c, k){ c.classList.toggle("on", k === i); });
-      /* the copies report the number of the sheet they are a copy of */
+      }
+      if (i !== lastOn){
+        if (lastOn >= 0 && all[lastOn]) all[lastOn].classList.remove("on");
+        if (all[i]) all[i].classList.add("on");
+        lastOn = i;
+      }
       var real = ((i % n) + n) % n;
       at.textContent = ("0" + (real + 1)).slice(-2);
       bar.style.width = ((real + 1) / n * 100) + "%";
@@ -1191,11 +1199,13 @@
        be read in. Done with smooth scrolling switched off, so it is a
        starting position rather than an animation nobody asked for. */
     function seat(){
-      if (!rail.clientWidth) return;              /* the panel is hidden */
+      if (!rail.clientWidth) return;
+      measureCenters();
       var held = rail.style.scrollBehavior, c = all[n + 1];
       rail.style.scrollBehavior = "auto";
       rail.scrollLeft = c.offsetLeft + c.offsetWidth / 2 - rail.clientWidth / 2;
       rail.style.scrollBehavior = held;
+      lastOn = -1;
       sync();
     }
 
@@ -1207,7 +1217,8 @@
     var wide = 0;
     function relayout(){
       var w = rail.clientWidth;
-      if (w && !wide) seat(); else sync();
+      measureCenters();
+      if (w && !wide) seat(); else { lastOn = -1; sync(); }
       wide = w;
     }
 
@@ -1216,9 +1227,12 @@
         rail.scrollLeft += step() * Number(b.getAttribute("data-wk"));
       });
     });
-    var settle;
+    var settle, syncQueued = false;
     rail.addEventListener("scroll", function(){
-      window.requestAnimationFrame(sync);
+      if (!syncQueued){
+        syncQueued = true;
+        window.requestAnimationFrame(function(){ syncQueued = false; sync(); });
+      }
       clearTimeout(settle);
       settle = setTimeout(ringWrap, 150);
     }, { passive:true });
@@ -1286,6 +1300,30 @@
 
     deck.classList.add("wired");
     relayout();
-    startAuto();
+    if ("IntersectionObserver" in window){
+      new IntersectionObserver(function(entries){
+        if (entries[0].isIntersecting){ if (!dragging) startAuto(); }
+        else stopAuto();
+      }, { threshold: 0.05 }).observe(deck);
+    } else {
+      startAuto();
+    }
   })();
+
+  /* PERF_PATCHED */
+  /* Pause expensive infinite CSS animations while off-screen */
+  (function(){
+    if (calm || !("IntersectionObserver" in window)) return;
+    var sel = ".marq-track, .cg-seal svg, .nav-beam, .ft-marq .marq-track";
+    var nodes = $(sel);
+    if (!nodes.length) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        en.target.style.animationPlayState = en.isIntersecting ? "running" : "paused";
+      });
+    }, { rootMargin: "80px" });
+    nodes.forEach(function(n){ io.observe(n); });
+  })();
+
+
 })();

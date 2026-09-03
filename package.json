@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize:images": "node scripts/optimize-assets.mjs",
+    "audit:perf": "node scripts/verify-perf.mjs && node scripts/live-audit.mjs"
   },
   "dependencies": {
     "next": "^15.5.25",
@@ -19,6 +21,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15.5.25",
+    "sharp": "^0.35.4",
     "typescript": "^5"
   }
 }

@@ -1,0 +1,344 @@
+[
+  {
+    "name": "faq-shot",
+    "file": "/images/faq-shot.webp",
+    "bytes": 49916,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 64544
+  },
+  {
+    "name": "cta-shot-2",
+    "file": "/images/cta-shot-2.webp",
+    "bytes": 71554,
+    "quality": 82,
+    "w": 1400,
+    "srcW": 1600,
+    "raw": 117093
+  },
+  {
+    "name": "cn-shot",
+    "file": "/images/cn-shot.webp",
+    "bytes": 61634,
+    "quality": 82,
+    "w": 720,
+    "srcW": 720,
+    "raw": 75296
+  },
+  {
+    "name": "cta-shot",
+    "file": "/images/cta-shot.webp",
+    "bytes": 39574,
+    "quality": 82,
+    "w": 1400,
+    "srcW": 1600,
+    "raw": 69641
+  },
+  {
+    "name": "shot-4",
+    "file": "/images/shot-4.webp",
+    "bytes": 45116,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 44616
+  },
+  {
+    "name": "shot-3",
+    "file": "/images/shot-3.webp",
+    "bytes": 44996,
+    "quality": 82,
+    "w": 700,
+    "srcW": 700,
+    "raw": 41354
+  },
+  {
+    "name": "shot-2",
+    "file": "/images/shot-2.webp",
+    "bytes": 29358,
+    "quality": 82,
+    "w": 620,
+    "srcW": 620,
+    "raw": 29329
+  },
+  {
+    "name": "shot-1",
+    "file": "/images/shot-1.webp",
+    "bytes": 29952,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 35108
+  },
+  {
+    "name": "mark-white",
+    "file": "/images/mark-white.webp",
+    "bytes": 1504,
+    "quality": 82,
+    "w": 120,
+    "srcW": 120,
+    "raw": 3387
+  },
+  {
+    "name": "logo-white",
+    "file": "/images/logo-white.webp",
+    "bytes": 6854,
+    "quality": 82,
+    "w": 480,
+    "srcW": 1112,
+    "raw": 16311
+  },
+  {
+    "name": "logo-ink",
+    "file": "/images/logo-ink.webp",
+    "bytes": 7574,
+    "quality": 82,
+    "w": 480,
+    "srcW": 700,
+    "raw": 21917
+  },
+  {
+    "name": "mark",
+    "file": "/images/mark.webp",
+    "bytes": 1270,
+    "quality": 82,
+    "w": 88,
+    "srcW": 88,
+    "raw": 2160
+  },
+  {
+    "name": "cs-7",
+    "file": "/images/cs-7.webp",
+    "bytes": 31520,
+    "quality": 82,
+    "w": 640,
+    "srcW": 640,
+    "raw": 32603
+  },
+  {
+    "name": "cs-6",
+    "file": "/images/cs-6.webp",
+    "bytes": 18936,
+    "quality": 82,
+    "w": 640,
+    "srcW": 640,
+    "raw": 20587
+  },
+  {
+    "name": "cs-5",
+    "file": "/images/cs-5.webp",
+    "bytes": 37076,
+    "quality": 82,
+    "w": 640,
+    "srcW": 640,
+    "raw": 34403
+  },
+  {
+    "name": "cs-4",
+    "file": "/images/cs-4.webp",
+    "bytes": 55002,
+    "quality": 82,
+    "w": 640,
+    "srcW": 640,
+    "raw": 42961
+  },
+  {
+    "name": "cs-3",
+    "file": "/images/cs-3.webp",
+    "bytes": 9620,
+    "quality": 82,
+    "w": 640,
+    "srcW": 640,
+    "raw": 13666
+  },
+  {
+    "name": "cs-2",
+    "file": "/images/cs-2.webp",
+    "bytes": 15292,
+    "quality": 82,
+    "w": 640,
+    "srcW": 640,
+    "raw": 19865
+  },
+  {
+    "name": "cs-1",
+    "file": "/images/cs-1.webp",
+    "bytes": 12998,
+    "quality": 82,
+    "w": 640,
+    "srcW": 640,
+    "raw": 14516
+  },
+  {
+    "name": "hero-1",
+    "file": "/images/hero-1.webp",
+    "bytes": 46750,
+    "quality": 82,
+    "w": 700,
+    "srcW": 700,
+    "raw": 59913
+  },
+  {
+    "name": "hero-2",
+    "file": "/images/hero-2.webp",
+    "bytes": 29482,
+    "quality": 82,
+    "w": 620,
+    "srcW": 620,
+    "raw": 42949
+  },
+  {
+    "name": "ax-logo-1",
+    "file": "/images/ax-logo-1.webp",
+    "bytes": 3424,
+    "quality": 82,
+    "w": 96,
+    "srcW": 112,
+    "raw": 2108
+  },
+  {
+    "name": "ax-logo-3",
+    "file": "/images/ax-logo-3.webp",
+    "bytes": 3376,
+    "quality": 82,
+    "w": 96,
+    "srcW": 112,
+    "raw": 2140
+  },
+  {
+    "name": "ax-logo-5",
+    "file": "/images/ax-logo-5.webp",
+    "bytes": 4198,
+    "quality": 82,
+    "w": 96,
+    "srcW": 112,
+    "raw": 2508
+  },
+  {
+    "name": "ax-logo-7",
+    "file": "/images/ax-logo-7.webp",
+    "bytes": 3588,
+    "quality": 82,
+    "w": 96,
+    "srcW": 112,
+    "raw": 2208
+  },
+  {
+    "name": "ax-logo-12",
+    "file": "/images/ax-logo-12.webp",
+    "bytes": 3056,
+    "quality": 82,
+    "w": 96,
+    "srcW": 128,
+    "raw": 1914
+  },
+  {
+    "name": "ax-logo-14",
+    "file": "/images/ax-logo-14.webp",
+    "bytes": 4140,
+    "quality": 82,
+    "w": 96,
+    "srcW": 128,
+    "raw": 2819
+  },
+  {
+    "name": "ax-logo-15",
+    "file": "/images/ax-logo-15.webp",
+    "bytes": 4190,
+    "quality": 82,
+    "w": 96,
+    "srcW": 128,
+    "raw": 3023
+  },
+  {
+    "name": "ax-logo-16",
+    "file": "/images/ax-logo-16.webp",
+    "bytes": 4182,
+    "quality": 82,
+    "w": 96,
+    "srcW": 128,
+    "raw": 2973
+  },
+  {
+    "name": "ax-logo-17",
+    "file": "/images/ax-logo-17.webp",
+    "bytes": 4290,
+    "quality": 82,
+    "w": 96,
+    "srcW": 128,
+    "raw": 2811
+  },
+  {
+    "name": "mm-mentor",
+    "file": "/images/mm-mentor.webp",
+    "bytes": 36380,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 33870
+  },
+  {
+    "name": "mm-docs",
+    "file": "/images/mm-docs.webp",
+    "bytes": 40304,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 36489
+  },
+  {
+    "name": "mm-table",
+    "file": "/images/mm-table.webp",
+    "bytes": 45120,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 39763
+  },
+  {
+    "name": "mm-meeting",
+    "file": "/images/mm-meeting.webp",
+    "bytes": 34222,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 30324
+  },
+  {
+    "name": "mm-devs",
+    "file": "/images/mm-devs.webp",
+    "bytes": 47420,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 40603
+  },
+  {
+    "name": "mm-laptops",
+    "file": "/images/mm-laptops.webp",
+    "bytes": 44710,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 39701
+  },
+  {
+    "name": "mm-keys",
+    "file": "/images/mm-keys.webp",
+    "bytes": 25758,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 25113
+  },
+  {
+    "name": "mm-team",
+    "file": "/images/mm-team.webp",
+    "bytes": 46004,
+    "quality": 82,
+    "w": 760,
+    "srcW": 760,
+    "raw": 40531
+  }
+]

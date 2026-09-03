@@ -1,0 +1,41 @@
+/* Performance-only additions — do not alter visual design tokens */
+
+/* Skip layout/paint for far-off sections while scrolling.
+   Keep nav/boot/hero/marquee out of this — they are above-the-fold or fixed. */
+.sec {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+.hero,
+#top {
+  content-visibility: visible;
+  contain-intrinsic-size: auto none;
+}
+
+/* GPU-friendly compositing for elements that already animate via transform/opacity */
+.hero-slide.on img,
+.wk-card.on,
+.cn-lift.on {
+  transform: translateZ(0);
+}
+
+/* Soften the cost of the always-on nav beam while scrolling */
+.nav-beam {
+  contain: paint;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marq-track,
+  .nav-beam,
+  .cg-seal svg {
+    animation: none !important;
+  }
+}
+
+/* Mobile: pause continuous decorative motion unless the host is on screen
+   (JS also toggles animation-play-state; this is the CSS safety net). */
+@media (max-width: 720px) {
+  .marq-track {
+    animation-duration: 55s;
+  }
+}
