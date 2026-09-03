@@ -1,27 +1,63 @@
-/* Performance-only additions — do not alter visual design tokens */
+/* Performance-only additions — visual design tokens stay in tekcroft.css */
 
-/* Skip layout/paint for far-off sections while scrolling.
-   Keep nav/boot/hero/marquee out of this — they are above-the-fold or fixed. */
-.sec {
+/* next/font CSS variables → existing design tokens (same faces/weights) */
+:root {
+  --font: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), sans-serif;
+}
+
+/*
+  content-visibility speeds scroll by skipping off-screen paint.
+  Exclude the AI ecosystem (CSS background brand marks) and the hero.
+*/
+.sec:not(#ai-ecosystem) {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+#ai-ecosystem,
 .hero,
 #top {
   content-visibility: visible;
   contain-intrinsic-size: auto none;
 }
 
-/* GPU-friendly compositing for elements that already animate via transform/opacity */
-.hero-slide.on img,
-.wk-card.on,
-.cn-lift.on {
-  transform: translateZ(0);
+/* Hero must never wait on IntersectionObserver / JS for visibility (LCP) */
+.hero .rv,
+.hero .lamp .ln > span,
+.hero .hero-rail .it {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-/* Soften the cost of the always-on nav beam while scrolling */
-.nav-beam {
-  contain: paint;
+/* If JS is late/fails, reveals still appear (does not change the .in look) */
+@keyframes tc-rv-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rv:not(.in) {
+  animation: tc-rv-failsafe 0.01s linear 2.5s forwards;
+}
+.rv.in {
+  animation: none;
+}
+
+/* Prefer compositor-friendly layer promotion for continuous movers */
+.hero-slide.on img,
+.wk-card.on,
+.cn-lift.on,
+.marq-track {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Nav plate: keep the look, avoid animating box-shadow on stick toggle */
+.nav-shell {
+  transition:
+    background 0.32s var(--ease),
+    border-color 0.32s var(--ease),
+    backdrop-filter 0.32s var(--ease) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -30,10 +66,13 @@
   .cg-seal svg {
     animation: none !important;
   }
+  .rv:not(.in) {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
-/* Mobile: pause continuous decorative motion unless the host is on screen
-   (JS also toggles animation-play-state; this is the CSS safety net). */
 @media (max-width: 720px) {
   .marq-track {
     animation-duration: 55s;

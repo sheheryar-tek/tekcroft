@@ -1,10 +1,27 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Sora } from "next/font/google";
 import meta from "@/lib/homepage-meta.json";
 import "./tekcroft.css";
 import "./perf.css";
 
-const fontHref =
-  "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap";
+/* Self-hosted via next/font — same families/weights, no render-blocking Google CSS */
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-inter",
+  adjustFontFallback: true,
+  preload: true,
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-sora",
+  adjustFontFallback: true,
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -57,15 +74,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="light"
+      className={`${inter.variable} ${sora.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* LCP: hero photograph must win the first network race */}
         <link
           rel="preload"
           as="image"
@@ -73,9 +88,12 @@ export default function RootLayout({
           type="image/webp"
           fetchPriority="high"
         />
-        <link rel="preload" as="image" href="/images/logo-white.webp" type="image/webp" />
-        <link rel="preload" as="style" href={fontHref} />
-        <link rel="stylesheet" href={fontHref} />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/logo-white.webp"
+          type="image/webp"
+        />
         {meta.jsonLd.map((data, i) => (
           <script
             key={i}
@@ -84,7 +102,9 @@ export default function RootLayout({
           />
         ))}
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body className={inter.className} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/hash-assets.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "optimize:images": "node scripts/optimize-assets.mjs",
-    "audit:perf": "node scripts/verify-perf.mjs && node scripts/live-audit.mjs"
+    "optimize:heroes": "node scripts/optimize-heroes.mjs",
+    "audit:perf": "node scripts/verify-perf.mjs && node scripts/live-audit.mjs",
+    "verify:icons": "node scripts/verify-icons-live.mjs"
   },
   "dependencies": {
     "next": "^15.5.25",

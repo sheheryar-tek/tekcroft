@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import assets from "@/lib/asset-manifest.json";
 
 type HomepageProps = {
   html: string;
@@ -26,7 +27,7 @@ function loadScript(src: string): Promise<void> {
 }
 
 function loadMm(): Promise<void> {
-  if (!mmPromise) mmPromise = loadScript("/tekcroft-mm.js");
+  if (!mmPromise) mmPromise = loadScript(assets.mm);
   return mmPromise;
 }
 
@@ -40,10 +41,9 @@ export default function Homepage({ html }: HomepageProps) {
 
     (async () => {
       try {
-        await loadScript("/tekcroft-main.js");
+        await loadScript(assets.main);
         if (cancelled) return;
 
-        // Warm mega-menu on idle, or immediately if the user opens Services
         const warm = () => {
           loadMm().catch(console.error);
         };
@@ -71,9 +71,9 @@ export default function Homepage({ html }: HomepageProps) {
                 opts?: { timeout: number }
               ) => number;
             }
-          ).requestIdleCallback(warm, { timeout: 2000 });
+          ).requestIdleCallback(warm, { timeout: 2500 });
         } else {
-          setTimeout(warm, 1200);
+          setTimeout(warm, 1500);
         }
       } catch (err) {
         console.error(err);

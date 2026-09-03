@@ -6,22 +6,16 @@ const nextConfig = {
     formats: ["image/webp", "image/avif"],
   },
   async headers() {
-    const longCache = [
+    const immutable = [
       {
         key: "Cache-Control",
         value: "public, max-age=31536000, immutable",
       },
     ];
-    const dayCache = [
-      {
-        key: "Cache-Control",
-        value: "public, max-age=86400, stale-while-revalidate=604800",
-      },
-    ];
     return [
-      { source: "/images/:path*", headers: longCache },
-      { source: "/tekcroft-main.js", headers: dayCache },
-      { source: "/tekcroft-mm.js", headers: dayCache },
+      { source: "/images/:path*", headers: immutable },
+      { source: "/tekcroft-main.:hash.js", headers: immutable },
+      { source: "/tekcroft-mm.:hash.js", headers: immutable },
       {
         source: "/:path*",
         headers: [{ key: "X-Content-Type-Options", value: "nosniff" }],
