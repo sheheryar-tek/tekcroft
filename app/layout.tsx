@@ -93,6 +93,7 @@ export default function RootLayout({
           as="image"
           href="/images/logo-white.webp"
           type="image/webp"
+          fetchPriority="high"
         />
         {meta.jsonLd.map((data, i) => (
           <script

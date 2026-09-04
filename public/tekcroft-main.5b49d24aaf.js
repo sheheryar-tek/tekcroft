@@ -232,11 +232,57 @@
     enterPage();
   }
 
-  /* PERF_V2: never block LCP behind the boot curtain.
-     Hero ships with .play in HTML so copy/image paint immediately.
-     Boot overlay is skipped; enterPage still wires reveals/modal. */
-  skipBoot();
-  if (boot) boot.classList.add("done");
+  /* Boot logo intro — restored original fly-to-nav sequence.
+     PERF: do not wait on webfonts; start on next frame; failsafe timeout. */
+  if (!boot || calm || (location.hash && location.hash !== "#top")){
+    skipBoot();
+  } else {
+    document.body.classList.add("booting");
+    window.scrollTo(0, 0);
+
+    var started = false;
+
+    function runBoot(){
+      if (started) return;
+      started = true;
+
+      /* Pin the boot logo exactly onto the nav logo, then push it out to the
+         middle of the screen. Flying home is a return to transform:none, so
+         the landing is the nav logo's own position by definition — there is
+         no second measurement that can disagree with it. */
+      function place(){
+        if (!bootLogo || !navLogo) return;
+        var b = navLogo.getBoundingClientRect();
+        bootLogo.style.left = b.left + "px";
+        bootLogo.style.top  = b.top  + "px";
+        var dx = (window.innerWidth  / 2) - (b.left + b.width  / 2);
+        var dy = (window.innerHeight / 2) - (b.top  + b.height / 2);
+        bootLogo.style.transform =
+          "translate(" + dx + "px," + dy + "px) scale(var(--s))";
+      }
+      place();
+
+      requestAnimationFrame(function(){ boot.classList.add("lit"); });
+
+      setTimeout(function(){
+        boot.classList.add("flying");
+        bootLogo.style.transform = "none";
+        setTimeout(function(){ boot.classList.add("clear"); }, 420);
+      }, 1000);
+
+      /* land: hand off to the real logo, drop the curtain, start the page */
+      setTimeout(function(){
+        enterPage();
+        setTimeout(function(){ boot.classList.add("done"); }, 60);
+      }, 2200);
+    }
+
+    requestAnimationFrame(function(){ requestAnimationFrame(runBoot); });
+    setTimeout(runBoot, 300);
+    setTimeout(function(){
+      if (document.body.classList.contains("booting")) skipBoot();
+    }, 3200);
+  }
 
   /* ---------------- count-up ---------------- */
   function countUp(el){

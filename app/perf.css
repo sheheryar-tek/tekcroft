@@ -16,7 +16,9 @@
 }
 #ai-ecosystem,
 .hero,
-#top {
+#top,
+.boot,
+#boot {
   content-visibility: visible;
   contain-intrinsic-size: auto none;
 }
