@@ -2144,6 +2144,13 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
   max-width:44ch;}
 .wn-say .btn{margin-top:28px;}
 
+/* Light theme only: white folder on tinted section, so the panel reads as a card.
+   Dark theme keeps --surface-2 / --surface as defined on the theme tokens above. */
+html[data-theme="light"] .wn-body{background:#FFFFFF;}
+html[data-theme="light"] .wn-tab:not(.on){background:#C5E4F1;}
+html[data-theme="light"] .wn-tab.on{background:#FFFFFF;}
+html[data-theme="light"] .wn-card{background:#E7F4F9;}
+
 @media (max-width:1000px){
   .wn{grid-template-columns:1fr; gap:38px;}
 }
@@ -4498,6 +4505,8 @@ html[data-theme="dark"] .modal .field.sel select{
 .faq-list{
   border:1px solid var(--border); border-radius:clamp(16px,1.6vw,20px);
   background:var(--surface); overflow:hidden;}
+/* Light theme: keep the list a pure white card on the tinted FAQ section */
+html[data-theme="light"] .faq-list{background:#FFFFFF;}
 .faq-item + .faq-item{ border-top:1px solid var(--border-soft); }
 
 .faq-q{
