@@ -46,7 +46,7 @@
   --accent-h:29;    /* accent hue  : 29=amber */
 
   /* poori scale upar wale hue se derive hoti hai */
-  --p50 :hsl(var(--brand-h)  60% 96.5%);
+  --p50 :hsl(var(--brand-h)  62% 91%);    /* #DAEEF6 — light section alt */
   --p100:hsl(var(--brand-h)  58% 90%);
   --p200:hsl(var(--brand-h)  55% 80%);    /* dark bg par muted body text — brand highlight NAHI */
   --p300:hsl(var(--brand-h)  58% 68%);
