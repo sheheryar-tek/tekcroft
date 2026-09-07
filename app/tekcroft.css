@@ -2072,6 +2072,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .wn-body.last{border-top-right-radius:0;}
 .wn-panel{display:none;}
 .wn-panel.on{display:block; animation:wnIn .45s var(--pop);}
+.wn-panel[hidden]{display:none !important;}
 @keyframes wnIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
 .wn-panel h3{font-family:var(--font-display);
   font-weight:800; letter-spacing:-0.035em; line-height:1.18; max-width:20ch;}
@@ -2145,9 +2146,12 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .wn-say .btn{margin-top:28px;}
 
 /* Light theme only: white folder on tinted section, so the panel reads as a card.
-   Dark theme keeps --surface-2 / --surface as defined on the theme tokens above. */
+   Dark theme keeps --surface-2 / --surface as defined on the theme tokens above.
+   Inactive tabs stay transparent so the section shows through (flat labels). */
+html[data-theme="light"] .wn-tabs{background:transparent;}
 html[data-theme="light"] .wn-body{background:#FFFFFF;}
-html[data-theme="light"] .wn-tab:not(.on){background:#C5E4F1;}
+html[data-theme="light"] .wn-tab:not(.on){background:transparent;}
+html[data-theme="light"] .wn-tab:not(.on):hover{background:hsl(var(--brand-h) 60% 50% / .08);}
 html[data-theme="light"] .wn-tab.on{background:#FFFFFF;}
 html[data-theme="light"] .wn-card{background:#E7F4F9;}
 

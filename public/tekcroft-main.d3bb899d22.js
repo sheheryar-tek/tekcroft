@@ -1052,28 +1052,30 @@
   });
 
   /* ---------------- why us: the panel ----------------
-     Each instrument is drawn from nothing every time its tab is opened. The
-     panel is taken out of the document and put back so the CSS animations
-     restart; the ring's arcs are the exception, since a dash cannot be
-     animated from a value it is already sitting on.
+     Each instrument is drawn from nothing every time its tab is opened.
+     All three panels already exist in the markup — switching only toggles
+     which one is shown. Never clone, append, or re-render panel content.
   --------------------------------------------------------------- */
   var wnPanel = $("#wnPanel");
-  if (wnPanel){
+  if (wnPanel && !wnPanel.getAttribute("data-wn-wired")){
+    wnPanel.setAttribute("data-wn-wired", "1");
     var wnTabs   = $$(".wn-tab", wnPanel),
-        wnPanels = $$(".wn-panel", wnPanel);
+        wnBody   = $(".wn-body", wnPanel),
+        /* only direct panel children of the folder body — never nested matches */
+        wnPanels = wnBody ? $$(":scope > .wn-panel", wnBody) : $$(".wn-panel", wnPanel);
 
     /* PERF_V2: measure path lengths lazily (was forced reflow at parse time) */
     var wnLensReady = false;
     function wnMeasureLens(){
       if (wnLensReady) return;
       wnLensReady = true;
-      $(".wn-line", wnPanel).forEach(function(pth){
+      $$(".wn-line", wnPanel).forEach(function(pth){
         pth.style.setProperty("--len", pth.getTotalLength().toFixed(1));
       });
     }
 
     function wnDraw(pnl){
-      var segs = $(".seg", pnl);
+      var segs = $$(".seg", pnl);
       segs.forEach(function(seg){ seg.style.strokeDasharray = "0 999"; });
       requestAnimationFrame(function(){
         segs.forEach(function(seg){
@@ -1082,9 +1084,9 @@
       });
     }
 
-    var wnBody = $(".wn-body", wnPanel);
-
     function wnShow(i){
+      if (i < 0 || i >= wnPanels.length) return;
+
       /* the panel squares whichever corner has a tab standing on it */
       if (wnBody){
         wnBody.classList.toggle("first", i === 0);
@@ -1093,12 +1095,20 @@
       wnTabs.forEach(function(t, k){
         t.classList.toggle("on", k === i);
         t.setAttribute("aria-selected", k === i ? "true" : "false");
+        t.setAttribute("tabindex", k === i ? "0" : "-1");
       });
+
+      /* show/hide only — never insert or clone */
       wnPanels.forEach(function(pnl, k){
-        pnl.classList.remove("on");
-        if (k === i){
-          void pnl.offsetWidth;          /* restart the panel's own animations */
-          pnl.classList.add("on");
+        var on = k === i;
+        pnl.classList.toggle("on", on);
+        pnl.hidden = !on;
+        pnl.setAttribute("aria-hidden", on ? "false" : "true");
+        if (on){
+          /* restart enter animation without touching the DOM tree */
+          pnl.style.animation = "none";
+          void pnl.offsetWidth;
+          pnl.style.animation = "";
           wnDraw(pnl);
         }
       });
@@ -1113,6 +1123,14 @@
         var n = (i + step + wnTabs.length) % wnTabs.length;
         wnTabs[n].focus(); wnShow(n);
       });
+    });
+
+    /* initial hidden state for non-selected panels (markup may only use .on) */
+    wnPanels.forEach(function(pnl, k){
+      if (!pnl.classList.contains("on")){
+        pnl.hidden = true;
+        pnl.setAttribute("aria-hidden", "true");
+      }
     });
 
     /* it draws when it is first reached, not while it is still off-screen */

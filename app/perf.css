@@ -18,7 +18,8 @@
 .hero,
 #top,
 .boot,
-#boot {
+#boot,
+#why {
   content-visibility: visible;
   contain-intrinsic-size: auto none;
 }
