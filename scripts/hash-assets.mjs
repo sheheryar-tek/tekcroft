@@ -1,6 +1,6 @@
 /**
  * Copy runtime scripts to content-hashed filenames for long-cache.
- * Writes lib/asset-manifest.json consumed by the Homepage loader.
+ * Writes lib/asset-manifest.json consumed by page loaders.
  */
 import fs from "fs";
 import path from "path";
@@ -15,7 +15,6 @@ function hashFile(name) {
   const h = crypto.createHash("sha1").update(buf).digest("hex").slice(0, 10);
   const hashed = name.replace(/\.js$/, `.${h}.js`);
   fs.writeFileSync(path.join(pub, hashed), buf);
-  // remove older hashed copies of same base
   const base = name.replace(/\.js$/, "");
   for (const f of fs.readdirSync(pub)) {
     if (f.startsWith(base + ".") && f.endsWith(".js") && f !== hashed && f !== name) {
@@ -28,6 +27,7 @@ function hashFile(name) {
 const manifest = {
   main: hashFile("tekcroft-main.js"),
   mm: hashFile("tekcroft-mm.js"),
+  ecommerceSeo: hashFile("tekcroft-ecommerce-seo.js"),
 };
 fs.writeFileSync(
   path.join(ROOT, "lib", "asset-manifest.json"),

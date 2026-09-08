@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
-import meta from "@/lib/homepage-meta.json";
 import "./tekcroft.css";
 import "./perf.css";
 
@@ -24,11 +23,10 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: meta.title,
-  description: meta.description,
   metadataBase: new URL("https://www.tekcroft.com"),
-  alternates: {
-    canonical: meta.canonical,
+  title: {
+    default: "Tekcroft",
+    template: "%s",
   },
   icons: {
     icon: [
@@ -36,28 +34,6 @@ export const metadata: Metadata = {
       { url: "/favicon-dark.png", media: "(prefers-color-scheme: dark)" },
     ],
     apple: "/apple-touch-icon.png",
-  },
-  openGraph: {
-    type: "website",
-    siteName: "Tekcroft",
-    url: "https://www.tekcroft.com/",
-    title: meta.title,
-    description:
-      "SEO, paid media, and AI search visibility planned as one strategy for US businesses.",
-    images: [
-      {
-        url: "https://www.tekcroft.com/og.jpg",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: meta.title,
-    description:
-      "SEO, paid media, and AI search visibility planned as one strategy for US businesses.",
-    images: ["https://www.tekcroft.com/og.jpg"],
   },
 };
 
@@ -95,13 +71,6 @@ export default function RootLayout({
           type="image/webp"
           fetchPriority="high"
         />
-        {meta.jsonLd.map((data, i) => (
-          <script
-            key={i}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-          />
-        ))}
       </head>
       <body className={inter.className} suppressHydrationWarning>
         {children}
