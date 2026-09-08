@@ -430,7 +430,8 @@ html[data-theme="dark"] .nav.stuck .nav-shell{box-shadow:0 16px 38px -22px rgba(
 .logo{display:block; width:130px; height:26px; background-position:left center; flex-shrink:0;
   background-image:var(--logo); background-repeat:no-repeat;
   background-position:left center; background-size:contain;}
-.nav-links{display:flex; gap:28px; font-size:14.5px; font-weight:500; color:var(--muted);}
+.nav-links{display:flex; gap:22px; font-size:14.5px; font-weight:500; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.04em;}
 .nav-links a{position:relative; padding:5px 0; transition:color .18s var(--ease);}
 .nav-links a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:2px;
   background:var(--primary); transition:right .25s var(--ease);}
@@ -502,8 +503,11 @@ html[data-theme="dark"] .theme-btn .sun{display:none;}
   border-radius:0 0 25px 25px;
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);}
 .mnav.open{display:flex;}
-.mnav a{padding:11px 0; font-size:15.5px; font-weight:600; border-bottom:1px solid var(--border-soft);}
-.mnav .btn{margin-top:12px; border-bottom:none;}
+.mnav a{padding:11px 0; font-size:15.5px; font-weight:600; border-bottom:1px solid var(--border-soft);
+  text-transform:uppercase; letter-spacing:.04em;}
+.mnav .mm-acc{text-transform:uppercase; letter-spacing:.04em;}
+.mnav .mm-accp a{text-transform:none; letter-spacing:0;}
+.mnav .btn{margin-top:12px; border-bottom:none; text-transform:none; letter-spacing:0;}
 
 /* ---------- shared section furniture ---------- */
 .sec{padding:var(--sec-y) 0; position:relative;}
@@ -3899,6 +3903,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
 
 /* ── the trigger, cut to match the other nav links ── */
 .mm-trigger{display:inline-flex; align-items:center; gap:6px; position:relative;
+  text-transform:uppercase; letter-spacing:.04em;
   padding:5px 0; font:inherit; font-size:14.5px; font-weight:500; color:var(--muted);
   background:none; border:0; cursor:pointer; transition:color .18s var(--ease);}
 .mm-trigger::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:2px;
