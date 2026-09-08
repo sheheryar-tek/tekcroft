@@ -28,6 +28,7 @@ const manifest = {
   main: hashFile("tekcroft-main.js"),
   mm: hashFile("tekcroft-mm.js"),
   ecommerceSeo: hashFile("tekcroft-ecommerce-seo.js"),
+  contact: hashFile("tekcroft-contact.js"),
 };
 fs.writeFileSync(
   path.join(ROOT, "lib", "asset-manifest.json"),

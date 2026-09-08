@@ -175,7 +175,7 @@ const NAV_LINKS = `    <div class="nav-links">
       <button class="mm-trigger" id="mmTrigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mmPanel">SERVICES<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       <a href="/#work">CASE STUDIES</a>
       <a href="/blog">BLOG</a>
-      <a href="#contact">CONTACT US</a>
+      <a href="/contact">CONTACT US</a>
     </div>`;
 const MNAV = `  <div class="mnav js-mnav">
     <a href="/">HOME</a>
@@ -183,7 +183,7 @@ const MNAV = `  <div class="mnav js-mnav">
     <div id="mmMobile"></div>
     <a href="/#work">CASE STUDIES</a>
     <a href="/blog">BLOG</a>
-    <a href="#contact">CONTACT US</a>
+    <a href="/contact">CONTACT US</a>
     <button class="btn btn-primary" type="button" data-jump>Get a Free Proposal</button>
   </div>`;
 body = body.replace(
