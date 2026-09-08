@@ -16,6 +16,12 @@ const nextConfig = {
       { source: "/images/:path*", headers: immutable },
       { source: "/tekcroft-main.:hash.js", headers: immutable },
       { source: "/tekcroft-mm.:hash.js", headers: immutable },
+      { source: "/tekcroft-contact.:hash.js", headers: immutable },
+      { source: "/tekcroft-ecommerce-seo.:hash.js", headers: immutable },
+      {
+        source: "/_next/static/:path*",
+        headers: immutable,
+      },
       {
         source: "/:path*",
         headers: [{ key: "X-Content-Type-Options", value: "nosniff" }],

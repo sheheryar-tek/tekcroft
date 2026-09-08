@@ -2,17 +2,16 @@ import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import Script from "next/script";
-import TekcroftHtml from "@/components/TekcroftHtml";
+import Homepage from "@/components/Homepage";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/ecommerce-seo-meta.json";
+import lcp from "@/lib/ecommerce-seo-lcp.json";
 import "@/app/ecommerce-seo.css";
 
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  alternates: {
-    canonical: meta.canonical,
-  },
+  alternates: { canonical: meta.canonical },
   openGraph: {
     type: "website",
     siteName: "Tekcroft",
@@ -35,8 +34,14 @@ export default function EcommerceSeoPage() {
 
   return (
     <>
-      <TekcroftHtml html={html} />
-      {/* Full original page scripts (incl. mega menu) — matches source HTML */}
+      <link
+        rel="preload"
+        as="image"
+        href={lcp.preload}
+        type="image/webp"
+        fetchPriority="high"
+      />
+      <Homepage html={html} />
       <Script src={assets.ecommerceSeo} strategy="afterInteractive" />
     </>
   );

@@ -9,6 +9,7 @@
     "lint": "next lint",
     "optimize:images": "node scripts/optimize-assets.mjs",
     "optimize:heroes": "node scripts/optimize-heroes.mjs",
+    "optimize:services": "node scripts/slim-service-pages.mjs",
     "audit:perf": "node scripts/verify-perf.mjs && node scripts/live-audit.mjs",
     "verify:icons": "node scripts/verify-icons-live.mjs"
   },

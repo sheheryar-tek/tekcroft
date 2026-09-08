@@ -2,17 +2,16 @@ import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import Script from "next/script";
-import TekcroftHtml from "@/components/TekcroftHtml";
+import Homepage from "@/components/Homepage";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/contact-meta.json";
+import lcp from "@/lib/contact-lcp.json";
 import "@/app/contact.css";
 
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  alternates: {
-    canonical: meta.canonical,
-  },
+  alternates: { canonical: meta.canonical },
   openGraph: {
     type: "website",
     siteName: "Tekcroft",
@@ -35,7 +34,14 @@ export default function ContactPage() {
 
   return (
     <>
-      <TekcroftHtml html={html} />
+      <link
+        rel="preload"
+        as="image"
+        href={lcp.preload}
+        type="image/webp"
+        fetchPriority="high"
+      />
+      <Homepage html={html} />
       <Script src={assets.contact} strategy="afterInteractive" />
     </>
   );
