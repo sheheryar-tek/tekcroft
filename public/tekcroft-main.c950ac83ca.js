@@ -315,7 +315,7 @@
 
   /* ---------------- the process walk ----------------
      Two separate things happen here, and keeping them apart is the
-     point. The row DRAWS as soon as it is reached — all four at once,
+     point. The row DRAWS as soon as it is reached — all steps at once,
      each about a tenth of a second behind the last, so the whole
      thing is down in roughly a second. Nobody should have to sit
      through an animation to read a paragraph.
@@ -325,42 +325,32 @@
      the section had to say. Any layout marked data-walk is wired the
      same way, and each keeps its own timer, which runs only while it
      is the one on screen.
+
+     The process disc (.eg) is different below 1000px: one card at a
+     time, auto-advance every 7s, and a drag that restarts the clock.
+     Other walks (blueprint strip) keep the 1.6s desktop pace.
   --------------------------------------------------------------- */
   $$("[data-walk]").forEach(function(pw){
-    var pwSteps = $$(".walk-step", pw), pwAt = -1, pwTick = null;
+    var steps = $$(".walk-step", pw), at = -1, tick = null;
+    var isEg = !!pw.querySelector(".eg-list");
+    var narrow = window.matchMedia("(max-width: 1000px)");
 
-    /* On the narrow layout the lit step is pulled to the head of the list
-       with `order`, and order is not something that can be transitioned —
-       the card is simply somewhere else on the next frame. So the move is
-       played back: the tops are read before the class changes and again
-       after, each card is put back where it was with a transform, and then
-       the transform is released. The browser animates the release, which
-       looks like the card travelling to its new place.
-
-       On the wide layout nothing reorders, every delta is zero, and this
-       costs one rect read per step. */
-    function pwTops(){
-      return pwSteps.map(function(s){ return s.getBoundingClientRect().top; });
+    function tops(){
+      return steps.map(function(s){ return s.getBoundingClientRect().top; });
     }
-    function pwPlay(before){
-      /* Every read first, then every write. This used to read a rect, write
-         two styles and force a commit inside the same loop iteration, which
-         made the browser lay the page out again on each pass — four forced
-         reflows for one change of step. Now the four positions are read in
-         one go, the transforms are set in a second pass, and a single
-         offsetHeight commits the lot. */
-      var deltas = pwSteps.map(function(s, k){
+    function play(before){
+      var deltas = steps.map(function(s, k){
         return before[k] - s.getBoundingClientRect().top;
       });
       var moved = [];
-      pwSteps.forEach(function(s, k){
+      steps.forEach(function(s, k){
         if (!deltas[k]) return;
         s.style.transition = "none";
         s.style.transform = "translateY(" + deltas[k] + "px)";
         moved.push(s);
       });
       if (!moved.length) return;
-      void moved[0].offsetHeight;                  /* one commit for them all */
+      void moved[0].offsetHeight;
       moved.forEach(function(s){
         s.style.transition = "transform .52s cubic-bezier(.16,1,.3,1)";
         s.style.transform = "";
@@ -371,30 +361,97 @@
       });
     }
 
-    function pwGo(){
-      var before = calm ? null : pwTops();
-      pwAt = (pwAt + 1) % pwSteps.length;
-      pwSteps.forEach(function(s, k){ s.classList.toggle("on", k === pwAt); });
-      /* the container publishes the index so a layout can draw something
-         that is not inside the step itself — a progress arc, a row of
-         pips — without any of them needing their own script */
-      pw.setAttribute("data-at", pwAt);
-      if (before) pwPlay(before);
+    function go(){
+      var before = calm ? null : tops();
+      at = (at + 1) % steps.length;
+      steps.forEach(function(s, k){ s.classList.toggle("on", k === at); });
+      pw.setAttribute("data-at", at);
+      if (before) play(before);
     }
 
-    var pwIO = new IntersectionObserver(function(entries){
+    function stop(){
+      if (tick){ clearInterval(tick); tick = null; }
+    }
+
+    function light(k){
+      if (k === at) return;
+      at = k;
+      steps.forEach(function(s, i){ s.classList.toggle("on", i === k); });
+      pw.setAttribute("data-at", k);
+    }
+
+    function run(){
+      if (tick) return;
+      tick = setInterval(function(){ light((at + 1) % steps.length); }, 7000);
+    }
+
+    var wired = false;
+
+    function move(d){
+      if (!isEg || !narrow.matches) return;
+      light((at + d + steps.length) % steps.length);
+      if (tick){ clearInterval(tick); tick = null; }
+      if (!calm) run();
+    }
+
+    function wire(){
+      if (!isEg || wired) return;
+      wired = true;
+      var list = pw.querySelector(".eg-list");
+      if (!list) return;
+      var x0 = null, y0 = null;
+
+      function start(x, y){ x0 = x; y0 = y; }
+      function end(x, y){
+        if (x0 === null) return;
+        if (!narrow.matches){ x0 = null; return; }
+        var dx = x - x0, dy = y - y0;
+        x0 = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) move(dx < 0 ? 1 : -1);
+      }
+
+      list.addEventListener("touchstart", function(e){
+        var t = e.changedTouches[0]; start(t.clientX, t.clientY);
+      }, { passive: true });
+      list.addEventListener("touchend", function(e){
+        var t = e.changedTouches[0]; end(t.clientX, t.clientY);
+      }, { passive: true });
+      list.addEventListener("touchcancel", function(){ x0 = null; }, { passive: true });
+
+      list.addEventListener("pointerdown", function(e){
+        if (e.pointerType === "mouse") start(e.clientX, e.clientY);
+      }, { passive: true });
+      list.addEventListener("pointerup", function(e){
+        if (e.pointerType === "mouse") end(e.clientX, e.clientY);
+      }, { passive: true });
+    }
+
+    var io = new IntersectionObserver(function(entries){
       var here = entries[0].isIntersecting;
-      if (here && !pwTick){
-        pwSteps.forEach(function(s){ s.classList.add("seen"); });
-        if (calm) return;                      /* drawn, and left still */
-        pwGo();
-        pwTick = setInterval(pwGo, 1600);
-      } else if (!here && pwTick){
-        clearInterval(pwTick);
-        pwTick = null;
+      if (!here){ stop(); return; }
+      steps.forEach(function(s){ s.classList.add("seen"); });
+
+      if (isEg && narrow.matches){
+        wire();
+        if (at < 0) light(0);
+        if (calm) return;
+        run();
+        return;
+      }
+
+      if (calm) return;
+      if (!tick){
+        go();
+        tick = setInterval(go, 1600);
       }
     }, { threshold:0.25 });
-    pwIO.observe(pw);
+    io.observe(pw);
+
+    if (isEg){
+      var swap = function(){ stop(); io.unobserve(pw); io.observe(pw); };
+      if (narrow.addEventListener) narrow.addEventListener("change", swap);
+      else narrow.addListener(swap);
+    }
   });
 
   /* ---------------- the wires to the centre ----------------

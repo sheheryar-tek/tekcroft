@@ -2771,23 +2771,24 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 .eg-cta{margin-top:clamp(20px,2.2vw,28px); display:flex; justify-content:center;}
 
 @media (max-width:1000px){
-  /* One column, so there is no gap for a line to cross and the wires are put
-     away. The circle stays — it is the section's own shape, and the arc
-     inside it is still a working progress bar. The connection is made by
-     position instead: the lit card is pulled to the head of the list, so the
-     stage the disc is counting is the one directly under it. order moves it
-     visually only; the DOM still reads 01 to 04, which is what a screen
-     reader and the tab key follow. */
-  .eg{grid-template-columns:1fr; gap:clamp(26px,5vw,38px);}
-  .eg-core{width:min(100%,320px); justify-self:center;}
+  /* One column: disc on top, one stage card under it. Cards share a
+     single grid cell so the list is as tall as the tallest card and the
+     page does not jump when the stage changes. */
+  .eg{grid-template-columns:1fr; gap:clamp(14px,3.6vw,22px);}
+  .eg-core{width:min(78%,292px); justify-self:center;}
   .eg-node{display:none;}
-  .eg-num{font-size:clamp(40px,11vw,52px);}
+  .eg-num{font-size:clamp(44px,13vw,62px);}
   .eg-lab,.eg-of{font-size:10.5px; letter-spacing:.13em;}
   .eg-rule{width:52px; margin:14px auto;}
 
-  .eg-card{order:2; transform:translateY(14px);}
-  .eg-card.on{order:1;}
-  .eg-card.seen{transform:none;}
+  .eg-list{position:relative; display:grid; gap:0; overflow:hidden;}
+  .eg-card,.eg-card.seen{grid-area:1 / 1; order:0; --lay:0ms;
+    opacity:0; visibility:hidden; pointer-events:none;
+    transform:translateX(14px);
+    transition:opacity .4s var(--ease), transform .5s var(--pop),
+               visibility 0s linear .4s;}
+  .eg-card.on{opacity:1; visibility:visible; pointer-events:auto;
+    transform:none; transition-delay:0s;}
   .eg-card::after{display:none;}
   .eg-cta{justify-content:stretch;}
   .eg-cta .btn{width:100%;}
@@ -2799,6 +2800,14 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 @media (prefers-reduced-motion:reduce){
   .eg-card{opacity:1; transform:none;}
   .eg-track{animation:none;}
+}
+@media (max-width:1000px) and (prefers-reduced-motion:reduce){
+  /* One card at a time — global reduce-motion opacity:1 would stack them. */
+  .eg-card,.eg-card.seen{
+    opacity:0; visibility:hidden; pointer-events:none;
+    transform:translateX(14px);}
+  .eg-card.on{
+    opacity:1; visibility:visible; pointer-events:auto; transform:none;}
 }
 
 
