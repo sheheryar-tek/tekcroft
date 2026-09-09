@@ -1642,6 +1642,38 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
   transform:translate(-50%,-50%) scale(1.16);
   box-shadow:0 0 0 6px hsl(var(--brand-h) 100% 50% / .16);}
 
+/* Narrow: one-at-a-time carousel (desktop column walk unchanged). */
+@media (max-width:1000px){
+  #process .eg{grid-template-columns:1fr; gap:clamp(14px,3.6vw,22px);}
+  #process .eg-core{width:min(78%,292px); justify-self:center;}
+  #process .eg-node{display:none;}
+  #process .eg-num{font-size:clamp(44px,13vw,62px);}
+  #process .eg-lab,#process .eg-of{font-size:10.5px; letter-spacing:.13em;}
+  #process .eg-rule{width:52px; margin:14px auto;}
+  /* Five cards share one cell — list height = tallest card, no jump. */
+  #process .eg-list{position:relative; display:grid; gap:0; overflow:hidden;}
+  #process .eg-card,
+  #process .eg-card.seen{grid-area:1 / 1; order:0; --lay:0ms;
+    opacity:0; visibility:hidden; pointer-events:none;
+    transform:translateX(14px);
+    transition:opacity .4s var(--ease), transform .5s var(--pop),
+               visibility 0s linear .4s;}
+  #process .eg-card.on{opacity:1; visibility:visible; pointer-events:auto;
+    transform:none; transition-delay:0s;}
+  #process .eg-card::after{display:none;}
+  #process .eg-cta{justify-content:stretch;}
+  #process .eg-cta .btn{width:100%;}
+}
+@media (max-width:1000px) and (prefers-reduced-motion:reduce){
+  /* Keep one card lit — global reduce-motion opacity:1 would stack all five. */
+  #process .eg-card,
+  #process .eg-card.seen{
+    opacity:0; visibility:hidden; pointer-events:none;
+    transform:translateX(14px);}
+  #process .eg-card.on{
+    opacity:1; visibility:visible; pointer-events:auto; transform:none;}
+}
+
 /* ── 2. the alternation ─────────────────────────────────────────── */
 .sec,
 html[data-theme="dark"] .sec{ background:var(--ground); }
