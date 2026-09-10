@@ -226,14 +226,10 @@
 })();
 
 
-/* === walk-script === */
+/* === eg-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
-   THE WALK — ported from the homepage.
-
-   Named eg-script once, after the section it arrived with. That section
-   is gone; the blueprint row uses it now, through the same data-walk
-   attribute. Nothing in here is tied to either.
+   THE WALK — ported from the homepage
 
    Any layout marked data-walk steps a light along its .walk-step
    children and publishes the index on the container as data-at, so a
@@ -340,6 +336,7 @@
        for the rest of the visit; resetting it gives the stage just landed
        on a full read before anything moves on its own again. */
     function move(d){
+      if (!narrow.matches) return;
       light((at + d + steps.length) % steps.length);
       if (tick){ clearInterval(tick); tick = null; }
       if (!calm) run();
@@ -370,6 +367,7 @@
       function start(x, y){ x0 = x; y0 = y; }
       function end(x, y){
         if (x0 === null) return;
+        if (!narrow.matches){ x0 = null; return; }
         var dx = x - x0, dy = y - y0;
         x0 = null;
         if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) move(dx < 0 ? 1 : -1);
@@ -443,35 +441,43 @@
 
 
 /* === faq-script === */
-
-/* One question open at a time. The panel is a grid row moving between 0fr
-   and 1fr, so it opens to whatever height its own text needs and nothing
-   has to be measured: height:auto cannot be transitioned, and reading
-   scrollHeight forces a layout on every open. */
+/* One question open at a time. Document delegation so it works after
+   Next.js injects the body HTML, and null-safe for missing panels. */
 (function(){
-  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var list = document.querySelector(".faq-list");
-  if (!list) return;
-  list.addEventListener("click", function(e){
-    var btn = e.target.closest(".faq-q");
-    if (!btn) return;
-    var panel = document.getElementById(btn.getAttribute("aria-controls"));
-    var isOpen = btn.getAttribute("aria-expanded") === "true";
+  function panelFor(btn){
+    var id = btn.getAttribute("aria-controls");
+    return id ? document.getElementById(id) : null;
+  }
+  function closeAll(list){
     list.querySelectorAll(".faq-q").forEach(function(b){
       b.setAttribute("aria-expanded", "false");
-      document.getElementById(b.getAttribute("aria-controls")).dataset.open = "false";
+      var p = panelFor(b);
+      if (p) p.dataset.open = "false";
     });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (t && t.nodeType === 3) t = t.parentElement;
+    if (!t || typeof t.closest !== "function") return;
+    var btn = t.closest(".faq-q");
+    if (!btn) return;
+    var list = btn.closest(".faq-list");
+    if (!list) return;
+    var panel = panelFor(btn);
+    if (!panel) return;
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    closeAll(list);
     if (!isOpen){
       btn.setAttribute("aria-expanded", "true");
       panel.dataset.open = "true";
-      /* the aside follows the question. Its index is read off the button's
-         own position, so adding or removing a question needs nothing here. */
       var wrap = list.closest(".faq-wrap");
-      if (wrap) wrap.dataset.at = $$(".faq-q", list).indexOf(btn) + 1;
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
     }
   });
 })();
-
 
 /* === cn-script === */
 

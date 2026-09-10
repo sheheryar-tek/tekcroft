@@ -186,15 +186,22 @@
   var track = document.getElementById("tbMarq");
   if (track && !calm) track.innerHTML += track.innerHTML;
 
-  /* ---------------- count-up ---------------- */
-  function countUp(el){
-    var target = parseFloat(el.getAttribute("data-count"));
+  /* ---------------- count-up ---------------- */  function countUp(el){
+    var raw = el.getAttribute("data-count");
+    var target = parseFloat(raw);
     if (isNaN(target)) return;
     var prefix = el.getAttribute("data-prefix") || "";
     var suffix = el.getAttribute("data-suffix") || "";
+    /* How many decimals the authored value carries decides how the count
+       is rounded and printed. Without this a rating of 4.9 counts up to a
+       flat 5, because Math.round was the only rounding here. An integer
+       target has no decimals and keeps the thousands separator it had. */
+    var dec = (String(raw).split(".")[1] || "").length;
     function affix(t){ return t ? '<i class="fig-af">' + t + '</i>' : ""; }
     function show(n){
-      return affix(prefix) + (n >= 1000 ? n.toLocaleString("en-US") : n) + affix(suffix);
+      var v = dec ? n.toFixed(dec)
+                  : (n >= 1000 ? n.toLocaleString("en-US") : n);
+      return affix(prefix) + v + affix(suffix);
     }
     if (calm){ el.innerHTML = show(target); return; }
     var t0 = null, dur = 1400;
@@ -202,7 +209,7 @@
       if (t0 === null) t0 = t;
       var p = Math.min((t - t0) / dur, 1);
       var e = 1 - Math.pow(1 - p, 3);
-      el.innerHTML = show(Math.round(target * e));
+      el.innerHTML = show(dec ? +(target * e).toFixed(dec) : Math.round(target * e));
       if (p < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -424,45 +431,53 @@
   "use strict";
   var el = document.getElementById("ftMarq");
   if (!el) return;
-  var row = ["SEO","Ecommerce SEO","Technical SEO","Product page SEO",
-             "Category page SEO","Content optimization","Local SEO",
-             "Answer engine visibility","Link building","CRO",
-             "Analytics","Reporting"]
+  var row = ["SEO audit","Technical audit","Crawl analysis","Indexation review",
+             "Content audit","Site architecture","Internal links","Backlink audit",
+             "Competitor gap analysis","Core Web Vitals","Tracking audit",
+             "Migration review","Prioritised roadmap"]
     .map(function(t){ return "<span>" + t + "</span><i></i>"; }).join("");
   el.innerHTML = row + row;
 })();
 
 
 /* === faq-script === */
-
-/* One question open at a time. The panel is a grid row moving between 0fr
-   and 1fr, so it opens to whatever height its own text needs and nothing
-   has to be measured: height:auto cannot be transitioned, and reading
-   scrollHeight forces a layout on every open. */
+/* One question open at a time. Document delegation so it works after
+   Next.js injects the body HTML, and null-safe for missing panels. */
 (function(){
-  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var list = document.querySelector(".faq-list");
-  if (!list) return;
-  list.addEventListener("click", function(e){
-    var btn = e.target.closest(".faq-q");
-    if (!btn) return;
-    var panel = document.getElementById(btn.getAttribute("aria-controls"));
-    var isOpen = btn.getAttribute("aria-expanded") === "true";
+  function panelFor(btn){
+    var id = btn.getAttribute("aria-controls");
+    return id ? document.getElementById(id) : null;
+  }
+  function closeAll(list){
     list.querySelectorAll(".faq-q").forEach(function(b){
       b.setAttribute("aria-expanded", "false");
-      document.getElementById(b.getAttribute("aria-controls")).dataset.open = "false";
+      var p = panelFor(b);
+      if (p) p.dataset.open = "false";
     });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (t && t.nodeType === 3) t = t.parentElement;
+    if (!t || typeof t.closest !== "function") return;
+    var btn = t.closest(".faq-q");
+    if (!btn) return;
+    var list = btn.closest(".faq-list");
+    if (!list) return;
+    var panel = panelFor(btn);
+    if (!panel) return;
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    closeAll(list);
     if (!isOpen){
       btn.setAttribute("aria-expanded", "true");
       panel.dataset.open = "true";
-      /* the aside follows the question. Its index is read off the button's
-         own position, so adding or removing a question needs nothing here. */
       var wrap = list.closest(".faq-wrap");
-      if (wrap) wrap.dataset.at = $$(".faq-q", list).indexOf(btn) + 1;
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
     }
   });
 })();
-
 
 /* === cn-script === */
 
@@ -713,4 +728,410 @@
   sync();
   if (running.addEventListener) running.addEventListener("change", sync);
   else running.addListener(sync);          /* older Safari */
+})();
+
+
+/* === wc-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHY CHOOSE US — the panel.
+
+   Each instrument is drawn from nothing every time its tab is opened.
+   The panel is taken out of the document and put back so the CSS
+   animations restart; the ring's arcs are the exception, since a dash
+   cannot be animated from a value it is already sitting on, so they are
+   reset to zero and committed before the real one is set.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  var panel = document.querySelector("#wcPanel");
+  if (!panel) return;
+
+  var $$ = function(s, r){
+    return Array.prototype.slice.call((r || document).querySelectorAll(s));
+  };
+  var tabs   = $$(".wc-tab", panel),
+      panels = $$(".wc-panel", panel),
+      body   = panel.querySelector(".wc-body");
+
+  /* the line is measured so its draw ends where the line does */
+  $$(".wc-line", panel).forEach(function(pth){
+    pth.style.setProperty("--len", pth.getTotalLength().toFixed(1));
+  });
+
+  function redraw(pnl){
+    $$(".seg", pnl).forEach(function(seg){
+      seg.style.strokeDasharray = "0 999";
+      void seg.getBoundingClientRect();
+      seg.style.strokeDasharray = seg.getAttribute("data-dash");
+    });
+  }
+
+  function show(i){
+    /* the panel squares whichever corner has a tab standing on it */
+    if (body){
+      body.classList.toggle("first", i === 0);
+      body.classList.toggle("last",  i === tabs.length - 1);
+    }
+    tabs.forEach(function(t, k){
+      t.classList.toggle("on", k === i);
+      t.setAttribute("aria-selected", k === i ? "true" : "false");
+    });
+    panels.forEach(function(pnl, k){
+      pnl.classList.remove("on");
+      if (k === i){
+        void pnl.offsetWidth;              /* restart the panel's animations */
+        pnl.classList.add("on");
+        redraw(pnl);
+      }
+    });
+  }
+
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ show(i); });
+    t.addEventListener("keydown", function(e){
+      var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!step) return;
+      e.preventDefault();
+      var n = (i + step + tabs.length) % tabs.length;
+      tabs[n].focus(); show(n);
+    });
+  });
+
+  /* it draws when it is first reached, not while it is still off-screen */
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(e){
+      if (!e[0].isIntersecting) return;
+      show(0);
+      io.disconnect();
+    }, { threshold:.2 });
+    io.observe(panel);
+  } else {
+    show(0);
+  }
+})();
+
+
+/* === wk-script === */
+
+/* Both of these came across from the homepage unchanged. The deck's was
+   an inner block of one long IIFE there, so the two helpers it read off
+   the enclosing scope are declared here instead — inside a wrapper,
+   because `var` at the top of a classic <script> is a global, and five
+   other scripts on this page declare helpers by the same two names. */
+(function(){
+"use strict";
+var $  = function(s, r){ return (r || document).querySelector(s); };
+var $$ = function(s, r){
+  return Array.prototype.slice.call((r || document).querySelectorAll(s));
+};
+
+/* ---------------- selected work ----------------
+     The rail already scrolls, snaps and takes the arrow keys on its own.
+     This adds the two buttons, keeps the counter honest — position is
+     read back off scrollLeft rather than held in a variable, so a swipe,
+     a key and a button all report the same place — and closes the run
+     into a ring so it never reaches an end.
+  --------------------------------------------------------------- */
+  (function(){
+    var deck = $("#wkDeck"), rail = $("#wkRail");
+    if (!deck || !rail) return;
+
+    var cards = $$(".wk-card", rail),
+        at    = $("#wkAt"),
+        bar   = $("#wkBar"),
+        arws  = $$(".wk-arw", deck);
+    if (cards.length < 2) return;
+
+    /* Three copies of the set, and the reader is kept in the middle one.
+       Running off either end lands on an identical sheet in the copy next
+       door, so the scroll position can be moved by exactly one set without
+       anything appearing to move — which is the whole trick. The clones
+       are hidden from assistive tech; the seven real sheets are read once. */
+    var n = cards.length, all = cards;
+    (function ring(){
+      var before = document.createDocumentFragment(),
+          after  = document.createDocumentFragment();
+      cards.forEach(function(c){
+        [before, after].forEach(function(f){
+          var d = c.cloneNode(true);
+          d.setAttribute("aria-hidden", "true");
+          d.setAttribute("data-clone", "");
+          f.appendChild(d);
+        });
+      });
+      rail.appendChild(after);
+      rail.insertBefore(before, rail.firstChild);
+      all = $$(".wk-card", rail);
+    })();
+
+    function step(){ return all[1].offsetLeft - all[0].offsetLeft; }
+    function setW(){ return step() * n; }
+
+    /* Called once the scroll has settled, never mid-glide: moving the
+       position while a smooth scroll is in flight would fight its target. */
+    function ringWrap(){
+      var w = setW(); if (!w) return;
+      var x = rail.scrollLeft, y = x;
+      if (x < w * 0.5) y = x + w;
+      else if (x > w * 1.5) y = x - w;
+      if (y === x) return;
+      var held = rail.style.scrollBehavior;
+      rail.style.scrollBehavior = "auto";
+      rail.scrollLeft = y;
+      rail.style.scrollBehavior = held;
+      sync();
+    }
+
+    /* Which sheet is being looked at is whichever one is nearest the middle
+       of the rail — measured, not counted, so the counter can never drift
+       from what is actually on screen. Nothing is dimmed: the middle sheet
+       is lifted and grown, and the six around it are left as they are. */
+    function sync(){
+      var mid = rail.scrollLeft + rail.clientWidth / 2, i = 0, near = Infinity;
+
+      all.forEach(function(c, k){
+        var d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+        if (d < near){ near = d; i = k; }
+      });
+      all.forEach(function(c, k){ c.classList.toggle("on", k === i); });
+      /* the copies report the number of the sheet they are a copy of */
+      var real = ((i % n) + n) % n;
+      at.textContent = ("0" + (real + 1)).slice(-2);
+      bar.style.width = ((real + 1) / n * 100) + "%";
+    }
+
+    /* The rail opens on the second sheet rather than the first, because at
+       scrollLeft 0 the first one rests against the edge with nothing to its
+       left. Seated on the second, there is a sheet cut off on both sides and
+       one whole sheet in the middle — which is the shape the set is meant to
+       be read in. Done with smooth scrolling switched off, so it is a
+       starting position rather than an animation nobody asked for. */
+    function seat(){
+      if (!rail.clientWidth) return;              /* the panel is hidden */
+      var held = rail.style.scrollBehavior, c = all[n + 1];
+      rail.style.scrollBehavior = "auto";
+      rail.scrollLeft = c.offsetLeft + c.offsetWidth / 2 - rail.clientWidth / 2;
+      rail.style.scrollBehavior = held;
+      sync();
+    }
+
+    /* A hidden rail measures zero and loses its scroll position, so the width
+       going from nothing to something is the signal that the panel has just
+       been shown — and it gets seated again. A real window resize never
+       crosses zero, so it only re-reads position and leaves the reader where
+       they were. */
+    var wide = 0;
+    function relayout(){
+      var w = rail.clientWidth;
+      if (w && !wide) seat(); else sync();
+      wide = w;
+    }
+
+    arws.forEach(function(b){
+      b.addEventListener("click", function(){
+        rail.scrollLeft += step() * Number(b.getAttribute("data-wk"));
+      });
+    });
+    var settle;
+    rail.addEventListener("scroll", function(){
+      window.requestAnimationFrame(sync);
+      clearTimeout(settle);
+      settle = setTimeout(ringWrap, 150);
+    }, { passive:true });
+    window.addEventListener("resize", relayout);
+
+    /* ---- mouse drag ----
+       The rail already scrolls on touch and on a trackpad; a mouse has
+       neither, so a plain pointer-drag is added on top of the same
+       scrollLeft the rest of the deck already reads and writes. Snap and
+       smoothing are both switched off for the length of the drag — snap
+       would fight the pointer every frame, and smoothing would lag it. */
+    var dragging = false, dragX = 0, dragStart = 0, dragMoved = false;
+    rail.addEventListener("pointerdown", function(e){
+      if (e.pointerType === "touch") return; /* touch already scrolls natively */
+      dragging = true; dragMoved = false;
+      dragX = e.clientX; dragStart = rail.scrollLeft;
+      rail.classList.add("dragging");
+      rail.setPointerCapture(e.pointerId);
+      stopAuto();
+    });
+    rail.addEventListener("pointermove", function(e){
+      if (!dragging) return;
+      var dx = e.clientX - dragX;
+      if (Math.abs(dx) > 3) dragMoved = true;
+      rail.scrollLeft = dragStart - dx;
+    });
+    function endDrag(){
+      if (!dragging) return;
+      dragging = false;
+      rail.classList.remove("dragging");
+      ringWrap();
+      startAuto();
+    }
+    rail.addEventListener("pointerup", endDrag);
+    rail.addEventListener("pointercancel", endDrag);
+    /* a drag that moved the rail should not also fire the sheet's own
+       link/button underneath the pointer */
+    rail.addEventListener("click", function(e){
+      if (dragMoved){ e.preventDefault(); e.stopPropagation(); }
+    }, true);
+
+    /* ---- autoplay ----
+       Advances one sheet at a time on the same step() the arrows use, so
+       it lands on exactly the positions a click would. Paused for as long
+       as a pointer is over the deck or the rail has keyboard focus, and
+       restarted once both are clear — never fights a drag or a manual
+       read of the row. */
+    var AUTO_MS = 3400, autoTimer = null;
+    function startAuto(){
+      stopAuto();
+      autoTimer = setInterval(function(){
+        rail.scrollLeft += step();
+      }, AUTO_MS);
+    }
+    function stopAuto(){
+      if (autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+    }
+    deck.addEventListener("pointerenter", stopAuto);
+    deck.addEventListener("pointerleave", function(){ if (!dragging) startAuto(); });
+    rail.addEventListener("focusin", stopAuto);
+    rail.addEventListener("focusout", startAuto);
+    document.addEventListener("visibilitychange", function(){
+      if (document.hidden) stopAuto(); else if (!dragging) startAuto();
+    });
+
+    deck.classList.add("wired");
+    relayout();
+    startAuto();
+  })();
+
+/* ---------------- reviews ----------------
+   The same three reviews the rotating quote used, shown together. The row
+   is a grid at full width and a snap track below that; the arrows and dots
+   only appear where it actually scrolls. */
+(function(){
+  var track = document.getElementById('grTrack');
+  if(!track) return;
+
+  /* PLACEHOLDER REVIEWS — same status as the three the rotating quote
+     carried: written for layout, not collected from clients. Replace every
+     one of these with the real Google review before this goes live. */
+  var GR = [
+    { name:"Dana Whitfield", initials:"DW", guide:true,
+      meta:"24 reviews \u00b7 6 photos", when:"2 weeks ago",
+      text:"We had three agencies before this one. TekCroft is the first that could tell me, in one sentence, what my money bought last month.",
+      tags:["SEO","Paid Media","B2B SaaS"], helpful:24 },
+    { name:"Marcus Reyes", initials:"MR", guide:false,
+      meta:"8 reviews \u00b7 2 photos", when:"1 month ago",
+      text:"They rebuilt the site and then ranked it. Not having to referee between two vendors was worth the fee on its own.",
+      tags:["Web Build","SEO"], helpful:18 },
+    { name:"Priya Raman", initials:"PR", guide:false,
+      meta:"11 reviews", when:"2 months ago",
+      text:"The free review found a redirect chain that had been eating a third of our organic traffic for two years. They sent it before we paid them anything.",
+      tags:["Technical SEO","Audit"], helpful:32 },
+    { name:"Elena Fischer", initials:"EF", guide:true,
+      meta:"31 reviews \u00b7 4 photos", when:"3 months ago",
+      text:"Placeholder review. One strategist owns the account, the dashboard is live, and the monthly call is about decisions rather than screenshots.",
+      tags:["Local SEO","Reporting"], helpful:15 },
+    { name:"Tobias Lang", initials:"TL", guide:false,
+      meta:"6 reviews", when:"4 months ago",
+      text:"Placeholder review. Audit in week one, strategy in week two, campaigns live in week four, and nothing in between that we had to chase.",
+      tags:["Onboarding","Paid Media"], helpful:9 },
+    { name:"Amara Diallo", initials:"AD", guide:false,
+      meta:"17 reviews \u00b7 1 photo", when:"5 months ago",
+      text:"Placeholder review. They said no to two things we asked for and explained why, which is the part that made us trust the rest of it.",
+      tags:["Ecommerce SEO","CRO"], helpful:21 }
+  ];
+
+  var STAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3.6 2.7 5.5 6 .9-4.35 4.25 1.03 6L12 17.42 6.62 20.25l1.03-6L3.3 10l6-.9z"/></svg>';
+  function stars(n){
+    var out = '';
+    for (var i = 0; i < 5; i++) out += STAR;
+    return '<span class="gr-stars" role="img" aria-label="Rated ' + n + ' out of 5">' + out + '</span>';
+  }
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  track.innerHTML = GR.map(function(r){
+    return '<article class="gr-card">'
+      + '<div class="gr-top">'
+      +   '<span class="gr-av" aria-hidden="true">' + esc(r.initials) + '</span>'
+      +   '<span class="gr-who"><b>' + esc(r.name)
+      +     (r.guide ? '<span class="gr-guide">Local Guide</span>' : '') + '</b>'
+      +     '<span>' + esc(r.meta) + '</span></span>'
+      +   '<span class="gr-kebab" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg></span>'
+      + '</div>'
+      + '<div class="gr-meta">' + stars(5) + '<span class="gr-when">' + esc(r.when) + '</span></div>'
+      + '<p class="gr-text">' + esc(r.text) + '</p>'
+      + '<div class="gr-tags">' + r.tags.map(function(t){
+            return '<span class="gr-tag">' + esc(t) + '</span>'; }).join('') + '</div>'
+      + '<div class="gr-foot">'
+      +   '<button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10.5v9H4.5v-9Z"/><path d="M7 10.5 11 3a2 2 0 0 1 2 2v4h5.4a1.6 1.6 0 0 1 1.6 2l-1.5 7a2 2 0 0 1-2 1.5H7Z"/></svg>Helpful (' + r.helpful + ')</button>'
+      +   '<button type="button">Share</button>'
+      + '</div></article>';
+  }).join('');
+
+  /* the rating shown in the bar */
+  var starSlot = document.getElementById('grBarStars');
+  if (starSlot) starSlot.innerHTML = stars(4.8);
+
+  /* arrows and dots — one page per card's worth of scroll */
+  var prev = document.getElementById('grPrev'),
+      next = document.getElementById('grNext'),
+      dots = document.getElementById('grDots');
+  if(!prev || !next || !dots) return;
+
+  /* The controls belong to the content, not to the breakpoint: they show
+     whenever there is more than one page of cards and hide when the row
+     fits, at any width. */
+  var nav = dots.parentElement;
+
+  /* The gap is read off the track rather than hard-coded, so the step stays
+     right as the layout's clamp() resolves differently at each width. */
+  function step(){
+    var card = track.firstElementChild;
+    if(!card) return 1;
+    var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+    return Math.max(1, card.offsetWidth + gap);
+  }
+  function perView(){ return Math.max(1, Math.round(track.clientWidth / step())); }
+  function pages(){ return Math.max(1, track.children.length - perView() + 1); }
+  function at(){ return Math.round(track.scrollLeft / step()); }
+
+  function paint(){
+    /* the row overflows, or it does not — that single fact decides whether
+       there is anything to drive */
+    var scrolls = track.scrollWidth - track.clientWidth > 4;
+    nav.style.display = scrolls ? 'flex' : 'none';
+    if(!scrolls) return;
+
+    var n = pages(), i = Math.min(at(), n - 1);
+    if (dots.children.length !== n){
+      dots.innerHTML = '';
+      for (var k = 0; k < n; k++){
+        var b = document.createElement('button');
+        b.className = 'gr-dot'; b.type = 'button';
+        b.setAttribute('aria-label', 'Go to review ' + (k + 1));
+        b.dataset.i = k;
+        dots.appendChild(b);
+      }
+    }
+    [].slice.call(dots.children).forEach(function(b, k){
+      b.setAttribute('aria-current', k === i ? 'true' : 'false');
+    });
+    prev.disabled = i <= 0;
+    next.disabled = i >= n - 1;
+  }
+  function go(dir){ track.scrollBy({ left: dir * step(), behavior:'smooth' }); }
+
+  prev.addEventListener('click', function(){ go(-1); });
+  next.addEventListener('click', function(){ go(1); });
+  dots.addEventListener('click', function(e){
+    var b = e.target.closest('.gr-dot'); if(!b) return;
+    track.scrollTo({ left: b.dataset.i * step(), behavior:'smooth' });
+  });
+  track.addEventListener('scroll', paint, { passive:true });
+  window.addEventListener('resize', paint);
+  paint();
+})();
+
 })();

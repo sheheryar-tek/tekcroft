@@ -581,7 +581,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
 
   const js = extractScripts(html, [
     "tb-script",
-    "walk-script",
+    "eg-script",
     "ft-script",
     "faq-script",
     "cn-script",

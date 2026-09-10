@@ -4578,18 +4578,25 @@ html[data-theme="light"] .faq-list{background:#FFFFFF;}
 .faq-q[aria-expanded="true"] .faq-sign .x{ display:block; }
 .faq-q[aria-expanded="true"] .faq-sign .plus{ display:none; }
 
-/* the answer: a grid row that animates from 0fr to 1fr, so it opens to
-   its own height without anyone measuring anything in JavaScript */
-.faq-a{ display:grid; grid-template-rows:0fr;
-  transition:grid-template-rows .34s var(--ease); }
-.faq-a[data-open="true"]{ grid-template-rows:1fr; }
-.faq-a > div{ overflow:hidden; }
+/* FAQ answers — max-height toggle (more reliable than 0fr/1fr across browsers) */
+.faq-a{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transition:max-height .38s var(--ease), opacity .28s var(--ease);
+}
+.faq-a[data-open="true"],
+.faq-a.is-open{
+  max-height:720px;
+  opacity:1;
+}
+.faq-a > div{ min-height:0; }
 .faq-a p{
   margin:0; padding:2px clamp(16px,1.8vw,24px) clamp(16px,1.6vw,20px)
           clamp(52px,5vw,64px);
   font-size:14px; line-height:1.68; color:var(--text-2);
   border-left:2px solid var(--brand-soft); margin-left:clamp(20px,2vw,26px);}
-
+.faq-q{ cursor:pointer; }
 /* ── responsive ────────────────────────────────────────────────────── */
 @media (max-width:940px){
   .faq-wrap{ grid-template-columns:1fr; }

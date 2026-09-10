@@ -1419,3 +1419,42 @@
 
 
 })();
+
+/* === faq-script === */
+/* One question open at a time. Document delegation so it works after
+   Next.js injects the body HTML, and null-safe for missing panels. */
+(function(){
+  function panelFor(btn){
+    var id = btn.getAttribute("aria-controls");
+    return id ? document.getElementById(id) : null;
+  }
+  function closeAll(list){
+    list.querySelectorAll(".faq-q").forEach(function(b){
+      b.setAttribute("aria-expanded", "false");
+      var p = panelFor(b);
+      if (p) p.dataset.open = "false";
+    });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (t && t.nodeType === 3) t = t.parentElement;
+    if (!t || typeof t.closest !== "function") return;
+    var btn = t.closest(".faq-q");
+    if (!btn) return;
+    var list = btn.closest(".faq-list");
+    if (!list) return;
+    var panel = panelFor(btn);
+    if (!panel) return;
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    closeAll(list);
+    if (!isOpen){
+      btn.setAttribute("aria-expanded", "true");
+      panel.dataset.open = "true";
+      var wrap = list.closest(".faq-wrap");
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
+    }
+  });
+})();
