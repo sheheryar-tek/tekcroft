@@ -720,3 +720,194 @@ html[data-theme="dark"] .ftm{
   width:100%; height:100%; object-fit:cover; object-position:50% 24%;
   display:block; transform:inherit;
 }
+
+/* === ct-next-styles === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHAT HAPPENS NEXT
+
+   Three steps, directly under the form, because this is the moment the
+   question gets asked — not at the bottom of the page. On a phone the
+   card stacks details-then-form, so this lands right after Send.
+
+   Each step is an outlined frame with a tab on its top edge and a card
+   set inside it, and a line with a ring joins one frame to the next.
+
+   ── one hue, three depths ──────────────────────────────────────────
+   The reference runs light green to teal to navy — three colours, but
+   read left to right they are one thing getting deeper, which is what
+   makes the row feel like a sequence rather than three items. That
+   reading is what has been kept, in the brand's own ramp: a light blue,
+   then --primary, then --p700. Three arbitrary hues would have been the
+   surface of the reference and not its point — and this page already
+   spends its one multi-colour moment on the contact tiles above.
+
+   ── the frame is not a card ────────────────────────────────────────
+   The outer shape draws only an edge and holds no fill, so the card
+   inside it is the only thing on the page's paper. That is what gives
+   the reference its depth: two shapes, one open and one solid, rather
+   than a card with a thick border.
+   ══════════════════════════════════════════════════════════════════════ */
+.ct-next{margin-top:var(--ct-gap); padding-top:clamp(26px,3vw,40px);
+  border-top:1px solid var(--border);}
+
+.ct-next-head{display:flex; flex-wrap:wrap; align-items:baseline;
+  gap:8px clamp(12px,1.6vw,20px); margin-bottom:clamp(26px,3.4vw,42px);}
+.ct-next-head h2{margin:0; font-family:var(--font-display); font-weight:800;
+  font-size:clamp(19px,2vw,25px); letter-spacing:-0.035em; line-height:1.24;
+  color:var(--text);}
+.ct-next-head h2 em{font-style:normal; color:var(--brand-text);}
+.ct-next-head p{margin:0; font-size:14px; line-height:1.6; color:var(--text-2);}
+
+/* The joins are columns of their own rather than something drawn into the
+   gap, because a grid gap cannot hold content and a line hung off a
+   frame's edge would have to be re-measured every time the gap changed. */
+/* The tab sits on the frame's top edge and the dots hang off its bottom,
+   so both stand outside the frame's own box. The row makes room for them
+   rather than letting them run into the head above or the map below. */
+.ct-next-row{display:grid; align-items:stretch;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);
+  gap:0; padding:6px 0 9px;}
+
+.ct-step{position:relative; --c:var(--primary); --r:clamp(22px,2.6vw,32px);
+  padding:clamp(14px,1.5vw,18px);
+  border:3px solid var(--c); border-radius:var(--r);}
+
+/* ── the hover ────────────────────────────────────────────────────────
+   Nothing moves on its own here now. The step answers the pointer, and
+   what it does is take on its own colour: the outline lights, the icon
+   tile fills with the colour it was only tinting, the tab stretches, and
+   a halo of that same colour opens behind the frame.
+
+   Every one of those is derived from the step's own --c, so a step
+   cannot hover into a colour that is not its own — and the three of them
+   need no separate hover rules between them.
+
+   The lift is on the frame and the fill is on the tile: two elements, so
+   the frame's transform and the tile's transform never contend for the
+   same property. */
+.ct-step{box-shadow:0 0 0 0 hsl(var(--brand-h) 0% 0% / 0),
+                   0 0 0 0 hsl(var(--brand-h) 0% 0% / 0);
+  transition:transform .45s var(--pop), box-shadow .45s var(--ease),
+             border-color .45s var(--ease);}
+.ct-step:hover{transform:translateY(-6px);
+  border-color:color-mix(in srgb, var(--c) 78%, hsl(var(--brand-h) 100% 66%));
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--c) 18%, transparent),
+             0 26px 54px -26px color-mix(in srgb, var(--c) 70%, transparent);}
+
+.ct-step-tab{transition:width .45s var(--pop);}
+.ct-step:hover .ct-step-tab{width:clamp(104px,13vw,164px);}
+
+.ct-step-ico{transition:background .4s var(--ease), color .4s var(--ease),
+                        transform .5s var(--pop), box-shadow .4s var(--ease);}
+.ct-step:hover .ct-step-ico{background:var(--c); color:#fff;
+  transform:translateY(-2px) rotate(-6deg);
+  box-shadow:0 12px 24px -12px color-mix(in srgb, var(--c) 90%, transparent);}
+
+.ct-step-in{transition:box-shadow .45s var(--ease), border-color .45s var(--ease);}
+.ct-step:hover .ct-step-in{
+  border-color:color-mix(in srgb, var(--c) 30%, var(--border));
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb),.05),
+    0 12px 24px -12px rgba(var(--ink-rgb),.12),
+    0 34px 60px -30px rgba(var(--ink-rgb),.18);}
+
+.ct-step-dots i{transition:transform .45s var(--pop), opacity .4s var(--ease);}
+.ct-step:hover .ct-step-dots i{transform:scale(1.35);}
+.ct-s1{--c:hsl(var(--brand-h) 66% 62%);}
+.ct-s2{--c:var(--primary);}
+.ct-s3{--c:var(--p700);}
+
+/* The ramp turns over in dark. On paper "further into the brand" means
+   darker, and --p700 is the end of it; on a dark page --p700 is nearly
+   the ground and step three went quiet exactly where it should have been
+   loudest. So the three still intensify left to right, but by rising off
+   the page rather than sinking into it. */
+html[data-theme="dark"] .ct-s1{--c:hsl(var(--brand-h) 45% 55%);}
+html[data-theme="dark"] .ct-s3{--c:hsl(var(--brand-h) 90% 66%);}
+
+/* The tab sits ON the frame's top edge, so it needs the frame's own
+   border width subtracted from where it starts — otherwise it hangs
+   three pixels proud of the line it is meant to be part of. */
+.ct-step-tab{position:absolute; top:-3px; left:clamp(26px,3vw,38px);
+  width:clamp(72px,9vw,116px); height:11px;
+  background:var(--c); border-radius:0 0 7px 7px;}
+
+.ct-step-in{position:relative; height:100%;
+  display:flex; flex-direction:column;
+  padding:clamp(20px,2.2vw,28px) clamp(18px,2vw,24px);
+  border-radius:clamp(14px,1.7vw,20px);
+  background:var(--surface); border:1px solid var(--border);
+  /* Three passes rather than one. A single deep shadow just puts a dark
+     smudge under the card; the contact reads the near edge, the middle
+     one gives it height, and the wide one is what the eye takes for
+     light in the room. Each is weaker than the one shadow it replaces. */
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb),.045),
+    0 8px 18px -10px rgba(var(--ink-rgb),.10),
+    0 26px 50px -26px rgba(var(--ink-rgb),.15);}
+
+/* On a dark page a shadow is invisible — depth there is an edge, not a
+   smudge, so the card takes a lit top edge instead. */
+html[data-theme="dark"] .ct-step-in{
+  box-shadow:inset 0 1px 0 hsl(0 0% 100% / .06);}
+
+.ct-step-ico{display:grid; place-items:center;
+  width:clamp(40px,4vw,48px); height:clamp(40px,4vw,48px);
+  border-radius:50%; margin-bottom:clamp(12px,1.4vw,16px);
+  background:color-mix(in srgb, var(--c) 15%, var(--surface));
+  color:var(--c);}
+.ct-step-ico svg{width:46%; height:46%;}
+
+.ct-step-i{display:block; font-family:var(--font-display); font-weight:800;
+  font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--c);}
+.ct-step-t{display:block; margin-top:8px;
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(15px,1.5vw,17px); letter-spacing:-0.025em; line-height:1.25;
+  color:var(--text);}
+.ct-step-d{margin:8px 0 0; font-size:13.6px; line-height:1.62;
+  color:var(--text-2);}
+/* Pushed to the foot of the card so the three timings line up across the
+   row however long the copy above them runs. */
+.ct-step-when{display:inline-block; align-self:flex-start;
+  margin-top:auto; padding-top:clamp(12px,1.4vw,16px);
+  font-size:12px; font-weight:700; letter-spacing:.01em; color:var(--c);}
+
+/* the loose dots the reference sets at the foot of each frame */
+.ct-step-dots{position:absolute; bottom:-5px; right:clamp(24px,3vw,36px);
+  display:flex; gap:5px;}
+.ct-step-dots i{width:9px; height:9px; border-radius:50%;
+  background:var(--c);}
+
+/* ── the join ─────────────────────────────────────────────────────────
+   A line the width of the gap with a ring set on it. The ring carries the
+   page's own ground as its fill, so the line passes behind it and stops
+   at its edge without the line having to be cut into two. */
+.ct-join{position:relative; width:clamp(26px,4vw,60px);
+  display:grid; place-items:center;}
+.ct-join::before{content:""; position:absolute; left:0; right:0; height:2px;
+  background:hsl(var(--brand-h) 60% 62% / .45);}
+.ct-join i{position:relative; width:16px; height:16px; border-radius:50%;
+  background:var(--bg); border:2px solid var(--primary);
+  display:grid; place-items:center;}
+.ct-join i::after{content:""; width:6px; height:6px; border-radius:50%;
+  background:var(--primary);}
+
+/* ── stacked ──────────────────────────────────────────────────────────
+   One column, so the joins turn with it: the line runs down instead of
+   across and the ring sits on it the same way. */
+@media (max-width:900px){
+  .ct-next-row{grid-template-columns:minmax(0,1fr);
+    grid-auto-rows:auto;}
+  .ct-step:hover{transform:none;}
+  .ct-join{width:auto; height:clamp(30px,6vw,44px); justify-self:center;}
+  .ct-join::before{left:50%; right:auto; top:0; bottom:0; height:auto;
+    width:2px; transform:translateX(-1px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .ct-step{transition:none;}
+  /* the circuit stops. The ring is hidden rather than frozen mid-lap,
+     because a light parked on one frame would read as that step being
+     marked out — the plain coloured frames say nothing they should not. */
+}

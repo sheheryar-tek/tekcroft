@@ -1784,19 +1784,30 @@ html[data-theme="dark"] .cn .cn-stat{
 
   /* The arrow the wide pill throws onto the sheet has nothing to point at
      here, so the same circle is redrawn as a plus that loses its upright
-     when the row opens. No second icon, no markup change. */
+     when the row opens. No second icon, no markup change.
+     Opacity must be forced on: desktop refine hides unlit discs, but here
+     every row needs its + / −. */
   .cn-go{position:relative; width:34px; height:34px;}
-  .cn .cn-go{background:var(--primary); color:#fff;
-    backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:none;}
+  .cn .cn-go{background:var(--primary); color:#fff; opacity:1;
+    backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:none;
+    transform:none;}
   html[data-theme="dark"] .cn .cn-go{background:rgba(255,255,255,.14);}
-  .cn .cn-tab.on .cn-go{background:#fff; color:var(--primary);
-    box-shadow:none;}
+  .cn .cn-tab.on .cn-go{background:#fff; color:var(--primary); opacity:1;
+    box-shadow:none; transform:none;}
+  .cn-tab:not(.on):hover .cn-go,
+  .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1; background:var(--primary); transform:none; box-shadow:none;}
+  html[data-theme="dark"] .cn-tab:not(.on):hover .cn-go,
+  html[data-theme="dark"] .cn-tab:not(.on):focus-visible .cn-go{
+    background:rgba(255,255,255,.14);}
   .cn-go svg{display:none;}
-  .cn-go::before,.cn-go::after{content:""; position:absolute; background:currentColor;
-    border-radius:2px;}
+  .cn-go::before,.cn-go::after{content:""; position:absolute; top:50%; left:50%;
+    background:currentColor; border-radius:2px;
+    transform:translate(-50%,-50%);}
   .cn-go::before{width:13px; height:2px;}
-  .cn-go::after{width:2px; height:13px; transition:transform .3s var(--ease);}
-  .cn-tab.on .cn-go::after{transform:scaleY(0);}
+  .cn-go::after{width:2px; height:13px;
+    transition:transform .3s var(--ease);}
+  .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0);}
 
   /* the sheet is emptied and stood down; its card is now a rail child */
   .cn-sheet{display:none;}
@@ -4314,18 +4325,21 @@ html[data-theme="dark"] .cta3-actions .btn-primary:hover{
   -webkit-backdrop-filter:none; backdrop-filter:none;
   box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75);}
 
-/* the disc: nothing on an unlit row, ink on the lit one */
-.cn .cn-go{
-  background:transparent; box-shadow:none;
-  -webkit-backdrop-filter:none; backdrop-filter:none;
-  opacity:0; transition:opacity .26s var(--ease),
-             transform .52s var(--pop), background .3s var(--ease);}
-.cn .cn-tab.on .cn-go{
-  opacity:1; background:#0a1a29; color:#fff;
-  -webkit-backdrop-filter:none; backdrop-filter:none;
-  box-shadow:none;}
-.cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
-  transform:translateX(7px); box-shadow:none; }
+/* the disc: nothing on an unlit row, ink on the lit one — desktop only.
+   Under 1040 the same disc is the accordion + / − on every row. */
+@media (min-width:1041px){
+  .cn .cn-go{
+    background:transparent; box-shadow:none;
+    -webkit-backdrop-filter:none; backdrop-filter:none;
+    opacity:0; transition:opacity .26s var(--ease),
+               transform .52s var(--pop), background .3s var(--ease);}
+  .cn .cn-tab.on .cn-go{
+    opacity:1; background:#0a1a29; color:#fff;
+    -webkit-backdrop-filter:none; backdrop-filter:none;
+    box-shadow:none;}
+  .cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
+    transform:translateX(7px); box-shadow:none; }
+}
 
 /* the figure card is paper, not frost */
 .cn .cn-stat{
@@ -4725,5 +4739,49 @@ html[data-theme="light"] .faq-list{background:#FFFFFF;}
   .gr-bar{ grid-template-columns:1fr; text-align:left; }
   .gr-acts{ flex-direction:column; align-items:stretch; }
   .gr-acts .btn{ width:100%; justify-content:center; }
+}
+
+/* Console accordion icons — final win over earlier desktop refine */
+@media (max-width:1040px){
+  .cn .cn-go,
+  .cn-go{
+    opacity:1 !important;
+    visibility:visible !important;
+    background:var(--primary) !important;
+    color:#fff !important;
+    transform:none !important;
+    box-shadow:none !important;}
+  html[data-theme="dark"] .cn .cn-go,
+  html[data-theme="dark"] .cn-go{
+    background:rgba(255,255,255,.14) !important;}
+  .cn .cn-tab.on .cn-go,
+  .cn-tab.on .cn-go{
+    background:#fff !important;
+    color:var(--primary) !important;
+    opacity:1 !important;
+    transform:none !important;}
+  .cn-tab:not(.on):hover .cn-go,
+  .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1 !important;
+    transform:none !important;
+    background:var(--primary) !important;}
+  html[data-theme="dark"] .cn-tab:not(.on):hover .cn-go,
+  html[data-theme="dark"] .cn-tab:not(.on):focus-visible .cn-go{
+    background:rgba(255,255,255,.14) !important;}
+  .cn-go svg{display:none !important;}
+  .cn-go::before,
+  .cn-go::after{
+    content:"" !important;
+    position:absolute !important;
+    top:50% !important; left:50% !important;
+    background:currentColor !important;
+    border-radius:2px !important;
+    transform:translate(-50%,-50%) !important;
+    display:block !important;
+    opacity:1 !important;}
+  .cn-go::before{width:13px !important; height:2px !important;}
+  .cn-go::after{width:2px !important; height:13px !important;}
+  .cn-tab.on .cn-go::after{
+    transform:translate(-50%,-50%) scaleY(0) !important;}
 }
 

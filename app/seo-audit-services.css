@@ -1,7 +1,16 @@
-/* Ecommerce SEO page-only — shared chrome in tekcroft.css */
+/* SEO Audit Services — design from tekcroft-seo-audit HTML; chrome in tekcroft.css */
+/* === audit tokens (from tk-core) === */
+:root{
+  --veil:rgba(0,0,0,.78);
+  --disc:hsl(var(--brand-h) 92% 95%);
+}
+html[data-theme="dark"]{
+  --disc:rgba(0,150,213,.16);
+}
+
 /* === hs-styles === */
 /* ══════════════════════════════════════════════════════════════════════
-   ECOMMERCE SEO — SERVICE HERO
+   SEO AUDIT — SERVICE HERO
    A three-line claim on one side, the form on the other, over a single
    flat sheet of ink. Every colour, radius, typeface and easing is the
    homepage's own, so the two pages read as the same site.
@@ -9,8 +18,10 @@
 
 .hs{
   /* ONE flat overlay over the photograph. Raise it to darken the hero,
-     lower it to let more of the picture through. No gradients. */
-  --hs-veil:rgba(0,0,0,.78);
+     lower it to let more of the picture through. No gradients. Overriding
+     it here changes the hero alone; changing --veil in the tokens changes
+     the hero and the cards in the section below together. */
+  --hs-veil:var(--veil);
   position:relative; isolation:isolate; overflow:hidden; color:#fff;
   min-height:100vh; min-height:100svh;
   display:flex; flex-direction:column; justify-content:center;
@@ -68,6 +79,14 @@
   font-size:clamp(15px,1.05vw,16.5px); line-height:1.65; color:rgba(255,255,255,.76);}
 
 .hs-act{--d:290ms; margin:0; display:flex; flex-wrap:wrap; gap:12px;}
+
+/* ---- a two-paragraph lede ----
+   The gap between the two paragraphs is the paragraph gap, not the wider
+   gap that separates the lede from the button — so the pair reads as one
+   block. :has() is what lets the first paragraph know a second follows;
+   with only one paragraph the rule never fires and nothing changes. */
+.hs-lede:has(+ .hs-lede){margin-bottom:clamp(14px,1.5vw,18px);}
+.hs-lede + .hs-lede{--d:250ms;}
 
 /* ─────────────────────────────────────────────────────────────
    THE FORM — the only thing in the hero that can be typed in, so it is
@@ -296,6 +315,14 @@
 .tb-wall > p{font-size:12.5px; font-weight:600; letter-spacing:.04em;
   color:var(--muted); margin-bottom:clamp(18px,2vw,26px);}
 
+/* The line under the figures is a sentence rather than the eyebrow label
+   this slot was built for, so it takes reading size and a measure. The
+   base rule above still holds for anything that stays a label. */
+.tb-wall > p.tb-claim{font-size:clamp(14px,1.15vw,16px); font-weight:500;
+  letter-spacing:-0.005em; line-height:1.6; color:var(--text-2);
+  max-width:66ch; margin-inline:auto;}
+.tb-claim b{font-weight:700; color:var(--text);}
+
 .tb-marq{overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
           mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
@@ -367,7 +394,7 @@
    The four <span>s are the authored line breaks — they hold the shape the
    copy was written to, with the blue phrase alone on the second line. They
    are only safe while the column is wide enough for the longest of them
-   ("Ecommerce SEO Agency"); below that a forced line has nowhere to go and
+   ("SEO Audit Services"); below that a forced line has nowhere to go and
    would run past the column edge instead of wrapping.
 
    So the breaks are held at full width and released everywhere else: the
@@ -382,6 +409,10 @@
    for an authored break — the sentence wraps on its own. */
 @media (max-width:1240px){
   .hs-h1 span{display:inline;}
+  /* Four words is past the point where holding the blue phrase on one
+     line is safe. Once the authored breaks are released it wraps with
+     the rest of the sentence rather than running past the column. */
+  .hs-h1 em{white-space:normal;}
 }
 
 /* === svc-styles === */
@@ -445,7 +476,14 @@
 /* the second stroke follows the first, so the frame reads as two moves */
 .tick:hover::after,.tick:focus-visible::after{transition-delay:.09s;}
 
-/* the dot field and the brand wash */
+/* ---- the dot field and the brand wash ----
+   Two layers that belong together: the dots give the ground a texture
+   and the beam lights the top of it, both masked to fade out before
+   they reach the foot. A section that carries one carries both — dots
+   on their own read as a pattern nobody lit.
+
+   --beam is a theme token (.15 light, .26 dark), so the wash is
+   stronger in dark mode, where there is more room for it to show. */
 .beam-zone{position:relative; overflow:hidden;}
 .z-dots{position:absolute; inset:0; pointer-events:none; opacity:.55;
   background-image:radial-gradient(circle, var(--dot) 1px, transparent 1px);
@@ -587,6 +625,9 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 /* the grey rules stand in for the title and the line under it */
 .mp-line{height:1.33cqw; border-radius:.8cqw; background:#E4E9EF;}
 .mp-line + .mp-line{margin-top:1.1cqw; width:74%;}
+/* three rules stand in for an answer paragraph rather than two for a
+   product title, so the last one is short the way a last line is */
+.mp-line + .mp-line + .mp-line{width:52%;}
 .mp-rate{display:flex; align-items:center; gap:.5cqw; margin-top:2.2cqw;}
 .mp-rate svg{width:2.13cqw; height:2.13cqw; color:var(--ui-star); flex-shrink:0;}
 .mp-rate svg.off{color:#D8DEE6;}
@@ -789,6 +830,10 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
   border:1px solid var(--border);
   box-shadow:0 10px 26px -12px rgba(var(--ink-rgb),.28);
   transition:transform .5s var(--pop), box-shadow .45s var(--ease);}
+/* a drawn mark scales to the tile; a logo had to be held back off its
+   edges so its own whitespace was not doubled */
+.pf-tile svg{width:46%; height:46%; color:var(--pf);}
+.pf-ic svg{width:50%; height:50%; color:var(--pf);}
 .pf-tile img{max-width:60%; max-height:60%; width:auto; height:auto;
   object-fit:contain; display:block;}
 
@@ -805,13 +850,17 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
    same radius, same duration — so the angle they start with is the angle
    they keep. --r 214% of a tile that is 14% of the frame puts them on
    the ring at 30% of the frame's width from the centre. */
-.pf-o1{--a:270deg;    --pf:var(--pf-shopify); --pf-h:96 39% 40%;}
-.pf-o2{--a:321.43deg; --pf:var(--pf-woo);     --pf-h:268 37% 51%;}
-.pf-o3{--a:12.86deg;  --pf:var(--pf-magento); --pf-h:16 86% 54%;}
-.pf-o4{--a:64.29deg;  --pf:var(--pf-bigc);    --pf-h:228 5% 15%;}
-.pf-o5{--a:115.71deg; --pf:var(--pf-etsy);    --pf-h:18 79% 49%;}
-.pf-o6{--a:167.14deg; --pf:var(--pf-ebay);    --pf-h:211 100% 41%;}
-.pf-o7{--a:218.57deg; --pf:var(--pf-amazon);  --pf-h:32 100% 38%;}
+/* Six arms at sixty degrees, starting at the top. Seven used to sit at
+   51.43° — 360 over the count, and the count is the only thing that
+   changed. Every arm is on the brand hue now: what it carries is a part
+   of one deliverable rather than seven separate companies, and giving
+   each a colour of its own would have been colour that means nothing. */
+.pf-o1{--a:270deg; --pf:var(--primary); --pf-h:198 100% 42%;}
+.pf-o2{--a:330deg; --pf:var(--primary); --pf-h:198 100% 42%;}
+.pf-o3{--a:30deg;  --pf:var(--primary); --pf-h:198 100% 42%;}
+.pf-o4{--a:90deg;  --pf:var(--primary); --pf-h:198 100% 42%;}
+.pf-o5{--a:150deg; --pf:var(--primary); --pf-h:198 100% 42%;}
+.pf-o6{--a:210deg; --pf:var(--primary); --pf-h:198 100% 42%;}
 
 .pf-rings .pf-halo{transform-box:view-box; transform-origin:250px 200px;
   animation:pfBreathe 6.5s var(--ease) infinite;}
@@ -820,21 +869,20 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 
 /* ── a tile answers, and so does its card ─────────────────────────
    Pointing at either half of the pair lights both, so the diagram and
-   the cards read as the same four things rather than as two lists that
-   happen to share names. */
+   the cards read as the same six things rather than as two lists that
+   happen to share names. One pair per line, so the count here is only
+   ever the count of the list. */
 .pf-tile:hover .pf-face,
 .pf-in:has(.pf-c1:hover) .pf-o1 .pf-face,
 .pf-in:has(.pf-c2:hover) .pf-o2 .pf-face,
 .pf-in:has(.pf-c3:hover) .pf-o3 .pf-face,
 .pf-in:has(.pf-c4:hover) .pf-o4 .pf-face,
 .pf-in:has(.pf-c5:hover) .pf-o5 .pf-face,
-.pf-in:has(.pf-c6:hover) .pf-o6 .pf-face,
-.pf-in:has(.pf-c7:hover) .pf-o7 .pf-face{
+.pf-in:has(.pf-c6:hover) .pf-o6 .pf-face{
   transform:scale(1.14); box-shadow:0 18px 36px -12px hsl(var(--pf-h) / .5);}
 
-/* ── the four cards ──────────────────────────────────────────────── */
 /* ── the carousel ─────────────────────────────────────────────────────
-   Four in view, seven in the track. A wrapped grid left the last row
+   Four in view, six in the track. A wrapped grid left the last row
    three-wide and hanging; a scroller keeps every card the same width and
    lets the set be longer than the frame, which is what it now is.
 
@@ -876,8 +924,6 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
    rail is a container, which is what cqw is for. */
 .pf-card{flex:0 0 calc((100cqw - 3 * var(--pf-gap)) / 4); min-width:0;}
 
-/* eBay sets its own case, and the sheet title-cases every heading */
-.pf-c6 h3 em{text-transform:none;}
 
 /* The blue edge is a border rather than a bar drawn on top, so it
    follows the card's radius into both top corners on its own. */
@@ -922,17 +968,21 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
    name, the tile, the tint, the edge, the arrow, the watermark. Adding a
    fifth platform is a class with two custom properties, not a fifth copy
    of nine rules. */
-.pf-c1{--pf:var(--pf-shopify); --pf-h:96 39% 40%;  --pf-mark:"S";}
-.pf-c2{--pf:var(--pf-woo);     --pf-h:268 37% 51%; --pf-mark:"W";}
-.pf-c3{--pf:var(--pf-magento); --pf-h:16 86% 54%;  --pf-mark:"M";}
-.pf-c4{--pf:var(--pf-bigc);    --pf-h:228 5% 15%;  --pf-mark:"B";}
-.pf-c5{--pf:var(--pf-etsy);    --pf-h:18 79% 49%;  --pf-mark:"E";}
-.pf-c6{--pf:var(--pf-ebay);    --pf-h:211 100% 41%; --pf-mark:"e";}
-.pf-c7{--pf:var(--pf-amazon);  --pf-h:32 100% 38%; --pf-mark:"a";}
+/* The watermark was the platform's initial. A deliverable has no
+   initial worth reading, but it does have a position in the list, so the
+   figure that rises on hover is the card's own number — the same number
+   printed small at the top of it, said once more at 150px. */
+.pf-c1{--pf:var(--primary); --pf-h:198 100% 42%; --pf-mark:"1";}
+.pf-c2{--pf:var(--primary); --pf-h:198 100% 42%; --pf-mark:"2";}
+.pf-c3{--pf:var(--primary); --pf-h:198 100% 42%; --pf-mark:"3";}
+.pf-c4{--pf:var(--primary); --pf-h:198 100% 42%; --pf-mark:"4";}
+.pf-c5{--pf:var(--primary); --pf-h:198 100% 42%; --pf-mark:"5";}
+.pf-c6{--pf:var(--primary); --pf-h:198 100% 42%; --pf-mark:"6";}
 html[data-theme="dark"] .pf{--ring:var(--border-soft);}
-html[data-theme="dark"] .pf-c4{--pf:#fff; --pf-h:0 0% 100%;}
-html[data-theme="dark"] .pf-c4 .pf-ic img{filter:brightness(0) invert(1);}
-html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
+/* The three per-brand dark-theme corrections that used to live here were
+   for BigCommerce's near-black mark and Amazon's dark wordmark. The marks
+   are line icons on currentColor now, so both themes are handled by the
+   colour they inherit and there is nothing left to correct. */
 
 .pf-ic{background:hsl(var(--pf-h) / .12);}
 .pf-card h3 em{color:var(--pf);}
@@ -1040,498 +1090,997 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
   .pf-card:hover{transform:none;}
 }
 
-/* === wy-styles === */
+/* === wa-styles === */
 /* ══════════════════════════════════════════════════════════════════════
-   WHY IT MATTERS — the argument on the left, the evidence on the right
+   THE NOTE AND THE FILM — what is left of a section that went.
 
-   Six reasons as a stack of rows, and beside them a picture of the
-   dashboard those reasons show up in. The right-hand side is one drawing
-   at a fixed ratio: everything inside is a percentage of it and the type
-   is in cqw, so the whole panel scales as a unit rather than reflowing
-   into something the comp never showed.
+   "What Are SEO Audit Services?" was deleted: its six coverage cards
+   said, in one line each, what the console above them says in six lists,
+   and its heading asked the same question the console's does. The two
+   thing in it that was not said twice is here: the note about where
+   Google puts crawling in the order. It sits under the console it was
+   describing.
 
-   ── the two extra colours ──────────────────────────────────────────
-   The comp puts its deltas in green and one outcome in purple. Both are
-   declared once here; the green is the site's own --ui-open rather than
-   a fifth hand-mixed value.
+   The film that used to follow it has gone as well, and its stylesheet
+   and its script with it. Nothing is left in this block but the note.
    ══════════════════════════════════════════════════════════════════════ */
-.wy{--wy-pos:var(--ui-open);
-    --wy-alt:#7C5CE6;
-    background:var(--bg-alt);
-    /* .beam-zone clips itself, and a clipping ancestor becomes the scroll
-       container for anything sticky inside it — so the panel would never
-       stick. The section opts out; the beam is drawn on .z-dots, which
-       has its own bounds. */
-    overflow:visible;}
-.wy-in{position:relative; z-index:3;}
 
-/* ── the two columns ─────────────────────────────────────────────────
-   The argument on the left, the panel on the right, and the panel is
-   sticky: the reader keeps the picture of the thing while walking down
-   the six reasons for it. align-items:start is what lets it stick —
-   stretched to the row's height there would be nothing left to travel. */
-.wy-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);
-  gap:clamp(34px,4.4%,70px); align-items:start;}
-.wy-art{position:sticky; top:calc(var(--nav-h) + 28px);
-  container-type:inline-size; min-width:0;}
+/* The closing note is the second half of the argument, not a caption, so
+   it keeps reading size and only steps back in colour. */
+.wa-note{max-width:64ch; margin:clamp(28px,3.2vw,40px) auto 0;
+  text-align:center; font-size:15.5px; line-height:1.7; color:var(--text-2);}
 
-.wy-say h2{font-size:var(--h2); line-height:1.16; letter-spacing:-0.038em;}
-.wy-say h2 em{font-style:normal; color:var(--brand-text);}
-.wy-say h2 span{display:block;}
-.wy-say > p{margin-top:clamp(14px,1.6vw,20px); max-width:46ch;
-  font-size:16px; line-height:1.7; color:var(--text-2);}
+/* ── the film ──────────────────────────────────────────────────────── */
+/* full column width — the wrap's own max-width is the only limit */
 
-/* ── the six rows ────────────────────────────────────────────────────
-   Icon, number, then the text behind a hairline. The rule is the text
-   block's own left border rather than an element between them, so it
-   stretches to whatever the copy needs without anything being measured
-   twice. */
-.wy-list{display:flex; flex-direction:column; gap:clamp(10px,1vw,14px);
-  margin-top:clamp(24px,2.8vw,36px);}
-.wy-row{display:flex; align-items:flex-start; gap:clamp(12px,1.4vw,20px);
-  padding:clamp(14px,1.5vw,20px) clamp(16px,1.7vw,22px);
-  border:1px solid var(--border); border-radius:14px;
-  background:var(--surface);
-  transition:transform .4s var(--pop), box-shadow .4s var(--ease),
-             border-color .4s var(--ease);}
-.wy-row:hover{transform:translateX(4px); border-color:hsl(var(--brand-h) 70% 70%);
-  box-shadow:var(--shadow-lift);}
-.wy-ic{display:grid; place-items:center; flex-shrink:0;
-  width:clamp(42px,3.4vw,52px); height:clamp(42px,3.4vw,52px);
-  border-radius:13px; background:var(--brand-soft); color:var(--brand-text);
-  transition:background .34s var(--ease), color .34s var(--ease);}
-.wy-ic svg{width:52%; height:52%;}
-.wy-row:hover .wy-ic{background:var(--primary); color:#fff;}
-.wy-n{flex-shrink:0; align-self:center; font-family:var(--font-display);
-  font-weight:800; font-size:16px; letter-spacing:-0.02em;
-  color:var(--brand-text); font-variant-numeric:tabular-nums;}
-.wy-txt{min-width:0; padding-left:clamp(12px,1.4vw,20px);
-  border-left:1px solid var(--border);}
-.wy-txt b{display:block; font-size:15.5px; font-weight:700; color:var(--text);
-  line-height:1.35; letter-spacing:-0.02em;}
-/* scoped to the wrapper's child so the wrapper itself is never matched */
-.wy-txt > span{display:block; margin-top:6px; font-size:13.5px; line-height:1.6;
-  color:var(--text-2);}
-
-/* ══════════════════════════════════════════════════════════════════
-   the dashboard
-
-   A picture of an app, so it keeps its white plates in both themes the
-   way the hero's shop front does. One container, everything in cqw.
-   ══════════════════════════════════════════════════════════════════ */
-/* The six reasons run far longer than the panel beside them, so the panel
-   holds its place while they scroll past and lets go at the end of the
-   section. The grid row is its own limit — sticky is bounded by the
-   containing block, which here is the row the two columns share, so it
-   never escapes into the next section. .wy-grid is align-items:start for
-   the same reason: a stretched item has no room to travel. */
-.wy-art{position:sticky; top:calc(var(--nav-h) + 28px);
-  container-type:inline-size; min-width:0;}
-
-.wy-win{position:relative; z-index:2; border-radius:3.03cqw; overflow:hidden;
-  background:var(--n0); box-shadow:0 22px 54px -24px rgba(var(--ink-rgb),.34);}
-.wy-bar{display:flex; align-items:center; gap:1cqw;
-  height:6.8cqw; padding:0 3.2cqw; border-bottom:1px solid #EDF1F5;}
-.wy-bar i{width:1.3cqw; height:1.3cqw; border-radius:50%; background:#D8DEE6;}
-.wy-body{padding:3.4cqw;}
-.wy-h{font-family:var(--font-display); font-weight:800; color:var(--n800);
-  font-size:max(12px,2.42cqw); letter-spacing:-0.028em;}
-
-/* ── the four figures ── */
-.wy-kpis{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:1.7cqw; margin-top:2.6cqw;}
-.wy-kpi{padding:1.9cqw; border:1px solid #E8EDF3; border-radius:1.6cqw;
-  min-width:0;}
-.wy-kpi-t{display:flex; align-items:center; gap:1.1cqw; min-width:0;}
-.wy-ki{display:grid; place-items:center; flex-shrink:0;
-  width:4.4cqw; height:4.4cqw; border-radius:1.2cqw;}
-.wy-ki svg{width:56%; height:56%;}
-.wy-klabel{font-size:max(7.5px,1.42cqw); color:var(--n500); line-height:1.2;
-  min-width:0;}
-.wy-kpi b{display:block; margin-top:1.2cqw; font-family:var(--font-display);
-  font-weight:800; font-size:max(12px,2.72cqw); letter-spacing:-0.03em;
-  color:var(--n800); line-height:1.1;}
-.wy-kpi i{display:block; margin-top:.7cqw; font-style:normal;
-  font-size:max(7.5px,1.42cqw); font-weight:700; color:var(--wy-pos);}
-/* the first figure is the headline one, so its mark is filled */
-.wy-k1 .wy-ki{background:var(--primary); color:#fff; border-radius:50%;}
-.wy-k2 .wy-ki{background:#E7F6EE; color:var(--wy-pos);}
-.wy-k3 .wy-ki,.wy-k4 .wy-ki{background:#EAF2FE; color:var(--primary);}
-
-/* ── the chart ── */
-.wy-chart{margin-top:2.2cqw; padding:2.2cqw;
-  border:1px solid #E8EDF3; border-radius:1.9cqw;}
-.wy-chart-t{display:flex; align-items:flex-start; justify-content:space-between;
-  gap:2cqw;}
-.wy-chart-t b{font-family:var(--font-display); font-weight:700; color:var(--n800);
-  font-size:max(10px,2.03cqw); letter-spacing:-0.024em;}
-.wy-badge{flex-shrink:0; text-align:center; padding:1cqw 1.6cqw;
-  border-radius:1.2cqw; background:#E7F6EE;}
-.wy-badge b{display:block; font-family:var(--font-display); font-weight:800;
-  font-size:max(9px,1.9cqw); color:var(--wy-pos); letter-spacing:-0.02em;}
-.wy-badge span{display:block; margin-top:.3cqw; font-size:max(6.5px,1.18cqw);
-  color:var(--n500);}
-.wy-plot{display:block; width:100%; height:auto; margin-top:1.6cqw;}
-.wy-plot .gl{stroke:#EDF1F5; stroke-width:1;}
-.wy-plot .ax{fill:#9AA4AF; font-family:var(--font); font-size:11px;}
-.wy-plot .ln{stroke:var(--primary); stroke-width:2.6; fill:none;
-  stroke-linecap:round; stroke-linejoin:round;}
-.wy-plot .dot{fill:var(--primary);}
-.wy-plot .fill{fill:url(#wyFill);}
-
-/* ── the listing, sitting over the foot of the chart ── */
-.wy-prod{position:relative; z-index:3; margin:-3.4cqw 4cqw 0;
-  display:grid; grid-template-columns:26% 1fr; gap:2.4cqw; align-items:center;
-  padding:2.2cqw; border-radius:1.9cqw;
-  background:var(--n0); box-shadow:0 16px 40px -18px rgba(var(--ink-rgb),.34);}
-.wy-shot{aspect-ratio:1; border-radius:1.4cqw; background:#F1F4F7;
-  display:grid; place-items:center;}
-.wy-shot svg{width:78%; height:auto;}
-.wy-meta{min-width:0;}
-.wy-line{height:1.3cqw; border-radius:.8cqw; background:#E4E9EF;}
-.wy-line + .wy-line{margin-top:1.1cqw; width:66%;}
-.wy-rate{display:flex; align-items:center; gap:.5cqw; margin-top:1.8cqw;}
-.wy-rate svg{width:2.1cqw; height:2.1cqw; color:var(--ui-star); flex-shrink:0;}
-.wy-rate svg.off{color:#D8DEE6;}
-.wy-rate em{font-style:normal; margin-left:1.2cqw; font-family:var(--font-display);
-  font-weight:800; font-size:max(10px,2.1cqw); color:var(--n800);
-  letter-spacing:-0.02em;}
-.wy-cart{display:inline-flex; align-items:center; gap:1cqw; margin-top:1.6cqw;
-  padding:1.3cqw 2cqw; border-radius:1cqw; background:var(--primary); color:#fff;
-  font-size:max(8px,1.6cqw); font-weight:700;}
-.wy-cart svg{width:2cqw; height:2cqw;}
-
-/* the search key, half off the listing's edge */
-.wy-search{position:absolute; z-index:4; right:-1.5cqw; bottom:9.5cqw;
-  display:grid; place-items:center; width:8.6cqw; height:8.6cqw;
-  border-radius:50%; background:var(--primary); color:#fff;
-  box-shadow:0 12px 26px -10px hsl(var(--brand-h) 100% 40% / .85);}
-.wy-search svg{width:44%; height:44%;}
-
-/* ── the outcomes ── */
-.wy-out{position:relative; z-index:2; margin-top:2.6cqw;
-  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
-  padding:2.8cqw 1cqw; border-radius:2.4cqw;
-  background:var(--n0); box-shadow:0 16px 40px -22px rgba(var(--ink-rgb),.26);}
-.wy-o{display:flex; align-items:center; gap:1.5cqw; padding:0 1.6cqw; min-width:0;}
-.wy-oi{display:grid; place-items:center; flex-shrink:0;
-  width:5.4cqw; height:5.4cqw; border-radius:1.5cqw;}
-.wy-oi svg{width:54%; height:54%;}
-.wy-o .wy-otxt b{display:block; font-family:var(--font-display); font-weight:800;
-  font-size:max(9px,1.85cqw); color:var(--n800); letter-spacing:-0.024em;
-  line-height:1.15;}
-.wy-o .wy-otxt span{display:block; margin-top:.4cqw;
-  font-size:max(7.5px,1.5cqw); color:var(--n500); line-height:1.2;}
-.wy-o1 .wy-oi{background:#EAF2FE; color:var(--primary);}
-.wy-o2 .wy-oi{background:#E7F6EE; color:var(--wy-pos);}
-.wy-o3 .wy-oi{background:#EFEBFC; color:var(--wy-alt);}
-.wy-o4 .wy-oi{background:#EFEBFC; color:var(--wy-alt);}
-
-/* ══════════════════════════════════════════════════════════════════
-   THE DASHBOARD REFLOWS ON ITS OWN WIDTH, NOT THE VIEWPORT'S
-
-   Everything inside this panel is sized in cqw, so it scales with the
-   panel. The floors — max(9px, …) — stop the type shrinking past
-   readable, and that is where it broke: below a certain width the boxes
-   keep getting narrower while the words have stopped getting smaller, so
-   the labels run out of their cells and land on each other. That is what
-   the four outcomes were doing.
-
-   The layout has to change at that point, not just the sizes. And the
-   trigger cannot be a viewport media query, because the panel's width is
-   not the viewport's: it depends on which column it is in and what the
-   grid is doing, so the same 380px page can hand it 500px or 190px. The
-   panel is already a container, so it is asked about itself instead —
-   these fire whenever the panel is actually that narrow, whatever the
-   window is doing.
-   ══════════════════════════════════════════════════════════════════ */
-@container (max-width:460px){
-  .wy-kpis{grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
-  .wy-out{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 0;}
-  .wy-chart{padding:12px;}
-  .wy-body{padding:14px;}
-  .wy-prod{margin:-14px 12px 0; padding:12px;}
-}
-@container (max-width:330px){
-  /* one thing per row: at this width two columns cannot hold a label
-     even at the floor, and a stacked list is legible where a squeezed
-     grid is not */
-  .wy-kpis,.wy-out{grid-template-columns:minmax(0,1fr);}
-  .wy-prod{grid-template-columns:minmax(0,1fr); gap:10px;}
-  .wy-shot{max-width:120px;}
-  .wy-search{display:none;}
-  .wy-plot{min-height:120px;}
-}
-
-/* ── responsive ─────────────────────────────────────────────────── */
-@media (max-width:1020px){
-  .wy-grid{grid-template-columns:minmax(0,1fr); gap:clamp(32px,5vw,48px);}
-  .wy-say > p{max-width:none;}
-  /* stacked, there is nothing beside it to hold station against */
-  .wy-art{position:relative; top:auto; max-width:640px; margin:0 auto; width:100%;}
-}
-@media (max-width:620px){
-  .wy-kpis{grid-template-columns:repeat(2,minmax(0,1fr));}
-  .wy-out{grid-template-columns:repeat(2,minmax(0,1fr)); gap:2.6cqw 0;}
-  .wy-row{gap:12px; padding:14px;}
-  .wy-row:hover{transform:none;}
-  .wy-n{display:none;}
-}
-
-/* === pb-styles === */
+/* === vs-styles === */
 /* ══════════════════════════════════════════════════════════════════════
-   THE PROBLEM, AND WHAT WE DO ABOUT IT
+   KNOW THE DIFFERENCE — the three ways to get an audit, in one table.
 
-   Four pairs. What breaks on the left, what we do on the right, and the
-   arrow on the row between them. Read down a column and it still makes
-   sense; read across a row and it makes a promise. This is the section
-   that earns the process below it, so the pairing is the whole design —
-   nothing here may read as eight separate cards.
+   ── the colours ────────────────────────────────────────────────────
+   The verdicts are the page's own status tokens, not new colours: green
+   is --ui-open, red is --ui-bad, the half-mark is --ui-star and the
+   weakest one is --muted. So a "yes" here is the same green as a "yes"
+   anywhere else on the site.
 
-   ── one hue, two ends of it ────────────────────────────────────────
-   The problem side takes the page tint, the answer side takes the page
-   blue. Read left to right, a row goes from the lightest step of the
-   brand to the fullest, and the arrow between is the moment it turns.
+   ── the column that wins ───────────────────────────────────────────
+   The last column is lifted by a frame drawn OVER the table rather than
+   by borders on its cells: a cell border would have to be drawn twelve
+   times and would fight the row rules crossing it. One absolutely placed
+   frame, sized off the same percentage the <col> uses, is one edge that
+   cannot come apart. The percentages are the only thing the two share,
+   so they are written next to each other below.
 
-   The answer plate is not flat --primary. White copy on #0096D5 is
-   about 2.9:1, which is not a contrast body text at this size may be
-   set at. The plate starts at --primary and deepens to --p700, so the
-   colour is still the brand's own and the copy clears 5:1.
-
-   --accent is declared at the root but used nowhere on this page, and
-   --ui-bad belongs to the forms. Neither is borrowed: a hue that
-   appears in one section and nowhere else is not a brand colour.
-
-   ── the pair is the hover target, not the card ─────────────────────
-   Pointing at either half lights both halves and drives the arrow, so
-   the interaction says the same thing the layout says: these two belong
-   to each other. Each pair is therefore its own grid — that also gives
-   a problem and its answer a shared row height for free, so whichever
-   copy runs longer the two still finish level.
+   ── the table is a table ───────────────────────────────────────────
+   Six capabilities against three options is tabular data, so it is a
+   <table> with real row and column headers. A grid of <div>s would look
+   identical and tell a screen reader nothing about which option a "No"
+   belongs to.
    ══════════════════════════════════════════════════════════════════════ */
-.pb{
-  /* One token for the column heads and the rows, so the labels can never
-     drift off the columns they name. */
-  --pb-gap:clamp(14px,2.4vw,40px);
-  /* One flat colour: the brand primary, #0096D5, exactly as the rest of
-     the page uses it. White copy on it measures about 2.9:1, so the copy
-     on this plate is set at full white rather than the softened white a
-     deeper plate would have allowed, and a step larger. That is what is
-     left to give once the hue is fixed, and it is worth knowing that is
-     what the plate gives. */
-  --pb-plate:var(--primary);
-  --pb-edge:hsl(var(--brand-h) 62% 60% / .40);
-  --pb-chain:hsl(var(--brand-h) 60% 62% / .45);
-  --pb-glow:hsl(var(--brand-h) 100% 30% / .85);
+
+.vs{--vs-c1:36%; --vs-col:21.333%;   /* 36 + 21.333×3 = 100 */
+  --vs-ai:hsl(222 24% 97.5%);
+  /* the hero's overlay, on the hero's own token. Override it here to
+     darken this section alone; change --veil to move both together. */
+  --vs-veil:var(--veil);
+  /* This section holds more rows than any other holds anything, so it
+     runs tighter than the page default of clamp(58px,6vw,92px). The
+     table is the reason: seven rows of the standard cell padding put
+     the checklist under it a screenful further down than it needs to
+     be, and nothing here rewards the extra scroll. */
+  --sec-y:clamp(44px,4.4vw,68px);
+  position:relative; isolation:isolate; color:#fff;}
+html[data-theme="dark"] .vs{--vs-ai:rgba(255,255,255,.045);}
+
+/* ── the photograph, held still ────────────────────────────────────
+   Two layers rather than one background with a gradient over it: the
+   picture is fixed to the viewport and the wash is not, so they cannot
+   share a shorthand. Negative z-index puts both above the section's own
+   --ground fill and below everything the reader came for.
+
+   The wash is the flat overlay the hero lays over its own photograph —
+   the same token, so the two are the same darkness. That makes this the
+   one section in the run whose ground is dark, which is why the head
+   below turns white and the two panels standing on it stay white.
+
+   The picture is one of the seven the page already carries. Point it at
+   another --shot-* and nothing else changes. */
+.vs::before{content:""; position:absolute; inset:0; z-index:-2;
+  background:var(--shot-3) center / cover fixed no-repeat;}
+.vs::after{content:""; position:absolute; inset:0; z-index:-1;
+  background:var(--vs-veil);}
+
+/* ── what the dark ground changes ──────────────────────────────────
+   Only the type that sits directly ON the photograph. Both panels are
+   white objects with their own fill, so the colour is put back at their
+   edge and everything inside them is untouched. */
+.vs .sec-head .sec-lede{color:rgba(255,255,255,.80);}
+.vs-note{color:rgba(255,255,255,.62);}
+.vs-note svg{color:rgba(255,255,255,.5);}
+.vs-table,.vs-cta{color:var(--text);}
+
+/* background-attachment:fixed is either ignored or repainted every frame
+   on touch platforms, so below the desktop widths the picture simply
+   scrolls with the section. Same image, no jank. */
+@media (max-width:900px), (hover:none){
+  .vs::before{background-attachment:scroll;}
 }
-.pb-in{position:relative; z-index:3;}
 
-/* This section is NOT a beam-zone. beam-zone sets overflow:hidden, and a
-   clipping ancestor becomes the scroll container for anything sticky
-   inside it — the pairs would never stack. The washes therefore carry
-   their own clipping box instead of borrowing the section's.
+/* ── the eyebrow, ruled either side ────────────────────────────────── */
+.vs-rule{display:flex; align-items:center; justify-content:center;
+  gap:clamp(14px,1.6vw,22px); margin-bottom:clamp(16px,1.8vw,22px);}
+.vs-rule::before,.vs-rule::after{content:""; height:1px; width:clamp(48px,7vw,96px);
+  background:linear-gradient(90deg, transparent, var(--primary));}
+.vs-rule::after{background:linear-gradient(90deg, var(--primary), transparent);}
+/* --primary carries the h2's accent phrase at display size, but eleven
+   and a half pixels of it on black is thin — the label takes the lighter
+   step of the same ramp, the rules either side keep --primary. */
+.vs-rule b{font-size:11.5px; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--p300); white-space:nowrap;}
 
-   --bg-alt rather than a picked blue: in light it is the page tint, in
-   dark it is the step below the ground, so the same two blobs read as a
-   vignette instead of glowing pale blue on a dark page. */
-.pb-wash{position:absolute; inset:0; z-index:0; overflow:hidden;
-  pointer-events:none;}
-.pb-wash::before,.pb-wash::after{content:""; position:absolute;
-  width:52vw; aspect-ratio:1; border-radius:50%;
-  background:radial-gradient(circle, var(--bg-alt) 0%, transparent 70%);}
-.pb-wash::before{top:-22vw; left:-20vw;}
-.pb-wash::after{bottom:-24vw; right:-22vw;}
+/* .sec-head caps itself at 62ch, which is measured on the body font and
+   so is far narrower than the same count of display-sized characters.
+   The first line of this heading is thirty characters at --h2 and needs
+   the room; the sentence under it does not, and keeps a measure. */
+.vs .sec-head{max-width:min(100%,960px);}
+.vs .sec-head h2 span,
+.vs .sec-head h2 em{display:block;}
+.vs .sec-head h2 em{font-style:normal; color:var(--brand-text);}
+.vs .sec-head .sec-lede{max-width:58ch;}
 
-.pb .sec-head{max-width:62ch;}
-.pb .sec-lede{max-width:58ch;}
-.pb h2 em{font-style:normal; color:var(--brand-text);}
+/* ── the margin note ───────────────────────────────────────────────
+   An aside in the page's own body font, italic and turned a few degrees
+   — the site loads Sora and Inter and nothing handwritten, so this is a
+   note in the margin rather than an imitation of one. It is decoration
+   with no information of its own, so it goes when there is no room. */
+.vs-hold{position:relative; margin-top:clamp(32px,3.6vw,52px);}
+.vs-note{position:absolute; z-index:3; margin:0; max-width:20ch;
+  font-size:14px; font-style:italic; line-height:1.45; color:var(--subtle);
+  transform:rotate(-6deg); pointer-events:none;}
+.vs-note svg{display:block; width:46px; height:36px; margin:4px 0 0 auto;
+  color:var(--subtle);}
+.vs-note-a{left:2px; top:-70px;}
+@media (max-width:1180px){ .vs-note{display:none;} }
 
-/* ── the two column heads ────────────────────────────────────────────
-   A rule either side of the label, drawn as the heading's own borders,
-   so it is always exactly as wide as the column and never measured. */
-.pb-cols{display:grid; grid-template-columns:1fr auto 1fr;
-  column-gap:var(--pb-gap);
-  margin-top:clamp(30px,3.8vw,52px);}
-.pb-spacer{width:clamp(40px,3.6vw,50px);}
-.pb-head b{display:flex; align-items:center; gap:14px;
-  font-family:var(--font-display); font-weight:800;
-  font-size:clamp(12.5px,1.25vw,15px); letter-spacing:.14em;
-  text-transform:uppercase;}
-.pb-head b::before,.pb-head b::after{content:""; flex:1; height:1px;}
-.pb-head span{display:block; margin-top:8px; text-align:center;
-  font-size:13.5px; color:var(--text-2);}
-.pb-h-bad b{color:hsl(var(--brand-h) 48% 52%);}
-.pb-h-bad b::before,.pb-h-bad b::after{
-  background:linear-gradient(90deg,transparent,var(--pb-edge),transparent);}
-.pb-h-good b{color:var(--brand-text);}
-.pb-h-good b::before,.pb-h-good b::after{
-  background:linear-gradient(90deg,transparent,var(--primary),transparent);}
+/* ── the table ─────────────────────────────────────────────────────── */
+/* The frame over the last column stands proud of the table top and foot,
+   so the scroller is padded by as much as it stands proud and pulled
+   back by the same amount — otherwise overflow would clip it. */
+.vs-scroll{overflow-x:auto; overscroll-behavior-x:contain;
+  scrollbar-width:none; padding:22px 0 14px; margin:-22px 0 -14px;}
+.vs-scroll::-webkit-scrollbar{display:none;}
+.vs-stage{position:relative; min-width:780px;}
 
-/* ── a pair ──────────────────────────────────────────────────────── */
-.pb-grid{margin-top:clamp(14px,1.6vw,20px);}
-.pb-pair{display:grid; grid-template-columns:1fr auto 1fr;
-  column-gap:var(--pb-gap);
-  margin-top:clamp(14px,1.6vw,20px);}
-.pb-pair:first-child{margin-top:0;}
+.vs-table{width:100%; border-collapse:collapse; table-layout:fixed;
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden;
+  box-shadow:0 30px 64px -40px rgba(var(--ink-rgb),.4);}
+.vs-table col.c1{width:var(--vs-c1);}
+.vs-table col.cx{width:var(--vs-col);}
 
-.pb-card{display:grid; grid-template-columns:auto minmax(0,1fr);
-  column-gap:clamp(13px,1.5vw,18px); row-gap:clamp(7px,.9vw,10px);
-  padding:clamp(16px,1.9vw,24px);
-  border-radius:clamp(14px,1.5vw,18px);
-  transition:transform .42s var(--pop), box-shadow .42s var(--ease),
-             border-color .42s var(--ease), opacity .42s var(--ease);}
+/* The row height is the icon plus this padding, so both come down
+   together — trimming the padding alone would have left six discs
+   floating in rows barely taller than they are. */
+.vs-table th,.vs-table td{padding:clamp(10px,1.1vw,13px) clamp(12px,1.4vw,20px);
+  text-align:left; vertical-align:middle;
+  border-bottom:1px solid var(--border-soft);}
+.vs-table tbody tr:last-child th,
+.vs-table tbody tr:last-child td{border-bottom:0;}
+/* the AI column is tinted the whole way down, header included */
+.vs-table .c-ai{background:var(--vs-ai);}
 
-.pb-bad{background:var(--panel); border:1px solid var(--border-soft);}
-.pb-good{background:var(--pb-plate);
-  border:1px solid hsl(var(--brand-h) 100% 26% / .55);
-  box-shadow:0 18px 40px -24px var(--pb-glow);}
-
-.pb-ic{grid-column:1; grid-row:1; display:grid; place-items:center;
-  width:clamp(42px,3.5vw,50px); height:clamp(42px,3.5vw,50px);
-  border-radius:13px; transition:transform .42s var(--pop);}
-.pb-ic svg{width:47%; height:47%;}
-.pb-bad .pb-ic{background:var(--surface); color:var(--brand-text);
-  box-shadow:0 6px 16px -11px rgba(var(--ink-rgb),.6);}
-.pb-good .pb-ic{background:#fff; color:var(--primary);}
-
-.pb-t{grid-column:2; grid-row:1; align-self:center; margin:0;
+/* ── the two kinds of header ───────────────────────────────────────── */
+.vs-table thead th{padding-top:clamp(14px,1.5vw,18px);
+  padding-bottom:clamp(14px,1.5vw,18px);
+  border-bottom:1px solid var(--border);}
+.vs-h{display:flex; align-items:center; gap:clamp(9px,1vw,13px);
   font-family:var(--font-display); font-weight:700;
-  font-size:clamp(15px,1.5vw,17.5px); letter-spacing:-0.03em;
-  line-height:1.22; color:var(--text);}
-.pb-d{grid-column:2; grid-row:2; margin:0;
-  font-size:13.6px; line-height:1.62; color:var(--text-2);}
-/* No softened white on this plate — at 2.9:1 there is nothing spare to
-   soften with. The body copy also goes up from 13.6px and gains line
-   height, which is the one thing still available once the hue is set. */
-.pb-good .pb-t{color:#fff;}
-.pb-good .pb-d{color:#fff; font-size:14.4px; line-height:1.68;}
+  font-size:clamp(14px,1.05vw,16px); letter-spacing:-0.02em; color:var(--text);}
+.vs-hic{display:grid; place-items:center; flex-shrink:0;
+  width:clamp(32px,3.2vw,38px); aspect-ratio:1; border-radius:11px;
+  background:var(--disc); color:var(--primary);}
+.vs-hic svg{width:52%; height:52%;}
+/* the shield is ours, so it is filled rather than tinted */
+.vs-h.is-us .vs-hic{background:var(--primary); color:#fff;}
 
-/* ── the arrow between them ──────────────────────────────────────────
-   The dashed line is the cell's own ::before, running the full height of
-   the pair and sitting behind the disc. Four pairs, four segments, and
-   because each is a pair's own height the chain cannot fall out of step
-   with cards of different lengths. It reaches up by exactly the gap
-   between pairs, so the four segments meet and read as one line. Half a
-   segment on the first and last, so the chain starts and ends on an
-   arrow rather than in mid-air. */
-.pb-go{position:relative; display:grid; place-items:center;
-  width:clamp(40px,3.6vw,50px);}
-.pb-go::before{content:""; position:absolute; width:0;
-  top:calc(-1 * clamp(14px,1.6vw,20px)); bottom:0;
-  border-left:1.5px dashed var(--pb-chain);
-  transition:border-color .42s var(--ease);}
-.pb-pair:first-child .pb-go::before{top:50%;}
-.pb-pair:last-child .pb-go::before{bottom:50%;}
+.vs-r{display:flex; align-items:center; gap:clamp(9px,1vw,13px);
+  font-weight:500; font-size:clamp(13.5px,1vw,15px); color:var(--text);}
+.vs-table tbody th{font-weight:500;}
+.vs-ric{display:grid; place-items:center; flex-shrink:0;
+  width:clamp(26px,2.6vw,31px); aspect-ratio:1; border-radius:9px;
+  background:var(--disc); color:var(--primary);}
+.vs-ric svg{width:52%; height:52%;}
 
-/* Two boxes, not one. The disc answers the pointer with a transition;
-   the glyph inside carries the idle keyframes. Put both on one element
-   and the animation wins the transform outright and the hover does
-   nothing at all. */
-.pb-go i{position:relative; display:grid; place-items:center;
-  width:clamp(34px,3vw,42px); height:clamp(34px,3vw,42px); border-radius:50%;
-  background:var(--pb-plate); color:#fff;
-  box-shadow:0 0 0 5px var(--ground), 0 10px 22px -10px var(--pb-glow);
-  transition:transform .42s var(--pop), box-shadow .42s var(--ease);}
-.pb-go svg{width:16px; height:16px;
-  animation:pb-nudge 2.8s var(--ease) infinite;}
-.pb-pair:nth-child(2) .pb-go svg{animation-delay:.18s;}
-.pb-pair:nth-child(3) .pb-go svg{animation-delay:.36s;}
-.pb-pair:nth-child(4) .pb-go svg{animation-delay:.54s;}
+/* ── the verdicts ──────────────────────────────────────────────────── */
+.vs-v{display:flex; align-items:center; gap:10px;
+  font-size:clamp(13px,.95vw,14.5px); color:var(--text-2);}
+.vs-m{display:grid; place-items:center; flex-shrink:0;
+  width:21px; height:21px;}
+.vs-m svg{width:100%; height:100%;}
+.is-yes{color:var(--ui-open);}
+.is-no{color:var(--ui-bad);}
+.is-part{color:var(--ui-star);}
+.is-rare{color:var(--muted);}
 
-/* A push toward the answer and back, four fifths of the cycle at rest.
-   It reads as the arrow pointing rather than as something looping. */
-@keyframes pb-nudge{
-  0%,62%,100%{transform:translateX(0);}
-  76%{transform:translateX(4px);}
+/* In our own column every answer is the same, so the check is set in a
+   disc — it reads as a run of ticks down the card rather than as six
+   separate answers that happen to agree. */
+.c-us .vs-m{width:26px; height:26px; border-radius:50%;
+  background:hsl(146 48% 92%);}
+.c-us .vs-m svg{width:62%; height:62%;}
+html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
+.c-us .vs-v{color:var(--text); font-weight:600;}
+
+/* ── the row under the cursor ──────────────────────────────────────
+   Set on the cells rather than on the <tr>, because a row's background
+   paints beneath its cells and the tinted AI column would sit on top of
+   it. The AI cell takes the same wash layered OVER its own tint, so the
+   column stays distinguishable while the row lights.
+
+   Only above the stacking breakpoint: below it a row is a card, and a
+   card that changes colour under a finger that is only scrolling past is
+   noise. */
+@media (min-width:901px){
+  .vs-table tbody th,.vs-table tbody td{transition:background .2s var(--ease);}
+  .vs-table tbody tr:hover > *{background:hsl(var(--brand-h) 100% 50% / .06);}
+  /* only the last layer of `background` may be a plain colour, so the
+     wash goes on as an image over the tint rather than beside it */
+  .vs-table tbody tr:hover > .c-ai{
+    background-color:var(--vs-ai);
+    background-image:linear-gradient(hsl(var(--brand-h) 100% 50% / .06),
+                                     hsl(var(--brand-h) 100% 50% / .06));}
+  .vs-table tbody tr:hover > .c-us{background:hsl(var(--brand-h) 100% 50% / .10);}
+  /* the capability's own mark fills in, so the eye has something to
+     land on at the start of the row it is reading */
+  .vs-ric{transition:background .2s var(--ease), color .2s var(--ease);}
+  .vs-table tbody tr:hover .vs-ric{background:var(--primary); color:#fff;}
 }
 
-/* ── pointing at a pair makes it hand over ──────────────────────────
-   The problem draws back and dims, the arrow travels, the answer comes
-   forward and brightens. It is the same sentence the row already makes,
-   played out: this becomes that. Pointing at either half does it, so the
-   two never behave like separate cards. */
-.pb-pair:hover .pb-bad{transform:translateX(-5px); opacity:.66;
-  border-color:var(--pb-edge);}
-.pb-pair:hover .pb-good{transform:translate(4px,-4px);
-  border-color:hsl(var(--brand-h) 100% 22% / .7);
-  box-shadow:0 28px 56px -24px var(--pb-glow);}
-.pb-pair:hover .pb-good .pb-ic{transform:scale(1.08) rotate(-4deg);}
-.pb-pair:hover .pb-go i{transform:translateX(5px) scale(1.1);
-  box-shadow:0 0 0 5px var(--ground), 0 14px 28px -8px var(--pb-glow);}
-.pb-pair:hover .pb-go::before{border-color:hsl(var(--brand-h) 70% 56% / .75);}
+/* ── the frame over the last column ────────────────────────────────── */
+.vs-halo{position:absolute; z-index:2; pointer-events:none;
+  right:0; width:var(--vs-col); top:-13px; bottom:-8px;
+  border:1.6px solid var(--primary); border-radius:calc(var(--r-lg) + 4px);
+  background:hsl(var(--brand-h) 100% 50% / .035);
+  box-shadow:0 26px 54px -34px hsl(var(--brand-h) 100% 32% / .55);}
+.vs-badge{position:absolute; left:50%; top:0; transform:translate(-50%,-50%);
+  display:inline-flex; align-items:center; gap:7px; white-space:nowrap;
+  padding:6px 13px; border-radius:var(--r-btn);
+  background:var(--primary); color:#fff;
+  font-size:10.5px; font-weight:700; letter-spacing:.10em;
+  text-transform:uppercase;
+  box-shadow:0 10px 22px -10px hsl(var(--brand-h) 100% 30% / .7);}
+.vs-badge svg{width:12px; height:12px;}
 
-/* ── the close ───────────────────────────────────────────────────────
-   The invitation and the button sit in the band together: the sentence
-   that makes the case and the thing to do about it are one object, and
-   a button on its own line below would have read as belonging to the
-   section rather than to the sentence. */
-.pb-close{display:grid; grid-template-columns:auto minmax(0,1fr) auto;
-  align-items:center; gap:clamp(16px,2.4vw,32px);
-  margin-top:clamp(30px,3.8vw,54px);
-  padding:clamp(18px,2.2vw,28px) clamp(20px,2.4vw,32px);
-  border-radius:clamp(16px,1.8vw,22px);
-  background:var(--panel); border:1px solid var(--border-soft);}
-.pb-close-ic{display:grid; place-items:center; flex-shrink:0;
-  width:clamp(46px,4vw,56px); height:clamp(46px,4vw,56px); border-radius:50%;
-  background:var(--brand-soft); color:var(--brand-text);}
-.pb-close-ic svg{width:46%; height:46%;}
-.pb-close-t b{display:block; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(15px,1.55vw,17.5px); letter-spacing:-0.028em;
-  line-height:1.42; color:var(--text);}
-.pb-close-t b em{font-style:normal; color:var(--brand-text);}
-.pb-close-t p{margin:8px 0 0; font-size:14px; line-height:1.6; color:var(--text-2);}
+/* ── the checklist ─────────────────────────────────────────────────── */
+.vs-cta{display:grid; grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center; gap:clamp(18px,2.6vw,42px);
+  margin-top:clamp(24px,2.8vw,38px);
+  padding:clamp(20px,2.3vw,30px) clamp(22px,2.8vw,38px);
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:calc(var(--r-lg) + 6px);}
+.vs-doc{flex-shrink:0; width:clamp(82px,8.2vw,112px); color:var(--primary);}
+.vs-doc svg{width:100%; height:auto; display:block;}
+.vs-cta-eyebrow{display:block; margin-bottom:7px;
+  font-size:11px; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--primary);}
+.vs-cta-t > b{display:block; font-family:var(--font-display); font-weight:800;
+  font-size:clamp(18px,1.7vw,23px); letter-spacing:-0.03em; line-height:1.22;
+  color:var(--text);}
+.vs-cta-t > b em{font-style:normal; color:var(--brand-text);}
+.vs-cta-t > p{margin:clamp(7px,.8vw,10px) 0 clamp(13px,1.5vw,18px);
+  max-width:52ch; font-size:clamp(13.5px,1vw,15px); line-height:1.6;
+  color:var(--text-2);}
+.vs-cta .btn svg{width:16px; height:16px; flex-shrink:0;}
 
-/* ── responsive ────────────────────────────────────────────────────────
-   Stacked, a problem and its answer are no longer side by side, so the
-   arrow turns to face down and sits between the pair it joins, and the
-   chain goes — a line down a single column would join one pair's answer
-   to the next pair's problem, which is not a thing this section claims.
-   The gap between pairs is what keeps four pairs from reading as eight
-   cards once the columns are gone. */
-@media (max-width:920px){
-  .pb-cols{display:none;}
-  /* The space between two pairs has to beat the space inside one, or
-     the four pairs read as eight cards the moment the columns go. The
-     arrow's own padding is the inside measure, so it comes down as the
-     pair margin goes up. */
-  .pb-pair{grid-template-columns:minmax(0,1fr);
-    margin-top:clamp(30px,5.4vw,46px);}
-  .pb-go{width:auto; justify-self:center; padding:9px 0;}
-  .pb-go::before{display:none;}
-  .pb-go i{transform:rotate(90deg);
-    box-shadow:0 10px 22px -10px var(--pb-glow);}
-  .pb-pair:hover .pb-go i{transform:rotate(90deg) scale(1.08);
-    box-shadow:0 14px 28px -10px var(--pb-glow);}
-}
+/* The note used to be placed over the drawing, which meant its length
+   decided whether it cleared the plane's nose — two more words and it sat
+   on it. Stacked instead: the note takes the row above, the drawing the
+   one below, and neither can reach the other however the text is edited.
+   The markup keeps the drawing first because that is the reading order
+   that makes sense without styles; order:-1 lifts the note in the flex
+   box without moving it in the document. */
+.vs-plane{flex-shrink:0; width:clamp(150px,15vw,208px);
+  display:flex; flex-direction:column; align-items:flex-end; gap:4px;
+  color:var(--primary);}
+.vs-plane svg{width:100%; height:auto; display:block;}
+.vs-plane b{order:-1; width:max-content; max-width:100%; text-align:right;
+  font-size:13.5px; font-weight:400; font-style:italic; line-height:1.45;
+  color:var(--subtle); transform:rotate(-4deg); transform-origin:100% 50%;}
+
+/* ── narrower ────────────────────────────────────────────────────────
+   Under 900 the table stops being four columns and becomes six cards,
+   one per capability, each listing the three answers. It is still the
+   same <table> — only its boxes change — so the row and column headers a
+   screen reader uses are untouched, and the option each answer belongs
+   to is printed from the cell's own data-label rather than being left to
+   a column position that no longer exists. */
 @media (max-width:900px){
-  .pb-close{grid-template-columns:auto minmax(0,1fr);}
-  .pb-close .btn{grid-column:1 / -1; width:100%;
-    margin-top:clamp(6px,1vw,10px);}
+  .vs-scroll{overflow:visible; padding:0; margin:0;}
+  .vs-stage{min-width:0;}
+  /* the frame was drawn over a column; there is no column now */
+  .vs-halo{display:none;}
+
+  .vs-table{display:block; background:none; border:0; border-radius:0;
+    box-shadow:none;}
+  .vs-table colgroup,.vs-table thead{display:none;}
+  .vs-table tbody{display:grid; gap:clamp(12px,1.6vw,16px);}
+  .vs-table tr{display:block;
+    padding:clamp(13px,2vw,17px) clamp(15px,2.4vw,20px);
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    box-shadow:0 16px 34px -26px rgba(var(--ink-rgb),.36);}
+
+  .vs-table tbody th{display:block; padding:0 0 clamp(9px,1.4vw,12px);
+    margin-bottom:clamp(7px,1.2vw,10px);
+    border-bottom:1px solid var(--border-soft);}
+  .vs-r{font-weight:600;}
+
+  .vs-table td{display:flex; align-items:center; justify-content:space-between;
+    gap:14px; padding:5px 0; border-bottom:0; background:none;}
+  .vs-table td::before{content:attr(data-label);
+    font-size:12.5px; font-weight:600; color:var(--muted);}
+  /* our own answer keeps the accent the frame used to give it */
+  .vs-table td.c-us{margin-top:5px; padding:9px 13px;
+    border-radius:12px; background:hsl(var(--brand-h) 100% 50% / .07);}
+  .vs-table td.c-us::before{color:var(--primary);}
 }
-@media (max-width:640px){
-  .pb-card{padding:16px;}
-  .pb-close{grid-template-columns:minmax(0,1fr);}
+
+@media (max-width:1080px){
+  .vs-cta{grid-template-columns:auto minmax(0,1fr);}
+  /* the plane is the first thing to go: it is the only piece here that
+     says nothing the sentence beside it does not already say */
+  .vs-plane{display:none;}
 }
-@media (hover:none){
-  .pb-pair:hover .pb-bad{transform:none; opacity:1;}
-  .pb-pair:hover .pb-good{transform:none;
-    box-shadow:0 18px 40px -24px var(--pb-glow);}
-  .pb-pair:hover .pb-good .pb-ic{transform:none;}
+@media (max-width:680px){
+  /* the document stops being a column of its own and sits above the
+     sentence, at the size it can afford there */
+  .vs-cta{grid-template-columns:1fr; gap:clamp(14px,3vw,22px);}
+  .vs-doc{width:78px;}
+  .vs-cta .btn{width:100%; justify-content:center;}
+}
+@media (max-width:420px){
+  .vs-table td{flex-direction:column; align-items:flex-start; gap:6px;}
+  .vs-table td.c-us{align-items:flex-start;}
+}
+
+/* === bl-styles === */
+/* ══════════════════════════════════════════════════════════════════════
+   THE BLUEPRINT — lifted from the homepage, at four stages instead of six.
+
+   Only three numbers changed in the port, and all three are the stage
+   count showing through:
+
+     .bpx-row        six columns became four
+     .bpx-line       the run is inset by half a column so it starts and
+                     ends under the outer badges — a twelfth on six
+                     columns, an eighth on four
+     the reflow      six across became three; four across becomes two
+
+   Everything else is the homepage's, unedited. The .on rules that light
+   one stage at a time already live in this page's patch sheet above, and
+   the walker that adds .on is the same [data-walk] script the process
+   section used, so nothing new is loaded to make it move.
+
+   The one thing not carried over is the section's own background and
+   border-block. On the homepage the blueprint sits on --bg and rules
+   itself off from its neighbours; here the alternation gives the section
+   its ground and the rhythm sheet zeroes section borders, so declaring
+   either would be a rule written to be overridden two sheets later.
+   --bg and --surface are #FAFAFC and #FFFFFF, so the panel was never
+   reading off that step anyway — it reads off its hairline and shadow,
+   both of which came with it.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.bl-sec{padding-block:clamp(46px,4.8vw,64px);}
+
+.bpx{position:relative; margin-top:clamp(46px,5vw,68px);
+  border-radius:var(--r-lg); background:var(--surface);
+  border:1px solid var(--border); box-shadow:var(--shadow);}
+
+/* the run between the badges, drawn left to right once the panel is in */
+.bpx-line{position:absolute; left:12.5%; right:12.5%; top:-1px; height:1px;
+  background:repeating-linear-gradient(to right,
+    var(--brand-text) 0 4px, transparent 4px 9px);
+  transform:scaleX(0); transform-origin:0 50%;
+  transition:transform 1.1s var(--ease) .15s;}
+.rv.in .bpx-line{transform:scaleX(1);}
+
+.bpx-row{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  list-style:none; margin:0; padding:0;}
+.bpx-stage{position:relative; display:grid; justify-items:center; text-align:center;
+  padding:clamp(30px,3.2vw,42px) clamp(10px,1.2vw,18px) clamp(22px,2.4vw,32px);
+  opacity:0; transform:translateY(14px);
+  transition:opacity .55s var(--ease) var(--lay),
+             transform .55s var(--ease) var(--lay), background .3s var(--ease);
+  --lay:calc(var(--i) * 90ms);}
+.rv.in .bpx-stage{opacity:1; transform:none;}
+/* the uprights stop short of the panel's own edges */
+.bpx-stage + .bpx-stage::before{content:""; position:absolute; left:0;
+  top:14%; bottom:14%; width:1px; background:var(--border);}
+.rv.in .bpx-stage:hover{transform:translateY(-4px); background:var(--bg-alt);}
+
+/* the badge rides the top edge */
+.bpx-n{position:absolute; top:0; left:50%; transform:translate(-50%,-50%);
+  display:grid; place-items:center; width:38px; height:38px; border-radius:50%;
+  background:var(--surface); border:1px solid var(--border);
+  font-family:var(--font-display); font-size:12px; font-weight:800;
+  letter-spacing:.06em; color:var(--muted); font-variant-numeric:tabular-nums;
+  transition:border-color .3s var(--ease), color .3s var(--ease),
+             box-shadow .3s var(--ease);}
+.bpx-stage:hover .bpx-n{border-color:var(--primary); color:var(--brand-text);
+  box-shadow:0 0 0 4px hsl(var(--brand-h) 100% 50% / .12);}
+
+.bpx-ico{display:grid; place-items:center; width:clamp(48px,4.6vw,58px);
+  aspect-ratio:1; border-radius:50%; background:var(--brand-soft);
+  color:var(--brand-text);
+  transition:transform .3s var(--ease), background .3s var(--ease),
+             color .3s var(--ease);}
+.bpx-ico svg{width:44%; height:44%;}
+.bpx-stage:hover .bpx-ico{transform:scale(1.07); background:var(--primary); color:#fff;}
+
+.bpx-stage h3{margin-top:clamp(14px,1.6vw,20px); font-family:var(--font-display);
+  font-weight:700; letter-spacing:-0.03em;
+  color:var(--text);}
+.bpx-rule{display:block; width:22px; height:2px; border-radius:2px; margin-top:10px;
+  background:var(--border); transform-origin:50% 50%;
+  transition:transform .3s var(--ease), background .3s var(--ease);}
+.bpx-stage:hover .bpx-rule{background:var(--primary); transform:scaleX(1.7);}
+.bpx-stage p{margin-top:clamp(12px,1.4vw,16px); font-size:12.8px; line-height:1.6;
+  color:var(--muted); transition:color .3s var(--ease);}
+.bpx-stage:hover p{color:var(--text-2);}
+
+/* the line the section closes on, above its button */
+.bl-note{max-width:56ch; margin:clamp(24px,2.8vw,36px) auto 0; text-align:center;
+  font-size:clamp(14px,1.05vw,16px); line-height:1.65; color:var(--text-2);}
+.bl-cta{margin-top:clamp(20px,2.2vw,28px); display:flex; justify-content:center;}
+
+/* ---- reflow ----
+   Four across becomes two, then a timeline. On one column the run is no
+   longer along the top of a row, so it becomes the rail the badges sit on
+   and the stages read down it — which is the same connection, turned. */
+@media (max-width:1080px){
+  .bpx-row{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .bpx-line{display:none;}
+  .bpx-stage:nth-child(2n+1)::before{display:none;}
+  .bpx-stage:nth-child(n+3){border-top:1px solid var(--border);}
+}
+@media (max-width:720px){
+  /* ---- one column, and a rail down the side ----
+     Four things have to agree: how far the cards are indented, where the
+     rail is drawn, where the badges are centred, and how close the
+     leftmost of them comes to the screen. Only two of those are worth
+     choosing, so only two are written — the indent, and the gap the badge
+     keeps from the edge. The rail takes half the indent, the badge is
+     pulled back by the same half, and the block is dragged out of the
+     wrap's gutter by exactly the amount that lands the badge on the gap
+     asked for. Change either number and the other three follow.
+
+     --bpx-gut is .wrap's own padding at these widths. It is restated here
+     because a margin cannot read the padding of an ancestor; if the wrap's
+     gutter is ever changed below 760px, this is the second place. */
+  .bpx{--bpx-in:46px;      /* cards, from the block's left edge   */
+       --bpx-edge:13px;    /* badge's left edge, from the screen  */
+       --bpx-r:15px;       /* half the badge                      */
+       --bpx-gut:20px;     /* .wrap padding below 760px           */
+    background:transparent; border:0; box-shadow:none;
+    margin-left:calc(var(--bpx-edge) + var(--bpx-r)
+                     - var(--bpx-in) / 2 - var(--bpx-gut));
+    padding-left:var(--bpx-in);}
+  .bpx-row{grid-template-columns:minmax(0,1fr); gap:14px;}
+  .bpx::before{content:""; position:absolute; left:calc(var(--bpx-in) / 2);
+    top:22px; bottom:22px;
+    width:2px; border-radius:2px; transform:translateX(-1px);
+    background:linear-gradient(180deg, var(--primary), var(--border));}
+  .bpx-stage{justify-items:start; text-align:left; border-top:0;
+    grid-template-columns:auto 1fr; column-gap:16px;
+    padding:clamp(14px,3vw,18px);
+    border-radius:var(--r-lg); background:var(--surface);
+    border:1px solid var(--border); box-shadow:var(--shadow);}
+  .bpx-stage::before{display:none;}
+  /* On one column the badge rides the rail beside its card, so it is
+     centred on the card rather than pinned to the top of it — otherwise
+     a two-line card leaves its own number sitting level with nothing. */
+  .bpx-n{position:absolute; left:calc(var(--bpx-in) / -2); top:50%;
+    transform:translate(-50%,-50%);
+    width:calc(var(--bpx-r) * 2); height:calc(var(--bpx-r) * 2);
+    font-size:11px;}
+  .bpx-ico{grid-row:1 / span 3;}
+  .bpx-stage h3{margin-top:0; align-self:center;}
+  .bpx-rule{display:none;}
+  .bpx-stage p{grid-column:2; margin-top:6px;}
+  .bl-cta .btn{width:100%;}
 }
 @media (prefers-reduced-motion:reduce){
-  .pb-card,.pb-go i,.pb-ic,.pb-go::before{transition:none;}
-  .pb-go svg{animation:none;}
-  .pb-pair:hover .pb-bad{transform:none; opacity:1;}
-  .pb-pair:hover .pb-good{transform:none;}
-  .pb-pair:hover .pb-good .pb-ic{transform:none;}
-  .pb-pair:hover .pb-go i{transform:none;}
+  .bpx-stage{opacity:1; transform:none;}
+  .bpx-line{transform:scaleX(1);}
+}
+
+/* === wc-styles === */
+/* ══════════════════════════════════════════════════════════════════════
+   WHY CHOOSE US — the homepage's folder panel.
+
+   The claim is on the left and the proof of it is on the right, in a
+   panel with the tabs sitting on its edge like the tabs on a folder.
+   Each tab brings its own instrument — a set of bars, a ring, a line —
+   and each is drawn from nothing every time it is opened, so the panel
+   is doing the thing it describes rather than showing a picture of it.
+
+   ── two changes were needed to bring it here ───────────────────────
+
+   1. THE PREFIX. It arrived as .wn-*, and this page already has a .wn-*
+      family on the "Who needs it" section — .wn, .wn-say, .wn-card,
+      .wn-bar and .wn-bars all collide by name. Renamed .wc-* here rather
+      than renaming the section that was already using them.
+
+   2. THE FILLS ARE SWAPPED. The homepage puts the panel on --surface-2
+      and the card inside it on --surface. That reads there because its
+      --p100 is nearly white. On this page --p100 is four steps of
+      lightness darker, so the panel would have come out DARKER than the
+      tint it stands on — the wrong way round for a thing meant to sit
+      forward of its ground. So the panel takes white and the card takes
+      the tint, which is the relationship the homepage renders, arrived
+      at through the tokens this page actually has.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the claim on the left, the panel answering on the right: read left to
+   right, the argument comes before its evidence */
+.wc{display:grid; grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+  gap:clamp(34px,5vw,80px); align-items:center;}
+
+/* ---- the claim ---- */
+.wc-say h2{letter-spacing:-0.045em; line-height:1.04;}
+.wc-say h2 em{font-style:normal; color:var(--brand-text);}
+.wc-say > p{margin-top:20px; font-size:15.5px; line-height:1.7; color:var(--text-2);
+  max-width:44ch;}
+.wc-say .btn{margin-top:28px;}
+
+/* the three figures, on one line under the paragraph. They are separated
+   by a rule rather than by a gap, so the row reads as one statement in
+   three parts instead of three things that happen to be near each other. */
+.wc-facts{display:flex; flex-wrap:wrap; align-items:center;
+  gap:clamp(14px,1.8vw,24px); margin-top:clamp(20px,2.4vw,28px);
+  padding-top:clamp(18px,2.2vw,24px); border-top:1px solid var(--border);}
+.wc-fact b{display:block; font-family:var(--font-display); font-weight:800;
+  font-size:clamp(20px,1.9vw,26px); letter-spacing:-0.04em; line-height:1;
+  color:var(--brand-text); font-variant-numeric:tabular-nums;}
+.wc-fact span{display:block; margin-top:5px; font-size:12.5px; line-height:1.35;
+  color:var(--muted);}
+.wc-facts i{width:1px; align-self:stretch; background:var(--border);}
+
+/* ---- the folder ---- */
+/* The tabs fill the panel's width between them. Left to size themselves,
+   the last one stops short of the right edge and the panel's rounded
+   corner opens up beside it — a wedge of ground where the two should
+   be meeting. */
+.wc-tabs{display:flex; gap:2px; position:relative; z-index:2;}
+.wc-tab{position:relative; flex:1 1 0; text-align:center;
+  padding:17px clamp(14px,1.8vw,24px) 19px; border:0; cursor:pointer;
+  background:transparent; font:inherit; font-family:var(--font-display);
+  font-size:12.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); border-radius:22px 22px 0 0;
+  transition:color .26s var(--ease), background .3s var(--ease);}
+.wc-tab:hover{color:var(--text);}
+/* the open tab is the panel: same fill, corners turned, and it sits low
+   enough to swallow the join rather than leave a hairline on it */
+.wc-tab.on{color:var(--text); background:var(--surface); margin-bottom:-3px;
+  padding-bottom:22px;}
+/* The focus ring is drawn on three sides only. A full outline runs along
+   the tab's bottom edge as well, and that edge is the join with the
+   panel — the ring cuts the two apart and reads as a gap under the open
+   tab. */
+.wc-tab:focus-visible{outline:none;
+  box-shadow:inset 0 3px 0 0 var(--primary),
+             inset 3px 0 0 0 var(--primary),
+             inset -3px 0 0 0 var(--primary);}
+
+/* The panel's radius matches the tab's, so the two meet on the same
+   curve instead of one being cut sharper than the other. All four
+   corners are round by default; a corner is squared off only while a tab
+   is actually standing on it. */
+.wc-body{position:relative; z-index:1; border-radius:30px;
+  background:var(--surface); padding:clamp(28px,3.4vw,44px);}
+.wc-body.first{border-top-left-radius:0;}
+.wc-body.last{border-top-right-radius:0;}
+.wc-panel{display:none;}
+.wc-panel.on{display:block; animation:wcIn .45s var(--pop);}
+@keyframes wcIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+.wc-panel h3{font-family:var(--font-display);
+  font-weight:800; letter-spacing:-0.035em; line-height:1.18; max-width:22ch;}
+.wc-panel > p{margin-top:12px; font-size:14.4px; line-height:1.65; color:var(--text-2);
+  max-width:48ch;}
+
+/* ---- the instrument ---- */
+.wc-card{margin-top:26px; padding:22px; border-radius:22px;
+  background:var(--bg-alt); border:1px solid var(--border);}
+.wc-card-top{display:flex; align-items:center; justify-content:space-between; gap:14px;
+  margin-bottom:16px;}
+.wc-card-top b{font-family:var(--font-display); font-size:15px; font-weight:800;
+  letter-spacing:-0.028em;}
+.wc-pill{padding:6px 12px; border-radius:20px; border:1px solid var(--border);
+  background:var(--surface);
+  font-size:11.5px; font-weight:700; color:var(--muted); display:inline-flex;
+  align-items:center; gap:7px; white-space:nowrap;}
+.wc-pill svg{width:11px; height:11px;}
+
+/* the bars */
+.wc-bars{display:grid; gap:14px;}
+.wc-bar b{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  font-size:13px; font-weight:600; color:var(--text-2);}
+.wc-bar b s{text-decoration:none; font-family:var(--font-display); font-size:14px;
+  font-weight:800; color:var(--brand-text); font-variant-numeric:tabular-nums;}
+.wc-bar span{display:block; margin-top:8px; height:7px; border-radius:4px;
+  background:var(--surface); overflow:hidden;}
+.wc-bar i{display:block; height:100%; border-radius:4px; background:var(--primary);
+  width:var(--w); transform:scaleX(0); transform-origin:left center;}
+.on .wc-bar i{transform:none; transition:transform 1.1s var(--ease) var(--d,0ms);}
+
+/* the ring */
+.wc-ringwrap{display:grid; grid-template-columns:auto 1fr; gap:clamp(18px,2.4vw,30px);
+  align-items:center;}
+.wc-donut{width:clamp(118px,13vw,146px); aspect-ratio:1; position:relative;}
+.wc-donut svg{width:100%; height:100%; transform:rotate(-90deg);}
+.wc-donut .trk{fill:none; stroke:var(--surface); stroke-width:11;}
+.wc-donut .seg{fill:none; stroke-width:11; stroke-linecap:butt;
+  stroke-dasharray:0 999;}
+.on .wc-donut .seg{transition:stroke-dasharray 1.1s var(--ease) var(--d,0ms);}
+.wc-donut b{position:absolute; inset:0; display:grid; place-content:center;
+  text-align:center; font-family:var(--font-display); font-size:20px; font-weight:800;
+  letter-spacing:-0.04em; line-height:1.1;}
+.wc-donut b span{display:block; font-size:10.5px; font-weight:700; letter-spacing:.14em;
+  color:var(--subtle); margin-top:3px;}
+.wc-legend{display:grid; grid-template-columns:1fr 1fr; gap:11px 16px;}
+.wc-legend div{display:flex; align-items:center; gap:9px; font-size:12.6px;
+  color:var(--text-2);}
+.wc-legend i{width:9px; height:9px; border-radius:3px; flex-shrink:0;}
+.wc-legend s{text-decoration:none; margin-left:auto; font-weight:700; color:var(--text);
+  font-variant-numeric:tabular-nums;}
+
+/* the line */
+.wc-chart{width:100%; height:auto; display:block; overflow:visible;}
+.wc-grid line{stroke:var(--border); stroke-width:1; stroke-dasharray:3 4;}
+.wc-axis{font-size:8px; fill:var(--subtle); font-weight:700;}
+.wc-line{fill:none; stroke:var(--text); stroke-width:2.6; stroke-linecap:round;
+  stroke-linejoin:round; vector-effect:non-scaling-stroke;
+  stroke-dasharray:var(--len,600); stroke-dashoffset:var(--len,600);}
+.on .wc-line{transition:stroke-dashoffset 1.5s var(--ease) .1s; stroke-dashoffset:0;}
+.wc-fill{fill:hsl(var(--brand-h) 100% 50% / .12); opacity:0;}
+.on .wc-fill{opacity:1; transition:opacity .8s var(--ease) .7s;}
+.wc-node{fill:var(--primary); stroke:var(--bg-alt); stroke-width:2;
+  transform-box:fill-box; transform-origin:center; transform:scale(0);}
+.on .wc-node{transform:none; transition:transform .45s var(--pop) var(--d,0ms);}
+
+@media (max-width:1000px){
+  .wc{grid-template-columns:1fr; gap:38px;}
+}
+@media (max-width:560px){
+  .wc-tab{padding:13px 10px 15px; font-size:10.5px; letter-spacing:.08em;
+    border-radius:16px 16px 0 0;}
+  .wc-body{border-radius:22px;}
+  .wc-card{border-radius:18px;}
+  .wc-ringwrap{grid-template-columns:1fr; justify-items:center; text-align:center;}
+  .wc-legend{grid-template-columns:1fr;}
+  /* the rules between the figures have nothing to divide once they wrap */
+  .wc-facts i{display:none;}
+}
+
+/* === wk-styles === */
+/* ============================================================
+   SELECTED WORK — the deck
+   A single row of sheets that runs off both edges of the screen, so
+   the set reads as longer than the window and the next one is always
+   half-visible. The rail is a scroll container, not a transform: it
+   snaps, it takes a trackpad swipe, it takes the arrow keys, and if
+   the script never runs it still works — the buttons and the counter
+   are the only things JavaScript adds.
+
+   One measurement drives the whole block. --wk-w is the width of a
+   sheet; the shot is 16:10 of it, so --wk-shot is its height, and
+   that is what puts the two arrows on the middle of the picture at
+   any width without measuring anything in script.
+
+   Nothing here carries its own palette. The section is on --bg-alt
+   and the page's text tokens, so it is light in light and dark in
+   dark like every other section. The only fixed colours are on the
+   address pill, which sits on a photograph in both themes.
+   ============================================================ */
+/* The ground and the rules this carried on the homepage are struck:
+   the alternation gives this section its ground and the rhythm sheet
+   zeroes section borders, so both would be written to be overridden. */
+.wk{
+  padding-block:clamp(54px,6vw,84px);
+  --wk-w:clamp(276px,40vw,600px);
+  --wk-shot:calc(var(--wk-w) / 1.6);
+  /* headroom for the centre sheet to grow into, top and bottom. A rail with
+     overflow-x:auto clips on the cross axis as well, so without this the
+     growth — and the shadow under it — would be cut off. */
+  --wk-lift:44px;}
+.wk .wrap{position:relative; z-index:2;}
+
+/* ---- the head ----
+   The section's own two-part head has gone: it is the page's .sec-head.mid
+   like every other section, so the eyebrow, the heading and the lede sit on
+   the same centre line here as they do above and below. The counter keeps
+   its own row underneath, on that same line. */
+.wk-count{display:grid; gap:10px; justify-items:center;
+  margin-top:clamp(20px,2.4vw,30px);}
+.wk-count span{font-family:var(--font-display); font-size:12.5px; font-weight:700;
+  letter-spacing:.14em; color:var(--muted); font-variant-numeric:tabular-nums;}
+.wk-count b{color:var(--brand-text);}
+.wk-bar{display:block; width:130px; height:2px; border-radius:2px;
+  background:var(--border); overflow:hidden;}
+.wk-bar i{display:block; height:100%; width:0; border-radius:2px;
+  background:var(--primary); transition:width .4s var(--ease);}
+
+/* ---- the rail ----
+   It breaks out of .wrap to the full width of the section and then puts
+   the gutter back as padding, so the first sheet still lines up with the
+   heading while the last one is free to run off the edge. */
+.wk-deck{position:relative; margin-top:clamp(2px,1vw,12px);
+  margin-inline:calc(50% - 50vw);}
+.wk-rail{display:flex; gap:clamp(20px,3vw,48px); list-style:none; margin:0;
+  /* A gutter of half a sheet let the first one reach the middle, but it
+     also meant the middle of the screen sat next to nothing at all at
+     either end. The gutter is the page's own margin instead: the sheets
+     in the run centre properly, and the two on the ends come to rest
+     against the edge with their neighbours still in frame, so there are
+     always three sheets on screen. */
+  padding:var(--wk-lift) clamp(14px,2vw,30px);
+  overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  scrollbar-width:none; cursor:grab; -webkit-user-select:none; user-select:none;}
+.wk-rail::-webkit-scrollbar{display:none;}
+/* dragging state: snap and smoothing both fight a manual drag, so both are
+   switched off for as long as the pointer is down (toggled in JS). */
+.wk-rail.dragging{cursor:grabbing; scroll-snap-type:none; scroll-behavior:auto;}
+.wk-rail.dragging .wk-card{pointer-events:none;}
+@media (prefers-reduced-motion:reduce){ .wk-rail{scroll-behavior:auto;} }
+
+.wk-card{position:relative; z-index:1; flex:0 0 var(--wk-w);
+  scroll-snap-align:center; transition:transform .45s var(--ease);}
+/* The sheet in the middle is the one being shown, so it is the one that
+   comes forward: it grows from its own centre, so it stands proud at the
+   top and the foot alike, and it grows past the gap on either side so the
+   two next to it pass behind rather than beside it. The six around it are
+   left exactly as they are — nothing is dimmed to make this one read.
+
+   Transform and z-index only. Neither changes the layout, so the snap
+   positions and the ring's arithmetic are untouched. */
+.wk-deck.wired .wk-card.on{transform:scale(1.085); z-index:3;}
+
+/* ---- the sheet ---- */
+.wk-shot{position:relative; margin:0; border-radius:var(--r-lg);
+  overflow:hidden; background:var(--surface-2); aspect-ratio:16 / 10;
+  border:1px solid var(--border);
+  box-shadow:0 10px 26px -18px rgba(var(--ink-rgb),.30);
+  transition:box-shadow .45s var(--ease), border-color .26s var(--ease);}
+/* depth is carried by the shadow alone. The outline is not part of being
+   the centre sheet — it answers the pointer, and it does it by recolouring
+   the hairline the picture already has rather than adding a second edge on
+   top of it, so nothing shifts by a pixel when it lights up. */
+.wk-deck.wired .wk-card.on .wk-shot{
+  box-shadow:0 36px 70px -28px rgba(var(--ink-rgb),.52);}
+html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
+  box-shadow:0 36px 70px -26px rgba(0,0,0,.9);}
+.wk-card:hover .wk-shot{border-color:var(--primary);}
+
+/* ---- the way in ----
+   Only on the sheet in the middle: on the six either side it would be six
+   calls to action competing at once. Without the script no sheet is chosen,
+   so every button is shown instead of none. */
+.wk-visit{position:absolute; right:14px; bottom:14px; z-index:2;
+  display:inline-flex; align-items:center; gap:9px;
+  padding:12px 20px; border-radius:999px;
+  background:var(--primary); color:#fff;
+  font-family:var(--font-display); font-size:11px; font-weight:800;
+  letter-spacing:.14em; text-transform:uppercase; white-space:nowrap;
+  box-shadow:0 10px 24px -12px hsl(var(--brand-h) 100% 32% / .7);
+  opacity:0; transform:translateY(8px); pointer-events:none;
+  transition:opacity .35s var(--ease), transform .35s var(--ease),
+             background .22s var(--ease);}
+.wk-visit svg{width:14px; height:14px;}
+.wk-visit:hover{background:var(--p600);}
+.wk-deck.wired .wk-card.on .wk-visit,
+.wk-deck:not(.wired) .wk-visit{opacity:1; transform:none; pointer-events:auto;}
+.wk-img{position:absolute; inset:0; background-image:var(--cs);
+  background-size:cover; background-position:center top;
+  transition:transform .6s var(--ease);}
+.wk-card:hover .wk-img{transform:scale(1.04);}
+/* The one in the middle is shown at full size and the ones either side
+   step back, so the centre reads as the sheet being looked at. Only the
+   picture is scaled — the copy under it is faded rather than shrunk, so
+   nothing typographic is ever drawn at a fraction of its size. Gated on
+   .wired: without the script nothing is chosen, and dimming five of
+   seven sheets for no reason would be worse than dimming none. */
+/* the address is the proof — it says the site is live, not a mockup. It is
+   the one thing here that keeps fixed colours, because it lies on a
+   photograph rather than on the page */
+.wk-url{position:absolute; left:14px; top:14px; display:inline-flex;
+  align-items:center; gap:8px; padding:7px 14px; border-radius:30px;
+  background:rgba(7,19,32,.72); backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.16);
+  font-size:10.5px; font-weight:700; letter-spacing:.10em; text-transform:uppercase;
+  color:rgba(255,255,255,.9);}
+.wk-url::before{content:""; width:6px; height:6px; border-radius:50%;
+  background:var(--primary); flex-shrink:0;}
+
+.wk-say{padding-top:clamp(14px,1.6vw,20px);}
+.wk-say h3{display:flex; align-items:baseline; gap:12px;
+  font-family:var(--font-display);
+  font-weight:800; letter-spacing:-0.035em; color:var(--text);}
+.wk-say h3 i{font-style:normal; font-size:12px; font-weight:700;
+  letter-spacing:.1em; color:var(--subtle); font-variant-numeric:tabular-nums;}
+.wk-say p{margin-top:10px; font-size:14px; line-height:1.58; color:var(--text-2);
+  max-width:46ch;}
+
+.wk-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;
+  list-style:none; padding:0;}
+.wk-tags li{padding:6px 13px; border-radius:30px; border:1px solid var(--border);
+  font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted);}
+.wk-tags li:first-child{border-color:var(--brand-text); color:var(--brand-text);}
+
+/* ---- the arrows ----
+   One at each edge of the screen, on the middle line of the picture —
+   which is --wk-shot / 2 down from the top of the rail, whatever the
+   sheets happen to be measuring. Added by the script, because without
+   it they would be two buttons that do nothing. */
+.wk-arws{display:none;}
+.wk-deck.wired .wk-arws{display:block;}
+.wk-arw{position:absolute; z-index:4; top:calc(var(--wk-lift) + var(--wk-shot) / 2);
+  transform:translateY(-50%);
+  /* Ink, not paper. On --surface they were a white disc on a near-white
+     section and disappeared; solid ink reads on the ground and on every
+     screenshot behind them, and inverts by itself in dark mode. */
+  width:50px; height:50px; border-radius:50%; display:grid; place-items:center;
+  background:var(--text); border:1px solid var(--text); color:var(--bg);
+  box-shadow:var(--shadow-lift);
+  transition:background .26s var(--ease), border-color .26s var(--ease),
+             color .26s var(--ease), opacity .26s var(--ease),
+             transform .3s var(--ease);}
+.wk-arw[data-wk="-1"]{left:clamp(10px,1.6vw,26px);}
+.wk-arw[data-wk="1"] {right:clamp(10px,1.6vw,26px);}
+.wk-arw:hover{background:var(--primary); border-color:var(--primary); color:#fff;
+  transform:translateY(-50%) scale(1.06);}
+.wk-arw svg{width:19px; height:19px;}
+
+.wk-cta{margin-top:clamp(30px,3.4vw,44px); display:flex; justify-content:center;}
+
+@media (max-width:900px){
+  .wk{--wk-w:clamp(268px,68vw,420px);}
+}
+@media (max-width:640px){
+  .wk-arws{display:none !important;}
+  .wk-cta .btn{width:100%;}
+}
+
+/* the beam and the dots sit behind the column */
+.revs-in{position:relative; z-index:3;}
+
+/* ══════════════════════════════════════════════════════════════════════
+   REVIEWS — ported alongside the deck.
+
+   The two sections came across whole: no class was renamed, because
+   nothing on this page uses .wk-* or .gr-*, and no colour was added,
+   because neither carries a palette of its own. Both read the page's
+   text tokens and the ground the alternation hands them.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════════
+   REVIEWS — a ratings bar over a row of review cards
+   Replaces the single rotating quote. Same three reviews, shown at once.
+   ══════════════════════════════════════════════════════════════════════ */
+.gr{ margin-top:clamp(26px,3.2vw,42px); }
+
+/* ── the ratings bar ───────────────────────────────────────────────── */
+.gr-bar{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center;
+  gap:clamp(14px,2vw,26px);
+  padding:clamp(18px,2vw,26px) clamp(18px,2.2vw,30px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:clamp(16px,1.6vw,20px); box-shadow:var(--shadow);}
+.gr-badge{
+  width:clamp(44px,4.4vw,54px); aspect-ratio:1; flex:none;
+  display:grid; place-items:center; border-radius:50%;
+  background:var(--brand-soft); color:var(--brand-text);}
+.gr-badge svg{ width:52%; height:52%; }
+.gr-name{
+  font-family:var(--font-display); font-size:clamp(14px,1.4vw,15.5px);
+  font-weight:700; letter-spacing:-.02em; color:var(--text); text-transform:none;}
+.gr-score{ display:flex; align-items:center; gap:10px; margin-top:4px; }
+.gr-score b{
+  font-family:var(--font-display); font-size:clamp(22px,2.4vw,28px);
+  font-weight:800; letter-spacing:-.04em; line-height:1; color:var(--text);}
+.gr-src{
+  display:inline-block; margin-top:6px; font-size:12.6px; color:var(--muted);
+  text-decoration:none; border-bottom:1px solid rgba(var(--ink-rgb),.22);
+  transition:color .2s var(--ease), border-color .2s var(--ease);}
+.gr-src:hover{ color:var(--primary); border-color:var(--primary); }
+.gr-acts{ display:flex; align-items:center; gap:10px; }
+
+/* stars — one shape, filled to the rating by a clip on the wrapper */
+.gr-stars{ display:inline-flex; gap:2px; color:#FBB03B; }
+.gr-stars svg{ width:15px; height:15px; }
+.gr-stars .off{ color:var(--border); }
+
+/* ── the cards ─────────────────────────────────────────────────────── */
+/* a snap track at every width: three across on the desktop, fewer as the
+   room runs out, and the same controls underneath either way */
+.gr-track{
+  margin-top:clamp(14px,1.6vw,20px);
+  display:flex; gap:clamp(14px,1.6vw,20px);
+  overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  scrollbar-width:none; padding-bottom:4px;}
+.gr-track::-webkit-scrollbar{ display:none; }
+.gr-card{ flex:0 0 calc((100% - 2 * clamp(14px,1.6vw,20px)) / 3);
+  scroll-snap-align:start; }
+.gr-card{
+  display:flex; flex-direction:column;
+  padding:clamp(16px,1.8vw,22px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:clamp(14px,1.4vw,18px);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease),
+             border-color .3s var(--ease);}
+.gr-card:hover{
+  transform:translateY(-4px); border-color:var(--brand-soft);
+  box-shadow:0 22px 44px -26px rgba(var(--ink-rgb),.32);}
+.gr-top{ display:grid; grid-template-columns:auto 1fr auto; gap:11px;
+  align-items:start; }
+.gr-av{
+  width:34px; height:34px; flex:none; display:grid; place-items:center;
+  border-radius:50%; background:var(--primary); color:#fff;
+  font-family:var(--font-display); font-size:13px; font-weight:800;}
+.gr-who b{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  font-family:var(--font-display); font-size:13.8px; font-weight:700;
+  letter-spacing:-.02em; color:var(--text);}
+.gr-guide{
+  font-family:var(--font); font-size:10.5px; font-weight:600; letter-spacing:0;
+  color:var(--brand-text); background:var(--brand-soft);
+  border-radius:999px; padding:3px 8px; display:inline-flex; align-items:center; gap:5px;}
+.gr-guide::before{ content:""; width:5px; height:5px; border-radius:50%;
+  background:var(--primary);}
+.gr-who span{ display:block; margin-top:2px; font-size:11.8px; color:var(--muted); }
+.gr-kebab{ color:var(--subtle); line-height:0; }
+.gr-kebab svg{ width:15px; height:15px; }
+
+.gr-meta{ display:flex; align-items:center; gap:10px; margin-top:12px; }
+.gr-when{ font-size:11.8px; color:var(--muted); }
+.gr-text{
+  margin:10px 0 0; font-size:13.6px; line-height:1.62; color:var(--text-2);}
+.gr-tags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+.gr-tag{
+  font-size:11px; font-weight:600; color:var(--text-2);
+  background:var(--bg-alt); border-radius:7px; padding:4px 9px;}
+.gr-foot{
+  display:flex; align-items:center; gap:18px; margin-top:auto;
+  padding-top:13px; border-top:1px solid var(--border-soft);
+  font-size:12px; color:var(--muted);}
+.gr-foot button{
+  display:inline-flex; align-items:center; gap:6px; padding:0;
+  font:inherit; color:inherit; background:none; border:0; cursor:pointer;
+  transition:color .2s var(--ease);}
+.gr-foot button:hover{ color:var(--primary); }
+.gr-foot svg{ width:14px; height:14px; }
+
+/* ── the carousel controls, only where the row cannot fit ──────────── */
+.gr-nav{ display:flex; align-items:center; justify-content:center; gap:14px;
+  margin-top:clamp(16px,1.8vw,22px);}
+.gr-arrow{
+  width:36px; height:36px; display:grid; place-items:center; flex:none;
+  border-radius:50%; background:var(--surface); border:1px solid var(--border);
+  color:var(--text); cursor:pointer;
+  transition:border-color .2s var(--ease), color .2s var(--ease);}
+.gr-arrow:hover{ border-color:var(--primary); color:var(--primary); }
+.gr-arrow:disabled{ opacity:.4; cursor:default; }
+.gr-arrow svg{ width:15px; height:15px; }
+.gr-dots{ display:flex; align-items:center; gap:7px; }
+.gr-dot{ width:7px; height:7px; border-radius:999px; padding:0; border:0;
+  background:var(--border); cursor:pointer;
+  transition:width .28s var(--ease), background .28s var(--ease);}
+.gr-dot[aria-current="true"]{ width:22px; background:var(--primary); }
+
+.gr-end{ display:flex; justify-content:center; margin-top:clamp(20px,2.4vw,30px); }
+
+/* ── responsive: below three-up the row becomes a swipe track ──────── */
+@media (max-width:1000px){
+  .gr-bar{ grid-template-columns:auto 1fr; }
+  .gr-acts{ grid-column:1 / -1; justify-content:flex-start; }
+  .gr-card{ flex:0 0 calc((100% - clamp(14px,1.6vw,20px)) / 2); }
+}
+@media (max-width:680px){
+  .gr-card{ flex:0 0 min(340px, 84%); }
+}
+@media (max-width:560px){
+  .gr-bar{ grid-template-columns:1fr; text-align:left; }
+  .gr-acts{ flex-direction:column; align-items:stretch; }
+  .gr-acts .btn{ width:100%; justify-content:center; }
 }
 
 /* === faq-pics === */
 /* ══════════════════════════════════════════════════════════════════════
    THE ASIDE CHANGES WITH THE QUESTION
 
-   Eight layers, one per question, and the open one is chosen by a single
+   Seven layers, one per question, and the open one is chosen by a single
    data-at on the wrapper — so which picture is showing is decided by the
    same click that opens the answer, with no second piece of state to keep
    in step.
@@ -1540,10 +2089,10 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
    layer: opacity is what the layers are for, and leaving the transform to
    their parent means the two can never fight over the same property.
 
-   The last question reuses the first question's picture. Seven distinct
-   photographs are already on this page and none of them is worth loading
-   an eighth for; repeating the pair furthest apart in the list is the
-   least visible way to spend the shortfall.
+   Every question gets a photograph of its own, all seven of them ones
+   this page already carries. The nth-child rules below still run to
+   eight, so an eighth question needs a layer here and no stylesheet
+   edit at all.
    ══════════════════════════════════════════════════════════════════════ */
 
 /* the original single photo is replaced by the stack */
@@ -1608,71 +2157,9 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
 /* ── 1. one gap, everywhere ─────────────────────────────────────── */
 :root{ --sec-y:clamp(58px, 6vw, 92px); }
 .sec{ padding-block:var(--sec-y); }
-/* the two that keep their own: the proof strip is deliberately tight
-   under the hero, and the process is sized to hold one screen with five
-   stages rather than the homepage's four */
+/* the one that keeps its own: the proof strip is deliberately tight
+   under the hero */
 .tb{ --sec-y:clamp(38px,4.4vw,64px); }
-.eg-sec{ padding-block:clamp(30px,3.2vw,42px); }
-
-/* Five stages on this page (homepage keeps four). Same right-side arc
-   (-55° → +55°), five stops instead of four — without this the 5th
-   .eg-node has no left/top and parks at the disc's top-left. */
-#process .eg-node:nth-of-type(1){left:75.8%; top:13.1%;}
-#process .eg-node:nth-of-type(2){left:89.9%; top:29.2%;}
-#process .eg-node:nth-of-type(3){left:95.0%; top:50.0%;}
-#process .eg-node:nth-of-type(4){left:89.9%; top:70.8%;}
-#process .eg-node:nth-of-type(5){left:75.8%; top:86.9%;}
-#process .eg[data-at="0"] .eg-arc{stroke-dashoffset:563.5;}
-#process .eg[data-at="1"] .eg-arc{stroke-dashoffset:522.3;}
-#process .eg[data-at="2"] .eg-arc{stroke-dashoffset:479.1;}
-#process .eg[data-at="3"] .eg-arc{stroke-dashoffset:435.9;}
-#process .eg[data-at="4"] .eg-arc{stroke-dashoffset:392.7;}
-#process .eg[data-at="0"] .eg-num i:nth-child(1),
-#process .eg[data-at="1"] .eg-num i:nth-child(2),
-#process .eg[data-at="2"] .eg-num i:nth-child(3),
-#process .eg[data-at="3"] .eg-num i:nth-child(4),
-#process .eg[data-at="4"] .eg-num i:nth-child(5){
-  opacity:1; visibility:visible; transform:none; transition-delay:0s;}
-#process .eg[data-at="0"] .eg-node:nth-of-type(1),
-#process .eg[data-at="1"] .eg-node:nth-of-type(2),
-#process .eg[data-at="2"] .eg-node:nth-of-type(3),
-#process .eg[data-at="3"] .eg-node:nth-of-type(4),
-#process .eg[data-at="4"] .eg-node:nth-of-type(5){
-  border-color:var(--primary);
-  transform:translate(-50%,-50%) scale(1.16);
-  box-shadow:0 0 0 6px hsl(var(--brand-h) 100% 50% / .16);}
-
-/* Narrow: one-at-a-time carousel (desktop column walk unchanged). */
-@media (max-width:1000px){
-  #process .eg{grid-template-columns:1fr; gap:clamp(14px,3.6vw,22px);}
-  #process .eg-core{width:min(78%,292px); justify-self:center;}
-  #process .eg-node{display:none;}
-  #process .eg-num{font-size:clamp(44px,13vw,62px);}
-  #process .eg-lab,#process .eg-of{font-size:10.5px; letter-spacing:.13em;}
-  #process .eg-rule{width:52px; margin:14px auto;}
-  /* Five cards share one cell — list height = tallest card, no jump. */
-  #process .eg-list{position:relative; display:grid; gap:0; overflow:hidden;}
-  #process .eg-card,
-  #process .eg-card.seen{grid-area:1 / 1; order:0; --lay:0ms;
-    opacity:0; visibility:hidden; pointer-events:none;
-    transform:translateX(14px);
-    transition:opacity .4s var(--ease), transform .5s var(--pop),
-               visibility 0s linear .4s;}
-  #process .eg-card.on{opacity:1; visibility:visible; pointer-events:auto;
-    transform:none; transition-delay:0s;}
-  #process .eg-card::after{display:none;}
-  #process .eg-cta{justify-content:stretch;}
-  #process .eg-cta .btn{width:100%;}
-}
-@media (max-width:1000px) and (prefers-reduced-motion:reduce){
-  /* Keep one card lit — global reduce-motion opacity:1 would stack all five. */
-  #process .eg-card,
-  #process .eg-card.seen{
-    opacity:0; visibility:hidden; pointer-events:none;
-    transform:translateX(14px);}
-  #process .eg-card.on{
-    opacity:1; visibility:visible; pointer-events:auto; transform:none;}
-}
 
 /* ── 2. the alternation ─────────────────────────────────────────── */
 .sec,
@@ -1692,9 +2179,24 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    given an edge of their own further down: the marketplace panel takes
    the tint it is standing against, and the dashboard's two outer plates
    take a hairline. */
-#proof,#platforms,#why,#process,#contact{
+/* Adding a section to an alternating run has to move every ground below
+   it or the beat repeats once, so the two sections added under the proof
+   strip each moved everything below them by one. Two shifts is a round
+   trip: every section that was here originally is back on the ground it
+   was authored for, and the pair of new ones fill the two slots that
+   opened up. The compensations further down are written against --panel
+   rather than against a named section, so they follow a shift on their
+   own and needed no edit either time. */
+/* Regenerated from the order the sections are actually in, not
+   written by hand. Three of them cannot take either ground: #vs draws
+   its table on --panel, and #whyus and #reviews put white panels
+   straight on --surface, so all three have to land on the tint. That
+   is a real constraint on the running order, not a preference — the
+   sequence below is the one that reads as a funnel AND puts those
+   three on odd positions. */
+#proof,#services-2,#vs,#whyus,#reviews,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
-#services-2,#marketplaces,#problem,#faq{
+#who,#marketplaces,#process,#receive,#work,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
 
 /* Every content card reads the panel rather than naming a colour. The
@@ -1702,8 +2204,6 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
 .tb-figs,.tb-logo,
 .smark,
 .pf-card,
-.wy-row,
-.eg-card,.eg-node,.eg-card::after,
 .faq-list{ background:var(--panel); }
 /* The panel takes the colour the section is not. It used to fall from one
    to the other, which was fine while the section was tinted — but on white
@@ -1716,15 +2216,17 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
 html[data-theme="dark"] .mp-panel{
   background:linear-gradient(168deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.02) 100%); }
 
-/* The dashboard is a picture of white objects and keeps its white in both
-   themes. Standing on white it had only its shadow to be read by, so the
-   two plates that actually touch the section — the window and the
-   outcomes bar — take a hairline. The pieces inside them are on the
-   window's own fill and do not need one. */
-.wy-win,.wy-out{ border:1px solid var(--border); }
+/* The same insurance one section up. The marketplace panel takes
+   whichever colour its section is not, and the three objects standing on
+   it — the two marks, the listing window and the outcomes bar — are
+   pictures of white objects with nothing but a shadow to be read by. On
+   the panel's white turn they would have none. A hairline each costs
+   nothing on the tinted turn, so it is unconditional rather than tied to
+   a ground that may shift again. */
+.mp-mk,.mp-win,.mp-stats{ border:1px solid var(--border); }
 
 /* ── 3. no rules at the top or foot of a section ────────────────── */
-.sec,.svc-cn,.eg-sec,.faq,.pf,.wy,.mpc,.tb{
+.sec,.svc-cn,.faq,.pf,.mpc,.tb,.wk,.revs{
   border-top:0; border-bottom:0; }
 
 /* === hs-form-theme === */
@@ -1805,75 +2307,18 @@ html[data-theme="light"] .hs-err{color:var(--ui-bad);}
 html[data-theme="light"] .hs-done h3{color:var(--text);}
 html[data-theme="light"] .hs-done p{color:var(--text-2);}
 
-/* === cn-refine === */
-/* ══════════════════════════════════════════════════════════════════════
-   THE CONSOLE, WITHOUT THE GLASS — the homepage's own refinements
-
-   The block I ported first is the console as it was originally built: a
-   photograph with frosted panes floating on it — translucent pills on
-   every row, a blurred disc on each, a frosted figure card. The homepage
-   does not look like that any more. It loads a later sheet that takes all
-   the frosting off and leaves the arrangement drawn in flat colour: dark
-   rail, plain white type, one lit pill, white sheet.
-
-   I had only taken the first sheet, which is why this rail arrived
-   glassy. These are those refinements, copied across so the two pages
-   show the same object. The photograph stays; only what was floating on
-   top of it goes.
-   ══════════════════════════════════════════════════════════════════════ */
-
-/* the two faint rings existed to give the panes edges to soften.
-   No panes, no reason. */
-.cn-plate::before{ display:none; }
-
-/* The floor was kept deliberately thin so the frame still had highlights
-   showing through the panes. With the panes gone it goes back to being
-   what it says it is — and it is the hero's own tint, so the rail, the
-   menu and the invitation all sit under the same one. */
-.cn-plate::after{
-  background:
-    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
-    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
-                    rgba(0,0,0,.90) 100%);}
-
-/* rows: plain type, no pane */
-.cn-tab{
-  background:transparent;
-  -webkit-backdrop-filter:none; backdrop-filter:none;
-  box-shadow:none;
-  color:rgba(255,255,255,.70);}
-.cn-tab.on{ color:#fff; }
-.cn-tab:not(.on):hover,
-.cn-tab:not(.on):focus-visible{
-  background:rgba(255,255,255,.07);
-  box-shadow:none;
-  color:rgba(255,255,255,.92);}
-
-/* the travelling pill is solid brand, with its own soft throw */
-.cn .cn-lift{
-  background:var(--primary);
-  -webkit-backdrop-filter:none; backdrop-filter:none;
-  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75);}
-
-/* the disc: nothing on an unlit row, ink on the lit one — desktop only */
-@media (min-width:1041px){
-  .cn .cn-go{
-    background:transparent; box-shadow:none;
-    -webkit-backdrop-filter:none; backdrop-filter:none;
-    opacity:0; transition:opacity .26s var(--ease),
-               transform .52s var(--pop), background .3s var(--ease);}
-  .cn .cn-tab.on .cn-go{
-    opacity:1; background:#0a1a29; color:#fff;
-    -webkit-backdrop-filter:none; backdrop-filter:none;
-    box-shadow:none;}
-  .cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
-    transform:translateX(7px); box-shadow:none; }
-}
-
-/* one of the few labels that is deliberately not title case */
-.cn-tab b{ text-transform:none; }
-
-/* === cn svc-cn === */
+/* === cn-styles === */
+/* ============================================================
+   SERVICES — VARIANT 4 : the console
+   A dark index of every service against a light sheet that answers for
+   the one chosen. The sheet is laid over the rail rather than set beside
+   it, and the chosen row is a brand pill that runs out onto it — a
+   switch thrown, not a link hovered. Everything the sheet holds is
+   sized from two custom properties, --cn-over and --cn-lap, so the pill
+   can never come to rest on top of the copy it introduces.
+   ============================================================ */
+/* scoped: variant 01 of this section is a card grid with its own ground,
+   and the homepage rule would have repainted it too */
 .svc-cn{background:var(--bg-alt); border-block:1px solid var(--border);}
 .cn{--cn-over:clamp(26px,3vw,44px); --cn-lap:clamp(24px,2.8vw,38px);
   --cn-inset:clamp(8px,1vw,16px);
@@ -2272,30 +2717,19 @@ html[data-theme="dark"] .cn .cn-stat{
 
   /* The arrow the wide pill throws onto the sheet has nothing to point at
      here, so the same circle is redrawn as a plus that loses its upright
-     when the row opens. No second icon, no markup change.
-     Opacity must be forced on: desktop refine hides unlit discs, but here
-     every row needs its + / −. */
+     when the row opens. No second icon, no markup change. */
   .cn-go{position:relative; width:34px; height:34px;}
-  .cn .cn-go{background:var(--primary); color:#fff; opacity:1;
-    backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:none;
-    transform:none;}
+  .cn .cn-go{background:var(--primary); color:#fff;
+    backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:none;}
   html[data-theme="dark"] .cn .cn-go{background:rgba(255,255,255,.14);}
-  .cn .cn-tab.on .cn-go{background:#fff; color:var(--primary); opacity:1;
-    box-shadow:none; transform:none;}
-  .cn-tab:not(.on):hover .cn-go,
-  .cn-tab:not(.on):focus-visible .cn-go{
-    opacity:1; background:var(--primary); transform:none; box-shadow:none;}
-  html[data-theme="dark"] .cn-tab:not(.on):hover .cn-go,
-  html[data-theme="dark"] .cn-tab:not(.on):focus-visible .cn-go{
-    background:rgba(255,255,255,.14);}
+  .cn .cn-tab.on .cn-go{background:#fff; color:var(--primary);
+    box-shadow:none;}
   .cn-go svg{display:none;}
-  .cn-go::before,.cn-go::after{content:""; position:absolute; top:50%; left:50%;
-    background:currentColor; border-radius:2px;
-    transform:translate(-50%,-50%);}
+  .cn-go::before,.cn-go::after{content:""; position:absolute; background:currentColor;
+    border-radius:2px;}
   .cn-go::before{width:13px; height:2px;}
-  .cn-go::after{width:2px; height:13px;
-    transition:transform .3s var(--ease);}
-  .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0);}
+  .cn-go::after{width:2px; height:13px; transition:transform .3s var(--ease);}
+  .cn-tab.on .cn-go::after{transform:scaleY(0);}
 
   /* the sheet is emptied and stood down; its card is now a rail child */
   .cn-sheet{display:none;}
@@ -2343,19 +2777,455 @@ html[data-theme="dark"] .cn .cn-stat{
 @media (max-width:860px){
   .svc-cn .cn-list{grid-template-columns:minmax(0,1fr);}
 }
-#faq.faq{ background:#FFFFFF; --ground:#FFFFFF; --panel:var(--bg-alt); }
-html[data-theme="dark"] #faq.faq{ background:var(--surface); --ground:var(--surface); }
 
-/* What we do — white section ground */
-#services-2.svc-cn{
-  background:#FFFFFF !important;
-  --ground:#FFFFFF;
-  --panel:var(--bg-alt);
-  border-block:0;
+/* === cn-refine === */
+/* ══════════════════════════════════════════════════════════════════════
+   THE CONSOLE, WITHOUT THE GLASS — the homepage's own refinements
+
+   The block I ported first is the console as it was originally built: a
+   photograph with frosted panes floating on it — translucent pills on
+   every row, a blurred disc on each, a frosted figure card. The homepage
+   does not look like that any more. It loads a later sheet that takes all
+   the frosting off and leaves the arrangement drawn in flat colour: dark
+   rail, plain white type, one lit pill, white sheet.
+
+   I had only taken the first sheet, which is why this rail arrived
+   glassy. These are those refinements, copied across so the two pages
+   show the same object. The photograph stays; only what was floating on
+   top of it goes.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the two faint rings existed to give the panes edges to soften.
+   No panes, no reason. */
+.cn-plate::before{ display:none; }
+
+/* The floor was kept deliberately thin so the frame still had highlights
+   showing through the panes. With the panes gone it goes back to being
+   what it says it is — and it is the hero's own tint, so the rail, the
+   menu and the invitation all sit under the same one. */
+.cn-plate::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
+                    rgba(0,0,0,.90) 100%);}
+
+/* rows: plain type, no pane */
+.cn-tab{
+  background:transparent;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  box-shadow:none;
+  color:rgba(255,255,255,.70);}
+.cn-tab.on{ color:#fff; }
+.cn-tab:not(.on):hover,
+.cn-tab:not(.on):focus-visible{
+  background:rgba(255,255,255,.07);
+  box-shadow:none;
+  color:rgba(255,255,255,.92);}
+
+/* the travelling pill is solid brand, with its own soft throw */
+.cn .cn-lift{
+  background:var(--primary);
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75);}
+
+/* ---- the disc ----
+   It used to be invisible on every row but the lit one, which left five
+   of the six rows looking like labels rather than like things that could
+   be opened. It is on all of them now, faint, and comes up under the
+   pointer. The lit one still takes ink, so which row is open is read off
+   the fill rather than off the disc merely existing. */
+.cn .cn-go{
+  background:rgba(255,255,255,.09); box-shadow:none;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  opacity:.42; transition:opacity .26s var(--ease),
+             transform .52s var(--pop), background .3s var(--ease);}
+.cn .cn-tab.on .cn-go{
+  opacity:1; background:#0a1a29; color:#fff;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  box-shadow:none;}
+.cn-tab:not(.on):hover .cn-go{ opacity:.85; background:rgba(255,255,255,.17);
+  transform:translateX(7px); box-shadow:none; }
+
+/* one of the few labels that is deliberately not title case */
+.cn-tab b{ text-transform:none; }
+
+/* === consistency === */
+/* ══════════════════════════════════════════════════════════════════════
+   ONE SET OF RULES FOR THE WHOLE PAGE
+
+   Sections were built at different times and each brought its own
+   furniture. Nothing here is a new idea — it settles the parts that had
+   drifted onto one value each.
+
+   ── the badge ──────────────────────────────────────────────────────
+   There were three shapes doing one job: .smark (a numbered pill),
+   .mp-eyebrow (a filled pill) and .wy-eyebrow (a pill with a star in a
+   disc). They are all .smark now. The numbers were renumbered to close
+   the gaps left by deleted sections, and have been renumbered since.
+
+   ── the headings ───────────────────────────────────────────────────
+   Every h2 already read --h2 except the process, which had a clamp of
+   its own that came out a shade smaller. And the tracking split two ways:
+   -0.042em from the base rule, -0.038em from the three sections that
+   restated it. One value now, on the base rule, and the restatements set
+   only what they add.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the sections that restated the tracking give it back */
+.mp-say h2,.pf-head h2{ letter-spacing:-0.04em; }
+h2{ letter-spacing:-0.04em; }
+
+/* the badge sits the same distance above every heading it introduces */
+.smark{ margin-bottom:clamp(16px,1.8vw,22px); }
+/* it is a pale pill, so on the sections that stand on the tint it takes
+   the panel colour rather than a fixed white */
+.smark{ background:var(--panel); }
+
+/* === foot-lift === */
+/* ══════════════════════════════════════════════════════════════════════
+   THE FOOT AS ONE OBJECT
+
+   The run of service names and the footer plate were two plates with the
+   same fill, rounded at the top, ten pixels apart on the page's own
+   ground — so the seam between them read as a join rather than as one
+   thing. The gap goes, the second plate drops its own rounding because
+   the first is already carrying it, and the strip between them is a
+   hairline instead of a stripe of background.
+
+   The lift is a shadow thrown upward from the top edge of the run. It is
+   the only shadow on the page pointing that way, which is the whole
+   trick: everything above it casts downward, so a single upward throw
+   reads as this block sitting in front of the page rather than under it.
+   ══════════════════════════════════════════════════════════════════════ */
+.ftm{ margin-bottom:0; position:relative; z-index:2;
+  box-shadow:0 -16px 40px -22px rgba(var(--ink-rgb),.30); }
+html[data-theme="dark"] .ftm{
+  box-shadow:0 -16px 40px -20px rgba(0,0,0,.75); }
+.ft4{ background:transparent; }
+.ft4-plate{ border-radius:0; border-top:1px solid var(--border-soft); }
+
+/* === foot-final === */
+/* ══════════════════════════════════════════════════════════════════════
+   THE FOOT, FINISHED
+
+   Three things, and two of them are the same mistake: when the footer was
+   ported, its refinement sheet landed ABOVE the base rules instead of
+   below. Same specificity, so the base won and the refinements did
+   nothing. That is why the run of service names still had the tinted
+   background it was given before the plate turned white, and why the
+   footer still held the top padding that put a band of page between the
+   run and the columns.
+
+   Rather than reorder a sheet that reads correctly on its own, the two
+   settled values are stated once here, last.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the run is the same plate as the footer, not a strip resting on it */
+.ftm{ background:var(--surface); border-block:0; }
+.ft4{ padding-top:0; }
+
+/* ── the sprite ────────────────────────────────────────────────────────
+   The shoe outline lives in a <symbol> after the footer, and the
+   marketplace panel draws it from there. An <svg> is a replaced element:
+   left to itself it takes the default 300x150, which is exactly the empty
+   block that appeared under the footer. It was being held at nothing by a
+   rule that came off with the hero-02 illustration it was filed with.
+
+   Taken out of flow rather than display:none — Safari has historically
+   refused to resolve a <use> into a hidden tree. */
+.eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
+
+/* === wn-styles (scoped #who — beat homepage .wn) === */
+/* ══════════════════════════════════════════════════════════════════════
+   WHO NEEDS IT — the argument and the dashboard on one side, the four
+   symptoms on the other, and the invitation across the foot.
+
+   This section takes the white slot under the proof strip, and every
+   ground below it moved up by one to keep the tint/white beat going —
+   see the note on the ground groups in the rhythm sheet.
+
+   ── white cards on a white ground ──────────────────────────────────
+   The rhythm's rule is that a section on white holds tinted cards. This
+   one does not follow it: the cards stay white and are separated by a
+   hairline and a shadow instead, because a tinted card would fight the
+   dashboard sitting beside it, which is a picture of a white object and
+   cannot be tinted to match.
+   ══════════════════════════════════════════════════════════════════════ */
+
+#who.wn{position:relative; overflow:hidden;}
+#who .wn > .wrap{position:relative; z-index:2;}
+
+/* Two columns with a rule between them, drawn on the second column so
+   there is no third element in the grid holding a line. The rule is set
+   in from the top and bottom of the row rather than running its full
+   height, which is what keeps it reading as a divider and not a border
+   on the cards. */
+/* Both columns stretch to the taller of the two, and each one takes up
+   its own slack rather than leaving a ragged foot: the dashboard is
+   pushed to the bottom of the left column by margin-top:auto, and the
+   four cards share the right column's height equally through a 1fr auto
+   row. So whichever side runs longer, the pair still ends level and the
+   rule between them spans the whole row. */
+#who .wn-grid{display:grid; grid-template-columns:minmax(0,0.88fr) minmax(0,1fr);
+  gap:clamp(30px,4vw,56px); align-items:stretch;}
+#who .wn-say{display:flex; flex-direction:column;}
+#who .wn-list{position:relative; margin:0; padding:0 0 0 clamp(26px,3.4vw,52px);
+  list-style:none; display:grid; grid-auto-rows:1fr;
+  gap:clamp(14px,1.6vw,22px);}
+#who .wn-list::before{content:""; position:absolute; left:0; top:6px; bottom:6px;
+  width:1px; background:var(--border);}
+
+/* ── the argument ─────────────────────────────────────────────────── */
+/* The same three rules the platforms and why heads carry, so the eyebrow
+   pill, the heading size and the blue phrase are one treatment across
+   every section rather than a second one written here. The <em> is a
+   block as well as a span, which is what puts the blue phrase on its own
+   line the way the two-line heads elsewhere do. */
+#who .wn-say h2{font-size:var(--h2); line-height:1.16; letter-spacing:-0.038em;}
+#who .wn-say h2 span, #who .wn-say h2 em{display:block;}
+#who .wn-say h2 em{font-style:normal; color:var(--brand-text);}
+#who .wn-say .sec-lede{margin-top:clamp(14px,1.6vw,20px); max-width:46ch;}
+
+/* ── the dashboard ────────────────────────────────────────────────────
+   A picture of a white object, so it is drawn on --n0 rather than on
+   --surface and stays white in both themes — the same way the page's
+   other two windows are. On this tinted ground it needs no extra edge. */
+#who .wn-art{position:relative; width:100%; max-width:430px;
+  margin-top:auto; padding-top:clamp(24px,2.8vw,34px);}
+
+#who .wn-win{background:var(--n0); border:1px solid #E4E9EF; border-radius:14px;
+  box-shadow:0 20px 44px -26px rgba(var(--ink-rgb),.34); overflow:hidden;}
+#who .wn-bar{display:flex; gap:5px; padding:9px 12px; background:#F3F6F9;
+  border-bottom:1px solid #E7ECF1;}
+#who .wn-bar i{width:8px; height:8px; border-radius:50%; background:#FF5F57;}
+#who .wn-bar i:nth-child(2){background:#FEBC2E;}
+#who .wn-bar i:nth-child(3){background:#28C840;}
+#who .wn-body{padding:clamp(12px,1.3vw,16px);}
+#who .wn-h{font-family:var(--font-display); font-weight:700; font-size:12.5px;
+  color:#101828; margin-bottom:clamp(9px,1vw,12px);}
+
+#who .wn-score{display:grid; grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(11px,1.3vw,18px); align-items:center;}
+
+/* The dial is one ring drawn twice — the track all the way round and the
+   value over it, cut by a dash. 2πr at r=50 is 314.16, so the value's
+   dash is that times the score and its gap is the remainder; the number
+   in the middle and the arc can never disagree, because both come off
+   the same figure. The -90deg turn puts zero at the top. */
+#who .wn-dial{position:relative; width:clamp(84px,8.2vw,102px); aspect-ratio:1;}
+#who .wn-dial svg{width:100%; height:100%; transform:rotate(-90deg);}
+#who .wn-dial circle{fill:none; stroke-width:13; stroke-linecap:round;}
+#who .wn-dial-t{stroke:#E4E9EF;}
+#who .wn-dial-v{stroke:var(--primary); stroke-dasharray:226.2 314.16;}
+#who .wn-dial-n{position:absolute; inset:0; display:grid; place-content:center;
+  text-align:center; line-height:1.15;}
+#who .wn-dial-n b{display:block; font-family:var(--font-display); font-weight:800;
+  font-size:clamp(16px,1.6vw,20px); letter-spacing:-0.03em; color:var(--primary);}
+#who .wn-dial-n i{font-style:normal; font-size:9px; color:#667085;}
+
+#who .wn-bars{margin:0; padding:0; list-style:none; display:grid; gap:clamp(7px,.8vw,10px);}
+#who .wn-bars li{display:grid; grid-template-columns:15px minmax(50px,auto) minmax(0,1fr) auto;
+  align-items:center; gap:7px;}
+#who .wn-bars svg{width:13px; height:13px; color:var(--primary);}
+#who .wn-bars span{font-size:10.5px; font-weight:500; color:#475467;}
+#who .wn-bars b{font-size:10.5px; font-weight:700; color:#101828;
+  font-variant-numeric:tabular-nums;}
+/* The fill is a pseudo-element off --v, so a figure is edited in one
+   place — the inline custom property on the row — and the bar and the
+   percentage beside it move together. */
+#who .wn-track{position:relative; height:5px; border-radius:99px; background:#E9EDF2;}
+#who .wn-track::after{content:""; position:absolute; inset:0 auto 0 0; width:0;
+  border-radius:99px; background:var(--primary);
+  transition:width 1.1s var(--ease) .3s;}
+#who .rv.in .wn-track::after{width:var(--v,0%);}
+
+/* The traffic card overlaps the window's foot and runs past its right
+   edge, so the two read as one instrument rather than two stacked cards.
+   It is pulled up by a negative margin instead of being positioned, which
+   means it still takes part in the flow and cannot end up over the top of
+   whatever follows. */
+#who .wn-traffic{position:relative; z-index:1; width:min(76%,262px);
+  margin:-30px 0 0 auto; transform:translateX(clamp(0px,1.6vw,20px));
+  padding:10px 12px 6px; background:var(--n0); border:1px solid #E7ECF1;
+  border-radius:11px; box-shadow:0 16px 34px -20px rgba(var(--ink-rgb),.34);}
+#who .wn-traffic-t{display:flex; align-items:flex-start; justify-content:space-between;
+  gap:8px; margin-bottom:4px;}
+#who .wn-traffic-t > b{font-size:10.5px; font-weight:600; color:#475467;}
+#who .wn-drop{text-align:right; font-size:10px; font-weight:700; color:var(--ui-bad);
+  line-height:1.3;}
+#who .wn-drop u{display:inline-block; text-decoration:none; padding:2px 6px;
+  border-radius:99px; background:hsl(4 66% 50% / .10);}
+#who .wn-drop i{display:block; margin-top:2px; font-style:normal; font-weight:500;
+  font-size:8.5px; color:#98A2B3;}
+#who .wn-spark{display:block; width:100%; height:auto;}
+#who .wn-spark .gl{stroke:#E4E9EF; stroke-width:1; stroke-dasharray:3 4;}
+#who .wn-spark .ln{fill:none; stroke:var(--primary); stroke-width:2.6;
+  stroke-linecap:round; stroke-linejoin:round;}
+
+/* ── the four symptoms ────────────────────────────────────────────── */
+#who .wn-card{position:relative; display:grid;
+  grid-template-columns:auto auto minmax(0,1fr);
+  align-items:center; gap:clamp(12px,1.4vw,18px);
+  padding:clamp(17px,1.9vw,25px) clamp(16px,1.8vw,24px);
+  background:var(--surface); border:1px solid var(--border);
+  border-left:4px solid var(--primary); border-radius:var(--r-lg);
+  box-shadow:0 10px 26px -20px rgba(var(--ink-rgb),.30);
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease);}
+#who .wn-card:hover{transform:translateY(-3px);
+  box-shadow:0 18px 34px -20px rgba(var(--ink-rgb),.34);}
+#who .wn-ic{display:grid; place-items:center; flex-shrink:0;
+  width:clamp(44px,4.4vw,58px); aspect-ratio:1; border-radius:50%;
+  background:var(--disc); color:var(--primary);}
+#who .wn-ic svg{width:47%; height:47%;}
+#who .wn-n{display:grid; place-items:center; flex-shrink:0;
+  width:clamp(30px,3vw,38px); aspect-ratio:1; border-radius:50%;
+  background:var(--disc); color:var(--primary);
+  font-family:var(--font-display); font-weight:700; font-size:12.5px;
+  font-variant-numeric:tabular-nums;}
+#who .wn-card p{margin:0; font-size:clamp(14px,1vw,15.5px); line-height:1.55;
+  color:var(--text-2);}
+#who .wn-card p b{color:var(--text); font-weight:700;}
+
+/* ── the invitation ──────────────────────────────────────────────────
+   Three columns on one row: the mark, the sentence, the button. The
+   button is the only thing that does not stretch, so the row's height is
+   set by the sentence and the two ends stay centred against it. */
+#who .wn-close{display:grid; grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center; gap:clamp(16px,2vw,30px);
+  margin-top:clamp(30px,3.4vw,46px);
+  padding:clamp(20px,2.2vw,30px) clamp(20px,2.4vw,34px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  box-shadow:0 10px 26px -20px rgba(var(--ink-rgb),.30);}
+#who .wn-close-ic{display:grid; place-items:center; flex-shrink:0;
+  width:clamp(46px,4.6vw,62px); aspect-ratio:1; color:var(--primary);}
+#who .wn-close-ic svg{width:100%; height:100%;}
+#who .wn-close-t b{display:block; font-family:var(--font-display); font-weight:700;
+  font-size:clamp(15px,1.35vw,18px); letter-spacing:-0.02em; color:var(--text);
+  margin-bottom:5px;}
+#who .wn-close-t p{margin:0; font-size:clamp(13.5px,1vw,15px); line-height:1.55;
+  color:var(--text-2); max-width:44ch;}
+#who .wn-close .btn{white-space:normal;}
+
+/* ── narrower ─────────────────────────────────────────────────────── */
+@media (max-width:1000px){
+  #who .wn-grid{grid-template-columns:1fr; gap:clamp(28px,4vw,42px);}
+  /* with the columns stacked the rule would run across the page rather
+     than between two things, so it goes and the padding with it */
+  #who .wn-list{padding-left:0; grid-auto-rows:auto;}
+  #who .wn-list::before{display:none;}
+  /* nothing left to end level with, so the dashboard goes back to
+     following the paragraph rather than being pushed to a foot */
+  #who .wn-art{margin-top:0; max-width:430px;}
 }
-html[data-theme="dark"] #services-2.svc-cn{
+@media (max-width:720px){
+  #who .wn-score{grid-template-columns:1fr; justify-items:center; gap:16px;}
+  #who .wn-bars{width:100%;}
+  /* the overlap needs room either side to read as one; on a phone there
+     is none, so the card simply follows the window */
+  #who .wn-traffic{width:100%; margin:14px 0 0; transform:none;}
+  /* Dropping to two auto columns let both of them stretch, which pushed
+     the number to the far side of the card and left a hand's width of
+     nothing between it and its mark. The three-column shape stays: mark,
+     number, and a 1fr that takes the slack, with the sentence spanning
+     all three underneath. */
+  #who .wn-card{row-gap:12px;}
+  #who .wn-card p{grid-column:1 / -1;}
+  #who .wn-close{grid-template-columns:auto minmax(0,1fr); row-gap:18px;}
+  #who .wn-close .btn{grid-column:1 / -1; width:100%; justify-content:center;}
+}
+/* Neutralize homepage Why-Choose .wn chrome that still matches #who descendants */
+#who.wn{
+  display:block !important;
+  grid-template-columns:none !important;
+  align-items:stretch !important;
+  gap:0 !important;
+  margin-top:0 !important;
+  position:relative;
+  overflow:hidden;
+}
+#who .wn-body{
+  background:transparent !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+#who .wn-card{
+  margin-top:0 !important;
+}
+#who .wn-bar i{
+  display:inline-block !important;
+  height:8px !important;
+  width:8px !important;
+  transform:none !important;
+  background:#FF5F57 !important;
+}
+#who .wn-bar i:nth-child(2){ background:#FEBC2E !important; }
+#who .wn-bar i:nth-child(3){ background:#28C840 !important; }
+html[data-theme="light"] #who .wn-card{
   background:var(--surface) !important;
-  --ground:var(--surface);
+}
+
+/* Beat homepage section fills (.revs/.wk/.bl-sec/.faq) so the page rhythm
+   can alternate white ↔ tint like ecommerce-seo / homepage. */
+#proof,
+#who,
+#services-2,
+#marketplaces,
+#vs,
+#process,
+#whyus,
+#receive,
+#reviews,
+#work,
+#faq,
+#contact{
+  background:var(--ground) !important;
+  border-block:0 !important;
+}
+#services-2.svc-cn{ border-block:0; }
+#services-2 .cn-plate::before{ display:none !important; }
+#services-2 .cn-plate::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
+                    rgba(0,0,0,.90) 100%) !important;}
+#services-2 .cn-tab{
+  background:transparent !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important; box-shadow:none !important;
+  color:rgba(255,255,255,.70) !important;}
+#services-2 .cn-tab.on{ color:#fff !important; background:transparent !important; text-shadow:none !important; }
+#services-2 .cn-lift{
+  background:var(--primary) !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75) !important;}
+#services-2 .cn-go{
+  background:transparent !important; box-shadow:none !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; opacity:0;}
+#services-2 .cn-tab.on .cn-go{
+  opacity:1 !important; background:#0a1a29 !important; color:#fff !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
+#services-2 .cn-sheet{ background:#fff !important; }
+html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
+@media (max-width:1040px){
+  #services-2 .cn-tab.on{ background:var(--primary) !important; color:#fff !important; }
+  #services-2 .cn-go, #services-2 .cn .cn-go{
+    opacity:1 !important; background:var(--primary) !important; color:#fff !important;
+    transform:none !important; visibility:visible !important;}
+  html[data-theme="dark"] #services-2 .cn-go{ background:rgba(255,255,255,.14) !important; }
+  #services-2 .cn-tab.on .cn-go{
+    opacity:1 !important; background:#fff !important; color:var(--primary) !important;
+    transform:none !important;}
+  #services-2 .cn-tab:not(.on):hover .cn-go,
+  #services-2 .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1 !important; background:var(--primary) !important; transform:none !important;}
+  #services-2 .cn-go::before, #services-2 .cn-go::after{
+    content:"" !important; position:absolute !important; top:50% !important; left:50% !important;
+    background:currentColor !important; border-radius:2px !important;
+    transform:translate(-50%,-50%) !important; display:block !important;}
+  #services-2 .cn-go::before{width:13px !important; height:2px !important;}
+  #services-2 .cn-go::after{width:2px !important; height:13px !important;}
+  #services-2 .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0) !important;}
+  #services-2 .cn-go svg{display:none !important;}
 }
 
 /* page perf helpers — design unchanged */
@@ -2367,96 +3237,3 @@ html[data-theme="dark"] #services-2.svc-cn{
 .mm-trigger{ text-transform:uppercase; letter-spacing:.04em; }
 .mnav > a, .mnav .mm-acc{ text-transform:uppercase; letter-spacing:.04em; }
 .mnav .mm-accp a, .mnav .btn{ text-transform:none; letter-spacing:0; }
-
-/* Services console = homepage flat style (no glass) — must win over cn-styles dump */
-#services-2 .cn-plate::before{ display:none !important; }
-#services-2 .cn-plate::after{
-  background:
-    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
-    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
-                    rgba(0,0,0,.90) 100%) !important;}
-#services-2 .cn-tab{
-  background:transparent !important;
-  -webkit-backdrop-filter:none !important;
-  backdrop-filter:none !important;
-  box-shadow:none !important;
-  color:rgba(255,255,255,.70) !important;}
-#services-2 .cn-tab.on{
-  color:#fff !important;
-  background:transparent !important;
-  text-shadow:none !important;}
-#services-2 .cn-tab:not(.on):hover,
-#services-2 .cn-tab:not(.on):focus-visible{
-  background:rgba(255,255,255,.07) !important;
-  box-shadow:none !important;
-  color:rgba(255,255,255,.92) !important;}
-#services-2 .cn-lift{
-  background:var(--primary) !important;
-  -webkit-backdrop-filter:none !important;
-  backdrop-filter:none !important;
-  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75) !important;}
-@media (min-width:1041px){
-  #services-2 .cn-go{
-    background:transparent !important;
-    box-shadow:none !important;
-    -webkit-backdrop-filter:none !important;
-    backdrop-filter:none !important;
-    opacity:0;}
-  #services-2 .cn-tab.on .cn-go{
-    opacity:1 !important;
-    background:#0a1a29 !important;
-    color:#fff !important;
-    -webkit-backdrop-filter:none !important;
-    backdrop-filter:none !important;
-    box-shadow:none !important;}
-  #services-2 .cn-tab:not(.on):hover .cn-go{
-    opacity:.55 !important;
-    background:rgba(255,255,255,.10) !important;
-    transform:translateX(7px);
-    box-shadow:none !important;}
-}
-#services-2 .cn-sheet{
-  background:#fff !important;}
-html[data-theme="dark"] #services-2 .cn-sheet{
-  background:var(--n875) !important;}
-
-/* Mobile accordion: every row needs the + / − disc (desktop hides unlit). */
-@media (max-width:1040px){
-  #services-2 .cn-tab.on{
-    background:var(--primary) !important;
-    color:#fff !important;}
-  #services-2 .cn-go,
-  #services-2 .cn .cn-go{
-    opacity:1 !important;
-    background:var(--primary) !important;
-    color:#fff !important;
-    transform:none !important;
-    visibility:visible !important;}
-  html[data-theme="dark"] #services-2 .cn-go,
-  html[data-theme="dark"] #services-2 .cn .cn-go{
-    background:rgba(255,255,255,.14) !important;}
-  #services-2 .cn-tab.on .cn-go{
-    opacity:1 !important;
-    background:#fff !important;
-    color:var(--primary) !important;
-    transform:none !important;}
-  #services-2 .cn-tab:not(.on):hover .cn-go,
-  #services-2 .cn-tab:not(.on):focus-visible .cn-go{
-    opacity:1 !important;
-    background:var(--primary) !important;
-    transform:none !important;}
-  html[data-theme="dark"] #services-2 .cn-tab:not(.on):hover .cn-go,
-  html[data-theme="dark"] #services-2 .cn-tab:not(.on):focus-visible .cn-go{
-    background:rgba(255,255,255,.14) !important;}
-  #services-2 .cn-go::before,
-  #services-2 .cn-go::after{
-    content:"" !important; position:absolute !important;
-    top:50% !important; left:50% !important;
-    background:currentColor !important; border-radius:2px !important;
-    transform:translate(-50%,-50%) !important; display:block !important;}
-  #services-2 .cn-go::before{width:13px !important; height:2px !important;}
-  #services-2 .cn-go::after{width:2px !important; height:13px !important;}
-  #services-2 .cn-tab.on .cn-go::after{
-    transform:translate(-50%,-50%) scaleY(0) !important;}
-  #services-2 .cn-go svg{display:none !important;}
-}

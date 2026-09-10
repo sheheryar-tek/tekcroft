@@ -312,6 +312,27 @@ html[data-theme="dark"] #services-2.svc-cn{
   backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
 #services-2 .cn-sheet{ background:#fff !important; }
 html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
+@media (max-width:1040px){
+  #services-2 .cn-tab.on{ background:var(--primary) !important; color:#fff !important; }
+  #services-2 .cn-go, #services-2 .cn .cn-go{
+    opacity:1 !important; background:var(--primary) !important; color:#fff !important;
+    transform:none !important; visibility:visible !important;}
+  html[data-theme="dark"] #services-2 .cn-go{ background:rgba(255,255,255,.14) !important; }
+  #services-2 .cn-tab.on .cn-go{
+    opacity:1 !important; background:#fff !important; color:var(--primary) !important;
+    transform:none !important;}
+  #services-2 .cn-tab:not(.on):hover .cn-go,
+  #services-2 .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1 !important; background:var(--primary) !important; transform:none !important;}
+  #services-2 .cn-go::before, #services-2 .cn-go::after{
+    content:"" !important; position:absolute !important; top:50% !important; left:50% !important;
+    background:currentColor !important; border-radius:2px !important;
+    transform:translate(-50%,-50%) !important; display:block !important;}
+  #services-2 .cn-go::before{width:13px !important; height:2px !important;}
+  #services-2 .cn-go::after{width:2px !important; height:13px !important;}
+  #services-2 .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0) !important;}
+  #services-2 .cn-go svg{display:none !important;}
+}
 `;
   css =
     `/* Ecommerce SEO page-only — shared chrome in tekcroft.css */\n` +
@@ -373,6 +394,357 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
   console.log("ecommerce css", (css.length / 1024).toFixed(0), "KB; js", (js.length / 1024).toFixed(0), "KB");
 }
 
-await buildContact();
-await buildEcommerce();
+async function buildSeoAudit() {
+  const SRC =
+    "c:\\Users\\Super\\Desktop\\TK FINAL\\Services\\SEO AUDIT\\tekcroft-seo-audit (5).html";
+  const html = fs.readFileSync(SRC, "utf8");
+
+  // Tokens the standalone HTML keeps in tk-core; tekcroft.css does not define them.
+  const tk = html.match(/<style id="tk-core">([\s\S]*?)<\/style>/i);
+  let tokens = `/* === audit tokens (from tk-core) === */\n:root{\n  --veil:rgba(0,0,0,.78);\n  --disc:hsl(var(--brand-h) 92% 95%);\n}\nhtml[data-theme="dark"]{\n  --disc:rgba(0,150,213,.16);\n}\n`;
+  if (tk) {
+    const veil = tk[1].match(/--veil\s*:\s*([^;]+);/);
+    const discLight = [...tk[1].matchAll(/--disc\s*:\s*([^;]+);/g)];
+    if (veil) tokens = tokens.replace(/--veil:[^;]+;/, `--veil:${veil[1]};`);
+    if (discLight[0])
+      tokens = tokens.replace(
+        /:root\{[\s\S]*?--disc:[^;]+;/,
+        (m) => m.replace(/--disc:[^;]+;/, `--disc:${discLight[0][1]};`)
+      );
+    if (discLight[1])
+      tokens = tokens.replace(
+        /html\[data-theme="dark"\]\{[\s\S]*?--disc:[^;]+;/,
+        (m) => m.replace(/--disc:[^;]+;/, `--disc:${discLight[1][1]};`)
+      );
+  }
+
+  let css = extractStyles(html, [
+    "hs-styles",
+    "tb-styles",
+    "hero-copy-styles",
+    "svc-styles",
+    "mpc-styles",
+    "pf-styles",
+    "wa-styles",
+    "vs-styles",
+    "bl-styles",
+    "wc-styles",
+    "wk-styles",
+    "faq-pics",
+    "rhythm-styles",
+    "hs-form-theme",
+    "cn-styles",
+    "cn-refine",
+    "consistency",
+    "foot-lift",
+    "foot-final",
+  ]);
+
+  // Who Needs reuses .wn-* class names that homepage Why-Choose also uses in
+  // tekcroft.css. Scope the audit block under #who so those rules cannot win.
+  const wn = html.match(/<style id="wn-styles">([\s\S]*?)<\/style>/i);
+  if (wn) {
+    css += `\n\n/* === wn-styles (scoped #who — beat homepage .wn) === */\n${scopeSelectors(
+      wn[1].trim(),
+      "#who"
+    )}`;
+  }
+
+  css = tokens + "\n" + css;
+  css = await rewriteUrls(css, "audit");
+
+  css += `
+/* Neutralize homepage Why-Choose .wn chrome that still matches #who descendants */
+#who.wn{
+  display:block !important;
+  grid-template-columns:none !important;
+  align-items:stretch !important;
+  gap:0 !important;
+  margin-top:0 !important;
+  position:relative;
+  overflow:hidden;
+}
+#who .wn-body{
+  background:transparent !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+#who .wn-card{
+  margin-top:0 !important;
+}
+#who .wn-bar i{
+  display:inline-block !important;
+  height:8px !important;
+  width:8px !important;
+  transform:none !important;
+  background:#FF5F57 !important;
+}
+#who .wn-bar i:nth-child(2){ background:#FEBC2E !important; }
+#who .wn-bar i:nth-child(3){ background:#28C840 !important; }
+html[data-theme="light"] #who .wn-card{
+  background:var(--surface) !important;
+}
+
+/* Beat homepage section fills (.revs/.wk/.bl-sec/.faq) so the page rhythm
+   can alternate white ↔ tint like ecommerce-seo / homepage. */
+#proof,
+#who,
+#services-2,
+#marketplaces,
+#vs,
+#process,
+#whyus,
+#receive,
+#reviews,
+#work,
+#faq,
+#contact{
+  background:var(--ground) !important;
+  border-block:0 !important;
+}
+#services-2.svc-cn{ border-block:0; }
+#services-2 .cn-plate::before{ display:none !important; }
+#services-2 .cn-plate::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
+                    rgba(0,0,0,.90) 100%) !important;}
+#services-2 .cn-tab{
+  background:transparent !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important; box-shadow:none !important;
+  color:rgba(255,255,255,.70) !important;}
+#services-2 .cn-tab.on{ color:#fff !important; background:transparent !important; text-shadow:none !important; }
+#services-2 .cn-lift{
+  background:var(--primary) !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75) !important;}
+#services-2 .cn-go{
+  background:transparent !important; box-shadow:none !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; opacity:0;}
+#services-2 .cn-tab.on .cn-go{
+  opacity:1 !important; background:#0a1a29 !important; color:#fff !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
+#services-2 .cn-sheet{ background:#fff !important; }
+html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
+@media (max-width:1040px){
+  #services-2 .cn-tab.on{ background:var(--primary) !important; color:#fff !important; }
+  #services-2 .cn-go, #services-2 .cn .cn-go{
+    opacity:1 !important; background:var(--primary) !important; color:#fff !important;
+    transform:none !important; visibility:visible !important;}
+  html[data-theme="dark"] #services-2 .cn-go{ background:rgba(255,255,255,.14) !important; }
+  #services-2 .cn-tab.on .cn-go{
+    opacity:1 !important; background:#fff !important; color:var(--primary) !important;
+    transform:none !important;}
+  #services-2 .cn-tab:not(.on):hover .cn-go,
+  #services-2 .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1 !important; background:var(--primary) !important; transform:none !important;}
+  #services-2 .cn-go::before, #services-2 .cn-go::after{
+    content:"" !important; position:absolute !important; top:50% !important; left:50% !important;
+    background:currentColor !important; border-radius:2px !important;
+    transform:translate(-50%,-50%) !important; display:block !important;}
+  #services-2 .cn-go::before{width:13px !important; height:2px !important;}
+  #services-2 .cn-go::after{width:2px !important; height:13px !important;}
+  #services-2 .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0) !important;}
+  #services-2 .cn-go svg{display:none !important;}
+}
+`;
+  css =
+    `/* SEO Audit Services — design from tekcroft-seo-audit HTML; chrome in tekcroft.css */\n` +
+    css +
+    PERF_TAIL;
+  fs.writeFileSync(path.join(ROOT, "app", "seo-audit-services.css"), css);
+
+  let body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1]
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+    .trim();
+  body = patchNav(body, NAV_PATCH.mnavJump);
+  body = body.replace(
+    /<div class="hs-bg" aria-hidden="true">[\s\S]*?<\/div>/,
+    `<div class="hs-bg" aria-hidden="true"><img src="/images/hero-1.webp" width="1920" height="1080" alt="" decoding="async" fetchpriority="high"></div>`
+  );
+  body = body.replace(
+    /<svg class="eh-sprite"/,
+    '<svg class="eh-sprite" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden"'
+  );
+
+  let i = 0;
+  body = await replaceAsync(body, /src="(data:image\/[^"]+)"/gi, async (m) => {
+    i++;
+    const file = await saveDataUri(m[1], `img${i}`, "audit");
+    return `src="${file}"`;
+  });
+  fs.writeFileSync(path.join(ROOT, "lib", "seo-audit-services-body.html"), body);
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "seo-audit-services-lcp.json"),
+    JSON.stringify({ preload: "/images/hero-1.webp" }, null, 2)
+  );
+
+  const js = extractScripts(html, [
+    "tb-script",
+    "walk-script",
+    "ft-script",
+    "faq-script",
+    "cn-script",
+    "pf-script",
+    "wc-script",
+    "wk-script",
+  ]);
+  fs.writeFileSync(path.join(ROOT, "public", "tekcroft-seo-audit-services.js"), js);
+
+  const titleMatch = html.match(/<title>([\s\S]*?)<\/title>/i);
+  const descMatch = html.match(/<meta name="description" content="([^"]*)"/i);
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "seo-audit-services-meta.json"),
+    JSON.stringify(
+      {
+        title: titleMatch ? titleMatch[1].trim() : "SEO Audit Services | Tekcroft",
+        description: descMatch ? descMatch[1] : "",
+        canonical: "https://www.tekcroft.com/services/seo-audit-services",
+      },
+      null,
+      2
+    )
+  );
+  console.log(
+    "seo-audit css",
+    (css.length / 1024).toFixed(0),
+    "KB; js",
+    (js.length / 1024).toFixed(0),
+    "KB"
+  );
+}
+
+/** Prefix selectors with a scope id so page rules beat shared homepage CSS. */
+function scopeSelectors(cssText, scope) {
+  let out = "";
+  let i = 0;
+  const skipWsComments = () => {
+    while (i < cssText.length) {
+      if (/\s/.test(cssText[i])) {
+        out += cssText[i];
+        i++;
+        continue;
+      }
+      if (cssText.startsWith("/*", i)) {
+        const end = cssText.indexOf("*/", i + 2);
+        const stop = end < 0 ? cssText.length : end + 2;
+        out += cssText.slice(i, stop);
+        i = stop;
+        continue;
+      }
+      break;
+    }
+  };
+  while (i < cssText.length) {
+    skipWsComments();
+    if (i >= cssText.length) break;
+
+    if (cssText.startsWith("@keyframes", i) || cssText.startsWith("@-webkit-keyframes", i)) {
+      const open = cssText.indexOf("{", i);
+      let depth = 0;
+      let j = open;
+      for (; j < cssText.length; j++) {
+        if (cssText[j] === "{") depth++;
+        else if (cssText[j] === "}") {
+          depth--;
+          if (depth === 0) {
+            j++;
+            break;
+          }
+        }
+      }
+      out += cssText.slice(i, j);
+      i = j;
+      continue;
+    }
+    if (cssText.startsWith("@media", i) || cssText.startsWith("@supports", i)) {
+      const open = cssText.indexOf("{", i);
+      out += cssText.slice(i, open + 1);
+      i = open + 1;
+      let depth = 1;
+      const start = i;
+      while (i < cssText.length && depth > 0) {
+        if (cssText.startsWith("/*", i)) {
+          const end = cssText.indexOf("*/", i + 2);
+          i = end < 0 ? cssText.length : end + 2;
+          continue;
+        }
+        if (cssText[i] === "{") depth++;
+        else if (cssText[i] === "}") depth--;
+        i++;
+      }
+      const inner = cssText.slice(start, i - 1);
+      out += scopeSelectors(inner, scope) + "}";
+      continue;
+    }
+    const open = cssText.indexOf("{", i);
+    if (open < 0) {
+      out += cssText.slice(i);
+      break;
+    }
+    const selectors = cssText
+      .slice(i, open)
+      .replace(/\/\*[\s\S]*?\*\//g, " ")
+      .trim();
+    let depth = 0;
+    let j = open;
+    for (; j < cssText.length; j++) {
+      if (cssText[j] === "{") depth++;
+      else if (cssText[j] === "}") {
+        depth--;
+        if (depth === 0) {
+          j++;
+          break;
+        }
+      }
+    }
+    const block = cssText.slice(open, j);
+    // Preserve comments that sat between previous rule and this selector
+    const rawSel = cssText.slice(i, open);
+    const leadingComments = [...rawSel.matchAll(/\/\*[\s\S]*?\*\//g)]
+      .map((m) => m[0])
+      .join("");
+    if (leadingComments) out += leadingComments;
+    if (!selectors || selectors.startsWith("@")) {
+      out += selectors + block;
+    } else {
+      const scoped = selectors
+        .split(",")
+        .map((sel) => {
+          sel = sel.trim();
+          if (!sel) return sel;
+          if (sel.startsWith(":root") || sel.startsWith("html")) {
+            return sel.replace(/(html(?:\[[^\]]*\])?)\s+/, `$1 ${scope} `);
+          }
+          if (sel === ".wn" || sel.startsWith(".wn.") || sel.startsWith(".wn:")) {
+            return `${scope}${sel}`;
+          }
+          if (sel.startsWith(".wn")) {
+            return `${scope} ${sel}`;
+          }
+          return `${scope} ${sel}`;
+        })
+        .join(", ");
+      out += scoped + block;
+    }
+    i = j;
+  }
+  return out;
+}
+
+const target = process.argv[2] || "all";
+if (target === "all") {
+  await buildContact();
+  await buildEcommerce();
+  await buildSeoAudit();
+} else if (target === "contact") {
+  await buildContact();
+} else if (target === "ecommerce") {
+  await buildEcommerce();
+} else if (target === "seo-audit") {
+  await buildSeoAudit();
+} else {
+  console.error("Unknown target:", target);
+  process.exit(1);
+}
 console.log("Done slim service pages.");
