@@ -29,6 +29,7 @@ const manifest = {
   mm: hashFile("tekcroft-mm.js"),
   ecommerceSeo: hashFile("tekcroft-ecommerce-seo.js"),
   seoAuditServices: hashFile("tekcroft-seo-audit-services.js"),
+  technicalSeo: hashFile("tekcroft-technical-seo.js"),
   contact: hashFile("tekcroft-contact.js"),
 };
 fs.writeFileSync(
