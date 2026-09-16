@@ -6,7 +6,7 @@ import Homepage from "@/components/Homepage";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/google-business-profile-optimization-meta.json";
 import lcp from "@/lib/google-business-profile-optimization-lcp.json";
-import "@/app/ecommerce-seo.css";
+import "@/app/google-business-profile-optimization.css";
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -46,7 +46,10 @@ export default function GoogleBusinessProfileOptimizationPage() {
         fetchPriority="high"
       />
       <Homepage html={html} />
-      <Script src={assets.ecommerceSeo} strategy="afterInteractive" />
+      <Script
+        src={assets.googleBusinessProfileOptimization}
+        strategy="afterInteractive"
+      />
     </>
   );
 }

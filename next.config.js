@@ -23,6 +23,10 @@ const nextConfig = {
       { source: "/tekcroft-local-seo.:hash.js", headers: immutable },
       { source: "/tekcroft-on-page-seo.:hash.js", headers: immutable },
       {
+        source: "/tekcroft-google-business-profile-optimization.:hash.js",
+        headers: immutable,
+      },
+      {
         source: "/_next/static/:path*",
         headers: immutable,
       },

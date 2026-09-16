@@ -32,6 +32,9 @@ const manifest = {
   technicalSeo: hashFile("tekcroft-technical-seo.js"),
   localSeo: hashFile("tekcroft-local-seo.js"),
   onPageSeo: hashFile("tekcroft-on-page-seo.js"),
+  googleBusinessProfileOptimization: hashFile(
+    "tekcroft-google-business-profile-optimization.js"
+  ),
   contact: hashFile("tekcroft-contact.js"),
 };
 fs.writeFileSync(
