@@ -10,7 +10,7 @@ var SERVICES = [
     items:[
       {name:"Ecommerce SEO Services", href:"/services/ecommerce-seo", note:"Rankings for product and category pages.", img:"table"},
       {name:"SEO Audit Services", href:"/services/seo-audit-services", note:"Find what is holding the site back.", img:"mentor"},
-      {name:"On-Page SEO Services", href:"#services", note:"Titles, content and internal links.", img:"meeting"},
+      {name:"On-Page SEO Services", href:"/services/on-page-seo", note:"Titles, content and internal links.", img:"meeting"},
       {name:"Technical SEO Services", href:"/services/technical-seo", note:"Crawling, speed and indexing fixes.", img:"devs"},
       {name:"AI SEO Services", href:"#services", note:"Get cited inside AI answers.", img:"laptops"}
     ]},

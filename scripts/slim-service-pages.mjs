@@ -1265,6 +1265,234 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
   );
 }
 
+async function buildOnPageSeo() {
+  const SRC =
+    "c:\\Users\\Super\\Desktop\\TK FINAL\\Services\\ONpage\\tekcroft-onpage-seo (6).html";
+  const html = fs.readFileSync(SRC, "utf8");
+
+  const tk = html.match(/<style id="tk-core">([\s\S]*?)<\/style>/i);
+  let tokens = `/* === on-page-seo tokens (from tk-core) === */\n:root{\n  --veil:rgba(0,0,0,.78);\n  --disc:hsl(var(--brand-h) 92% 95%);\n}\nhtml[data-theme="dark"]{\n  --disc:rgba(0,150,213,.16);\n}\n`;
+  if (tk) {
+    const veil = tk[1].match(/--veil\s*:\s*([^;]+);/);
+    const discLight = [...tk[1].matchAll(/--disc\s*:\s*([^;]+);/g)];
+    if (veil) tokens = tokens.replace(/--veil:[^;]+;/, `--veil:${veil[1]};`);
+    if (discLight[0])
+      tokens = tokens.replace(
+        /:root\{[\s\S]*?--disc:[^;]+;/,
+        (m) => m.replace(/--disc:[^;]+;/, `--disc:${discLight[0][1]};`)
+      );
+    if (discLight[1])
+      tokens = tokens.replace(
+        /html\[data-theme="dark"\]\{[\s\S]*?--disc:[^;]+;/,
+        (m) => m.replace(/--disc:[^;]+;/, `--disc:${discLight[1][1]};`)
+      );
+  }
+
+  let css = extractStyles(html, [
+    "hs-styles",
+    "tb-styles",
+    "hero-copy-styles",
+    "svc-styles",
+    "svc-copy",
+    "ws-styles",
+    "cl-styles",
+    "av1-styles",
+    "pf-styles",
+    "sp-styles",
+    "vs-styles",
+    "ind-marks",
+    "fw-styles",
+    "eg-styles",
+    "eg-four",
+    "faq-pics",
+    "rhythm-styles",
+    "hs-form-theme",
+    "cn-styles",
+    "cn-refine",
+    "consistency",
+    "foot-lift",
+    "foot-final",
+  ]);
+
+  css = tokens + "\n" + css;
+  css = await rewriteUrls(css, "onpage");
+
+  css += `
+/* Rhythm omitted #apart; keep alternation + beat homepage fills */
+#apart{ --ground:var(--surface); --panel:var(--bg-alt); }
+#proof,
+#services-2,
+#industries,
+#scope,
+#apart,
+#framework,
+#process,
+#ai-search,
+#clients,
+#fit,
+#faq,
+#contact{
+  background:var(--ground) !important;
+  border-block:0 !important;
+}
+#services-2.svc-cn{ border-block:0; }
+#services-2 .cn-plate::before{ display:none !important; }
+#services-2 .cn-plate::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
+                    rgba(0,0,0,.90) 100%) !important;}
+#services-2 .cn-tab{
+  background:transparent !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important; box-shadow:none !important;
+  color:rgba(255,255,255,.70) !important;}
+#services-2 .cn-tab.on{ color:#fff !important; background:transparent !important; text-shadow:none !important; }
+#services-2 .cn-lift{
+  background:var(--primary) !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75) !important;}
+#services-2 .cn-go{
+  background:transparent !important; box-shadow:none !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; opacity:0;}
+#services-2 .cn-tab.on .cn-go{
+  opacity:1 !important; background:#0a1a29 !important; color:#fff !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
+#services-2 .cn-sheet{ background:#fff !important; }
+html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
+@media (max-width:1040px){
+  #services-2 .cn-tab.on{ background:var(--primary) !important; color:#fff !important; }
+  #services-2 .cn-go, #services-2 .cn .cn-go{
+    opacity:1 !important; background:var(--primary) !important; color:#fff !important;
+    transform:none !important; visibility:visible !important;}
+  html[data-theme="dark"] #services-2 .cn-go{ background:rgba(255,255,255,.14) !important; }
+  #services-2 .cn-tab.on .cn-go{
+    opacity:1 !important; background:#fff !important; color:var(--primary) !important;
+    transform:none !important;}
+  #services-2 .cn-tab:not(.on):hover .cn-go,
+  #services-2 .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1 !important; background:var(--primary) !important; transform:none !important;}
+  #services-2 .cn-go::before, #services-2 .cn-go::after{
+    content:"" !important; position:absolute !important; top:50% !important; left:50% !important;
+    background:currentColor !important; border-radius:2px !important;
+    transform:translate(-50%,-50%) !important; display:block !important;}
+  #services-2 .cn-go::before{width:13px !important; height:2px !important;}
+  #services-2 .cn-go::after{width:2px !important; height:13px !important;}
+  #services-2 .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0) !important;}
+  #services-2 .cn-go svg{display:none !important;}
+}
+`;
+  css =
+    `/* On-Page SEO Services — design from tekcroft-onpage-seo HTML; chrome in tekcroft.css */\n` +
+    css +
+    PERF_TAIL;
+  fs.writeFileSync(path.join(ROOT, "app", "on-page-seo.css"), css);
+
+  let body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1]
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+    .trim();
+  body = patchNav(body, NAV_PATCH.mnavJump);
+  body = body.replace(
+    /<div class="hs-bg" aria-hidden="true">[\s\S]*?<\/div>/,
+    `<div class="hs-bg" aria-hidden="true"><img src="/images/hero-1.webp" width="1920" height="1080" alt="" decoding="async" fetchpriority="high"></div>`
+  );
+  body = body.replace(
+    /<svg class="eh-sprite"/,
+    '<svg class="eh-sprite" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden"'
+  );
+
+  let i = 0;
+  body = await replaceAsync(body, /src="(data:image\/[^"]+)"/gi, async (m) => {
+    i++;
+    const file = await saveDataUri(m[1], `img${i}`, "onpage");
+    return `src="${file}"`;
+  });
+  fs.writeFileSync(path.join(ROOT, "lib", "on-page-seo-body.html"), body);
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "on-page-seo-lcp.json"),
+    JSON.stringify({ preload: "/images/hero-1.webp" }, null, 2)
+  );
+
+  let js = extractScripts(html, [
+    "tb-script",
+    "ft-script",
+    "faq-script",
+    "cn-script",
+    "fwv-script",
+    "ws-script",
+    "av1-script",
+    "pf-script",
+    "eg-script",
+  ]);
+  const faqHard = `
+/* === faq-script (hardened) === */
+(function(){
+  function panelFor(btn){
+    var id = btn.getAttribute("aria-controls");
+    return id ? document.getElementById(id) : null;
+  }
+  function closeAll(list){
+    list.querySelectorAll(".faq-q").forEach(function(b){
+      b.setAttribute("aria-expanded", "false");
+      var p = panelFor(b);
+      if (p){ p.setAttribute("data-open", "false"); p.classList.remove("is-open"); }
+    });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (t && t.nodeType === 3) t = t.parentElement;
+    if (!t || typeof t.closest !== "function") return;
+    var btn = t.closest(".faq-q");
+    if (!btn) return;
+    var list = btn.closest(".faq-list");
+    if (!list) return;
+    var panel = panelFor(btn);
+    if (!panel) return;
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    closeAll(list);
+    if (!isOpen){
+      btn.setAttribute("aria-expanded", "true");
+      panel.setAttribute("data-open", "true");
+      panel.classList.add("is-open");
+      var wrap = list.closest(".faq-wrap");
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
+    }
+  });
+})();
+`;
+  js = js.replace(
+    /\/\* === faq-script === \*\/[\s\S]*?(?=\/\* === |\Z)/,
+    faqHard.trim() + "\n\n"
+  );
+  fs.writeFileSync(path.join(ROOT, "public", "tekcroft-on-page-seo.js"), js);
+
+  const titleMatch = html.match(/<title>([\s\S]*?)<\/title>/i);
+  const descMatch = html.match(/<meta name="description" content="([^"]*)"/i);
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "on-page-seo-meta.json"),
+    JSON.stringify(
+      {
+        title: titleMatch
+          ? titleMatch[1].trim()
+          : "On-Page SEO Services | Tekcroft",
+        description: descMatch ? descMatch[1] : "",
+        canonical: "https://www.tekcroft.com/services/on-page-seo",
+      },
+      null,
+      2
+    )
+  );
+  console.log(
+    "on-page-seo css",
+    (css.length / 1024).toFixed(0),
+    "KB; js",
+    (js.length / 1024).toFixed(0),
+    "KB"
+  );
+}
+
 const target = process.argv[2] || "all";
 if (target === "all") {
   await buildContact();
@@ -1272,6 +1500,7 @@ if (target === "all") {
   await buildSeoAudit();
   await buildTechnicalSeo();
   await buildLocalSeo();
+  await buildOnPageSeo();
 } else if (target === "contact") {
   await buildContact();
 } else if (target === "ecommerce") {
@@ -1282,6 +1511,8 @@ if (target === "all") {
   await buildTechnicalSeo();
 } else if (target === "local-seo") {
   await buildLocalSeo();
+} else if (target === "on-page-seo") {
+  await buildOnPageSeo();
 } else {
   console.error("Unknown target:", target);
   process.exit(1);

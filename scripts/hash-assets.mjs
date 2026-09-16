@@ -31,6 +31,7 @@ const manifest = {
   seoAuditServices: hashFile("tekcroft-seo-audit-services.js"),
   technicalSeo: hashFile("tekcroft-technical-seo.js"),
   localSeo: hashFile("tekcroft-local-seo.js"),
+  onPageSeo: hashFile("tekcroft-on-page-seo.js"),
   contact: hashFile("tekcroft-contact.js"),
 };
 fs.writeFileSync(
