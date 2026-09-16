@@ -16,8 +16,8 @@ var SERVICES = [
     ]},
   { title:"Local SEO", href:"#services", icon:"pin", img:"keys",
     items:[
-      {name:"Local SEO Services", href:"#services", note:"Rank across your whole service area.", img:"keys"},
-      {name:"Google Business Profile Optimization", href:"#services", note:"Turn the listing into calls and visits.", img:"docs"},
+      {name:"Local SEO Services", href:"/services/local-seo", note:"Rank across your whole service area.", img:"keys"},
+      {name:"Google Business Profile Optimization", href:"/services/google-business-profile-optimization", note:"Turn the listing into calls and visits.", img:"docs"},
       {name:"Franchise SEO Services", href:"#services", note:"One system across every location.", img:"meeting"}
     ]},
   { title:"Web and Software Development", href:"#services", icon:"code", img:"laptops",

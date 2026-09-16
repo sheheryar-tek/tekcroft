@@ -964,12 +964,314 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
   );
 }
 
+async function buildLocalSeo() {
+  const SRC =
+    "c:\\Users\\Super\\Desktop\\TK FINAL\\Services\\Local SEO Services\\tekcroft-local-seo (4).html";
+  const html = fs.readFileSync(SRC, "utf8");
+
+  const tk = html.match(/<style id="tk-core">([\s\S]*?)<\/style>/i);
+  let tokens = `/* === local-seo tokens (from tk-core) === */\n:root{\n  --veil:rgba(0,0,0,.78);\n  --disc:hsl(var(--brand-h) 92% 95%);\n}\nhtml[data-theme="dark"]{\n  --disc:rgba(0,150,213,.16);\n}\n`;
+  if (tk) {
+    const veil = tk[1].match(/--veil\s*:\s*([^;]+);/);
+    const discLight = [...tk[1].matchAll(/--disc\s*:\s*([^;]+);/g)];
+    if (veil) tokens = tokens.replace(/--veil:[^;]+;/, `--veil:${veil[1]};`);
+    if (discLight[0])
+      tokens = tokens.replace(
+        /:root\{[\s\S]*?--disc:[^;]+;/,
+        (m) => m.replace(/--disc:[^;]+;/, `--disc:${discLight[0][1]};`)
+      );
+    if (discLight[1])
+      tokens = tokens.replace(
+        /html\[data-theme="dark"\]\{[\s\S]*?--disc:[^;]+;/,
+        (m) => m.replace(/--disc:[^;]+;/, `--disc:${discLight[1][1]};`)
+      );
+  }
+
+  let css = extractStyles(html, [
+    "hs-styles",
+    "tb-styles",
+    "hero-copy-styles",
+    "svc-styles",
+    "svc-copy",
+    "ws-styles",
+    "cl-styles",
+    "pf-styles",
+    "vs-styles",
+    "ind-marks",
+    "lo-styles",
+    "eg-styles",
+    "eg-four",
+    "lp-styles",
+    "wc-styles",
+    "faq-pics",
+    "rhythm-styles",
+    "hs-form-theme",
+    "cn-styles",
+    "cn-refine",
+    "consistency",
+    "foot-lift",
+    "foot-final",
+  ]);
+
+  css = tokens + "\n" + css;
+  css = await rewriteUrls(css, "local");
+
+  css += `
+/* Complete section grounds — source rhythm omitted some ids on this page */
+#proof,#industries,#reviews,#process,#faq{
+  --ground:var(--bg-alt); --panel:var(--surface);
+}
+#what,#services-2,#pack,#apart,#contact{
+  --ground:var(--surface); --panel:var(--bg-alt);
+}
+#clients{ --ground:var(--bg); --panel:var(--surface); }
+/* Comparison table sits on the dark photo section but the card itself is white */
+#fit{
+  --ground:var(--bg-alt);
+  --panel:#FFFFFF;
+  --vs-veil:rgba(0,0,0,.78);
+}
+html[data-theme="dark"] #fit{
+  --panel:var(--surface);
+}
+
+/* Table colors match the reference: white card, brand-blue frame,
+   green yes discs, red no, amber partial */
+#fit .vs-table{
+  background:#FFFFFF;
+  border-color:#E8EEF3;
+  box-shadow:0 22px 48px -28px rgba(12,28,50,.28);
+}
+html[data-theme="dark"] #fit .vs-table{ background:var(--surface); border-color:var(--border); }
+#fit .vs-table th,
+#fit .vs-table td{ border-bottom-color:#EEF2F6; }
+#fit .vs-h-blank{ color:#8B95A5; }
+#fit .vs-k{ color:#0C1C32; }
+#fit .vs-h{ color:#0C1C32; }
+#fit .vs-hic{
+  background:hsl(198 100% 94%);
+  color:var(--primary);
+}
+#fit .vs-h.is-us .vs-hic{
+  background:var(--primary);
+  color:#fff;
+}
+#fit .vs-v{ color:#5B6575; }
+#fit .c-us .vs-v{ color:#0C1C32; font-weight:600; }
+#fit .vs-m.is-yes{ color:#2FBF6B; }
+#fit .c-us .vs-m{
+  background:#E7F8EE;
+  color:#2FBF6B;
+}
+#fit .vs-m.is-no{ color:#E24B43; }
+#fit .vs-m.is-part{ color:#F0A11A; }
+#fit .vs-halo{
+  border-color:var(--primary);
+  background:hsl(198 100% 50% / .04);
+  box-shadow:0 20px 40px -28px hsl(198 100% 32% / .55);
+}
+#fit .vs-badge{
+  background:var(--primary);
+  color:#fff;
+}
+html[data-theme="dark"] #fit .vs-k,
+html[data-theme="dark"] #fit .vs-h,
+html[data-theme="dark"] #fit .c-us .vs-v{ color:var(--text); }
+html[data-theme="dark"] #fit .vs-v{ color:var(--text-2); }
+html[data-theme="dark"] #fit .vs-h-blank{ color:var(--subtle); }
+html[data-theme="dark"] #fit .c-us .vs-m{
+  background:rgba(47,191,107,.22);
+  color:#3DDB7E;
+}
+html[data-theme="dark"] #fit .vs-m.is-yes{ color:#3DDB7E; }
+
+#proof,
+#what,
+#services-2,
+#industries,
+#pack,
+#reviews,
+#apart,
+#process,
+#clients,
+#fit,
+#faq,
+#contact{
+  background:var(--ground) !important;
+  border-block:0 !important;
+}
+#services-2.svc-cn{ border-block:0; }
+#services-2 .cn-plate::before{ display:none !important; }
+#services-2 .cn-plate::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
+                    rgba(0,0,0,.90) 100%) !important;}
+#services-2 .cn-tab{
+  background:transparent !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important; box-shadow:none !important;
+  color:rgba(255,255,255,.70) !important;}
+#services-2 .cn-tab.on{ color:#fff !important; background:transparent !important; text-shadow:none !important; }
+#services-2 .cn-lift{
+  background:var(--primary) !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75) !important;}
+#services-2 .cn-go{
+  background:transparent !important; box-shadow:none !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; opacity:0;}
+#services-2 .cn-tab.on .cn-go{
+  opacity:1 !important; background:#0a1a29 !important; color:#fff !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
+#services-2 .cn-sheet{ background:#fff !important; }
+html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
+@media (max-width:1040px){
+  #services-2 .cn-tab.on{ background:var(--primary) !important; color:#fff !important; }
+  #services-2 .cn-go, #services-2 .cn .cn-go{
+    opacity:1 !important; background:var(--primary) !important; color:#fff !important;
+    transform:none !important; visibility:visible !important;}
+  html[data-theme="dark"] #services-2 .cn-go{ background:rgba(255,255,255,.14) !important; }
+  #services-2 .cn-tab.on .cn-go{
+    opacity:1 !important; background:#fff !important; color:var(--primary) !important;
+    transform:none !important;}
+  #services-2 .cn-tab:not(.on):hover .cn-go,
+  #services-2 .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1 !important; background:var(--primary) !important; transform:none !important;}
+  #services-2 .cn-go::before, #services-2 .cn-go::after{
+    content:"" !important; position:absolute !important; top:50% !important; left:50% !important;
+    background:currentColor !important; border-radius:2px !important;
+    transform:translate(-50%,-50%) !important; display:block !important;}
+  #services-2 .cn-go::before{width:13px !important; height:2px !important;}
+  #services-2 .cn-go::after{width:2px !important; height:13px !important;}
+  #services-2 .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0) !important;}
+  #services-2 .cn-go svg{display:none !important;}
+}
+`;
+  css =
+    `/* Local SEO Services — design from tekcroft-local-seo HTML; chrome in tekcroft.css */\n` +
+    css +
+    PERF_TAIL;
+  fs.writeFileSync(path.join(ROOT, "app", "local-seo.css"), css);
+
+  let body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1]
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+    .trim();
+  body = patchNav(body, NAV_PATCH.mnavJump);
+  body = body.replace(
+    /<div class="hs-bg" aria-hidden="true">[\s\S]*?<\/div>/,
+    `<div class="hs-bg" aria-hidden="true"><img src="/images/hero-1.webp" width="1920" height="1080" alt="" decoding="async" fetchpriority="high"></div>`
+  );
+  body = body.replace(
+    /<svg class="eh-sprite"/,
+    '<svg class="eh-sprite" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden"'
+  );
+
+  let i = 0;
+  body = await replaceAsync(body, /src="(data:image\/[^"]+)"/gi, async (m) => {
+    i++;
+    const file = await saveDataUri(m[1], `img${i}`, "local");
+    return `src="${file}"`;
+  });
+  fs.writeFileSync(path.join(ROOT, "lib", "local-seo-body.html"), body);
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "local-seo-lcp.json"),
+    JSON.stringify({ preload: "/images/hero-1.webp" }, null, 2)
+  );
+
+  let js = extractScripts(html, [
+    "tb-script",
+    "ft-script",
+    "faq-script",
+    "cn-script",
+    "ws-script",
+    "pf-script",
+    "eg-script",
+  ]);
+  const faqHard = `
+/* === faq-script (hardened) === */
+(function(){
+  function panelFor(btn){
+    var id = btn.getAttribute("aria-controls");
+    return id ? document.getElementById(id) : null;
+  }
+  function closeAll(list){
+    list.querySelectorAll(".faq-q").forEach(function(b){
+      b.setAttribute("aria-expanded", "false");
+      var p = panelFor(b);
+      if (p){ p.setAttribute("data-open", "false"); p.classList.remove("is-open"); }
+    });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (t && t.nodeType === 3) t = t.parentElement;
+    if (!t || typeof t.closest !== "function") return;
+    var btn = t.closest(".faq-q");
+    if (!btn) return;
+    var list = btn.closest(".faq-list");
+    if (!list) return;
+    var panel = panelFor(btn);
+    if (!panel) return;
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    closeAll(list);
+    if (!isOpen){
+      btn.setAttribute("aria-expanded", "true");
+      panel.setAttribute("data-open", "true");
+      panel.classList.add("is-open");
+      var wrap = list.closest(".faq-wrap");
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
+    }
+  });
+})();
+`;
+  js = js.replace(
+    /\/\* === faq-script === \*\/[\s\S]*?(?=\/\* === |\Z)/,
+    faqHard.trim() + "\n\n"
+  );
+  fs.writeFileSync(path.join(ROOT, "public", "tekcroft-local-seo.js"), js);
+
+  // Source <title>/<description> were left as On-Page copy; page content is Local SEO.
+  const ledeMatch = html.match(/class="hs-lede[^"]*"[^>]*>([\s\S]*?)<\/p>/i);
+  let description =
+    "TekCroft's local SEO services fix Google Business Profile gaps, inconsistent citations, and thin content that hold back local rankings.";
+  if (ledeMatch) {
+    description = ledeMatch[1]
+      .replace(/<[^>]+>/g, "")
+      .replace(/&rsquo;/g, "'")
+      .replace(/&mdash;/g, "—")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "local-seo-meta.json"),
+    JSON.stringify(
+      {
+        title: "Local SEO Services | Tekcroft",
+        description,
+        canonical: "https://www.tekcroft.com/services/local-seo",
+      },
+      null,
+      2
+    )
+  );
+  console.log(
+    "local-seo css",
+    (css.length / 1024).toFixed(0),
+    "KB; js",
+    (js.length / 1024).toFixed(0),
+    "KB"
+  );
+}
+
 const target = process.argv[2] || "all";
 if (target === "all") {
   await buildContact();
   await buildEcommerce();
   await buildSeoAudit();
   await buildTechnicalSeo();
+  await buildLocalSeo();
 } else if (target === "contact") {
   await buildContact();
 } else if (target === "ecommerce") {
@@ -978,6 +1280,8 @@ if (target === "all") {
   await buildSeoAudit();
 } else if (target === "technical-seo") {
   await buildTechnicalSeo();
+} else if (target === "local-seo") {
+  await buildLocalSeo();
 } else {
   console.error("Unknown target:", target);
   process.exit(1);
