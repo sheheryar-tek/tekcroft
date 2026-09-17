@@ -85,7 +85,7 @@
 
 .ct-hero .tag{margin-bottom:clamp(14px,1.7vw,20px);}
 
-.ct-hero h1{font-size:clamp(36px,5.2vw,60px); line-height:1.1;
+.ct-hero h1{font-size:var(--h1); line-height:1.1;
   letter-spacing:-0.046em; color:#fff;}
 .ct-hero h1 em{font-style:normal; color:var(--primary);}
 .ct-hero h1 .l1{display:block;}
@@ -218,7 +218,7 @@ html[data-theme="dark"] .ct-map-frame{filter:saturate(.7) brightness(.82);}
   border-right:1px solid var(--border);}
 .ct-form{grid-area:form;}
 .ct-side > *{position:relative;}
-.ct-side h2{font-size:clamp(21px,2.3vw,28px); letter-spacing:-0.035em;
+.ct-side h2{font-size:var(--h2); letter-spacing:-0.035em;
   line-height:1.24; color:var(--text);}
 .ct-side h2 em{font-style:normal; color:var(--primary);}
 .ct-rule{display:block; width:40px; height:3px; border-radius:3px;
@@ -522,7 +522,7 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
 .cta3 h2{margin-top:14px; font-family:var(--font-display);
   font-weight:800; letter-spacing:-0.045em; line-height:1.08;
   max-width:18ch; margin-inline:auto;}
-.cta3 > p{margin-top:14px; font-size:15px; line-height:1.6;}
+.cta3 > p{margin-top:14px; font-size:var(--body); line-height:1.6;}
 .cta3-eyebrow{justify-content:center;}
 .cta3-actions{position:relative;
   display:flex; align-items:center; flex-wrap:wrap; justify-content:center;
@@ -666,8 +666,8 @@ html[data-theme="dark"] .cta3-actions .btn-primary:hover{
 .cta3-actions .btn-primary{ width:100%; justify-content:center; }
 .cta3-div{ width:100%; height:1px; }
 .cta3-mail{ justify-content:center; }
-.cta3 h2{ font-size:clamp(27px,7.6vw,34px); }
-.cta3 > p{ font-size:14.5px; }
+.cta3 h2{ font-size:var(--h2); }
+.cta3 > p{ font-size:var(--body); }
 }
 @media (prefers-reduced-motion:reduce){
 .cta .cta3:hover{ transform:none; }
@@ -757,7 +757,7 @@ html[data-theme="dark"] .ftm{
   font-size:clamp(19px,2vw,25px); letter-spacing:-0.035em; line-height:1.24;
   color:var(--text);}
 .ct-next-head h2 em{font-style:normal; color:var(--brand-text);}
-.ct-next-head p{margin:0; font-size:14px; line-height:1.6; color:var(--text-2);}
+.ct-next-head p{margin:0; font-size:var(--body); line-height:1.6; color:var(--text-2);}
 
 /* The joins are columns of their own rather than something drawn into the
    gap, because a grid gap cannot hold content and a line hung off a
@@ -910,4 +910,136 @@ html[data-theme="dark"] .ct-step-in{
   /* the circuit stops. The ring is hidden rather than frozen mid-lap,
      because a light parked on one frame would read as that step being
      marked out — the plain coloured frames say nothing they should not. */
+}
+
+/* === type-scale lock === */
+/*
+  Inter reading text = 16px (--body) everywhere.
+  Sora = headings only.
+
+  Still smaller on purpose (not reading paragraphs):
+  - nav / mega-menu / buttons → chrome, not body copy
+  - eyebrows, badges, step numbers, uppercase track labels → hierarchy labels
+  - form labels, errors, helper notes → UI chrome
+  - footer link lists, map overlay labels → micro chrome
+  - chart legends, review metadata (avatar/date/tag) → data UI, not prose
+*/
+h1, h2, h3, h4, h5, h6{
+  font-family:var(--font-display);
+}
+.hs-lede,
+.sec-lede,
+.hero .lede,
+.mp-say > p,
+.wy-say > p,
+.wc-say > p,
+.gw-say > p,
+.wn-say p,
+.cg-say > p,
+.fw1-lede,
+.fw2-lede,
+.fw2-lede + .fw2-lede,
+.av1-copy p,
+.eg-sec .sec-lede,
+.ct-next-head p,
+.cta3 > p,
+.pf-head .sec-lede,
+.lo-say .sec-lede,
+.lp-say .sec-lede,
+.hx .sec-lede,
+.sh-close p,
+.sh-band p,
+.faq-a p,
+.faq-aside p,
+.faq-cta p,
+.faq-card p,
+.eg-card p,
+.eg-exp-head p,
+.eg-exp-list p,
+.eg-exp-note,
+.eg-note,
+.lp-note,
+.pf-card > p,
+.ws-item p,
+.gw-block p,
+.gw-cta-say p,
+.gw-checks li,
+.wc-card p,
+.wk-say p,
+.wc-panel > p,
+.wn-panel > p,
+#who .wn-card p,
+#who .wn-close-t p,
+.wy-txt > span,
+.wa-note,
+.ax-close-b,
+.modal-done p,
+.pb-d,
+.pb-good .pb-d,
+.pb-close-t p,
+.hx-card p,
+.gt-card p,
+.sg-item p,
+.sp-list div > span,
+.fw1-list li,
+.lo-strip div > span,
+.cn-list li,
+.cn-subs em,
+.gr-text,
+.bpx-stage p,
+.bl-note,
+.vs-v,
+.vs-cta-t > p,
+.cl-foot p,
+.wl-row:not(.wl-head) .wl-cell:nth-child(2),
+.wl-row:not(.wl-head) .wl-cell:nth-child(3),
+.wl-foot p,
+.tb-wall > p.tb-claim,
+.tb-fig .tb-cap,
+.hs-done p,
+.hs-sub,
+.ct-c > p,
+.ct-step-d,
+.ct-way-v{
+  font-family:var(--font);
+  font-size:var(--body);
+}
+.eg-sec h2,
+.gw-say h2,
+.mp-say h2,
+.pf-head h2,
+.wy-say h2,
+.hx .sec-head h2,
+.sg-head h2,
+.ct-side h2,
+.ct-next-head h2,
+.cta3 h2{
+  font-family:var(--font-display);
+  font-size:var(--h2);
+  letter-spacing:-0.04em;
+}
+.ct-hero h1{
+  font-family:var(--font-display);
+  font-size:var(--h1);
+}
+.hs-h1{
+  font-family:var(--font-display);
+}
+.ws-item h3,
+.eg-card h3,
+.gw-block h3,
+.pf-card h3,
+.sp-top h3{
+  font-family:var(--font-display);
+  font-size:var(--h3);
+}
+@media (max-width:640px){
+  .hs-lede,
+  .cta3 > p,
+  .faq-a p,
+  .eg-card p{font-size:var(--body);}
+  .cta3 h2{font-size:var(--h2);}
+}
+@media (max-width:560px){
+  .faq-a p{font-size:var(--body);}
 }

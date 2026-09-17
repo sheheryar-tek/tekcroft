@@ -76,7 +76,7 @@ html[data-theme="dark"]{
 .hs-h1 span{display:block;}
 
 .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px); max-width:48ch;
-  font-size:clamp(15px,1.05vw,16.5px); line-height:1.65; color:rgba(255,255,255,.76);}
+  font-size:var(--body); line-height:1.65; color:rgba(255,255,255,.76);}
 
 .hs-act{--d:290ms; margin:0; display:flex; flex-wrap:wrap; gap:12px;}
 
@@ -191,7 +191,7 @@ html[data-theme="dark"]{
 @media (min-width:961px) and (max-height:840px){
   .hs{padding-block:calc(var(--nav-h) + 34px) 52px;}
   .hs-h1{font-size:var(--h2); margin-bottom:18px;}
-  .hs-lede{margin-bottom:24px; font-size:15px;}
+  .hs-lede{margin-bottom:24px;}
   .hs-form{padding:22px 22px;}
   .hs-sub{margin-bottom:18px;}
   .hs-field :is(input,select){height:46px;}
@@ -280,9 +280,9 @@ html[data-theme="dark"]{
    so the character does not drift off it. */
 .tb-fig b .fig-af{display:inline-block; width:auto; height:auto; margin:0; padding:0;
   background:none; box-shadow:none; border-radius:0;
-  color:var(--brand-text); font-style:normal;
-  transform:skewX(-9deg); transform-origin:0 100%;
-  font-size:.86em; letter-spacing:-0.03em;}
+  color:var(--brand-text); font-style:normal; font-weight:800;
+  transform:none; font-size:.70em; letter-spacing:-0.02em;
+  vertical-align:0.12em;}
 
 /* The caption is targeted by class, never as ".tb-fig span" — a bare-tag
    rule here would also catch the meter, which is a span too. Earlier
@@ -551,7 +551,7 @@ html[data-theme="dark"] .mp-panel{
 .mp-say h2 em{font-style:normal; color:var(--cta-blue);}
 
 .mp-say > p{margin-top:clamp(16px,1.8vw,24px); max-width:46ch;
-  font-size:15.5px; line-height:1.75; color:var(--text-2);}
+  font-size:var(--body); line-height:1.75; color:var(--text-2);}
 
 /* the call is the site's own button — same pill, same ink wipe, same
    rolling label as the homepage. Only its place under the paragraph is
@@ -1346,7 +1346,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 /* ---- the claim ---- */
 .wc-say h2{letter-spacing:-0.045em; line-height:1.04;}
 .wc-say h2 em{font-style:normal; color:var(--brand-text);}
-.wc-say > p{margin-top:20px; font-size:15.5px; line-height:1.7; color:var(--text-2);
+.wc-say > p{margin-top:20px; font-size:var(--body); line-height:1.7; color:var(--text-2);
   max-width:44ch;}
 .wc-say .btn{margin-top:28px;}
 
@@ -3874,3 +3874,166 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
 .mm-trigger{ text-transform:uppercase; letter-spacing:.04em; }
 .mnav > a, .mnav .mm-acc{ text-transform:uppercase; letter-spacing:.04em; }
 .mnav .mm-accp a, .mnav .btn{ text-transform:none; letter-spacing:0; }
+
+/* === type-scale lock === */
+/*
+  Inter reading text = 16px (--body) everywhere.
+  Sora = headings only.
+
+  Still smaller on purpose (not reading paragraphs):
+  - nav / mega-menu / buttons → chrome, not body copy
+  - eyebrows, badges, step numbers, uppercase track labels → hierarchy labels
+  - form labels, errors, helper notes → UI chrome
+  - footer link lists, map overlay labels → micro chrome
+  - chart legends, review metadata (avatar/date/tag) → data UI, not prose
+*/
+h1, h2, h3, h4, h5, h6{
+  font-family:var(--font-display);
+}
+.hs-lede,
+.sec-lede,
+.hero .lede,
+.mp-say > p,
+.wy-say > p,
+.wc-say > p,
+.gw-say > p,
+.wn-say p,
+.cg-say > p,
+.fw1-lede,
+.fw2-lede,
+.fw2-lede + .fw2-lede,
+.av1-copy p,
+.eg-sec .sec-lede,
+.ct-next-head p,
+.cta3 > p,
+.pf-head .sec-lede,
+.lo-say .sec-lede,
+.lp-say .sec-lede,
+.hx .sec-lede,
+.sh-close p,
+.sh-band p,
+.faq-a p,
+.faq-aside p,
+.faq-cta p,
+.faq-card p,
+.eg-card p,
+.eg-exp-head p,
+.eg-exp-list p,
+.eg-exp-note,
+.eg-note,
+.lp-note,
+.pf-card > p,
+.ws-item p,
+.gw-block p,
+.gw-cta-say p,
+.gw-checks li,
+.wc-card p,
+.wk-say p,
+.wc-panel > p,
+.wn-panel > p,
+#who .wn-card p,
+#who .wn-close-t p,
+.wy-txt > span,
+.wa-note,
+.ax-close-b,
+.modal-done p,
+.pb-d,
+.pb-good .pb-d,
+.pb-close-t p,
+.hx-card p,
+.gt-card p,
+.sg-item p,
+.sp-list div > span,
+.fw1-list li,
+.lo-strip div > span,
+.cn-list li,
+.cn-subs em,
+.gr-text,
+.bpx-stage p,
+.bl-note,
+.vs-v,
+.vs-cta-t > p,
+.cl-foot p,
+.wl-row:not(.wl-head) .wl-cell:nth-child(2),
+.wl-row:not(.wl-head) .wl-cell:nth-child(3),
+.wl-foot p,
+.tb-wall > p.tb-claim,
+.tb-fig .tb-cap,
+.hs-done p,
+.hs-sub,
+.ct-c > p,
+.ct-step-d,
+.ct-way-v{
+  font-family:var(--font);
+  font-size:var(--body);
+}
+.eg-sec h2,
+.gw-say h2,
+.mp-say h2,
+.pf-head h2,
+.wy-say h2,
+.hx .sec-head h2,
+.sg-head h2,
+.ct-side h2,
+.ct-next-head h2,
+.cta3 h2{
+  font-family:var(--font-display);
+  font-size:var(--h2);
+  letter-spacing:-0.04em;
+}
+.ct-hero h1{
+  font-family:var(--font-display);
+  font-size:var(--h1);
+}
+.hs-h1{
+  font-family:var(--font-display);
+}
+.ws-item h3,
+.eg-card h3,
+.gw-block h3,
+.pf-card h3,
+.sp-top h3{
+  font-family:var(--font-display);
+  font-size:var(--h3);
+}
+@media (max-width:640px){
+  .hs-lede,
+  .cta3 > p,
+  .faq-a p,
+  .eg-card p{font-size:var(--body);}
+  .cta3 h2{font-size:var(--h2);}
+}
+@media (max-width:560px){
+  .faq-a p{font-size:var(--body);}
+}
+/* Dark mode: process / expect cards stay on theme surface (all service pages) */
+html[data-theme="dark"] #process .eg-card,
+html[data-theme="dark"] #process .eg-card::after,
+html[data-theme="dark"] #process .eg-exp,
+html[data-theme="dark"] #process .eg-exp-list li::before{
+  background:var(--surface);
+  border-color:var(--border);
+}
+html[data-theme="dark"] #process .eg-when,
+html[data-theme="dark"] #process .eg-exp-note{
+  background:var(--brand-soft);
+}
+html[data-theme="dark"] #process .eg-card h3,
+html[data-theme="dark"] #process .eg-exp-lab{
+  color:var(--text);
+}
+html[data-theme="dark"] #process .eg-card p,
+html[data-theme="dark"] #process .eg-exp-head p,
+html[data-theme="dark"] #process .eg-exp-list p,
+html[data-theme="dark"] #process .eg-exp-note{
+  color:var(--text-2);
+  font-size:var(--body);
+}
+/* fig-af: upright + smaller — no italic/skew on %, +, $M+ */
+.tb-fig b .fig-af{
+  font-style:normal !important;
+  transform:none !important;
+  font-size:.70em;
+  font-weight:800;
+  vertical-align:0.12em;
+}

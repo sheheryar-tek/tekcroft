@@ -186,6 +186,171 @@ const PERF_TAIL = `
 .mm-trigger{ text-transform:uppercase; letter-spacing:.04em; }
 .mnav > a, .mnav .mm-acc{ text-transform:uppercase; letter-spacing:.04em; }
 .mnav .mm-accp a, .mnav .btn{ text-transform:none; letter-spacing:0; }
+
+/* === type-scale lock === */
+/*
+  Inter reading text = 16px (--body) everywhere.
+  Sora = headings only.
+
+  Still smaller on purpose (not reading paragraphs):
+  - nav / mega-menu / buttons → chrome, not body copy
+  - eyebrows, badges, step numbers, uppercase track labels → hierarchy labels
+  - form labels, errors, helper notes → UI chrome
+  - footer link lists, map overlay labels → micro chrome
+  - chart legends, review metadata (avatar/date/tag) → data UI, not prose
+*/
+h1, h2, h3, h4, h5, h6{
+  font-family:var(--font-display);
+}
+.hs-lede,
+.sec-lede,
+.hero .lede,
+.mp-say > p,
+.wy-say > p,
+.wc-say > p,
+.gw-say > p,
+.wn-say p,
+.cg-say > p,
+.fw1-lede,
+.fw2-lede,
+.fw2-lede + .fw2-lede,
+.av1-copy p,
+.eg-sec .sec-lede,
+.ct-next-head p,
+.cta3 > p,
+.pf-head .sec-lede,
+.lo-say .sec-lede,
+.lp-say .sec-lede,
+.hx .sec-lede,
+.sh-close p,
+.sh-band p,
+.faq-a p,
+.faq-aside p,
+.faq-cta p,
+.faq-card p,
+.eg-card p,
+.eg-exp-head p,
+.eg-exp-list p,
+.eg-exp-note,
+.eg-note,
+.lp-note,
+.pf-card > p,
+.ws-item p,
+.gw-block p,
+.gw-cta-say p,
+.gw-checks li,
+.wc-card p,
+.wk-say p,
+.wc-panel > p,
+.wn-panel > p,
+#who .wn-card p,
+#who .wn-close-t p,
+.wy-txt > span,
+.wa-note,
+.ax-close-b,
+.modal-done p,
+.pb-d,
+.pb-good .pb-d,
+.pb-close-t p,
+.hx-card p,
+.gt-card p,
+.sg-item p,
+.sp-list div > span,
+.fw1-list li,
+.lo-strip div > span,
+.cn-list li,
+.cn-subs em,
+.gr-text,
+.bpx-stage p,
+.bl-note,
+.vs-v,
+.vs-cta-t > p,
+.cl-foot p,
+.wl-row:not(.wl-head) .wl-cell:nth-child(2),
+.wl-row:not(.wl-head) .wl-cell:nth-child(3),
+.wl-foot p,
+.tb-wall > p.tb-claim,
+.tb-fig .tb-cap,
+.hs-done p,
+.hs-sub,
+.ct-c > p,
+.ct-step-d,
+.ct-way-v{
+  font-family:var(--font);
+  font-size:var(--body);
+}
+.eg-sec h2,
+.gw-say h2,
+.mp-say h2,
+.pf-head h2,
+.wy-say h2,
+.hx .sec-head h2,
+.sg-head h2,
+.ct-side h2,
+.ct-next-head h2,
+.cta3 h2{
+  font-family:var(--font-display);
+  font-size:var(--h2);
+  letter-spacing:-0.04em;
+}
+.ct-hero h1{
+  font-family:var(--font-display);
+  font-size:var(--h1);
+}
+.hs-h1{
+  font-family:var(--font-display);
+}
+.ws-item h3,
+.eg-card h3,
+.gw-block h3,
+.pf-card h3,
+.sp-top h3{
+  font-family:var(--font-display);
+  font-size:var(--h3);
+}
+@media (max-width:640px){
+  .hs-lede,
+  .cta3 > p,
+  .faq-a p,
+  .eg-card p{font-size:var(--body);}
+  .cta3 h2{font-size:var(--h2);}
+}
+@media (max-width:560px){
+  .faq-a p{font-size:var(--body);}
+}
+
+/* Dark mode: process / expect cards stay on theme surface (all service pages) */
+html[data-theme="dark"] #process .eg-card,
+html[data-theme="dark"] #process .eg-card::after,
+html[data-theme="dark"] #process .eg-exp,
+html[data-theme="dark"] #process .eg-exp-list li::before{
+  background:var(--surface);
+  border-color:var(--border);
+}
+html[data-theme="dark"] #process .eg-when,
+html[data-theme="dark"] #process .eg-exp-note{
+  background:var(--brand-soft);
+}
+html[data-theme="dark"] #process .eg-card h3,
+html[data-theme="dark"] #process .eg-exp-lab{
+  color:var(--text);
+}
+html[data-theme="dark"] #process .eg-card p,
+html[data-theme="dark"] #process .eg-exp-head p,
+html[data-theme="dark"] #process .eg-exp-list p,
+html[data-theme="dark"] #process .eg-exp-note{
+  color:var(--text-2);
+  font-size:var(--body);
+}
+
+/* fig-af: upright + smaller — no italic/skew on %, +, $M+ */
+.tb-fig b .fig-af{
+  font-style:normal !important;
+  transform:none !important;
+  font-size:.70em;
+  font-weight:800;
+  vertical-align:0.12em;
+}
 `;
 
 async function buildContact() {
@@ -1570,7 +1735,7 @@ async function buildGbp() {
 }
 html[data-theme="dark"] #fit{ --panel:var(--surface); }
 
-/* Process + GBP cards: white backgrounds, brand-blue accents */
+/* Process + GBP cards: white in light, theme surface in dark (readable text) */
 #process .eg-card,
 #process .eg-card::after{
   background:#fff;
@@ -1581,7 +1746,7 @@ html[data-theme="dark"] #fit{ --panel:var(--surface); }
 }
 #process .eg-when{
   color:var(--primary);
-  background:hsl(var(--brand-h) 62% 93%);
+  background:var(--brand-soft);
 }
 #process .eg-exp{
   background:#fff;
@@ -1596,8 +1761,9 @@ html[data-theme="dark"] #fit{ --panel:var(--surface); }
 }
 #process .eg-exp-list b{ color:var(--primary); }
 #process .eg-exp-note{
-  background:hsl(var(--brand-h) 62% 93%);
+  background:var(--brand-soft);
   border-top-color:var(--border-soft);
+  color:var(--text-2);
 }
 #process .eg-exp-note svg{ color:var(--primary); }
 
@@ -1620,6 +1786,36 @@ html[data-theme="dark"] #fit{ --panel:var(--surface); }
 #gbp-what .gw-block:hover .gw-ic{
   background:var(--primary);
   color:#fff;
+}
+
+/* Dark mode: never keep white plates under light theme ink */
+html[data-theme="dark"] #process .eg-card,
+html[data-theme="dark"] #process .eg-card::after,
+html[data-theme="dark"] #process .eg-exp,
+html[data-theme="dark"] #process .eg-exp-list li::before,
+html[data-theme="dark"] #gbp-what .gw-block{
+  background:var(--surface);
+  border-color:var(--border);
+}
+html[data-theme="dark"] #process .eg-when,
+html[data-theme="dark"] #process .eg-exp-note{
+  background:var(--brand-soft);
+}
+html[data-theme="dark"] #gbp-what .gw-ic{
+  background:var(--gw-soft);
+  color:var(--primary);
+}
+html[data-theme="dark"] #process .eg-card h3,
+html[data-theme="dark"] #process .eg-exp-lab,
+html[data-theme="dark"] #gbp-what .gw-block h3{
+  color:var(--text);
+}
+html[data-theme="dark"] #process .eg-card p,
+html[data-theme="dark"] #process .eg-exp-head p,
+html[data-theme="dark"] #process .eg-exp-list p,
+html[data-theme="dark"] #process .eg-exp-note,
+html[data-theme="dark"] #gbp-what .gw-block p{
+  color:var(--text-2);
 }
 
 #proof,
