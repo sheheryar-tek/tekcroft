@@ -23,4 +23,7 @@ async function opt(name, width, quality) {
 }
 
 await opt("hero-1.webp", 960, 72);
-await opt("hero-2.webp", 800, 70);
+await opt("home-hero-1.webp", 1400, 74);
+await opt("home-hero-2.webp", 1200, 72);
+await opt("home-hero-3.webp", 1200, 72);
+await opt("home-hero-4.webp", 1200, 72);

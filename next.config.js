@@ -27,10 +27,13 @@ const nextConfig = {
         headers: immutable,
       },
       {
-        source: "/_next/static/:path*",
+        source: "/tekcroft-mobile-app-development.:hash.js",
         headers: immutable,
       },
       {
+        source: "/_next/static/:path*",
+        headers: immutable,
+      },      {
         source: "/:path*",
         headers: [{ key: "X-Content-Type-Options", value: "nosniff" }],
       },

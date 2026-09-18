@@ -44,6 +44,13 @@ export default function HomePage() {
 
   return (
     <>
+      <link
+        rel="preload"
+        as="image"
+        href="/images/home-hero-1.webp"
+        type="image/webp"
+        fetchPriority="high"
+      />
       <Homepage html={html} />
       {/* afterInteractive: body markup exists; boot can measure nav logo */}
       <Script src={assets.main} strategy="afterInteractive" />

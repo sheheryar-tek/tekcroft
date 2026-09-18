@@ -2008,6 +2008,276 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
   );
 }
 
+async function buildMobileApp() {
+  const SRC =
+    "c:\\Users\\Super\\Desktop\\TK FINAL\\Services\\Mobile App Development\\tekcroft-mobile-app (4).html";
+  const html = fs.readFileSync(SRC, "utf8");
+
+  let css = extractStyles(html, [
+    "hs-styles",
+    "tb-styles",
+    "hero-copy-styles",
+    "svc-styles",
+    "svc-copy",
+    "svc-app",
+    "hs-fit",
+    "hs-stat",
+    "pf-styles",
+    "vs-styles",
+    "vs-two",
+    "ind-marks",
+    "wc-styles",
+    "wc-five",
+    "wc-app",
+    "dv-styles",
+    "fw-styles",
+    "tl-styles",
+    "pr-styles",
+    "cn-three",
+    "faq-pics",
+    "rhythm-styles",
+    "rhythm-app",
+    "cta-nda",
+    "hs-form-theme",
+    "cn-styles",
+    "cn-refine",
+    "consistency",
+    "foot-lift",
+    "foot-final",
+  ]);
+
+  css = await rewriteUrls(css, "mad");
+
+  css += `
+/* Section grounds — strict white / tint / white / tint after the dark hero */
+#proof,
+#build,
+#process,
+#fit,
+#pricing,
+#faq{
+  --ground:var(--bg-alt);
+  --panel:var(--surface);
+}
+#services-2,
+#industries,
+#engagement,
+#whyus,
+#contact{
+  --ground:var(--surface);
+  --panel:var(--bg-alt);
+}
+#fit{
+  --panel:#FFFFFF;
+  --vs-veil:rgba(0,0,0,.78);
+}
+html[data-theme="dark"] #fit{ --panel:var(--surface); }
+
+/* Dark mode: process/framework + pricing cards stay on theme surface */
+html[data-theme="dark"] #process .fw-card,
+html[data-theme="dark"] #process .fw-step,
+html[data-theme="dark"] #pricing .pr-card,
+html[data-theme="dark"] #build .dv-card,
+html[data-theme="dark"] #engagement .em-card{
+  background:var(--surface);
+  border-color:var(--border);
+  color:var(--text);
+}
+
+#proof,
+#services-2,
+#build,
+#industries,
+#process,
+#engagement,
+#fit,
+#pricing,
+#whyus,
+#faq,
+#contact{
+  background:var(--ground) !important;
+  border-block:0 !important;
+}
+#services-2.svc-cn{ border-block:0; }
+#services-2 .cn-plate::before{ display:none !important; }
+#services-2 .cn-plate::after{
+  background:
+    radial-gradient(120% 90% at 12% 0%, hsl(var(--brand-h) 100% 50% / .22), transparent 55%),
+    linear-gradient(180deg, #0b1220 0%, #070b14 100%) !important;
+}
+html[data-theme="dark"] #services-2 .cn-plate::after{
+  background:
+    radial-gradient(120% 90% at 12% 0%, hsl(var(--brand-h) 100% 50% / .18), transparent 55%),
+    linear-gradient(180deg, #0a0a0a 0%, #050505 100%) !important;
+}
+#services-2 .cn-tab{
+  color:rgba(255,255,255,.70) !important;
+  background:transparent !important;
+  text-shadow:none !important;
+}
+#services-2 .cn-tab.on{ color:#fff !important; background:transparent !important; }
+#services-2 .cn-lift{
+  background:var(--primary) !important; backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:0 14px 30px -14px hsl(var(--brand-h) 100% 34% / .75) !important;}
+#services-2 .cn-go{
+  background:transparent !important; box-shadow:none !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; opacity:0;}
+#services-2 .cn-tab.on .cn-go{
+  opacity:1 !important; background:#0a1a29 !important; color:#fff !important;
+  backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
+#services-2 .cn-sheet{ background:#fff !important; }
+html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
+@media (max-width:1040px){
+  #services-2 .cn-tab.on{ background:var(--primary) !important; color:#fff !important; }
+  #services-2 .cn-go, #services-2 .cn .cn-go{
+    opacity:1 !important; background:var(--primary) !important; color:#fff !important;
+    transform:none !important; visibility:visible !important;}
+  html[data-theme="dark"] #services-2 .cn-go{ background:rgba(255,255,255,.14) !important; }
+  #services-2 .cn-tab.on .cn-go{
+    opacity:1 !important; background:#fff !important; color:var(--primary) !important;
+    transform:none !important;}
+  #services-2 .cn-tab:not(.on):hover .cn-go,
+  #services-2 .cn-tab:not(.on):focus-visible .cn-go{
+    opacity:1 !important; background:var(--primary) !important; transform:none !important;}
+  #services-2 .cn-go::before, #services-2 .cn-go::after{
+    content:"" !important; position:absolute !important; top:50% !important; left:50% !important;
+    background:currentColor !important; border-radius:2px !important;
+    transform:translate(-50%,-50%) !important; display:block !important;}
+  #services-2 .cn-go::before{width:13px !important; height:2px !important;}
+  #services-2 .cn-go::after{width:2px !important; height:13px !important;}
+  #services-2 .cn-tab.on .cn-go::after{transform:translate(-50%,-50%) scaleY(0) !important;}
+  #services-2 .cn-go svg{display:none !important;}
+}
+`;
+
+  css =
+    `/* Mobile App Development — design from tekcroft-mobile-app HTML; chrome in tekcroft.css */\n` +
+    css +
+    PERF_TAIL;
+  fs.writeFileSync(path.join(ROOT, "app", "mobile-app-development.css"), css);
+
+  let body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1]
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+    .trim();
+  body = patchNav(body, NAV_PATCH.mnavJump);
+
+  // Extract hero data-uri if present, else shared hero
+  let heroSrc = "/images/hero-1.webp";
+  const heroData = body.match(
+    /<div class="hs-bg"[^>]*>[\s\S]*?src="(data:image\/[^"]+)"/i
+  );
+  if (heroData) {
+    const file = await saveDataUri(heroData[1], "hero", "mad");
+    if (file) heroSrc = file;
+  }
+  body = body.replace(
+    /<div class="hs-bg" aria-hidden="true">[\s\S]*?<\/div>/,
+    `<div class="hs-bg" aria-hidden="true"><img src="${heroSrc}" width="1920" height="1080" alt="" decoding="async" fetchpriority="high"></div>`
+  );
+  body = body.replace(
+    /<svg class="eh-sprite"/,
+    '<svg class="eh-sprite" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden"'
+  );
+
+  let i = 0;
+  body = await replaceAsync(body, /src="(data:image\/[^"]+)"/gi, async (m) => {
+    i++;
+    const file = await saveDataUri(m[1], `img${i}`, "mad");
+    return `src="${file}"`;
+  });
+  fs.writeFileSync(path.join(ROOT, "lib", "mobile-app-development-body.html"), body);
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "mobile-app-development-lcp.json"),
+    JSON.stringify({ preload: heroSrc }, null, 2)
+  );
+
+  let js = extractScripts(html, [
+    "tb-script",
+    "ft-script",
+    "faq-script",
+    "cn-script",
+    "pf-script",
+    "wc-script",
+    "dv-script",
+  ]);
+  const faqHard = `
+/* === faq-script (hardened) === */
+(function(){
+  function panelFor(btn){
+    var id = btn.getAttribute("aria-controls");
+    return id ? document.getElementById(id) : null;
+  }
+  function closeAll(list){
+    list.querySelectorAll(".faq-q").forEach(function(b){
+      b.setAttribute("aria-expanded", "false");
+      var p = panelFor(b);
+      if (p){ p.setAttribute("data-open", "false"); p.classList.remove("is-open"); }
+    });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (t && t.nodeType === 3) t = t.parentElement;
+    if (!t || typeof t.closest !== "function") return;
+    var btn = t.closest(".faq-q");
+    if (!btn) return;
+    var list = btn.closest(".faq-list");
+    if (!list) return;
+    var panel = panelFor(btn);
+    if (!panel) return;
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    closeAll(list);
+    if (!isOpen){
+      btn.setAttribute("aria-expanded", "true");
+      panel.setAttribute("data-open", "true");
+      panel.classList.add("is-open");
+      var wrap = list.closest(".faq-wrap");
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
+    }
+  });
+})();
+`;
+  js = js.replace(
+    /\/\* === faq-script === \*\/[\s\S]*?(?=\/\* === |\Z)/,
+    faqHard.trim() + "\n\n"
+  );
+  fs.writeFileSync(
+    path.join(ROOT, "public", "tekcroft-mobile-app-development.js"),
+    js
+  );
+
+  const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+  const descMatch = html.match(
+    /<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i
+  );
+  fs.writeFileSync(
+    path.join(ROOT, "lib", "mobile-app-development-meta.json"),
+    JSON.stringify(
+      {
+        title:
+          (titleMatch && titleMatch[1].trim()) ||
+          "Custom Mobile App Development Services in the USA | Tekcroft",
+        description:
+          (descMatch && descMatch[1].trim()) ||
+          "Native iOS, native Android and cross-platform mobile app development for startups and businesses across the US.",
+        canonical: "https://www.tekcroft.com/services/mobile-app-development",
+      },
+      null,
+      2
+    )
+  );
+  console.log(
+    "mobile-app css",
+    (css.length / 1024).toFixed(0),
+    "KB; js",
+    (js.length / 1024).toFixed(0),
+    "KB"
+  );
+}
+
 const target = process.argv[2] || "all";
 if (target === "all") {
   await buildContact();
@@ -2017,6 +2287,7 @@ if (target === "all") {
   await buildLocalSeo();
   await buildOnPageSeo();
   await buildGbp();
+  await buildMobileApp();
 } else if (target === "contact") {
   await buildContact();
 } else if (target === "ecommerce") {
@@ -2031,6 +2302,8 @@ if (target === "all") {
   await buildOnPageSeo();
 } else if (target === "gbp" || target === "google-business-profile-optimization") {
   await buildGbp();
+} else if (target === "mobile-app" || target === "mobile-app-development") {
+  await buildMobileApp();
 } else {
   console.error("Unknown target:", target);
   process.exit(1);

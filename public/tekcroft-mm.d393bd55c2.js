@@ -24,7 +24,7 @@ var SERVICES = [
     items:[
       {name:"Web Design and Development Services", href:"#services", note:"Sites built to convert, not just to look good.", img:"laptops"},
       {name:"Software Development Services", href:"#services", note:"Custom platforms and internal tools.", img:"devs"},
-      {name:"Mobile App Development Services", href:"#services", note:"iOS and Android, one codebase.", img:"table"}
+      {name:"Mobile App Development Services", href:"/services/mobile-app-development", note:"iOS and Android, one codebase.", img:"table"}
     ]},
   { title:"AI Development and Automation", href:"#services", icon:"chip", img:"devs",
     items:[

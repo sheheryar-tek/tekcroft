@@ -60,13 +60,6 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/images/hero-1.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="image"
           href="/images/logo-white.webp"
           type="image/webp"
           fetchPriority="high"
