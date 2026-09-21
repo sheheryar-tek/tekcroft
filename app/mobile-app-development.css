@@ -1434,6 +1434,8 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
 .pf-o4 .pf-face{--pf-h:168  72% 36%; --pf:hsl(var(--pf-h)); --mk:var(--mk-local); color:var(--pf);}
 .pf-c5{--pf-h:348  76% 52%; --pf:hsl(var(--pf-h)); --mk:var(--mk-estate);}
 .pf-o5 .pf-face{--pf-h:348  76% 52%; --pf:hsl(var(--pf-h)); --mk:var(--mk-estate); color:var(--pf);}
+/* sixth card keeps a mark for the carousel icon; no 6th orbit arm (matches other service pages) */
+.pf-c6{--pf-h:211 100% 41%; --pf:hsl(var(--pf-h)); --mk:var(--mk-core);}
 
 /* the number and the arrow take the card's hue too, so the colour is on
    the card rather than only on its mark */
@@ -3343,16 +3345,20 @@ html[data-theme="dark"] #engagement .em-card{
   border-block:0 !important;
 }
 #services-2.svc-cn{ border-block:0; }
+/* Keep the plate photograph visible — same translucent wash as other service pages */
+#services-2{ --cn-shot:url("/images/cn-web-app.webp"); }
 #services-2 .cn-plate::before{ display:none !important; }
 #services-2 .cn-plate::after{
   background:
-    radial-gradient(120% 90% at 12% 0%, hsl(var(--brand-h) 100% 50% / .22), transparent 55%),
-    linear-gradient(180deg, #0b1220 0%, #070b14 100%) !important;
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
+                    rgba(0,0,0,.90) 100%) !important;
 }
 html[data-theme="dark"] #services-2 .cn-plate::after{
   background:
-    radial-gradient(120% 90% at 12% 0%, hsl(var(--brand-h) 100% 50% / .18), transparent 55%),
-    linear-gradient(180deg, #0a0a0a 0%, #050505 100%) !important;
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.55) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.62) 42%,
+                    rgba(0,0,0,.92) 100%) !important;
 }
 #services-2 .cn-tab{
   color:rgba(255,255,255,.70) !important;

@@ -125,7 +125,7 @@
   /* the services rail's frame. Portrait, because the rail is a tall
      narrow column and a landscape frame would have to be cropped to
      nothing to fit it */
-  --cn-shot:url("/images/cn-shot.webp");
+  --cn-shot:url("/images/cn-seo.webp");
 
   --sec-y:104px;
 }
@@ -1495,8 +1495,8 @@ html[data-theme="dark"] .cn{background:var(--n925); border:1px solid var(--borde
           calc(var(--cn-lap) + var(--cn-over) + clamp(32px,3.4vw,54px));}
 html[data-theme="dark"] .cn-sheet{background:var(--n875);}
 .cn-card{grid-area:1/1; display:grid;
-  grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);
-  gap:clamp(24px,3vw,44px); align-items:start;
+  grid-template-columns:minmax(0,1fr);
+  gap:0; align-items:start;
   opacity:0; visibility:hidden;
   transition:opacity .28s var(--ease), visibility 0s linear .28s;}
 .cn-card.on{opacity:1; visibility:visible;
@@ -1522,16 +1522,25 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
 
 .cn-card.on .cn-lead,
 .cn-card.on .cn-list li,
+.cn-card.on .cn-subs li,
 .cn-card.on .cn-more{animation:cnFromL .52s var(--ease) backwards;}
 .cn-card.on .cn-stat{animation:cnFromR .6s var(--ease) .14s backwards;}
 
 .cn-card.on .cn-lead{animation-delay:.08s;}
-.cn-card.on .cn-list li:nth-child(1){animation-delay:.16s;}
-.cn-card.on .cn-list li:nth-child(2){animation-delay:.21s;}
-.cn-card.on .cn-list li:nth-child(3){animation-delay:.26s;}
-.cn-card.on .cn-list li:nth-child(4){animation-delay:.31s;}
-.cn-card.on .cn-list li:nth-child(5){animation-delay:.36s;}
-.cn-card.on .cn-more{animation-delay:.42s;}
+.cn-card.on .cn-list li:nth-child(1),
+.cn-card.on .cn-subs li:nth-child(1){animation-delay:.16s;}
+.cn-card.on .cn-list li:nth-child(2),
+.cn-card.on .cn-subs li:nth-child(2){animation-delay:.21s;}
+.cn-card.on .cn-list li:nth-child(3),
+.cn-card.on .cn-subs li:nth-child(3){animation-delay:.26s;}
+.cn-card.on .cn-list li:nth-child(4),
+.cn-card.on .cn-subs li:nth-child(4){animation-delay:.31s;}
+.cn-card.on .cn-list li:nth-child(5),
+.cn-card.on .cn-subs li:nth-child(5){animation-delay:.36s;}
+.cn-card.on .cn-subs li:nth-child(6){animation-delay:.40s;}
+.cn-card.on .cn-subs li:nth-child(7){animation-delay:.44s;}
+.cn-card.on .cn-subs li:nth-child(8){animation-delay:.48s;}
+.cn-card.on .cn-more{animation-delay:.52s;}
 
 /* The ring redraws with it. The offset it should rest at is on the element
    as a presentation attribute, and CSS outranks one of those without
@@ -1542,6 +1551,7 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
 }
 @media (prefers-reduced-motion:reduce){
   .cn-card.on .cn-lead,.cn-card.on .cn-list li,
+  .cn-card.on .cn-subs li,
   .cn-card.on .cn-more,.cn-card.on .cn-stat{animation:none;}
   .cn-dial .cn-fill{transition:none;}
 }
@@ -1557,6 +1567,23 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
 .cn-list li{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center;
   list-style:none; font-size:14.6px; color:var(--text-2);}
 .cn-list svg{width:19px; height:19px; color:var(--primary);}
+
+/* Sub-services under each core tab — name only, two columns */
+.cn-subs{margin-top:22px; list-style:none;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(12px,1.4vw,18px) clamp(18px,2.4vw,36px);}
+.cn-subs li{display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px;
+  align-items:center; list-style:none;}
+.cn-subs svg{width:19px; height:19px; color:var(--primary); flex-shrink:0;}
+.cn-subs b{display:block; font-family:var(--font-display); font-weight:700;
+  font-size:clamp(14px,1.05vw,15.5px); letter-spacing:-0.022em; color:var(--text);
+  line-height:1.3;}
+.cn-subs b a{color:inherit; text-decoration:none;
+  transition:color .26s var(--ease);}
+.cn-subs b a:hover{color:var(--brand-text);}
+@media (max-width:720px){
+  .cn-subs{grid-template-columns:minmax(0,1fr);}
+}
 
 .cn-more{display:inline-block; margin-top:26px; padding-bottom:5px;
   font-family:var(--font-display); font-size:11.5px; font-weight:800;
@@ -1621,12 +1648,13 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
 .cn-plate{position:absolute; inset:0; z-index:0; overflow:hidden;
   border-radius:inherit; pointer-events:none;
   background:
-    var(--cn-shot) left center / auto 100% no-repeat,
+    var(--cn-shot, none) left center / auto 100% no-repeat,
     radial-gradient(120% 96% at 4% -8%, hsl(var(--brand-h) 62% 30%) 0%,
                     transparent 58%),
     radial-gradient(96% 84% at 108% 106%, hsl(var(--brand-h) 78% 15%) 0%,
                     transparent 62%),
-    linear-gradient(152deg, #0b1d2e 0%, #0e2537 46%, #061320 100%);}
+    linear-gradient(152deg, #0b1d2e 0%, #0e2537 46%, #061320 100%);
+  transition: background-image .35s var(--ease);}
 /* The frame is the subject now — chrome has more edges in one arm than a
    page of drawn discs — so only two rings are left, low and faint. A ring
    is two edges close together, and two edges is the clearest thing a pane
@@ -2674,16 +2702,23 @@ html[data-theme="dark"] .wl-cell:nth-child(3){background:hsl(var(--brand-h) 100%
   background:var(--surface);
   box-shadow:0 34px 70px -34px rgba(var(--ink-rgb),.4),
              inset 0 0 0 1px hsl(0 0% 100% / .14);}
-.eg-face::before{content:""; position:absolute; inset:0; z-index:0;
-  background-image:var(--shot-3); background-size:cover;
-  background-position:center;}
-.eg-face::after{content:""; position:absolute; inset:0; z-index:0;
+.eg-pic{position:absolute; inset:0; z-index:0;
+  background:var(--pic) center / cover no-repeat;
+  opacity:0; visibility:hidden;
+  transition:opacity .45s var(--ease), visibility 0s linear .45s;}
+.eg[data-at="0"] .eg-pic:nth-child(1),
+.eg[data-at="1"] .eg-pic:nth-child(2),
+.eg[data-at="2"] .eg-pic:nth-child(3),
+.eg[data-at="3"] .eg-pic:nth-child(4),
+.eg:not([data-at]) .eg-pic:nth-child(1){opacity:1; visibility:visible;
+  transition-delay:0s;}
+.eg-face::after{content:""; position:absolute; inset:0; z-index:1;
   pointer-events:none;
   background:
     radial-gradient(54% 55% at 50% 48%, rgba(0,0,0,.50) 0%, transparent 72%),
     linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
                     rgba(0,0,0,.90) 100%);}
-.eg-face > *{position:relative; z-index:1;}
+.eg-face > *:not(.eg-pic){position:relative; z-index:2;}
 /* The disc is the middle of an orbit whose arc is already a progress bar, so
    what belongs in it is position: the stage the light is on. The cards give
    the names, the disc gives the number, and the wire joins the two — nothing
@@ -4091,7 +4126,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
      .cta3-dot  two dotted arcs, brand blue, clipped by the card
      > *        the content
    ------------------------------------------------------------------ */
-:root{ --cta-shot:url("/images/cta-shot-2.webp"); }
+.cta{ --cta-shot:url("/images/home-cta-v2.webp"); }
 
 .cta{ position:relative; }
 
@@ -4104,7 +4139,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
   padding:clamp(20px,3vw,44px) clamp(14px,2.6vw,38px);}
 .cta > .wrap::before{
   content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background:var(--cta-shot) center / cover no-repeat;
+  background:var(--cta-shot) 58% 45% / cover no-repeat;
   transform:scale(1); transition:transform 1.6s var(--ease);}
 .cta > .wrap:hover::before{ transform:scale(1.04); }
 /* only enough tint to seat the picture and keep its edges from glaring —
@@ -4508,11 +4543,36 @@ html[data-theme="dark"] .modal .field.sel select{
   display:flex; flex-direction:column; justify-content:flex-end;
   color:#fff;
   box-shadow:0 30px 66px -34px rgba(var(--ink-rgb),.42);}
+/* Single-shot fallback when a page has no faq-pics stack */
 .faq-aside::before{
   content:""; position:absolute; inset:0; z-index:0;
   background:var(--faq-shot) center / cover no-repeat;
   transform:scale(1); transition:transform 1.6s var(--ease);}
 .faq-aside:hover::before{ transform:scale(1.05); }
+.faq-aside:has(> .faq-pics)::before{ content:none; }
+/* Per-question photo stack (homepage + service pages that opt in) */
+.faq-aside > .faq-pics{
+  position:absolute; inset:0; z-index:0;
+  overflow:hidden; border-radius:inherit; pointer-events:none;
+  transition:transform 1.6s var(--ease);}
+.faq-aside:hover > .faq-pics{ transform:scale(1.05); }
+.faq-pic{
+  position:absolute; inset:0;
+  background:var(--pic) center / cover no-repeat;
+  opacity:0; transition:opacity .55s var(--ease);}
+.faq-wrap[data-at="1"] .faq-pic:nth-child(1),
+.faq-wrap[data-at="2"] .faq-pic:nth-child(2),
+.faq-wrap[data-at="3"] .faq-pic:nth-child(3),
+.faq-wrap[data-at="4"] .faq-pic:nth-child(4),
+.faq-wrap[data-at="5"] .faq-pic:nth-child(5),
+.faq-wrap[data-at="6"] .faq-pic:nth-child(6),
+.faq-wrap[data-at="7"] .faq-pic:nth-child(7),
+.faq-wrap[data-at="8"] .faq-pic:nth-child(8){ opacity:1; }
+.faq-wrap:not([data-at]) .faq-pic:nth-child(1){ opacity:1; }
+@media (prefers-reduced-motion:reduce){
+  .faq-pic{ transition:none; }
+  .faq-aside:hover > .faq-pics{ transform:none; }
+}
 /* the tint the hero uses, so this frame belongs to the same family */
 .faq-aside::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
@@ -4521,6 +4581,7 @@ html[data-theme="dark"] .modal .field.sel select{
     linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.52) 42%,
                     rgba(0,0,0,.92) 100%);}
 .faq-aside > *{ position:relative; z-index:2; }
+.faq-aside > .faq-pics{ z-index:0; }
 .faq-aside-eyebrow{
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--font-display); font-size:11px; font-weight:800;

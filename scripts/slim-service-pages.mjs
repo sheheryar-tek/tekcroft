@@ -17,7 +17,7 @@ const SHARED = {
   "logo-white": "/images/logo-white.webp",
   mark: "/images/mark.webp",
   "mark-white": "/images/mark-white.webp",
-  "cn-shot": "/images/cn-shot.webp",
+  "cn-shot": "/images/cn-seo.webp",
   "faq-shot": "/images/faq-shot.webp",
   "cta-shot": "/images/cta-shot.webp",
   "cta-shot-2": "/images/cta-shot-2.webp",

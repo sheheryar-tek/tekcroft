@@ -57,7 +57,7 @@ async function main() {
   // Spot-check a few more images from CSS by fetching known files
   const sample = [
     "/images/cta-shot-2.webp",
-    "/images/cn-shot.webp",
+    "/images/cn-seo.webp",
     "/images/faq-shot.webp",
     "/images/cs-4.webp",
     "/images/mm-team.webp",

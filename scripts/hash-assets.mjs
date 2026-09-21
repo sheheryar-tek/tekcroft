@@ -36,6 +36,7 @@ const manifest = {
     "tekcroft-google-business-profile-optimization.js"
   ),
   mobileAppDevelopment: hashFile("tekcroft-mobile-app-development.js"),
+  customSoftwareDevelopment: hashFile("tekcroft-custom-software-development.js"),
   contact: hashFile("tekcroft-contact.js"),
 };
 fs.writeFileSync(

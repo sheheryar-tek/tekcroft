@@ -1056,6 +1056,15 @@
     }
 
     /* i of -1 is a shut accordion — reachable only on the folded layout */
+    function cnSetShot(url){
+      var plate = $(".cn-plate", cn);
+      if (!plate || !url) return;
+      plate.style.setProperty("--cn-shot", "url('" + url + "')");
+    }
+    function cnTabShot(i){
+      var t = cnTabs[i];
+      return t && t.getAttribute("data-shot");
+    }
     function cnShow(i, move){
       cnAt = i;
       cnTabs.forEach(function(t, k){
@@ -1063,6 +1072,7 @@
         t.setAttribute("aria-selected", k === i ? "true" : "false");
       });
       cnCards.forEach(function(c, k){ c.classList.toggle("on", k === i); });
+      if (i >= 0) cnSetShot(cnTabShot(i));
       cnHouse(i);
       cnPlaceLift(i, cnSeated && !calm);
       cnSeated = true;
@@ -1086,6 +1096,25 @@
         /* arrowing the list is browsing, not choosing — the page is held
            still so the rail does not slide out from under the keys */
         cnShow(next, false);
+      });
+    });
+
+    /* Sub-service hover swaps the rail photograph; leaving restores the
+       active tab's own shot. */
+    cnCards.forEach(function(card){
+      $$(".cn-subs [data-shot]", card).forEach(function(row){
+        row.addEventListener("mouseenter", function(){
+          cnSetShot(row.getAttribute("data-shot"));
+        });
+        row.addEventListener("mouseleave", function(){
+          if (cnAt >= 0) cnSetShot(cnTabShot(cnAt));
+        });
+        row.addEventListener("focusin", function(){
+          cnSetShot(row.getAttribute("data-shot"));
+        });
+        row.addEventListener("focusout", function(){
+          if (cnAt >= 0) cnSetShot(cnTabShot(cnAt));
+        });
       });
     });
 

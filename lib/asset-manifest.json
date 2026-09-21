@@ -1,6 +1,6 @@
 {
-  "main": "/tekcroft-main.5ca4b43cf2.js",
-  "mm": "/tekcroft-mm.d393bd55c2.js",
+  "main": "/tekcroft-main.3d769609ff.js",
+  "mm": "/tekcroft-mm.6dc0f1033d.js",
   "ecommerceSeo": "/tekcroft-ecommerce-seo.79b8af1564.js",
   "seoAuditServices": "/tekcroft-seo-audit-services.c98291f1d0.js",
   "technicalSeo": "/tekcroft-technical-seo.3ebfce9bc5.js",
@@ -8,5 +8,6 @@
   "onPageSeo": "/tekcroft-on-page-seo.895372623e.js",
   "googleBusinessProfileOptimization": "/tekcroft-google-business-profile-optimization.b9f1f65ea5.js",
   "mobileAppDevelopment": "/tekcroft-mobile-app-development.5f7f974f5f.js",
+  "customSoftwareDevelopment": "/tekcroft-custom-software-development.50874fc2f5.js",
   "contact": "/tekcroft-contact.d780a8344a.js"
 }
