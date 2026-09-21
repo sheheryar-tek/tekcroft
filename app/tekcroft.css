@@ -4988,3 +4988,105 @@ h1, h2, h3, h4, h5, h6{
 @media (max-width:560px){
   .faq-a p{font-size:var(--body);}
 }
+
+/* Industries / platforms cards: drop number + arrow, tighten height site-wide */
+.pf-n,
+.pf-go{ display:none !important; }
+.pf-card{
+  padding:clamp(14px,1.35vw,18px) !important;
+}
+.pf-top{
+  margin-bottom:clamp(10px,1.1vw,14px) !important;
+}
+.pf-card > p{
+  margin-top:clamp(10px,1.1vw,14px) !important;
+  padding-top:clamp(10px,1.1vw,14px) !important;
+}
+
+/* Process section step titles — fixed smaller size site-wide */
+#process .eg-card h3{
+  font-size:17.5px !important;
+}
+
+/* Process section — fit one screen without scrolling (desktop) */
+#process.eg-sec,
+#process.sec{
+  padding-block:clamp(28px,3.2vh,40px) !important;
+}
+#process .sec-head{
+  margin-bottom:0 !important;
+}
+#process .sec-head h2,
+#process.eg-sec h2{
+  font-size:clamp(22px,2.4vw,30px) !important;
+}
+#process .sec-lede,
+#process.eg-sec .sec-lede{
+  margin-top:8px !important;
+  font-size:14px !important;
+  line-height:1.45 !important;
+  max-width:52ch;
+}
+#process .eg{
+  margin-top:clamp(12px,1.6vh,18px) !important;
+  gap:clamp(18px,2.2vw,32px) !important;
+  --eg-gap:clamp(18px,2.2vw,32px) !important;
+  align-items:center !important;
+}
+#process .eg-core{
+  width:min(100%,340px,38vh) !important;
+}
+#process .eg-num{
+  font-size:clamp(36px,4.2vw,52px) !important;
+  margin-top:4px !important;
+}
+#process .eg-rule{
+  margin:8px auto !important;
+  width:40px !important;
+}
+#process .eg-lab,
+#process .eg-of{
+  font-size:10px !important;
+}
+#process .eg-list{
+  gap:clamp(4px,.55vw,6px) !important;
+}
+#process .eg-card{
+  padding:clamp(7px,.85vw,10px) clamp(10px,1.1vw,14px) !important;
+  gap:clamp(8px,1vw,12px) !important;
+  border-radius:14px !important;
+}
+#process .eg-ico{
+  width:clamp(28px,2.6vw,32px) !important;
+  border-radius:11px !important;
+}
+#process .eg-card h3{
+  line-height:1.18 !important;
+}
+#process .eg-card h3 i{
+  margin-right:6px !important;
+}
+#process .eg-card p{
+  margin-top:2px !important;
+  font-size:12px !important;
+  line-height:1.4 !important;
+}
+#process .fw-foot{
+  margin-top:clamp(12px,1.6vh,18px) !important;
+  padding:clamp(10px,1.2vw,14px) clamp(14px,1.6vw,20px) !important;
+  gap:12px !important;
+}
+#process .fw-foot p{
+  font-size:13.5px !important;
+  line-height:1.35 !important;
+}
+#process .fw-foot .btn-lg{
+  padding:10px 16px !important;
+  font-size:13.5px !important;
+}
+@media (max-width:1000px){
+  #process .eg-core{
+    width:min(70%,240px) !important;
+  }
+}
+

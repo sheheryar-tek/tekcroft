@@ -37,6 +37,8 @@ const manifest = {
   ),
   mobileAppDevelopment: hashFile("tekcroft-mobile-app-development.js"),
   customSoftwareDevelopment: hashFile("tekcroft-custom-software-development.js"),
+  webDesignAndDevelopment: hashFile("tekcroft-web-design-and-development.js"),
+  aiChatbotDevelopment: hashFile("tekcroft-ai-chatbot-development.js"),
   contact: hashFile("tekcroft-contact.js"),
 };
 fs.writeFileSync(
