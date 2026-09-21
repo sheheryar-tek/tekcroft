@@ -686,7 +686,7 @@ fs.writeFileSync(
       description:
         (descMatch && descMatch[1].trim()) ||
         "Custom software built around your real workflows — new builds or taking over software someone else started.",
-      canonical: "https://www.tekcroft.com/services/custom-software-development",
+      canonical: "https://www.tekcroft.com/services/software-development-services",
     },
     null,
     2

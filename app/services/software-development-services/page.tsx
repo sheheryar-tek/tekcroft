@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CustomSoftwareDevelopmentPage() {
+export default function SoftwareDevelopmentServicesPage() {
   const html = fs.readFileSync(
     path.join(process.cwd(), "lib", "custom-software-development-body.html"),
     "utf8"
