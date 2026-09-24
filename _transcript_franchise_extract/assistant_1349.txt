@@ -1,0 +1,1 @@
+﻿Hero content is updated on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services): new headline, primary CTA **Get Your Free Franchise SEO Estimate**, and secondary CTA **See How We Rank Franchise Locations**.

@@ -1,0 +1,3 @@
+﻿Full page content is aligned to your copy: hero through FAQs, pricing now shows `$[X] - $[X]/mo`, CTA button uses your full label, FAQ keeps `[X] months`, and the unrelated websites portfolio section is removed.
+
+Updated page: [http://localhost:3000/services/franchise-seo-services](http://localhost:3000/services/franchise-seo-services)

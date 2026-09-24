@@ -162,10 +162,10 @@
     }, SHOT_HOLD);
   }
 
-  /* ---------------- client ticker ---------------- */
-  var CLIENTS = ["Harbor & Ash", "Nordwell Health", "Cedar Line Logistics", "Bright Fork",
-                 "Merrow Dental", "Vantage Roofing", "Palmetto Outdoors", "Ridgeway Legal",
-                 "Union Street Coffee", "Kestrel Manufacturing"];
+  /* ---------------- industry ticker ---------------- */
+  var CLIENTS = ["Home Services", "Healthcare & Dental", "Legal & Financial Services",
+                 "Restaurants & Food Service", "Real Estate", "Multi-Location & Franchise Brands",
+                 "Ecommerce", "SaaS", "Logistics", "Manufacturing"];
   /* Doubling the row is what makes either loop seamless: the animation
      travels exactly one row's width, so the copy arrives where the original
      left. Two tracks now use that, so it is written once. */

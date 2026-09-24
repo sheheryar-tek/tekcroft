@@ -40,6 +40,7 @@ const manifest = {
   webDesignAndDevelopment: hashFile("tekcroft-web-design-and-development.js"),
   aiChatbotDevelopment: hashFile("tekcroft-ai-chatbot-development.js"),
   aiAgentDevelopment: hashFile("tekcroft-ai-agent-development.js"),
+  franchiseSeo: hashFile("tekcroft-franchise-seo.js"),
   contact: hashFile("tekcroft-contact.js"),
 };
 fs.writeFileSync(

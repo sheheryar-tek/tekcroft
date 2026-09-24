@@ -1,0 +1,3 @@
+﻿â€œFranchise SEO explainedâ€ section is updated. Headline, two levels, and closing note now match your copy.
+
+Updated page: [http://localhost:3000/services/franchise-seo-services](http://localhost:3000/services/franchise-seo-services)

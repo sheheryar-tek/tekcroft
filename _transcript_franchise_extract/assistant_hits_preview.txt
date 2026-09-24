@@ -1,0 +1,94 @@
+1290|SR=True|mentions=0|I'll port the Franchise SEO HTML into Next.js the same way as the other service pages, keeping the design unchanged.
+1291|SR=False|mentions=0|
+1292|SR=False|mentions=0|
+1293|SR=True|mentions=0|
+1295|SR=False|mentions=0|
+1296|SR=False|mentions=0|
+1297|SR=False|mentions=0|
+1298|SR=False|mentions=0|
+1299|SR=False|mentions=0|
+1300|SR=False|mentions=0|
+1301|SR=False|mentions=0|
+1302|SR=False|mentions=0|
+1303|SR=False|mentions=0|
+1304|SR=False|mentions=0|
+1305|SR=True|mentions=1|Updating the extract script's remaining AAG leftovers to Franchise paths and grounds.
+1306|SR=False|mentions=0|
+1308|SR=False|mentions=0|
+1309|SR=True|mentions=0|
+1310|SR=False|mentions=0|
+1314|SR=True|mentions=1|Creating the page and wiring navigation.
+1315|SR=False|mentions=0|
+1320|SR=False|mentions=0|
+1322|SR=False|mentions=0|Franchise SEO Services is live at [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services).  Design is unchanged from the source HTML. Megamenu and homepage services
+1325|SR=False|mentions=0|Franchise SEO extract finished successfully, and the page is already up at [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services). The older rebuild process exit w
+1327|SR=False|mentions=1|I'll update the Franchise SEO FAQs with your new copy.
+1328|SR=False|mentions=2|
+1330|SR=False|mentions=1|Updating the FAQ section to your six Q&As, and aligning the heading and aside copy with franchise SEO.
+1331|SR=True|mentions=1|
+1333|SR=False|mentions=0|
+1334|SR=False|mentions=0|FAQs on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services) are updated to your six questions. For the timeline placeholder (`[X]`), I used **3–6 months** —
+1336|SR=False|mentions=0|That was the previous server process being stopped so the FAQ rebuild could take over. The site is running again at [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-se
+1338|SR=False|mentions=1|
+1339|SR=False|mentions=1|
+1341|SR=True|mentions=1|Updating the CTA copy and shortening the button label.
+1342|SR=False|mentions=0|
+1343|SR=False|mentions=0|CTA is updated on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services). Button label is shortened to **Book a Call Now**.
+1347|SR=False|mentions=2|
+1348|SR=True|mentions=1|Updating the hero headline and CTAs to match your copy.
+1349|SR=False|mentions=0|Hero content is updated on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services): new headline, primary CTA **Get Your Free Franchise SEO Estimate**, and secondar
+1353|SR=False|mentions=0|Understood — after every change I’ll share the updated localhost link for that page.  Current page: [http://localhost:3000/services/franchise-seo-services](http://localhost:3000/services/franchise
+1355|SR=False|mentions=1|
+1356|SR=True|mentions=1|Content is nearly identical — updating the closing note to your exact wording, then rebuilding.
+1357|SR=False|mentions=0|“Franchise SEO explained” section is updated. Headline, two levels, and closing note now match your copy.  Updated page: [http://localhost:3000/services/franchise-seo-services](http://localhost:30
+1359|SR=False|mentions=0|That was the previous hero rebuild being stopped for the next update. The page is live with the latest “What Is Franchise SEO?” content at [http://localhost:3000/services/franchise-seo-services](h
+1361|SR=False|mentions=1|
+1362|SR=False|mentions=0|Section already matches your copy — verifying the live page, then sharing the link.
+1363|SR=False|mentions=0|**Warning signs** pe ye content pehle se hi laga hua hai — 6 signs, intro, aur CTA **Get a Free Franchise SEO Audit** sab match karte hain.  Updated page: [http://localhost:3000/services/franchise-s
+1365|SR=False|mentions=2|Finding the "What we do" section and updating it with your exact copy.
+1366|SR=False|mentions=1|
+1368|SR=True|mentions=1|Updating the "What we do" section with your exact paragraphs—no invented bullet titles.
+1370|SR=False|mentions=0|**What we do** is updated with your copy as continuous paragraphs — no rewritten bullets. Headline is now **Tekcroft’s Franchise SEO Covers**, CTA unchanged.  Updated page: [http://localhost:3000/
+1372|SR=False|mentions=2|Updating remaining page sections to match your copy exactly. Checking what's still out of date.
+1373|SR=False|mentions=6|
+1374|SR=True|mentions=3|Updating mismatches: pricing `$[X]` placeholders, CTA button text, FAQ `[X] months`, and removing the unrelated work portfolio section.
+1375|SR=False|mentions=2|
+1376|SR=True|mentions=3|
+1377|SR=True|mentions=1|
+1379|SR=False|mentions=0|
+1380|SR=False|mentions=0|
+1381|SR=False|mentions=0|Full page content is aligned to your copy: hero through FAQs, pricing now shows `$[X] - $[X]/mo`, CTA button uses your full label, FAQ keeps `[X] months`, and the unrelated websites portfolio section 
+1384|SR=False|mentions=0|Those were older rebuilds stopping so the full-page content update could restart the server. The page is live at [http://localhost:3000/services/franchise-seo-services](http://localhost:3000/services/
+1386|SR=False|mentions=0|Making the FAQ ("Common questions") section background tinted.
+1387|SR=False|mentions=0|
+1388|SR=True|mentions=0|
+1389|SR=False|mentions=0|Common questions section ab tinted/colorful background pe hai.  Updated page: [http://localhost:3000/services/franchise-seo-services](http://localhost:3000/services/franchise-seo-services)
+1391|SR=False|mentions=0|That was the previous full-content rebuild being stopped for the FAQ background update. The page is live with the tinted Common questions section at [http://localhost:3000/services/franchise-seo-servi
+1394|SR=False|mentions=1|
+1402|SR=False|mentions=0|
+1404|SR=False|mentions=0|
+1405|SR=True|mentions=0|
+1411|SR=False|mentions=0|
+1414|SR=False|mentions=0|Confirming contact was a false positive, then checking FAQ markup and remaining visible em dashes.
+1429|SR=False|mentions=0|
+1430|SR=False|mentions=0|FAQ list class might differ — double-checking.
+1432|SR=False|mentions=0|Done. Site-wide **em dashes (`—`) are removed**, and **FAQ sections are accordion-only** (images/aside gone).  Check here: - http://localhost:3000/ - http://localhost:3000/services/franchise-seo-ser
+1442|SR=False|mentions=0|
+1443|SR=False|mentions=0|
+1444|SR=False|mentions=0|
+1459|SR=False|mentions=0|Franchise SEO page was removed with the undo — restoring it using the same pattern as the other service pages.
+1462|SR=False|mentions=0|
+1463|SR=False|mentions=0|Cloning the AI Agent extract script and adapting it for Franchise SEO from the Desktop HTML.
+1464|SR=True|mentions=0|
+1465|SR=False|mentions=0|
+1466|SR=True|mentions=1|Building the extract script from the AI Agent template with Franchise-specific style IDs and section grounds.
+1467|SR=False|mentions=0|
+1468|SR=False|mentions=0|
+1469|SR=True|mentions=0|
+1470|SR=True|mentions=0|
+1471|SR=False|mentions=0|
+1472|SR=False|mentions=0|
+1473|SR=True|mentions=1|
+1483|SR=False|mentions=0|
+1484|SR=False|mentions=0|Franchise SEO Services page is back and live.  **http://localhost:3000/services/franchise-seo-services**  Megamenu and homepage also link to it.
+1489|SR=False|mentions=0|Franchise extract finished successfully; the earlier server process was stopped during rebuild.  Page is up at **http://localhost:3000/services/franchise-seo-services**.

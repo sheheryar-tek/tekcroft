@@ -1,0 +1,39 @@
+﻿=== raw_line_1374.json tool#1 name=StrReplace ===
+path: c:\Tekcroft\lib\franchise-seo-body.html
+old_len: 4314 new_len: 3405
+--- OLD (first 400) ---
+      <p class="sec-lede">Franchise SEO pricing scales with your network size, technical debt, market competitiveness, etc.</p>
+    </div>
+
+    <div class="fp-every rv" style="--d:60ms">
+      <span class="fp-every-lab">Every engagement includes:</span>
+      <ul><li><span class="fp-inc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-
+--- NEW (full) ---
+      <p class="sec-lede">Franchise SEO pricing scales with your network size, technical debt, market competitiveness, etc. Every engagement includes: a location-count-based scope, a documented rollout timeline, or reporting split by market.</p>
+    </div>
+
+    <p class="fp-guide rv" style="--d:90ms">As a general guide:</p>
+    <div class="fp-grid">
+      <article class="fp-card rv" style="--d:80ms">
+        <div class="fp-top">
+          <span class="fp-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11A6.5 6.5 0 0 1 18.5 10c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+          <h3>10-50 locations</h3>
+        </div>
+        <span class="fp-lab">Typical Monthly Investment</span>
+        <b class="fp-price">$[X] - $[X]/mo</b>
+        <span class="fp-lab">What&rsquo;s Included</span>
+        
+        <ul class="fp-list"><li><span class="fp-tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg></span>Core local SEO</li><li><span class="fp-tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg></span>GBP management</li><li><span class="fp-tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg></span>foundational technical SEO</li><li><span class="fp-tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg></span>unified reporting</li></ul>
+      </article>
+      <article class="fp-card is-key rv" style="--d:160ms">
+        <div class="fp-top">
+          <span class="fp-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11A6.5 6.5 0 0 1 18.5 10c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+          <h3>51-200 locations</h3>
+        </div>
+        <span class="fp-lab">Typical Monthly Investment</span>
+        <b class="fp-price">$[X] - $[X]/mo</b>
+        <span class="fp-lab">What&rsquo;s Included</span>
+        <p class="fp-lead">Everything above +</p>
+        <ul class="fp-list"><li><span class="fp-tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg></span>dedicated location-page architecture</li><li><span class="fp-tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg></span>expanded link building</li><li><span class="fp-tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg></span>governance playbook</li></ul>
+      </article>
+

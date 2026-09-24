@@ -1,0 +1,10 @@
+﻿=== raw_line_1376.json tool#1 name=StrReplace ===
+path: c:\Tekcroft\lib\franchise-seo-body.html
+old_len: 180 new_len: 180
+--- OLD (first 400) ---
+        <h3>Unique content requirements per location</h3>
+        <p>Service mix, coverage area, staff bios, local FAQs, not a copy-pasted paragraph with the city name changed.</p>
+--- NEW (full) ---
+        <h3>Unique content requirements per location</h3>
+        <p>service mix, coverage area, staff bios, local FAQs, not a copy-pasted paragraph with the city name changed.</p>
+

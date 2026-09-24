@@ -1,0 +1,149 @@
+What we do 
+ Our Process for Franchise SEO 
+
+Talk to a Franchise SEO Strategist Now ↑ 
+ Franchise SEO is a system that has to work both at the brand and block level at once; here’s how Tekcroft builds it.
+
+Keyword Research & Mapping 
+
+Local SEO & GBP 
+
+Location Page Architecture 
+
+Technical SEO 
+
+Link Building 
+
+Review Management 
+
+Conversion Optimization 
+
+AI Search / GEO 
+
+Reporting & Governance 
+
+Franchise Keyword Research & Location Mapping
+
+Every location and service page needs to chase a different query, so no same terms fight each other for the same click.
+
+Mapped to intent and geography 
+ The process starts with mapping keywords to intent and geography: brand terms, service modifiers, near-me searches, etc., are all prioritized market by market. 
+
+Nearby locations checked 
+ Nearby locations are also checked against each other. 
+
+Brand terms by intent 
+ Service modifiers by service 
+ Near-me searches by geography 
+ Market by market prioritized 
+
+Local SEO & Franchise Google Business Profile Management
+
+Local SEO for franchises is only as visible as its weakest Google Business Profile.
+
+Every listing accurate 
+ Accuracy and consistency across NAP data, categories, services, and photos matter for every single listing. That includes catching duplicate listings and suspension issues before they quietly drain a location’s rankings. 
+
+Kept active 
+ Once the profiles are clean, ongoing post activity and Q&A management keep them active. 
+
+NAP data consistent 
+ Categories & services 
+ Duplicates caught early 
+ Posts & Q&A ongoing 
+
+Location Page Architecture & Content
+
+Scaling to hundreds of pages without duplication can only be carried out with a structure:
+
+Each layer has a job 
+ Each layer carries its own job in that hierarchy. 
+
+Live local content 
+ The location page contains the specific live content like service mix, coverage area, staff, local FAQs, reviews, etc. 
+
+National Brand page 
+ State Hub page 
+ City Hub page 
+ Individual Location page 
+
+Franchise Technical SEO
+
+Without a clear canonical strategy, near-duplicate territory pages compete against each other for the same ranking.
+
+Priority pages first 
+ Priority location page optimization is placed above lower-value pages to prevent them from being buried deep under the website and also for proper crawl budget allocation. 
+
+One performance standard 
+ We make sure that the Core Web Vitals and mobile performance have the same standard throughout. 
+
+Canonicals clear strategy 
+ Priority pages placed above 
+ Crawl budget allocated 
+ Core Web Vitals same standard 
+
+Franchise Link Building
+
+Tekcroft builds and cleans up franchise citations across both major and niche directories.
+
+Local links 
+ We then layer on local link acquisition like chambers of commerce, sponsorships, community sites, etc., for regional relevance and strong domain authority. 
+
+Brand-level digital PR 
+ On top of that, we run brand-level digital PR to strengthen the one domain every location is borrowing authority from. 
+
+Citations built & cleaned 
+ Local links regional relevance 
+ Digital PR brand level 
+ One domain shared authority 
+
+Franchise Review Management
+
+Review volume and response time affect rankings and trust, so every location gets active monitoring, a review generation workflow, and response templates.
+
+At-risk locations flagged 
+ Reputation management flags at-risk locations early; a slipping rating shows up as a signal to act on immediately. 
+
+Monitoring every location 
+ Generation workflow 
+ Responses templates 
+ At-risk flags act immediately 
+
+Conversion Rate Optimization for Franchise Lead Paths
+
+Conversion is the whole point of visibility.
+
+Tested by device 
+ Click-to-call placement and form length get tested by device; location-specific landing pages get their own conversion paths, and mobile page speed gets prioritized for the high-intent, on-the-go searcher who’s already standing near a location. 
+
+Click-to-call by device 
+ Form length tested 
+ Landing pages per location 
+ Mobile speed prioritized 
+
+AI Search / GEO Visibility for Franchises
+
+AI Overviews are already appearing on the vast majority of franchise-related searches, which means a franchise ignoring generative search is losing visibility before the click even happens.
+
+Structured for AI 
+ Content gets structured for AI extraction and citation, but entity/brand data stay consistent across every location to build AI trust signals. 
+
+Tracked like rankings 
+ AI Overview and AI Mode appearances get tracked by keyword just like traditional rankings do. 
+
+Content structured 
+ Entity data consistent 
+ AI citations trust signals 
+ By keyword tracked 
+
+Reporting & Franchise Governance Playbooks
+
+A weak market shows up early when the brand-level and location-level dashboards run on the same reporting rhythm.
+
+Every task tied to a page 
+ Tekcroft ties every task back to a specific page, profile, or location and spells out exactly what corporate controls, what franchisees can adapt, or how approvals move between the two. 
+
+Brand dashboard same rhythm 
+ Location dashboard same rhythm 
+ Task per page tied back 
+ Approvals spelled out

@@ -1,0 +1,52 @@
+Common questions 
+ The questions founders ask before hiring an app developer. 
+
+Straight answers on scope, cost, platforms and what happens after launch —
+ before you commit to anything.
+
+Not on the list? 
+ Ask us the one you came with.
+
+Tell us where your app idea stands today — what it needs to do, who it is for, and what you have already built. We’ll answer straight.
+
+Ask a question
+
+01 
+ Do I need a full development company, or should I validate my idea first? 
+
+If you’re pre-revenue, validate your idea before investing in a full build. Use a landing page, prototype, or small validation build to test demand quickly and affordably. Once you have real users, paying customers, and clear requirements, it’s time to consider a full development team.
+
+02 
+ How does your pricing structure work? 
+
+Milestone-based, and in writing before work starts. The scope is agreed screen by screen, then you pay per milestone: on prototype sign-off, for each build sprint as it ships, and at launch — not as a large deposit against a date six months out. Typical ranges run $10,000–$30,000 for a simple MVP, $30,000–$80,000 for a mid-complexity app, and $80,000–$400,000+ for enterprise-grade work.
+
+03 
+ What should I prepare before reaching out for a quote? 
+
+The single most useful thing you can bring us is a screen-by-screen breakdown of what your app needs to do, written as if you had to explain it to someone with zero context. It needs to be specific, because it makes the quote you get comparable.
+
+04 
+ Native or cross-platform, which one should I choose? 
+
+We wouldn’t recommend building two native apps just because you eventually want to be on both stores. If you’re still proving the product, the extra development cost may be better spent getting the first version in front of users. The exceptions are performance-heavy products and apps relying heavily on native device capabilities.
+
+05 
+ Can you build for both iOS and Android at once? 
+
+Yes. We can take either route: two native applications or one shared Flutter or React Native codebase. The decision comes down to the product and performance requirements, as well as how quickly you need both versions live.
+
+06 
+ Can you build an MVP first before a full build? 
+
+An MVP is often the better starting point. It puts the core product in users’ hands sooner and gives you evidence about what people actually use before you spend on the full feature set.
+
+07 
+ What does year two look like? What happens after launch? 
+
+The same team stays on. That means crash and performance monitoring from launch week, OS updates and security patches every month, and feature work when you’re ready for version two. Budget for it: annual maintenance typically runs 15–20% of the original build cost.
+
+08 
+ What should I actually look for when hiring a mobile app development company? 
+
+Start with technical fit. Can the company fit your product’s requirements? Then look at relevant experience and how clearly they handle scope and pricing. One more question to ask before you sign: who owns the app after it goes live?

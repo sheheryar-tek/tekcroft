@@ -1,0 +1,2 @@
+﻿        <h3>Unique content requirements per location</h3>
+        <p>service mix, coverage area, staff bios, local FAQs, not a copy-pasted paragraph with the city name changed.</p>

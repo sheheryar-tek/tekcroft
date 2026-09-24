@@ -1,0 +1,8 @@
+﻿=== raw_line_1374.json tool#3 name=StrReplace ===
+path: c:\Tekcroft\lib\franchise-seo-body.html
+old_len: 298 new_len: 292
+--- OLD (first 400) ---
+            <div><p>Technical fixes, listing standardization, and governance setup begin in the first 30&ndash;60 days. Ranking and traffic movement are decided by market competitiveness, but most franchise programs start seeing measurable location-level movement within 3&ndash;6 months.</p></div>
+--- NEW (full) ---
+            <div><p>Technical fixes, listing standardization, and governance setup begin in the first 30&ndash;60 days. Ranking and traffic movement are decided by market competitiveness, but most franchise programs start seeing measurable location-level movement within [X] months.</p></div>
+

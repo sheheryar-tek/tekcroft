@@ -17,8 +17,7 @@ export const metadata: Metadata = {
     siteName: "Tekcroft",
     url: "https://www.tekcroft.com/",
     title: meta.title,
-    description:
-      "SEO, paid media, and AI search visibility planned as one strategy for US businesses.",
+    description: meta.description,
     images: [
       {
         url: "https://www.tekcroft.com/og.jpg",
@@ -30,8 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: meta.title,
-    description:
-      "SEO, paid media, and AI search visibility planned as one strategy for US businesses.",
+    description: meta.description,
     images: ["https://www.tekcroft.com/og.jpg"],
   },
 };

@@ -1,0 +1,100 @@
+
+Line Role      ToolMentions HasSR Preview                                                                                                                                                               
+---- ----      ------------ ----- -------                                                                                                                                                               
+1290 assistant            0  True I'll port the Franchise SEO HTML into Next.js the same way as the other service pages, keeping the design unchanged.                                                  
+1291 assistant            0 False                                                                                                                                                                       
+1292 assistant            0 False                                                                                                                                                                       
+1293 assistant            0  True                                                                                                                                                                       
+1295 assistant            0 False                                                                                                                                                                       
+1296 assistant            0 False                                                                                                                                                                       
+1297 assistant            0 False                                                                                                                                                                       
+1298 assistant            0 False                                                                                                                                                                       
+1299 assistant            0 False                                                                                                                                                                       
+1300 assistant            0 False                                                                                                                                                                       
+1301 assistant            0 False                                                                                                                                                                       
+1302 assistant            0 False                                                                                                                                                                       
+1303 assistant            0 False                                                                                                                                                                       
+1304 assistant            0 False                                                                                                                                                                       
+1305 assistant            1  True Updating the extract script's remaining AAG leftovers to Franchise paths and grounds.                                                                                 
+1306 assistant            0 False                                                                                                                                                                       
+1308 assistant            0 False                                                                                                                                                                       
+1309 assistant            0  True                                                                                                                                                                       
+1310 assistant            0 False                                                                                                                                                                       
+1314 assistant            1  True Creating the page and wiring navigation.                                                                                                                              
+1315 assistant            0 False                                                                                                                                                                       
+1320 assistant            0 False                                                                                                                                                                       
+1322 assistant            0 False Franchise SEO Services is live at [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services).  Design is unchanged from the source...
+1325 assistant            0 False Franchise SEO extract finished successfully, and the page is already up at [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-servic...
+1327 assistant            1 False I'll update the Franchise SEO FAQs with your new copy.                                                                                                                
+1328 assistant            2 False                                                                                                                                                                       
+1330 assistant            1 False Updating the FAQ section to your six Q&As, and aligning the heading and aside copy with franchise SEO.                                                                
+1331 assistant            1  True                                                                                                                                                                       
+1333 assistant            0 False                                                                                                                                                                       
+1334 assistant            0 False FAQs on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services) are updated to your six questions. For the timeline placeholder...
+1336 assistant            0 False That was the previous server process being stopped so the FAQ rebuild could take over. The site is running again at [`/services/franchise-seo-services`](http://loc...
+1338 assistant            1 False                                                                                                                                                                       
+1339 assistant            1 False                                                                                                                                                                       
+1341 assistant            1  True Updating the CTA copy and shortening the button label.                                                                                                                
+1342 assistant            0 False                                                                                                                                                                       
+1343 assistant            0 False CTA is updated on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services). Button label is shortened to **Book a Call Now**.      
+1347 assistant            2 False                                                                                                                                                                       
+1348 assistant            1  True Updating the hero headline and CTAs to match your copy.                                                                                                               
+1349 assistant            0 False Hero content is updated on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services): new headline, primary CTA **Get Your Free F...
+1353 assistant            0 False Understood — after every change I’ll share the updated localhost link for that page.  Current page: [http://localhost:3000/services/franchise-seo-services](htt...
+1355 assistant            1 False                                                                                                                                                                       
+1356 assistant            1  True Content is nearly identical — updating the closing note to your exact wording, then rebuilding.                                                                     
+1357 assistant            0 False “Franchise SEO explained” section is updated. Headline, two levels, and closing note now match your copy.  Updated page: [http://localhost:3000/services/franch...
+1359 assistant            0 False That was the previous hero rebuild being stopped for the next update. The page is live with the latest “What Is Franchise SEO?” content at [http://localhost:30...
+1361 assistant            1 False                                                                                                                                                                       
+1362 assistant            0 False Section already matches your copy — verifying the live page, then sharing the link.                                                                                 
+1363 assistant            0 False **Warning signs** pe ye content pehle se hi laga hua hai — 6 signs, intro, aur CTA **Get a Free Franchise SEO Audit** sab match karte hain.  Updated page: [http:...
+1365 assistant            2 False Finding the "What we do" section and updating it with your exact copy.                                                                                                
+1366 assistant            1 False                                                                                                                                                                       
+1368 assistant            1  True Updating the "What we do" section with your exact paragraphs—no invented bullet titles.                                                                             
+1370 assistant            0 False **What we do** is updated with your copy as continuous paragraphs — no rewritten bullets. Headline is now **Tekcroft’s Franchise SEO Covers**, CTA unchanged.  ...
+1372 assistant            2 False Updating remaining page sections to match your copy exactly. Checking what's still out of date.                                                                       
+1373 assistant            6 False                                                                                                                                                                       
+1374 assistant            3  True Updating mismatches: pricing `$[X]` placeholders, CTA button text, FAQ `[X] months`, and removing the unrelated work portfolio section.                               
+1375 assistant            2 False                                                                                                                                                                       
+1376 assistant            3  True                                                                                                                                                                       
+1377 assistant            1  True                                                                                                                                                                       
+1379 assistant            0 False                                                                                                                                                                       
+1380 assistant            0 False                                                                                                                                                                       
+1381 assistant            0 False Full page content is aligned to your copy: hero through FAQs, pricing now shows `$[X] - $[X]/mo`, CTA button uses your full label, FAQ keeps `[X] months`, and the ...
+1384 assistant            0 False Those were older rebuilds stopping so the full-page content update could restart the server. The page is live at [http://localhost:3000/services/franchise-seo-serv...
+1386 assistant            0 False Making the FAQ ("Common questions") section background tinted.                                                                                                        
+1387 assistant            0 False                                                                                                                                                                       
+1388 assistant            0  True                                                                                                                                                                       
+1389 assistant            0 False Common questions section ab tinted/colorful background pe hai.  Updated page: [http://localhost:3000/services/franchise-seo-services](http://localhost:3000/service...
+1391 assistant            0 False That was the previous full-content rebuild being stopped for the FAQ background update. The page is live with the tinted Common questions section at [http://localh...
+1394 assistant            1 False                                                                                                                                                                       
+1402 assistant            0 False                                                                                                                                                                       
+1404 assistant            0 False                                                                                                                                                                       
+1405 assistant            0  True                                                                                                                                                                       
+1411 assistant            0 False                                                                                                                                                                       
+1414 assistant            0 False Confirming contact was a false positive, then checking FAQ markup and remaining visible em dashes.                                                                    
+1429 assistant            0 False                                                                                                                                                                       
+1430 assistant            0 False FAQ list class might differ — double-checking.                                                                                                                      
+1432 assistant            0 False Done. Site-wide **em dashes (`—`) are removed**, and **FAQ sections are accordion-only** (images/aside gone).  Check here: - http://localhost:3000/ - http://loca...
+1442 assistant            0 False                                                                                                                                                                       
+1443 assistant            0 False                                                                                                                                                                       
+1444 assistant            0 False                                                                                                                                                                       
+1459 assistant            0 False Franchise SEO page was removed with the undo — restoring it using the same pattern as the other service pages.                                                      
+1462 assistant            0 False                                                                                                                                                                       
+1463 assistant            0 False Cloning the AI Agent extract script and adapting it for Franchise SEO from the Desktop HTML.                                                                          
+1464 assistant            0  True                                                                                                                                                                       
+1465 assistant            0 False                                                                                                                                                                       
+1466 assistant            1  True Building the extract script from the AI Agent template with Franchise-specific style IDs and section grounds.                                                         
+1467 assistant            0 False                                                                                                                                                                       
+1468 assistant            0 False                                                                                                                                                                       
+1469 assistant            0  True                                                                                                                                                                       
+1470 assistant            0  True                                                                                                                                                                       
+1471 assistant            0 False                                                                                                                                                                       
+1472 assistant            0 False                                                                                                                                                                       
+1473 assistant            1  True                                                                                                                                                                       
+1483 assistant            0 False                                                                                                                                                                       
+1484 assistant            0 False Franchise SEO Services page is back and live.  **http://localhost:3000/services/franchise-seo-services**  Megamenu and homepage also link to it.                      
+1489 assistant            0 False Franchise extract finished successfully; the earlier server process was stopped during rebuild.  Page is up at **http://localhost:3000/services/franchise-seo-servi...
+
+
+

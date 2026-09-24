@@ -1,0 +1,7 @@
+﻿    <div class="fq-note rv" style="--d:160ms">
+      <span class="fq-note-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.1"/></svg></span>
+      <p>This is not the same as <strong>traditional local SEO</strong>, which only has to optimize for a single location, or
+        <strong>enterprise SEO</strong>, which is focused on large, single website domains. SEO services for franchises comes with unique
+        challenges, including the potential for <strong>duplicate content across multiple websites</strong>, and the need for
+        <strong>extensive reporting at the unit level</strong>.</p>
+    </div>

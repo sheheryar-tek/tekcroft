@@ -1,0 +1,22 @@
+﻿=== raw_line_1341.json tool#1 name=StrReplace ===
+path: c:\Tekcroft\lib\franchise-seo-body.html
+old_len: 924 new_len: 631
+--- OLD (first 400) ---
+    <div class="cta3 on-dark rv">
+      <span class="cta3-eyebrow">Let&rsquo;s talk</span>
+      <h2>Let&rsquo;s Talk About <em>What You&rsquo;re Building.</em></h2>
+      <p>No pressure, no generic sales pitch &mdash; just a real conversation about your app,
+          your timeline, or whether we are the right fit.</p>
+      <div class="cta3-actions">
+        <button class="btn btn-primary btn-lg
+--- NEW (full) ---
+    <div class="cta3 on-dark rv">
+      <span class="cta3-eyebrow">Let&rsquo;s talk</span>
+      <h2>Ready to Put Every Location <em>on the Map?</em></h2>
+      <p>The brands winning search right now aren&rsquo;t the biggest names. They&rsquo;re the ones showing up, consistently, in every city they serve. Call us now and get a straight answer on where your franchise stands and what it takes to compete in every market you serve.</p>
+      <div class="cta3-actions">
+        <button class="btn btn-primary btn-lg" type="button" data-jump>
+          Book a Call Now <span class="arw">&uarr;</span></button>
+      </div>
+    </div>
+

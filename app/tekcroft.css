@@ -1591,6 +1591,7 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
   border-bottom:1.5px solid var(--text);
   transition:color .26s var(--ease), border-color .26s var(--ease);}
 .cn-more:hover{color:var(--brand-text); border-color:var(--brand-text);}
+.cn-svc-btn{margin-top:26px; align-self:flex-start;}
 
 /* ---- the aside ---- */
 .cn-stat{padding:clamp(24px,2.6vw,32px); border-radius:22px; background:var(--surface);
@@ -4597,6 +4598,25 @@ html[data-theme="dark"] .modal .field.sel select{
   margin:10px 0 0; font-size:13.5px; line-height:1.6;
   color:rgba(255,255,255,.78);}
 .faq-aside .btn{ margin-top:clamp(16px,1.8vw,22px); align-self:flex-start; }
+
+/* Per-active-FAQ copy stack (homepage) */
+.faq-aside-stack{ position:relative; z-index:2; display:grid; }
+.faq-aside-panel{
+  grid-area:1 / 1; display:flex; flex-direction:column; justify-content:flex-end;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .35s var(--ease), visibility .35s var(--ease);}
+.faq-wrap[data-at="1"] .faq-aside-panel:nth-child(1),
+.faq-wrap[data-at="2"] .faq-aside-panel:nth-child(2),
+.faq-wrap[data-at="3"] .faq-aside-panel:nth-child(3),
+.faq-wrap[data-at="4"] .faq-aside-panel:nth-child(4),
+.faq-wrap[data-at="5"] .faq-aside-panel:nth-child(5),
+.faq-wrap[data-at="6"] .faq-aside-panel:nth-child(6),
+.faq-wrap[data-at="7"] .faq-aside-panel:nth-child(7),
+.faq-wrap:not([data-at]) .faq-aside-panel:nth-child(1){
+  opacity:1; visibility:visible; pointer-events:auto;}
+@media (prefers-reduced-motion:reduce){
+  .faq-aside-panel{ transition:none; }
+}
 
 /* ── the accordion ─────────────────────────────────────────────────── */
 .faq-list{

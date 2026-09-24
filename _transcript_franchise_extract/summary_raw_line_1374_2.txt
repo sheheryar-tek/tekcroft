@@ -1,0 +1,10 @@
+﻿=== raw_line_1374.json tool#2 name=StrReplace ===
+path: c:\Tekcroft\lib\franchise-seo-body.html
+old_len: 138 new_len: 169
+--- OLD (first 400) ---
+        <button class="btn btn-primary btn-lg" type="button" data-jump>
+          Book a Call Now <span class="arw">&uarr;</span></button>
+--- NEW (full) ---
+        <button class="btn btn-primary btn-lg" type="button" data-jump>
+          Book a Call With Our Franchise SEO Experts Now <span class="arw">&uarr;</span></button>
+

@@ -1,0 +1,10 @@
+﻿=== raw_line_1376.json tool#2 name=StrReplace ===
+path: c:\Tekcroft\lib\franchise-seo-body.html
+old_len: 164 new_len: 164
+--- OLD (first 400) ---
+        <h3>Clear canonical rules</h3>
+        <p>So near-identical territory or service-area pages don&rsquo;t compete against the page actually meant to rank.</p>
+--- NEW (full) ---
+        <h3>Clear canonical rules</h3>
+        <p>so near-identical territory or service-area pages don&rsquo;t compete against the page actually meant to rank.</p>
+

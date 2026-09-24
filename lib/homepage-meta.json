@@ -1,5 +1,5 @@
 {
-  "title": "Tekcroft: Digital Marketing Company Built for AI-Era Search Growth",
+  "title": "Digital Marketing Company Built for Search & AI",
   "description": "Tekcroft is a digital marketing company helping US businesses grow through SEO, paid media, and AI-driven strategy. See how we build campaigns that perform in AI results - get a free proposal.",
   "canonical": "https://www.tekcroft.com/",
   "jsonLd": [
@@ -68,7 +68,7 @@
         },
         {
           "@type": "Question",
-          "name": "What’s the difference between a digital marketing agency and a freelancer?",
+          "name": "What's the difference between a digital marketing agency and a freelancer?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "A freelancer typically handles one channel, such as SEO or paid ads. A digital marketing agency runs multiple channels together and has the team and tools to scale a strategy as a business grows."
@@ -87,7 +87,7 @@
           "name": "Does Tekcroft work with small businesses or larger companies?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We have worked across all types of businesses, including startups and the one dominating the SERP too.  Add placeholder."
+            "text": "We have worked across all types of businesses including the startups and the one dominating the SERP too. Add placeholder."
           }
         },
         {

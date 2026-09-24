@@ -1,0 +1,1 @@
+﻿CTA is updated on [`/services/franchise-seo-services`](http://localhost:3000/services/franchise-seo-services). Button label is shortened to **Book a Call Now**.

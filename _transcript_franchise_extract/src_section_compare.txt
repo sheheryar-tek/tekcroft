@@ -1,0 +1,43 @@
+﻿Compared 
+ How Franchise SEO Differs From Local SEO and Enterprise SEO 
+
+Franchise SEO borrows the local-market focus of local SEO and the scale demands of enterprise SEO, while adding a governance problem neither of the other two has to solve.
+
+Local focus + 
+ Enterprise scale + 
+ Governance = 
+ Franchise SEO 
+
+Compare with 
+ Local SEO
+
+Enterprise SEO
+
+Local SEO 
+ Franchise SEO 
+ Enterprise SEO 
+
+Scope 
+ One business, one location 
+ One brand, many locations/franchisees 
+ One large brand, one site 
+
+Content challenge 
+ Depth for a single market 
+ Avoiding duplication across dozens/hundreds of near-identical pages 
+ Depth and breadth across many products/services 
+
+Governance 
+ Single decision-maker 
+ Corporate + franchisee control split 
+ Centralized, but cross-departmental 
+
+Reporting 
+ Single dashboard 
+ Brand-level AND location-level views 
+ Usually brand-level only 
+
+Biggest risk 
+ Weak local signals 
+ Content cannibalization + inconsistent local data 
+ Site complexity and crawl budget

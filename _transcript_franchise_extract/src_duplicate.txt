@@ -1,0 +1,22 @@
+Location pages 
+ How We Prevent Duplicate Content Across Franchise Location Pages 
+
+Duplicate, thin location pages are the single most common technical failure in franchise SEO; these are among the easiest for Google to devalue. Here’s how we prevent it:
+
+Unique content requirements per location
+
+Service mix, coverage area, staff bios, local FAQs, not a copy-pasted paragraph with the city name changed.
+
+Clear canonical rules
+
+So near-identical territory or service-area pages don’t compete against the page actually meant to rank.
+
+A content governance system
+
+Rules for what corporate writes, what local teams can adjust, or what needs approval before publishing.
+
+Internal linking discipline
+
+Every location page links up to its city/state hub and back to the national brand, instead of existing in isolation.
+
+The result: each location page earns its own relevance signal, instead of diluting the network’s collective authority.
