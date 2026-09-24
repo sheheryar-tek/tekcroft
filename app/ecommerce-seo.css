@@ -1397,8 +1397,8 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
   box-shadow:0 6px 16px -11px rgba(var(--ink-rgb),.6);}
 .pb-good .pb-ic{background:#fff; color:var(--primary);}
 
-.pb-t{margin:0 0 6px;
-  padding-top:calc((clamp(42px,3.5vw,50px) - 1.22em) / 2);
+.pb-t{margin:0 0 4px;
+  padding-top:4px;
   font-family:var(--font-display); font-weight:700;
   font-size:clamp(15px,1.5vw,17.5px); letter-spacing:-0.03em;
   line-height:1.22; color:var(--text);}
