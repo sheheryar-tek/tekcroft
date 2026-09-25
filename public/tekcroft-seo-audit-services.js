@@ -1,4 +1,174 @@
-/* === chrome === */
+/* === mm-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   SERVICES MEGA MENU
+   SERVICES is the single source of truth — the panel, the hero copy and
+   the burger accordion are all built from it.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+var SERVICES = [
+  { title:"SEO", href:"/#services", icon:"chart", img:"team",
+    items:[
+      {name:"Ecommerce SEO Services", href:"/#services", note:"Rankings for product and category pages.", img:"table"},
+      {name:"SEO Audit Services", href:"/services/seo-audit-services", note:"Find what is holding the site back.", img:"mentor"},
+      {name:"On-Page SEO Services", href:"/#services", note:"Titles, content and internal links.", img:"meeting"},
+      {name:"Technical SEO Services", href:"/#services", note:"Crawling, speed and indexing fixes.", img:"devs"},
+      {name:"AI SEO Services", href:"/#services", note:"Get cited inside AI answers.", img:"laptops"}
+    ]},
+  { title:"Local SEO", href:"/#services", icon:"pin", img:"keys",
+    items:[
+      {name:"Local SEO Services", href:"/#services", note:"Rank across your whole service area.", img:"keys"},
+      {name:"Google Business Profile Optimization", href:"/#services", note:"Turn the listing into calls and visits.", img:"docs"},
+      {name:"Franchise SEO Services", href:"/#services", note:"One system across every location.", img:"meeting"}
+    ]},
+  { title:"Web and Software Development", href:"/#services", icon:"code", img:"laptops",
+    items:[
+      {name:"Web Design and Development Services", href:"/#services", note:"Sites built to convert, not just to look good.", img:"laptops"},
+      {name:"Software Development Services", href:"/#services", note:"Custom platforms and internal tools.", img:"devs"},
+      {name:"Mobile App Development Services", href:"/#services", note:"iOS and Android, one codebase.", img:"table"}
+    ]},
+  { title:"AI Development and Automation", href:"/#services", icon:"chip", img:"devs",
+    items:[
+      {name:"AI Development Services", href:"/#services", note:"Models wired into your own stack.", img:"devs"},
+      {name:"AI Chatbot Development Services", href:"/#services", note:"Answer customers day and night.", img:"mentor"},
+      {name:"AI Agent Development Services", href:"/#services", note:"Run multi-step work end to end.", img:"meeting"}
+    ]}
+];
+
+var BG = {
+  team:"/images/audit-js1-f207a4ecb2.webp",
+  keys:"/images/audit-js2-7092bd4a0e.webp",
+  laptops:"/images/audit-js3-4d5ef9c7a5.webp",
+  devs:"/images/audit-js4-d3a8bdb7b4.webp",
+  meeting:"/images/audit-js5-fda6a66872.webp",
+  table:"/images/audit-js6-98303d83e8.webp",
+  docs:"/images/audit-js7-002d3a99e2.webp",
+  mentor:"/images/audit-js8-b5a1342f92.webp"
+};
+var BG_IDLE = 'meeting';
+var BG_KEYS = Object.keys(BG);
+
+var ICONS = {
+  chart:'<path d="M5 19V5"/><path d="M9.5 19v-6.5"/><path d="M14 19V9"/><path d="M18.5 19v-4"/>',
+  pin:'<path d="M19.5 10.4c0 4.9-7.5 10.4-7.5 10.4S4.5 15.3 4.5 10.4a7.5 7.5 0 0 1 15 0Z"/><circle cx="12" cy="10.3" r="2.5"/>',
+  code:'<path d="M8.6 8 4.4 12l4.2 4"/><path d="M15.4 8l4.2 4-4.2 4"/><path d="M13.2 5.6 10.8 18.4"/>',
+  chip:'<rect x="7" y="7" width="10" height="10" rx="2.2"/><path d="M10 3.6v3.4M14 3.6v3.4M10 17v3.4M14 17v3.4M3.6 10H7M3.6 14H7M17 10h3.4M17 14h3.4"/>'
+};
+var DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+function ic(n){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[n]+'</svg>'; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+var panel = document.getElementById('mmPanel');
+var btn   = document.getElementById('mmTrigger');
+if(!panel || !btn) return;
+
+/* ── one column per core service ── */
+document.getElementById('mmCols').innerHTML = SERVICES.map(function(s){
+  return '<div class="mm-svc-col">'
+    + '<a class="mm-gp" href="'+s.href+'" data-img="'+s.img+'" data-title="'+esc(s.title)+'"'
+    + ' data-note="Everything under '+esc(s.title)+'.">'+esc(s.title)+'</a>'
+    + s.items.map(function(it){
+        return '<a class="mm-row" href="'+it.href+'" data-img="'+it.img+'"'
+          + ' data-title="'+esc(it.name)+'" data-note="'+esc(it.note)+'">'
+          + '<span class="mm-dot">'+ic(s.icon)+'</span>'
+          + '<span><span class="mm-n">'+esc(it.name)+'</span>'
+          + '<span class="mm-dsc">'+esc(it.note)+'</span></span></a>';
+      }).join('')
+    + '</div>';
+}).join('');
+
+/* ── the hero image stack ── */
+var stack = panel.querySelector('.mm-stack');
+stack.innerHTML = BG_KEYS.map(function(k){
+  return '<img src="'+BG[k]+'" alt="" loading="lazy" data-key="'+k+'"'+(k===BG_IDLE?' data-on="true"':'')+'>';
+}).join('');
+function showBg(key){
+  var want = key || BG_IDLE;
+  [].slice.call(stack.children).forEach(function(img){
+    img.setAttribute('data-on', img.dataset.key === want ? 'true' : 'false');
+  });
+}
+
+/* ── open, close, and the caret that points at the trigger ── */
+var hideTimer = null, showTimer = null;
+var titleEl = panel.querySelector('.mm-title'), noteEl = panel.querySelector('.mm-note');
+var baseTitle = titleEl.textContent, baseNote = noteEl.textContent;
+
+function placeCaret(){
+  var box = panel.querySelector('.mm-panel').getBoundingClientRect();
+  var r = btn.getBoundingClientRect();
+  panel.querySelector('.mm-caret').style.setProperty('--caret-x', (r.left + r.width/2 - box.left) + 'px');
+}
+function reset(){
+  showBg(null);
+  titleEl.textContent = baseTitle;
+  noteEl.textContent  = baseNote;
+}
+function open(){
+  clearTimeout(hideTimer);
+  panel.hidden = false;
+  btn.setAttribute('aria-expanded','true');
+  placeCaret();
+}
+function close(){
+  clearTimeout(showTimer);
+  panel.hidden = true;
+  btn.setAttribute('aria-expanded','false');
+  reset();
+}
+function closeSoon(){ clearTimeout(hideTimer); hideTimer = setTimeout(close, 180); }
+
+btn.addEventListener('click', function(e){ e.stopPropagation(); panel.hidden ? open() : close(); });
+btn.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); showTimer = setTimeout(open, 90); });
+btn.addEventListener('mouseleave', function(){ clearTimeout(showTimer); closeSoon(); });
+
+panel.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); });
+panel.addEventListener('mouseleave', closeSoon);
+panel.addEventListener('click', function(e){ if(e.target.closest('a,[data-modal]')) close(); });
+
+/* the photograph and the hero copy follow whatever is hovered */
+var follow = function(e){
+  var hit = e.target.closest('.mm-row,.mm-gp');
+  if(!hit) return;
+  showBg(hit.dataset.img);
+  titleEl.textContent = hit.dataset.title;
+  noteEl.textContent  = hit.dataset.note;
+};
+panel.addEventListener('mouseover', follow);
+panel.addEventListener('focusin', follow);
+panel.querySelector('.mm-svc-cols').addEventListener('mouseleave', reset);
+
+document.addEventListener('click', function(e){
+  if(!panel.hidden && !e.target.closest('.mm') && e.target !== btn) close();
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape' && !panel.hidden){ close(); btn.focus(); }
+});
+window.addEventListener('resize', function(){ if(!panel.hidden) placeCaret(); });
+window.addEventListener('scroll', function(){ if(!panel.hidden) placeCaret(); }, {passive:true});
+
+/* ── Services inside the burger menu ── */
+var mslot = document.getElementById('mmMobile');
+if(mslot){
+  mslot.innerHTML = SERVICES.map(function(s,i){
+    return '<button class="mm-acc" type="button" aria-expanded="false" aria-controls="mmacc'+i+'">'
+      + esc(s.title) + DOWN + '</button>'
+      + '<div class="mm-accp" id="mmacc'+i+'" data-open="false"><div>'
+      + s.items.map(function(it){ return '<a href="'+it.href+'">'+esc(it.name)+'</a>'; }).join('')
+      + '</div></div>';
+  }).join('');
+  mslot.addEventListener('click', function(e){
+    var h = e.target.closest('.mm-acc');
+    if(!h) return;
+    var p = document.getElementById(h.getAttribute('aria-controls'));
+    var isOpen = p.dataset.open === 'true';
+    p.dataset.open = isOpen ? 'false' : 'true';
+    h.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+}
+})();
+
+/* === block-1 === */
 
 (function(){
   "use strict";
@@ -226,10 +396,14 @@
 })();
 
 
-/* === eg-script === */
+/* === walk-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
-   THE WALK — ported from the homepage
+   THE WALK — ported from the homepage.
+
+   Named eg-script once, after the section it arrived with. That section
+   is gone; the blueprint row uses it now, through the same data-walk
+   attribute. Nothing in here is tied to either.
 
    Any layout marked data-walk steps a light along its .walk-step
    children and publishes the index on the container as data-at, so a
@@ -336,7 +510,6 @@
        for the rest of the visit; resetting it gives the stage just landed
        on a full read before anything moves on its own again. */
     function move(d){
-      if (!narrow.matches) return;
       light((at + d + steps.length) % steps.length);
       if (tick){ clearInterval(tick); tick = null; }
       if (!calm) run();
@@ -367,7 +540,6 @@
       function start(x, y){ x0 = x; y0 = y; }
       function end(x, y){
         if (x0 === null) return;
-        if (!narrow.matches){ x0 = null; return; }
         var dx = x - x0, dy = y - y0;
         x0 = null;
         if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) move(dx < 0 ? 1 : -1);
@@ -441,43 +613,35 @@
 
 
 /* === faq-script === */
-/* One question open at a time. Document delegation so it works after
-   Next.js injects the body HTML, and null-safe for missing panels. */
+
+/* One question open at a time. The panel is a grid row moving between 0fr
+   and 1fr, so it opens to whatever height its own text needs and nothing
+   has to be measured: height:auto cannot be transitioned, and reading
+   scrollHeight forces a layout on every open. */
 (function(){
-  function panelFor(btn){
-    var id = btn.getAttribute("aria-controls");
-    return id ? document.getElementById(id) : null;
-  }
-  function closeAll(list){
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var list = document.querySelector(".faq-list");
+  if (!list) return;
+  list.addEventListener("click", function(e){
+    var btn = e.target.closest(".faq-q");
+    if (!btn) return;
+    var panel = document.getElementById(btn.getAttribute("aria-controls"));
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
     list.querySelectorAll(".faq-q").forEach(function(b){
       b.setAttribute("aria-expanded", "false");
-      var p = panelFor(b);
-      if (p) p.dataset.open = "false";
+      document.getElementById(b.getAttribute("aria-controls")).dataset.open = "false";
     });
-  }
-  document.addEventListener("click", function(e){
-    var t = e.target;
-    if (t && t.nodeType === 3) t = t.parentElement;
-    if (!t || typeof t.closest !== "function") return;
-    var btn = t.closest(".faq-q");
-    if (!btn) return;
-    var list = btn.closest(".faq-list");
-    if (!list) return;
-    var panel = panelFor(btn);
-    if (!panel) return;
-    var isOpen = btn.getAttribute("aria-expanded") === "true";
-    closeAll(list);
     if (!isOpen){
       btn.setAttribute("aria-expanded", "true");
       panel.dataset.open = "true";
+      /* the aside follows the question. Its index is read off the button's
+         own position, so adding or removing a question needs nothing here. */
       var wrap = list.closest(".faq-wrap");
-      if (wrap){
-        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
-        wrap.dataset.at = String(qs.indexOf(btn) + 1);
-      }
+      if (wrap) wrap.dataset.at = $$(".faq-q", list).indexOf(btn) + 1;
     }
   });
 })();
+
 
 /* === cn-script === */
 

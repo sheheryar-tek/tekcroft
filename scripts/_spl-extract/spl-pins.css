@@ -1,0 +1,29 @@
+<style id="spl-pins">
+/* the map pins: a proper teardrop with a white centre and a shadow on the
+   ground under it, dropping in one after another and then breathing. The
+   brand's own pin is the filled blue one, and the rating stars are gold. */
+#search-split .spl-pin{width:16px; height:22px; border-radius:0; background:none; transform:none;
+  filter:drop-shadow(0 4px 5px hsl(var(--brand-h) 90% 25% / .28));
+  animation:splDrop2 .6s var(--pop, cubic-bezier(.2,.8,.2,1)) both, splPinBob 3.4s ease-in-out infinite;
+  animation-delay:calc(var(--i) * .16s + .25s), calc(var(--i) * .5s + 1s);}
+#search-split .spl-pin::before{content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, hsl(var(--brand-h) 80% 66%), hsl(var(--brand-h) 90% 52%));
+  -webkit-mask:var(--pin) center/contain no-repeat; mask:var(--pin) center/contain no-repeat;}
+#search-split .spl-pin::after{content:""; position:absolute; left:50%; bottom:-5px; width:12px; height:4px;
+  transform:translateX(-50%); border-radius:50%; background:hsl(var(--brand-h) 90% 30% / .22);
+  animation:splPinShade 3.4s ease-in-out infinite; animation-delay:inherit;}
+#search-split .spl-pin.is-you{width:19px; height:26px;}
+#search-split .spl-pin.is-you::before{background:linear-gradient(180deg, hsl(var(--brand-h) 85% 58%), hsl(var(--brand-h) 100% 38%));}
+/* the teardrop with its centre punched out, so the pin reads as a pin */
+#search-split .spl-map{--pin:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 44'%3E%3Cpath fill-rule='evenodd' d='M16 44s16-18.6 16-28a16 16 0 1 0-32 0c0 9.4 16 28 16 28zM16 21.6a5.6 5.6 0 1 0 0-11.2 5.6 5.6 0 0 0 0 11.2z'/%3E%3C/svg%3E");}
+#search-split .spl-pin{position:absolute;}
+@keyframes splDrop2{from{opacity:0; transform:translateY(-14px) scale(.85);} to{opacity:1; transform:none;}}
+@keyframes splPinBob{0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);}}
+@keyframes splPinShade{0%,100%{opacity:.22; transform:translateX(-50%) scale(1);} 50%{opacity:.12; transform:translateX(-50%) scale(.8);}}
+
+.spl-stars{color:#F5A623; letter-spacing:.5px;}
+
+@media (prefers-reduced-motion:reduce){
+  #search-split .spl-pin,#search-split .spl-pin::after{animation:none;}
+}
+</style>

@@ -1,0 +1,94 @@
+<style id="spl-viz2">
+/* ══════════════════════════════════════════════════════════════════════
+   The split, shown rather than described: one query, then the two lanes
+   play through the surfaces they own — Google's results and map pack on
+   the left, the AI answers on the right — and the brand turns up in every
+   one of them. The chips are real tabs: clicking one holds that surface,
+   otherwise the lanes cycle on their own.
+   ══════════════════════════════════════════════════════════════════════ */
+.spl-viz{display:block;}
+.spl-stage{display:flex; flex-direction:column;}
+.spl-q{align-self:center; display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:99px;
+  background:var(--surface); border:1px solid var(--border); font-size:12.6px; font-weight:700; color:var(--text);
+  box-shadow:0 10px 24px -20px hsl(var(--brand-h) 90% 25% / .5);}
+.spl-q-dot{width:8px; height:8px; border-radius:50%; background:var(--primary); animation:splPing 2.4s ease-out infinite;}
+@keyframes splPing{0%{box-shadow:0 0 0 0 hsl(var(--brand-h) 100% 42% / .5);} 70%,100%{box-shadow:0 0 0 8px hsl(var(--brand-h) 100% 42% / 0);}}
+
+.spl-lane{display:flex; flex-direction:column; gap:10px; padding:13px; border-radius:16px; background:var(--surface);
+  border:1px solid var(--border); box-shadow:0 16px 34px -28px hsl(var(--brand-h) 90% 25% / .35);
+  transition:border-color .45s ease, box-shadow .45s ease, transform .45s ease;}
+.spl-lane.is-live{border-color:hsl(var(--brand-h) 75% 72%); box-shadow:0 18px 36px -24px hsl(var(--brand-h) 90% 30% / .4);}
+.spl-tabs{display:flex; flex-wrap:wrap; gap:6px;}
+.spl-chip{position:relative; display:inline-flex; align-items:center; gap:6px; padding:4px 10px 4px 5px; border-radius:99px;
+  background:var(--bg-alt); border:1px solid var(--border-soft); font:inherit; font-size:11.4px; font-weight:600; color:var(--text);
+  white-space:nowrap; cursor:pointer; transition:background .3s ease, border-color .3s ease, color .3s ease;}
+.spl-chip:hover{border-color:hsl(var(--brand-h) 70% 76%);}
+.spl-chip[aria-selected="true"]{background:var(--surface); border-color:hsl(var(--brand-h) 80% 62%); color:var(--brand-text);}
+.spl-chip:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
+.spl-ring{position:absolute; inset:-1px; border-radius:99px; pointer-events:none; border:1px solid transparent;}
+.spl-chip[aria-selected="true"] .spl-ring{border-color:hsl(var(--brand-h) 80% 62% / .45); animation:splRing 3.6s linear;}
+@keyframes splRing{from{clip-path:inset(0 100% 0 0);} to{clip-path:inset(0 0 0 0);}}
+.spl-mk{display:grid; place-items:center; width:18px; height:18px; border-radius:50%; background:var(--surface); overflow:hidden; flex:none;}
+.spl-logo{background:var(--logo) center/72% no-repeat, var(--surface);}
+.spl-ai{color:var(--primary);} .spl-ai svg{width:11px; height:11px;}
+
+.spl-screen{display:grid;}
+.spl-panel{grid-area:1 / 1; opacity:0; visibility:hidden; transform:translateY(8px); pointer-events:none;
+  transition:opacity .45s ease, transform .45s ease, visibility .45s;}
+.spl-panel.on{opacity:1; visibility:visible; transform:none; pointer-events:auto;}
+.spl-bar{display:flex; align-items:center; gap:8px; padding:7px 11px; border-radius:99px; background:var(--bg-alt);
+  border:1px solid var(--border-soft); font-size:11.5px; color:var(--text-2);}
+.spl-bar-ic{display:grid; place-items:center; width:16px; height:16px; flex:none;}
+.spl-typed{white-space:nowrap; overflow:hidden;}
+.spl-caret{width:1.5px; height:12px; background:var(--primary); animation:splBlink 1s steps(1) infinite;}
+@keyframes splBlink{50%{opacity:0;}}
+
+.spl-res,.spl-map,.spl-ansbox{margin-top:9px; padding:11px; border-radius:12px; background:var(--bg-alt); border:1px solid var(--border-soft);}
+.spl-res{display:flex; flex-direction:column; gap:9px;}
+.spl-r{display:block; animation:splIn .5s ease both; animation-delay:calc(var(--i) * .18s + .25s);}
+.spl-r b{display:block; height:7px; width:58%; border-radius:6px; background:hsl(var(--brand-h) 40% 78%);}
+.spl-r i{display:block; height:5px; width:84%; margin-top:5px; border-radius:6px; background:var(--border);}
+.spl-r.is-you{padding:8px 10px; margin:-2px -2px; border-radius:10px; background:var(--surface);
+  border:1px solid hsl(var(--brand-h) 70% 80%); box-shadow:0 8px 20px -16px hsl(var(--brand-h) 90% 30% / .7);}
+.spl-r.is-you em{display:block; font-style:normal; font-size:12.4px; font-weight:800; color:var(--brand-text);}
+.spl-r.is-you u{display:block; margin-top:2px; font-size:10.6px; text-decoration:none; color:var(--muted);}
+.spl-r.is-you i{width:92%; margin-top:6px; background:hsl(var(--brand-h) 50% 88%);}
+@keyframes splIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+.spl-map{position:relative; height:104px; overflow:hidden;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 22px, hsl(var(--brand-h) 40% 88% / .5) 22px 23px),
+    repeating-linear-gradient(-15deg, transparent 0 26px, hsl(var(--brand-h) 40% 88% / .5) 26px 27px), var(--bg-alt);}
+.spl-pin{position:absolute; width:10px; height:10px; border-radius:50% 50% 50% 0; transform:rotate(-45deg);
+  background:hsl(var(--brand-h) 60% 72%); left:16%; top:26%; animation:splDrop .5s var(--pop, cubic-bezier(.2,.8,.2,1)) both;
+  animation-delay:calc(var(--i) * .16s + .25s);}
+.spl-pin.p2{left:64%; top:16%;} .spl-pin.p3{left:80%; top:56%;}
+@keyframes splDrop{from{opacity:0; transform:rotate(-45deg) translateY(-10px);} to{opacity:1; transform:rotate(-45deg);}}
+.spl-biz{position:absolute; left:10px; bottom:9px; padding:7px 11px; border-radius:10px; background:var(--surface);
+  border:1px solid hsl(var(--brand-h) 70% 80%); box-shadow:0 10px 22px -18px hsl(var(--brand-h) 90% 30% / .8);
+  animation:splIn .5s ease both; animation-delay:calc(var(--i) * .16s + .25s);}
+.spl-biz em{display:block; font-style:normal; font-size:12.2px; font-weight:800; color:var(--brand-text);}
+.spl-biz u{display:block; margin-top:1px; font-size:10.4px; text-decoration:none; color:var(--muted);}
+
+.spl-ansbox{display:flex; flex-direction:column; gap:7px; min-height:104px;}
+.spl-atag{align-self:flex-start; display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:99px;
+  background:hsl(var(--brand-h) 80% 94%); color:var(--brand-text); font-size:10.4px; font-weight:700;}
+.spl-l{display:block; height:6px; border-radius:6px; background:var(--border); width:0;
+  animation:splWrite .5s ease both; animation-delay:calc(var(--i) * .22s + .3s);}
+.spl-l{--w:94%;} .spl-l.s2{--w:88%;} .spl-l.s3{--w:62%;}
+@keyframes splWrite{from{width:0; opacity:.4;} to{width:var(--w); opacity:1;}}
+.spl-cites{display:block; margin-top:2px; font-size:10.8px; font-weight:600; color:var(--muted);
+  animation:splIn .5s ease both; animation-delay:calc(var(--i) * .22s + .3s);}
+.spl-cites b{display:inline-block; margin-left:4px; padding:2px 8px; border-radius:99px; background:var(--surface);
+  border:1px solid hsl(var(--brand-h) 70% 80%); color:var(--brand-text); font-size:10.4px;}
+.spl-lane footer{font-size:11.6px; font-weight:600; color:var(--muted);}
+
+.spl-lane:not(.is-live) .spl-panel.on{opacity:.55; filter:saturate(.7);}
+.spl-lane:not(.is-live) .spl-caret{opacity:0;}
+@media (prefers-reduced-motion:reduce){
+  .spl-q-dot,.spl-caret,.spl-chip[aria-selected="true"] .spl-ring{animation:none;}
+  .spl-r,.spl-pin,.spl-biz,.spl-l,.spl-cites{animation:none; opacity:1;}
+  .spl-l{width:var(--w);}
+  .spl-panel{transition:opacity .2s linear;}
+}
+</style>

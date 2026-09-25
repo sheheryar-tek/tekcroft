@@ -1,0 +1,9 @@
+<style id="spl-fill">
+/* every surface fills its lane: the shorter ones (the map pack, a short
+   answer) stretch instead of leaving a gap above the lane's footer */
+#search-split .spl-panel{display:flex; flex-direction:column;}
+#search-split .spl-res,#search-split .spl-map,#search-split .spl-ansbox{flex:1 1 auto;}
+#search-split .spl-map{height:auto; min-height:120px;}
+#search-split .spl-biz{bottom:12px;}
+#search-split .spl-ansbox{justify-content:flex-start;}
+</style>

@@ -1,0 +1,210 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHY CHOOSE US — a segmented rail, and one pane under it.
+
+   ── the rail ───────────────────────────────────────────────────────
+   A track holding three buttons, with the open one a white pill inside
+   it. The pill is the button's own background rather than a marker
+   sliding behind the three, because a slider has to be told where each
+   button is and told again whenever the text reflows; a background is
+   simply wherever the button is.
+
+   ── the panes ──────────────────────────────────────────────────────
+   All three are in the flow, stacked in one grid cell, and only the open
+   one is visible. That way the box is as tall as its tallest pane from
+   the first paint and does not resize under the reader when they change
+   tab — which is the thing that makes a tab strip feel broken.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* One column now: the head sits over the rail rather than beside it, and
+   the rail runs the whole width under it. The pane keeps its own two
+   columns — that split is between a paragraph and a picture, which is a
+   different question from where the head goes. */
+/* The rail and the box under it are the same width, and it is written
+   once. Two numbers that have to agree are two numbers that eventually
+   do not, and a control wider or narrower than the thing it controls is
+   the first thing a reader notices. */
+.wy{--wy-w:min(100%, 780px);}
+.wy-in{display:grid; gap:clamp(24px,3vw,40px); justify-items:stretch;}
+
+/* ── the words ─────────────────────────────────────────────────────── */
+.wy-eyebrow{display:inline-flex; align-items:center; gap:8px;
+  padding:7px 16px; border-radius:99px;
+  background:var(--surface); border:1px solid var(--border);
+  font-size:11px; font-weight:800; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--brand-text);}
+.wy-eyebrow i{width:6px; height:6px; border-radius:50%; background:var(--primary);}
+
+.wy-say{text-align:center;}
+.wy-say h2{margin:clamp(16px,1.9vw,24px) auto 0; max-width:20ch;
+  font-size:clamp(30px,3.5vw,49px); line-height:1.1; letter-spacing:-0.045em;}
+.wy-say h2 em{font-style:normal; color:var(--brand-text);}
+
+/* ── the rail ──────────────────────────────────────────────────────── */
+.wy-box{display:grid; gap:clamp(14px,1.6vw,22px);}
+/* White, so the rail needs an edge — on the section's tint a white box
+   with no border is a shape with no boundary, and the three tabs would
+   have looked like they were sitting on the page rather than in a rail.
+
+   Narrower than the wrap, and centred. Run the full width and each tab
+   is close to four hundred pixels holding three words, which reads as
+   three wide empty boxes rather than as a control. */
+.wy-rail{width:var(--wy-w); margin-inline:auto;
+  display:grid; grid-auto-flow:column; grid-auto-columns:1fr;
+  gap:6px; padding:6px; border-radius:16px;
+  background:var(--surface); border:1px solid var(--border);}
+.wy-tab{padding:12px 14px; border:0; border-radius:11px; cursor:pointer;
+  background:transparent; color:var(--text-2);
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(11.5px,1vw,14px); line-height:1.25; letter-spacing:-0.02em;
+  text-align:center;
+  transition:background .3s var(--ease), color .3s var(--ease),
+             box-shadow .3s var(--ease);}
+.wy-tab:hover{color:var(--text);}
+/* The open tab is the brand, and its shadow is the brand too: a neutral
+   drop under a saturated pill reads as dirt around it rather than as
+   lift.
+
+   One step down the ramp from --primary, not --primary itself. White on
+   --primary is 3.3 to 1 and these labels are fourteen pixels, which is
+   small text; one step darker takes it to 4.6 and the blue is, to look
+   at, the same blue. The same step the numbered badges on the other
+   sections take, for the same reason. */
+.wy-tab.on{background:hsl(var(--brand-h) 100% 35%); color:#fff;
+  box-shadow:0 8px 20px -8px hsl(var(--brand-h) 100% 40% / .5);}
+.wy-tab.on:hover{color:#fff;}
+.wy-tab:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
+
+/* ── the panel ─────────────────────────────────────────────────────── */
+.wy-panes{width:var(--wy-w); margin-inline:auto;
+  display:grid; padding:clamp(22px,2.6vw,36px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:calc(var(--r-lg) + 8px);
+  box-shadow:0 26px 60px -38px rgba(var(--ink-rgb),.4);}
+/* Every pane in the same cell, so the box is sized by the tallest one.
+   Inside each: the words on the left and the figure on the right, on a
+   grid of their own. The figure column is the wider of the two because
+   the three figures are pictures of numbers and a cramped chart is worse
+   than a short paragraph. */
+/* Every pane in the same cell, so the box is sized by the tallest one.
+   Inside each: the words on the left and the figure on the right.
+
+   Two items, not five. The mark, the heading and the paragraph are one
+   block in one wrapper, which is what lets the left side be centred
+   against the figure as a unit — as separate grid items each one would
+   have centred in its own row and the three would have drifted apart. */
+.wy-pane{grid-area:1 / 1; visibility:hidden; opacity:0;
+  transform:translateY(8px); pointer-events:none;
+  display:grid; grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+  gap:clamp(18px,2.4vw,38px); align-items:center;
+  transition:opacity .34s var(--ease), transform .34s var(--ease);}
+.wy-pane.on{visibility:visible; opacity:1; transform:none; pointer-events:auto;}
+.wy-txt{grid-column:1; align-self:center;}
+
+.wy-mark{display:grid; place-items:center;
+  width:clamp(40px,3.6vw,48px); aspect-ratio:1; border-radius:13px;
+  background:var(--disc); color:var(--primary); margin-bottom:14px;}
+.wy-mark svg{width:50%; height:50%;}
+
+.wy-pane h3{font-family:var(--font-display); font-weight:800;
+  font-size:clamp(17px,1.65vw,23px); line-height:1.2; letter-spacing:-0.035em;
+  color:var(--text);}
+.wy-pane p{margin:clamp(9px,1vw,13px) 0 0;
+  font-size:clamp(13.6px,1.02vw,15px); line-height:1.7; color:var(--text-2);}
+
+/* ── the figures ───────────────────────────────────────────────────── */
+/* it spans both of the words' rows, which is what puts it beside them
+   rather than under the second of them */
+.wy-fig{grid-column:2; align-self:center;
+  margin:0; padding:clamp(16px,1.8vw,22px);
+  border-radius:var(--r-lg); background:var(--bg-alt);}
+.wy-fig figcaption{display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin-bottom:clamp(12px,1.4vw,18px);}
+.wy-fig figcaption b{font-family:var(--font-display); font-weight:800;
+  font-size:clamp(13px,1.1vw,15px); letter-spacing:-0.03em; color:var(--text);}
+.wy-chip{display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+  padding:6px 12px; border-radius:99px;
+  background:var(--surface); border:1px solid var(--border);
+  font-size:11px; font-weight:600; color:var(--text-2);}
+.wy-chip svg{width:12px; height:12px;}
+
+/* ---- the line ---- */
+/* Named, not "every svg in a figure". `.wy-fig svg` and `.wy-chip svg`
+   have the same specificity, so the later of the two was winning and the
+   chips' twelve-pixel calendar and person were being blown up to the full
+   width of their pill. It was beating `.dn` as well, on specificity, so
+   the donut was ignoring its own clamp and filling its column. One class
+   on the one element that wants the full width, and the other two keep
+   the sizes they were given. */
+.ln{width:100%; height:auto; display:block;}
+.ln-area{fill:hsl(var(--brand-h) 100% 50% / .10);}
+.ln-line{fill:none; stroke:var(--text); stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round;}
+.ln-d{fill:var(--primary);}
+.ln-x,.ln-y{fill:var(--muted); font-size:8px; font-family:var(--font);}
+.ln-x{text-anchor:middle;} .ln-y{text-anchor:end;}
+
+/* ---- the donut ---- */
+.dn-wrap{display:grid; grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(14px,1.8vw,26px); align-items:center; position:relative;}
+.dn{width:clamp(96px,10vw,124px); height:auto; display:block; flex-shrink:0;}
+.dn-track{fill:none; stroke:var(--border); stroke-width:15;}
+.dn-s{fill:none; stroke-width:15; stroke-linecap:butt;}
+.dn-1{stroke:var(--primary);}
+.dn-2{stroke:hsl(var(--brand-h) 100% 66%);}
+.dn-3{stroke:hsl(var(--brand-h) 30% 46%);}
+.dn-4{stroke:var(--border);}
+.dn-mid{position:absolute; left:clamp(48px,5vw,62px); top:50%;
+  transform:translate(-50%,-50%); text-align:center; pointer-events:none;}
+.dn-mid b{display:block; font-family:var(--font-display); font-weight:800;
+  font-size:clamp(17px,1.6vw,21px); letter-spacing:-0.04em; color:var(--text);}
+.dn-mid em{display:block; font-style:normal; font-size:8.5px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--muted);}
+.dn-key{list-style:none; margin:0; padding:0; display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px clamp(10px,1.4vw,18px);}
+.dn-key li{display:flex; align-items:center; gap:7px; font-size:11.5px;
+  color:var(--text-2);}
+.dn-key i{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+.dn-key .dn-1 i{background:var(--primary);}
+.dn-key .dn-2 i{background:hsl(var(--brand-h) 100% 66%);}
+.dn-key .dn-3 i{background:hsl(var(--brand-h) 30% 46%);}
+.dn-key .dn-4 i{background:var(--border);}
+.dn-key b{margin-left:auto; font-family:var(--font-display); font-weight:800;
+  font-size:12px; color:var(--text); font-variant-numeric:tabular-nums;}
+
+/* ---- the bars ---- */
+.br{list-style:none; margin:0; padding:0; display:grid; gap:clamp(11px,1.3vw,16px);}
+.br-top{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  margin-bottom:7px;}
+.br-top span{font-size:12.5px; color:var(--text-2);}
+.br-top b{font-family:var(--font-display); font-weight:800; font-size:13.5px;
+  letter-spacing:-0.03em; color:var(--brand-text); font-variant-numeric:tabular-nums;}
+.br-rail{display:block; height:6px; border-radius:99px; background:var(--border);
+  overflow:hidden;}
+.br-rail i{display:block; height:100%; width:var(--w); border-radius:99px;
+  background:var(--primary); transform:scaleX(0); transform-origin:left center;}
+.wy-pane.on .br-rail i{transform:none; transition:transform .9s var(--ease) .2s;}
+
+/* ── narrower ────────────────────────────────────────────────────────
+   One column, and the rail wraps from three across to a column of three:
+   below about six hundred pixels the three labels are two words each and
+   side by side they break to three lines apiece. */
+@media (max-width:980px){
+  /* The pane stacks. It used to share this breakpoint with the head, back
+     when the head was beside the rail; the head is over it now and has
+     nothing to do here, so this block is about the pane only. Below this
+     width the figure has no room left to be read at beside a paragraph. */
+  .wy-pane{grid-template-columns:1fr; gap:clamp(16px,2.4vw,24px);}
+  .wy-txt,.wy-fig{grid-column:1;}
+}
+@media (max-width:600px){
+  .wy-rail{grid-auto-flow:row; grid-auto-columns:auto;}
+  .wy-tab{text-align:left; padding:12px 16px;}
+  .dn-wrap{grid-template-columns:1fr; justify-items:center;}
+  .dn-mid{left:50%; top:clamp(48px,14vw,62px);}
+  .dn-key{width:100%;}
+}
+@media (prefers-reduced-motion:reduce){
+  .wy-pane{transition:none;}
+  .br-rail i{transform:none;}
+}

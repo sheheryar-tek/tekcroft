@@ -1487,3 +1487,150 @@
     }
   });
 })();
+
+
+/* === why-v2 tabs (scoped) === */
+(function(){
+  "use strict";
+  var box = document.querySelector("#why-v2 [data-tabs]");
+  if (!box) return;
+  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
+      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
+
+  function open(i){
+    tabs.forEach(function(t, n){
+      t.classList.toggle("on", n === i);
+      t.setAttribute("aria-selected", n === i ? "true" : "false");
+    });
+    panes.forEach(function(p, n){ p.classList.toggle("on", n === i); });
+  }
+
+  box.querySelector(".wy-rail").addEventListener("click", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (b) open(tabs.indexOf(b));
+  });
+
+  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
+    var i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    var to = e.key === "ArrowRight" || e.key === "ArrowDown" ? i + 1
+           : e.key === "ArrowLeft"  || e.key === "ArrowUp"   ? i - 1 : -1;
+    if (to < 0 && to !== -1) to = tabs.length - 1;
+    if (to === -1) return;
+    e.preventDefault();
+    to = to % tabs.length;
+    tabs[to].focus(); open(to);
+  });
+
+  var root = document.getElementById("why-v2");
+  if (root) {
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(x){
+        if (x.isIntersecting){ x.target.classList.add("in"); io.unobserve(x.target); }
+      });
+    }, { threshold:0, rootMargin:"0px 0px -70px 0px" });
+    Array.prototype.slice.call(root.querySelectorAll(".rv")).forEach(function(el){
+      io.observe(el);
+    });
+    requestAnimationFrame(function(){
+      Array.prototype.slice.call(root.querySelectorAll(".rv")).forEach(function(el){
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("in");
+      });
+    });
+  }
+})();
+
+
+/* === why variant switch === */
+(function(){
+  var secs={1:document.getElementById('why'), 2:document.getElementById('why-v2')};
+  var btns=[].slice.call(document.querySelectorAll('.vsw[data-vsw="why"] button'));
+  function pick(v){
+    Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden = (+k !== +v); });
+    btns.forEach(function(b){ var on = +b.dataset.v === +v;
+      b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    try{ localStorage.setItem('tk-why-variant', v); }catch(e){}
+  }
+  var saved=1; try{ saved = +localStorage.getItem('tk-why-variant') || 1; }catch(e){}
+  btns.forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.v); }); });
+  pick(saved);
+})();
+
+
+/* === spl-script (search-split) === */
+(function(){
+  var stage=document.querySelector('#search-split [data-split]'); if(!stage) return;
+  var chips=[].slice.call(stage.querySelectorAll('.spl-chip'));
+  var order=['gsearch','aio','gmaps','chatgpt','plx','gemini'];
+  var idx=0, timer=null, held=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function type(panel){
+    var el=panel.querySelector('.spl-typed'); if(!el) return;
+    clearTimeout(el._t);               /* one timer per field, so two lanes can type at once */
+    var q=el.getAttribute('data-q')||'', n=0;
+    if(reduce){ el.textContent=q; return; }
+    el.textContent='';
+    (function step(){ el.textContent=q.slice(0,++n); if(n<q.length) el._t=setTimeout(step,26); })();
+  }
+  function show(key){
+    var lane=null;
+    stage.querySelectorAll('.spl-panel').forEach(function(pn){
+      if(pn.dataset.p===key) lane=pn.closest('.spl-lane');
+    });
+    if(!lane) return;
+    /* only this lane changes surface; the other lane keeps showing its own,
+       dimmed, so both channels stay on screen at once */
+    lane.querySelectorAll('.spl-panel').forEach(function(pn){
+      var on=pn.dataset.p===key;
+      pn.classList.toggle('on',on);
+      if(on){ replay(pn); type(pn); }
+    });
+    lane.querySelectorAll('.spl-chip').forEach(function(c){ c.setAttribute('aria-selected', String(c.dataset.s===key)); });
+    stage.querySelectorAll('.spl-lane').forEach(function(l){ l.classList.toggle('is-live', l===lane); });
+  }
+  function replay(pn){ /* restart the panel's own little animations */
+    pn.querySelectorAll('.spl-r,.spl-pin,.spl-biz,.spl-l,.spl-cites').forEach(function(el){
+      el.style.animation='none'; void el.offsetWidth; el.style.animation='';
+    });
+  }
+  function next(){ idx=(idx+1)%order.length; show(order[idx]); }
+  function play(){ stop(); if(!held) timer=setInterval(next,3600); }
+  function stop(){ clearInterval(timer); }
+
+  function hold(ms){ held=true; stop(); clearTimeout(hold._t);
+    hold._t=setTimeout(function(){ held=false; play(); }, ms||12000); }
+
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){ hold(); idx=order.indexOf(c.dataset.s); show(c.dataset.s); });
+    /* a chip row is a row: the arrow keys walk it, as a tab strip should */
+    c.addEventListener('keydown',function(e){
+      var row=[].slice.call(c.parentElement.children), at=row.indexOf(c);
+      var to = e.key==='ArrowRight' ? at+1 : e.key==='ArrowLeft' ? at-1 : -1;
+      if(to<0 || to>=row.length) return;
+      e.preventDefault(); row[to].focus(); row[to].click();
+    });
+    /* hovering a surface holds it open long enough to read */
+    c.addEventListener('mouseenter',function(){ if(!c.matches('[aria-selected="true"]')){ idx=order.indexOf(c.dataset.s); show(c.dataset.s); } });
+  });
+  stage.addEventListener('mouseenter',stop); stage.addEventListener('mouseleave',function(){ if(!held) play(); });
+
+  show('aio'); show(order[0]);
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
+  io.observe(stage);
+})();
+
+/* === ai variant switch === */
+(function(){
+  var secs={1:document.getElementById('ai-ecosystem'), 2:document.getElementById('search-split')};
+  var btns=[].slice.call(document.querySelectorAll('.vsw[data-vsw="ai"] button'));
+  function pick(v){
+    Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden = (+k !== +v); });
+    btns.forEach(function(b){ var on = +b.dataset.v === +v;
+      b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    try{ localStorage.setItem('tk-ai-variant', v); }catch(e){}
+  }
+  var saved=1; try{ saved = +localStorage.getItem('tk-ai-variant') || 1; }catch(e){}
+  btns.forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.v); }); });
+  pick(saved);
+})();
