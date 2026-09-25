@@ -1277,3 +1277,34 @@ var $$ = function(s, r){
   window.addEventListener("resize", later);
   if ("ResizeObserver" in window) new ResizeObserver(later).observe(grid);
 })();
+
+/* === tsm-acc-script === */
+(function(){
+  "use strict";
+  var root = document.getElementById("tsAcc");
+  if (!root) return;
+  var $  = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var items = $$(".acc-item", root);
+  var fine = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+
+  function openAcc(i){
+    items.forEach(function(el, k){
+      el.classList.toggle("on", k === i);
+      el.setAttribute("aria-expanded", k === i ? "true" : "false");
+    });
+  }
+
+  items.forEach(function(el){
+    var i = +el.getAttribute("data-i");
+    el.addEventListener("click", function(e){
+      if (e.target.closest(".acc-cta") && el.classList.contains("on")) return;
+      e.preventDefault();
+      openAcc(i);
+    });
+    el.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " "){ e.preventDefault(); openAcc(i); }
+    });
+    if (fine) el.addEventListener("mouseenter", function(){ openAcc(i); });
+  });
+})();

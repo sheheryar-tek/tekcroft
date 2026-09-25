@@ -1090,14 +1090,14 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
    ══════════════════════════════════════════════════════════════════════ */
 
 .eg{margin-top:clamp(28px,3.2vw,44px);
-  display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
   --eg-gap:clamp(30px,3.8vw,60px);
   gap:var(--eg-gap); align-items:center;}
 
 /* ---- the disc ----
    Capped against the viewport as well as against its column: on a short
    laptop the height is what runs out first, not the width. */
-.eg-core{position:relative; width:min(100%,480px,52vh); aspect-ratio:1;
+.eg-core{position:relative; width:min(100%,600px,66vh); aspect-ratio:1;
   justify-self:center;}
 .eg-ring{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
 .eg-track{fill:none; stroke:var(--border); stroke-width:3.2;
@@ -1144,20 +1144,8 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 .eg-lab,.eg-of{display:block; font-size:11.5px; font-weight:700;
   letter-spacing:.15em; text-transform:uppercase;
   color:rgba(255,255,255,.72);}
-.eg-num{display:grid; margin:10px 0 0; font-family:var(--font-display);
-  font-weight:800; font-size:clamp(52px,6.4vw,86px); line-height:.92;
-  letter-spacing:-0.06em; color:var(--brand-text);
-  font-variant-numeric:tabular-nums;}
-.eg-num i{grid-area:1 / 1; font-style:normal;
-  opacity:0; visibility:hidden; transform:translateY(10px);
-  transition:opacity .38s var(--ease), transform .48s var(--pop),
-             visibility 0s linear .38s;}
-.eg[data-at="0"] .eg-num i:nth-child(1),
-.eg[data-at="1"] .eg-num i:nth-child(2),
-.eg[data-at="2"] .eg-num i:nth-child(3),
-.eg[data-at="3"] .eg-num i:nth-child(4){opacity:1; visibility:visible;
-  transform:none; transition-delay:0s;}
-.eg-rule{display:block; width:64px; height:3px; border-radius:3px; margin:18px auto;
+.eg-num{display:none;}
+.eg-rule{display:block; width:64px; height:3px; border-radius:3px; margin:14px auto;
   background:var(--primary);}
 
 /* ---- the four cards ---- */
@@ -1241,9 +1229,8 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
      the four the reader is once the cards are down to one, which is what
      the block below does. */
   .eg{grid-template-columns:1fr; gap:clamp(26px,5vw,38px);}
-  .eg-core{width:min(100%,320px); justify-self:center;}
+  .eg-core{width:min(88%,380px); justify-self:center;}
   .eg-node{display:none;}
-  .eg-num{font-size:clamp(40px,11vw,52px);}
   .eg-lab,.eg-of{font-size:10.5px; letter-spacing:.13em;}
   .eg-rule{width:52px; margin:14px auto;}
 
@@ -2201,7 +2188,7 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
 
 /* evenly round the ring rather than the six-way spacing it inherited */
 /* four arms, a quarter turn apart */
-.pf-o1{--a:270deg;} .pf-o2{--a:0deg;} .pf-o3{--a:90deg;} .pf-o4{--a:180deg;}
+.pf-o1{--a:270deg;} .pf-o2{--a:30deg;} .pf-o3{--a:150deg;}
 
 /* the question the button answers, on its own line above it */
 .pf-cta{flex-direction:column; align-items:center; gap:clamp(12px,1.3vw,16px);}
@@ -4036,4 +4023,192 @@ html[data-theme="dark"] #process .eg-exp-note{
   font-size:.70em;
   font-weight:800;
   vertical-align:0.12em;
+}
+
+/* === tsm-acc-panels === */
+/* Technical SEO Model — compact horizontal panels (ref variant 06).
+   Height kept shorter than the reference (440 → 312). */
+#services-2.tsm{
+  --tsm-ink:#0b1724;
+  --tsm-ease:cubic-bezier(.22,1,.36,1);
+  padding-block:clamp(36px,4vw,56px);
+  background:var(--ground, var(--bg-alt));
+  border-block:0;
+}
+#services-2 .acc{
+  display:flex;
+  gap:7px;
+  height:312px;
+  margin-top:clamp(22px,2.4vw,32px);
+}
+#services-2 .acc-item{
+  position:relative;
+  flex:0 0 46px;
+  min-width:46px;
+  overflow:hidden;
+  cursor:pointer;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  transition:
+    flex .62s var(--tsm-ease),
+    background .5s var(--ease),
+    border-color .4s var(--ease),
+    box-shadow .4s var(--ease);
+}
+#services-2 .acc-item.on{
+  flex:1 1 auto;
+  min-width:min(360px,52vw);
+  border-color:var(--tsm-ink);
+  background:var(--tsm-ink);
+  box-shadow:0 22px 48px -28px rgba(var(--ink-rgb),.55);
+}
+#services-2 .acc-bg{
+  position:absolute; inset:0; opacity:0;
+  transition:opacity .55s var(--ease) .06s;
+}
+#services-2 .acc-item.on .acc-bg{opacity:1;}
+#services-2 .acc-fb{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(62% 58% at 78% 12%, hsl(var(--brand-h) 92% 52% / .52) 0%, transparent 64%),
+    radial-gradient(52% 46% at 14% 86%, hsl(var(--brand-h) 88% 42% / .40) 0%, transparent 68%),
+    linear-gradient(158deg, #12395C 0%, #101820 54%, #080c12 100%);
+}
+#services-2 .acc-fb::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(84% 82% at 70% 24%, #000, transparent 74%);
+  mask-image:radial-gradient(84% 82% at 70% 24%, #000, transparent 74%);
+}
+#services-2 .acc-wm{
+  position:absolute; right:5%; bottom:7%;
+  width:118px; height:118px; color:#fff; opacity:.12;
+}
+#services-2 .acc-wm .ico,
+#services-2 .acc-wm svg{display:block; width:100%; height:100%;}
+#services-2 .acc-veil{
+  position:absolute; inset:0;
+  background:linear-gradient(96deg, rgba(7,19,32,.92) 0%, rgba(7,19,32,.66) 48%,
+    hsl(var(--brand-h) 92% 26% / .52) 100%);
+}
+#services-2 .acc-slim{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center;
+  padding:16px 0;
+  transition:opacity .34s var(--ease);
+}
+#services-2 .acc-item.on .acc-slim{opacity:0; pointer-events:none;}
+#services-2 .acc-n{
+  font-family:var(--font-display);
+  font-variant-numeric:tabular-nums;
+  font-size:12px; font-weight:700; letter-spacing:.05em;
+  color:var(--text); flex-shrink:0;
+}
+#services-2 .acc-vt{
+  margin-top:auto;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--font-display);
+  font-size:12.5px; font-weight:700; letter-spacing:-0.02em;
+  color:var(--muted); white-space:nowrap;
+  max-height:calc(100% - 40px);
+  overflow:hidden; text-overflow:ellipsis;
+  transition:color .3s var(--ease);
+}
+#services-2 .acc-item:hover .acc-vt{color:var(--brand-text);}
+#services-2 .acc-item:hover:not(.on){border-color:hsl(var(--brand-h) 40% 72%);}
+#services-2 .acc-open{
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column;
+  padding:20px 22px 56px;
+  color:#fff; opacity:0; transform:translateY(8px);
+  transition:opacity .42s var(--ease) .14s, transform .42s var(--ease) .14s;
+}
+#services-2 .acc-item.on .acc-open{opacity:1; transform:none;}
+#services-2 .acc-open .num{
+  font-family:var(--font-display);
+  font-variant-numeric:tabular-nums;
+  font-size:12px; font-weight:700; letter-spacing:.05em;
+  color:rgba(255,255,255,.6);
+}
+#services-2 .acc-open .ico-t{
+  width:40px; height:40px; border-radius:12px;
+  margin:auto 0 12px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.28);
+  color:#fff; display:grid; place-items:center; padding:9px;
+}
+#services-2 .acc-open .ico-t svg{width:100%; height:100%; display:block;}
+#services-2 .acc-open h3{
+  font-family:var(--font-display);
+  font-size:clamp(18px,1.7vw,24px);
+  letter-spacing:-0.04em;
+  line-height:1.15;
+  margin:0 0 8px;
+  max-width:20ch;
+  color:#fff;
+}
+#services-2 .acc-open p{
+  font-size:13.2px; line-height:1.55;
+  color:rgba(255,255,255,.76);
+  margin:0;
+  max-width:48ch;
+  display:-webkit-box;
+  -webkit-line-clamp:6;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+#services-2 .acc-cta{
+  position:absolute; right:0; bottom:0; z-index:4;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 18px;
+  border-radius:16px 0 16px 0;
+  background:#DAEEF6; color:var(--ink-plate);
+  font-family:var(--font-display);
+  font-size:12.5px; font-weight:700; white-space:nowrap;
+  text-decoration:none;
+  opacity:0; pointer-events:none; transform:translateY(6px);
+  transition:
+    opacity .36s var(--ease) .16s,
+    transform .36s var(--ease) .16s,
+    background .24s var(--ease),
+    padding-right .24s var(--ease);
+}
+#services-2 .acc-item.on .acc-cta{opacity:1; pointer-events:auto; transform:none;}
+#services-2 .acc-cta .ico{width:14px; height:14px; flex-shrink:0;}
+#services-2 .acc-cta:hover{background:#c5e4f1; padding-right:24px; color:var(--ink-plate);}
+
+@media (max-width:1040px){
+  #services-2 .acc{flex-direction:column; height:auto; gap:8px;}
+  #services-2 .acc-item{
+    flex:0 0 auto; min-width:0; height:58px; border-radius:14px;
+    transition:height .5s var(--tsm-ease), background .45s var(--ease), border-color .35s var(--ease);
+  }
+  #services-2 .acc-item.on{
+    flex:0 0 auto; min-width:0; height:auto; min-height:280px;
+  }
+  #services-2 .acc-slim{
+    flex-direction:row; align-items:center; padding:0 16px; gap:12px;
+  }
+  #services-2 .acc-vt{
+    margin-top:0; writing-mode:horizontal-tb; transform:none;
+    font-size:13.5px; max-height:none; overflow:visible;
+  }
+  #services-2 .acc-open{
+    position:relative; inset:auto; padding:20px 18px 68px;
+  }
+  #services-2 .acc-open .ico-t{margin:0 0 12px;}
+  #services-2 .acc-open p{-webkit-line-clamp:unset; overflow:visible;}
+  #services-2 .acc-cta{border-radius:14px 0 14px 0;}
+}
+@media (prefers-reduced-motion:reduce){
+  #services-2 .acc-item,
+  #services-2 .acc-bg,
+  #services-2 .acc-slim,
+  #services-2 .acc-open,
+  #services-2 .acc-cta{transition:none;}
 }
