@@ -1657,102 +1657,175 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
   font-size:clamp(16px,1.5vw,20px); letter-spacing:-0.03em; color:var(--text);
   text-align:center;}
 
-/* === sp-styles === */
+/* === si-styles === */
 /* ══════════════════════════════════════════════════════════════════════
-   SCOPE — what is covered, and what is not
+   SCOPE — compact include / exclude rail
 
-   ── unequal in width, level at the foot ────────────────────────────
-   1.34fr against 1fr: six inclusions want two columns, three exclusions
-   want one. But they finish together, and the three are spread over the
-   height rather than stacked at the top of it — which is what stops the
-   shorter panel reading as a panel with something missing. The rules
-   between them do the work: evenly spaced, they look measured; bunched
-   at the top under a drop of empty panel, they look cut off.
-
-   ── colour carries the difference, not weight ──────────────────────
-   The included panel is on the page's own ground with brand marks; the
-   excluded one is a shade back, on the neutral surface, with grey marks.
-   Nothing is crossed out and nothing is red: these are three services
-   the firm sells, and a warning colour would be saying something about
-   them that is not true.
-
-   The inner rules in the right-hand panel are between items, not under
-   them — three items get two rules, which is what stops the last one
-   looking cut off.
+   One short bar, not two tall cards. The heading sits beside (or above)
+   a single cohesive split: included on brand tint, excluded stepped back.
+   Exact copy only — no filler, no item lists.
    ══════════════════════════════════════════════════════════════════════ */
-/* --bg, the page's own near-white, because the two panels have to differ
-   from each other and both from the ground — three values, and a white
-   ground would have spent one of them. The included panel takes the
-   white the page's cards are; the excluded one steps back onto
-   --surface-2. That is the reference's relationship: the clean card and
-   the one behind it. */
-
-.sp-grid{margin-top:clamp(28px,3.4vw,46px);
-  display:grid; grid-template-columns:minmax(0,1.34fr) minmax(0,1fr);
-  gap:clamp(16px,1.8vw,26px); align-items:stretch;}
-
-.sp-panel{display:flex; flex-direction:column;
-  padding:clamp(20px,2.4vw,32px);
-  border-radius:clamp(16px,1.8vw,24px);
-  border:1px solid var(--border);
-  box-shadow:0 22px 48px -34px rgba(var(--ink-rgb),.35);}
-/* --n100, not --surface-2. On this page --surface-2 resolves to --p100,
-   a brand tint at 58% saturation — which on a panel this size is not a
-   step back but a second colour, and it fought the marks inside it.
-   --n100 is the neutral one rung below the page's own near-white: far
-   enough to read as behind, with nothing to say about the three services
-   sitting on it. */
-.sp-in{background:var(--surface);
-  box-shadow:0 24px 50px -32px rgba(var(--ink-rgb),.4);}
-.sp-out{background:var(--n100); box-shadow:none;}
-html[data-theme="dark"] .sp-out{background:var(--n850);}
-
-/* ---- the head of each panel ---- */
-.sp-top{display:grid; grid-template-columns:auto minmax(0,1fr);
-  gap:clamp(12px,1.4vw,18px); align-items:start;}
-.sp-mark{display:grid; place-items:center;
-  width:clamp(38px,3.4vw,46px); aspect-ratio:1; border-radius:50%;
-  color:#fff; flex-shrink:0;}
-.sp-in .sp-mark{background:var(--primary);
-  box-shadow:0 10px 22px -10px hsl(var(--brand-h) 100% 40% / .7);}
-.sp-out .sp-mark{background:var(--subtle);}
-.sp-mark svg{width:52%; height:52%;}
-.sp-top h3{font-family:var(--font-display); font-weight:800;
-  font-size:var(--h3); letter-spacing:-0.03em; line-height:1.2;
-  color:var(--text);}
-.sp-top p{margin-top:7px; max-width:46ch;
-  font-size:clamp(13.2px,1vw,14.6px); line-height:1.56; color:var(--text-2);}
-
-/* ---- the items ---- */
-.sp-list{list-style:none; margin-top:clamp(20px,2.4vw,30px);}
-.sp-in .sp-list{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(18px,2vw,28px) clamp(18px,2.2vw,32px);}
-.sp-out .sp-list{display:grid; flex:1; align-content:space-between;}
-/* between, not under — see the note above */
-.sp-out .sp-list li + li{margin-top:clamp(14px,1.8vw,22px);
-  padding-top:clamp(14px,1.8vw,22px); border-top:1px solid var(--border);}
-
-.sp-list li{display:grid; grid-template-columns:auto minmax(0,1fr);
-  gap:clamp(11px,1.3vw,16px); align-items:start;}
-.sp-ic{display:grid; place-items:center;
-  width:clamp(34px,3vw,40px); aspect-ratio:1; border-radius:50%;
-  flex-shrink:0;}
-.sp-in .sp-ic{background:hsl(var(--brand-h) 62% 93%); color:var(--brand-text);}
-.sp-out .sp-ic{background:var(--surface); color:var(--subtle);
-  box-shadow:inset 0 0 0 1px var(--border);}
-.sp-ic svg{width:48%; height:48%;}
-.sp-list b{display:block; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(14.4px,1.15vw,16px); letter-spacing:-0.022em; line-height:1.25;
-  color:var(--text);}
-.sp-list div > span{display:block; margin-top:5px;
-  font-size:clamp(12.8px,.98vw,14px); line-height:1.55; color:var(--text-2);}
-
-/* ---- reflow ---- */
-@media (max-width:1040px){
-  .sp-grid{grid-template-columns:minmax(0,1fr);}
+#scope.si{
+  padding-block:clamp(28px,3.2vw,44px);
 }
-@media (max-width:620px){
-  .sp-in .sp-list{grid-template-columns:minmax(0,1fr);}
+.si-bar{
+  display:grid;
+  gap:clamp(14px,1.6vw,20px);
+}
+.si-h{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(22px,2.4vw,32px);
+  letter-spacing:-0.035em;
+  line-height:1.15;
+  color:var(--text);
+}
+.si-h em{
+  font-style:normal;
+  color:var(--primary);
+}
+
+.si-rail{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) auto minmax(0,.95fr);
+  align-items:stretch;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:var(--surface);
+  box-shadow:0 14px 36px -28px rgba(var(--ink-rgb),.45);
+  overflow:hidden;
+}
+
+.si-pane{
+  position:relative;
+  display:grid;
+  gap:8px;
+  padding:clamp(14px,1.6vw,20px) clamp(16px,1.8vw,24px);
+  transition:
+    background .32s var(--ease),
+    box-shadow .32s var(--ease),
+    transform .32s var(--pop);
+  will-change:transform;
+}
+.si-yes{
+  background:
+    linear-gradient(135deg,
+      hsl(var(--brand-h) 90% 97% / .95) 0%,
+      hsl(var(--brand-h) 80% 98% / .4) 55%,
+      transparent 100%);
+}
+.si-no{
+  background:hsl(0 0% 100% / .0);
+}
+html[data-theme="dark"] .si-yes{
+  background:
+    linear-gradient(135deg,
+      hsl(var(--brand-h) 40% 18% / .55) 0%,
+      transparent 70%);
+}
+
+.si-pane::before{
+  content:"";
+  position:absolute;
+  left:0; top:14%; bottom:14%;
+  width:3px;
+  border-radius:0 3px 3px 0;
+  opacity:.85;
+  transition:transform .32s var(--pop), opacity .32s var(--ease);
+  transform:scaleY(.72);
+  transform-origin:center;
+}
+.si-yes::before{background:var(--primary);}
+.si-no::before{background:var(--subtle); opacity:.55;}
+
+.si-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  width:max-content;
+  font-family:var(--font-display);
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--brand-text);
+}
+.si-no .si-tag{color:var(--muted);}
+.si-tag svg{
+  width:13px; height:13px; flex-shrink:0;
+}
+.si-yes .si-tag svg{color:var(--primary);}
+.si-no .si-tag svg{color:var(--subtle);}
+
+.si-pane p{
+  margin:0;
+  max-width:52ch;
+  font-size:clamp(13.6px,1.05vw,15px);
+  line-height:1.55;
+  color:var(--text-2);
+  font-weight:500;
+}
+
+.si-cut{
+  width:1px;
+  background:var(--border);
+  align-self:stretch;
+}
+
+/* hover — lift without layout shift */
+@media (hover:hover) and (pointer:fine){
+  .si-pane:hover{
+    transform:translateY(-2px);
+    z-index:1;
+  }
+  .si-yes:hover{
+    background:
+      linear-gradient(135deg,
+        hsl(var(--brand-h) 92% 95%) 0%,
+        hsl(var(--brand-h) 80% 97% / .7) 50%,
+        hsl(var(--brand-h) 70% 98% / .25) 100%);
+    box-shadow:0 16px 28px -22px hsl(var(--brand-h) 100% 36% / .45);
+  }
+  .si-no:hover{
+    background:var(--n50);
+    box-shadow:0 14px 26px -22px rgba(var(--ink-rgb),.35);
+  }
+  html[data-theme="dark"] .si-yes:hover{
+    background:
+      linear-gradient(135deg,
+        hsl(var(--brand-h) 45% 20% / .75) 0%,
+        hsl(var(--brand-h) 30% 16% / .35) 100%);
+  }
+  html[data-theme="dark"] .si-no:hover{
+    background:var(--n850);
+  }
+  .si-pane:hover::before{
+    transform:scaleY(1);
+    opacity:1;
+  }
+}
+
+@media (max-width:760px){
+  .si-rail{
+    grid-template-columns:1fr;
+  }
+  .si-cut{
+    width:auto; height:1px;
+  }
+  .si-pane::before{
+    left:12%; right:12%; top:0; bottom:auto;
+    width:auto; height:3px;
+    border-radius:0 0 3px 3px;
+    transform:scaleX(.72);
+    transform-origin:center;
+  }
+  .si-pane:hover::before{transform:scaleX(1);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .si-pane{transition:none;}
+  .si-pane:hover{transform:none;}
 }
 
 /* === vs-styles === */
@@ -2189,304 +2262,7 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
 .pf-tile:hover .pf-face{background:var(--pf); color:#fff; border-color:transparent;}
 .pf-card:hover{border-color:hsl(var(--pf-h) / .55);}
 
-/* === fw-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   TWO DESIGNS, ONE SECTION — a preview switch
-
-   This is scaffolding, not part of the page. Both versions of the
-   framework section are here so they can be looked at against each other
-   in the real page rather than side by side in screenshots, and the
-   switch above them chooses which one draws.
-
-   ── when a version is chosen ────────────────────────────────────────
-   Delete the .fwv-switch block, delete the losing .fwv wrapper and its
-   stylesheet (they are namespaced fw1- and fw2-, so neither touches the
-   other), and unwrap the winner. Nothing else on the page refers to any
-   of it.
-
-   Only the chosen one is in the flow: display:none rather than a hidden
-   overlay, so the section is the height of the version being shown and
-   the page below it sits where it really would.
-   ══════════════════════════════════════════════════════════════════════ */
-.fwv-switch{display:flex; justify-content:center; align-items:center; gap:6px;
-  margin-bottom:clamp(20px,2.4vw,32px); padding:5px; border-radius:999px;
-  width:max-content; margin-inline:auto;
-  background:var(--surface); border:1px solid var(--border);
-  box-shadow:0 10px 26px -20px rgba(var(--ink-rgb),.4);}
-.fwv-switch button{appearance:none; border:0; cursor:pointer;
-  padding:9px 18px; border-radius:999px; background:transparent;
-  font-family:var(--font-display); font-size:12px; font-weight:800;
-  letter-spacing:.08em; text-transform:uppercase; color:var(--text-2);
-  transition:background .25s var(--ease), color .25s var(--ease);}
-.fwv-switch button:hover{color:var(--text);}
-.fwv-switch button[aria-selected="true"]{background:var(--primary); color:#fff;}
-.fwv-switch span{font-size:11px; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--subtle); padding-inline:10px 4px;}
-.fwv[hidden]{display:none;}
-@media (max-width:520px){
-  .fwv-switch{width:100%; }
-  .fwv-switch span{display:none;}
-  .fwv-switch button{flex:1 1 0; padding-inline:8px; font-size:11px;}
-}
-
-/* ══════════ DESIGN 1 — the ring ══════════ */
-
-/* ══════════════════════════════════════════════════════════════════════
-   BUILT TO RANK — the six-step framework, drawn as the loop it is
-
-   The reference is a ring, and a ring is the honest shape: the sixth step
-   feeds the first. Refining is what turns up the next thing to audit. The
-   chain of six arrows this replaced said the same words in a line, and a
-   line has an end.
-
-   ── how it is built ────────────────────────────────────────────────
-   Every node is placed by left and top as a percentage of the square,
-   worked out once off a radius of 38% and six angles 60 degrees apart,
-   and then written down. Not calc(cos()) at runtime: a percentage inside
-   translate() resolves against the element's own box rather than its
-   container, so the trigonometry would have been measuring the wrong
-   thing. The arcs underneath are drawn from the same six angles in the
-   SVG's own 100x100 space, where a percentage means what it should.
-
-   The arcs between them are in the SVG underneath, drawn in the same
-   100x100 space at the same radius, each one starting and stopping 16
-   degrees short of the node it runs between so it never touches a
-   circle. They carry the flow's direction as an arrowhead; nothing else
-   in the drawing has to say which way it goes.
-
-   ── why the labels are positioned and not laid out ─────────────────
-   A label belongs to its node, so it is absolute inside the node rather
-   than a flex sibling: the circle stays centred on its point whatever
-   the label does, and three lines of text on TRACK cannot push AUDIT off
-   its angle. Which side it takes is the only thing that varies, and that
-   is three classes, not three layouts.
-   ══════════════════════════════════════════════════════════════════════ */
-
-/* The reference stands on the page's own near-white rather than the
-   tint. That also parts #proof and #framework, which were two tinted
-   sections in a row and read as one long band. */
-.fw1{display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
-  gap:clamp(24px,3.2vw,52px); align-items:center;}
-
-/* ---- the claim ---- */
-/* ---- one measure above and below every heading ----
-   The badge carries the space above the heading, and .sec-lede's own
-   16px carries the space below it. Six sections had restated one or the
-   other — a heading margin on top of the badge's, or a standfirst at 10,
-   20 or 24 instead of 16 — so no two heads on the page were the same
-   distance apart. The restatements set only what they add now: a width,
-   a size, a colour. Never the gap. */
-.fw1-say h2{margin-top:0; line-height:1.1;}
-.fw1-say h2 em{display:block; font-style:normal; color:var(--brand-text);}
-.fw1-lede{margin-top:16px; max-width:46ch;
-  font-size:var(--body); line-height:1.6; color:var(--text-2);}
-
-/* the three figures the claim rests on. Ticks rather than a second set of
-   dials: the numbers are inside sentences here, and a dial would be
-   drawing a proportion the sentence has already given. */
-.fw1-list{margin-top:clamp(18px,2.2vw,28px); display:grid;
-  gap:clamp(12px,1.4vw,18px);}
-.fw1-list li{display:grid; grid-template-columns:auto 1fr; gap:13px;
-  align-items:start; font-size:clamp(13px,.95vw,14.2px); line-height:1.52;
-  color:var(--text-2);}
-.fw1-list svg{width:20px; height:20px; margin-top:1px; flex-shrink:0;
-  color:var(--primary);}
-
-/* ---- the ring ---- */
-/* The ring is a container, and everything drawn inside it is measured in
-   cqw — a percentage of the ring's own width. This was the mess: the card
-   and the nodes were sized in px while the ring was sized in per cent, so
-   every time the ring got smaller the card stayed where it was and grew
-   taller as it narrowed, until it was sitting on top of 01 and 04. In cqw
-   the whole drawing shrinks together and keeps its proportions at any
-   size. The labels stay in px on purpose — they sit outside the ring and
-   have to stay readable whatever the ring does. */
-.fw1-orbit{position:relative; width:min(100%,640px); aspect-ratio:1;
-  justify-self:center; container-type:inline-size;}
-.fw1-wires{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
-/* non-scaling-stroke means these widths are read in rendered pixels, not
-   in the 100-unit space, so they are set to what they should look like */
-.fw1-wires .arc{fill:none; stroke:hsl(var(--brand-h) 72% 60%); stroke-width:1.3;
-  stroke-linecap:round; vector-effect:non-scaling-stroke;}
-.fw1-wires .rail{fill:none; stroke:hsl(var(--brand-h) 45% 78%); stroke-width:1.1;
-  stroke-dasharray:.6 3.4; stroke-linecap:round; vector-effect:non-scaling-stroke;}
-
-/* one rule for all six; only left and top differ */
-.fw1-node{position:absolute; transform:translate(-50%,-50%);
-  width:11.5cqw; aspect-ratio:1;
-  display:grid; place-items:center; border-radius:50%;
-  background:var(--surface);
-  box-shadow:0 10px 26px -12px rgba(var(--ink-rgb),.35),
-             inset 0 0 0 1px hsl(var(--brand-h) 40% 90%);
-  color:var(--brand-text);}
-.fw1-node svg{width:42%; height:42%;}
-/* r = 38% of the square, at 90, 30, -30, -90, 210 and 150 degrees */
-.fw1-n1{left:50%;   top:12%;}
-.fw1-n2{left:82.9%; top:31%;}
-.fw1-n3{left:82.9%; top:69%;}
-.fw1-n4{left:50%;   top:88%;}
-.fw1-n5{left:17.1%; top:69%;}
-.fw1-n6{left:17.1%; top:31%;}
-
-/* the step that is the section's argument gets the fill, the same way the
-   chain it replaced marked it */
-.fw1-node.is-key{background:linear-gradient(160deg,
-    hsl(var(--brand-h) 92% 56%), hsl(var(--brand-h) 96% 44%));
-  color:#fff; box-shadow:0 14px 30px -12px hsl(var(--brand-h) 90% 45% / .55),
-             inset 0 0 0 1px hsl(var(--brand-h) 90% 60%);}
-
-.fw1-num{position:absolute; top:-6px; left:-6px;
-  display:grid; place-items:center; min-width:26px; height:26px;
-  padding:0 6px; border-radius:99px;
-  background:var(--primary); color:#fff;
-  font-family:var(--font-display); font-size:11px; font-weight:800;
-  letter-spacing:.02em; box-shadow:0 0 0 3px var(--ground);}
-.fw1-node.side-l .fw1-num{left:auto; right:-6px;}
-.fw1-node.is-key .fw1-num{background:hsl(var(--brand-h) 96% 38%);}
-
-/* narrow on purpose: a label that wraps to three short lines stays
-   beside its own circle, where one long line would reach the next */
-/* Every label the same width, and every label the same distance from its
-   own circle. Six labels each as wide as their own longest word, each
-   starting wherever that left them, is most of what made this look
-   unsettled — the ring was tidy and the ragged ring of text around it was
-   not. One width and one gap, set once, and the six read as a set. */
-.fw1-lab{position:absolute; width:clamp(104px,9vw,126px);}
-.fw1-lab b{display:block; font-family:var(--font-display);
-  font-size:clamp(11.5px,1vw,13px); font-weight:800; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--text);}
-.fw1-lab span{display:block; margin-top:4px;
-  font-size:clamp(11px,.88vw,12.4px); line-height:1.4; color:var(--text-2);}
-.fw1-lab b{transition:color .3s var(--ease);}
-.fw1-node.is-key .fw1-lab b{color:var(--brand-text);}
-
-/* ---- the ring answers ----
-   data-walk hands the six to the page's own walker, which steps .on along
-   them and publishes the index on the container — the same script the
-   process section's orbit runs on, so this needs none of its own. A
-   pointer on a node holds it instead, because somebody reading one step
-   should not have it taken away on a timer.
-
-   The lit state is the state step 04 already wears. It was the section's
-   one fixed highlight; now it is what any of the six looks like when it
-   is the one being talked about, and 04 simply starts that way. */
-.fw1-node{transition:background .34s var(--ease), color .34s var(--ease),
-  box-shadow .34s var(--ease), transform .42s var(--pop);}
-.fw1-node.on,
-.fw1-node:hover{background:linear-gradient(160deg,
-    hsl(var(--brand-h) 92% 56%), hsl(var(--brand-h) 96% 44%));
-  color:#fff; transform:translate(-50%,-50%) scale(1.07);
-  box-shadow:0 16px 32px -12px hsl(var(--brand-h) 90% 45% / .55),
-             inset 0 0 0 1px hsl(var(--brand-h) 90% 60%);}
-.fw1-node.on .fw1-num,
-.fw1-node:hover .fw1-num{background:hsl(var(--brand-h) 96% 38%);}
-.fw1-node.on .fw1-lab b,
-.fw1-node:hover .fw1-lab b{color:var(--brand-text);}
-/* the pointer wins the argument with the clock */
-.fw1-orbit:hover .fw1-node.on:not(:hover){background:var(--surface);
-  color:var(--brand-text); transform:translate(-50%,-50%);
-  box-shadow:0 10px 26px -12px rgba(var(--ink-rgb),.35),
-             inset 0 0 0 1px hsl(var(--brand-h) 40% 90%);}
-.fw1-orbit:hover .fw1-node.on:not(:hover) .fw1-num{background:var(--primary);}
-.fw1-orbit:hover .fw1-node.on:not(:hover) .fw1-lab b{color:var(--text);}
-@media (prefers-reduced-motion:reduce){
-  .fw1-node{transition:none;}
-}
-
-.side-r .fw1-lab{left:calc(100% + 16px); top:50%; transform:translateY(-50%);
-  text-align:left;}
-.side-l .fw1-lab{right:calc(100% + 16px); top:50%; transform:translateY(-50%);
-  text-align:right;}
-.side-b .fw1-lab{top:calc(100% + 14px); left:50%; transform:translateX(-50%);
-  width:clamp(150px,19vw,210px); text-align:center;}
-
-/* ---- the page in the middle ---- */
-/* 38%, not 44%. The card is what the ring acts on, so it has to sit
-   inside it with room to spare — at 44 it crowded the nodes and covered
-   the dotted rail it is supposed to sit within. */
-.fw1-core{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  width:40%; border-radius:3cqw;
-  background:var(--surface); padding:3.2cqw;
-  box-shadow:0 18px 44px -20px rgba(var(--ink-rgb),.32),
-             inset 0 0 0 1px hsl(var(--brand-h) 40% 92%);
-  text-align:center;}
-/* the top node's label crosses the arc leaving it, so it rides a little
-   higher than the others — the only one of the six that has an arc
-   passing through where its text would otherwise sit */
-.fw1-n1 .fw1-lab{top:26%; left:calc(100% + 20px);}
-.fw1-core-top{display:flex; gap:.5cqw; align-items:center; justify-content:center;
-  flex-direction:column; margin-bottom:1.6cqw;}
-.fw1-core-top i{display:block; width:4cqw; height:.5cqw; border-radius:1cqw;
-  background:hsl(var(--brand-h) 45% 82%);}
-.fw1-core-top i:first-child{width:5.4cqw;}
-.fw1-core h3{font-family:var(--font-display); font-size:3.3cqw;
-  font-weight:800; letter-spacing:-0.01em; line-height:1.2; color:var(--text);}
-.fw1-core-sub{margin-top:.5cqw; font-size:1.72cqw; line-height:1.3;
-  letter-spacing:.01em; color:var(--text-2);}
-.fw1-rows{margin-top:2.2cqw; display:grid; gap:1cqw;}
-.fw1-rows li{display:grid; grid-template-columns:auto 1fr; gap:1.3cqw;
-  align-items:center; padding:1.15cqw 2cqw;
-  border-radius:99px; background:var(--bg);
-  box-shadow:inset 0 0 0 1px hsl(var(--brand-h) 38% 92%);
-  font-size:1.95cqw; line-height:1.3; font-weight:600; color:var(--text);
-  text-align:left;}
-.fw1-rows svg{width:2.4cqw; height:2.4cqw; color:var(--brand-text);}
-
-.fw1-cta{margin-top:clamp(22px,2.6vw,34px); display:flex; justify-content:center;}
-
-/* ---- reflow ----
-   The ring holds to one column: it is the section's own shape and it is
-   square, so it loses nothing by being read under the claim rather than
-   beside it. What it cannot keep is labels outside the circles — at this
-   width there is no outside — so below 760 the six become a list and the
-   ring stands above them as the picture it is. */
-/* ---- the band where the labels do not fit ----
-   Between 1040 and about 1340 the ring keeps most of its width while the
-   page loses its side margins, and the labels on the right run past the
-   edge of the window. The ring gives that width back here rather than
-   the section growing a sideways scroll: a smaller circle with the same
-   six things on it, which is what it is for. */
-@media (min-width:1041px) and (max-width:1360px){
-  .fw1-orbit{width:min(100%,470px);}
-  .fw1-lab{width:clamp(84px,8vw,108px);}
-  .side-r .fw1-lab{left:calc(100% + 12px);}
-  .side-l .fw1-lab{right:calc(100% + 12px);}
-  .fw1-n1 .fw1-lab{left:calc(100% + 14px);}
-}
-
-@media (max-width:1040px){
-  .fw1{grid-template-columns:minmax(0,1fr); gap:clamp(26px,4vw,40px);}
-  .fw1-orbit{width:min(100%,500px);}
-  .fw1-lede,.fw1-list{max-width:62ch;}
-}
-@media (max-width:760px){
-  .fw1-orbit{width:min(100%,340px);}
-  .fw1-lab{display:none;}
-  .fw1-core{width:46%;}
-  .fw1-core-sub,.fw1-rows li:nth-child(n+5){display:none;}
-
-  /* the six, said in words, under the picture of them */
-  .fw1-steps{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px; margin-top:clamp(20px,4vw,28px);}
-  .fw1-steps li{display:grid; grid-template-columns:auto 1fr; gap:10px;
-    align-items:start; padding:12px 13px; border-radius:14px;
-    background:var(--surface); box-shadow:inset 0 0 0 1px var(--border);}
-  .fw1-steps em{font-style:normal; font-family:var(--font-display);
-    font-size:11px; font-weight:800; color:var(--brand-text);}
-  .fw1-steps b{display:block; font-family:var(--font-display); font-size:12.5px;
-    font-weight:800; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--text);}
-  .fw1-steps span{display:block; margin-top:3px; font-size:12px; line-height:1.45;
-    color:var(--text-2);}
-
-  .fw1-cta{justify-content:stretch;}
-  .fw1-cta .btn{width:100%;}
-}
-@media (min-width:761px){ .fw1-steps{display:none;} }
-@media (max-width:420px){
-  .fw1-steps{grid-template-columns:minmax(0,1fr);}
-}
-
+/* === fw-styles (numbered framework only) === */
 /* ══════════ DESIGN 2 — the numbered run ══════════ */
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -2536,84 +2312,55 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
    a paragraph that is otherwise all one voice */
 .fw2-lede b{font-weight:700; color:var(--brand-text);}
 .fw2-lede cite{font-style:normal; color:var(--brand-text);}
+.fw2-sub{margin:clamp(22px,2.4vw,32px) 0 0; max-width:52ch;
+  font-family:var(--font-display); font-size:clamp(18px,1.55vw,22px);
+  font-weight:800; letter-spacing:-0.03em; line-height:1.2; color:var(--text);}
 
 /* ---- the framework ---- */
 .fw2-panel{border-radius:clamp(18px,2vw,26px);
   background:var(--surface); border:1px solid var(--border);
   box-shadow:0 26px 60px -34px rgba(var(--ink-rgb),.34);
-  padding:clamp(12px,1.4vw,18px);}
-.fw2-panel-h{display:block; text-align:center;
-  padding:clamp(4px,.6vw,8px) 0 clamp(11px,1.3vw,16px);
-  font-family:var(--font-display); font-size:clamp(12px,1.05vw,14.5px);
-  font-weight:800; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--text);}
+  padding:clamp(10px,1.2vw,16px); height:fit-content; width:100%;
+  align-self:start;
+  /* sit level with the h2 — skip the smark pill + its bottom margin */
+  margin-top:calc(8px + 8px + 1.2em + clamp(16px,1.8vw,22px));}
 
 .fw2-steps{position:relative; list-style:none;
   border:1px solid var(--border); border-radius:clamp(14px,1.6vw,20px);
-  padding:clamp(4px,.6vw,8px) clamp(10px,1.4vw,18px);}
-/* one line for the whole run, stopped half a row short at each end so it
-   begins on the first dot and ends on the last */
-.fw2-steps::before{content:""; position:absolute; z-index:0;
-  left:calc(clamp(10px,1.4vw,18px) + var(--fw2-num-w, 40px) + 12px);
-  top:calc(clamp(4px,.6vw,8px) + var(--fw2-row, 68px) / 2);
-  bottom:calc(clamp(4px,.6vw,8px) + var(--fw2-row, 68px) / 2);
-  width:2px; transform:translateX(-1px); border-radius:2px;
-  background:repeating-linear-gradient(180deg,
-    hsl(var(--brand-h) 45% 80%) 0 3px, transparent 3px 8px);}
+  padding:0 clamp(12px,1.4vw,18px); height:fit-content;}
 
 .fw2-steps li{position:relative; z-index:1;
-  display:grid; grid-template-columns:var(--fw2-num-w,40px) 12px auto minmax(0,1fr);
-  gap:0 clamp(10px,1.1vw,14px); align-items:center;
-  /* the row is as tall as two lines of description and a tile, and no
-     taller: six of these have to stand beside the claim, not run a
-     column and a half past it */
-  padding:clamp(7px,.8vw,9px) 0;}
+  display:flex; justify-content:flex-start; align-items:center;
+  gap:clamp(12px,1.3vw,18px);
+  padding:clamp(10px,1.1vw,14px) 0;}
 .fw2-steps li + li{border-top:1px solid var(--border);}
+.fw2-steps li:last-child{padding-bottom:clamp(10px,1.1vw,14px);}
+.fw2-steps li > div{width:auto;}
 
-.fw2-n{font-family:var(--font-display); font-size:clamp(17px,1.5vw,21px);
-  font-weight:800; letter-spacing:-0.02em; color:var(--brand-text);
-  font-variant-numeric:tabular-nums;}
 /* ---- the run answers ----
-   data-walk on the list hands the six to the page's own walker, the same
-   one the ring uses and the process section's orbit before it. What moves
-   is the tile and the dot on the rail; the numbers stay blue throughout
-   because they are the order, not the state, and dimming five of them to
-   light one would have been reading the order out loud. A pointer on a
-   row holds it — somebody reading one step should not have it taken away
-   on a timer. */
-.fw2-pip{width:9px; height:9px; border-radius:50%; justify-self:center;
-  background:hsl(var(--brand-h) 48% 82%); box-shadow:0 0 0 4px var(--surface);
-  transition:background .34s var(--ease), transform .42s var(--pop);}
+   data-walk on the list hands the six to the page's own walker.
+   What moves is the tile. A pointer on a row holds it. */
 .fw2-tile{transition:background .34s var(--ease), color .34s var(--ease),
   border-color .34s var(--ease), transform .42s var(--pop);}
 
-.fw2-steps li.on .fw2-pip,
-.fw2-steps li:hover .fw2-pip{background:var(--primary); transform:scale(1.3);}
 .fw2-steps li.on .fw2-tile,
 .fw2-steps li:hover .fw2-tile{background:var(--primary); color:#fff;
   border-color:var(--primary); transform:translateY(-1px);}
-/* the pointer wins the argument with the clock */
-.fw2-steps:hover li.on:not(:hover) .fw2-pip{background:hsl(var(--brand-h) 48% 82%);
-  transform:none;}
 .fw2-steps:hover li.on:not(:hover) .fw2-tile{background:hsl(var(--brand-h) 62% 95%);
   color:var(--brand-text); border-color:hsl(var(--brand-h) 50% 88%); transform:none;}
 @media (prefers-reduced-motion:reduce){
-  .fw2-pip,.fw2-tile{transition:none;}
+  .fw2-tile{transition:none;}
 }
 .fw2-tile{display:grid; place-items:center;
-  width:clamp(32px,2.7vw,38px); aspect-ratio:1; border-radius:clamp(9px,1vw,12px);
+  width:clamp(44px,4vw,56px); aspect-ratio:1; border-radius:clamp(11px,1.1vw,14px);
   background:hsl(var(--brand-h) 62% 95%); color:var(--brand-text);
   border:1px solid hsl(var(--brand-h) 50% 88%);}
 .fw2-tile svg{width:46%; height:46%;}
 .fw2-steps b{display:block; font-family:var(--font-display);
-  font-size:clamp(14px,1.15vw,16.5px); font-weight:800; letter-spacing:-0.022em;
+  font-size:clamp(15px,1.25vw,18px); font-weight:800; letter-spacing:-0.022em;
   color:var(--text);}
-/* li > div span, not .fw2-steps span. The number, the dot and the tile are
-   spans too, and an unscoped rule here was handing all three the
-   description's size, colour and top margin — which is why the number
-   came out small and grey and the rows stood taller than they needed to. */
-.fw2-steps li > div span{display:block; margin-top:2px;
-  font-size:clamp(11.6px,.87vw,12.6px); line-height:1.44; color:var(--text-2);}
+.fw2-steps li > div span{display:block; margin-top:4px;
+  font-size:clamp(12.5px,.95vw,14px); line-height:1.5; color:var(--text-2);}
 
 .fw2-cta{margin-top:clamp(18px,2vw,26px); display:flex; justify-content:center;}
 
@@ -2621,17 +2368,11 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
 @media (max-width:1040px){
   .fw2{grid-template-columns:minmax(0,1fr); gap:clamp(26px,4vw,38px);}
   .fw2-lede{max-width:64ch;}
+  .fw2-panel{margin-top:0;}
 }
 @media (max-width:680px){
-  /* the number and the rail are the first things to go: at this width
-     they cost a third of the row and the order is already obvious from
-     reading downwards */
-  .fw2-steps{--fw2-num-w:0px;}
-  .fw2-steps::before,.fw2-pip{display:none;}
-  .fw2-steps li{grid-template-columns:auto minmax(0,1fr);
-    gap:0 clamp(12px,3.4vw,16px);}
-  .fw2-n{display:none;}
-  .fw2-steps b::before{content:attr(data-n) "  "; color:var(--brand-text);}
+  .fw2-steps li{gap:clamp(12px,3.4vw,16px);
+    padding:clamp(12px,3vw,16px) 0;}
 
   .fw2-cta{justify-content:stretch;}
   .fw2-cta .btn{width:100%;}
@@ -2647,14 +2388,9 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
 /* and tighter again where the window is short before it is narrow.
    "One screen" is a height, so the rule that answers it is a height. */
 @media (min-width:1041px) and (max-height:900px){
-  .fw1-orbit{width:min(100%,470px);}
-  .fw1-lede{margin-top:clamp(12px,1.4vw,16px);}
-  .fw1-list{margin-top:clamp(14px,1.7vw,20px); gap:clamp(10px,1.1vw,14px);}
-  .fw1-cta{margin-top:clamp(14px,1.7vw,22px);}
   .fw2-lede{margin-top:clamp(12px,1.4vw,18px);}
-  .fw2-panel{padding:clamp(10px,1.1vw,14px);}
-  .fw2-panel-h{padding:clamp(4px,.5vw,7px) 0 clamp(9px,1.1vw,13px);}
-  .fw2-steps li{padding-block:clamp(7px,.85vw,10px);}
+  .fw2-panel{padding:clamp(8px,1vw,12px);}
+  .fw2-steps li{padding-block:clamp(10px,1.1vw,14px);}
   .fw2-cta{margin-top:clamp(14px,1.7vw,22px);}
 }
 /* a second step down for the 768-tall laptop, which is the shortest
@@ -2662,17 +2398,12 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
    it is three lines of display type and the only thing left with any
    height to spare. */
 @media (min-width:1041px) and (max-height:810px){
-  .fw1-orbit{width:min(100%,420px);}
-  .fw1-lab{width:clamp(92px,8vw,110px);}
-  .fw1-lede{font-size:var(--body);}
-  .fw1-list li{font-size:clamp(12.4px,.9vw,13.4px);}
-  .fw1-cta{margin-top:clamp(12px,1.4vw,18px);}
   .fw2-lede{font-size:var(--body);}
   .fw2-lede + .fw2-lede{font-size:var(--body);}
-  .fw2-panel{padding:clamp(8px,.9vw,11px);}
-  .fw2-tile{width:clamp(32px,2.7vw,38px);}
-  .fw2-steps li{padding-block:clamp(5px,.6vw,7px);}
-  .fw2-steps li > div span{font-size:clamp(11.5px,.88vw,12.6px); line-height:1.4;}
+  .fw2-panel{padding:clamp(6px,.8vw,10px);}
+  .fw2-tile{width:clamp(40px,3.4vw,48px);}
+  .fw2-steps li{padding-block:clamp(8px,.9vw,12px);}
+  .fw2-steps li > div span{font-size:clamp(12px,.9vw,13.2px); line-height:1.45;}
   .fw2-cta{margin-top:clamp(12px,1.4vw,18px);}
 }
 
@@ -2727,7 +2458,7 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
 /* ---- the disc ----
    Capped against the viewport as well as against the column: on a short
    laptop the height is what runs out first, not the width. */
-.eg-core{position:relative; width:min(100%,500px,52vh); aspect-ratio:1;
+.eg-core{position:relative; width:min(100%,600px,66vh); aspect-ratio:1;
   justify-self:center;}
 .eg-ring{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
 .eg-track{fill:none; stroke:var(--border); stroke-width:3.2;
@@ -2842,7 +2573,7 @@ html[data-theme="dark"] .eg-node{border-color:var(--n50);}
   border-bottom:1px solid var(--border); transition:border-color .4s var(--ease);}
 .eg-card.on::after{border-color:var(--primary);}
 
-.eg-ico{width:clamp(32px,3vw,38px); aspect-ratio:1; border-radius:14px;
+.eg-ico{width:clamp(44px,4.2vw,56px); aspect-ratio:1; border-radius:16px;
   display:grid; place-items:center; background:var(--ink-plate); color:#fff;
   transition:background .4s var(--ease), transform .45s var(--pop);}
 html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
@@ -2878,7 +2609,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
      390-wide phone has under the nav, so there was room to give. At 78%
      the two still clear the shortest phone tested (360x640) with the
      card whole. */
-  .eg-core{width:min(78%,292px); justify-self:center;}
+  .eg-core{width:min(88%,340px); justify-self:center;}
   .eg-node{display:none;}
   .eg-num{font-size:clamp(44px,13vw,62px);}
   .eg-lab,.eg-of{font-size:10.5px; letter-spacing:.13em;}
@@ -3916,6 +3647,73 @@ html[data-theme="dark"] .ftm{
   backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
 #services-2 .cn-sheet{ background:#fff !important; }
 html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
+
+/* Fill leftover sheet height under short deliverable copy with a quiet
+   audit graphic — layout, rail, and typography stay untouched. */
+@media (min-width:1041px){
+  #services-2 .cn-sheet{align-content:stretch;}
+  #services-2 .cn-card.on{align-self:stretch;}
+  #services-2 .cn-card > div{
+    display:flex; flex-direction:column; min-height:100%;
+  }
+  #services-2 .cn-viz{
+    flex:1 1 auto;
+    display:flex;
+    align-items:flex-end;
+    margin-top:clamp(22px,2.6vw,36px);
+    min-height:0;
+    pointer-events:none;
+    color:var(--primary);
+  }
+  #services-2 .cn-viz-svg{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:min(220px,42vh);
+  }
+  #services-2 .cn-viz-panel{
+    fill:hsl(var(--brand-h) 70% 96% / .55);
+    stroke:hsl(var(--brand-h) 55% 72% / .55);
+    stroke-width:1.2;
+  }
+  #services-2 .cn-viz-line{stroke:hsl(var(--brand-h) 70% 42% / .55);}
+  #services-2 .cn-viz-line.soft{stroke:hsl(var(--brand-h) 30% 62% / .38);}
+  #services-2 .cn-viz-chip{
+    fill:hsl(var(--brand-h) 90% 94% / .9);
+    stroke:hsl(var(--brand-h) 70% 68% / .45);
+    stroke-width:1;
+  }
+  #services-2 .cn-viz-search{stroke:hsl(var(--brand-h) 80% 48% / .55); fill:none;}
+  #services-2 .cn-viz-wire{stroke:hsl(var(--brand-h) 40% 58% / .4); fill:none;}
+  #services-2 .cn-viz-dot{fill:hsl(var(--brand-h) 80% 52% / .45);}
+  #services-2 .cn-viz-node circle{
+    fill:hsl(var(--brand-h) 90% 96% / .95);
+    stroke:hsl(var(--brand-h) 80% 52% / .55);
+    stroke-width:1.5;
+  }
+  #services-2 .cn-viz-node path{stroke:var(--primary); fill:none;}
+  #services-2 .cn-viz-bar{stroke:hsl(var(--brand-h) 80% 55% / .42);}
+  #services-2 .cn-viz-trend{stroke:hsl(var(--brand-h) 85% 45% / .55); fill:none;}
+  #services-2 .cn-card.on .cn-viz{animation:cnFromR .6s var(--ease) .22s backwards;}
+  html[data-theme="dark"] #services-2 .cn-viz-panel{
+    fill:hsl(var(--brand-h) 30% 18% / .55);
+    stroke:hsl(var(--brand-h) 40% 42% / .5);
+  }
+  html[data-theme="dark"] #services-2 .cn-viz-chip{
+    fill:hsl(var(--brand-h) 30% 22% / .8);
+    stroke:hsl(var(--brand-h) 45% 48% / .45);
+  }
+  html[data-theme="dark"] #services-2 .cn-viz-node circle{
+    fill:hsl(var(--brand-h) 30% 20% / .95);
+    stroke:hsl(var(--brand-h) 55% 52% / .55);
+  }
+}
+@media (max-width:1040px){
+  #services-2 .cn-viz{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  #services-2 .cn-card.on .cn-viz{animation:none;}
+}
 @media (max-width:1040px){
   #services-2 .cn-tab.on{ background:var(--primary) !important; color:#fff !important; }
   #services-2 .cn-go, #services-2 .cn .cn-go{
@@ -3972,7 +3770,6 @@ h1, h2, h3, h4, h5, h6{
 .gw-say > p,
 .wn-say p,
 .cg-say > p,
-.fw1-lede,
 .fw2-lede,
 .fw2-lede + .fw2-lede,
 .av1-copy p,
@@ -4016,8 +3813,7 @@ h1, h2, h3, h4, h5, h6{
 .hx-card p,
 .gt-card p,
 .sg-item p,
-.sp-list div > span,
-.fw1-list li,
+.si-pane p,
 .lo-strip div > span,
 .cn-list li,
 .cn-subs em,
@@ -4064,8 +3860,7 @@ h1, h2, h3, h4, h5, h6{
 .ws-item h3,
 .eg-card h3,
 .gw-block h3,
-.pf-card h3,
-.sp-top h3{
+.pf-card h3{
   font-family:var(--font-display);
   font-size:var(--h3);
 }

@@ -643,30 +643,6 @@
   });
 })();
 
-
-/* === fwv-script === */
-
-/* The preview switch. Scaffolding — it goes when a design is chosen.
-
-   The panels are hidden with the hidden attribute rather than a class, so
-   they are out of the accessibility tree as well as out of the layout,
-   and the page reads as though only the chosen one exists. */
-(function(){
-  var bar = document.querySelector(".fwv-switch");
-  if (!bar) return;
-  bar.addEventListener("click", function(e){
-    var btn = e.target.closest("button[data-fwv]");
-    if (!btn) return;
-    bar.querySelectorAll("button[data-fwv]").forEach(function(b){
-      var on = b === btn;
-      b.setAttribute("aria-selected", on ? "true" : "false");
-      var panel = document.getElementById("fwv" + b.dataset.fwv);
-      if (panel) panel.hidden = !on;
-    });
-  });
-})();
-
-
 /* === ws-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
