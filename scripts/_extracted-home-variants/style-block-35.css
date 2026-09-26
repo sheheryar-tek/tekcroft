@@ -1,0 +1,13 @@
+
+/* the board's heading sits above its line, and the stack is tightened so
+   the section holds one screen */
+@media (min-width:1041px){
+  #about-v6 .cv-board-top{grid-template-columns:minmax(0,1fr); gap:8px; margin-bottom:14px;}
+  #about-v6 .cv-board-top h3{white-space:normal;}
+  #about-v6 .cv-ribbon{row-gap:18px;}
+  #about-v6 .cv .cv-in{padding:11px 14px;}
+  #about-v6 .cv-ic{width:30px; height:30px;}
+  #about-v6 .cv::after{bottom:-14px; font-size:13px;}
+  #about-v6 .cv-t b{font-size:14px;}
+  #about-v6{padding-block:clamp(28px,3.2vw,44px);}
+}

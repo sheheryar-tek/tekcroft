@@ -4059,9 +4059,9 @@ html[data-theme="dark"] #process .eg-exp-note{
 #services-2 .acc-item.on{
   flex:1 1 auto;
   min-width:min(360px,52vw);
-  border-color:var(--tsm-ink);
-  background:var(--tsm-ink);
-  box-shadow:0 22px 48px -28px rgba(var(--ink-rgb),.55);
+  border-color:#DAEEF6;
+  background:#DAEEF6;
+  box-shadow:0 22px 48px -28px rgba(var(--ink-rgb),.28);
 }
 #services-2 .acc-bg{
   position:absolute; inset:0; opacity:0;
@@ -4070,30 +4070,26 @@ html[data-theme="dark"] #process .eg-exp-note{
 #services-2 .acc-item.on .acc-bg{opacity:1;}
 #services-2 .acc-fb{
   position:absolute; inset:0;
-  background:
-    radial-gradient(62% 58% at 78% 12%, hsl(var(--brand-h) 92% 52% / .52) 0%, transparent 64%),
-    radial-gradient(52% 46% at 14% 86%, hsl(var(--brand-h) 88% 42% / .40) 0%, transparent 68%),
-    linear-gradient(158deg, #12395C 0%, #101820 54%, #080c12 100%);
+  background:#DAEEF6;
 }
 #services-2 .acc-fb::before{
   content:""; position:absolute; inset:0;
   background-image:
-    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    linear-gradient(rgba(11,23,36,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11,23,36,.06) 1px, transparent 1px);
   background-size:48px 48px;
   -webkit-mask-image:radial-gradient(84% 82% at 70% 24%, #000, transparent 74%);
   mask-image:radial-gradient(84% 82% at 70% 24%, #000, transparent 74%);
 }
 #services-2 .acc-wm{
   position:absolute; right:5%; bottom:7%;
-  width:118px; height:118px; color:#fff; opacity:.12;
+  width:118px; height:118px; color:var(--ink-plate); opacity:.08;
 }
 #services-2 .acc-wm .ico,
 #services-2 .acc-wm svg{display:block; width:100%; height:100%;}
 #services-2 .acc-veil{
   position:absolute; inset:0;
-  background:linear-gradient(96deg, rgba(7,19,32,.92) 0%, rgba(7,19,32,.66) 48%,
-    hsl(var(--brand-h) 92% 26% / .52) 100%);
+  background:transparent;
 }
 #services-2 .acc-slim{
   position:absolute; inset:0;
@@ -4125,7 +4121,7 @@ html[data-theme="dark"] #process .eg-exp-note{
   position:absolute; inset:0; z-index:2;
   display:flex; flex-direction:column;
   padding:20px 22px 56px;
-  color:#fff; opacity:0; transform:translateY(8px);
+  color:var(--ink-plate); opacity:0; transform:translateY(8px);
   transition:opacity .42s var(--ease) .14s, transform .42s var(--ease) .14s;
 }
 #services-2 .acc-item.on .acc-open{opacity:1; transform:none;}
@@ -4133,14 +4129,14 @@ html[data-theme="dark"] #process .eg-exp-note{
   font-family:var(--font-display);
   font-variant-numeric:tabular-nums;
   font-size:12px; font-weight:700; letter-spacing:.05em;
-  color:rgba(255,255,255,.6);
+  color:rgba(11,23,36,.45);
 }
 #services-2 .acc-open .ico-t{
   width:40px; height:40px; border-radius:12px;
   margin:auto 0 12px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.28);
-  color:#fff; display:grid; place-items:center; padding:9px;
+  background:rgba(11,23,36,.08);
+  border:1px solid rgba(11,23,36,.14);
+  color:var(--ink-plate); display:grid; place-items:center; padding:9px;
 }
 #services-2 .acc-open .ico-t svg{width:100%; height:100%; display:block;}
 #services-2 .acc-open h3{
@@ -4150,11 +4146,11 @@ html[data-theme="dark"] #process .eg-exp-note{
   line-height:1.15;
   margin:0 0 8px;
   max-width:20ch;
-  color:#fff;
+  color:var(--ink-plate);
 }
 #services-2 .acc-open p{
   font-size:13.2px; line-height:1.55;
-  color:rgba(255,255,255,.76);
+  color:rgba(11,23,36,.72);
   margin:0;
   max-width:48ch;
   display:-webkit-box;
@@ -4167,7 +4163,7 @@ html[data-theme="dark"] #process .eg-exp-note{
   display:inline-flex; align-items:center; gap:8px;
   padding:12px 18px;
   border-radius:16px 0 16px 0;
-  background:#DAEEF6; color:var(--ink-plate);
+  background:var(--primary); color:#fff;
   font-family:var(--font-display);
   font-size:12.5px; font-weight:700; white-space:nowrap;
   text-decoration:none;
@@ -4180,7 +4176,7 @@ html[data-theme="dark"] #process .eg-exp-note{
 }
 #services-2 .acc-item.on .acc-cta{opacity:1; pointer-events:auto; transform:none;}
 #services-2 .acc-cta .ico{width:14px; height:14px; flex-shrink:0;}
-#services-2 .acc-cta:hover{background:#c5e4f1; padding-right:24px; color:var(--ink-plate);}
+#services-2 .acc-cta:hover{background:var(--p400); padding-right:24px; color:#fff;}
 
 @media (max-width:1040px){
   #services-2 .acc{flex-direction:column; height:auto; gap:8px;}

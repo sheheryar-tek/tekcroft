@@ -1,0 +1,13 @@
+
+/* the head follows the first variant: the copy on the left, the pictures
+   on the right; the ribbon and the figures below are unchanged */
+#about-v6 .cv-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center;
+  gap:clamp(24px,3.4vw,56px); margin-bottom:clamp(24px,2.8vw,36px);}
+#about-v6 .cv-say h2 em{display:block;}
+#about-v6 .cv-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.66;
+  color:var(--text-2); max-width:54ch;}
+#about-v6 .cv-say .btn{margin-top:18px;}
+@media (max-width:1040px){
+  #about-v6 .cv-head{grid-template-columns:minmax(0,1fr);}
+  #about-v6 .cg-art{max-width:560px;}
+}

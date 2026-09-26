@@ -1,0 +1,10 @@
+
+/* the lanes sit in one box, the way the reference does it: the fade and
+   the scrolling happen inside its rounded edge */
+.iw-box{padding:clamp(16px,1.8vw,26px); border-radius:26px; background:var(--bg-alt);
+  border:1px solid var(--border); overflow:hidden;}
+html[data-theme="dark"] .iw-box{background:hsl(var(--brand-h) 45% 12%);}
+#industries{overflow:visible;}
+.iw-box .iw-lanes{-webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);}
+.iw-box .iw-chip{background:var(--surface);}

@@ -1,0 +1,19 @@
+
+/* the ribbon stands up: the six stages run down the column the pictures
+   used to hold, with the arrow between them pointing the way */
+@media (min-width:1041px){
+  #about-v6 .cv-head{grid-template-columns:minmax(0,1fr) minmax(0,.92fr); align-items:center;
+    margin-bottom:clamp(20px,2.4vw,30px);}
+  #about-v6 .cv-ribbon{grid-template-columns:minmax(0,1fr); row-gap:22px; column-gap:0;}
+  #about-v6 .cv .cv-in,#about-v6 .cv:first-child .cv-in,#about-v6 .cv:last-child .cv-in{
+    clip-path:none; border-radius:16px; padding:13px 16px; min-height:0;}
+  #about-v6 .cv::after{position:absolute; left:50%; bottom:-17px; transform:translateX(-50%);
+    content:"\2193"; color:hsl(var(--brand-h) 75% 62%); font-size:15px; line-height:1; pointer-events:none;}
+  #about-v6 .cv:last-child::after{content:none;}
+  #about-v6 .cv.on .cv-in{transform:translateX(4px);}
+  #about-v6 .cv:hover .cv-in{transform:translateX(2px);}
+}
+#about-v6 .cv-figs-wrap{margin-top:clamp(18px,2.2vw,28px); padding-top:clamp(14px,1.8vw,20px);
+  border-top:1px solid var(--border);}
+#about-v6 .cv-figs{margin-top:0; padding-top:0; border-top:0;}
+#about-v6 .cv-board{padding:clamp(16px,1.8vw,24px);}

@@ -1,0 +1,49 @@
+
+/* ── variant 3 across screen sizes ─────────────────────────────────────
+   Wide: two columns. Under 1040 the stage drops below the copy, so it is
+   capped and centred rather than stretched. Under 620 the wires go, the
+   core shrinks, the arrows give way to swiping, and one screen fills the
+   rail at a time. */
+@media (max-width:1180px){
+  #search-split-v3 .nsr-grid{gap:clamp(22px,3vw,40px);}
+  #search-split-v3 .nsr-card{flex-basis:clamp(152px,17vw,180px);}
+}
+@media (max-width:1040px){
+  #search-split-v3 .nsr-say{max-width:760px;}
+  #search-split-v3 .nsr-say .nsr-lede{max-width:none;}
+  #search-split-v3 .nsr-stage{max-width:760px; width:100%; margin-inline:auto; height:auto;}
+  #search-split-v3 .nsr-wires{top:56px; height:clamp(86px,12vw,120px);}
+  #search-split-v3 .nsr-orb{width:clamp(104px,13vw,132px); height:clamp(104px,13vw,132px);
+    margin-block:clamp(44px,7vw,68px) clamp(14px,2vw,20px);}
+  #search-split-v3 .nsr-deck{flex:none;}
+}
+@media (max-width:820px){
+  #search-split-v3 .nsr-node{padding:10px 5px 9px; border-radius:14px;}
+  #search-split-v3 .nsr-node b{font-size:10.8px;}
+  #search-split-v3 .nsr-logo,#search-split-v3 .nsr-spark{width:24px; height:24px;}
+  #search-split-v3 .nsr-spark svg{width:18px; height:18px;}
+}
+@media (max-width:620px){
+  #search-split-v3{padding-block:clamp(34px,7vw,46px);}
+  #search-split-v3 h2{font-size:clamp(26px,7vw,32px);}
+  #search-split-v3 .nsr-box{grid-template-columns:auto minmax(0,1fr); gap:12px; padding:16px;}
+  #search-split-v3 .nsr-nodes{gap:8px;}
+  #search-split-v3 .nsr-orb{width:96px; height:96px; margin-block:26px 16px;}
+  #search-split-v3 .nsr-ring.r1{inset:-10px;} #search-split-v3 .nsr-ring.r2{inset:-18px;}
+  #search-split-v3 .nsr-deck{padding:10px; gap:0;}
+  #search-split-v3 .nsr-arw{display:none;}           /* swipe and the dots do the work here */
+  #search-split-v3 .nsr-rail{gap:10px; padding:10px 2px 12px; scroll-padding-inline:2px;}
+  #search-split-v3 .nsr-card{flex-basis:min(86%,300px);}
+  #search-split-v3 .nsr-dots{margin-top:10px; gap:9px;}
+  #search-split-v3 .nsr-dot{width:9px; height:9px;}
+  #search-split-v3 .nsr-dot.on{width:22px;}
+}
+@media (max-width:430px){
+  /* three across, so the five surfaces sit 3 + 2 with nothing stranded */
+  #search-split-v3 .nsr-nodes{grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px;}
+  #search-split-v3 .nsr-node{padding:9px 4px 8px;}
+  #search-split-v3 .nsr-node b{font-size:9.8px; line-height:1.2;}
+  #search-split-v3 .nsr-logo,#search-split-v3 .nsr-spark{width:21px; height:21px;}
+  #search-split-v3 .nsr-spark svg{width:16px; height:16px;}
+  #search-split-v3 .nsr-card{flex-basis:min(90%,300px);}
+}

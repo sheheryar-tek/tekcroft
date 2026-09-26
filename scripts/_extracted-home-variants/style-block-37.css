@@ -1,0 +1,14 @@
+
+/* the board sits at its own, shorter height and centres against the copy */
+@media (min-width:1041px){
+  #about-v6 .cv-head{align-items:center;}
+  #about-v6 .cv-board{align-self:center;}
+  #about-v6 .cv-ribbon{flex:none; row-gap:12px; align-content:start;}
+  #about-v6 .cv .cv-in{padding:7px 12px; min-height:0;}
+  #about-v6 .cv-ic{width:25px; height:25px; border-radius:8px;}
+  #about-v6 .cv-ic svg{width:13px; height:13px;}
+  #about-v6 .cv-t i{font-size:9px;}
+  #about-v6 .cv-t b{font-size:12.8px;}
+  #about-v6 .cv::after{bottom:-10px; font-size:11px;}
+  #about-v6 .cv-board-top{margin-bottom:9px;}
+}

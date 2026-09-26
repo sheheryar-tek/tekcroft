@@ -1,0 +1,28 @@
+
+/* ── the five surfaces feed one line ──────────────────────────────────
+   The curved wires and the badge in the middle are gone. Each surface
+   drops into a shared bus, the bus carries the flow to one label, and
+   the label hands it on to the screens below. */
+#search-split-v3 .nsr-flow{position:relative; margin:clamp(10px,1.4vw,18px) 0 clamp(14px,1.8vw,22px);
+  height:clamp(96px,10vw,124px);}
+.nsr-bus{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
+.nsr-drop,.nsr-down{fill:none; stroke:hsl(var(--brand-h) 70% 72%); stroke-width:1.6; stroke-dasharray:5 6;
+  vector-effect:non-scaling-stroke;}
+.nsr-run{fill:none; stroke:var(--primary); stroke-width:2.6; stroke-linecap:round;
+  stroke-dasharray:14 600; stroke-dashoffset:614; vector-effect:non-scaling-stroke;
+  animation:nsrRun 2.8s linear infinite; animation-delay:calc(var(--k) * .28s);}
+@keyframes nsrRun{from{stroke-dashoffset:614;} to{stroke-dashoffset:14;}}
+#search-split-v3 .nsr-node-dot{display:none;}
+.nsr-pill{position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); z-index:2;
+  padding:9px 20px; border-radius:99px; background:var(--primary); color:#fff;
+  font-family:var(--font-display); font-size:clamp(12.5px,1.15vw,14.4px); font-weight:800;
+  letter-spacing:-.01em; white-space:nowrap;
+  box-shadow:0 16px 30px -18px hsl(var(--brand-h) 95% 34% / .9);}
+@media (max-width:620px){
+  #search-split-v3 .nsr-flow{height:72px;}
+  .nsr-bus{display:none;}
+  .nsr-pill{position:relative; left:auto; top:auto; transform:none; display:inline-flex; margin:0 auto;
+    inset:auto;}
+  #search-split-v3 .nsr-flow{display:grid; place-items:center;}
+}
+@media (prefers-reduced-motion:reduce){ .nsr-run{animation:none; opacity:0;} }

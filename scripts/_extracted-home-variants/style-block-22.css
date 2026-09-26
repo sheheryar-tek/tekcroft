@@ -1,0 +1,11 @@
+
+/* the eyebrow keeps its own width, the core wears the mark as a chip, and
+   the deck takes whatever height is left so both columns finish level */
+#search-split-v3 .nsr-eyebrow{align-self:flex-start;}
+#search-split-v3 .nsr-mark{width:46%; height:46%; filter:drop-shadow(0 6px 14px hsl(var(--brand-h) 95% 25% / .35));}
+#search-split-v3 .nsr-orb{margin-block:clamp(70px,8vw,96px) clamp(14px,1.6vw,20px);}
+#search-split-v3 .nsr-deck{flex:1; align-items:stretch;}
+#search-split-v3 .nsr-rail{align-items:stretch;}
+#search-split-v3 .nsr-card{flex:0 0 clamp(168px,19vw,208px); display:flex; flex-direction:column; overflow:hidden;}
+#search-split-v3 .nsr-body{flex:1; min-height:0;}
+#search-split-v3 .nsr-arw{align-self:center;}

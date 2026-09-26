@@ -1,0 +1,18 @@
+
+/* the board is brought down to the height of the copy beside it, so the
+   pair reads as one frame */
+@media (min-width:1041px){
+  #about-v6 .cv-head{align-items:stretch;}
+  #about-v6 .cv-say{justify-content:center;}
+  #about-v6 .cv-board{display:flex; flex-direction:column; padding:16px 18px;}
+  #about-v6 .cv-board-top{margin-bottom:10px;}
+  #about-v6 .cv-board-top h3{font-size:17px;}
+  #about-v6 .cv-board-top p{font-size:12.4px; line-height:1.5;}
+  #about-v6 .cv-ribbon{flex:1; row-gap:14px; align-content:space-between;}
+  #about-v6 .cv .cv-in{padding:9px 13px; gap:9px; border-radius:13px;}
+  #about-v6 .cv-ic{width:27px; height:27px; border-radius:9px;}
+  #about-v6 .cv-ic svg{width:14px; height:14px;}
+  #about-v6 .cv-t i{font-size:9.4px;}
+  #about-v6 .cv-t b{font-size:13.2px;}
+  #about-v6 .cv::after{bottom:-11px; font-size:12px;}
+}

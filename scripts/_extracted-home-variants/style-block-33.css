@@ -1,0 +1,9 @@
+
+/* the copy and the pictures run as parallel columns: the collage is sized
+   to the copy so both blocks start and finish on the same line */
+@media (min-width:1041px){
+  #about-v6 .cv-head{align-items:center;}
+  #about-v6 .cv-say{display:flex; flex-direction:column; align-items:flex-start;}
+  #about-v6 .cv-say .btn{margin-top:20px;}
+  #about-v6 .cg-art{width:100%; max-width:520px; margin-left:auto;}
+}

@@ -1,0 +1,66 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHO WE ARE — variant 3: the copy and the figures share the top, and the
+   blueprint runs across the foot as a track. The stage it is on moves
+   forward on its own, the rail fills behind it, and any stage can be
+   picked up with the pointer or the arrow keys.
+   ══════════════════════════════════════════════════════════════════════ */
+#about-v3{padding-block:clamp(40px,4.6vw,68px); background:var(--surface);}
+.bt-top{display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); gap:clamp(24px,3.4vw,56px);
+  align-items:center;}
+.bt-say .smark{margin-bottom:12px;}
+#about-v3 h2{margin:0; font-size:clamp(27px,2.9vw,40px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#about-v3 h2 em{font-style:normal; color:var(--brand-text);}
+.bt-say p{margin:16px 0 0; font-size:clamp(14.4px,1.12vw,15.8px); line-height:1.7; color:var(--text-2); max-width:56ch;}
+.bt-say .btn{margin-top:clamp(18px,2vw,26px);}
+
+/* the figures */
+.bt-figs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(10px,1.2vw,16px);}
+.bt-fig{padding:clamp(14px,1.5vw,18px); border-radius:16px; background:var(--bg-alt); border:1px solid var(--border);
+  transition:border-color .3s var(--ease), transform .3s var(--ease);}
+.bt-fig:hover{border-color:hsl(var(--brand-h) 70% 80%); transform:translateY(-2px);}
+.bt-fig:last-child{grid-column:1 / -1;}
+.bt-fig b{display:block; font-family:var(--font-display); font-size:clamp(21px,2.1vw,30px); font-weight:800;
+  letter-spacing:-.03em; line-height:1; color:var(--brand-text);}
+.bt-fig b em{font-style:normal;}
+.bt-fig span{display:block; margin-top:7px; font-size:clamp(11.6px,.98vw,13px); color:var(--muted);}
+
+/* the track */
+.bt-board{margin-top:clamp(26px,3vw,42px); padding:clamp(20px,2.2vw,30px); border-radius:22px;
+  background:var(--bg-alt); border:1px solid var(--border);
+  display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr); gap:clamp(20px,2.6vw,40px); align-items:center;}
+#about-v3 .bt-head h3{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.6vw,21px); font-weight:800;
+  letter-spacing:-.025em; color:var(--text); text-transform:none;}
+.bt-head p{margin:9px 0 0; font-size:clamp(13.2px,1.05vw,14.4px); line-height:1.6; color:var(--text-2);}
+
+.bt-track{position:relative; padding-top:6px;}
+.bt-rail{position:absolute; left:6%; right:6%; top:29px; height:3px; border-radius:99px;
+  background:hsl(var(--brand-h) 55% 88%); overflow:hidden;}
+.bt-fill{display:block; height:100%; width:0; background:var(--primary); border-radius:99px;
+  transition:width .5s var(--ease);}
+.bt-steps{position:relative; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:4px;}
+.bt-step{display:flex; flex-direction:column; align-items:center; gap:9px; padding:0; border:0; background:none;
+  font:inherit; cursor:pointer;}
+.bt-dot{display:grid; place-items:center; width:46px; height:46px; border-radius:50%; background:var(--surface);
+  border:1px solid var(--border); color:var(--brand-text);
+  transition:background .32s var(--ease), border-color .32s var(--ease), color .32s var(--ease), transform .32s var(--pop);}
+.bt-dot svg{width:20px; height:20px;}
+.bt-step b{font-family:var(--font-display); font-size:clamp(11.6px,1vw,13.4px); font-weight:700;
+  letter-spacing:-.015em; color:var(--text-2); transition:color .32s var(--ease);}
+.bt-step:hover .bt-dot{border-color:hsl(var(--brand-h) 70% 76%);}
+.bt-step.on .bt-dot{background:var(--primary); border-color:var(--primary); color:#fff; transform:scale(1.06);}
+.bt-step.on b{color:var(--text);}
+.bt-step.done .bt-dot{border-color:hsl(var(--brand-h) 70% 76%);}
+.bt-step:focus-visible .bt-dot{outline:2px solid var(--primary); outline-offset:3px;}
+
+@media (max-width:1040px){
+  .bt-top{grid-template-columns:minmax(0,1fr); gap:26px;}
+  .bt-board{grid-template-columns:minmax(0,1fr); gap:20px;}
+}
+@media (max-width:640px){
+  .bt-figs{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .bt-steps{grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 4px;}
+  .bt-rail{display:none;}
+  .bt-say .btn{width:100%; justify-content:center;}
+}
+@media (prefers-reduced-motion:reduce){ .bt-dot,.bt-fill,.bt-fig{transition:none;} }

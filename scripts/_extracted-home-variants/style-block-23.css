@@ -1,0 +1,8 @@
+
+/* the copy starts at the top, so the surfaces line up with the heading
+   rather than sitting above it, and the mark turns slowly in the core */
+#search-split-v3 .nsr-say{justify-content:flex-start;}
+#search-split-v3 .nsr-orb{margin-block:clamp(56px,6.5vw,80px) clamp(14px,1.6vw,20px);}
+#search-split-v3 .nsr-mark{animation:nsrSpin 16s linear infinite;}
+@keyframes nsrSpin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){ #search-split-v3 .nsr-mark{animation:none;} }

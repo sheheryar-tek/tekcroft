@@ -1,0 +1,5 @@
+
+/* the cards carry their icon and name only */
+#industries-v2 .ig-top{justify-content:center;}
+#industries-v2 .ig-ic{width:clamp(38px,3.3vw,46px); height:clamp(38px,3.3vw,46px);}
+#industries-v2 .ig-card{gap:12px; padding:clamp(16px,1.6vw,20px);}

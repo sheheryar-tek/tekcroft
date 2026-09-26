@@ -1,0 +1,54 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHO WE ARE — variant 2: the copy on the left, the six-stage blueprint
+   on the right, and the figures along the foot. The stage the blueprint
+   is on walks forward on its own and follows the pointer.
+   ══════════════════════════════════════════════════════════════════════ */
+#about-v2{padding-block:clamp(40px,4.6vw,68px); background:var(--surface);}
+.bw-grid{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(24px,3.4vw,56px);
+  align-items:center;}
+.bw-say .smark{margin-bottom:12px;}
+#about-v2 h2{margin:0; font-size:clamp(27px,2.9vw,40px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#about-v2 h2 em{font-style:normal; color:var(--brand-text);}
+.bw-say p{margin:16px 0 0; font-size:clamp(14.4px,1.12vw,15.8px); line-height:1.7; color:var(--text-2); max-width:56ch;}
+.bw-say .btn{margin-top:clamp(18px,2vw,26px);}
+
+.bw-board{padding:clamp(20px,2.2vw,30px); border-radius:22px; background:var(--bg-alt);
+  border:1px solid var(--border);}
+#about-v2 .bw-board h3{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.6vw,21px);
+  font-weight:800; letter-spacing:-.025em; color:var(--text); text-transform:none;}
+.bw-board > p{margin:10px 0 clamp(16px,1.8vw,22px); font-size:clamp(13.4px,1.05vw,14.6px); line-height:1.65;
+  color:var(--text-2);}
+.bw-steps{list-style:none; margin:0; padding:0; display:grid; gap:9px;}
+.bw-step{position:relative; display:flex; align-items:center; gap:11px; padding:10px 13px; border-radius:13px;
+  background:var(--surface); border:1px solid var(--border);
+  transition:border-color .3s var(--ease), transform .3s var(--ease);}
+.bw-step + .bw-step::before{content:""; position:absolute; left:26px; top:-9px; width:1.5px; height:9px;
+  background:hsl(var(--brand-h) 60% 80%);}
+.bw-step b{font-family:var(--font-display); font-size:clamp(13.4px,1.15vw,15px); font-weight:700;
+  letter-spacing:-.02em; color:var(--text);}
+.bw-ic{flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:10px;
+  background:hsl(var(--brand-h) 85% 95%); color:var(--brand-text);
+  transition:background .3s var(--ease), color .3s var(--ease);}
+html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
+.bw-ic svg{width:16px; height:16px;}
+.bw-step.on{border-color:var(--primary); transform:translateX(3px);}
+.bw-step.on .bw-ic{background:var(--primary); color:#fff;}
+
+.bw-figs{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:clamp(8px,1vw,14px);
+  margin-top:clamp(24px,3vw,40px); padding-top:clamp(18px,2vw,26px); border-top:1px solid var(--border);}
+.bw-fig b{display:block; font-family:var(--font-display); font-size:clamp(19px,2vw,28px); font-weight:800;
+  letter-spacing:-.03em; color:var(--brand-text); line-height:1;}
+.bw-fig b em{font-style:normal;}
+.bw-fig span{display:block; margin-top:7px; font-size:clamp(11.4px,.95vw,12.6px); line-height:1.35; color:var(--muted);}
+
+@media (max-width:1040px){
+  .bw-grid{grid-template-columns:minmax(0,1fr); gap:26px;}
+  .bw-figs{grid-template-columns:repeat(4,minmax(0,1fr)); row-gap:18px;}
+}
+@media (max-width:640px){
+  .bw-figs{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .bw-say .btn{width:100%; justify-content:center;}
+  .bw-board{padding:18px;}
+}
+@media (prefers-reduced-motion:reduce){ .bw-step{transition:none;} }

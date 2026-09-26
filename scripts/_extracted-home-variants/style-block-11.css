@@ -1,0 +1,42 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   INDUSTRIES — the heading sits centred, and the list runs underneath in
+   three lanes: the middle one travels against the other two. Hovering a
+   lane stops it, so a name can be read.
+   ══════════════════════════════════════════════════════════════════════ */
+#industries{padding-block:clamp(36px,4vw,60px); background:var(--surface); overflow:hidden;}
+#industries .sec-head{margin-bottom:clamp(20px,2.4vw,32px);}
+#industries h2{text-transform:none; letter-spacing:-.035em;}
+#industries h2 em{font-style:normal; color:var(--brand-text);}
+
+.iw-lanes{display:grid; gap:clamp(10px,1.2vw,14px);
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);}
+.iw-lane{overflow:hidden;}
+.iw-track{display:flex; gap:clamp(10px,1.2vw,14px); width:max-content;
+  animation:iwRun var(--dur,36s) linear infinite;}
+.iw-lane.rev .iw-track{animation-direction:reverse;}
+.iw-lane:hover .iw-track{animation-play-state:paused;}
+@keyframes iwRun{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+.iw-chip{display:inline-flex; align-items:center; gap:10px; padding:11px 18px; border-radius:99px;
+  background:var(--surface); border:1px solid var(--border); white-space:nowrap;
+  font-family:var(--font-display); font-size:clamp(13px,1.1vw,15px); font-weight:700; letter-spacing:-.02em;
+  color:var(--text); box-shadow:0 12px 26px -24px hsl(var(--brand-h) 90% 25% / .9);
+  transition:border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);}
+.iw-chip i{display:grid; place-items:center; width:30px; height:30px; border-radius:50%;
+  background:hsl(var(--brand-h) 85% 95%); color:var(--brand-text); flex:none;
+  transition:background .3s var(--ease), color .3s var(--ease);}
+html[data-theme="dark"] .iw-chip i{background:hsl(var(--brand-h) 40% 18%);}
+.iw-chip i svg{width:16px; height:16px;}
+.iw-chip:hover{border-color:hsl(var(--brand-h) 70% 78%); transform:translateY(-2px);}
+.iw-chip:hover i{background:var(--primary); color:#fff;}
+
+@media (max-width:640px){
+  .iw-chip{padding:9px 14px; font-size:12.4px; gap:8px;}
+  .iw-chip i{width:26px; height:26px;} .iw-chip i svg{width:14px; height:14px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .iw-track{animation:none; flex-wrap:wrap; width:auto; justify-content:center;}
+  .iw-lanes{-webkit-mask-image:none; mask-image:none;}
+}

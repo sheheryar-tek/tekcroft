@@ -1,0 +1,4 @@
+
+/* a tap where each surface meets its drop */
+#search-split-v3 .nsr-tap{fill:var(--primary); vector-effect:non-scaling-stroke;}
+#search-split-v3 .nsr-bus{overflow:visible;}

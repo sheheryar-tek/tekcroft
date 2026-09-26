@@ -1,0 +1,9 @@
+
+/* the stage name sits with the ticks instead of floating over them */
+#about-v4 .bp-stage{position:static; display:flex; align-items:baseline; gap:8px; margin-top:12px;
+  text-align:left;}
+#about-v4 .bp-stage em{font-size:10px; letter-spacing:.16em;}
+#about-v4 .bp-stage b{font-size:clamp(16px,1.6vw,20px);}
+#about-v4 .bp-screens{min-height:clamp(210px,21vw,250px);}
+#about-v4 .sc{justify-content:flex-start;}
+#about-v4 .bp-ticks{margin-top:10px;}

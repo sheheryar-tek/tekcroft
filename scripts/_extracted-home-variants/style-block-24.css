@@ -1,0 +1,7 @@
+
+/* the rail scrolls sideways, which clips anything that pokes out of it,
+   so it carries the room the lifted card and its shadow need */
+#search-split-v3 .nsr-rail{padding:12px 4px 14px;}
+#search-split-v3 .nsr-card{box-shadow:0 10px 24px -22px hsl(var(--brand-h) 90% 25% / .75);}
+#search-split-v3 .nsr-card.on{box-shadow:0 0 0 1px var(--primary), 0 14px 30px -18px hsl(var(--brand-h) 95% 35% / .45);}
+#search-split-v3 .nsr-deck{padding-block:clamp(8px,1vw,12px);}

@@ -1,0 +1,58 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   INDUSTRIES — variant 4: four columns inside one board, travelling in
+   opposite directions. No tabs; the list simply runs. Hovering a column
+   stops it so a name can be read.
+   ══════════════════════════════════════════════════════════════════════ */
+#industries-v4{padding-block:clamp(34px,3.8vw,56px); background:var(--surface);}
+.iy-grid{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,3.2vw,52px);
+  align-items:center;}
+.iy-say .smark{margin-bottom:12px;}
+#industries-v4 h2{margin:0; font-size:clamp(26px,2.7vw,38px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#industries-v4 h2 em{font-style:normal; color:var(--brand-text);}
+.iy-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.65; color:var(--text-2); max-width:44ch;}
+.iy-meta{display:flex; align-items:center; gap:clamp(14px,1.8vw,24px); margin-top:clamp(16px,2vw,24px); flex-wrap:wrap;}
+.iy-count{display:flex; flex-direction:column; padding-right:clamp(14px,1.8vw,24px); border-right:1px solid var(--border);}
+.iy-count b{font-family:var(--font-display); font-size:clamp(28px,3vw,40px); font-weight:800; letter-spacing:-.04em;
+  line-height:1; color:var(--brand-text);}
+.iy-count i{margin-top:5px; font-style:normal; font-size:11.5px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted);}
+
+.iy-board{padding:clamp(14px,1.6vw,20px); border-radius:24px; background:var(--bg-alt); border:1px solid var(--border);}
+.iy-lanes{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(8px,1vw,12px);
+  height:clamp(300px,32vw,380px);
+  -webkit-mask-image:linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image:linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);}
+.iy-lane{overflow:hidden;}
+.iy-track{display:flex; flex-direction:column; gap:clamp(8px,1vw,12px);
+  animation:iyRun var(--dur,24s) linear infinite;}
+.iy-lane.down .iy-track{animation-direction:reverse;}
+.iy-lane:hover .iy-track{animation-play-state:paused;}
+@keyframes iyRun{from{transform:translateY(0);} to{transform:translateY(-50%);}}
+
+.iy-card{display:flex; flex-direction:column; align-items:center; gap:8px; padding:clamp(12px,1.3vw,16px) 10px;
+  border-radius:14px; background:var(--surface); border:1px solid var(--border); text-align:center;
+  box-shadow:0 12px 26px -26px hsl(var(--brand-h) 90% 25% / .9);
+  transition:border-color .3s var(--ease), transform .3s var(--ease);}
+.iy-card i{display:grid; place-items:center; width:34px; height:34px; border-radius:11px;
+  background:hsl(var(--brand-h) 85% 95%); color:var(--brand-text);
+  transition:background .3s var(--ease), color .3s var(--ease);}
+html[data-theme="dark"] .iy-card i{background:hsl(var(--brand-h) 40% 18%);}
+.iy-card i svg{width:17px; height:17px;}
+.iy-card b{font-family:var(--font-display); font-size:clamp(11.6px,.98vw,13px); font-weight:700;
+  letter-spacing:-.015em; line-height:1.3; color:var(--text);}
+.iy-card:hover{border-color:hsl(var(--brand-h) 70% 78%); transform:translateY(-2px);}
+.iy-card:hover i{background:var(--primary); color:#fff;}
+
+@media (max-width:1040px){
+  .iy-grid{grid-template-columns:minmax(0,1fr); gap:24px;}
+  .iy-say p{max-width:none;}
+}
+@media (max-width:640px){
+  .iy-lanes{grid-template-columns:repeat(2,minmax(0,1fr)); height:clamp(280px,70vw,340px);}
+  .iy-meta .btn{width:100%; justify-content:center;}
+}
+@media (prefers-reduced-motion:reduce){
+  .iy-track{animation:none;}
+  .iy-lanes{height:auto; -webkit-mask-image:none; mask-image:none;}
+}
