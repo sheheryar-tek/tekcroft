@@ -169,11 +169,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════════
-     TRUST BAR, sits under whichever hero variant is showing.
-     DUMMY FIGURES and DUMMY CLIENTS: all four numbers and all eight
-     names are placeholder, the same way the homepage's own counters and
-     client wall are. Swap the data-count / data-suffix values and the
-     eight <b> labels and nothing else changes.
+     TRUST BAR — proof figures under the hero.
      ══════════════════════════════════════════════════════════════════ -->
 <section class="sec tb" id="proof">
   <div class="wrap">
@@ -212,27 +208,6 @@
         <span class="tb-meter" aria-hidden="true"></span>
       </div>
 
-    </div>
-
-    <div class="tb-wall rv" style="--d:180ms">
-      <p class="tb-claim">Tekcroft technical SEO is manual, senior-reviewed, and built around
-        <b>one prioritized fix list</b>, not a rebranded crawler export.</p>
-
-      <!-- The track holds the list once. The script appends a second copy
-           at load, which is what lets the slide loop seamlessly, so the
-           eight logos below are the only place a name is edited. -->
-      <div class="tb-marq">
-        <div class="tb-marq-track" id="tbMarq">
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 9.4h14.8l-1.4 10.2H6Z"/><path d="M8.8 9.4V6.8a3.2 3.2 0 0 1 6.4 0v2.6"/></svg><b>Kitchenary</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4.4c0 8.4-4.6 12.6-9.6 12.6A6.4 6.4 0 0 1 4 10.6C4 6.2 9.4 4.4 20 4.4Z"/><path d="M4.6 20.4c1.6-4.4 4.4-7.4 8.4-9.4"/></svg><b>Freshly</b></span>
-          <span class="tb-logo is-light"><b>Thread Beast</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 14.6 9l6.6.4-5.1 4.2 1.7 6.4L12 16.4 6.2 20l1.7-6.4L2.8 9.4 9.4 9Z"/></svg><b>Vitacost</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.6" y="2.6" width="10.8" height="18.8" rx="2.6"/><path d="M10.8 18.6h2.4"/></svg><b>PhoneBazis</b></span>
-          <span class="tb-logo is-boxed"><b>Soly Hux</b></span>
-          <span class="tb-logo is-light"><b>Zulily</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.4 12h2.2M9 8.4v7.2M13.4 5.2v13.6M17.8 8.4v7.2M21.4 12h-1"/></svg><b>Fitbit</b></span>
-        </div>
-      </div>
     </div>
 
   </div>
@@ -307,345 +282,424 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════════
-     WHAT WE DO, variant 02, the homepage's console.
-     Hidden by default; the switch at the corner swaps it with variant 01.
-     Delete the losing section and the switch once one is chosen.
+     OUR TECHNICAL SEO MODEL — ported from tekcroft-technical-seo (12).html
      ══════════════════════════════════════════════════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════════
-     OUR TECHNICAL SEO MODEL — panels accordion (variant 06)
-     ══════════════════════════════════════════════════════════════════ -->
-<section class="sec tsm" id="services-2">
+<section class="sec tm" id="model">
   <div class="wrap">
-    <div class="sec-head mid rv">
-      <span class="smark"><b>What we do</b></span>
-      <h2>Our <em>Technical SEO</em> Model</h2>
-      <p class="sec-lede">Each engagement starts with an audit that tells us exactly which of these areas need how much attention.</p>
+
+    <div class="tm-head rv">
+      <div>
+        <span class="smark"><b>What we do</b></span>
+        <h2>Our <em>Technical SEO</em> Model</h2>
+      </div>
+      <div class="tm-aside">
+        <p>Each engagement starts with an audit that tells us exactly which of these areas need
+          how much attention.</p>
+        <a class="btn btn-primary" href="#contact">Get a Custom Technical SEO Plan <span class="arw">&uarr;</span></a>
+      </div>
     </div>
-    <div class="acc rv" id="tsAcc" style="--d:80ms">
-        <div class="acc-item on" data-i="0" role="button" tabindex="0" aria-expanded="true">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.4"/><path d="m20 20-4.4-4.4"/><path d="M8.2 11h5.6M11 8.2v5.6"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+
+    <div class="tm-rail" role="tablist" aria-label="The eleven technical SEO services" data-tm>
+        <div class="tm-item on" data-i="0" role="tab" tabindex="0"
+             aria-selected="true">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">01</b>
+            <span class="tm-vt">Technical SEO Audit</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.3-4.3"/></svg></span><span class="tm-num">01</span></span>
+              <h3>Technical SEO Audit</h3>
+              <p>A technical SEO audit shows every impediment between your content and search engines. This includes crawling errors, indexing gaps, issues with site architecture, page speed, and even structured data errors.</p>
+              <span class="tm-chip"><i></i>Service 01 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-audit">
+  <span class="tv-h">Audit findings</span>
+  <ul class="tv-rows">
+    <li style="--k:0"><i></i>Crawl errors</li>
+    <li style="--k:1"><i></i>Indexing gaps</li>
+    <li style="--k:2"><i></i>Site architecture</li>
+    <li style="--k:3"><i></i>Page speed</li>
+    <li style="--k:4"><i></i>Structured data</li>
+  </ul>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">01</span>
-            <span class="acc-vt">Technical SEO Audit</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">01</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.4"/><path d="m20 20-4.4-4.4"/><path d="M8.2 11h5.6M11 8.2v5.6"/></svg></span>
-            <h3>Technical SEO Audit</h3>
-            <p>A technical SEO audit shows every impediment between your content and search engines. This includes crawling errors, indexing gaps, issues with site architecture, page speed, and even structured data errors.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="1" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18.2" cy="16.8" r="3.2"/><path d="m20.4 19 1.4 1.4"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="1" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">02</b>
+            <span class="tm-vt">Crawlability Budget Optimization</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18.5" cy="16.5" r="3"/><path d="m20.8 18.8 1.7 1.7"/></svg></span><span class="tm-num">02</span></span>
+              <h3>Crawlability Budget Optimization</h3>
+              <p>We analyze the index coverage within Search Console and audit server logs to review the requests being made by crawlers. Additionally, we fix any robots.txt or meta-directive conflicts and manage Crawl Budget by removing Faceted Navigation and Parameter URLs.</p>
+              <span class="tm-chip"><i></i>Service 02 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-crawl">
+  <span class="tv-h">Crawl requests</span>
+  <div class="tv-bars">
+    <div class="tv-bar" style="--k:0"><em>Indexable</em><span><i style="--w:64%"></i></span></div>
+    <div class="tv-bar" style="--k:1"><em>Parameters</em><span><i style="--w:22%"></i></span></div>
+    <div class="tv-bar" style="--k:2"><em>Faceted</em><span><i style="--w:14%"></i></span></div>
+  </div>
+  <span class="tv-note">robots.txt &middot; meta directives</span>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">02</span>
-            <span class="acc-vt">Crawlability Budget Optimization</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">02</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18.2" cy="16.8" r="3.2"/><path d="m20.4 19 1.4 1.4"/></svg></span>
-            <h3>Crawlability Budget Optimization</h3>
-            <p>We analyze the index coverage within Search Console and audit server logs to review the requests being made by crawlers. Additionally, we fix any robots.txt or meta-directive conflicts and manage Crawl Budget by removing Faceted Navigation and Parameter URLs.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="2" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5h16M7 16v-4M11.5 16V8M16 16v-6"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="2" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">03</b>
+            <span class="tm-vt">Core Web Vitals Optimization Services</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5"/><path d="M12 12 16 8"/><path d="M12 3.5h4.5V8"/></svg></span><span class="tm-num">03</span></span>
+              <h3>Core Web Vitals Optimization Services</h3>
+              <p>Google has specified goals of LCP below 2.5 seconds, INP below 200 ms, and CLS at 0.1. We assess template-level issues related to blocked resources, images that have not been optimized, slow server response times, and then validate the improvements using real user (field) data.</p>
+              <span class="tm-chip"><i></i>Service 03 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-cwv">
+  <span class="tv-h">Field data</span>
+  <div class="tv-gauges">
+    <div class="tv-g" style="--k:0"><b>LCP</b><span class="tv-meter"><i style="--w:72%"></i></span><em>2.5s</em></div>
+    <div class="tv-g" style="--k:1"><b>INP</b><span class="tv-meter"><i style="--w:58%"></i></span><em>200ms</em></div>
+    <div class="tv-g" style="--k:2"><b>CLS</b><span class="tv-meter"><i style="--w:44%"></i></span><em>0.1</em></div>
+  </div>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">03</span>
-            <span class="acc-vt">Core Web Vitals Optimization Services</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">03</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5h16M7 16v-4M11.5 16V8M16 16v-6"/></svg></span>
-            <h3>Core Web Vitals Optimization Services</h3>
-            <p>Google has specified goals of LCP below 2.5 seconds, INP below 200 ms, and CLS at 0.1. We assess template-level issues related to blocked resources, images that have not been optimized, slow server response times, and then validate the improvements using real user (field) data.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="3" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 7.6-4.4 4.4L9 16.4M15 7.6l4.4 4.4L15 16.4"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="3" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">04</b>
+            <span class="tm-vt">Schema Markup Implementation Services</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 5.5l-2 13"/></svg></span><span class="tm-num">04</span></span>
+              <h3>Schema Markup Implementation Services</h3>
+              <p>Rich results and AI citations both depend on machines understanding your content. We implement and validate JSON-LD schema: Product, FAQ, HowTo, LocalBusiness, Article, Organization, matched to what each page actually is. We also look for errors as schema.org standards evolve.</p>
+              <span class="tm-chip"><i></i>Service 04 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-schema">
+  <span class="tv-code" style="--k:0">"@type": "Product"</span>
+  <span class="tv-code in" style="--k:1">"FAQPage"</span>
+  <span class="tv-code in" style="--k:2">"LocalBusiness"</span>
+  <span class="tv-stars" style="--k:3">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">04</span>
-            <span class="acc-vt">Schema Markup Implementation Services</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">04</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 7.6-4.4 4.4L9 16.4M15 7.6l4.4 4.4L15 16.4"/></svg></span>
-            <h3>Schema Markup Implementation Services</h3>
-            <p>Rich results and AI citations both depend on machines understanding your content. We implement and validate JSON-LD schema: Product, FAQ, HowTo, LocalBusiness, Article, Organization, matched to what each page actually is. We also look for errors as schema.org standards evolve.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="4" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6.5 3.5 12 8 17.5M16 6.5 20.5 12 16 17.5"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="4" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">05</b>
+            <span class="tm-vt">JavaScript SEO</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5h18"/><rect x="3" y="7.5" width="18" height="12.5" rx="2.5"/><path d="M7 4.5h10"/><path d="M8 12.5h5M8 16h8"/></svg></span><span class="tm-num">05</span></span>
+              <h3>JavaScript SEO</h3>
+              <p>If Googlebot cannot render your JavaScript, the content does not exist for search. We assess Google&rsquo;s Web Rendering Service against the actual site and review and resolve issues that occur with popular JavaScript frameworks. We also assess issues that occur with CMS combinations and server-side implementations and provide dynamic rendering in the face of client-side rendering to ensure that the content is not blocked from indexation.</p>
+              <span class="tm-chip"><i></i>Service 05 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-js">
+  <span class="tv-h">Rendering</span>
+  <div class="tv-split">
+    <div class="tv-pane" style="--k:0"><em>Raw HTML</em><span class="tv-empty">&lt;div id="root"&gt;&lt;/div&gt;</span></div>
+    <div class="tv-pane ok" style="--k:1"><em>Rendered</em><span class="tv-lines"><i></i><i></i><i></i></span></div>
+  </div>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">05</span>
-            <span class="acc-vt">JavaScript SEO</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">05</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6.5 3.5 12 8 17.5M16 6.5 20.5 12 16 17.5"/></svg></span>
-            <h3>JavaScript SEO</h3>
-            <p>If Googlebot cannot render your JavaScript, the content does not exist for search. We assess Google's Web Rendering Service against the actual site and review and resolve issues that occur with popular JavaScript frameworks. We also assess issues that occur with CMS combinations and server-side implementations and provide dynamic rendering in the face of client-side rendering to ensure that the content is not blocked from indexation.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="5" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="5" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">06</b>
+            <span class="tm-vt">Canonicalization &amp; Duplicate Content</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3A4 4 0 0 0 13 5.3l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></svg></span><span class="tm-num">06</span></span>
+              <h3>Canonicalization &amp; Duplicate Content</h3>
+              <p>Duplicate and near-duplicate URLs split ranking signals and waste your crawl budget. We modify canonical tags across your entire site to fix redirect chains and loops, lock down HTTP/HTTPS and www/non-www variants, and canonicalize pagination and filtered URLs. So that authority consolidates to the pages you want ranking.</p>
+              <span class="tm-chip"><i></i>Service 06 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-canon">
+  <span class="tv-url" style="--k:0">/page?utm=</span>
+  <span class="tv-url" style="--k:1">/page/</span>
+  <span class="tv-url" style="--k:2">www./page</span>
+  <svg viewBox="0 0 200 120" aria-hidden="true">
+    <path class="tv-wire" d="M64 22 H120 V60" style="--k:0"/>
+    <path class="tv-wire" d="M64 60 H120" style="--k:1"/>
+    <path class="tv-wire" d="M64 98 H120 V60" style="--k:2"/>
+  </svg>
+  <span class="tv-canonical" style="--k:3">canonical</span>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">06</span>
-            <span class="acc-vt">Canonicalization &amp; Duplicate Content</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">06</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/></svg></span>
-            <h3>Canonicalization &amp; Duplicate Content</h3>
-            <p>Duplicate and near-duplicate URLs split ranking signals and waste your crawl budget. We modify canonical tags across your entire site to fix redirect chains and loops, lock down HTTP/HTTPS and www/non-www variants, and canonicalize pagination and filtered URLs. So that authority consolidates to the pages you want ranking.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="6" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="3.2" width="8" height="17.6" rx="2"/><path d="M11 17.8h2"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="6" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">07</b>
+            <span class="tm-vt">Mobile Optimization</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="tm-num">07</span></span>
+              <h3>Mobile Optimization</h3>
+              <p>Google indexes your mobile site first. We test rendering across devices and separate Core Web Vitals by device to evaluate navigation and forms for real mobile usability.</p>
+              <span class="tm-chip"><i></i>Service 07 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-mob">
+  <span class="tv-phone"><i></i><b></b><b class="w2"></b></span>
+  <div class="tv-side">
+    <span class="tv-h">Mobile-first</span>
+    <span class="tv-pillrow"><em style="--k:0">LCP</em><em style="--k:1">INP</em><em style="--k:2">CLS</em></span>
+    <span class="tv-note">Navigation &middot; forms</span>
+  </div>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">07</span>
-            <span class="acc-vt">Mobile Optimization</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">07</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="3.2" width="8" height="17.6" rx="2"/><path d="M11 17.8h2"/></svg></span>
-            <h3>Mobile Optimization</h3>
-            <p>Google indexes your mobile site first. We test rendering across devices and separate Core Web Vitals by device to evaluate navigation and forms for real mobile usability.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="7" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h12M12 7l5 5-5 5"/><path d="M4 7v10"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="7" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">08</b>
+            <span class="tm-vt">Website Migration SEO Services</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h9"/><path d="m9.5 8 4 4-4 4"/><rect x="15" y="5" width="5" height="14" rx="1.6"/></svg></span><span class="tm-num">08</span></span>
+              <h3>Website Migration SEO Services</h3>
+              <p>Poor site migration SEO is the highest-risk event you&rsquo;ll ever face. We build a one-to-one redirect map and validate the staging environment before launch. We then keep an eye on index, crawl, and rankings daily post-launch, so regressions get caught within hours.</p>
+              <span class="tm-chip"><i></i>Service 08 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-mig">
+  <span class="tv-h">Redirect map</span>
+  <ul class="tv-map">
+    <li style="--k:0"><em>/old-page</em><b>301</b><em>/new-page</em></li>
+    <li style="--k:1"><em>/old-blog</em><b>301</b><em>/blog</em></li>
+    <li style="--k:2"><em>/old-cat</em><b>301</b><em>/category</em></li>
+  </ul>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">08</span>
-            <span class="acc-vt">Website Migration SEO Services</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">08</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h12M12 7l5 5-5 5"/><path d="M4 7v10"/></svg></span>
-            <h3>Website Migration SEO Services</h3>
-            <p>Poor site migration SEO is the highest-risk event you'll ever face. We build a one-to-one redirect map and validate the staging environment before launch. We then keep an eye on index, crawl, and rankings daily post-launch, so regressions get caught within hours.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="8" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5h14v15H5z"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="8" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">09</b>
+            <span class="tm-vt">Log File Analysis</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5h11l3 3V19a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4 19V6a1.5 1.5 0 0 1 1-1.5z"/><path d="M8 11h8M8 14.5h6M8 7.5h4"/></svg></span><span class="tm-num">09</span></span>
+              <h3>Log File Analysis</h3>
+              <p>Server logs record how Googlebot and Bingbot crawl your site. We analyze log data to determine crawl budget waste and to identify anomalies, so we can address them properly.</p>
+              <span class="tm-chip"><i></i>Service 09 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-log">
+  <span class="tv-h">Server log</span>
+  <ul class="tv-loglines">
+    <li style="--k:0"><em>Googlebot</em>/services/ <b>200</b></li>
+    <li style="--k:1"><em>Bingbot</em>/blog/ <b>200</b></li>
+    <li style="--k:2"><em>Googlebot</em>/?sort=asc <b>waste</b></li>
+    <li style="--k:3"><em>Googlebot</em>/old-url <b>404</b></li>
+  </ul>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">09</span>
-            <span class="acc-vt">Log File Analysis</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">09</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5h14v15H5z"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg></span>
-            <h3>Log File Analysis</h3>
-            <p>Server logs record how Googlebot and Bingbot crawl your site. We analyze log data to determine crawl budget waste and to identify anomalies, so we can address them properly.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="9" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="9" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">10</b>
+            <span class="tm-vt">Ongoing Monitoring &amp; Governance</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="m7.5 15.5 3.5-4 3 2.5 4.5-6"/><circle cx="18.5" cy="8" r="1.4"/></svg></span><span class="tm-num">10</span></span>
+              <h3>Ongoing Monitoring &amp; Governance</h3>
+              <p>Technical SEO must be an active process. A change that takes months to implement can undo all the work in a second. We monitor crawlability and indexation status. We also evaluate developer deploys for the impact on SEO before they are deployed.</p>
+              <span class="tm-chip"><i></i>Service 10 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-mon">
+  <span class="tv-h">Deploys watched</span>
+  <div class="tv-track">
+    <span class="tv-line"></span>
+    <i class="tv-dot" style="--k:0"></i><i class="tv-dot" style="--k:1"></i>
+    <i class="tv-dot warn" style="--k:2"></i><i class="tv-dot" style="--k:3"></i>
+  </div>
+  <span class="tv-note">Crawlability &middot; indexation &middot; pre-deploy review</span>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">10</span>
-            <span class="acc-vt">Ongoing Monitoring &amp; Governance</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">10</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></span>
-            <h3>Ongoing Monitoring &amp; Governance</h3>
-            <p>Technical SEO must be an active process. A change that takes months to implement can undo all the work in a second. We monitor crawlability and indexation status. We also evaluate developer deploys for the impact on SEO before they are deployed.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
-        <div class="acc-item" data-i="10" role="button" tabindex="0" aria-expanded="false">
-          <div class="acc-bg" aria-hidden="true">
-            <div class="acc-fb"><span class="acc-wm"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2c.8 4.4 3.2 6.8 7.6 7.6-4.4.8-6.8 3.2-7.6 7.6-.8-4.4-3.2-6.8-7.6-7.6 4.4-.8 6.8-3.2 7.6-7.6Z"/></svg></span></span></div>
-            <div class="acc-veil"></div>
+        <div class="tm-item" data-i="10" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">11</b>
+            <span class="tm-vt">Technical SEO for AI/LLM Crawlability</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.6c.9 4.9 3.4 7.4 8.3 8.3-4.9.9-7.4 3.4-8.3 8.3-.9-4.9-3.4-7.4-8.3-8.3 4.9-.9 7.4-3.4 8.3-8.3Z"/></svg></span><span class="tm-num">11</span></span>
+              <h3>Technical SEO for AI/LLM Crawlability</h3>
+              <p>The same technical foundations that get you crawled and indexed by Google are what determine whether ChatGPT, Perplexity, or Google&rsquo;s AI Overviews can access and cite your content. We audit your site&rsquo;s structure, schema, and content accessibility specifically for AI crawlers, so you&rsquo;re not just optimizing for search anymore; you&rsquo;re optimizing for how AI reads the web.</p>
+              <span class="tm-chip"><i></i>Service 11 of 11</span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-ai">
+  <span class="tv-h">AI crawlers</span>
+  <div class="tv-ais">
+    <span style="--k:0">ChatGPT</span><span style="--k:1">Perplexity</span><span style="--k:2">AI Overviews</span>
+  </div>
+  <svg viewBox="0 0 200 70" aria-hidden="true">
+    <path class="tv-wire" d="M40 14 H100 V56" style="--k:0"/>
+    <path class="tv-wire" d="M100 14 V56" style="--k:1"/>
+    <path class="tv-wire" d="M160 14 H100 V56" style="--k:2"/>
+  </svg>
+  <span class="tv-page" style="--k:3">your page</span>
+</div></div>
           </div>
-          <div class="acc-slim">
-            <span class="acc-n">11</span>
-            <span class="acc-vt">Technical SEO for AI/LLM Crawlability</span>
-          </div>
-          <div class="acc-open">
-            <span class="num">11</span>
-            <span class="ico-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2c.8 4.4 3.2 6.8 7.6 7.6-4.4.8-6.8 3.2-7.6 7.6-.8-4.4-3.2-6.8-7.6-7.6 4.4-.8 6.8-3.2 7.6-7.6Z"/></svg></span>
-            <h3>Technical SEO for AI/LLM Crawlability</h3>
-            <p>The same technical foundations that get you crawled and indexed by Google are what determine whether ChatGPT, Perplexity, or Google's AI Overviews can access and cite your content. We audit your site's structure, schema, and content accessibility specifically for AI crawlers, so you're not just optimizing for search anymore; you're optimizing for how AI reads the web.</p>
-          </div>
-          <a class="acc-cta" href="#contact" data-jump>Get a Custom Technical SEO Plan<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></a>
         </div>
     </div>
+
   </div>
 </section>
 
+<section class="sec wy" id="why">
+  <div class="wrap wy-in">
 
-<section class="sec wc-sec" id="whyus">
-  <div class="wrap">
-    <div class="wc">
+    <div class="wy-say rv">
+      <span class="wy-eyebrow"><i></i>Why choose us</span>
+      <h2>Why Choose <em>Us</em></h2>
+    </div>
 
-      <div class="wc-say rv" style="--d:120ms">
-        <div class="sec-head">
-          <span class="smark"><b>Why choose us</b></span>
-          <h2>Why Choose <em>Us</em></h2>
-        </div>
+    <div class="wy-box rv" style="--d:120ms" data-tabs>
+      <div class="wy-rail" role="tablist" aria-label="Why choose us">
+        <button class="wy-tab on" type="button" role="tab"
+                data-p="0" aria-selected="true">Fixes Ranked by What Actually Moves Revenue</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="1" aria-selected="false">Built for AI Search From Day One</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="2" aria-selected="false">Reports Your Team Can Use</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="3" aria-selected="false">Migration Support That Starts Before Launch</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="4" aria-selected="false">Transparent Pricing and Timelines</button>
       </div>
 
-      <div class="wc-folder rv" id="wcPanel" style="--d:200ms">
-        <div class="wc-tabs" role="tablist" aria-label="Why choose us">
-          <button class="wc-tab on" type="button" role="tab" data-p="0">Revenue</button>
-          <button class="wc-tab" type="button" role="tab" data-p="1">AI search</button>
-          <button class="wc-tab" type="button" role="tab" data-p="2">Reports</button>
-          <button class="wc-tab" type="button" role="tab" data-p="3">Migration</button>
-          <button class="wc-tab" type="button" role="tab" data-p="4">Pricing</button>
-        </div>
-
-        <div class="wc-body first">
-
-          <div class="wc-panel on" role="tabpanel">
+      <div class="wy-panes">
+        <div class="wy-pane on" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 20.2h16.4"/><path d="M6.6 20.2v-5M11 20.2V9.6M15.4 20.2v-7.6M19.8 20.2V6"/><path d="m6.6 11.4 4.4-4.6 3 2.2 4.4-4.6"/></svg></span>
             <h3>Fixes Ranked by What Actually Moves Revenue</h3>
             <p>Every finding is scored by real impact, so your team spends time on the fixes that move traffic and rankings. Not low-value cleanup that looks good in a report but changes nothing.</p>
-
-            <div class="wc-card">
-              <div class="wc-card-top"><b>Where the impact sits</b>
-                <span class="wc-pill">This site</span></div>
-              <div class="wc-bars">
-                <div class="wc-bar"><b>Critical, 9 findings<s>68%</s></b><span><i style="--w:68%; --d:200ms"></i></span></div>
-                <div class="wc-bar"><b>Important, 34 findings<s>24%</s></b><span><i style="--w:24%; --d:340ms"></i></span></div>
-                <div class="wc-bar"><b>Monitor, 197 findings<s>8%</s></b><span><i style="--w:8%; --d:480ms"></i></span></div>
-              </div>
-            </div>
           </div>
+          <figure class="wy-fig">
+            <figcaption><b>Where the impact sits</b>
+              <span class="wy-chip">This site</span>
+            </figcaption>
+            <ul class="br"><li><span class="br-top"><span>Critical, 9 findings</span><b>68%</b></span>
+                <span class="br-rail"><i style="--w:68%"></i></span></li><li><span class="br-top"><span>Important, 34 findings</span><b>24%</b></span>
+                <span class="br-rail"><i style="--w:24%"></i></span></li><li><span class="br-top"><span>Monitor, 197 findings</span><b>8%</b></span>
+                <span class="br-rail"><i style="--w:8%"></i></span></li></ul>
+          </figure>
+        </div>
 
-          <div class="wc-panel" role="tabpanel">
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 13.7 8 18.5 9.7 13.7 11.4 12 16.2 10.3 11.4 5.5 9.7 10.3 8Z"/><path d="M18.4 15.2 19.2 17.4l2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></svg></span>
             <h3>Built for AI Search From Day One</h3>
             <p>AI/LLM crawlability is a part of every audit standard. Your site gets checked for how ChatGPT, Perplexity, or AI Overviews access and cite your content, alongside classic search engine crawlability.</p>
-
-            <div class="wc-card">
-              <div class="wc-card-top"><b>Where the work goes</b>
-                <span class="wc-pill">One scope</span></div>
-              <div class="wc-ringwrap">
-                <div class="wc-donut">
-                  <svg viewBox="0 0 120 120" aria-hidden="true">
-                    <circle class="trk" cx="60" cy="60" r="42"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="hsl(var(--brand-h) 100% 68%)" stroke-dashoffset="-0.00" style="--d:200ms" data-dash="89.72 174.17"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="hsl(var(--brand-h) 30% 62%)" stroke-dashoffset="-89.72" style="--d:380ms" data-dash="68.61 195.28"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="var(--n300)" stroke-dashoffset="-158.33" style="--d:560ms" data-dash="47.50 216.39"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="var(--primary)" stroke-dashoffset="-205.83" style="--d:740ms" data-dash="58.06 205.83"></circle>
-                  </svg>
-                  <b>4<span>AREAS</span></b>
-                </div>
-                <div class="wc-legend">
-          <div><i style="background:hsl(var(--brand-h) 100% 68%)"></i>Crawl &amp; index<s>34%</s></div>
-          <div><i style="background:hsl(var(--brand-h) 30% 62%)"></i>Speed &amp; vitals<s>26%</s></div>
-          <div><i style="background:var(--n300)"></i>Schema<s>18%</s></div>
-          <div><i style="background:var(--primary)"></i>AI search (GEO)<s>22%</s></div>
-                </div>
-              </div>
-            </div>
           </div>
+          <figure class="wy-fig">
+            <figcaption><b>Where the work goes</b>
+              <span class="wy-chip">One scope</span>
+            </figcaption>
+            <div class="dn-wrap">
+              <svg class="dn" viewBox="0 0 120 120" role="img"
+                   aria-label="Crawl and index 34 per cent, Speed and vitals 26, Schema 18, AI search 22">
+                <circle class="dn-track" cx="60" cy="60" r="46"/>
+                <g transform="rotate(-90 60 60)"><circle class="dn-s dn-1" cx="60" cy="60" r="46" stroke-dasharray="98.27 289.03" stroke-dashoffset="-0.00"/><circle class="dn-s dn-2" cx="60" cy="60" r="46" stroke-dasharray="75.15 289.03" stroke-dashoffset="-98.27"/><circle class="dn-s dn-3" cx="60" cy="60" r="46" stroke-dasharray="52.02 289.03" stroke-dashoffset="-173.42"/><circle class="dn-s dn-4" cx="60" cy="60" r="46" stroke-dasharray="63.59 289.03" stroke-dashoffset="-225.44"/></g>
+              </svg>
+              <span class="dn-mid"><b>4</b><em>Areas</em></span>
+              <ul class="dn-key"><li class="dn-1"><i></i><span>Crawl &amp; index</span><b>34%</b></li><li class="dn-2"><i></i><span>Speed &amp; vitals</span><b>26%</b></li><li class="dn-3"><i></i><span>Schema</span><b>18%</b></li><li class="dn-4"><i></i><span>AI search</span><b>22%</b></li></ul>
+            </div>
+          </figure>
+        </div>
 
-          <div class="wc-panel" role="tabpanel">
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.2" y="6.2" width="15.6" height="12.4" rx="2.4"/><path d="M8 10.4h8M8 13.6h5.6"/><path d="M12 3.8v2.4"/></svg></span>
             <h3>Reports Your Team Can Use</h3>
             <p>No jargon-heavy exports that sit in a folder unread. We translate findings into plain language and hand developers implementation-ready tickets with clear acceptance criteria.</p>
-
-            <div class="wc-card">
-              <div class="wc-card-top"><b>What a finding arrives as</b>
-                <span class="wc-pill">One ticket</span></div>
-
-              <div class="wc-tkt">
-                <div class="wc-tkt-top">
-                  <span class="wc-tkt-id">SEO-214</span>
-                  <span class="wc-tkt-pri">Critical</span>
-                </div>
-                <b>Canonical on /collections/* points to the filtered URL</b>
-                <ul>
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg><span>Canonical resolves to the unfiltered path</span></li>
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg><span>No self-referencing conflict in the rendered DOM</span></li>
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.4"/></svg><span>Re-crawl confirms 100% of the template</span></li>
-                </ul>
-              </div>
-            </div>
           </div>
+          <figure class="wy-fig">
+            <figcaption><b>What a finding arrives as</b>
+              <span class="wy-chip">One ticket</span>
+            </figcaption>
+            <ul class="br"><li><span class="br-top"><span>Plain-language finding</span><b>Yes</b></span>
+                <span class="br-rail"><i style="--w:100%"></i></span></li><li><span class="br-top"><span>Dev-ready acceptance criteria</span><b>Yes</b></span>
+                <span class="br-rail"><i style="--w:100%"></i></span></li><li><span class="br-top"><span>Jargon-only export</span><b>No</b></span>
+                <span class="br-rail"><i style="--w:8%"></i></span></li></ul>
+          </figure>
+        </div>
 
-          <div class="wc-panel" role="tabpanel">
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h12M12 7l5 5-5 5"/><path d="M4 7v10"/></svg></span>
             <h3>Migration Support That Starts Before Launch</h3>
             <p>We validate your staging environment and build your redirect map before you go live, then review crawl stats and indexation. Day-to-day rankings are checked after launch, so regressions get caught in hours, not discovered months later in a traffic report.</p>
-
-            <div class="wc-card">
-              <div class="wc-card-top"><b>Where the work sits</b>
-                <span class="wc-pill">Before, during, after</span></div>
-
-              <ol class="wc-rail">
-                <li><span class="wc-dot"></span>
-                  <b>Before launch</b><em>Redirect map, staging validated, ranking baseline
-                  recorded</em></li>
-                <li><span class="wc-dot"></span>
-                  <b>Launch day</b><em>Crawl and index checks from the hour it goes live</em></li>
-                <li><span class="wc-dot"></span>
-                  <b>After launch</b><em>Crawl stats, indexation and rankings reviewed
-                  daily</em></li>
-              </ol>
-            </div>
           </div>
+          <figure class="wy-fig">
+            <figcaption><b>Where the work sits</b>
+              <span class="wy-chip">Before, during, after</span>
+            </figcaption>
+            <svg class="wyln" viewBox="0 0 320 136" fill="none" role="img"
+                 aria-label="Migration coverage rising from before launch to after launch">
+              <path class="wyln-area" d="M40,118 L40.0,96 L120.0,78 L200.0,52 L300.0,28 L300,118 Z"/>
+              <polyline class="wyln-line" points="40.0,96 120.0,78 200.0,52 300.0,28"/>
+              <circle class="wyln-d" cx="40.0" cy="96" r="3.2"/><circle class="wyln-d" cx="120.0" cy="78" r="3.2"/><circle class="wyln-d" cx="200.0" cy="52" r="3.2"/><circle class="wyln-d" cx="300.0" cy="28" r="3.2"/>
+              <text class="wyln-x" x="40.0" y="131">Before</text><text class="wyln-x" x="120.0" y="131">Staging</text><text class="wyln-x" x="200.0" y="131">Launch</text><text class="wyln-x" x="300.0" y="131">After</text>
+              <text class="wyln-y" x="32" y="121.0">0</text><text class="wyln-y" x="32" y="69.0">50%</text><text class="wyln-y" x="32" y="17.0">100%</text>
+            </svg>
+          </figure>
+        </div>
 
-          <div class="wc-panel" role="tabpanel">
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="5" width="16.8" height="15.4" rx="2.6"/><path d="M3.6 9.6h16.8M8.4 3.2v3.6M15.6 3.2v3.6"/></svg></span>
             <h3>Transparent Pricing and Timelines</h3>
             <p>You&rsquo;ll know your ballpark cost and realistic timeline upfront, no &ldquo;contact us for a custom quote&rdquo; with no context to plan around.</p>
           </div>
+          <figure class="wy-fig">
+            <figcaption><b>Engagement terms</b>
+              <span class="wy-chip">Up front</span>
+            </figcaption>
+            <ul class="br"><li><span class="br-top"><span>Ballpark cost shown</span><b>Yes</b></span>
+                <span class="br-rail"><i style="--w:100%"></i></span></li><li><span class="br-top"><span>Realistic timeline</span><b>Yes</b></span>
+                <span class="br-rail"><i style="--w:100%"></i></span></li><li><span class="br-top"><span>Opaque custom quote only</span><b>No</b></span>
+                <span class="br-rail"><i style="--w:8%"></i></span></li></ul>
+          </figure>
         </div>
       </div>
-
     </div>
+
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     HOW A FIX IS RANKED, the homepage's orbit, at four stages.
-
-     data-walk hands the row to the page's existing walker, which steps
-     .on along the .walk-step cards and publishes the index on the
-     container as data-at. The arc, the number in the disc and the lit dot
-     are all drawn off that one attribute, so the section needs no script
-     of its own.
-
-     --i on each card is only the reveal's running order. It has to count
-     from zero upward or the stagger stops being a stagger.
-     ══════════════════════════════════════════════════════════════════ -->
 <section class="sec eg-sec" id="process">
   <div class="wrap">
 
@@ -773,157 +827,6 @@
 
 
 
-
-<!-- ══════════════════════════════════════════════════════════════════
-     MID-PAGE CTA, "Want To See What A Crawler Sees?"
-
-     IT USED TO ASK ABOUT AI ANSWERS. That is now a section of its own
-     further down the page, and the two were making the same point twice , 
-     once in a panel and once at length. The panel keeps its drawing and
-     takes the job the page did not have anywhere else: the offer.
-
-     Was "Selling on Marketplaces Too?", inherited from the ecommerce
-     page this one started as. The panel, the arch, the wiring and the
-     window are unchanged; what they hold is not. The three tiles are
-     drawn marks instead of the Amazon, Etsy and eBay logos, and the
-     window shows an answer crediting a source rather than a product
-     with a price on it.
-
-     The three tiles are named, not drawn: Amazon, Etsy and Walmart own
-     their marks, so the official assets have to come from each of their
-     brand pages rather than be redrawn here. Each tile is a slot, drop
-     an <img>/<svg> in place of the <b> and nothing else moves.
-     ══════════════════════════════════════════════════════════════════ -->
-<section class="sec mpc beam-zone" id="crawl-check">
-  <div class="z-dots" aria-hidden="true"></div>
-  <div class="z-beam" aria-hidden="true"></div>
-
-  <div class="wrap">
-    <div class="mp-panel rv">
-
-      <!-- ══════════ the argument ══════════ -->
-      <div class="mp-say">
-
-        <span class="smark"><b>Free crawl check</b></span>
-
-        <h2><span>Want To See What</span><em>A Crawler</em> Sees?</h2>
-
-        <p>We crawl your site the way Googlebot and the AI bots do, and send back what came of
-          it: the errors they hit, the pages they never reached, and the pages they reached and
-          would not index. No charge, and nothing to sign.</p>
-
-        <a class="btn btn-primary btn-lg" href="#contact" data-jump>Get My Free Crawl
-          <span class="arw">&uarr;</span></a>
-
-
-      </div>
-
-      <!-- ══════════ the diagram ══════════ -->
-      <div class="mp-art" aria-hidden="true">
-
-        <!-- The arch, every line and every arrowhead on one 750×685
-             grid, the same grid the tiles and the window are placed on,
-             so the two can never drift apart. -->
-        <svg class="mp-wires" viewBox="0 0 750 685" fill="none" stroke="currentColor"
-             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-
-          <!-- One arrowhead, defined once and attached to the line rather
-               than drawn beside it. Placing heads by hand meant guessing
-               both the end point and the tangent, and every guess was a
-               little off, which is what left them floating and pointing
-               the wrong way. A marker is put at the real end of the path
-               and turned to the path's own direction, so it cannot drift.
-               auto-start-reverse lets the same marker serve both ends of
-               the two-headed line: it flips only where it is a start. -->
-          <defs>
-            <marker id="mpArrow" viewBox="0 0 10 10" refX="8" refY="5"
-                    markerWidth="5.5" markerHeight="5.5"
-                    orient="auto-start-reverse" markerUnits="strokeWidth">
-              <path d="M1 1.4 8.6 5 1 8.6" fill="none" stroke="currentColor"
-                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-
-          <path class="mp-arch" stroke="none"
-                d="M205 460a170 170 0 0 1 340 0Z"/>
-
-          <g class="mp-flow" stroke-dasharray="7 8">
-            <!-- left tile, up to the top tile -->
-            <path marker-end="url(#mpArrow)" d="M110 190C120 96 205 46 296 62"/>
-            <!-- top tile, round to the right tile -->
-            <path marker-end="url(#mpArrow)" d="M444 62c92-16 176 34 186 128"/>
-            <!-- left tile, down into the listing -->
-            <path marker-end="url(#mpArrow)" d="M96 315c2 62 18 96 52 110"/>
-            <!-- right tile, down into the listing -->
-            <path marker-end="url(#mpArrow)" d="M654 315c-2 62-18 96-52 110"/>
-          </g>
-
-          <!-- the listing and the top tile answer each other, so this one
-               carries a head at both ends and does not flow -->
-          <g stroke-dasharray="7 8">
-            <path marker-start="url(#mpArrow)" marker-end="url(#mpArrow)" d="M368 142v64"/>
-          </g>
-        </svg>
-
-        <!-- The three tiles carried the Amazon, Etsy and eBay marks. They are
-             the three surfaces a page can be found on now: an organic
-             result, an AI answer, and every other bot that comes for the
-             same pages. Supplied marks, trimmed of their white surround and
-             quantised to the few flat colours each actually uses, nine
-             kilobytes for all three, against a hundred and thirty as
-             they arrived.
-
-             THE THIRD IS NOT A BRAND and is drawn rather than supplied:
-             Google and OpenAI own the first two, and the third stands for
-             every other crawler that is not either of them. Both
-             companies publish rules about how their marks may be shown , 
-             worth a look before this goes live. -->
-        <span class="mp-mk mp-mk-a"><img src="/images/tech-img1-69a261840b.webp" width="235" height="240" alt="Google" decoding="async" loading="lazy"></span>
-        <span class="mp-mk mp-mk-b"><img src="/images/tech-img2-e4d7d49d91.webp" width="237" height="240" alt="ChatGPT" decoding="async" loading="lazy"></span>
-        <span class="mp-mk mp-mk-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.4" r="4.2"/><path d="M12 9.2V5.6M8.2 13.4H4.4M15.8 13.4h3.8M12 17.6v2.8"/><path d="m9 10.4-2.6-2.6M15 10.4l2.6-2.6M9 16.4l-2.6 2.6M15 16.4l2.6 2.6"/><path d="M9.4 5.4 12 3l2.6 2.4"/></svg></span>
-
-        <div class="mp-win">
-          <div class="mp-bar"><i></i><i></i><i></i></div>
-          <div class="mp-body">
-            <span class="mp-shot sh-c"><svg viewBox="0 0 188 76" fill="none"
-                  stroke="currentColor" stroke-width="7" stroke-linecap="round">
-                  <path d="M40 24h108M40 48h74"/></svg></span>
-            <div class="mp-meta">
-              <span class="mp-line"></span>
-              <span class="mp-line"></span>
-              <span class="mp-line"></span>
-              <!-- the same two slots the price and the Add to Cart button
-                   once had: the verdict a crawl returns, and the address it
-                   returned it for -->
-              <span class="mp-price">Crawled</span>
-              <span class="mp-cart">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.8a4.2 4.2 0 0 0 6.3.45l2.5-2.5a4.2 4.2 0 1 0-5.94-5.94l-1.43 1.42"/><path d="M13.8 10.2a4.2 4.2 0 0 0-6.3-.45L5 12.25a4.2 4.2 0 1 0 5.94 5.94l1.42-1.42"/></svg>
-                yoursite.com
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mp-stats">
-          <div class="mp-stat mp-s1">
-            <span class="mp-si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17.5 9.2 11l3.6 3.6L21 6.4"/><path d="M15.6 6.4H21v5.4"/></svg></span>
-            <span class="mp-txt"><b>Crawl Errors</b><span>What the bot hit</span></span>
-          </div>
-          <div class="mp-stat mp-s2">
-            <span class="mp-si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.6 6.2h8.8M7.6 11h8.8M7.6 15.8h5"/><circle cx="18.6" cy="17.4" r="3.4"/><path d="m21.4 20.2 1.4 1.4"/></svg></span>
-            <span class="mp-txt"><b>Unreached Pages</b><span>What it never saw</span></span>
-          </div>
-          <div class="mp-stat mp-s3">
-            <span class="mp-si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.4" cy="8.4" r="3.4"/><path d="M3.4 19.4a6 6 0 0 1 12 0"/><path d="M16.2 5.4a3.4 3.4 0 0 1 0 6M18 13.6a6 6 0 0 1 3.2 5.2"/></svg></span>
-            <span class="mp-txt"><b>Index Gaps</b><span>Seen, but not indexed</span></span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════════════════════════════════════════
      WHAT YOU RECEIVE, six deliverables, in the platforms component.

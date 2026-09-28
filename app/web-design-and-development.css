@@ -6022,3 +6022,134 @@ html[data-theme="dark"] #process .eg-exp-note{
   font-weight:800;
   vertical-align:0.12em;
 }
+
+/* === SITE CONSISTENCY LOCK (do not edit here — edit site-consistency.css) === */
+/* ══════════════════════════════════════════════════════════════════════
+   SITE CONSISTENCY — load LAST on every page (after page CSS).
+
+   One section rhythm: equal padding-top and padding-bottom via --sec-y.
+   One type scale: h1–h6 and reading <p> share the same tokens everywhere.
+   Heroes (.hs / .ct-hero) are not .sec and keep their own hero padding.
+   ══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --h1:clamp(30px,4.4vw,58px);
+  --h2:clamp(29px,3.6vw,46px);
+  --h3:clamp(17px,1.8vw,22px);
+  --h4:clamp(14px,1.3vw,16px);
+  --h5:clamp(12.5px,1.15vw,14px);
+  --body:16px;
+  --lede:16px;
+  --sec-y:clamp(58px,6vw,92px);
+}
+
+/* ── Equal vertical padding on every content section ───────────────── */
+.sec,
+section.sec,
+.sec.acv,
+.sec.ax,
+.sec.bl-sec,
+.sec.eg-sec,
+.sec.revs,
+.sec.faq,
+.sec.wy,
+.sec.pz,
+.sec.pf,
+.sec.wn,
+.sec.vs,
+.sec.wk,
+.sec.cta,
+.sec.tsm,
+.sec.wc-sec,
+.sec.svc,
+.sec.beam-zone,
+.sec.tb,
+#who.sec,
+#vs.sec,
+#model.sec,
+#process.sec,
+#why.sec,
+#whyus.sec,
+#receive.sec,
+#pricing.sec,
+#reviews.sec,
+#work.sec,
+#faq.sec,
+#contact.sec,
+#signs.sec,
+#get.sec,
+#platforms.sec,
+#ai.sec,
+#crawl-check.sec{
+  padding-block:var(--sec-y) !important;
+}
+
+/* ── Headings: one size per level, site-wide ─────────────────────────── */
+h1,
+.hs-h1,
+.ct-hero h1{
+  font-size:var(--h1) !important;
+}
+h2,
+.sec-head h2,
+.ac-head h2,
+.wy-say h2,
+.mp-say h2,
+.gw-say h2,
+.pf-head h2,
+.cta3 h2,
+.eg-sec h2,
+.hx .sec-head h2,
+.sg-head h2,
+.ct-side h2,
+.ct-next-head h2{
+  font-size:var(--h2) !important;
+}
+h3,
+.ac-card h3,
+.eg-card h3,
+.pf-card h3,
+.ws-item h3,
+.gw-block h3,
+.sp-top h3,
+.wc-panel h3,
+.wn-card h3{
+  font-size:var(--h3) !important;
+}
+h4{ font-size:var(--h4) !important; }
+h5,
+h6{ font-size:var(--h5) !important; }
+
+/* ── Body / lede reading size (content sections + heroes) ───────────── */
+.sec p,
+.sec-lede,
+.hs-lede,
+.ac-lede,
+.cta3 > p,
+.cta3-line,
+.faq-a p,
+.faq-aside p,
+.wy-pane p,
+.wy-say > p,
+.wc-panel > p,
+.wn-panel > p,
+.ac-card p,
+.eg-card p,
+.pf-card > p,
+.gr-text,
+.mp-say > p,
+.gw-say > p,
+.wc-say > p,
+.wn-say p{
+  font-size:var(--body) !important;
+}
+
+/* Keep form errors / helper chrome from inheriting body size */
+.sec .hs-err,
+.sec .ct-err,
+.sec .form-err,
+.hs-err,
+.ct-err,
+.hs-sub{
+  font-size:13px !important;
+}
