@@ -3884,6 +3884,24 @@ html[data-theme="dark"] #process .eg-exp-note{
   color:var(--text-2);
   font-size:var(--body);
 }
+
+/* Process dial: homepage circle size; white stage cards (not tint panel) */
+#process .eg-core{
+  width:min(100%,480px,52vh) !important;
+}
+#process .eg-card,
+#process .eg-card::after{
+  background:#fff !important;
+}
+html[data-theme="dark"] #process .eg-card,
+html[data-theme="dark"] #process .eg-card::after{
+  background:var(--surface) !important;
+}
+@media (max-width:1000px){
+  #process .eg-core{
+    width:min(78%,292px) !important;
+  }
+}
 /* fig-af: upright + smaller — no italic/skew on %, +, $M+ */
 .tb-fig b .fig-af{
   font-style:normal !important;
