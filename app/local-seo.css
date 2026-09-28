@@ -2894,7 +2894,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    was drawn for the near-white. Those three fix the parity of the other
    nine, which is why this is one block rather than a rule beside each
    section: a run cannot be decided a section at a time. */
-#proof,#industries,#ai-search,#faq{
+#industries,#ai-search,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
 #services-2,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
@@ -3688,7 +3688,7 @@ html[data-theme="dark"] .ftm{
    refused to resolve a <use> into a hidden tree. */
 .eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
 /* Complete section grounds — source rhythm omitted some ids on this page */
-#proof,#industries,#reviews,#process,#faq{
+#industries,#reviews,#process,#faq{
   --ground:var(--bg-alt); --panel:var(--surface);
 }
 #what,#services-2,#pack,#apart,#contact{
@@ -3755,7 +3755,7 @@ html[data-theme="dark"] #fit .c-us .vs-m{
 }
 html[data-theme="dark"] #fit .vs-m.is-yes{ color:#3DDB7E; }
 
-#proof,
+
 #what,
 #services-2,
 #industries,

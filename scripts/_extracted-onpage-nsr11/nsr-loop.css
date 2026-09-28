@@ -1,0 +1,7 @@
+
+/* the rail loops, so there is never an empty end; the dashed run from the
+   label meets the screen that is centred */
+#ai-search .nsr-rail{padding-inline:0 !important;}
+#ai-search .nsr-deck::before{top:-42px; height:42px;}
+#ai-search .nsr-flow{margin-bottom:42px;}
+#ai-search .nsr-down{display:none;}

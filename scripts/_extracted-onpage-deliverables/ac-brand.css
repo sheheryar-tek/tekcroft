@@ -1,0 +1,57 @@
+
+/* the open panel in Tekcroft blue, and a few things that answer to the
+   pointer: a soft light that follows it, a watermark that leans with it,
+   the copy arriving line by line, and a bar showing time to the next one */
+.acv .ac-item.on{border-color:var(--primary); background:var(--primary);}
+.acv .ac-fb{
+  background:
+    radial-gradient(58% 54% at 80% 10%, hsl(var(--brand-h) 100% 62% / .55) 0%, transparent 62%),
+    radial-gradient(54% 50% at 10% 92%, hsl(var(--brand-h) 100% 30% / .5) 0%, transparent 66%),
+    var(--primary);}
+.acv .ac-fb::before{background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);}
+.acv .ac-veil{background:linear-gradient(100deg,
+  hsl(var(--brand-h) 100% 26% / .72) 0%, hsl(var(--brand-h) 100% 34% / .34) 52%, transparent 100%);}
+.acv .ac-wm{opacity:.16; transition:transform .5s var(--ease);
+  transform:translate3d(calc(var(--mx,.5) * -14px), calc(var(--my,.5) * -14px), 0);}
+
+/* the light that follows the pointer */
+.ac-spot{position:absolute; inset:0; z-index:1; pointer-events:none; opacity:0;
+  transition:opacity .4s var(--ease);
+  background:radial-gradient(260px circle at calc(var(--mx,.5) * 100%) calc(var(--my,.5) * 100%),
+    rgba(255,255,255,.18), transparent 70%);}
+.ac-item.on:hover .ac-spot{opacity:1;}
+
+/* the copy arrives in order */
+.acv .ac-item.on .ac-num,.acv .ac-item.on .ac-ico,
+.acv .ac-item.on .ac-open h3,.acv .ac-item.on .ac-open p,
+.acv .ac-item.on .ac-chip{animation:acUp .5s var(--pop, cubic-bezier(.2,.8,.2,1)) both;}
+.acv .ac-item.on .ac-ico{animation-delay:.16s;}
+.acv .ac-item.on .ac-open h3{animation-delay:.22s;}
+.acv .ac-item.on .ac-open p{animation-delay:.3s;}
+.acv .ac-item.on .ac-chip{animation-delay:.38s;}
+@keyframes acUp{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+.acv .ac-item.on .ac-ico{background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.35);}
+.acv .ac-item.on:hover .ac-ico{background:rgba(255,255,255,.26);}
+.acv .ac-open p{color:rgba(255,255,255,.86);}
+
+/* time to the next panel */
+.ac-prog{position:absolute; left:0; bottom:0; height:3px; width:0; z-index:3;
+  background:rgba(255,255,255,.85); border-radius:0 3px 3px 0;}
+.ac-item.on .ac-prog{animation:acProg 5s linear forwards;}
+[data-acc].paused .ac-item.on .ac-prog{animation-play-state:paused;}
+@keyframes acProg{from{width:0;} to{width:100%;}}
+
+/* closed slats pick up a little brand colour as you pass them */
+.acv .ac-item:not(.on):hover{background:hsl(var(--brand-h) 85% 97%);}
+html[data-theme="dark"] .acv .ac-item:not(.on):hover{background:hsl(var(--brand-h) 45% 12%);}
+.acv .ac-item:not(.on):hover .ac-n{color:var(--primary);}
+
+@media (prefers-reduced-motion:reduce){
+  .acv .ac-item.on .ac-num,.acv .ac-item.on .ac-ico,
+  .acv .ac-item.on .ac-open h3,.acv .ac-item.on .ac-open p,
+  .acv .ac-item.on .ac-chip{animation:none;}
+  .ac-prog{display:none;} .ac-spot{display:none;}
+  .acv .ac-wm{transform:none;}
+}

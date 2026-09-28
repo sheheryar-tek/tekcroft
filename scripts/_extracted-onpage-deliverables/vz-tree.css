@@ -1,0 +1,18 @@
+
+/* the linking picture as a small tree, and the mapping picture as three
+   terms meeting one page — both laid out so nothing overlaps */
+.acv .vz-link,.acv .vz-map{min-height:152px; display:block; padding:14px 12px;}
+.acv .vz-link svg,.acv .vz-map svg{inset:14px 12px; width:calc(100% - 24px); height:calc(100% - 28px);}
+.vz-hub{position:absolute; left:12px; top:14px; padding:5px 9px; border-radius:9px; background:var(--primary);
+  color:#fff; font-size:9px; font-weight:700; white-space:nowrap;}
+.vz-leaf{position:absolute; right:12px; padding:4px 8px; border-radius:8px; background:#fff;
+  border:1px solid hsl(var(--brand-h) 70% 84%); font-size:9px; font-weight:700; color:var(--brand-text);
+  white-space:nowrap;}
+.vz-leaf.l1{top:44px;} .vz-leaf.l2{top:80px;} .vz-leaf.l3{top:116px;}
+.acv .vz-map .vz-kw{position:absolute; left:12px; right:auto; max-width:46%; font-size:8.6px;
+  padding:4px 7px; line-height:1.25; white-space:normal;}
+.acv .vz-map .vz-kw.k1{top:14px;} .acv .vz-map .vz-kw.k2{top:64px;}
+.acv .vz-map .vz-kw.k3{top:112px;}
+.acv .vz-map .vz-page{position:absolute; right:12px; top:50%; transform:translateY(-50%);
+  padding:7px 9px; border-radius:9px; background:var(--primary); color:#fff; font-size:9px; font-weight:700;
+  white-space:nowrap; width:auto; height:auto;}

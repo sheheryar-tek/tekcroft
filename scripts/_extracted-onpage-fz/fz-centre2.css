@@ -1,0 +1,6 @@
+
+/* the copy carries an eyebrow above its heading, so the run is nudged down
+   by that much: it then reads as centred against the heading and text */
+@media (min-width:1041px){
+  #framework-v2 .fz-run{margin-top:clamp(20px,2.4vw,40px);}
+}

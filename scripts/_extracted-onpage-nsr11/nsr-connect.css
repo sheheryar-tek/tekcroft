@@ -1,0 +1,9 @@
+
+/* the rail carries half-card padding, so even the first and last screen
+   can sit in the middle; the dashed line then drops from the label
+   straight onto whichever screen is centred */
+#ai-search .nsr-deck{position:relative;}
+#ai-search .nsr-deck::before{content:""; position:absolute; left:50%; top:-18px; width:1.6px; height:18px;
+  transform:translateX(-50%);
+  background:repeating-linear-gradient(180deg, hsl(var(--brand-h) 70% 72%) 0 5px, transparent 5px 11px);}
+#ai-search .nsr-flow{margin-bottom:18px;}

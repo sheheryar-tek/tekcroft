@@ -656,9 +656,12 @@ h2 em{font-style:normal; color:var(--brand-text);}
 .hero-note b{color:#fff; font-weight:600;}
 .hero-note s{text-decoration:none; color:rgba(255,255,255,.35);}
 
-/* client ticker along the base */
+/* client ticker along the base — homepage .hero and service .hs heroes */
 .ticker{position:absolute; left:0; right:0; bottom:0; z-index:3; padding:18px 0;
   border-top:1px solid rgba(255,255,255,.16);}
+.hs > .ticker{z-index:4;}
+.hs:has(> .ticker){
+  padding-bottom:max(clamp(48px,5.4vw,104px), 88px);}
 .marq{overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
@@ -670,6 +673,29 @@ h2 em{font-style:normal; color:var(--brand-text);}
 .marq span::before{content:""; width:5px; height:5px; border-radius:50%;
   background:var(--primary); flex-shrink:0;}
 .marq span:hover{color:#fff;}
+
+/* Proof / stats strip under every service hero.
+   Light: white plate. Dark: follow the theme — no forced white. */
+section#proof{
+  --ground:#fff;
+  --panel:#fff;
+  background:#fff !important;
+}
+html[data-theme="dark"] section#proof{
+  --ground:var(--bg);
+  --panel:var(--surface);
+  background:var(--bg) !important;
+  color:var(--text);
+}
+html[data-theme="dark"] section#proof .tb-figs{
+  background:var(--surface) !important;
+  border-color:var(--border);
+  box-shadow:0 18px 40px -28px rgba(0,0,0,.65);
+}
+html[data-theme="dark"] section#proof .tb-fig b{color:var(--text);}
+html[data-theme="dark"] section#proof .tb-fig .tb-cap{color:var(--text-2);}
+html[data-theme="dark"] section#proof .tb-meter{background:var(--border);}
+html[data-theme="dark"] section#proof .tb-fig + .tb-fig{border-left-color:var(--border);}
 
 /* ============================================================
    WHY US — the honest contrast. Left column is the industry
@@ -4094,12 +4120,22 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
 .sec.ax,.sec.bl-sec,.sec.eg-sec,.sec.revs{ padding-block:var(--sec-y); }
 
 /* ── 2. sections alternate, and only alternate ─────────────────────────
-   White, then the faint tint, all the way down. The rhythm carries the
-   division on its own, which is what lets the rules between sections go. */
-#about,#services,#work,#approach,#reviews{ background:var(--surface); }
-#blueprint,#clients,#why,#ai-ecosystem,#faq{ background:var(--bg-alt); }
-/* this one carried a three-stop gradient of its own */
-.ax,html[data-theme="dark"] .ax{ background:var(--bg-alt); }
+   White, then the brand tint, all the way down after the hero. */
+#about,
+#industries,
+#why,
+#ai-ecosystem,
+#faq{ background:var(--surface); }
+
+#services,
+#work,
+#approach,
+#reviews,
+#contact{ background:var(--bg-alt); }
+
+/* leftover / removed section classes — keep them in the tint lane */
+.ax,html[data-theme="dark"] .ax,
+#blueprint,#clients{ background:var(--bg-alt); }
 
 /* ── 3. no rules at the top or foot of a section ────────────────────── */
 .sec,.svc,.wk,.why,.revs,.faq,.bl-sec,.eg-sec,.sh,.ax,.clients,.bp{
@@ -5115,176 +5151,161 @@ h1, h2, h3, h4, h5, h6{
 
 
 /* ══════════════════════════════════════════════════════════════════════
-   WHY CHOOSE US V2 — homepage variant (scoped to #why-v2)
+   WHY CHOOSE US — homepage (#why)
    ══════════════════════════════════════════════════════════════════════ */
-#why-v2{background:var(--bg-alt); --wy-w:100%;}
+#why{background:var(--surface); --wy-w:100%;}
 
 
 
 
 
-#why-v2.wy{--wy-w:100%;}
-#why-v2 .wy-in{display:grid; gap:clamp(24px,3vw,40px); justify-items:stretch;}
+#why.wy{--wy-w:100%;}
+#why .wy-in{display:grid; gap:clamp(24px,3vw,40px); justify-items:stretch;}
 
 
-#why-v2 .wy-eyebrow{display:inline-flex; align-items:center; gap:8px;
+#why .wy-eyebrow{display:inline-flex; align-items:center; gap:8px;
   padding:7px 16px; border-radius:99px;
   background:var(--surface); border:1px solid var(--border);
   font-size:11px; font-weight:800; letter-spacing:.13em; text-transform:uppercase;
   color:var(--brand-text);}
-#why-v2 .wy-eyebrow i{width:6px; height:6px; border-radius:50%; background:var(--primary);}
+#why .wy-eyebrow i{width:6px; height:6px; border-radius:50%; background:var(--primary);}
 
-#why-v2 .wy-say{text-align:center;}
-#why-v2 .wy-say h2{margin:clamp(16px,1.9vw,24px) auto 0; max-width:20ch;
+#why .wy-say{text-align:center;}
+#why .wy-say h2{margin:clamp(16px,1.9vw,24px) auto 0; max-width:20ch;
   font-size:clamp(30px,3.5vw,49px); line-height:1.1; letter-spacing:-0.045em;}
-#why-v2 .wy-say h2 em{font-style:normal; color:var(--brand-text);}
+#why .wy-say h2 em{font-style:normal; color:var(--brand-text);}
 
 
-#why-v2 .wy-box{display:grid; gap:clamp(14px,1.6vw,22px);}
+#why .wy-box{display:grid; gap:clamp(14px,1.6vw,22px);}
 
-#why-v2 .wy-rail{width:var(--wy-w); margin-inline:auto;
+#why .wy-rail{width:var(--wy-w); margin-inline:auto;
   display:grid; grid-auto-flow:column; grid-auto-columns:1fr;
   gap:6px; padding:6px; border-radius:16px;
   background:var(--surface); border:1px solid var(--border);}
-#why-v2 .wy-tab{padding:12px 14px; border:0; border-radius:11px; cursor:pointer;
+#why .wy-tab{padding:12px 14px; border:0; border-radius:11px; cursor:pointer;
   background:transparent; color:var(--text-2);
   font-family:var(--font-display); font-weight:700;
   font-size:clamp(11.5px,1vw,14px); line-height:1.25; letter-spacing:-0.02em;
   text-align:center;
   transition:background .3s var(--ease), color .3s var(--ease),
              box-shadow .3s var(--ease);}
-#why-v2 .wy-tab:hover{color:var(--text);}
+#why .wy-tab:hover{color:var(--text);}
 
-#why-v2 .wy-tab.on{background:hsl(var(--brand-h) 100% 35%); color:#fff;
+#why .wy-tab.on{background:hsl(var(--brand-h) 100% 35%); color:#fff;
   box-shadow:0 8px 20px -8px hsl(var(--brand-h) 100% 40% / .5);}
-#why-v2 .wy-tab.on:hover{color:#fff;}
-#why-v2 .wy-tab:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
+#why .wy-tab.on:hover{color:#fff;}
+#why .wy-tab:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
 
 
-#why-v2 .wy-panes{width:var(--wy-w); margin-inline:auto;
+#why .wy-panes{width:var(--wy-w); margin-inline:auto;
   display:grid; padding:clamp(22px,2.6vw,36px);
   background:var(--surface); border:1px solid var(--border);
   border-radius:calc(var(--r-lg) + 8px);
   box-shadow:0 26px 60px -38px rgba(var(--ink-rgb),.4);}
 
 
-#why-v2 .wy-pane{grid-area:1 / 1; visibility:hidden; opacity:0;
+#why .wy-pane{grid-area:1 / 1; visibility:hidden; opacity:0;
   transform:translateY(8px); pointer-events:none;
   display:grid; grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
   gap:clamp(18px,2.4vw,38px); align-items:center;
   transition:opacity .34s var(--ease), transform .34s var(--ease);}
-#why-v2 .wy-pane.on{visibility:visible; opacity:1; transform:none; pointer-events:auto;}
-#why-v2 .wy-txt{grid-column:1; align-self:center;}
+#why .wy-pane.on{visibility:visible; opacity:1; transform:none; pointer-events:auto;}
+#why .wy-txt{grid-column:1; align-self:center;}
 
-#why-v2 .wy-mark{display:grid; place-items:center;
+#why .wy-mark{display:grid; place-items:center;
   width:clamp(40px,3.6vw,48px); aspect-ratio:1; border-radius:13px;
   background:var(--disc); color:var(--primary); margin-bottom:14px;}
-#why-v2 .wy-mark svg{width:50%; height:50%;}
+#why .wy-mark svg{width:50%; height:50%;}
 
-#why-v2 .wy-pane h3{font-family:var(--font-display); font-weight:800;
+#why .wy-pane h3{font-family:var(--font-display); font-weight:800;
   font-size:clamp(17px,1.65vw,23px); line-height:1.2; letter-spacing:-0.035em;
   color:var(--text);}
-#why-v2 .wy-pane p{margin:clamp(9px,1vw,13px) 0 0;
+#why .wy-pane p{margin:clamp(9px,1vw,13px) 0 0;
   font-size:clamp(13.6px,1.02vw,15px); line-height:1.7; color:var(--text-2);}
 
 
 
-#why-v2 .wy-fig{grid-column:2; align-self:center;
+#why .wy-fig{grid-column:2; align-self:center;
   margin:0; padding:clamp(16px,1.8vw,22px);
   border-radius:var(--r-lg); background:var(--bg-alt);}
-#why-v2 .wy-fig figcaption{display:flex; align-items:center; justify-content:space-between;
+#why .wy-fig figcaption{display:flex; align-items:center; justify-content:space-between;
   gap:12px; margin-bottom:clamp(12px,1.4vw,18px);}
-#why-v2 .wy-fig figcaption b{font-family:var(--font-display); font-weight:800;
+#why .wy-fig figcaption b{font-family:var(--font-display); font-weight:800;
   font-size:clamp(13px,1.1vw,15px); letter-spacing:-0.03em; color:var(--text);}
-#why-v2 .wy-chip{display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+#why .wy-chip{display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
   padding:6px 12px; border-radius:99px;
   background:var(--surface); border:1px solid var(--border);
   font-size:11px; font-weight:600; color:var(--text-2);}
-#why-v2 .wy-chip svg{width:12px; height:12px;}
+#why .wy-chip svg{width:12px; height:12px;}
 
 
 
-#why-v2 .wyln{width:100%; height:auto; display:block;}
-#why-v2 .wyln-area{fill:hsl(var(--brand-h) 100% 50% / .10);}
-#why-v2 .wyln-line{fill:none; stroke:var(--text); stroke-width:2;
+#why .wyln{width:100%; height:auto; display:block;}
+#why .wyln-area{fill:hsl(var(--brand-h) 100% 50% / .10);}
+#why .wyln-line{fill:none; stroke:var(--text); stroke-width:2;
   stroke-linecap:round; stroke-linejoin:round;}
-#why-v2 .wyln-d{fill:var(--primary);}
-#why-v2 .wyln-x, #why-v2 .wyln-y{fill:var(--muted); font-size:8px; font-family:var(--font);}
-#why-v2 .wyln-x{text-anchor:middle;} #why-v2 .wyln-y{text-anchor:end;}
+#why .wyln-d{fill:var(--primary);}
+#why .wyln-x, #why .wyln-y{fill:var(--muted); font-size:8px; font-family:var(--font);}
+#why .wyln-x{text-anchor:middle;} #why .wyln-y{text-anchor:end;}
 
 
-#why-v2 .dn-wrap{display:grid; grid-template-columns:auto minmax(0,1fr);
+#why .dn-wrap{display:grid; grid-template-columns:auto minmax(0,1fr);
   gap:clamp(14px,1.8vw,26px); align-items:center; position:relative;}
-#why-v2 .dn{width:clamp(96px,10vw,124px); height:auto; display:block; flex-shrink:0;}
-#why-v2 .dn-track{fill:none; stroke:var(--border); stroke-width:15;}
-#why-v2 .dn-s{fill:none; stroke-width:15; stroke-linecap:butt;}
-#why-v2 .dn-1{stroke:var(--primary);}
-#why-v2 .dn-2{stroke:hsl(var(--brand-h) 100% 66%);}
-#why-v2 .dn-3{stroke:hsl(var(--brand-h) 30% 46%);}
-#why-v2 .dn-4{stroke:var(--border);}
-#why-v2 .dn-mid{position:absolute; left:clamp(48px,5vw,62px); top:50%;
+#why .dn{width:clamp(96px,10vw,124px); height:auto; display:block; flex-shrink:0;}
+#why .dn-track{fill:none; stroke:var(--border); stroke-width:15;}
+#why .dn-s{fill:none; stroke-width:15; stroke-linecap:butt;}
+#why .dn-1{stroke:var(--primary);}
+#why .dn-2{stroke:hsl(var(--brand-h) 100% 66%);}
+#why .dn-3{stroke:hsl(var(--brand-h) 30% 46%);}
+#why .dn-4{stroke:var(--border);}
+#why .dn-mid{position:absolute; left:clamp(48px,5vw,62px); top:50%;
   transform:translate(-50%,-50%); text-align:center; pointer-events:none;}
-#why-v2 .dn-mid b{display:block; font-family:var(--font-display); font-weight:800;
+#why .dn-mid b{display:block; font-family:var(--font-display); font-weight:800;
   font-size:clamp(17px,1.6vw,21px); letter-spacing:-0.04em; color:var(--text);}
-#why-v2 .dn-mid em{display:block; font-style:normal; font-size:8.5px; letter-spacing:.12em;
+#why .dn-mid em{display:block; font-style:normal; font-size:8.5px; letter-spacing:.12em;
   text-transform:uppercase; color:var(--muted);}
-#why-v2 .dn-key{list-style:none; margin:0; padding:0; display:grid;
+#why .dn-key{list-style:none; margin:0; padding:0; display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px clamp(10px,1.4vw,18px);}
-#why-v2 .dn-key li{display:flex; align-items:center; gap:7px; font-size:11.5px;
+#why .dn-key li{display:flex; align-items:center; gap:7px; font-size:11.5px;
   color:var(--text-2);}
-#why-v2 .dn-key i{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
-#why-v2 .dn-key .dn-1 i{background:var(--primary);}
-#why-v2 .dn-key .dn-2 i{background:hsl(var(--brand-h) 100% 66%);}
-#why-v2 .dn-key .dn-3 i{background:hsl(var(--brand-h) 30% 46%);}
-#why-v2 .dn-key .dn-4 i{background:var(--border);}
-#why-v2 .dn-key b{margin-left:auto; font-family:var(--font-display); font-weight:800;
+#why .dn-key i{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+#why .dn-key .dn-1 i{background:var(--primary);}
+#why .dn-key .dn-2 i{background:hsl(var(--brand-h) 100% 66%);}
+#why .dn-key .dn-3 i{background:hsl(var(--brand-h) 30% 46%);}
+#why .dn-key .dn-4 i{background:var(--border);}
+#why .dn-key b{margin-left:auto; font-family:var(--font-display); font-weight:800;
   font-size:12px; color:var(--text); font-variant-numeric:tabular-nums;}
 
 
-#why-v2 .br{list-style:none; margin:0; padding:0; display:grid; gap:clamp(11px,1.3vw,16px);}
-#why-v2 .br-top{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+#why .br{list-style:none; margin:0; padding:0; display:grid; gap:clamp(11px,1.3vw,16px);}
+#why .br-top{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
   margin-bottom:7px;}
-#why-v2 .br-top span{font-size:12.5px; color:var(--text-2);}
-#why-v2 .br-top b{font-family:var(--font-display); font-weight:800; font-size:13.5px;
+#why .br-top span{font-size:12.5px; color:var(--text-2);}
+#why .br-top b{font-family:var(--font-display); font-weight:800; font-size:13.5px;
   letter-spacing:-0.03em; color:var(--brand-text); font-variant-numeric:tabular-nums;}
-#why-v2 .br-rail{display:block; height:6px; border-radius:99px; background:var(--border);
+#why .br-rail{display:block; height:6px; border-radius:99px; background:var(--border);
   overflow:hidden;}
-#why-v2 .br-rail i{display:block; height:100%; width:var(--w); border-radius:99px;
+#why .br-rail i{display:block; height:100%; width:var(--w); border-radius:99px;
   background:var(--primary); transform:scaleX(0); transform-origin:left center;}
-#why-v2 .wy-pane.on .br-rail i{transform:none; transition:transform .9s var(--ease) .2s;}
+#why .wy-pane.on .br-rail i{transform:none; transition:transform .9s var(--ease) .2s;}
 
 
 @media (max-width:980px){
   
-  #why-v2 .wy-pane{grid-template-columns:1fr; gap:clamp(16px,2.4vw,24px);}
-  #why-v2 .wy-txt, #why-v2 .wy-fig{grid-column:1;}
+  #why .wy-pane{grid-template-columns:1fr; gap:clamp(16px,2.4vw,24px);}
+  #why .wy-txt, #why .wy-fig{grid-column:1;}
 }
 @media (max-width:600px){
-  #why-v2 .wy-rail{grid-auto-flow:row; grid-auto-columns:auto;}
-  #why-v2 .wy-tab{text-align:left; padding:12px 16px;}
-  #why-v2 .dn-wrap{grid-template-columns:1fr; justify-items:center;}
-  #why-v2 .dn-mid{left:50%; top:clamp(48px,14vw,62px);}
-  #why-v2 .dn-key{width:100%;}
+  #why .wy-rail{grid-auto-flow:row; grid-auto-columns:auto;}
+  #why .wy-tab{text-align:left; padding:12px 16px;}
+  #why .dn-wrap{grid-template-columns:1fr; justify-items:center;}
+  #why .dn-mid{left:50%; top:clamp(48px,14vw,62px);}
+  #why .dn-key{width:100%;}
 }
 @media (prefers-reduced-motion:reduce){
-  #why-v2 .wy-pane{transition:none;}
-  #why-v2 .br-rail i{transform:none;}
+  #why .wy-pane{transition:none;}
+  #why .br-rail i{transform:none;}
 }
-
-
-/* review aid: why-choose-us variant switch */
-.vsw{position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:60;
-  display:flex; align-items:center; gap:4px; padding:6px; border-radius:99px;
-  background:rgba(16,24,40,.92); box-shadow:0 18px 40px -20px rgba(8,20,40,.7);
-  backdrop-filter:blur(8px);}
-.vsw-lab{padding:0 10px 0 12px; font-size:11px; font-weight:700; letter-spacing:.08em;
-  text-transform:uppercase; color:rgba(255,255,255,.6);}
-.vsw button{border:0; border-radius:99px; padding:8px 14px; font:inherit; font-size:12.5px;
-  font-weight:700; cursor:pointer; background:transparent; color:rgba(255,255,255,.75);}
-.vsw button.on{background:var(--primary); color:#fff;}
-.vsw button:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
-[data-why-variant][hidden],[data-ai-variant][hidden]{display:none !important;}
-@media print{ .vsw{display:none;} }
 
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -6024,13 +6045,13 @@ html[data-theme="dark"] .ig-ic{background:hsl(var(--brand-h) 40% 18%);}
    take in at a glance. A light runs along the chips so the board never
    sits still, and whichever chip you are on holds it.
    ══════════════════════════════════════════════════════════════════════ */
-#industries-v3{padding-block:clamp(34px,3.8vw,56px); background:var(--surface);}
+#industries{padding-block:clamp(34px,3.8vw,56px); background:var(--surface);}
 .ix-grid{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(24px,3.2vw,52px);
   align-items:center;}
 .ix-say .smark{margin-bottom:12px;}
-#industries-v3 h2{margin:0; font-size:clamp(26px,2.7vw,38px); line-height:1.08; letter-spacing:-.04em;
+#industries h2{margin:0; font-size:clamp(26px,2.7vw,38px); line-height:1.08; letter-spacing:-.04em;
   text-transform:none;}
-#industries-v3 h2 em{font-style:normal; color:var(--brand-text);}
+#industries h2 em{font-style:normal; color:var(--brand-text);}
 .ix-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.65; color:var(--text-2); max-width:44ch;}
 .ix-meta{display:flex; align-items:center; gap:clamp(14px,1.8vw,24px); margin-top:clamp(16px,2vw,24px);
   flex-wrap:wrap;}
@@ -6143,7 +6164,7 @@ html[data-theme="dark"] .iy-card i{background:hsl(var(--brand-h) 40% 18%);}
    their wires run down into one AI core, and the screens those surfaces
    produce sit under it on a rail the reader can step through.
    ══════════════════════════════════════════════════════════════════════ */
-#search-split-v3{padding-block:clamp(44px,5vw,76px); background:var(--surface);}
+#ai-ecosystem{padding-block:clamp(44px,5vw,76px); background:var(--surface);}
 .nsr-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.04fr); gap:clamp(28px,4vw,60px); align-items:center;}
 
 .nsr-eyebrow{display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:99px;
@@ -6152,9 +6173,9 @@ html[data-theme="dark"] .iy-card i{background:hsl(var(--brand-h) 40% 18%);}
   box-shadow:0 4px 12px -6px hsl(var(--brand-h) 90% 35% / .3);}
 .nsr-eyebrow i{display:grid; place-items:center; width:15px; height:15px;}
 .nsr-eyebrow svg{width:15px; height:15px;}
-#search-split-v3 h2{margin:16px 0 0; font-size:clamp(28px,2.8vw,40px); line-height:1.08; letter-spacing:-.04em;
+#ai-ecosystem h2{margin:16px 0 0; font-size:clamp(28px,2.8vw,40px); line-height:1.08; letter-spacing:-.04em;
   text-transform:none; color:var(--text);}
-#search-split-v3 h2 em{display:block; font-style:normal; color:var(--brand-text);}
+#ai-ecosystem h2 em{display:block; font-style:normal; color:var(--brand-text);}
 .nsr-lede{margin:16px 0 0; max-width:56ch; font-size:clamp(14.8px,1.15vw,16px); line-height:1.7; color:var(--text-2);}
 .nsr-box{margin-top:clamp(18px,2vw,26px); display:grid; grid-template-columns:auto minmax(0,1fr); gap:14px;
   padding:clamp(16px,1.8vw,22px); border-radius:18px; background:hsl(var(--brand-h) 85% 96%);
@@ -6272,27 +6293,14 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
 }
 
 
-/* --- style-block-20.css --- */
-
-.vsw{position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:60; display:flex; align-items:center; gap:4px;
-  padding:6px; border-radius:99px; background:rgba(16,24,40,.92); box-shadow:0 18px 40px -20px rgba(8,20,40,.7);
-  backdrop-filter:blur(8px);}
-.vsw-lab{padding:0 10px 0 12px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.6);}
-.vsw button{border:0; border-radius:99px; padding:8px 14px; font:inherit; font-size:12.5px; font-weight:700; cursor:pointer;
-  background:transparent; color:rgba(255,255,255,.75);}
-.vsw button.on{background:var(--primary); color:#fff;}
-.vsw button:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
-[data-ai-variant][hidden]{display:none !important;}
-@media print{ .vsw{display:none;} }
 
 
-/* --- style-block-21.css --- */
 
 /* variant 3, second pass: the core is flat brand blue with the Tekcroft
    mark on it, the screens carry real result text rather than grey bars,
    and the whole stage matches the height of the copy beside it. */
-#search-split-v3 .nsr-grid{align-items:stretch;}
-#search-split-v3 .nsr-say{display:flex; flex-direction:column; justify-content:center;}
+#ai-ecosystem .nsr-grid{align-items:stretch;}
+#ai-ecosystem .nsr-say{display:flex; flex-direction:column; justify-content:center;}
 .nsr-stage{display:flex; flex-direction:column; justify-content:space-between; height:100%;}
 
 /* the core */
@@ -6324,35 +6332,35 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
 
 /* the eyebrow keeps its own width, the core wears the mark as a chip, and
    the deck takes whatever height is left so both columns finish level */
-#search-split-v3 .nsr-eyebrow{align-self:flex-start;}
-#search-split-v3 .nsr-mark{width:46%; height:46%; filter:drop-shadow(0 6px 14px hsl(var(--brand-h) 95% 25% / .35));}
-#search-split-v3 .nsr-orb{margin-block:clamp(70px,8vw,96px) clamp(14px,1.6vw,20px);}
-#search-split-v3 .nsr-deck{flex:1; align-items:stretch;}
-#search-split-v3 .nsr-rail{align-items:stretch;}
-#search-split-v3 .nsr-card{flex:0 0 clamp(168px,19vw,208px); display:flex; flex-direction:column; overflow:hidden;}
-#search-split-v3 .nsr-body{flex:1; min-height:0;}
-#search-split-v3 .nsr-arw{align-self:center;}
+#ai-ecosystem .nsr-eyebrow{align-self:flex-start;}
+#ai-ecosystem .nsr-mark{width:46%; height:46%; filter:drop-shadow(0 6px 14px hsl(var(--brand-h) 95% 25% / .35));}
+#ai-ecosystem .nsr-orb{margin-block:clamp(70px,8vw,96px) clamp(14px,1.6vw,20px);}
+#ai-ecosystem .nsr-deck{flex:1; align-items:stretch;}
+#ai-ecosystem .nsr-rail{align-items:stretch;}
+#ai-ecosystem .nsr-card{flex:0 0 clamp(168px,19vw,208px); display:flex; flex-direction:column; overflow:hidden;}
+#ai-ecosystem .nsr-body{flex:1; min-height:0;}
+#ai-ecosystem .nsr-arw{align-self:center;}
 
 
 /* --- style-block-23.css --- */
 
 /* the copy starts at the top, so the surfaces line up with the heading
    rather than sitting above it, and the mark turns slowly in the core */
-#search-split-v3 .nsr-say{justify-content:flex-start;}
-#search-split-v3 .nsr-orb{margin-block:clamp(56px,6.5vw,80px) clamp(14px,1.6vw,20px);}
-#search-split-v3 .nsr-mark{animation:nsrSpin 16s linear infinite;}
+#ai-ecosystem .nsr-say{justify-content:flex-start;}
+#ai-ecosystem .nsr-orb{margin-block:clamp(56px,6.5vw,80px) clamp(14px,1.6vw,20px);}
+#ai-ecosystem .nsr-mark{animation:nsrSpin 16s linear infinite;}
 @keyframes nsrSpin{to{transform:rotate(360deg);}}
-@media (prefers-reduced-motion:reduce){ #search-split-v3 .nsr-mark{animation:none;} }
+@media (prefers-reduced-motion:reduce){ #ai-ecosystem .nsr-mark{animation:none;} }
 
 
 /* --- style-block-24.css --- */
 
 /* the rail scrolls sideways, which clips anything that pokes out of it,
    so it carries the room the lifted card and its shadow need */
-#search-split-v3 .nsr-rail{padding:12px 4px 14px;}
-#search-split-v3 .nsr-card{box-shadow:0 10px 24px -22px hsl(var(--brand-h) 90% 25% / .75);}
-#search-split-v3 .nsr-card.on{box-shadow:0 0 0 1px var(--primary), 0 14px 30px -18px hsl(var(--brand-h) 95% 35% / .45);}
-#search-split-v3 .nsr-deck{padding-block:clamp(8px,1vw,12px);}
+#ai-ecosystem .nsr-rail{padding:12px 4px 14px;}
+#ai-ecosystem .nsr-card{box-shadow:0 10px 24px -22px hsl(var(--brand-h) 90% 25% / .75);}
+#ai-ecosystem .nsr-card.on{box-shadow:0 0 0 1px var(--primary), 0 14px 30px -18px hsl(var(--brand-h) 95% 35% / .45);}
+#ai-ecosystem .nsr-deck{padding-block:clamp(8px,1vw,12px);}
 
 
 /* --- style-block-25.css --- */
@@ -6363,47 +6371,47 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
    core shrinks, the arrows give way to swiping, and one screen fills the
    rail at a time. */
 @media (max-width:1180px){
-  #search-split-v3 .nsr-grid{gap:clamp(22px,3vw,40px);}
-  #search-split-v3 .nsr-card{flex-basis:clamp(152px,17vw,180px);}
+  #ai-ecosystem .nsr-grid{gap:clamp(22px,3vw,40px);}
+  #ai-ecosystem .nsr-card{flex-basis:clamp(152px,17vw,180px);}
 }
 @media (max-width:1040px){
-  #search-split-v3 .nsr-say{max-width:760px;}
-  #search-split-v3 .nsr-say .nsr-lede{max-width:none;}
-  #search-split-v3 .nsr-stage{max-width:760px; width:100%; margin-inline:auto; height:auto;}
-  #search-split-v3 .nsr-wires{top:56px; height:clamp(86px,12vw,120px);}
-  #search-split-v3 .nsr-orb{width:clamp(104px,13vw,132px); height:clamp(104px,13vw,132px);
+  #ai-ecosystem .nsr-say{max-width:760px;}
+  #ai-ecosystem .nsr-say .nsr-lede{max-width:none;}
+  #ai-ecosystem .nsr-stage{max-width:760px; width:100%; margin-inline:auto; height:auto;}
+  #ai-ecosystem .nsr-wires{top:56px; height:clamp(86px,12vw,120px);}
+  #ai-ecosystem .nsr-orb{width:clamp(104px,13vw,132px); height:clamp(104px,13vw,132px);
     margin-block:clamp(44px,7vw,68px) clamp(14px,2vw,20px);}
-  #search-split-v3 .nsr-deck{flex:none;}
+  #ai-ecosystem .nsr-deck{flex:none;}
 }
 @media (max-width:820px){
-  #search-split-v3 .nsr-node{padding:10px 5px 9px; border-radius:14px;}
-  #search-split-v3 .nsr-node b{font-size:10.8px;}
-  #search-split-v3 .nsr-logo,#search-split-v3 .nsr-spark{width:24px; height:24px;}
-  #search-split-v3 .nsr-spark svg{width:18px; height:18px;}
+  #ai-ecosystem .nsr-node{padding:10px 5px 9px; border-radius:14px;}
+  #ai-ecosystem .nsr-node b{font-size:10.8px;}
+  #ai-ecosystem .nsr-logo,#ai-ecosystem .nsr-spark{width:24px; height:24px;}
+  #ai-ecosystem .nsr-spark svg{width:18px; height:18px;}
 }
 @media (max-width:620px){
-  #search-split-v3{padding-block:clamp(34px,7vw,46px);}
-  #search-split-v3 h2{font-size:clamp(26px,7vw,32px);}
-  #search-split-v3 .nsr-box{grid-template-columns:auto minmax(0,1fr); gap:12px; padding:16px;}
-  #search-split-v3 .nsr-nodes{gap:8px;}
-  #search-split-v3 .nsr-orb{width:96px; height:96px; margin-block:26px 16px;}
-  #search-split-v3 .nsr-ring.r1{inset:-10px;} #search-split-v3 .nsr-ring.r2{inset:-18px;}
-  #search-split-v3 .nsr-deck{padding:10px; gap:0;}
-  #search-split-v3 .nsr-arw{display:none;}           /* swipe and the dots do the work here */
-  #search-split-v3 .nsr-rail{gap:10px; padding:10px 2px 12px; scroll-padding-inline:2px;}
-  #search-split-v3 .nsr-card{flex-basis:min(86%,300px);}
-  #search-split-v3 .nsr-dots{margin-top:10px; gap:9px;}
-  #search-split-v3 .nsr-dot{width:9px; height:9px;}
-  #search-split-v3 .nsr-dot.on{width:22px;}
+  #ai-ecosystem{padding-block:clamp(34px,7vw,46px);}
+  #ai-ecosystem h2{font-size:clamp(26px,7vw,32px);}
+  #ai-ecosystem .nsr-box{grid-template-columns:auto minmax(0,1fr); gap:12px; padding:16px;}
+  #ai-ecosystem .nsr-nodes{gap:8px;}
+  #ai-ecosystem .nsr-orb{width:96px; height:96px; margin-block:26px 16px;}
+  #ai-ecosystem .nsr-ring.r1{inset:-10px;} #ai-ecosystem .nsr-ring.r2{inset:-18px;}
+  #ai-ecosystem .nsr-deck{padding:10px; gap:0;}
+  #ai-ecosystem .nsr-arw{display:none;}           /* swipe and the dots do the work here */
+  #ai-ecosystem .nsr-rail{gap:10px; padding:10px 2px 12px; scroll-padding-inline:2px;}
+  #ai-ecosystem .nsr-card{flex-basis:min(86%,300px);}
+  #ai-ecosystem .nsr-dots{margin-top:10px; gap:9px;}
+  #ai-ecosystem .nsr-dot{width:9px; height:9px;}
+  #ai-ecosystem .nsr-dot.on{width:22px;}
 }
 @media (max-width:430px){
   /* three across, so the five surfaces sit 3 + 2 with nothing stranded */
-  #search-split-v3 .nsr-nodes{grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px;}
-  #search-split-v3 .nsr-node{padding:9px 4px 8px;}
-  #search-split-v3 .nsr-node b{font-size:9.8px; line-height:1.2;}
-  #search-split-v3 .nsr-logo,#search-split-v3 .nsr-spark{width:21px; height:21px;}
-  #search-split-v3 .nsr-spark svg{width:16px; height:16px;}
-  #search-split-v3 .nsr-card{flex-basis:min(90%,300px);}
+  #ai-ecosystem .nsr-nodes{grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px;}
+  #ai-ecosystem .nsr-node{padding:9px 4px 8px;}
+  #ai-ecosystem .nsr-node b{font-size:9.8px; line-height:1.2;}
+  #ai-ecosystem .nsr-logo,#ai-ecosystem .nsr-spark{width:21px; height:21px;}
+  #ai-ecosystem .nsr-spark svg{width:16px; height:16px;}
+  #ai-ecosystem .nsr-card{flex-basis:min(90%,300px);}
 }
 
 
@@ -6413,7 +6421,7 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
    The curved wires and the badge in the middle are gone. Each surface
    drops into a shared bus, the bus carries the flow to one label, and
    the label hands it on to the screens below. */
-#search-split-v3 .nsr-flow{position:relative; margin:clamp(10px,1.4vw,18px) 0 clamp(14px,1.8vw,22px);
+#ai-ecosystem .nsr-flow{position:relative; margin:clamp(10px,1.4vw,18px) 0 clamp(14px,1.8vw,22px);
   height:clamp(96px,10vw,124px);}
 .nsr-bus{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
 .nsr-drop,.nsr-down{fill:none; stroke:hsl(var(--brand-h) 70% 72%); stroke-width:1.6; stroke-dasharray:5 6;
@@ -6422,18 +6430,18 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
   stroke-dasharray:14 600; stroke-dashoffset:614; vector-effect:non-scaling-stroke;
   animation:nsrRun 2.8s linear infinite; animation-delay:calc(var(--k) * .28s);}
 @keyframes nsrRun{from{stroke-dashoffset:614;} to{stroke-dashoffset:14;}}
-#search-split-v3 .nsr-node-dot{display:none;}
+#ai-ecosystem .nsr-node-dot{display:none;}
 .nsr-pill{position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); z-index:2;
   padding:9px 20px; border-radius:99px; background:var(--primary); color:#fff;
   font-family:var(--font-display); font-size:clamp(12.5px,1.15vw,14.4px); font-weight:800;
   letter-spacing:-.01em; white-space:nowrap;
   box-shadow:0 16px 30px -18px hsl(var(--brand-h) 95% 34% / .9);}
 @media (max-width:620px){
-  #search-split-v3 .nsr-flow{height:72px;}
+  #ai-ecosystem .nsr-flow{height:72px;}
   .nsr-bus{display:none;}
   .nsr-pill{position:relative; left:auto; top:auto; transform:none; display:inline-flex; margin:0 auto;
     inset:auto;}
-  #search-split-v3 .nsr-flow{display:grid; place-items:center;}
+  #ai-ecosystem .nsr-flow{display:grid; place-items:center;}
 }
 @media (prefers-reduced-motion:reduce){ .nsr-run{animation:none; opacity:0;} }
 
@@ -6441,8 +6449,8 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
 /* --- style-block-27.css --- */
 
 /* a tap where each surface meets its drop */
-#search-split-v3 .nsr-tap{fill:var(--primary); vector-effect:non-scaling-stroke;}
-#search-split-v3 .nsr-bus{overflow:visible;}
+#ai-ecosystem .nsr-tap{fill:var(--primary); vector-effect:non-scaling-stroke;}
+#ai-ecosystem .nsr-bus{overflow:visible;}
 
 
 /* --- style-block-28.css --- */
@@ -6704,18 +6712,18 @@ html[data-theme="dark"] .sc{background:hsl(var(--brand-h) 45% 14%); color:var(--
 
 /* variant 7 keeps the earlier shape: copy and pictures at the top, the
    ribbon running across the board below */
-#about-v7 .cv-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center;
+#about .cv-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center;
   gap:clamp(24px,3.4vw,56px); margin-bottom:clamp(22px,2.6vw,34px);}
-#about-v7 .cv-say h2 em{display:block;}
-#about-v7 .cv-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.66;
+#about .cv-say h2 em{display:block;}
+#about .cv-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.66;
   color:var(--text-2); max-width:54ch;}
-#about-v7 .cv-say .btn{margin-top:18px;}
-#about-v7 .cg-art{width:100%; max-width:520px; margin-left:auto;}
-#about-v7 .cv-board-top{grid-template-columns:minmax(0,auto) minmax(0,1fr);}
+#about .cv-say .btn{margin-top:18px;}
+#about .cg-art{width:100%; max-width:520px; margin-left:auto;}
+#about .cv-board-top{grid-template-columns:minmax(0,auto) minmax(0,1fr);}
 @media (max-width:1040px){
-  #about-v7 .cv-head{grid-template-columns:minmax(0,1fr);}
-  #about-v7 .cg-art{max-width:560px; margin-inline:auto;}
-  #about-v7 .cv-board-top{grid-template-columns:minmax(0,1fr);}
+  #about .cv-head{grid-template-columns:minmax(0,1fr);}
+  #about .cg-art{max-width:560px; margin-inline:auto;}
+  #about .cv-board-top{grid-template-columns:minmax(0,1fr);}
 }
 
 
@@ -6744,4 +6752,19 @@ html[data-theme="dark"] .iw-box{background:hsl(var(--brand-h) 45% 12%);}
 #industries-v2 .ig-top{justify-content:center;}
 #industries-v2 .ig-ic{width:clamp(38px,3.3vw,46px); height:clamp(38px,3.3vw,46px);}
 #industries-v2 .ig-card{gap:12px; padding:clamp(16px,1.6vw,20px);}
+
+/* ── homepage section grounds — final lock (white / tint) ───────────────
+   After hero: white → tint → white → tint … so later section CSS cannot
+   break the page rhythm. CTA keeps the tint lane under its photo card. */
+#about,
+#industries,
+#why,
+#ai-ecosystem,
+#faq{ background:var(--surface); }
+
+#services,
+#work,
+#approach,
+#reviews,
+#contact{ background:var(--bg-alt); }
 

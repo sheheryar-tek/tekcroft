@@ -1,0 +1,6 @@
+
+/* the check labels stay on one line, the page mock keeps its proportions */
+.acv .vz-audit{grid-template-columns:minmax(0,.72fr) minmax(0,1fr); gap:10px;}
+.acv .vz-au-row{white-space:nowrap; gap:8px; padding:6px 8px;}
+@media (min-width:981px){ .acv .vz-au-row{font-size:11px;} }
+.acv .vz-au-row i{width:16px; height:16px;}

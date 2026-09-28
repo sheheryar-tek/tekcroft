@@ -1,0 +1,54 @@
+
+/* ── no glow anywhere, and motion that says something ──────────────────
+   The wires carry a short segment that travels from the hub to each page
+   (authority moving), the audit ticks land in order, the URL assembles,
+   the heading steps indent. Everything else holds still. */
+.acv .vz::after{display:none;}                    /* the sweep is gone */
+.acv .vz-t{text-shadow:none;}
+.acv .ac-item.on .vz-h:first-child,
+.acv .ac-item.on .vz-node.hub,.acv .ac-item.on .vz-page,
+.acv .ac-item.on .vz-seg.on,.acv .ac-item.on .vz-weight .to,
+.acv .ac-item.on .vz-stars,.acv .ac-item.on .vz-kw,
+.acv .ac-item.on .vz-cta{animation:vzIn .5s var(--pop, cubic-bezier(.2,.8,.2,1)) both;
+  animation-delay:calc(.35s + var(--k,0) * .16s); box-shadow:none; filter:none;}
+.acv .vz-node.hub,.acv .vz-page{box-shadow:none;}
+.acv .ac-item.on .vz-row i{animation:vzTickIn .45s var(--pop) both;
+  animation-delay:calc(.6s + var(--k) * .22s);}
+@keyframes vzTickIn{from{opacity:0; transform:scale(.5);} to{opacity:1; transform:none;}}
+
+/* the wires: a still line, and a short segment that runs along it */
+.acv .vz-wire{stroke:hsl(var(--brand-h) 60% 76%); stroke-width:1.4; stroke-dasharray:none;
+  stroke-dashoffset:0; animation:none; opacity:1;}
+.acv .vz-run{fill:none; stroke:var(--primary); stroke-width:2.6; stroke-linecap:round;
+  stroke-dasharray:16 260; stroke-dashoffset:276; opacity:0;}
+.acv .ac-item.on .vz-run{opacity:1; animation:vzRun 2.4s linear infinite;
+  animation-delay:calc(.8s + var(--k) * .5s);}
+@keyframes vzRun{from{stroke-dashoffset:276;} to{stroke-dashoffset:16;}}
+
+/* 04 the last segment simply reads as the live one */
+.acv .vz-seg.on{box-shadow:none;}
+
+/* ── the panel pattern: a blueprint of small crosses, no rings, no wash ── */
+.acv .ac-fb::before{
+  background-image:
+    linear-gradient(hsl(var(--brand-h) 70% 62% / .22) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--brand-h) 70% 62% / .22) 1px, transparent 1px);
+  background-size:26px 26px, 26px 26px;
+  background-position:center;
+  -webkit-mask-image:
+    repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 26px),
+    repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 26px);
+  -webkit-mask-composite:source-over; mask-composite:add;
+  mask-image:
+    repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 26px),
+    repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 26px);}
+.acv .ac-fb::after{
+  background:
+    linear-gradient(90deg, hsl(var(--brand-h) 70% 66% / .16) 1px, transparent 1px) 0 0 / 104px 100%,
+    linear-gradient(hsl(var(--brand-h) 70% 66% / .12) 1px, transparent 1px) 0 0 / 100% 104px;}
+.acv .ac-veil{background:linear-gradient(100deg,
+  hsl(var(--brand-h) 60% 93% / .92) 0%, hsl(var(--brand-h) 60% 93% / .4) 52%, transparent 100%);}
+
+@media (prefers-reduced-motion:reduce){
+  .acv .ac-item.on .vz-run{animation:none; opacity:0;}
+}

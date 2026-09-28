@@ -1,0 +1,5 @@
+
+/* the keyword chips keep clear of the page they point at */
+.acv .vz-map{min-height:152px;}
+.acv .vz-kw{max-width:56%; font-size:8.6px; padding:4px 7px; white-space:normal; line-height:1.25;}
+.acv .vz-page{font-size:8.6px; padding:7px 8px;}

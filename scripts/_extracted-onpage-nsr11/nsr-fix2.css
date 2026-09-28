@@ -1,0 +1,8 @@
+
+/* the copy starts at the top, so the surfaces line up with the heading
+   rather than sitting above it, and the mark turns slowly in the core */
+#ai-search .nsr-say{justify-content:flex-start;}
+#ai-search .nsr-orb{margin-block:clamp(56px,6.5vw,80px) clamp(14px,1.6vw,20px);}
+#ai-search .nsr-mark{animation:nsrSpin 16s linear infinite;}
+@keyframes nsrSpin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){ #ai-search .nsr-mark{animation:none;} }

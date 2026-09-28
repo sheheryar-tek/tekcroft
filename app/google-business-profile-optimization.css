@@ -3296,7 +3296,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    was drawn for the near-white. Those three fix the parity of the other
    nine, which is why this is one block rather than a rule beside each
    section: a run cannot be decided a section at a time. */
-#proof,#industries,#ai-search,#faq{
+#industries,#ai-search,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
 #services-2,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
@@ -4090,7 +4090,7 @@ html[data-theme="dark"] .ftm{
    refused to resolve a <use> into a hidden tree. */
 .eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
 /* Complete section grounds — white / tint alternation like other service pages */
-#proof,#services-2,#apart,#faq{
+#services-2,#apart,#faq{
   --ground:var(--bg-alt); --panel:var(--surface);
 }
 #gbp-what,#industries,#process,#reviews,#contact{
@@ -4187,7 +4187,7 @@ html[data-theme="dark"] #gbp-what .gw-block p{
   color:var(--text-2);
 }
 
-#proof,
+
 #gbp-what,
 #services-2,
 #industries,

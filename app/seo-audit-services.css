@@ -3190,7 +3190,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    read --panel (the opposite fill), so adjacent sections never share
    the same ground. Why-us sits on tint like other service pages so the
    white folder panel reads clearly. */
-#proof,#services-2,#whyus,#receive,#reviews,#faq{
+#services-2,#whyus,#receive,#reviews,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
 #who,#vs,#process,#pricing,#work,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }

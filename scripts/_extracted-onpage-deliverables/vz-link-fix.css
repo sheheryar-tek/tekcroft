@@ -1,0 +1,7 @@
+
+/* the hub and its pages keep out of each other's way */
+.acv .vz-link{min-height:146px;}
+.acv .vz-link .vz-node{font-size:8.4px; padding:4px 7px;}
+.acv .vz-link .vz-node.hub{font-size:9px; padding:5px 9px;}
+.acv .vz-link .vz-node.p1{left:0;} .acv .vz-link .vz-node.p3{right:0;}
+.acv .vz-map .vz-kw{max-width:50%;}

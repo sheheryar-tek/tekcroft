@@ -1,0 +1,5 @@
+
+/* a little more room for the drawings so no chip runs past its frame */
+.acv .ac-open{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);}
+.acv .vz{max-width:300px;}
+.acv .vz-link .vz-node.hub{max-width:86%; overflow:hidden; text-overflow:ellipsis;}

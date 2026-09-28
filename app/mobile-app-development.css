@@ -2490,7 +2490,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    was drawn for the near-white. Those three fix the parity of the other
    nine, which is why this is one block rather than a rule beside each
    section: a run cannot be decided a section at a time. */
-#proof,#industries,#ai-search,#faq{
+#industries,#ai-search,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
 #services-2,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
@@ -2528,7 +2528,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
 
 /* === rhythm-app === */
 /* Final section grounds live at end of file — keep this as a no-op note. */
-/* tint → white → tint → white: #proof, #services-2, #build, #industries, … */
+/* tint → white → tint → white:  #services-2, #build, #industries, … */
 
 /* === cta-nda === */
 /* the NDA line under the button: quieter than the copy, on one line where
@@ -3296,7 +3296,7 @@ html[data-theme="dark"] .ftm{
    refused to resolve a <use> into a hidden tree. */
 .eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
 /* Section grounds — strict white / tint / white / tint after the dark hero */
-#proof,
+
 #build,
 #process,
 #fit,
@@ -3330,7 +3330,7 @@ html[data-theme="dark"] #engagement .em-card{
   color:var(--text);
 }
 
-#proof,
+
 #services-2,
 #build,
 #industries,

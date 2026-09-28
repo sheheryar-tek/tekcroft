@@ -1173,7 +1173,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    was drawn for the near-white. Those three fix the parity of the other
    nine, which is why this is one block rather than a rule beside each
    section: a run cannot be decided a section at a time. */
-#proof,#industries,#ai-search,#faq{
+#industries,#ai-search,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
 #services-2,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
@@ -6805,7 +6805,7 @@ html[data-theme="dark"] .ts-lg{background:hsl(var(--brand-h) 20% 22%);}
 /* Strict white / tint alternation after the dark hero (DOM order).
    #problem and #problem-v2 are one slot (only one shows) — both white.
    white = --surface, tint = --bg-alt */
-#proof,
+
 #services-2,
 #process,
 #reviews,
@@ -6834,7 +6834,7 @@ html[data-theme="dark"] #pricing .pr-row{
   color:var(--text);
 }
 
-#proof,
+
 #problem,
 #problem-v2,
 #services-2,

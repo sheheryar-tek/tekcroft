@@ -1,0 +1,142 @@
+
+/* --- fz-styles --- */
+
+/* ══════════════════════════════════════════════════════════════════════
+   BUILT TO RANK — variant 2: the six steps run down the page in a
+   zig-zag, each one a pill with its number on the outside and a curved
+   arrow handing over to the next. Built to the supplied mock-up.
+   ══════════════════════════════════════════════════════════════════════ */
+#framework-v2{padding-block:clamp(44px,5vw,72px); background:var(--bg-alt);}
+.fz-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.04fr); gap:clamp(28px,4vw,64px); align-items:start;}
+#framework-v2 h2{margin:16px 0 0; font-size:clamp(30px,3.2vw,46px); line-height:1.06; letter-spacing:-.04em; text-transform:none;}
+#framework-v2 h2 em{font-style:normal; color:var(--brand-text);}
+.fz-lede{margin:16px 0 0; font-size:clamp(14.8px,1.15vw,16.2px); line-height:1.75; color:var(--text-2);}
+.fz-lede b{color:var(--brand-text); font-weight:700;}
+.fz-lede cite{font-style:normal; color:var(--brand-text);}
+.fz-h3{margin:clamp(20px,2.4vw,30px) 0 0; font-family:var(--font-display); font-size:clamp(18px,1.7vw,22px);
+  font-weight:800; letter-spacing:-.025em; color:var(--text); text-transform:none;}
+
+.fz-run{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:clamp(14px,1.8vw,22px);}
+.fz-row{position:relative; display:flex; align-items:center; gap:0;}
+.fz-row.is-left{justify-content:flex-start;}
+.fz-row.is-right{flex-direction:row-reverse; justify-content:flex-start;}
+.fz-n{position:relative; z-index:2; flex:none; display:grid; place-items:center;
+  width:clamp(52px,4.6vw,62px); height:clamp(52px,4.6vw,62px); border-radius:50%;
+  background:var(--primary); color:#fff; font-family:var(--font-display); font-size:clamp(17px,1.5vw,20px);
+  font-weight:800; letter-spacing:-.02em; box-shadow:0 14px 26px -16px hsl(var(--brand-h) 95% 32% / .8);}
+.fz-pill{position:relative; z-index:1; flex:1; display:flex; align-items:center; gap:clamp(12px,1.3vw,16px);
+  margin-inline-start:-26px; padding:clamp(12px,1.3vw,16px) clamp(16px,1.8vw,22px) clamp(12px,1.3vw,16px) 38px;
+  border-radius:99px; background:var(--surface); border:1px solid var(--border);
+  box-shadow:0 18px 34px -28px hsl(var(--brand-h) 90% 25% / .8);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);}
+.fz-row.is-right .fz-pill{margin-inline-start:0; margin-inline-end:-26px;
+  padding:clamp(12px,1.3vw,16px) 38px clamp(12px,1.3vw,16px) clamp(16px,1.8vw,22px);}
+.fz-row:hover .fz-pill{transform:translateY(-2px); border-color:hsl(var(--brand-h) 70% 80%);
+  box-shadow:0 22px 38px -26px hsl(var(--brand-h) 92% 30% / .9);}
+.fz-ic{flex:none; display:grid; place-items:center; width:clamp(38px,3.4vw,46px); height:clamp(38px,3.4vw,46px);
+  border-radius:50%; background:hsl(var(--brand-h) 85% 95%); color:var(--brand-text);}
+html[data-theme="dark"] .fz-ic{background:hsl(var(--brand-h) 40% 18%);}
+.fz-ic svg{width:52%; height:52%;}
+.fz-txt{min-width:0; padding-inline-start:clamp(12px,1.3vw,16px); border-inline-start:1px solid var(--border-soft);}
+.fz-txt b{display:block; font-family:var(--font-display); font-size:clamp(15px,1.4vw,17.5px); font-weight:800;
+  letter-spacing:-.02em; color:var(--text);}
+.fz-txt span{display:block; margin-top:3px; font-size:clamp(12.6px,1.05vw,13.8px); line-height:1.5; color:var(--text-2);}
+
+/* the hand-over between one step and the next */
+.fz-arrow{position:absolute; bottom:calc(-1 * clamp(14px,1.8vw,22px) - 26px); left:12%;
+  width:clamp(96px,10vw,124px); height:auto; color:hsl(var(--brand-h) 80% 62%); opacity:.85; pointer-events:none;}
+.fz-arrow.is-r{left:auto; right:12%;}
+
+@media (max-width:1040px){
+  .fz-grid{grid-template-columns:minmax(0,1fr); gap:28px;}
+  .fz-run{max-width:720px; width:100%;}
+}
+@media (max-width:640px){
+  /* on a phone the zig-zag straightens out: every step reads left to right */
+  .fz-row,.fz-row.is-right{flex-direction:row; justify-content:flex-start;}
+  .fz-n{width:44px; height:44px; font-size:15px;}
+  .fz-pill,.fz-row.is-right .fz-pill{margin-inline:-22px 0; border-radius:22px;
+    padding:12px 16px 12px 32px;}
+  .fz-arrow{display:none;}
+  .fz-run{gap:12px;}
+  .fz-txt{padding-inline-start:12px;}
+}
+@media (prefers-reduced-motion:reduce){ .fz-pill{transition:none;} }
+
+
+/* --- fz-fix --- */
+
+/* the run zig-zags: each step steps in from its own side, and the curved
+   hand-over sits in the gap between the two rows where it can be seen */
+#framework-v2 .fz-run{gap:clamp(26px,3vw,34px);}
+#framework-v2 .fz-row.is-left{margin-inline-end:clamp(20px,4vw,52px);}
+#framework-v2 .fz-row.is-right{margin-inline-start:clamp(20px,4vw,52px);}
+#framework-v2 .fz-arrow{bottom:calc(-1 * clamp(26px,3vw,34px) - 12px); width:auto; height:clamp(40px,4.4vw,56px);
+  left:16%; opacity:.9;}
+#framework-v2 .fz-arrow.is-r{left:auto; right:16%;}
+@media (max-width:640px){
+  #framework-v2 .fz-row.is-left,#framework-v2 .fz-row.is-right{margin-inline:0;}
+  #framework-v2 .fz-run{gap:12px;}
+}
+
+
+/* --- fz-nodesc --- */
+
+/* the steps carry their names only, as the copy deck has them */
+#framework-v2 .fz-txt b{font-size:clamp(15.5px,1.45vw,18px);}
+#framework-v2 .fz-pill{padding-block:clamp(14px,1.5vw,18px);}
+
+
+/* --- fz-tight --- */
+
+/* the run is tighter: shorter pills, less padding either side, and it
+   plays itself in when it reaches the screen, one step after another */
+#framework-v2 .fz-pill{padding-block:clamp(9px,1vw,12px);
+  padding-inline:clamp(12px,1.2vw,16px); padding-inline-start:34px;}
+#framework-v2 .fz-row.is-right .fz-pill{padding-inline:34px clamp(12px,1.2vw,16px);}
+#framework-v2 .fz-n{width:clamp(46px,4vw,54px); height:clamp(46px,4vw,54px); font-size:clamp(15px,1.3vw,17px);}
+#framework-v2 .fz-ic{width:clamp(34px,3vw,40px); height:clamp(34px,3vw,40px);}
+#framework-v2 .fz-txt{padding-inline-start:clamp(10px,1.1vw,14px);}
+#framework-v2 .fz-run{gap:clamp(18px,2.2vw,26px);}
+#framework-v2 .fz-arrow{bottom:calc(-1 * clamp(18px,2.2vw,26px) - 10px); height:clamp(34px,3.6vw,46px);}
+
+/* the steps arrive in order */
+#framework-v2 .fz-run .fz-row{opacity:0; transform:translateY(10px);}
+#framework-v2 .fz-run.in .fz-row{animation:fzIn .55s var(--pop, cubic-bezier(.2,.8,.2,1)) forwards;
+  animation-delay:calc(var(--k) * .12s);}
+@keyframes fzIn{to{opacity:1; transform:none;}}
+/* the arrow draws itself just after the step it points at */
+#framework-v2 .fz-arrow path{stroke-dasharray:130; stroke-dashoffset:130;}
+#framework-v2 .fz-run.in .fz-arrow path{animation:fzDraw .6s ease forwards; animation-delay:calc(var(--k) * .12s + .35s);}
+@keyframes fzDraw{to{stroke-dashoffset:0;}}
+
+/* and one step at a time lights up as the reader looks at it */
+#framework-v2 .fz-row.is-live .fz-pill{border-color:hsl(var(--brand-h) 75% 72%);
+  box-shadow:0 20px 34px -24px hsl(var(--brand-h) 92% 32% / .95);}
+#framework-v2 .fz-row.is-live .fz-n{transform:scale(1.06);}
+#framework-v2 .fz-row.is-live .fz-ic{background:var(--primary); color:#fff;}
+#framework-v2 .fz-n,#framework-v2 .fz-ic{transition:transform .4s var(--pop), background .4s var(--ease), color .4s var(--ease);}
+
+@media (prefers-reduced-motion:reduce){
+  #framework-v2 .fz-run .fz-row{opacity:1; transform:none; animation:none;}
+  #framework-v2 .fz-arrow path{stroke-dashoffset:0; animation:none;}
+  #framework-v2 .fz-n,#framework-v2 .fz-ic{transition:none;}
+}
+
+
+/* --- fz-centre --- */
+
+/* the run sits level with the middle of the copy beside it */
+#framework-v2 .fz-grid{align-items:center;}
+#framework-v2 .fz-run{width:100%; max-width:460px; margin-inline:auto;}
+@media (max-width:1040px){ #framework-v2 .fz-run{max-width:520px;} }
+
+
+/* --- fz-centre2 --- */
+
+/* the copy carries an eyebrow above its heading, so the run is nudged down
+   by that much: it then reads as centred against the heading and text */
+@media (min-width:1041px){
+  #framework-v2 .fz-run{margin-top:clamp(20px,2.4vw,40px);}
+}
+

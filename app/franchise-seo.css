@@ -1173,7 +1173,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    was drawn for the near-white. Those three fix the parity of the other
    nine, which is why this is one block rather than a rule beside each
    section: a run cannot be decided a section at a time. */
-#proof,#industries,#ai-search,#faq{
+#industries,#ai-search,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
 #services-2,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
@@ -7372,7 +7372,7 @@ html[data-theme="dark"] .gv-c{background:hsl(var(--brand-h) 40% 18%);}
   --ground:var(--bg) !important;
   --panel:var(--bg-alt);
 }
-#proof,
+
 #signs,
 #industries,
 #duplicate,
@@ -7392,7 +7392,7 @@ html[data-theme="dark"] #pricing .pr-row{
   color:var(--text);
 }
 
-#proof,
+
 #what-is,
 #signs,
 #services-2,

@@ -1,0 +1,4 @@
+
+/* the steps carry their names only, as the copy deck has them */
+#framework-v2 .fz-txt b{font-size:clamp(15.5px,1.45vw,18px);}
+#framework-v2 .fz-pill{padding-block:clamp(14px,1.5vw,18px);}

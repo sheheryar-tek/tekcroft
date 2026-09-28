@@ -1,0 +1,7 @@
+
+/* this page's copy column is taller, so the stage keeps its own rhythm
+   instead of stretching: the bus stays a fixed height with the label on it */
+#ai-search .nsr-stage{justify-content:flex-start; height:auto; gap:0;}
+#ai-search .nsr-flow{height:104px; margin:14px 0 16px;}
+#ai-search .nsr-pill{top:50%;}
+#ai-search .nsr-deck{flex:none;}

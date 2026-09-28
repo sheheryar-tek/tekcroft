@@ -81,10 +81,32 @@ function wireFaq(root: HTMLElement) {
   return () => root.removeEventListener("click", onClick);
 }
 
+const HERO_CLIENTS = [
+  "MedVital",
+  "CarePoint",
+  "ServiClean",
+  "FixMaster",
+  "BrightWay",
+  "CloudScale",
+  "DataDrive",
+  "ShopSphere",
+  "PeakCart",
+  "GrowPilot",
+];
+
+function fillHeroMarq() {
+  const el = document.getElementById("marqTrack");
+  if (!el || el.childElementCount > 0) return;
+  const row = HERO_CLIENTS.map((t) => `<span>${t}</span>`).join("");
+  el.innerHTML = row + row;
+}
+
 export default function Homepage({ html }: HomepageProps) {
   useEffect(() => {
     const abort = new AbortController();
     const root = document.getElementById("tekcroft-root");
+
+    fillHeroMarq();
 
     // Sync open class with server-rendered data-open="true" panels
     root?.querySelectorAll(".faq-a[data-open='true']").forEach((el) => {

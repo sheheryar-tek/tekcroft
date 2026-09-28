@@ -1,0 +1,36 @@
+
+/* the open panel on the light brand tint: dots instead of the grid, brand
+   blue type and lines, and no light following the pointer */
+.acv .ac-item.on{background:#DAEEF6; border-color:hsl(var(--brand-h) 70% 82%);
+  box-shadow:0 26px 48px -34px hsl(var(--brand-h) 90% 35% / .55);}
+.acv .ac-fb{background:#DAEEF6;}
+.acv .ac-fb::before{
+  background-image:radial-gradient(hsl(var(--brand-h) 75% 58% / .28) 1.4px, transparent 1.5px);
+  background-size:18px 18px;
+  -webkit-mask-image:radial-gradient(95% 90% at 72% 26%, #000, transparent 78%);
+  mask-image:radial-gradient(95% 90% at 72% 26%, #000, transparent 78%);}
+.acv .ac-veil{background:linear-gradient(100deg,
+  hsl(var(--brand-h) 60% 92% / .9) 0%, hsl(var(--brand-h) 60% 92% / .35) 46%, transparent 100%);}
+.ac-spot{display:none;}                    /* the pointer glow is gone */
+
+.acv .ac-open{color:var(--text);}
+.acv .ac-num{color:var(--brand-text);}
+.acv .ac-open h3{color:var(--text);}
+.acv .ac-open p{color:var(--text-2);}
+.acv .ac-item.on .ac-ico{background:var(--primary); border-color:var(--primary); color:#fff;}
+.acv .ac-item.on:hover .ac-ico{background:hsl(var(--brand-h) 100% 36%);}
+.acv .ac-chip{color:var(--brand-text); background:#fff; border-color:hsl(var(--brand-h) 70% 82%);}
+.acv .ac-chip i{background:var(--primary);}
+.acv .ac-prog{background:var(--primary);}
+
+/* the diagram in brand blue on the tint */
+.acv .v-ring{stroke:hsl(var(--brand-h) 70% 62% / .45);}
+.acv .v-line{stroke:hsl(var(--brand-h) 85% 48% / .55);}
+.acv .v-dot{fill:var(--primary);}
+.acv .ac-viz-core{background:#fff; border-color:hsl(var(--brand-h) 70% 82%); color:var(--brand-text);
+  box-shadow:0 16px 28px -18px hsl(var(--brand-h) 90% 35% / .5);}
+.acv .ac-item.on:hover .ac-viz-core{background:#fff;}
+html[data-theme="dark"] .acv .ac-item.on,
+html[data-theme="dark"] .acv .ac-fb{background:hsl(var(--brand-h) 45% 16%);}
+html[data-theme="dark"] .acv .ac-open h3{color:#fff;}
+html[data-theme="dark"] .acv .ac-chip{background:hsl(var(--brand-h) 45% 22%); color:#fff;}

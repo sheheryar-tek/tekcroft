@@ -1492,7 +1492,7 @@
 /* === why-v2 tabs (scoped) === */
 (function(){
   "use strict";
-  var box = document.querySelector("#why-v2 [data-tabs]");
+  var box = document.querySelector("#why [data-tabs]");
   if (!box) return;
   var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
       panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
@@ -1522,7 +1522,7 @@
     tabs[to].focus(); open(to);
   });
 
-  var root = document.getElementById("why-v2");
+  var root = document.getElementById("why");
   if (root) {
     var io = new IntersectionObserver(function(en){
       en.forEach(function(x){
@@ -1538,22 +1538,6 @@
       });
     });
   }
-})();
-
-
-/* === why variant switch === */
-(function(){
-  var secs={1:document.getElementById('why'), 2:document.getElementById('why-v2')};
-  var btns=[].slice.call(document.querySelectorAll('.vsw[data-vsw="why"] button'));
-  function pick(v){
-    Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden = (+k !== +v); });
-    btns.forEach(function(b){ var on = +b.dataset.v === +v;
-      b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
-    try{ localStorage.setItem('tk-why-variant', v); }catch(e){}
-  }
-  var saved=1; try{ saved = +localStorage.getItem('tk-why-variant') || 1; }catch(e){}
-  btns.forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.v); }); });
-  pick(saved);
 })();
 
 
@@ -1620,38 +1604,7 @@
   io.observe(stage);
 })();
 
-/* === ai variant switch === */
-(function(){
-  var secs={1:document.getElementById('ai-ecosystem'), 2:document.getElementById('search-split'), 3:document.getElementById('search-split-v3')};
-  var btns=[].slice.call(document.querySelectorAll('.vsw[data-vsw="ai"] button'));
-  function pick(v){
-    Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden = (+k !== +v); });
-    btns.forEach(function(b){ var on = +b.dataset.v === +v;
-      b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
-    try{ localStorage.setItem('tk-ai-variant', v); }catch(e){}
-    window.dispatchEvent(new Event('resize'));
-  }
-  var saved=1; try{ saved = +localStorage.getItem('tk-ai-variant') || 1; }catch(e){}
-  btns.forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.v); }); });
-  pick(saved);
-})();
-
-
-/* === about variant switch === */
-(function(){
-  var secs={1:document.getElementById('about'),2:document.getElementById('about-v2'),3:document.getElementById('about-v3'),4:document.getElementById('about-v4'),5:document.getElementById('about-v5'),6:document.getElementById('about-v6'),7:document.getElementById('about-v7')};
-  var btns=[].slice.call(document.querySelectorAll('.vsw-ab button'));
-  function pick(v){
-    Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden=(+k!==+v); });
-    btns.forEach(function(b){ var on=+b.dataset.v===+v; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
-    try{ localStorage.setItem('tk-about-variant',v); }catch(e){}
-  }
-  var saved=1; try{ saved=+localStorage.getItem('tk-about-variant')||1; }catch(e){}
-  btns.forEach(function(b){ b.addEventListener('click',function(){ pick(b.dataset.v); }); });
-  if(btns.length) pick(saved);
-})();
-
-/* about variant counters */
+/* about counters */
 (function(){
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function run(el){
@@ -1670,28 +1623,7 @@
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } });
   },{threshold:.4});
-  function watch(){
-    document.querySelectorAll('#about [data-count], #about-v2 [data-count], #about-v3 [data-count], #about-v4 [data-count], #about-v5 [data-count], #about-v6 [data-count], #about-v7 [data-count]')
-      .forEach(function(el){ if(!el.dataset.done) io.observe(el); });
-  }
-  watch();
-  document.querySelectorAll('.vsw-ab button').forEach(function(b){
-    b.addEventListener('click', function(){ setTimeout(watch, 60); });
-  });
-})();
-
-/* === industries variant switch === */
-(function(){
-  var secs={1:document.getElementById('industries'),2:document.getElementById('industries-v2'),3:document.getElementById('industries-v3'),4:document.getElementById('industries-v4')};
-  var btns=[].slice.call(document.querySelectorAll('.vsw-ind button'));
-  function pick(v){
-    Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden=(+k!==+v); });
-    btns.forEach(function(b){ var on=+b.dataset.v===+v; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
-    try{ localStorage.setItem('tk-ind-variant',v); }catch(e){}
-  }
-  var saved=1; try{ saved=+localStorage.getItem('tk-ind-variant')||1; }catch(e){}
-  btns.forEach(function(b){ b.addEventListener('click',function(){ pick(b.dataset.v); }); });
-  if(btns.length) pick(saved);
+  document.querySelectorAll('#about [data-count]').forEach(function(el){ io.observe(el); });
 })();
 
 /* === home variants: section behaviors (nsr / blueprint / ix) === */
@@ -1777,4 +1709,35 @@
   show(0);
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.3});
   io.observe(board);
+})();
+
+
+/* === about ribbon === */
+(function(){
+  document.querySelectorAll('[data-ribbon]').forEach(function(board){
+  var cvs=[].slice.call(board.querySelectorAll('.cv'));
+  var at=0, timer=null, held=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i){
+    at=(i+cvs.length)%cvs.length;
+    cvs.forEach(function(c,k){ c.classList.toggle('on',k===at); c.classList.toggle('done',k<at);
+      c.setAttribute('aria-selected', String(k===at)); });
+  }
+  function play(){ stop(); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },1900); }
+  function stop(){ clearInterval(timer); }
+  function hold(){ held=true; stop(); clearTimeout(hold._t); hold._t=setTimeout(function(){ held=false; play(); },9000); }
+  cvs.forEach(function(c,i){
+    c.addEventListener('pointerenter',function(){ held=true; stop(); show(i); });
+    c.addEventListener('pointerleave',function(){ held=false; play(); });
+    c.addEventListener('click',function(){ hold(); show(i); });
+    c.addEventListener('keydown',function(e){
+      var to = e.key==='ArrowRight' ? i+1 : e.key==='ArrowLeft' ? i-1 : -1;
+      if(to<0||to>=cvs.length) return;
+      e.preventDefault(); cvs[to].focus(); hold(); show(to);
+    });
+  });
+  show(0);
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.3});
+  io.observe(board);
+ });
 })();

@@ -1,0 +1,13 @@
+
+/* the run zig-zags: each step steps in from its own side, and the curved
+   hand-over sits in the gap between the two rows where it can be seen */
+#framework-v2 .fz-run{gap:clamp(26px,3vw,34px);}
+#framework-v2 .fz-row.is-left{margin-inline-end:clamp(20px,4vw,52px);}
+#framework-v2 .fz-row.is-right{margin-inline-start:clamp(20px,4vw,52px);}
+#framework-v2 .fz-arrow{bottom:calc(-1 * clamp(26px,3vw,34px) - 12px); width:auto; height:clamp(40px,4.4vw,56px);
+  left:16%; opacity:.9;}
+#framework-v2 .fz-arrow.is-r{left:auto; right:16%;}
+@media (max-width:640px){
+  #framework-v2 .fz-row.is-left,#framework-v2 .fz-row.is-right{margin-inline:0;}
+  #framework-v2 .fz-run{gap:12px;}
+}

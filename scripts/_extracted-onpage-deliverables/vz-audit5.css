@@ -1,0 +1,5 @@
+
+/* the longest check still fits inside its frame */
+.acv .vz-audit{grid-template-columns:minmax(0,.62fr) minmax(0,1fr); gap:9px; padding:12px;}
+.acv .vz-au-row{padding:6px 7px; gap:7px; min-width:0;}
+@media (min-width:981px){ .acv .vz-au-row{font-size:10.4px;} }

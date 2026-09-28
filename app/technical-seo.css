@@ -2753,7 +2753,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    every other card on this page follows, and naming it pinned the
    section to the tint. They read --panel now, so the section is free and
    the offer had a middle slot to move into. */
-#proof,#services-2,#crawl-check,#ai,#contact{
+#services-2,#crawl-check,#ai,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
 #signs,#whyus,#get,#platforms,#work,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
@@ -3790,7 +3790,7 @@ html[data-theme="dark"] .ftm{
    refused to resolve a <use> into a hidden tree. */
 .eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
 /* Beat homepage section fills so this page's rhythm --ground wins */
-#proof,
+
 #signs,
 #services-2,
 #whyus,

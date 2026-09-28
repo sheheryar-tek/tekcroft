@@ -866,3 +866,132 @@
   if (running.addEventListener) running.addEventListener("change", sync);
   else running.addListener(sync);          /* older Safari */
 })();
+
+
+/* === ac-script (deliverables panels) === */
+(function(){
+ document.querySelectorAll('[data-acc]').forEach(function(acc){
+  var items=[].slice.call(acc.querySelectorAll('.ac-item'));
+  var at=0, timer=null, held=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(i){
+    at=(i+items.length)%items.length;
+    items.forEach(function(el,k){ var on=k===at; el.classList.toggle('on',on); el.setAttribute('aria-selected',String(on)); });
+  }
+  function play(){ stop(); acc.classList.remove('paused'); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },5000); }
+  function stop(){ clearInterval(timer); }
+  function hold(){ held=true; stop(); acc.classList.add('paused'); clearTimeout(hold._t);
+    hold._t=setTimeout(function(){ held=false; play(); },12000); }
+
+  items.forEach(function(el,i){
+    el.addEventListener('mouseenter',function(){ show(i); });
+    el.addEventListener('click',function(){ hold(); show(i); });
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); hold(); show(i); return; }
+      var to = e.key==='ArrowRight'||e.key==='ArrowDown' ? i+1 : e.key==='ArrowLeft'||e.key==='ArrowUp' ? i-1 : -1;
+      if(to<0 || to>=items.length) return;
+      e.preventDefault(); items[to].focus(); hold(); show(to);
+    });
+  });
+  acc.addEventListener('mouseenter',function(){ stop(); acc.classList.add('paused'); });
+  acc.addEventListener('mouseleave',function(){ acc.classList.remove('paused'); if(!held) play(); });
+
+  /* the open panel lights up under the pointer */
+  acc.addEventListener('pointermove',function(e){
+    var open=acc.querySelector('.ac-item.on'); if(!open) return;
+    var r=open.getBoundingClientRect();
+    open.style.setProperty('--mx', Math.min(Math.max((e.clientX-r.left)/r.width,0),1).toFixed(3));
+    open.style.setProperty('--my', Math.min(Math.max((e.clientY-r.top)/r.height,0),1).toFixed(3));
+  });
+
+  show(0);
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
+  io.observe(acc);
+ });
+})();
+
+
+/* === nsr-loop-js (AI search visibility) === */
+/* three copies of the five screens: the middle one is the real set, and
+   the scroll jumps back to it after crossing either edge, so the rail
+   runs on without a seam */
+(function(){
+  var stage=document.querySelector('#ai-search [data-nsr]'); if(!stage) return;
+  var rail=stage.querySelector('.nsr-rail');
+  var nodes=[].slice.call(stage.querySelectorAll('.nsr-node'));
+  var real=[].slice.call(rail.children);
+  var n=real.length;
+  var before=real.map(function(c){ return c.cloneNode(true); });
+  var after=real.map(function(c){ return c.cloneNode(true); });
+  before.forEach(function(c){ c.classList.remove('on'); c.setAttribute('data-clone','1'); rail.insertBefore(c, real[0]); });
+  after.forEach(function(c){ c.classList.remove('on'); c.setAttribute('data-clone','1'); rail.appendChild(c); });
+  var all=[].slice.call(rail.children);
+
+  var at=2, animating=false, timer=null, held=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function centre(el, smooth){
+    rail.scrollTo({left: el.offsetLeft - (rail.clientWidth - el.offsetWidth)/2,
+                   behavior: smooth && !reduce ? 'smooth' : 'auto'});
+  }
+  function mark(){
+    all.forEach(function(c,i){ c.classList.toggle('on', (i % n) === at && !animating ? true : (i % n)===at); });
+    /* only the middle set keeps the outline, so one card reads as live */
+    all.forEach(function(c,i){ if(i<n || i>=2*n) c.classList.remove('on'); });
+    nodes.forEach(function(x,i){ var on=i===at; x.classList.toggle('on',on); x.setAttribute('aria-selected',String(on)); });
+  }
+  function go(i, dir){
+    var prev=at; at=(i+n)%n;
+    var target;
+    if(dir==='next' && at < prev) target=all[2*n + at];          /* forward past the end */
+    else if(dir==='prev' && at > prev) target=all[at];           /* back past the start */
+    else target=all[n + at];
+    mark(); centre(target, true);
+    if(target!==all[n+at]){
+      animating=true;
+      setTimeout(function(){ centre(all[n+at], false); animating=false; mark(); }, reduce?0:520);
+    }
+  }
+  function play(){ stop(); if(!held && !reduce) timer=setInterval(function(){ go(at+1,'next'); },4200); }
+  function stop(){ clearInterval(timer); }
+  function hold(){ held=true; stop(); clearTimeout(hold._t); hold._t=setTimeout(function(){ held=false; play(); },10000); }
+
+  nodes.forEach(function(x,i){
+    x.addEventListener('mouseenter',function(){ go(i, i>at?'next':'prev'); });
+    x.addEventListener('click',function(){ hold(); go(i, i>at?'next':'prev'); });
+  });
+  var prevBtn=stage.querySelector('.nsr-arw.prev'), nextBtn=stage.querySelector('.nsr-arw.next');
+  if(prevBtn) prevBtn.addEventListener('click',function(){ hold(); go(at-1,'prev'); });
+  if(nextBtn) nextBtn.addEventListener('click',function(){ hold(); go(at+1,'next'); });
+  stage.addEventListener('mouseenter',stop);
+  stage.addEventListener('mouseleave',function(){ if(!held) play(); });
+
+  requestAnimationFrame(function(){ mark(); centre(all[n+at], false); });
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
+  io.observe(stage);
+  window.addEventListener('resize',function(){ centre(all[n+at], false); });
+})();
+
+
+/* === fz-script (Built to Rank zig-zag) === */
+(function(){
+  var run=document.querySelector('#framework-v2 .fz-run'); if(!run) return;
+  var rows=[].slice.call(run.querySelectorAll('.fz-row'));
+  rows.forEach(function(r,i){ r.style.setProperty('--k', i); });
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var at=0, timer=null, held=false;
+  function light(i){ at=(i+rows.length)%rows.length;
+    rows.forEach(function(r,k){ r.classList.toggle('is-live', k===at); }); }
+  function play(){ stop(); if(!held) timer=setInterval(function(){ light(at+1); }, 2200); }
+  function stop(){ clearInterval(timer); }
+
+  rows.forEach(function(r,i){
+    r.addEventListener('mouseenter',function(){ held=true; stop(); light(i); });
+    r.addEventListener('mouseleave',function(){ held=false; play(); });
+  });
+  light(0);
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.2});
+  io.observe(run);
+})();

@@ -1698,7 +1698,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    given an edge of their own further down: the marketplace panel takes
    the tint it is standing against, and the dashboard's two outer plates
    take a hairline. */
-#proof,#platforms,#why,#process,#contact{
+#platforms,#why,#process,#contact{
   --ground:var(--bg-alt);  --panel:var(--surface); }
 #services-2,#marketplaces,#problem,#faq{
   --ground:var(--surface); --panel:var(--bg-alt); }

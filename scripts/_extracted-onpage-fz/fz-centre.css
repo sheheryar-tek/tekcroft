@@ -1,0 +1,5 @@
+
+/* the run sits level with the middle of the copy beside it */
+#framework-v2 .fz-grid{align-items:center;}
+#framework-v2 .fz-run{width:100%; max-width:460px; margin-inline:auto;}
+@media (max-width:1040px){ #framework-v2 .fz-run{max-width:520px;} }

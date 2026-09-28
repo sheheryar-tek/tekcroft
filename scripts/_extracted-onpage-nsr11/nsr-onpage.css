@@ -1,0 +1,20 @@
+
+/* the ported design carries this page's copy: a kicker line above the
+   body, and the quick check as a bar under the whole thing */
+#ai-search .nsr-kicker{margin:14px 0 0; font-family:var(--font-display); font-size:clamp(14px,1.2vw,16px);
+  font-weight:800; letter-spacing:-.02em; color:var(--text);}
+#ai-search .nsr-lede{margin-top:12px; font-size:clamp(13.4px,1.04vw,14.6px); line-height:1.7;}
+#ai-search .nsr-lede b{color:var(--brand-text); font-weight:700;}
+#ai-search .nsr-say{max-width:none;}
+.nsr-check{display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center;
+  gap:clamp(12px,1.8vw,24px); margin-top:clamp(18px,2.2vw,28px); padding:clamp(14px,1.6vw,20px);
+  border-radius:18px; background:var(--bg-alt); border:1px solid var(--border);}
+.nsr-check-ic{display:grid; place-items:center; width:42px; height:42px; border-radius:50%;
+  background:var(--primary); color:#fff;}
+.nsr-check-ic svg{width:20px; height:20px;}
+.nsr-check p{margin:0; font-size:clamp(12.8px,1vw,14px); line-height:1.6; color:var(--text-2);}
+.nsr-check p b{color:var(--text);}
+@media (max-width:860px){
+  .nsr-check{grid-template-columns:auto minmax(0,1fr);}
+  .nsr-check .btn{grid-column:1 / -1; width:100%; justify-content:center;}
+}

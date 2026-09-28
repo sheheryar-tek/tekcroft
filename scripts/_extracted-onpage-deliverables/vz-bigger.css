@@ -1,0 +1,35 @@
+
+/* the drawings were reading small beside the card, so they take more of
+   the panel and their type steps up with them */
+@media (min-width:981px){
+  .acv .ac-open{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(16px,2vw,26px);}
+  .acv .vz{max-width:none; width:100%; padding:18px; gap:10px;
+    min-height:clamp(190px,21vw,250px);}
+  .acv .vz-link,.acv .vz-map{min-height:clamp(200px,22vw,260px);}
+  .acv .vz-t{font-size:13.4px;}
+  .acv .vz-u{font-size:11px;}
+  .acv .vz-d{font-size:11.4px;}
+  .acv .vz-h{font-size:11.6px; gap:10px; margin-left:calc(var(--k) * 16px);}
+  .acv .vz-h b{font-size:10px; padding:3px 7px;}
+  .acv .vz-hub,.acv .vz-leaf,.acv .vz-map .vz-page{font-size:10.6px; padding:6px 10px;}
+  .acv .vz-map .vz-kw{font-size:10px; padding:5px 9px; max-width:48%;}
+  .acv .vz-seg{font-size:12.6px; padding:7px 12px;}
+  .acv .vz-slash{font-size:14px;}
+  .acv .vz-file{font-size:11.4px; padding:10px 12px;}
+  .acv .vz-file i{width:32px; height:24px;}
+  .acv .vz-weight{font-size:12px;}
+  .acv .vz-altline{font-size:10.6px; padding:6px 10px;}
+  .acv .vz-code{font-size:10.8px; padding:6px 12px;}
+  .acv .vz-stars{font-size:15px;}
+  .acv .vz-stars em{font-size:12.4px;}
+  .acv .vz-hd{font-size:13px;}
+  .acv .vz-sub{font-size:11px;}
+  .acv .vz-field{font-size:11px; padding:9px 12px;}
+  .acv .vz-cta{font-size:11.6px; padding:9px 16px;}
+  .acv .vz-row{font-size:11.6px; gap:11px;}
+  .acv .vz-row i{width:19px; height:19px;}
+  .acv .vz-leaf.l1{top:52px;} .acv .vz-leaf.l2{top:98px;} .acv .vz-leaf.l3{top:144px;}
+  .acv .vz-map .vz-kw.k1{top:16px;} .acv .vz-map .vz-kw.k2{top:84px;}
+  .acv .vz-map .vz-kw.k3{top:150px;}
+  .acv .ac-card p{max-width:46ch;}
+}

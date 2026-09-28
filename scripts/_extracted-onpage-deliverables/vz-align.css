@@ -1,0 +1,14 @@
+
+/* the chips sit at the same heights the wires end at, whatever the panel
+   size: the svg stretches, so these are percentages of the same box */
+.acv .vz-link,.acv .vz-map{position:relative;}
+.acv .vz-hub{top:auto; left:12px; top:14px;}
+.acv .vz-leaf{top:auto; transform:translateY(-50%);}
+.acv .vz-leaf.l1{top:calc(14px + (100% - 28px) * .387);}
+.acv .vz-leaf.l2{top:calc(14px + (100% - 28px) * .64);}
+.acv .vz-leaf.l3{top:calc(14px + (100% - 28px) * .893);}
+.acv .vz-map .vz-kw{transform:translateY(-50%);}
+.acv .vz-map .vz-kw.k1{top:calc(14px + (100% - 28px) * .173);}
+.acv .vz-map .vz-kw.k2{top:calc(14px + (100% - 28px) * .5);}
+.acv .vz-map .vz-kw.k3{top:calc(14px + (100% - 28px) * .827);}
+.acv .vz-map .vz-page{top:calc(14px + (100% - 28px) * .5);}

@@ -1,0 +1,20 @@
+
+/* the run from the label to the screen is one unbroken line, and the
+   dashes travel down it so the flow reads as moving */
+#ai-search .nsr-flow{margin-bottom:46px;}
+#ai-search .nsr-deck::before{top:-78px; height:78px; width:2px;
+  background:repeating-linear-gradient(180deg, hsl(var(--brand-h) 70% 72%) 0 6px, transparent 6px 13px);
+  background-size:2px 13px; animation:nsrDash 1.1s linear infinite;}
+@keyframes nsrDash{from{background-position:0 0;} to{background-position:0 13px;}}
+/* a bead runs the same path, from the label down onto the live screen */
+#ai-search .nsr-deck::after{content:""; position:absolute; left:50%; top:-78px; width:7px; height:7px;
+  margin-left:-3.5px; border-radius:50%; background:var(--primary);
+  animation:nsrBead 2.2s ease-in-out infinite;}
+@keyframes nsrBead{0%{transform:translateY(0); opacity:0;} 12%{opacity:1;}
+  80%{opacity:1;} 100%{transform:translateY(78px); opacity:0;}}
+/* the drops from the surfaces keep flowing into the label */
+#ai-search .nsr-run{animation-duration:2.2s;}
+@media (prefers-reduced-motion:reduce){
+  #ai-search .nsr-deck::before{animation:none;}
+  #ai-search .nsr-deck::after{display:none;}
+}
