@@ -165,75 +165,46 @@
 
 <!-- ══════════════════════════════════════════════════════════════════
      TRUST BAR — sits under whichever hero variant is showing.
-     DUMMY FIGURES and DUMMY CLIENTS: all four numbers and all eight
-     names are placeholder, the same way the homepage's own counters and
-     client wall are. Swap the data-count / data-suffix values and the
-     eight <b> labels and nothing else changes.
+     Same stats layout as on-page SEO. DUMMY FIGURES: swap the
+     data-count / data-suffix values and nothing else changes.
      ══════════════════════════════════════════════════════════════════ -->
 <section class="sec tb" id="proof">
   <div class="wrap">
 
     <div class="tb-figs rv" style="--d:60ms">
 
+      <div class="tb-fig" style="--fill:80%">
+        <div class="tb-fig-txt">
+          <b data-count="180" data-suffix="%">180%</b>
+          <span class="tb-cap">Average organic traffic growth after on-page work</span>
+        </div>
+        <span class="tb-meter" aria-hidden="true"></span>
+      </div>
+
+      <div class="tb-fig" style="--fill:100%">
+        <div class="tb-fig-txt">
+          <b data-count="400" data-suffix="+">400+</b>
+          <span class="tb-cap">Pages optimized every month</span>
+        </div>
+        <span class="tb-meter" aria-hidden="true"></span>
+      </div>
+
+      <div class="tb-fig" style="--fill:65%">
+        <div class="tb-fig-txt">
+          <b data-count="50" data-suffix="$M+">50$M+</b>
+          <span class="tb-cap">Revenue impact generated for our clients</span>
+        </div>
+        <span class="tb-meter" aria-hidden="true"></span>
+      </div>
+
       <div class="tb-fig" style="--fill:98%">
         <div class="tb-fig-txt">
-          <b data-count="4.9" data-suffix="/5">4.9<i class="fig-af">/5</i></b>
-          <span class="tb-cap">Average client rating</span>
+          <b data-count="98" data-suffix="%">98%</b>
+          <span class="tb-cap">Client satisfaction rate</span>
         </div>
         <span class="tb-meter" aria-hidden="true"></span>
       </div>
 
-      <div class="tb-fig" style="--fill:82%">
-        <div class="tb-fig-txt">
-          <!-- PLACEHOLDER: this stands in for the "Xx" in the copy. Swap the
-               data-count and the fallback text for the real Google review
-               count before this page goes live. -->
-          <b data-count="40" data-suffix="+">40+</b>
-          <span class="tb-cap">Google reviews</span>
-        </div>
-        <span class="tb-meter" aria-hidden="true"></span>
-      </div>
-
-      <!-- The last two cells carry a word rather than a number, so they have
-           no data-count and the count-up never touches them. Their meters
-           read full: there is nothing partial about either claim. -->
-      <div class="tb-fig" style="--fill:100%">
-        <div class="tb-fig-txt">
-          <b>Clutch</b>
-          <span class="tb-cap">Verified agency profile</span>
-        </div>
-        <span class="tb-meter" aria-hidden="true"></span>
-      </div>
-
-      <div class="tb-fig" style="--fill:100%">
-        <div class="tb-fig-txt">
-          <b>1</b>
-          <span class="tb-cap">strategist, start to finish</span>
-        </div>
-        <span class="tb-meter" aria-hidden="true"></span>
-      </div>
-
-    </div>
-
-    <div class="tb-wall rv" style="--d:180ms">
-      <p class="tb-claim">TekCroft SEO audits are manual, senior-reviewed, and built around
-        <b>one prioritized fix list</b>, not a rebranded export.</p>
-
-      <!-- The track holds the list once. The script appends a second copy
-           at load, which is what lets the slide loop seamlessly — so the
-           eight logos below are the only place a name is edited. -->
-      <div class="tb-marq">
-        <div class="tb-marq-track" id="tbMarq">
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 9.4h14.8l-1.4 10.2H6Z"/><path d="M8.8 9.4V6.8a3.2 3.2 0 0 1 6.4 0v2.6"/></svg><b>Kitchenary</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4.4c0 8.4-4.6 12.6-9.6 12.6A6.4 6.4 0 0 1 4 10.6C4 6.2 9.4 4.4 20 4.4Z"/><path d="M4.6 20.4c1.6-4.4 4.4-7.4 8.4-9.4"/></svg><b>Freshly</b></span>
-          <span class="tb-logo is-light"><b>Thread Beast</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 14.6 9l6.6.4-5.1 4.2 1.7 6.4L12 16.4 6.2 20l1.7-6.4L2.8 9.4 9.4 9Z"/></svg><b>Vitacost</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.6" y="2.6" width="10.8" height="18.8" rx="2.6"/><path d="M10.8 18.6h2.4"/></svg><b>PhoneBazis</b></span>
-          <span class="tb-logo is-boxed"><b>Soly Hux</b></span>
-          <span class="tb-logo is-light"><b>Zulily</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.4 12h2.2M9 8.4v7.2M13.4 5.2v13.6M17.8 8.4v7.2M21.4 12h-1"/></svg><b>Fitbit</b></span>
-        </div>
-      </div>
     </div>
 
   </div>
@@ -339,105 +310,190 @@
 
     </div>
 
-    <!-- ══════════ the invitation ══════════ -->
-    <div class="wn-close rv" style="--d:120ms">
-      <span class="wn-close-ic" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11.2" cy="12.8" r="8.4"/><circle cx="11.2" cy="12.8" r="4.6"/><circle cx="11.2" cy="12.8" r="1.1" fill="currentColor" stroke="none"/><path d="m11.2 12.8 6.6-6.6M16.4 3.2v3.2h3.2"/></svg>
-      </span>
-      <span class="wn-close-t">
-        <b>Get clear answers. Take the right actions.</b>
-        <p>Our SEO audit shows you what&rsquo;s holding your site back, and exactly
-          how to fix it.</p>
-      </span>
-      <button class="btn btn-primary btn-lg" type="button" data-jump>Get My Action Plan
-        <span class="arw">&uarr;</span></button>
-    </div>
-
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════════
-     WHAT WE DO — variant 02, the homepage's console.
-     Hidden by default; the switch at the corner swaps it with variant 01.
-     Delete the losing section and the switch once one is chosen.
+     WHAT WE DO — on-page deliverables accordion design
      ══════════════════════════════════════════════════════════════════ -->
-<section class="sec svc-cn" id="services-2">
+<section class="sec acv" id="services-2">
   <div class="wrap">
 
-    <div class="sec-bar rv">
-      <div class="sec-head">
+    <div class="ac-head rv">
+      <div>
         <span class="smark"><b>What we do</b></span>
         <h2>What Our <em>SEO Audit Services</em> Cover</h2>
       </div>
-      <!-- the lede sits with the button, not under the heading: the two
-           columns then finish on the same line instead of one running
-           three paragraphs past the other -->
-      <div class="sec-aside">
+      <div class="ac-aside">
+        <p class="ac-lede">Every audit works through six different levels: technical, content, backlinks, competitors, AI search visibility, and analytics accuracy. Our seo site audit services go beyond a surface scan into manual, prioritized review.</p>
         <a class="btn btn-primary" href="#contact">Explore all services <span class="arw">&uarr;</span></a>
-        <p class="sec-lede">Every audit works through six different levels: technical, content,
-          backlinks, competitors, AI search visibility, and analytics accuracy. Our seo site audit
-          services go beyond a surface scan into manual, prioritized review.</p>
       </div>
     </div>
 
-    <div class="cn rv" data-console>
-      <div class="cn-plate" aria-hidden="true"></div>
-
-      <div class="cn-rail" role="tablist" aria-label="SEO audit services">
-        <span class="cn-lift" role="presentation" aria-hidden="true"></span>
-        <button class="cn-tab on" type="button" data-i="0" role="tab" aria-selected="true">Technical SEO Audit<span class="cn-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></span></button>
-        <button class="cn-tab" type="button" data-i="1" role="tab" aria-selected="false">On-Page &amp; Content Audit<span class="cn-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></span></button>
-        <button class="cn-tab" type="button" data-i="2" role="tab" aria-selected="false">Backlink &amp; Authority Audit<span class="cn-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></span></button>
-        <button class="cn-tab" type="button" data-i="3" role="tab" aria-selected="false">Competitor Gap Analysis<span class="cn-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></span></button>
-        <button class="cn-tab" type="button" data-i="4" role="tab" aria-selected="false">AI Search (GEO) Readiness Audit<span class="cn-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></span></button>
-        <button class="cn-tab" type="button" data-i="5" role="tab" aria-selected="false">Analytics &amp; Conversion Tracking Audit<span class="cn-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12h11M13 7.5l4.5 4.5L13 16.5"/></svg></span></button>
-      </div>
-
-      <div class="cn-sheet">
-        <div class="cn-card on" role="tabpanel">
-          <div>
-            <h3 class="cn-h">Technical SEO Audit</h3>
-            <p class="cn-lead">Our technical SEO audit services check crawlability to ensure Google can actually find your pages. We test indexation to make sure only the correct pages end up in Google&rsquo;s index. We run a full site speed audit alongside Core Web Vitals and JavaScript Rendering, both of which hardly ever become clear from tool exports but cause eligibility problems all the time.</p>
+    <div class="ac" role="tablist" aria-label="SEO audit services" data-acc>
+        <div class="ac-item on" data-i="0" role="tab"
+             tabindex="0" aria-selected="true">
+          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
+            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 5.5l-2 13"/></svg></span></span>
+          <span class="ac-slim" aria-hidden="true">
+            <b class="ac-n">01</b>
+            <span class="ac-vt">Technical SEO Audit</span>
+          </span>
+          <div class="ac-open">
+            <div class="ac-card">
+              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 5.5l-2 13"/></svg></span><span class="ac-num">01</span></span>
+              <h3>Technical SEO Audit</h3>
+              <p>Our technical SEO audit services check crawlability to ensure Google can actually find your pages. We test indexation to make sure only the correct pages end up in Google&rsquo;s index. We run a full site speed audit alongside Core Web Vitals and JavaScript Rendering, both of which hardly ever become clear from tool exports but cause eligibility problems all the time.</p>
+              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Crawlability and indexation control</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Site speed and Core Web Vitals</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>JavaScript rendering checks</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>XML sitemaps and robots.txt</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Duplicate URL and canonical issues</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Mobile performance readiness</span></li></ul>
+              <span class="ac-chip"><i></i>Service 01 of 06</span>
+            </div>
+            <div class="ac-viz"><div class="vz vz-checks">
+  <span class="vz-row" style="--k:0"><i></i><em>Crawlability and indexation control</em></span>
+  <span class="vz-row" style="--k:1"><i></i><em>Site speed and Core Web Vitals</em></span>
+  <span class="vz-row" style="--k:2"><i></i><em>JavaScript rendering checks</em></span>
+  <span class="vz-row" style="--k:3"><i></i><em>XML sitemaps and robots.txt</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Duplicate URL and canonical issues</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Mobile performance readiness</em></span>
+</div></div>
+            <span class="ac-prog" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="cn-card" role="tabpanel">
-          <div>
-            <h3 class="cn-h">On-Page &amp; Content Audit</h3>
-            <p class="cn-lead">As part of our content audit services, we audit metadata and header structure with regard to search intent match. We highlight keyword cannibalization, where several pages compete for the same keyword instead of one page winning clearly. We identify decaying content, pages that once ranked but have slowly faded away unnoticed.</p>
+        <div class="ac-item" data-i="1" role="tab"
+             tabindex="0" aria-selected="false">
+          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
+            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 12.5h7M8.5 16h4"/></svg></span></span>
+          <span class="ac-slim" aria-hidden="true">
+            <b class="ac-n">02</b>
+            <span class="ac-vt">On-Page &amp; Content Audit</span>
+          </span>
+          <div class="ac-open">
+            <div class="ac-card">
+              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 12.5h7M8.5 16h4"/></svg></span><span class="ac-num">02</span></span>
+              <h3>On-Page &amp; Content Audit</h3>
+              <p>As part of our content audit services, we audit metadata and header structure with regard to search intent match. We highlight keyword cannibalization, where several pages compete for the same keyword instead of one page winning clearly. We identify decaying content, pages that once ranked but have slowly faded away unnoticed.</p>
+              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Metadata and header structure</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Search intent alignment</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Keyword cannibalization</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Content decay detection</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Thin or duplicate page flags</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Internal linking gaps</span></li></ul>
+              <span class="ac-chip"><i></i>Service 02 of 06</span>
+            </div>
+            <div class="ac-viz"><div class="vz vz-checks">
+  <span class="vz-row" style="--k:0"><i></i><em>Metadata and header structure</em></span>
+  <span class="vz-row" style="--k:1"><i></i><em>Search intent alignment</em></span>
+  <span class="vz-row" style="--k:2"><i></i><em>Keyword cannibalization</em></span>
+  <span class="vz-row" style="--k:3"><i></i><em>Content decay detection</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Thin or duplicate page flags</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Internal linking gaps</em></span>
+</div></div>
+            <span class="ac-prog" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="cn-card" role="tabpanel">
-          <div>
-            <h3 class="cn-h">Backlink &amp; Authority Audit</h3>
-            <p class="cn-lead">Our backlink audit services analyze your backlink profile to identify any toxic or spammy backlinks that may be damaging your authority score. We measure your authority gap relative to your real competitors you&rsquo;re actually losing rankings to, not a generic industry benchmark.</p>
+        <div class="ac-item" data-i="2" role="tab"
+             tabindex="0" aria-selected="false">
+          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
+            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 1 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></svg></span></span>
+          <span class="ac-slim" aria-hidden="true">
+            <b class="ac-n">03</b>
+            <span class="ac-vt">Backlink &amp; Authority Audit</span>
+          </span>
+          <div class="ac-open">
+            <div class="ac-card">
+              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 1 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></svg></span><span class="ac-num">03</span></span>
+              <h3>Backlink &amp; Authority Audit</h3>
+              <p>Our backlink audit services analyze your backlink profile to identify any toxic or spammy backlinks that may be damaging your authority score. We measure your authority gap relative to your real competitors you&rsquo;re actually losing rankings to, not a generic industry benchmark.</p>
+              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Toxic and spammy link review</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Authority gap vs real competitors</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Link quality distribution</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Disavow / cleanup candidates</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Referral and anchor patterns</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Opportunity gaps in link profile</span></li></ul>
+              <span class="ac-chip"><i></i>Service 03 of 06</span>
+            </div>
+            <div class="ac-viz"><div class="vz vz-checks">
+  <span class="vz-row" style="--k:0"><i></i><em>Toxic and spammy link review</em></span>
+  <span class="vz-row" style="--k:1"><i></i><em>Authority gap vs real competitors</em></span>
+  <span class="vz-row" style="--k:2"><i></i><em>Link quality distribution</em></span>
+  <span class="vz-row" style="--k:3"><i></i><em>Disavow / cleanup candidates</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Referral and anchor patterns</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Opportunity gaps in link profile</em></span>
+</div></div>
+            <span class="ac-prog" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="cn-card" role="tabpanel">
-          <div>
-            <h3 class="cn-h">Competitor Gap Analysis</h3>
-            <p class="cn-lead">We run a keyword gap analysis and content gap analysis at the keyword level to see exactly where your competitors are outranking you and why, whether it&rsquo;s through content depth, technical superiority, or backlinking.</p>
+        <div class="ac-item" data-i="3" role="tab"
+             tabindex="0" aria-selected="false">
+          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
+            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"/><path d="m15.6 15.6 4 4"/></svg></span></span>
+          <span class="ac-slim" aria-hidden="true">
+            <b class="ac-n">04</b>
+            <span class="ac-vt">Competitor Gap Analysis</span>
+          </span>
+          <div class="ac-open">
+            <div class="ac-card">
+              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"/><path d="m15.6 15.6 4 4"/></svg></span><span class="ac-num">04</span></span>
+              <h3>Competitor Gap Analysis</h3>
+              <p>We run a keyword gap analysis and content gap analysis at the keyword level to see exactly where your competitors are outranking you and why, whether it&rsquo;s through content depth, technical superiority, or backlinking.</p>
+              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Keyword gap analysis</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Content gap analysis</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Ranking overlap review</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Content depth comparison</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Technical superiority gaps</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Backlink advantage mapping</span></li></ul>
+              <span class="ac-chip"><i></i>Service 04 of 06</span>
+            </div>
+            <div class="ac-viz"><div class="vz vz-checks">
+  <span class="vz-row" style="--k:0"><i></i><em>Keyword gap analysis</em></span>
+  <span class="vz-row" style="--k:1"><i></i><em>Content gap analysis</em></span>
+  <span class="vz-row" style="--k:2"><i></i><em>Ranking overlap review</em></span>
+  <span class="vz-row" style="--k:3"><i></i><em>Content depth comparison</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Technical superiority gaps</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Backlink advantage mapping</em></span>
+</div></div>
+            <span class="ac-prog" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="cn-card" role="tabpanel">
-          <div>
-            <h3 class="cn-h">AI Search (GEO) Readiness Audit</h3>
-            <p class="cn-lead">We check whether ChatGPT, Gemini, and Google&rsquo;s AI Overviews can discover, interpret, and cite your website. It&rsquo;s more critical than most audits realize: 65% of US adults are reading AI-generated summaries in their search results, and websites that aren&rsquo;t optimized for this layer are getting lost in it completely.</p>
+        <div class="ac-item" data-i="4" role="tab"
+             tabindex="0" aria-selected="false">
+          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
+            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 13.7 8 18.5 9.7 13.7 11.4 12 16.2 10.3 11.4 5.5 9.7 10.3 8Z"/><path d="M18.4 15.2 19.2 17.4l2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></svg></span></span>
+          <span class="ac-slim" aria-hidden="true">
+            <b class="ac-n">05</b>
+            <span class="ac-vt">AI Search (GEO) Readiness Audit</span>
+          </span>
+          <div class="ac-open">
+            <div class="ac-card">
+              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 13.7 8 18.5 9.7 13.7 11.4 12 16.2 10.3 11.4 5.5 9.7 10.3 8Z"/><path d="M18.4 15.2 19.2 17.4l2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></svg></span><span class="ac-num">05</span></span>
+              <h3>AI Search (GEO) Readiness Audit</h3>
+              <p>We check whether ChatGPT, Gemini, and Google&rsquo;s AI Overviews can discover, interpret, and cite your website. It&rsquo;s more critical than most audits realize: 65% of US adults are reading AI-generated summaries in their search results, and websites that aren&rsquo;t optimized for this layer are getting lost in it completely.</p>
+              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>AI Overview citation readiness</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Entity and source clarity</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Structured data for AI parsers</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Answer-engine discoverability</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Content extractability checks</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Brand mention / citation gaps</span></li></ul>
+              <span class="ac-chip"><i></i>Service 05 of 06</span>
+            </div>
+            <div class="ac-viz"><div class="vz vz-checks">
+  <span class="vz-row" style="--k:0"><i></i><em>AI Overview citation readiness</em></span>
+  <span class="vz-row" style="--k:1"><i></i><em>Entity and source clarity</em></span>
+  <span class="vz-row" style="--k:2"><i></i><em>Structured data for AI parsers</em></span>
+  <span class="vz-row" style="--k:3"><i></i><em>Answer-engine discoverability</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Content extractability checks</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Brand mention / citation gaps</em></span>
+</div></div>
+            <span class="ac-prog" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="cn-card" role="tabpanel">
-          <div>
-            <h3 class="cn-h">Analytics &amp; Conversion Tracking Audit</h3>
-            <p class="cn-lead">We verify that your GA4 and conversion data are reliable before giving any recommendations. Sites that we audit have been basing their decisions on inaccurate data; all their past &ldquo;insights&rdquo; have been wrong from the start.</p>
+        <div class="ac-item" data-i="5" role="tab"
+             tabindex="0" aria-selected="false">
+          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
+            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 20.2h16.4"/><path d="M6.6 20.2v-5M11 20.2V9.6M15.4 20.2v-7.6M19.8 20.2V6"/><path d="m6.6 11.4 4.4-4.6 3 2.2 4.4-4.6"/></svg></span></span>
+          <span class="ac-slim" aria-hidden="true">
+            <b class="ac-n">06</b>
+            <span class="ac-vt">Analytics &amp; Conversion Tracking Audit</span>
+          </span>
+          <div class="ac-open">
+            <div class="ac-card">
+              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 20.2h16.4"/><path d="M6.6 20.2v-5M11 20.2V9.6M15.4 20.2v-7.6M19.8 20.2V6"/><path d="m6.6 11.4 4.4-4.6 3 2.2 4.4-4.6"/></svg></span><span class="ac-num">06</span></span>
+              <h3>Analytics &amp; Conversion Tracking Audit</h3>
+              <p>We verify that your GA4 and conversion data are reliable before giving any recommendations. Sites that we audit have been basing their decisions on inaccurate data; all their past &ldquo;insights&rdquo; have been wrong from the start.</p>
+              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>GA4 configuration review</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Conversion event accuracy</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Goal and funnel integrity</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Attribution sanity checks</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Tracking gaps and duplicates</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Reporting reliability flags</span></li></ul>
+              <span class="ac-chip"><i></i>Service 06 of 06</span>
+            </div>
+            <div class="ac-viz"><div class="vz vz-checks">
+  <span class="vz-row" style="--k:0"><i></i><em>GA4 configuration review</em></span>
+  <span class="vz-row" style="--k:1"><i></i><em>Conversion event accuracy</em></span>
+  <span class="vz-row" style="--k:2"><i></i><em>Goal and funnel integrity</em></span>
+  <span class="vz-row" style="--k:3"><i></i><em>Attribution sanity checks</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Tracking gaps and duplicates</em></span>
+  <span class="vz-row" style="--k:4"><i></i><em>Reporting reliability flags</em></span>
+</div></div>
+            <span class="ac-prog" aria-hidden="true"></span>
           </div>
         </div>
-      </div>
     </div>
-
-    <p class="wa-note rv" style="--d:80ms">Google&rsquo;s Search Central guidelines explicitly
-    state that solving crawl and indexing problems comes first, as the cornerstone of SEO.
-    That is precisely why we begin with this layer before content or backlinks ever enter
-    the conversation.</p>
-
 
   </div>
 </section>
@@ -579,9 +635,8 @@
       </span>
 
       <div class="vs-cta-t">
-        <span class="vs-cta-eyebrow">Wants to Run a Quick Self-Check First?</span>
         <b>Download our free <em>SEO audit checklist PDF</em></b>
-        <p>The same 20-point framework that our strategist uses before every manual audit.</p>
+        <p>Download our free SEO audit checklist PDF, the same 20-point framework that our strategist uses before every manual audit.</p>
         <!-- the download glyph already carries the affordance, so this is
              the one button on the page without the .arw pip -->
         <a class="btn btn-primary btn-lg" href="#">
@@ -672,160 +727,144 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════════
-     WHY CHOOSE US — the homepage's folder panel, at three tabs.
-
-     DUMMY FIGURES: every number in the three panels is placeholder. The
-     three figures under the paragraph are stand-ins too, but chosen to
-     agree with what the rest of the page already claims — see the note
-     on them below.
+     WHY CHOOSE US — homepage tabbed design, audit content
      ══════════════════════════════════════════════════════════════════ -->
-<section class="sec wc-sec" id="whyus">
-  <div class="wrap">
-    <div class="wc">
+<section class="sec wy" id="why">
+  <div class="wrap wy-in">
 
-      <div class="wc-say rv" style="--d:120ms">
-        <div class="sec-head">
-          <span class="smark"><b>Why choose us</b></span>
-          <h2>Why Businesses Choose <em>TekCroft for SEO Audits</em></h2>
-        </div>
+    <div class="wy-say rv">
+      <span class="wy-eyebrow"><i></i>Why choose us</span>
 
-        <p>TekCroft isn&rsquo;t a checklist agency that runs your site through scanner tools and
-          declares it complete. We&rsquo;re a senior-led team that treats every audit as a
-          diagnostic first, then an action plan, in an age where ranking depends on both
-          Google and AI searches.</p>
+      <h2>Why Businesses Choose TekCroft for <em>SEO Audits</em></h2>
+      <p>TekCroft isn&rsquo;t a checklist agency that runs your site through scanner tools and declares it complete. We&rsquo;re a senior-led team that treats every audit as a diagnostic first, then an action plan, in an age where ranking depends on both Google and AI searches.</p>
 
-        <!-- Founded and the year count are the same fact said twice, so
-             they have to be edited together: 2012 and 14 years agree in
-             2026 and will not in 2027. The footer says "since 2013" —
-             one of the two is wrong and it is not for this file to
-             decide which. Audits delivered matches the proof strip. -->
-        <div class="wc-facts">
-          <span class="wc-fact"><b>2012</b><span>Founded</span></span>
-          <i aria-hidden="true"></i>
-          <span class="wc-fact"><b>14+</b><span>Years in SEO</span></span>
-          <i aria-hidden="true"></i>
-          <span class="wc-fact"><b>900+</b><span>Audits delivered</span></span>
-        </div>
-
-        <button class="btn btn-primary btn-lg" type="button" data-jump>
-          Get Your Free Proposal <span class="arw">&uarr;</span></button>
+      <!-- PLACEHOLDER figures: swap Founded / Years / Audits when real numbers are ready. -->
+      <div class="wy-facts">
+        <span class="wy-fact"><b>20xx</b><span>Founded</span></span>
+        <i aria-hidden="true"></i>
+        <span class="wy-fact"><b>x+</b><span>Years in SEO</span></span>
+        <i aria-hidden="true"></i>
+        <span class="wy-fact"><b>x+</b><span>Audits delivered</span></span>
       </div>
-
-      <div class="wc-folder rv" id="wcPanel" style="--d:200ms">
-        <div class="wc-tabs" role="tablist" aria-label="Why choose us">
-          <button class="wc-tab on" type="button" role="tab" data-p="0">Revenue-first</button>
-          <button class="wc-tab" type="button" role="tab" data-p="1">Transparency</button>
-          <button class="wc-tab" type="button" role="tab" data-p="2">AI Search (GEO)</button>
-          <button class="wc-tab" type="button" role="tab" data-p="3">One Senior strategist</button>
-          <button class="wc-tab" type="button" role="tab" data-p="4">5 to 10 days</button>
-        </div>
-
-        <div class="wc-body first">
-
-          <div class="wc-panel on" role="tabpanel">
-            <h3>Revenue-first prioritization</h3>
-            <p>not just a raw number of issues with no explanation</p>
-            <div class="wc-card">
-              <div class="wc-card-top"><b>The fix list</b>
-                <span class="wc-pill">Prioritized</span></div>
-              <!-- PLACEHOLDER: the three category names are from the deck; the
-                   split is a stand-in until the real one is supplied. -->
-              <div class="wc-bars">
-                <div class="wc-bar"><b>Critical<s>xx%</s></b><span><i style="--w:68%; --d:200ms"></i></span></div>
-                <div class="wc-bar"><b>Important<s>xx%</s></b><span><i style="--w:24%; --d:340ms"></i></span></div>
-                <div class="wc-bar"><b>Monitor<s>xx%</s></b><span><i style="--w:8%; --d:480ms"></i></span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="wc-panel" role="tabpanel">
-            <h3>Transparency in pricing</h3>
-            <p>no lock-in or mandatory retainers after the auditing process</p>
-          </div>
-
-          <div class="wc-panel" role="tabpanel">
-            <h3>AI Search (GEO) audit comes as part of the package</h3>
-            <p>not as an extra costly option</p>
-            <div class="wc-card">
-              <div class="wc-card-top"><b>Six different levels</b>
-                <span class="wc-pill">One scope</span></div>
-              <div class="wc-ringwrap">
-                <div class="wc-donut">
-                  <svg viewBox="0 0 120 120" aria-hidden="true">
-                    <circle class="trk" cx="60" cy="60" r="42"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="hsl(var(--brand-h) 100% 68%)" stroke-dashoffset="-0.00" style="--d:200ms" data-dash="41.98 221.91"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="hsl(var(--brand-h) 75% 58%)" stroke-dashoffset="-43.98" style="--d:340ms" data-dash="41.98 221.91"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="hsl(var(--brand-h) 45% 62%)" stroke-dashoffset="-87.96" style="--d:480ms" data-dash="41.98 221.91"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="var(--n300)" stroke-dashoffset="-131.95" style="--d:620ms" data-dash="41.98 221.91"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="hsl(var(--brand-h) 60% 45%)" stroke-dashoffset="-175.93" style="--d:760ms" data-dash="41.98 221.91"></circle>
-          <circle class="seg" cx="60" cy="60" r="42" stroke="var(--primary)" stroke-dashoffset="-219.91" style="--d:900ms" data-dash="41.98 221.91"></circle>
-                  </svg>
-                  <b>6<span>LEVELS</span></b>
-                </div>
-                <div class="wc-legend">
-          <div><i style="background:hsl(var(--brand-h) 100% 68%)"></i>Technical</div>
-          <div><i style="background:hsl(var(--brand-h) 75% 58%)"></i>Content</div>
-          <div><i style="background:hsl(var(--brand-h) 45% 62%)"></i>Backlinks</div>
-          <div><i style="background:var(--n300)"></i>Competitors</div>
-          <div><i style="background:hsl(var(--brand-h) 60% 45%)"></i>AI search visibility</div>
-          <div><i style="background:var(--primary)"></i>Analytics accuracy</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="wc-panel" role="tabpanel">
-            <h3>One Senior strategist works from start to end</h3>
-            <p>no hand-off rotation or junior members</p>
-          </div>
-
-          <div class="wc-panel" role="tabpanel">
-            <h3>5 to 10 days delivery time</h3>
-            <p>confirmed before any process starts</p>
-            <div class="wc-card">
-              <div class="wc-card-top"><b>5 to 10 days</b>
-                <span class="wc-pill">Confirmed up front</span></div>
-              <svg class="wc-chart" viewBox="0 0 460 190" role="img"
-                   aria-label="The audit reaching completion between day five and day ten">
-                <g class="wc-grid">
-      <line x1="34" y1="14" x2="448" y2="14"></line>
-      <line x1="34" y1="51.5" x2="448" y2="51.5"></line>
-      <line x1="34" y1="89" x2="448" y2="89"></line>
-      <line x1="34" y1="126.5" x2="448" y2="126.5"></line>
-      <line x1="34" y1="164" x2="448" y2="164"></line>
-                </g>
-      <text class="wc-axis" x="6" y="17">100%</text>
-      <text class="wc-axis" x="10" y="92">50%</text>
-      <text class="wc-axis" x="10" y="167">0</text>
-      <text class="wc-axis" x="34.0" y="184" text-anchor="middle">Day 1</text>
-      <text class="wc-axis" x="103.0" y="184" text-anchor="middle">Day 3</text>
-      <text class="wc-axis" x="172.0" y="184" text-anchor="middle">Day 4</text>
-      <text class="wc-axis" x="241.0" y="184" text-anchor="middle">Day 5</text>
-      <text class="wc-axis" x="310.0" y="184" text-anchor="middle">Day 7</text>
-      <text class="wc-axis" x="379.0" y="184" text-anchor="middle">Day 8</text>
-      <text class="wc-axis" x="448.0" y="184" text-anchor="middle">Day 10</text>
-                <path class="wc-fill" d="M34.0,152.0 L103.0,131.0 L172.0,104.0 L241.0,80.0 L310.0,53.0 L379.0,29.0 L448.0,14.0 L448.0,164.0 L34.0,164.0 Z"></path>
-                <path class="wc-line" d="M34.0,152.0 L103.0,131.0 L172.0,104.0 L241.0,80.0 L310.0,53.0 L379.0,29.0 L448.0,14.0"></path>
-      <circle class="wc-node" cx="34.0" cy="152.0" r="4.4" style="--d:900ms"></circle>
-      <circle class="wc-node" cx="103.0" cy="131.0" r="4.4" style="--d:990ms"></circle>
-      <circle class="wc-node" cx="172.0" cy="104.0" r="4.4" style="--d:1080ms"></circle>
-      <circle class="wc-node" cx="241.0" cy="80.0" r="4.4" style="--d:1170ms"></circle>
-      <circle class="wc-node" cx="310.0" cy="53.0" r="4.4" style="--d:1260ms"></circle>
-      <circle class="wc-node" cx="379.0" cy="29.0" r="4.4" style="--d:1350ms"></circle>
-      <circle class="wc-node" cx="448.0" cy="14.0" r="4.4" style="--d:1440ms"></circle>
-              </svg>
-            </div>
-          </div>
-
-        <!-- PLACEHOLDER: the leadership quote from the copy deck. -->
-        <figure class="wc-quote-fig">
-          <blockquote>Leadership Quote Here:</blockquote>
-          <figcaption>[Founder/Lead strategist name] [Title] [tekCroft]</figcaption>
-        </figure>
-        </div>
-      </div>
-
     </div>
+
+    <div class="wy-box rv" style="--d:120ms" data-tabs>
+      <div class="wy-rail" role="tablist" aria-label="Why choose us">
+        <button class="wy-tab on" type="button" role="tab"
+                data-p="0" aria-selected="true">Revenue-first</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="1" aria-selected="false">Transparency</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="2" aria-selected="false">AI Search (GEO)</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="3" aria-selected="false">One strategist</button>
+        <button class="wy-tab" type="button" role="tab"
+                data-p="4" aria-selected="false">5 to 10 days</button>
+      </div>
+
+      <div class="wy-panes">
+        <div class="wy-pane on" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 20.2h16.4"/><path d="M6.6 20.2v-5M11 20.2V9.6M15.4 20.2v-7.6M19.8 20.2V6"/><path d="m6.6 11.4 4.4-4.6 3 2.2 4.4-4.6"/></svg></span>
+            <h3>Revenue-first prioritization</h3>
+            <p>Not just a raw number of issues with no explanation. Every finding is ordered by business impact so your team knows what to fix first.</p>
+          </div>
+          <figure class="wy-fig">
+            <figcaption><b>The fix list</b>
+              <span class="wy-chip">Prioritized</span>
+            </figcaption>
+            <ul class="br"><li><span class="br-top"><span>Critical</span><b>68%</b></span>
+                <span class="br-rail"><i style="--w:68%"></i></span></li><li><span class="br-top"><span>Important</span><b>24%</b></span>
+                <span class="br-rail"><i style="--w:24%"></i></span></li><li><span class="br-top"><span>Monitor</span><b>8%</b></span>
+                <span class="br-rail"><i style="--w:8%"></i></span></li></ul>
+          </figure>
+        </div>
+
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.2" y="6.2" width="15.6" height="12.4" rx="2.4"/><path d="M8 10.4h8M8 13.6h5.6"/><path d="M12 3.8v2.4"/></svg></span>
+            <h3>Transparency in pricing</h3>
+            <p>No lock-in or mandatory retainers after the auditing process. You get a clear scope, a clear fee, and a clear handoff.</p>
+          </div>
+          <figure class="wy-fig">
+            <figcaption><b>Engagement terms</b>
+              <span class="wy-chip">No lock-in</span>
+            </figcaption>
+            <ul class="br"><li><span class="br-top"><span>Fixed audit scope</span><b>Yes</b></span>
+                <span class="br-rail"><i style="--w:100%"></i></span></li><li><span class="br-top"><span>Mandatory retainer</span><b>No</b></span>
+                <span class="br-rail"><i style="--w:8%"></i></span></li><li><span class="br-top"><span>Price shown up front</span><b>Yes</b></span>
+                <span class="br-rail"><i style="--w:100%"></i></span></li></ul>
+          </figure>
+        </div>
+
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2 13.7 8 18.5 9.7 13.7 11.4 12 16.2 10.3 11.4 5.5 9.7 10.3 8Z"/><path d="M18.4 15.2 19.2 17.4l2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></svg></span>
+            <h3>AI Search (GEO) audit included</h3>
+            <p>AI Search (GEO) audit comes as part of the package, not as an extra costly option — so ChatGPT, Gemini, and AI Overviews are in scope from day one.</p>
+          </div>
+          <figure class="wy-fig">
+            <figcaption><b>Where the work goes</b>
+              <span class="wy-chip">Included</span>
+            </figcaption>
+            <div class="dn-wrap">
+              <svg class="dn" viewBox="0 0 120 120" role="img"
+                   aria-label="Technical 28 per cent, Content 22, Backlinks 18, Competitors 14, AI search 12, Analytics 6">
+                <circle class="dn-track" cx="60" cy="60" r="46"/>
+                <g transform="rotate(-90 60 60)"><circle class="dn-s dn-1" cx="60" cy="60" r="46" stroke-dasharray="80.93 289.03" stroke-dashoffset="-0.00"/><circle class="dn-s dn-2" cx="60" cy="60" r="46" stroke-dasharray="63.59 289.03" stroke-dashoffset="-80.93"/><circle class="dn-s dn-3" cx="60" cy="60" r="46" stroke-dasharray="52.02 289.03" stroke-dashoffset="-144.52"/><circle class="dn-s dn-4" cx="60" cy="60" r="46" stroke-dasharray="34.68 289.03" stroke-dashoffset="-196.54"/></g>
+              </svg>
+              <span class="dn-mid"><b>GEO</b><em>Included</em></span>
+              <ul class="dn-key"><li class="dn-1"><i></i><span>Technical</span><b>28%</b></li><li class="dn-2"><i></i><span>Content</span><b>22%</b></li><li class="dn-3"><i></i><span>Backlinks</span><b>18%</b></li><li class="dn-4"><i></i><span>AI search</span><b>12%</b></li></ul>
+            </div>
+          </figure>
+        </div>
+
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.4" r="3.8"/><path d="M4.6 20.4a7.4 7.4 0 0 1 14.8 0"/></svg></span>
+            <h3>One senior strategist, start to end</h3>
+            <p>One senior strategist works from start to end — no hand-off rotation or junior members learning your site halfway through.</p>
+          </div>
+          <figure class="wy-fig">
+            <figcaption><b>Account ownership</b>
+              <span class="wy-chip">Senior-led</span>
+            </figcaption>
+            <ul class="br"><li><span class="br-top"><span>Single strategist</span><b>100%</b></span>
+                <span class="br-rail"><i style="--w:100%"></i></span></li><li><span class="br-top"><span>Hand-off rotation</span><b>0%</b></span>
+                <span class="br-rail"><i style="--w:4%"></i></span></li><li><span class="br-top"><span>Junior pass-through</span><b>0%</b></span>
+                <span class="br-rail"><i style="--w:4%"></i></span></li></ul>
+          </figure>
+        </div>
+
+        <div class="wy-pane" role="tabpanel">
+          <div class="wy-txt">
+            <span class="wy-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="5" width="16.8" height="15.4" rx="2.6"/><path d="M3.6 9.6h16.8M8.4 3.2v3.6M15.6 3.2v3.6"/></svg></span>
+            <h3>5 to 10 days delivery</h3>
+            <p>5 to 10 days delivery time confirmed before any process starts, so you know exactly when the action plan lands.</p>
+          </div>
+          <figure class="wy-fig">
+            <figcaption><b>Delivery window</b>
+              <span class="wy-chip">Confirmed up front</span>
+            </figcaption>
+            <svg class="wyln" viewBox="0 0 320 136" fill="none" role="img"
+                 aria-label="Audit progress rising from day one to day ten">
+              <path class="wyln-area" d="M40,118 L40.0,108 L86.7,96 L133.3,82 L180.0,68 L226.7,48 L273.3,34 L300.0,22 L300,118 Z"/>
+              <polyline class="wyln-line" points="40.0,108 86.7,96 133.3,82 180.0,68 226.7,48 273.3,34 300.0,22"/>
+              <circle class="wyln-d" cx="40.0" cy="108" r="3.2"/><circle class="wyln-d" cx="86.7" cy="96" r="3.2"/><circle class="wyln-d" cx="133.3" cy="82" r="3.2"/><circle class="wyln-d" cx="180.0" cy="68" r="3.2"/><circle class="wyln-d" cx="226.7" cy="48" r="3.2"/><circle class="wyln-d" cx="273.3" cy="34" r="3.2"/><circle class="wyln-d" cx="300.0" cy="22" r="3.2"/>
+              <text class="wyln-x" x="40.0" y="131">D1</text><text class="wyln-x" x="86.7" y="131">D3</text><text class="wyln-x" x="133.3" y="131">D4</text><text class="wyln-x" x="180.0" y="131">D5</text><text class="wyln-x" x="226.7" y="131">D7</text><text class="wyln-x" x="273.3" y="131">D8</text><text class="wyln-x" x="300.0" y="131">D10</text>
+              <text class="wyln-y" x="32" y="121.0">0</text><text class="wyln-y" x="32" y="69.0">50%</text><text class="wyln-y" x="32" y="17.0">100%</text>
+            </svg>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER: leadership quote from the copy deck. -->
+    <figure class="wy-quote rv" style="--d:200ms">
+      <blockquote>Leadership Quote Here:</blockquote>
+      <figcaption>[Founder/Lead strategist name] [Title] [tekCroft]</figcaption>
+    </figure>
+
   </div>
 </section>
 
@@ -849,35 +888,9 @@
   <div class="wrap pf-in">
 
     <!-- ══════════ head ══════════ -->
-    <div class="pf-head rv">
-      <div class="sec-head">
-        <span class="smark"><b>What you get</b></span>
-        <h2><span>What You&rsquo;ll</span><em>Actually</em> Receive</h2>
-        <p class="sec-lede">Every audit ends with the same six things, and none of them is
-          held back for a follow-up proposal.</p>
-      </div>
-      <div class="pf-orbit" aria-hidden="true">
-        <!-- rings and orbits share one 500×400 grid, so a tile rides on its
-             ring rather than near it -->
-        <svg class="pf-rings" viewBox="0 0 500 400" fill="none" stroke="currentColor"
-             stroke-width="1.4">
-          <circle class="pf-halo" cx="250" cy="200" r="75" stroke="none"/>
-          <!-- the outer ring is the orbit: r=150 of 500 is the 30% of the
-               frame's width the arms carry the tiles out to, so a tile
-               rides the line rather than floating near it. The inner one
-               carries nobody and is there to give the core some depth. -->
-          <circle cx="250" cy="200" r="100" stroke-dasharray="5 7" opacity=".7"/>
-          <circle cx="250" cy="200" r="150" stroke-dasharray="5 7"/>
-        </svg>
-
-        <span class="pf-core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18.6 8.4V19a1.8 1.8 0 0 1-1.8 1.8H7.2A1.8 1.8 0 0 1 5.4 19V5A1.8 1.8 0 0 1 7.2 3.2h6.2Z"/><path d="M13.2 3.4v4.4h4.4"/><path d="M8.8 12.4h6.4M8.8 16h4"/></svg></span>
-        <span class="pf-arm pf-o1"><span class="pf-tile"><span class="pf-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.4 6.2h10.4M9.4 12h10.4M9.4 17.8h6.6"/><path d="m4.2 5.8 1.3 1.3 2.2-2.4M4.2 11.6l1.3 1.3 2.2-2.4M4.2 17.4l1.3 1.3 2.2-2.4"/></svg></span></span></span>
-        <span class="pf-arm pf-o2"><span class="pf-tile"><span class="pf-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 6.2 9 3.8v14L3.4 20.2Zm5.6-2.4 6 2.4v14l-6-2.4m6 0 5.6-2.4v-14L15 6.2"/></svg></span></span></span>
-        <span class="pf-arm pf-o3"><span class="pf-tile"><span class="pf-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 20.2h16.4"/><path d="M6.6 20.2v-5.4M11 20.2v-9.4M15.4 20.2v-6.6M19.8 20.2V6.4"/><path d="m6.6 11.6 4.4-4.4 3 2 4.4-4.6"/></svg></span></span></span>
-        <span class="pf-arm pf-o4"><span class="pf-tile"><span class="pf-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="12.4" height="12" rx="2.6"/><path d="m15.4 10.6 5.6-3.2v9.2l-5.6-3.2Z"/></svg></span></span></span>
-        <span class="pf-arm pf-o5"><span class="pf-tile"><span class="pf-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.2" y="4.2" width="17.6" height="15.6" rx="2.6"/><path d="M9.2 4.2v15.6M15 4.2v15.6"/><path d="M5.4 8h2M11.2 8h2M17 8h2"/></svg></span></span></span>
-        <span class="pf-arm pf-o6"><span class="pf-tile"><span class="pf-face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.4" y="10.6" width="15.2" height="9.6" rx="2.4"/><path d="M8.2 10.6V7.8a3.8 3.8 0 0 1 7.3-1.5"/><path d="M12 14.4v2.2"/></svg></span></span></span>
-      </div>
+    <div class="sec-head mid rv">
+      <span class="smark"><b>What you get</b></span>
+      <h2>What You&rsquo;ll <em>Actually</em> Receive</h2>
     </div>
 
     <!-- ══════════ the four cards ══════════ -->
@@ -934,18 +947,11 @@
       </div>
     </div>
 
-    <div class="pf-cta rv">
-      <a class="btn btn-primary btn-lg" href="#contact" data-jump>Get A Free Audit Scope
-        <span class="arw">&uarr;</span></a>
-    </div>
-
   </div>
 </section>
 
-<!-- ══════════ PRICING ══════════
-     The three "Start at" figures are placeholders straight from the copy
-     deck ($ xxx / $ x,xxx / Custom). Drop the real numbers in here. -->
-<section class="sec pr" id="pricing">
+<!-- ══════════ PRICING — row design from audit mock ══════════ -->
+<section class="sec pz" id="pricing">
   <div class="wrap">
 
     <div class="sec-head mid rv">
@@ -956,52 +962,51 @@
         regardless of its complexity.</p>
     </div>
 
-    <div class="pr-hold rv" style="--d:80ms">
-      <table class="pr-table">
-        <thead>
-          <tr><th scope="col">Tier</th><th scope="col">Best for</th><th scope="col">Start at</th></tr>
-        </thead>
-        <tbody>
-            <tr>
-              <th scope="row">Starter Audit</th>
-              <td data-label="Best for">Small sites, single-location businesses, and local SEO audit needs</td>
-              <td data-label="Start at"><span class="pr-price">$ xxx</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Growth Audit</th>
-              <td data-label="Best for">Multi-page or multi-location businesses</td>
-              <td data-label="Start at"><span class="pr-price">$ x,xxx</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Enterprise Audit</th>
-              <td data-label="Best for">Our enterprise SEO audit services cover large sites or ecommerce SEO audit projects</td>
-              <td data-label="Start at"><span class="pr-price">Custom</span></td>
-            </tr>
-        </tbody>
-      </table>
-
-      <div class="pr-cards">
-        <article class="pr-card rv" style="--d:80ms">
-          <h3>Starter Audit</h3>
-          <p class="pr-best"><span>Best for</span>Small sites, single-location businesses, and local SEO audit needs</p>
-          <p class="pr-start"><span>Start at</span><b class="pr-price">$ xxx</b></p>
+    <div class="pz-rows">
+        <article class="pz-row rv" style="--d:0ms">
+          <span class="pz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4.3c2.8 1.6 4.4 4.6 4.2 7.8l-4.6 4.6-4.8-4.8 4.6-4.6c.2-1 .4-2 .6-3z"/><circle cx="14.2" cy="9.8" r="1.9"/><path d="M9.3 11.9 6.6 12a1.4 1.4 0 0 0-1 .4l-2 2 3.3 1.1"/><path d="M14.1 16.7l-.1 2.7a1.4 1.4 0 0 1-.4 1l-2 2-1.1-3.3"/><path d="M8.2 15.8 4.8 19.2"/></svg></span>
+          <div class="pz-tier">
+            <span class="pz-lab">Tier</span>
+            <h3>Starter Audit</h3>
+            <span class="pz-chip">Ideal for Small Sites</span>
+          </div>
+          <p class="pz-best">Small sites, single-location businesses, and local SEO audit needs</p>
+          <div class="pz-price">
+            <span class="pz-lab">Start at</span>
+            <span class="pz-amt">$ xxx<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6.5 18.5 12 13 17.5"/></svg></span>
+          </div>
         </article>
-        <article class="pr-card rv" style="--d:160ms">
-          <h3>Growth Audit</h3>
-          <p class="pr-best"><span>Best for</span>Multi-page or multi-location businesses</p>
-          <p class="pr-start"><span>Start at</span><b class="pr-price">$ x,xxx</b></p>
+        <article class="pz-row is-lead rv" style="--d:70ms">
+          <span class="pz-flag"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3.6 2.5 5.1 5.6.8-4 3.9 1 5.6-5.1-2.7-5 2.7 1-5.6-4.1-3.9 5.6-.8z"/></svg>Most Popular</span>
+          <span class="pz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8.5 16v-4M12.5 16V8.5M16.5 16v-6"/></svg></span>
+          <div class="pz-tier">
+            <span class="pz-lab">Tier</span>
+            <h3>Growth Audit</h3>
+            <span class="pz-chip">Best for growing businesses</span>
+          </div>
+          <p class="pz-best">Multi-page or multi-location businesses</p>
+          <div class="pz-price">
+            <span class="pz-lab">Start at</span>
+            <span class="pz-amt">$ x,xxx<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6.5 18.5 12 13 17.5"/></svg></span>
+          </div>
         </article>
-        <article class="pr-card rv" style="--d:240ms">
-          <h3>Enterprise Audit</h3>
-          <p class="pr-best"><span>Best for</span>Our enterprise SEO audit services cover large sites or ecommerce SEO audit projects</p>
-          <p class="pr-start"><span>Start at</span><b class="pr-price">Custom</b></p>
+        <article class="pz-row is-ent rv" style="--d:140ms">
+          <span class="pz-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><rect x="6" y="8" width="5.5" height="12" rx="1"/><rect x="13" y="4" width="5.5" height="16" rx="1"/><path d="M8 11h1.5M8 14h1.5M15 7h1.5M15 10.5h1.5M15 14h1.5"/></svg></span>
+          <div class="pz-tier">
+            <span class="pz-lab">Tier</span>
+            <h3>Enterprise Audit</h3>
+            <span class="pz-chip">For large-scale projects</span>
+          </div>
+          <p class="pz-best">Our enterprise SEO audit services cover large sites or ecommerce SEO audit projects</p>
+          <div class="pz-price">
+            <span class="pz-lab">Start at</span>
+            <span class="pz-amt">Custom<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6.5 18.5 12 13 17.5"/></svg></span>
+          </div>
         </article>
-      </div>
     </div>
 
   </div>
 </section>
-
 
 
 <!-- ══════════════════════════════════════════════════════════════════
@@ -1470,62 +1475,32 @@
 
 
 <style id="wy-styles">
-/* the folder, its tabs and cards — match other service pages */
-#whyus{
-  --ground:var(--bg-alt);
-  --panel:var(--surface);
-  background:var(--bg-alt);
+/* homepage why design — audit extras on top of global #why.wy rules */
+#why{
+  background:var(--ground);
 }
-#whyus .wc-panel h3{text-transform:none;}
-#whyus .wc-folder,#whyus .wc-tabs{min-width:0;}
-#whyus .wc-tabs{overflow:visible;}
-#whyus .wc-tabs .wc-tab{
-  flex:1 1 0; min-width:0; white-space:nowrap;
-  font-size:11px; letter-spacing:.06em;
-  padding:15px clamp(8px,1vw,14px) 17px;
-}
-#whyus .wc-tab.on{
-  background:var(--surface); margin-bottom:-3px; padding-bottom:20px;
-  box-shadow:none;
-}
-#whyus .wc-body{background:var(--surface);}
-#whyus .wc-card{background:var(--bg-alt);}
-.wc-quote-fig{margin:clamp(14px,1.6vw,20px) 0 0; padding:16px 18px; border-radius:14px;
-  background:var(--bg-alt); border:1px solid var(--border-soft);}
-.wc-quote-fig blockquote{margin:0; font-family:var(--font-display); font-size:15px; font-weight:700;
+#why .wy-say h2{max-width:22ch;}
+#why .wy-say > p{margin:clamp(12px,1.4vw,18px) auto 0; max-width:62ch;
+  font-size:clamp(14.2px,1.1vw,15.6px); line-height:1.7; color:var(--text-2);}
+#why .wy-facts{display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:clamp(14px,2vw,28px); margin-top:clamp(18px,2vw,28px);}
+#why .wy-fact{text-align:center;}
+#why .wy-fact b{display:block; font-family:var(--font-display); font-weight:800;
+  font-size:clamp(20px,2vw,26px); letter-spacing:-.03em; color:var(--text);}
+#why .wy-fact span{display:block; margin-top:5px; font-size:12.5px; line-height:1.35; color:var(--muted);}
+#why .wy-facts i{width:1px; align-self:stretch; background:var(--border);}
+#why .wy-quote{margin:clamp(18px,2vw,28px) auto 0; max-width:52ch; text-align:center;
+  padding:16px 18px; border-radius:14px; background:var(--surface); border:1px solid var(--border-soft);}
+#why .wy-quote blockquote{margin:0; font-family:var(--font-display); font-size:15px; font-weight:700;
   letter-spacing:-.02em; color:var(--text);}
-.wc-quote-fig figcaption{margin-top:6px; font-size:12.6px; color:var(--muted);}
+#why .wy-quote figcaption{margin-top:6px; font-size:12.6px; color:var(--muted);}
+@media (max-width:900px){
+  #why .wy-rail{grid-auto-flow:row; grid-auto-columns:auto;}
+  #why .wy-tab{text-align:left;}
+}
 </style>
 
-<style id="pr-styles">
-/* the pricing band sits on white between two white neighbours, so it is
-   separated by the same hairline the services band uses */
-#pricing{border-block:1px solid var(--border);}
-/* SEO audit pricing: a three-row table on a desktop, the same three tiers
-   as cards on a phone where a third column would squeeze */
-.pr-hold{border-radius:22px; background:var(--surface); border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden;}
-.pr-table{width:100%; border-collapse:separate; border-spacing:0; table-layout:fixed;}
-.pr-table th,.pr-table td{padding:16px clamp(16px,2vw,26px); text-align:left; vertical-align:middle;
-  font-size:15px; line-height:1.55; color:var(--text-2); border-top:1px solid var(--border-soft);}
-.pr-table thead th{border-top:0; padding-top:20px; padding-bottom:14px; font-family:var(--font-display); font-size:12px;
-  font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
-.pr-table tbody th{font-family:var(--font-display); font-size:17px; font-weight:700; letter-spacing:-.02em; color:var(--text); width:26%;}
-.pr-table td:last-child{width:22%;}
-.pr-price{display:inline-block; padding:5px 12px; border-radius:99px; background:hsl(var(--brand-h) 85% 95%);
-  color:var(--brand-text); font-weight:700; font-size:14.5px;}
-html[data-theme="dark"] .pr-price{background:hsl(var(--brand-h) 40% 18%);}
-.pr-cards{display:none;}
-@media (max-width:760px){
-  .pr-hold{background:none; border:0; box-shadow:none; overflow:visible;}
-  .pr-table{display:none;}
-  .pr-cards{display:grid; gap:12px;}
-  .pr-card{padding:18px 20px; border-radius:18px; background:var(--surface); border:1px solid var(--border); box-shadow:var(--shadow);}
-  .pr-card h3{margin:0; font-family:var(--font-display); font-size:18px; font-weight:700; letter-spacing:-.02em; color:var(--text);}
-  .pr-card p{margin:10px 0 0; font-size:14.4px; line-height:1.55; color:var(--text-2);}
-  .pr-card span{display:block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
-  .pr-start{display:flex; flex-direction:column; gap:6px;}
-}
-</style>
+
 
 <style id="hs-form2">
 /* the scope form carries the six fields the copy deck lists; the notes box
@@ -1575,7 +1550,9 @@ html[data-theme="dark"] .pr-price{background:hsl(var(--brand-h) 40% 18%);}
 <style id="pf-compact">
 /* the receive cards carry an icon, a title and the line: no number, no
    arrow and no link, so they can sit shorter than they did */
-#receive .pf-card{padding:clamp(16px,1.5vw,20px); cursor:default;}
+#receive .pf-card{padding:clamp(16px,1.5vw,20px); cursor:default;
+  background:#fff !important;}
+html[data-theme="dark"] #receive .pf-card{background:var(--surface) !important;}
 #receive .pf-card:hover{transform:none; box-shadow:none;}
 #receive .pf-top{margin-bottom:clamp(10px,1.1vw,14px);}
 #receive .pf-ic{width:clamp(38px,3.4vw,46px);}
