@@ -1313,3 +1313,30 @@ var $$ = function(s, r){
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
   io.observe(rail);
 })();
+
+/* === why-v2 tabs (technical-seo) === */
+(function(){
+  "use strict";
+  var box = document.querySelector("#why [data-tabs]");
+  if (!box) return;
+  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
+      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
+  function show(i){
+    tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle("on",on); t.setAttribute("aria-selected",String(on)); });
+    panes.forEach(function(p,k){ p.classList.toggle("on", k===i); });
+  }
+  box.querySelector(".wy-rail").addEventListener("click", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (!b) return;
+    show(+b.getAttribute("data-p"));
+  });
+  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (!b) return;
+    var i = +b.getAttribute("data-p");
+    var to = e.key==="ArrowRight"||e.key==="ArrowDown" ? i+1 : e.key==="ArrowLeft"||e.key==="ArrowUp" ? i-1 : -1;
+    if (to<0 || to>=tabs.length) return;
+    e.preventDefault(); tabs[to].focus(); show(to);
+  });
+})();
+

@@ -528,7 +528,7 @@ html[data-theme="dark"] .theme-btn .sun{display:none;}
 
 h2{font-size:var(--h2); letter-spacing:-0.042em;}
 h2 em{font-style:normal; color:var(--brand-text);}
-.sec-lede{font-size:var(--lede); color:var(--text-2); margin-top:16px; max-width:56ch;}
+.sec-lede{font-size:var(--body); color:var(--text-2); margin-top:16px; max-width:56ch;}
 .sec-head.mid .sec-lede{margin-left:auto; margin-right:auto;}
 .on-dark{color:#fff;}
 
@@ -910,7 +910,7 @@ html[data-theme="dark"] section#proof .tb-fig + .tb-fig{border-left-color:var(--
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.34);}
 
 .faq-card h3{grid-area:1 / 2; align-self:center;
-  font-size:clamp(14px,1.35vw,15.5px); letter-spacing:-0.02em; line-height:1.32;}
+  font-size:var(--h3); letter-spacing:-0.02em; line-height:1.32;}
 /* the chevron is an affordance, not a control: the answer is already
    there. It leans toward the reader on hover and that is all it does. */
 .faq-card > .faq-arw{grid-area:1 / 3; align-self:center;
@@ -920,7 +920,7 @@ html[data-theme="dark"] section#proof .tb-fig + .tb-fig{border-left-color:var(--
 .faq-card:hover > .faq-arw{transform:translateX(3px); color:#fff;}
 
 .faq-card p{grid-area:2 / 1 / 3 / -1;
-  font-size:12.8px; line-height:1.62; color:var(--muted);}
+  font-size:var(--body); line-height:1.62; color:var(--muted);}
 .faq-card:nth-child(7) p{grid-area:2 / 2 / 3 / 3; max-width:none;}
 .faq-todo{font-weight:600; color:var(--brand-text);}
 
@@ -949,7 +949,7 @@ html[data-theme="dark"] section#proof .tb-fig + .tb-fig{border-left-color:var(--
 .faq-cta-ico svg{width:48%; height:48%;}
 .faq-cta b{display:block; font-family:var(--font-display);
   font-size:clamp(15px,1.7vw,19px); font-weight:800; letter-spacing:-0.03em;}
-.faq-cta p{margin-top:6px; font-size:13px; line-height:1.55;
+.faq-cta p{margin-top:6px; font-size:var(--body); line-height:1.55;
   color:var(--text-2); max-width:52ch;}
 .faq-cta .btn{white-space:nowrap;}
 
@@ -1115,7 +1115,7 @@ html[data-theme="dark"] .modal-x:hover{background:rgba(255,255,255,.2);
 .modal-card > *:not(.modal-x){position:relative; z-index:2;}
 .modal-hero{display:grid; grid-template-columns:1.16fr .84fr;
   gap:calc(22 * var(--u)); align-items:center;}
-.modal-card h2{font-family:var(--font-display); font-size:calc(32 * var(--u));
+.modal-card h2{font-family:var(--font-display); font-size:var(--h2);
   font-weight:800; text-transform:uppercase; letter-spacing:-0.035em; line-height:1.06;}
 .modal-card h2 em{display:block; font-style:normal; color:var(--brand-text);}
 .modal-eyebrow{margin-bottom:calc(16 * var(--u));}
@@ -1587,7 +1587,8 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
 /* It is a paragraph, not a heading, so it is not on the heading scale — this
    is its own size. Brought down a step: at 19px it was competing with the h2
    above it for the same job. */
-.cn-lead{font-family:var(--font-display); font-size:clamp(14.5px,1.45vw,16.5px);
+.cn-lead{
+  font-size:var(--body);
   font-weight:700; letter-spacing:-0.022em; line-height:1.5; color:var(--text);
   max-width:38ch;}
 
@@ -2029,7 +2030,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .wk-say h3{display:flex; align-items:baseline; gap:12px;
   font-family:var(--font-display);
   font-weight:800; letter-spacing:-0.035em; color:var(--text);}
-.wk-say h3 i{font-style:normal; font-size:12px; font-weight:700;
+.wk-say h3 i{font-style:normal; font-size:var(--h3); font-weight:700;
   letter-spacing:.1em; color:var(--subtle); font-variant-numeric:tabular-nums;}
 .wk-say p{margin-top:10px; font-size:14px; line-height:1.58; color:var(--text-2);
   max-width:46ch;}
@@ -2152,7 +2153,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 @keyframes wnIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
 .wn-panel h3{font-family:var(--font-display);
   font-weight:800; letter-spacing:-0.035em; line-height:1.18; max-width:20ch;}
-.wn-panel > p{margin-top:12px; font-size:14.4px; line-height:1.65; color:var(--text-2);
+.wn-panel > p{margin-top:12px; font-size:var(--body); line-height:1.65; color:var(--text-2);
   max-width:46ch;}
 
 /* ---- the instrument ---- */
@@ -2217,7 +2218,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 /* ---- the claim ---- */
 .wn-say h2{letter-spacing:-0.045em; line-height:1.04;}
 .wn-say h2 em{font-style:normal; color:var(--brand-text);}
-.wn-say p{margin-top:20px; font-size:var(--lede); line-height:1.7; color:var(--text-2);
+.wn-say p{margin-top:20px; font-size:var(--body); line-height:1.7; color:var(--text-2);
   max-width:44ch;}
 .wn-say .btn{margin-top:28px;}
 
@@ -2845,7 +2846,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 .eg-card h3 i{font-style:normal; color:var(--subtle); margin-right:9px;
   font-variant-numeric:tabular-nums; transition:color .4s var(--ease);}
 .eg-card.on h3 i{color:var(--brand-text);}
-.eg-card p{margin-top:6px; font-size:13.4px; line-height:1.55; color:var(--text-2);}
+.eg-card p{margin-top:6px; font-size:var(--body); line-height:1.55; color:var(--text-2);}
 
 .eg-cta{margin-top:clamp(20px,2.2vw,28px); display:flex; justify-content:center;}
 
@@ -2948,7 +2949,7 @@ html[data-theme="dark"] .ax{
   text-transform:uppercase; color:var(--brand-text);}
 .ax-badge svg{width:13px; height:13px; flex-shrink:0;}
 .ax-head h2{margin-top:clamp(12px,1.8vh,20px);
-  font-size:clamp(25px,3.6vw,44px);
+  font-size:var(--h2);
   letter-spacing:-0.045em; line-height:1.1;}
 .ax-head h2 em{font-style:normal; color:var(--brand-text); display:block;}
 .ax-lede{margin:clamp(10px,1.6vh,18px) auto 0; max-width:62ch;
@@ -3851,7 +3852,7 @@ html[data-theme="dark"] .ax{
 /* ---- the columns and the socials ----
    These were the card footer's, and the plate borrowed them. The card is
    gone, so they belong to the footer that is left and are named for it. */
-.ft-col h4{font-family:var(--font-display); font-size:12.5px; font-weight:800;
+.ft-col h4{font-family:var(--font-display); font-size:var(--h4); font-weight:800;
   letter-spacing:.16em; text-transform:uppercase; color:var(--text);
   margin-bottom:16px;}
 .ft-col nav{display:grid; gap:11px;}
@@ -3957,7 +3958,7 @@ html[data-theme="dark"] .ax{
   .modal{overflow-y:auto;}
   .modal-frame{--u:1px;}
   .modal-card{padding:46px 20px 22px;}
-  .modal-card h2{font-size:26px;}
+  .modal-card h2{font-size:var(--h2);}
   .modal-hero{grid-template-columns:1fr;}
   .modal-art{display:none;}
   .mf{grid-template-columns:1fr;}
@@ -4035,7 +4036,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
     linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
                     rgba(0,0,0,.90) 100%);}
 .mm-copy{position:relative; z-index:2; color:#fff;}
-.mm-copy h3{margin:0; font-size:21px; line-height:1.24; color:#fff; text-wrap:balance;}
+.mm-copy h3{font-size:var(--h3); line-height:1.24; color:#fff; text-wrap:balance;}
 .mm-copy p{margin:9px 0 0; font-size:13.5px; line-height:1.5; max-width:30ch;
   color:rgba(255,255,255,.84);}
 
@@ -4075,7 +4076,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
 @media (max-width:1240px){
   .mm-hero-grid{grid-template-columns:1fr 210px; gap:14px;}
   .mm-hero{min-height:280px; padding:20px 18px;}
-  .mm-copy h3{font-size:18px;}
+  .mm-copy h3{font-size:var(--h3);}
   .mm-dsc{display:none;}
 }
 /* below this the site switches to the burger, so the panel stands down */
@@ -4502,7 +4503,7 @@ h1,h2,h3,h4,h5,h6{ text-transform:capitalize; }
   .modal-card{
     padding:calc(38 * var(--u)) calc(18 * var(--u)) calc(18 * var(--u));
     max-height:none; overflow:hidden;}
-  .modal-card h2{ font-size:calc(26 * var(--u)); line-height:1.14; }
+  .modal-card h2{ font-size:var(--h2); line-height:1.14; }
   .modal-intro{ font-size:calc(13.2 * var(--u)); line-height:1.46;
     margin-top:calc(6 * var(--u)); }
   .modal-eyebrow{ font-size:calc(10.6 * var(--u)); }
@@ -4530,7 +4531,7 @@ h1,h2,h3,h4,h5,h6{ text-transform:capitalize; }
    dropping the decorative line rather than squeezing the fields further */
 @media (max-width:760px) and (max-height:620px){
   .modal-intro{ display:none; }
-  .modal-card h2{ font-size:calc(24 * var(--u)); }
+  .modal-card h2{ font-size:var(--h2); }
 }
 
 /* ── 18. the service dropdown's chevron ────────────────────────────────
@@ -4628,12 +4629,11 @@ html[data-theme="dark"] .modal .field.sel select{
 .faq-aside-eyebrow::before{
   content:""; width:6px; height:6px; border-radius:50%;
   background:var(--primary); flex:none;}
-.faq-aside h3{
-  margin:12px 0 0; font-family:var(--font-display);
-  font-size:clamp(19px,1.9vw,23px); font-weight:800; letter-spacing:-.03em;
+/* restored */
+.mm-copy h3{font-size:var(--h3); font-weight:800; letter-spacing:-.03em;
   line-height:1.22; color:#fff; text-transform:none;}
 .faq-aside p{
-  margin:10px 0 0; font-size:13.5px; line-height:1.6;
+  margin:10px 0 0; font-size:var(--body); line-height:1.6;
   color:rgba(255,255,255,.78);}
 .faq-aside .btn{ margin-top:clamp(16px,1.8vw,22px); align-self:flex-start; }
 
@@ -4717,7 +4717,7 @@ html[data-theme="light"] .faq-list{background:#FFFFFF;}
 .faq-a p{
   margin:0; padding:2px clamp(16px,1.8vw,24px) clamp(16px,1.6vw,20px)
           clamp(52px,5vw,64px);
-  font-size:14px; line-height:1.68; color:var(--text-2);
+  font-size:var(--body); line-height:1.68; color:var(--text-2);
   border-left:2px solid var(--brand-soft); margin-left:clamp(20px,2vw,26px);}
 .faq-q{ cursor:pointer; }
 /* ── responsive ────────────────────────────────────────────────────── */
@@ -4821,7 +4821,7 @@ html[data-theme="light"] .faq-list{background:#FFFFFF;}
 .gr-meta{ display:flex; align-items:center; gap:10px; margin-top:12px; }
 .gr-when{ font-size:11.8px; color:var(--muted); }
 .gr-text{
-  margin:10px 0 0; font-size:13.6px; line-height:1.62; color:var(--text-2);}
+  margin:10px 0 0; font-size:var(--body); line-height:1.62; color:var(--text-2);}
 .gr-tags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
 .gr-tag{
   font-size:11px; font-weight:600; color:var(--text-2);
@@ -5063,25 +5063,25 @@ h1, h2, h3, h4, h5, h6{
 
 /* Process section step titles — fixed smaller size site-wide */
 #process .eg-card h3{
-  font-size:17.5px !important;
+  font-size:var(--h3);
 }
 
 /* Process section — fit one screen without scrolling (desktop) */
 #process.eg-sec,
 #process.sec{
-  padding-block:clamp(28px,3.2vh,40px) !important;
+  padding-block:var(--sec-y);
 }
 #process .sec-head{
   margin-bottom:0 !important;
 }
 #process .sec-head h2,
 #process.eg-sec h2{
-  font-size:clamp(22px,2.4vw,30px) !important;
+  font-size:var(--h2);
 }
 #process .sec-lede,
 #process.eg-sec .sec-lede{
   margin-top:8px !important;
-  font-size:14px !important;
+  font-size:var(--body);
   line-height:1.45 !important;
   max-width:52ch;
 }
@@ -5126,7 +5126,7 @@ h1, h2, h3, h4, h5, h6{
 }
 #process .eg-card p{
   margin-top:2px !important;
-  font-size:12px !important;
+  font-size:var(--body);
   line-height:1.4 !important;
 }
 #process .fw-foot{
@@ -5172,7 +5172,7 @@ h1, h2, h3, h4, h5, h6{
 
 #why .wy-say{text-align:center;}
 #why .wy-say h2{margin:clamp(16px,1.9vw,24px) auto 0; max-width:20ch;
-  font-size:clamp(30px,3.5vw,49px); line-height:1.1; letter-spacing:-0.045em;}
+  font-size:var(--h2); line-height:1.1; letter-spacing:-0.045em;}
 #why .wy-say h2 em{font-style:normal; color:var(--brand-text);}
 
 
@@ -5218,10 +5218,10 @@ h1, h2, h3, h4, h5, h6{
 #why .wy-mark svg{width:50%; height:50%;}
 
 #why .wy-pane h3{font-family:var(--font-display); font-weight:800;
-  font-size:clamp(17px,1.65vw,23px); line-height:1.2; letter-spacing:-0.035em;
+  font-size:var(--h3); line-height:1.2; letter-spacing:-0.035em;
   color:var(--text);}
 #why .wy-pane p{margin:clamp(9px,1vw,13px) 0 0;
-  font-size:clamp(13.6px,1.02vw,15px); line-height:1.7; color:var(--text-2);}
+  font-size:var(--body); line-height:1.7; color:var(--text-2);}
 
 
 
@@ -5323,7 +5323,7 @@ h1, h2, h3, h4, h5, h6{
   border:1px solid hsl(var(--brand-h) 75% 78%); color:var(--brand-text); font-size:12px; font-weight:700;
   letter-spacing:.06em; text-transform:uppercase; box-shadow:0 4px 12px -6px hsl(var(--brand-h) 90% 35% / .28);}
 .spl-badge svg{width:14px; height:14px;}
-#search-split h2{margin:16px 0 0; font-size:clamp(28px,2.9vw,40px); line-height:1.1; letter-spacing:-.035em; text-transform:none;}
+#search-split h2{margin:16px 0 0; font-size:var(--h2); line-height:1.1; letter-spacing:-.035em; text-transform:none;}
 #search-split h2 em{font-style:normal; color:var(--brand-text);}
 .spl-say p{margin:14px 0 0; font-size:clamp(14.8px,1.15vw,15.8px); line-height:1.68; color:var(--text-2); max-width:60ch;}
 
@@ -5581,14 +5581,14 @@ html[data-theme="dark"] #search-split .spl-r em{color:hsl(var(--brand-h) 70% 72%
 .bw-grid{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(24px,3.4vw,56px);
   align-items:center;}
 .bw-say .smark{margin-bottom:12px;}
-#about-v2 h2{margin:0; font-size:clamp(27px,2.9vw,40px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#about-v2 h2{margin:0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
 #about-v2 h2 em{font-style:normal; color:var(--brand-text);}
 .bw-say p{margin:16px 0 0; font-size:clamp(14.4px,1.12vw,15.8px); line-height:1.7; color:var(--text-2); max-width:56ch;}
 .bw-say .btn{margin-top:clamp(18px,2vw,26px);}
 
 .bw-board{padding:clamp(20px,2.2vw,30px); border-radius:22px; background:var(--bg-alt);
   border:1px solid var(--border);}
-#about-v2 .bw-board h3{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.6vw,21px);
+#about-v2 .bw-board h3{margin:0; font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-.025em; color:var(--text); text-transform:none;}
 .bw-board > p{margin:10px 0 clamp(16px,1.8vw,22px); font-size:clamp(13.4px,1.05vw,14.6px); line-height:1.65;
   color:var(--text-2);}
@@ -5639,7 +5639,7 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
 .bt-top{display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); gap:clamp(24px,3.4vw,56px);
   align-items:center;}
 .bt-say .smark{margin-bottom:12px;}
-#about-v3 h2{margin:0; font-size:clamp(27px,2.9vw,40px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#about-v3 h2{margin:0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
 #about-v3 h2 em{font-style:normal; color:var(--brand-text);}
 .bt-say p{margin:16px 0 0; font-size:clamp(14.4px,1.12vw,15.8px); line-height:1.7; color:var(--text-2); max-width:56ch;}
 .bt-say .btn{margin-top:clamp(18px,2vw,26px);}
@@ -5659,7 +5659,7 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
 .bt-board{margin-top:clamp(26px,3vw,42px); padding:clamp(20px,2.2vw,30px); border-radius:22px;
   background:var(--bg-alt); border:1px solid var(--border);
   display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr); gap:clamp(20px,2.6vw,40px); align-items:center;}
-#about-v3 .bt-head h3{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.6vw,21px); font-weight:800;
+#about-v3 .bt-head h3{margin:0; font-family:var(--font-display); font-size:var(--h3); font-weight:800;
   letter-spacing:-.025em; color:var(--text); text-transform:none;}
 .bt-head p{margin:9px 0 0; font-size:clamp(13.2px,1.05vw,14.4px); line-height:1.6; color:var(--text-2);}
 
@@ -5708,7 +5708,7 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
 .bp-grid{display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); gap:clamp(24px,3.4vw,56px);
   align-items:center;}
 .bp-say .smark{margin-bottom:12px;}
-#about-v4 h2{margin:0; font-size:clamp(27px,2.9vw,40px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#about-v4 h2{margin:0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
 #about-v4 h2 em{font-style:normal; color:var(--brand-text);}
 .bp-say p{margin:16px 0 0; font-size:clamp(14.4px,1.12vw,15.8px); line-height:1.7; color:var(--text-2); max-width:56ch;}
 .bp-say .btn{margin-top:clamp(18px,2vw,26px);}
@@ -5723,7 +5723,7 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
   background-size:28px 28px;}
 .bp-panel > *{position:relative; z-index:1;}
 .bp-panel-top{display:flex; align-items:center; justify-content:space-between; gap:14px;}
-#about-v4 .bp-panel-top h3{margin:0; font-family:var(--font-display); font-size:clamp(16px,1.5vw,20px);
+#about-v4 .bp-panel-top h3{margin:0; font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-.025em; color:#fff; text-transform:none;}
 .bp-count{display:inline-flex; align-items:baseline; gap:2px; padding:5px 11px; border-radius:99px;
   background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3);}
@@ -5789,14 +5789,14 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
 .st-grid{display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); gap:clamp(24px,3.4vw,56px);
   align-items:center;}
 .st-say .smark{margin-bottom:12px;}
-#about-v5 h2{margin:0; font-size:clamp(26px,2.7vw,38px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#about-v5 h2{margin:0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
 #about-v5 h2 em{font-style:normal; color:var(--brand-text);}
 .st-say p{margin:14px 0 0; font-size:clamp(13.8px,1.06vw,15.2px); line-height:1.66; color:var(--text-2); max-width:54ch;}
 .st-say .btn{margin-top:18px;}
 
 .st-board{padding:clamp(18px,2vw,26px); border-radius:22px; background:var(--bg-alt); border:1px solid var(--border);}
 .st-board-top{display:flex; align-items:center; justify-content:space-between; gap:12px;}
-#about-v5 .st-board-top h3{margin:0; font-family:var(--font-display); font-size:clamp(16px,1.5vw,20px);
+#about-v5 .st-board-top h3{margin:0; font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-.025em; color:var(--text); text-transform:none;}
 .st-count{display:inline-flex; align-items:baseline; gap:2px; padding:4px 10px; border-radius:99px;
   background:var(--surface); border:1px solid var(--border); color:var(--brand-text);}
@@ -5865,7 +5865,7 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
 .cv-head{display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); gap:clamp(20px,3vw,48px);
   align-items:end; margin-bottom:clamp(20px,2.4vw,30px);}
 .cv-say .smark{margin-bottom:12px;}
-#about-v6 h2{margin:0; font-size:clamp(26px,2.8vw,40px); line-height:1.06; letter-spacing:-.04em; text-transform:none;}
+#about-v6 h2{margin:0; font-size:var(--h2); line-height:1.06; letter-spacing:-.04em; text-transform:none;}
 #about-v6 h2 em{display:block; font-style:normal; color:var(--brand-text);}
 .cv-copy p{margin:0 0 12px; font-size:clamp(13.4px,1.04vw,14.8px); line-height:1.62; color:var(--text-2);}
 .cv-copy p + p{margin-bottom:14px;}
@@ -5873,7 +5873,7 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
 .cv-board{padding:clamp(18px,2vw,26px); border-radius:24px; background:var(--bg-alt); border:1px solid var(--border);}
 .cv-board-top{display:grid; grid-template-columns:minmax(0,auto) minmax(0,1fr); gap:clamp(14px,2vw,30px);
   align-items:baseline; margin-bottom:clamp(14px,1.8vw,22px);}
-#about-v6 .cv-board-top h3{margin:0; font-family:var(--font-display); font-size:clamp(16px,1.5vw,20px);
+#about-v6 .cv-board-top h3{margin:0; font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-.025em; color:var(--text); text-transform:none; white-space:nowrap;}
 .cv-board-top p{margin:0; font-size:clamp(12.4px,1vw,13.6px); line-height:1.55; color:var(--text-2);}
 
@@ -5936,7 +5936,7 @@ html[data-theme="dark"] .cv-ic{background:hsl(var(--brand-h) 40% 18%);}
    three lanes: the middle one travels against the other two. Hovering a
    lane stops it, so a name can be read.
    ══════════════════════════════════════════════════════════════════════ */
-#industries{padding-block:clamp(36px,4vw,60px); background:var(--surface); overflow:hidden;}
+#industries{padding-block:var(--sec-y); background:var(--surface); overflow:hidden;}
 #industries .sec-head{margin-bottom:clamp(20px,2.4vw,32px);}
 #industries h2{text-transform:none; letter-spacing:-.035em;}
 #industries h2 em{font-style:normal; color:var(--brand-text);}
@@ -5981,7 +5981,7 @@ html[data-theme="dark"] .iw-chip i{background:hsl(var(--brand-h) 40% 18%);}
    numbered. The last row centres itself, and the closing bar carries the
    line and the call.
    ══════════════════════════════════════════════════════════════════════ */
-#industries-v2{padding-block:clamp(36px,4vw,60px); background:var(--surface);}
+#industries-v2{padding-block:var(--sec-y); background:var(--surface);}
 #industries-v2 .sec-head{margin-bottom:clamp(20px,2.4vw,30px);}
 #industries-v2 h2{text-transform:none; letter-spacing:-.035em;}
 #industries-v2 h2 em{font-style:normal; color:var(--brand-text);}
@@ -6006,7 +6006,7 @@ html[data-theme="dark"] .iw-chip i{background:hsl(var(--brand-h) 40% 18%);}
 html[data-theme="dark"] .ig-ic{background:hsl(var(--brand-h) 40% 18%);}
 .ig-ic svg{width:50%; height:50%;}
 .ig-card:hover .ig-ic{background:var(--primary); color:#fff;}
-#industries-v2 .ig-card h3{margin:0; font-family:var(--font-display); font-size:clamp(12.6px,1.05vw,14.2px);
+#industries-v2 .ig-card h3{margin:0; font-family:var(--font-display); font-size:var(--h3);
   font-weight:700; letter-spacing:-.02em; line-height:1.3; color:var(--text); text-transform:none;}
 
 .ig-foot{display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center;
@@ -6045,11 +6045,11 @@ html[data-theme="dark"] .ig-ic{background:hsl(var(--brand-h) 40% 18%);}
    take in at a glance. A light runs along the chips so the board never
    sits still, and whichever chip you are on holds it.
    ══════════════════════════════════════════════════════════════════════ */
-#industries{padding-block:clamp(34px,3.8vw,56px); background:var(--surface);}
+#industries{padding-block:var(--sec-y); background:var(--surface);}
 .ix-grid{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(24px,3.2vw,52px);
   align-items:center;}
 .ix-say .smark{margin-bottom:12px;}
-#industries h2{margin:0; font-size:clamp(26px,2.7vw,38px); line-height:1.08; letter-spacing:-.04em;
+#industries h2{margin:0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em;
   text-transform:none;}
 #industries h2 em{font-style:normal; color:var(--brand-text);}
 .ix-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.65; color:var(--text-2); max-width:44ch;}
@@ -6095,6 +6095,38 @@ html[data-theme="dark"] .ix-chip i{background:hsl(var(--brand-h) 40% 18%);}
 }
 @media (prefers-reduced-motion:reduce){ .ix-chip{transition:none;} }
 
+/* Industries v3 — pills become cards (from tekcroft-home (6) ix-cards) */
+#industries .ix-cloud{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:clamp(8px,.9vw,12px); justify-content:stretch;}
+#industries .ix-chip{flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  padding:clamp(13px,1.4vw,17px) 10px; border-radius:16px; white-space:normal; text-align:center;
+  min-height:clamp(104px,10vw,122px);
+  box-shadow:0 12px 26px -26px hsl(var(--brand-h) 90% 25% / .9);}
+#industries .ix-chip i{width:clamp(38px,3.4vw,44px); height:clamp(38px,3.4vw,44px); border-radius:13px;}
+#industries .ix-chip i svg{width:19px; height:19px;}
+#industries .ix-chip b{font-size:clamp(12.2px,1.02vw,13.6px); line-height:1.3;
+  transition:color .3s var(--ease);}
+#industries .ix-chip.on{transform:translateY(-3px);}
+#industries .ix-chip.on b,#industries .ix-chip.on:hover b{color:#fff;}
+@media (max-width:640px){
+  #industries .ix-cloud{grid-template-columns:repeat(auto-fill,minmax(118px,1fr)); gap:8px;}
+  #industries .ix-chip{min-height:96px; padding:12px 8px;}
+}
+
+/* sized so all nineteen still hold one screen */
+#industries .ix-grid{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);}
+#industries .ix-cloud{grid-template-columns:repeat(auto-fill,minmax(116px,1fr)); gap:8px;}
+#industries .ix-chip{min-height:88px; padding:11px 8px; gap:8px; border-radius:14px;}
+#industries .ix-chip i{width:32px; height:32px; border-radius:11px;}
+#industries .ix-chip i svg{width:16px; height:16px;}
+#industries .ix-chip b{font-size:11.6px; line-height:1.25;}
+#industries .ix-board{padding:clamp(12px,1.3vw,16px);}
+@media (max-width:1040px){ #industries .ix-grid{grid-template-columns:minmax(0,1fr);} }
+@media (max-width:640px){
+  #industries .ix-cloud{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));}
+  #industries .ix-chip{min-height:82px;}
+}
+
 
 /* --- style-block-14.css --- */
 
@@ -6103,11 +6135,11 @@ html[data-theme="dark"] .ix-chip i{background:hsl(var(--brand-h) 40% 18%);}
    opposite directions. No tabs; the list simply runs. Hovering a column
    stops it so a name can be read.
    ══════════════════════════════════════════════════════════════════════ */
-#industries-v4{padding-block:clamp(34px,3.8vw,56px); background:var(--surface);}
+#industries-v4{padding-block:var(--sec-y); background:var(--surface);}
 .iy-grid{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,3.2vw,52px);
   align-items:center;}
 .iy-say .smark{margin-bottom:12px;}
-#industries-v4 h2{margin:0; font-size:clamp(26px,2.7vw,38px); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
+#industries-v4 h2{margin:0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em; text-transform:none;}
 #industries-v4 h2 em{font-style:normal; color:var(--brand-text);}
 .iy-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.65; color:var(--text-2); max-width:44ch;}
 .iy-meta{display:flex; align-items:center; gap:clamp(14px,1.8vw,24px); margin-top:clamp(16px,2vw,24px); flex-wrap:wrap;}
@@ -6173,7 +6205,7 @@ html[data-theme="dark"] .iy-card i{background:hsl(var(--brand-h) 40% 18%);}
   box-shadow:0 4px 12px -6px hsl(var(--brand-h) 90% 35% / .3);}
 .nsr-eyebrow i{display:grid; place-items:center; width:15px; height:15px;}
 .nsr-eyebrow svg{width:15px; height:15px;}
-#ai-ecosystem h2{margin:16px 0 0; font-size:clamp(28px,2.8vw,40px); line-height:1.08; letter-spacing:-.04em;
+#ai-ecosystem h2{margin:16px 0 0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em;
   text-transform:none; color:var(--text);}
 #ai-ecosystem h2 em{display:block; font-style:normal; color:var(--brand-text);}
 .nsr-lede{margin:16px 0 0; max-width:56ch; font-size:clamp(14.8px,1.15vw,16px); line-height:1.7; color:var(--text-2);}
@@ -6391,7 +6423,7 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
 }
 @media (max-width:620px){
   #ai-ecosystem{padding-block:clamp(34px,7vw,46px);}
-  #ai-ecosystem h2{font-size:clamp(26px,7vw,32px);}
+  #ai-ecosystem h2{font-size:var(--h2);}
   #ai-ecosystem .nsr-box{grid-template-columns:auto minmax(0,1fr); gap:12px; padding:16px;}
   #ai-ecosystem .nsr-nodes{gap:8px;}
   #ai-ecosystem .nsr-orb{width:96px; height:96px; margin-block:26px 16px;}
@@ -6469,7 +6501,7 @@ html[data-theme="dark"] .nsr-box{background:hsl(var(--brand-h) 45% 14%); border-
 #about-v4 .bp-grid{align-items:start; gap:clamp(20px,2.8vw,44px);}
 #about-v4 .bp-say p{margin-top:12px; font-size:clamp(13.8px,1.05vw,15px); line-height:1.62; max-width:52ch;}
 #about-v4 .bp-say .btn{margin-top:16px;}
-#about-v4 h2{font-size:clamp(25px,2.6vw,36px);}
+#about-v4 h2{font-size:var(--h2);}
 .bp-panel{padding:clamp(16px,1.7vw,22px);}
 .bp-lede{margin-top:8px; font-size:clamp(12.2px,.98vw,13.2px); line-height:1.55;}
 
@@ -6679,7 +6711,7 @@ html[data-theme="dark"] .sc{background:hsl(var(--brand-h) 45% 14%); color:var(--
   #about-v6 .cv-say{justify-content:center;}
   #about-v6 .cv-board{display:flex; flex-direction:column; padding:16px 18px;}
   #about-v6 .cv-board-top{margin-bottom:10px;}
-  #about-v6 .cv-board-top h3{font-size:17px;}
+  #about-v6 .cv-board-top h3{font-size:var(--h3);}
   #about-v6 .cv-board-top p{font-size:12.4px; line-height:1.5;}
   #about-v6 .cv-ribbon{flex:1; row-gap:14px; align-content:space-between;}
   #about-v6 .cv .cv-in{padding:9px 13px; gap:9px; border-radius:13px;}
@@ -6772,20 +6804,29 @@ html[data-theme="dark"] .iw-box{background:hsl(var(--brand-h) 45% 12%);}
 /* ══════════════════════════════════════════════════════════════════════
    SITE CONSISTENCY — load LAST on every page (after page CSS).
 
-   One section rhythm: equal padding-top and padding-bottom via --sec-y.
-   One type scale: h1–h6 and reading <p> share the same tokens everywhere.
-   Heroes (.hs / .ct-hero) are not .sec and keep their own hero padding.
+   Single design system for Tekcroft:
+   - One type scale for h1–h6 + body
+   - One section vertical rhythm (--sec-y)
+   - One eyebrow / spacing language
+   - H2 stays ≤ 2 lines via width, not font-size hacks
+   Heroes (.hs / .ct-hero) keep their own hero padding.
    ══════════════════════════════════════════════════════════════════════ */
 
 :root{
-  --h1:clamp(30px,4.4vw,58px);
-  --h2:clamp(29px,3.6vw,46px);
-  --h3:clamp(17px,1.8vw,22px);
-  --h4:clamp(14px,1.3vw,16px);
-  --h5:clamp(12.5px,1.15vw,14px);
+  /* Type scale — one value per level, site-wide (responsive via clamp) */
+  --h1:clamp(32px,4.2vw,56px);
+  --h2:clamp(28px,3.2vw,44px);
+  --h3:clamp(17px,1.7vw,22px);
+  --h4:clamp(14px,1.25vw,16px);
+  --h5:clamp(12.5px,1.1vw,14px);
+  --h6:clamp(12px,1.05vw,13px);
   --body:16px;
   --lede:16px;
-  --sec-y:clamp(58px,6vw,92px);
+  --body-lh:1.7;
+  --sec-y:clamp(52px,5.4vw,84px);
+  --head-gap:clamp(12px,1.2vw,16px);
+  --lede-gap:clamp(14px,1.4vw,20px);
+  --block-gap:clamp(22px,2.4vw,36px);
 }
 
 /* ── Equal vertical padding on every content section ───────────────── */
@@ -6809,6 +6850,11 @@ section.sec,
 .sec.svc,
 .sec.beam-zone,
 .sec.tb,
+.sec.tm,
+.sec.ls,
+.sec.lp,
+.sec.ws,
+.sec.clients,
 #who.sec,
 #vs.sec,
 #model.sec,
@@ -6825,44 +6871,85 @@ section.sec,
 #get.sec,
 #platforms.sec,
 #ai.sec,
-#crawl-check.sec{
+#crawl-check.sec,
+#what-local.sec,
+#services-2.sec,
+#pack.sec,
+#apart.sec,
+#clients.sec,
+#fit.sec,
+#industries.sec,
+#proof.sec{
   padding-block:var(--sec-y) !important;
 }
 
-/* ── Headings: one size per level, site-wide ─────────────────────────── */
-h1,
-.hs-h1,
-.ct-hero h1{
+/* Proof strip under hero stays intentionally tighter */
+.sec.tb,
+#proof.sec{
+  padding-block:clamp(36px,4vw,56px) !important;
+}
+
+/* ── Headings: one size per level — beat page-local clamps ──────────── */
+html body :is(h1, .hs-h1, .ct-hero h1),
+html body .hs .hs-h1{
   font-size:var(--h1) !important;
+  line-height:1.08 !important;
 }
-h2,
-.sec-head h2,
-.ac-head h2,
-.wy-say h2,
-.mp-say h2,
-.gw-say h2,
-.pf-head h2,
-.cta3 h2,
-.eg-sec h2,
-.hx .sec-head h2,
-.sg-head h2,
-.ct-side h2,
-.ct-next-head h2{
+html body :is(h2),
+html body .sec-head h2,
+html body .ac-head h2,
+html body .wy-say h2,
+html body .mp-say h2,
+html body .gw-say h2,
+html body .pf-head h2,
+html body .cta3 h2,
+html body .eg-sec h2,
+html body .hx .sec-head h2,
+html body .sg-head h2,
+html body .ct-side h2,
+html body .ct-next-head h2,
+html body .tm-head h2,
+html body .ls-say h2,
+html body .lp-say h2,
+html body .pw-head h2,
+html body .ps-head h2,
+html body .fp-head h2,
+html body .dc-head h2,
+html body .cq-top h2,
+html body #services-2 .sec-head h2,
+html body #services-2 h2,
+html body #what-local h2,
+html body #pack h2,
+html body #process h2,
+html body #faq h2,
+html body #duplicate-v2 h2,
+html body #duplicate-v2 h2 span,
+html body #duplicate-v2 h2 em,
+html body #duplicate-v2 h2 small{
   font-size:var(--h2) !important;
+  line-height:1.12 !important;
+  letter-spacing:-0.04em !important;
 }
-h3,
-.ac-card h3,
-.eg-card h3,
-.pf-card h3,
-.ws-item h3,
-.gw-block h3,
-.sp-top h3,
-.wc-panel h3,
-.wn-card h3{
+html body :is(h3),
+html body .ac-card h3,
+html body .eg-card h3,
+html body .pf-card h3,
+html body .ws-item h3,
+html body .gw-block h3,
+html body .sp-top h3,
+html body .wc-panel h3,
+html body .wn-card h3,
+html body .tm-card h3,
+html body .dv-card h3,
+html body .fw-step h3,
+html body .em-card h3,
+html body .faq-aside h3{
   font-size:var(--h3) !important;
+  line-height:1.25 !important;
 }
 /* Hero form title stays compact when marked up as h3 */
-.hs-form > h3{
+html body .hs-form > h3,
+html body .hs-done h3{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
   line-height:1.22 !important;
@@ -6870,47 +6957,91 @@ h3,
   margin:0 !important;
   text-transform:none !important;
 }
-h4{ font-size:var(--h4) !important; }
-h5,
-h6{ font-size:var(--h5) !important; }
+html body :is(h4){ font-size:var(--h4) !important; line-height:1.3 !important; }
+html body :is(h5){ font-size:var(--h5) !important; line-height:1.35 !important; }
+html body :is(h6){ font-size:var(--h6) !important; line-height:1.35 !important; }
 
-/* ── Body / lede reading size (content sections + heroes) ───────────── */
-.sec p,
-.sec-lede,
-.hs-lede,
-.ac-lede,
-.cta3 > p,
-.cta3-line,
-.faq-a p,
-.faq-aside p,
-.wy-pane p,
-.wy-say > p,
-.wc-panel > p,
-.wn-panel > p,
-.ac-card p,
-.eg-card p,
-.pf-card > p,
-.gr-text,
-.mp-say > p,
-.gw-say > p,
-.wc-say > p,
-.wn-say p{
+/* ── H2 ≤ 2 lines: give titles enough measure — never shrink the type ─ */
+html body .sec-head{
+  max-width:min(100%, 62ch) !important;
+}
+html body .sec-head.mid{
+  max-width:min(100%, 68ch) !important;
+  margin-inline:auto !important;
+}
+html body .sec h2,
+html body .sec-head h2{
+  text-wrap:balance;
+}
+/* Never force a third stacked line inside an h2 */
+html body h2 > span + span + span{
+  display:inline !important;
+}
+
+/* ── Body / lede reading size ───────────────────────────────────────── */
+html body .sec p,
+html body .sec-lede,
+html body .hs-lede,
+html body .ac-lede,
+html body .cta3 > p,
+html body .cta3-line,
+html body .faq-a p,
+html body .faq-aside p,
+html body .wy-pane p,
+html body .wy-say > p,
+html body .wc-panel > p,
+html body .wn-panel > p,
+html body .ac-card p,
+html body .eg-card p,
+html body .pf-card > p,
+html body .gr-text,
+html body .mp-say > p,
+html body .gw-say > p,
+html body .wc-say > p,
+html body .wn-say p,
+html body .tm-aside p,
+html body .tm-foot p,
+html body .lp-lede,
+html body .ls-say p,
+html body .tm-card p{
   font-size:var(--body) !important;
+  line-height:var(--body-lh) !important;
 }
 
 /* Keep form errors / helper chrome from inheriting body size */
-.sec .hs-err,
-.sec .ct-err,
-.sec .form-err,
-.hs-err,
-.ct-err,
-.hs-sub{
+html body .sec .hs-err,
+html body .sec .ct-err,
+html body .sec .form-err,
+html body .hs-err,
+html body .ct-err,
+html body .hs-sub{
   font-size:13px !important;
+  line-height:1.45 !important;
 }
 
-/* ── Section eyebrows: one pill + blue dot, every page ─────────────────
-   Canonical look is .smark (e.g. LOCAL SEO). Other section eyebrow classes
-   are forced to the same shape so pages cannot drift. */
+/* ── Heading → description / content gaps ───────────────────────────── */
+html body .sec-head .smark,
+html body .sec-head > .smark{
+  margin-bottom:var(--head-gap) !important;
+}
+html body .sec-head h2,
+html body .ac-head h2,
+html body .tm-head h2,
+html body .ls-say h2,
+html body .lp-say h2{
+  margin:0 !important;
+}
+html body .sec-head .sec-lede,
+html body .sec-lede,
+html body .ls-say p,
+html body .lp-lede,
+html body .wy-say > p,
+html body .mp-say > p,
+html body .gw-say > p{
+  margin-top:var(--lede-gap) !important;
+}
+
+/* ── Section eyebrows: one pill + blue dot ───────────────────────────── */
 .smark,
 .wy-eyebrow,
 .gw-eyebrow,
@@ -6919,7 +7050,7 @@ h6{ font-size:var(--h5) !important; }
   display:inline-flex !important;
   align-items:center !important;
   gap:10px !important;
-  margin-bottom:clamp(16px,1.8vw,22px) !important;
+  margin-bottom:var(--head-gap) !important;
   padding:8px 18px !important;
   border:1px solid var(--border) !important;
   border-radius:30px !important;
@@ -6947,7 +7078,6 @@ h6{ font-size:var(--h5) !important; }
   color:var(--brand-text) !important;
   font-family:inherit !important;
 }
-/* Blue dot — ::before for classes without a real <i> tip */
 .smark::before,
 .gw-eyebrow::before,
 .vs-rule::before{
@@ -6964,7 +7094,6 @@ h6{ font-size:var(--h5) !important; }
   box-shadow:none !important;
   background-image:none !important;
 }
-/* Kill the old ruled-eyebrow hairlines */
 .vs-rule::after{
   content:none !important;
   display:none !important;
@@ -6972,7 +7101,6 @@ h6{ font-size:var(--h5) !important; }
   height:0 !important;
   background:none !important;
 }
-/* Real <i> tip for wy / nsr — same 7px blue disc; hide nsr star SVG */
 .wy-eyebrow > i,
 .nsr-eyebrow > i{
   display:block !important;
@@ -6990,7 +7118,6 @@ h6{ font-size:var(--h5) !important; }
 .nsr-eyebrow > i svg{
   display:none !important;
 }
-/* Dark / photo sections keep a glass pill */
 .on-dark .smark,
 .on-dark .wy-eyebrow,
 .on-dark .gw-eyebrow,
@@ -7009,4 +7136,24 @@ h6{ font-size:var(--h5) !important; }
 #fit .smark b,
 #stack .smark b{
   color:#fff !important;
+}
+
+/* ── Alternating grounds helper (pages set --ground / --panel) ──────── */
+.sec[data-ground="tint"],
+.sec.is-tint{
+  --ground:var(--bg-alt);
+  --panel:var(--surface);
+  background:var(--ground) !important;
+}
+.sec[data-ground="white"],
+.sec.is-white{
+  --ground:var(--surface);
+  --panel:var(--bg-alt);
+  background:var(--ground) !important;
+}
+.sec[data-ground="soft"],
+.sec.is-soft{
+  --ground:var(--bg);
+  --panel:var(--surface);
+  background:var(--ground) !important;
 }

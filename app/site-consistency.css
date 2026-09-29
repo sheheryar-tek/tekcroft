@@ -1,20 +1,29 @@
 /* ══════════════════════════════════════════════════════════════════════
    SITE CONSISTENCY — load LAST on every page (after page CSS).
 
-   One section rhythm: equal padding-top and padding-bottom via --sec-y.
-   One type scale: h1–h6 and reading <p> share the same tokens everywhere.
-   Heroes (.hs / .ct-hero) are not .sec and keep their own hero padding.
+   Single design system for Tekcroft:
+   - One type scale for h1–h6 + body
+   - One section vertical rhythm (--sec-y)
+   - One eyebrow / spacing language
+   - H2 stays ≤ 2 lines via width, not font-size hacks
+   Heroes (.hs / .ct-hero) keep their own hero padding.
    ══════════════════════════════════════════════════════════════════════ */
 
 :root{
-  --h1:clamp(30px,4.4vw,58px);
-  --h2:clamp(29px,3.6vw,46px);
-  --h3:clamp(17px,1.8vw,22px);
-  --h4:clamp(14px,1.3vw,16px);
-  --h5:clamp(12.5px,1.15vw,14px);
+  /* Type scale — one value per level, site-wide (responsive via clamp) */
+  --h1:clamp(32px,4.2vw,56px);
+  --h2:clamp(28px,3.2vw,44px);
+  --h3:clamp(17px,1.7vw,22px);
+  --h4:clamp(14px,1.25vw,16px);
+  --h5:clamp(12.5px,1.1vw,14px);
+  --h6:clamp(12px,1.05vw,13px);
   --body:16px;
   --lede:16px;
-  --sec-y:clamp(58px,6vw,92px);
+  --body-lh:1.7;
+  --sec-y:clamp(52px,5.4vw,84px);
+  --head-gap:clamp(12px,1.2vw,16px);
+  --lede-gap:clamp(14px,1.4vw,20px);
+  --block-gap:clamp(22px,2.4vw,36px);
 }
 
 /* ── Equal vertical padding on every content section ───────────────── */
@@ -38,6 +47,11 @@ section.sec,
 .sec.svc,
 .sec.beam-zone,
 .sec.tb,
+.sec.tm,
+.sec.ls,
+.sec.lp,
+.sec.ws,
+.sec.clients,
 #who.sec,
 #vs.sec,
 #model.sec,
@@ -54,44 +68,85 @@ section.sec,
 #get.sec,
 #platforms.sec,
 #ai.sec,
-#crawl-check.sec{
+#crawl-check.sec,
+#what-local.sec,
+#services-2.sec,
+#pack.sec,
+#apart.sec,
+#clients.sec,
+#fit.sec,
+#industries.sec,
+#proof.sec{
   padding-block:var(--sec-y) !important;
 }
 
-/* ── Headings: one size per level, site-wide ─────────────────────────── */
-h1,
-.hs-h1,
-.ct-hero h1{
+/* Proof strip under hero stays intentionally tighter */
+.sec.tb,
+#proof.sec{
+  padding-block:clamp(36px,4vw,56px) !important;
+}
+
+/* ── Headings: one size per level — beat page-local clamps ──────────── */
+html body :is(h1, .hs-h1, .ct-hero h1),
+html body .hs .hs-h1{
   font-size:var(--h1) !important;
+  line-height:1.08 !important;
 }
-h2,
-.sec-head h2,
-.ac-head h2,
-.wy-say h2,
-.mp-say h2,
-.gw-say h2,
-.pf-head h2,
-.cta3 h2,
-.eg-sec h2,
-.hx .sec-head h2,
-.sg-head h2,
-.ct-side h2,
-.ct-next-head h2{
+html body :is(h2),
+html body .sec-head h2,
+html body .ac-head h2,
+html body .wy-say h2,
+html body .mp-say h2,
+html body .gw-say h2,
+html body .pf-head h2,
+html body .cta3 h2,
+html body .eg-sec h2,
+html body .hx .sec-head h2,
+html body .sg-head h2,
+html body .ct-side h2,
+html body .ct-next-head h2,
+html body .tm-head h2,
+html body .ls-say h2,
+html body .lp-say h2,
+html body .pw-head h2,
+html body .ps-head h2,
+html body .fp-head h2,
+html body .dc-head h2,
+html body .cq-top h2,
+html body #services-2 .sec-head h2,
+html body #services-2 h2,
+html body #what-local h2,
+html body #pack h2,
+html body #process h2,
+html body #faq h2,
+html body #duplicate-v2 h2,
+html body #duplicate-v2 h2 span,
+html body #duplicate-v2 h2 em,
+html body #duplicate-v2 h2 small{
   font-size:var(--h2) !important;
+  line-height:1.12 !important;
+  letter-spacing:-0.04em !important;
 }
-h3,
-.ac-card h3,
-.eg-card h3,
-.pf-card h3,
-.ws-item h3,
-.gw-block h3,
-.sp-top h3,
-.wc-panel h3,
-.wn-card h3{
+html body :is(h3),
+html body .ac-card h3,
+html body .eg-card h3,
+html body .pf-card h3,
+html body .ws-item h3,
+html body .gw-block h3,
+html body .sp-top h3,
+html body .wc-panel h3,
+html body .wn-card h3,
+html body .tm-card h3,
+html body .dv-card h3,
+html body .fw-step h3,
+html body .em-card h3,
+html body .faq-aside h3{
   font-size:var(--h3) !important;
+  line-height:1.25 !important;
 }
 /* Hero form title stays compact when marked up as h3 */
-.hs-form > h3{
+html body .hs-form > h3,
+html body .hs-done h3{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
   line-height:1.22 !important;
@@ -99,47 +154,91 @@ h3,
   margin:0 !important;
   text-transform:none !important;
 }
-h4{ font-size:var(--h4) !important; }
-h5,
-h6{ font-size:var(--h5) !important; }
+html body :is(h4){ font-size:var(--h4) !important; line-height:1.3 !important; }
+html body :is(h5){ font-size:var(--h5) !important; line-height:1.35 !important; }
+html body :is(h6){ font-size:var(--h6) !important; line-height:1.35 !important; }
 
-/* ── Body / lede reading size (content sections + heroes) ───────────── */
-.sec p,
-.sec-lede,
-.hs-lede,
-.ac-lede,
-.cta3 > p,
-.cta3-line,
-.faq-a p,
-.faq-aside p,
-.wy-pane p,
-.wy-say > p,
-.wc-panel > p,
-.wn-panel > p,
-.ac-card p,
-.eg-card p,
-.pf-card > p,
-.gr-text,
-.mp-say > p,
-.gw-say > p,
-.wc-say > p,
-.wn-say p{
+/* ── H2 ≤ 2 lines: give titles enough measure — never shrink the type ─ */
+html body .sec-head{
+  max-width:min(100%, 62ch) !important;
+}
+html body .sec-head.mid{
+  max-width:min(100%, 68ch) !important;
+  margin-inline:auto !important;
+}
+html body .sec h2,
+html body .sec-head h2{
+  text-wrap:balance;
+}
+/* Never force a third stacked line inside an h2 */
+html body h2 > span + span + span{
+  display:inline !important;
+}
+
+/* ── Body / lede reading size ───────────────────────────────────────── */
+html body .sec p,
+html body .sec-lede,
+html body .hs-lede,
+html body .ac-lede,
+html body .cta3 > p,
+html body .cta3-line,
+html body .faq-a p,
+html body .faq-aside p,
+html body .wy-pane p,
+html body .wy-say > p,
+html body .wc-panel > p,
+html body .wn-panel > p,
+html body .ac-card p,
+html body .eg-card p,
+html body .pf-card > p,
+html body .gr-text,
+html body .mp-say > p,
+html body .gw-say > p,
+html body .wc-say > p,
+html body .wn-say p,
+html body .tm-aside p,
+html body .tm-foot p,
+html body .lp-lede,
+html body .ls-say p,
+html body .tm-card p{
   font-size:var(--body) !important;
+  line-height:var(--body-lh) !important;
 }
 
 /* Keep form errors / helper chrome from inheriting body size */
-.sec .hs-err,
-.sec .ct-err,
-.sec .form-err,
-.hs-err,
-.ct-err,
-.hs-sub{
+html body .sec .hs-err,
+html body .sec .ct-err,
+html body .sec .form-err,
+html body .hs-err,
+html body .ct-err,
+html body .hs-sub{
   font-size:13px !important;
+  line-height:1.45 !important;
 }
 
-/* ── Section eyebrows: one pill + blue dot, every page ─────────────────
-   Canonical look is .smark (e.g. LOCAL SEO). Other section eyebrow classes
-   are forced to the same shape so pages cannot drift. */
+/* ── Heading → description / content gaps ───────────────────────────── */
+html body .sec-head .smark,
+html body .sec-head > .smark{
+  margin-bottom:var(--head-gap) !important;
+}
+html body .sec-head h2,
+html body .ac-head h2,
+html body .tm-head h2,
+html body .ls-say h2,
+html body .lp-say h2{
+  margin:0 !important;
+}
+html body .sec-head .sec-lede,
+html body .sec-lede,
+html body .ls-say p,
+html body .lp-lede,
+html body .wy-say > p,
+html body .mp-say > p,
+html body .gw-say > p{
+  margin-top:var(--lede-gap) !important;
+}
+
+/* ── Section eyebrows: one pill + blue dot ───────────────────────────── */
 .smark,
 .wy-eyebrow,
 .gw-eyebrow,
@@ -148,7 +247,7 @@ h6{ font-size:var(--h5) !important; }
   display:inline-flex !important;
   align-items:center !important;
   gap:10px !important;
-  margin-bottom:clamp(16px,1.8vw,22px) !important;
+  margin-bottom:var(--head-gap) !important;
   padding:8px 18px !important;
   border:1px solid var(--border) !important;
   border-radius:30px !important;
@@ -176,7 +275,6 @@ h6{ font-size:var(--h5) !important; }
   color:var(--brand-text) !important;
   font-family:inherit !important;
 }
-/* Blue dot — ::before for classes without a real <i> tip */
 .smark::before,
 .gw-eyebrow::before,
 .vs-rule::before{
@@ -193,7 +291,6 @@ h6{ font-size:var(--h5) !important; }
   box-shadow:none !important;
   background-image:none !important;
 }
-/* Kill the old ruled-eyebrow hairlines */
 .vs-rule::after{
   content:none !important;
   display:none !important;
@@ -201,7 +298,6 @@ h6{ font-size:var(--h5) !important; }
   height:0 !important;
   background:none !important;
 }
-/* Real <i> tip for wy / nsr — same 7px blue disc; hide nsr star SVG */
 .wy-eyebrow > i,
 .nsr-eyebrow > i{
   display:block !important;
@@ -219,7 +315,6 @@ h6{ font-size:var(--h5) !important; }
 .nsr-eyebrow > i svg{
   display:none !important;
 }
-/* Dark / photo sections keep a glass pill */
 .on-dark .smark,
 .on-dark .wy-eyebrow,
 .on-dark .gw-eyebrow,
@@ -238,4 +333,24 @@ h6{ font-size:var(--h5) !important; }
 #fit .smark b,
 #stack .smark b{
   color:#fff !important;
+}
+
+/* ── Alternating grounds helper (pages set --ground / --panel) ──────── */
+.sec[data-ground="tint"],
+.sec.is-tint{
+  --ground:var(--bg-alt);
+  --panel:var(--surface);
+  background:var(--ground) !important;
+}
+.sec[data-ground="white"],
+.sec.is-white{
+  --ground:var(--surface);
+  --panel:var(--bg-alt);
+  background:var(--ground) !important;
+}
+.sec[data-ground="soft"],
+.sec.is-soft{
+  --ground:var(--bg);
+  --panel:var(--surface);
+  background:var(--ground) !important;
 }

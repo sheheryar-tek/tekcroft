@@ -65,7 +65,7 @@
 .hs-h1 span{display:block;}
 
 .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px); max-width:48ch;
-  font-size:clamp(15px,1.05vw,16.5px); line-height:1.65; color:rgba(255,255,255,.76);}
+  font-size:var(--body); line-height:1.65; color:rgba(255,255,255,.76);}
 
 .hs-act{--d:290ms; margin:0; display:flex; flex-wrap:wrap; gap:12px;}
 
@@ -167,12 +167,12 @@
 /* A wide but short screen is where "one screen" is hardest; these are the
    last things to give, and only there. */
 @media (max-width:1100px){
-  .hs-h1{font-size:var(--h2);}
+  .hs-h1{font-size:var(--h1);}
 }
 @media (min-width:961px) and (max-height:840px){
   .hs{padding-block:calc(var(--nav-h) + 34px) 52px;}
-  .hs-h1{font-size:var(--h2); margin-bottom:18px;}
-  .hs-lede{margin-bottom:24px; font-size:15px;}
+  .hs-h1{font-size:var(--h1); margin-bottom:18px;}
+  .hs-lede{margin-bottom:24px; font-size:var(--body);}
   .hs-form{padding:22px 22px;}
   .hs-sub{margin-bottom:18px;}
   .hs-field :is(input,select){height:46px;}
@@ -675,7 +675,8 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
    display face and does that job on the heading above it. And it runs the
    width of the panel rather than a third of it: at 38ch it was six short
    lines beside three columns of empty panel. */
-.cn-lead{font-size:clamp(14.5px,1.45vw,16.5px);
+.cn-lead{
+  font-size:var(--body);
   font-weight:700; letter-spacing:-0.012em; line-height:1.55; color:var(--text);
   max-width:60ch;}
 
@@ -1599,7 +1600,7 @@ h2{ letter-spacing:-0.04em; }
    sentences rather than labels, and Capitalising Every Word Of A Sentence
    reads as a mistake. The short ones lose nothing by matching them. */
 .ws-item h3{margin-top:clamp(14px,1.7vw,22px);
-  font-family:var(--font-display); font-size:clamp(15px,1.25vw,17.5px);
+  font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-0.028em; line-height:1.22;
   text-transform:none; color:#12181F;}
 /* the short rule under the heading, which is what separates the claim
@@ -1955,7 +1956,7 @@ h2{ letter-spacing:-0.04em; }
 /* the rule under the name, and the description under that */
 .pf-card > p{margin-top:clamp(14px,1.4vw,18px);
   padding-top:clamp(14px,1.4vw,18px); border-top:1px solid var(--border);
-  font-size:14.5px; line-height:1.62; color:var(--text-2);}
+  font-size:var(--body); line-height:1.62; color:var(--text-2);}
 
 /* margin-top:auto pushes the arrow to the foot; this padding is the least
    it will ever sit from the copy. Without a floor the card carrying the
@@ -2997,8 +2998,8 @@ html[data-theme="dark"] .lo-strip li:hover{background:hsl(var(--brand-h) 50% 12%
    the page, so the run is decided in one place rather than in whichever
    sheet happens to come last */
 .eg-sec{border-block:1px solid var(--border); padding-block:var(--sec-y);}
-.eg-sec h2{font-size:clamp(26px,2.9vw,38px);}
-.eg-sec .sec-lede{font-size:15px;}
+.eg-sec h2{font-size:var(--h2);}
+.eg-sec .sec-lede{font-size:var(--body);}
 
 .eg{margin-top:clamp(18px,2vw,28px);
   /* even columns now that the disc is bigger */
@@ -3130,12 +3131,12 @@ html[data-theme="dark"] .eg-node{border-color:var(--n50);}
 html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 .eg-card.on .eg-ico{background:var(--primary); transform:translateY(-2px);}
 .eg-ico svg{width:46%; height:46%;}
-.eg-card h3{font-family:var(--font-display); font-size:clamp(15.5px,1.5vw,17.5px);
+.eg-card h3{font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-0.032em; line-height:1.2;}
 .eg-card h3 i{font-style:normal; color:var(--subtle); margin-right:9px;
   font-variant-numeric:tabular-nums; transition:color .4s var(--ease);}
 .eg-card.on h3 i{color:var(--brand-text);}
-.eg-card p{margin-top:4px; font-size:12.6px; line-height:1.48; color:var(--text-2);}
+.eg-card p{margin-top:4px; font-size:var(--body); line-height:1.48; color:var(--text-2);}
 
 .eg-cta{margin-top:clamp(14px,1.6vw,20px); display:flex; justify-content:center;}
 
@@ -3396,12 +3397,12 @@ html[data-theme="dark"] #gbp-what{
 .gw-eyebrow::before{content:""; width:3px; height:1.05em; border-radius:2px;
   background:var(--gw-accent);}
 .gw-say h2{margin-top:clamp(11px,1.3vw,17px); max-width:17ch;
-  font-family:var(--font-display); font-size:clamp(29px,3.5vw,50px);
+  font-family:var(--font-display); font-size:var(--h2);
   font-weight:800; letter-spacing:-0.04em; line-height:1.06;
   text-transform:none; color:var(--gw-ink);}
 .gw-say h2 em{font-style:normal; color:var(--gw-accent);}
 .gw-say > p{margin-top:clamp(13px,1.5vw,20px); max-width:48ch;
-  font-size:clamp(14.6px,1.2vw,17.4px); line-height:1.6; color:var(--gw-ink-2);}
+  font-size:var(--body); line-height:1.6; color:var(--gw-ink-2);}
 .gw-say > p b{font-weight:700; color:var(--gw-accent);}
 
 /* The reference does not put this in a frame — it floats, and its edges
@@ -3469,11 +3470,11 @@ html[data-theme="dark"] #gbp-what{
   font-weight:800; letter-spacing:.02em; font-variant-numeric:tabular-nums;
   color:var(--gw-accent);}
 .gw-block h3{margin-top:clamp(13px,1.5vw,19px);
-  font-family:var(--font-display); font-size:clamp(16.4px,1.5vw,22px);
+  font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-0.03em; line-height:1.2;
   text-transform:none; color:var(--gw-ink);}
 .gw-block p{margin-top:clamp(12px,1.4vw,18px);
-  font-size:clamp(13.6px,1.08vw,15.4px); line-height:1.62; color:var(--gw-ink-2);}
+  font-size:var(--body); line-height:1.62; color:var(--gw-ink-2);}
 .gw-block p b{font-weight:700; color:var(--gw-accent);}
 
 /* ---- the audit ---- */
@@ -3521,11 +3522,11 @@ html[data-theme="dark"] #gbp-what{
 .gw-cta-eyebrow::after{content:""; width:22px; height:2px; border-radius:2px;
   background:var(--gw-accent);}
 .gw-cta-say h3{margin-top:clamp(7px,.9vw,11px); max-width:24ch;
-  font-family:var(--font-display); font-size:clamp(17px,1.62vw,23px);
+  font-family:var(--font-display); font-size:var(--h3);
   font-weight:800; letter-spacing:-0.035em; line-height:1.16;
   text-transform:none; color:var(--gw-ink);}
 .gw-cta-say p{margin-top:clamp(7px,.9vw,11px); max-width:54ch;
-  font-size:clamp(13px,1.02vw,14.8px); line-height:1.6; color:var(--gw-ink-2);}
+  font-size:var(--body); line-height:1.6; color:var(--gw-ink-2);}
 .gw-cta-say p b{font-weight:700; color:var(--gw-ink);}
 
 .gw-cta-end{display:grid; grid-template-columns:auto auto;
@@ -3601,7 +3602,7 @@ html[data-theme="dark"] #gbp-what{
 .eg-exp-lab{display:block; font-family:var(--font-display);
   font-size:clamp(17px,1.55vw,20px); font-weight:800; letter-spacing:-0.03em;
   line-height:1.2; color:var(--text);}
-.eg-exp-head p{margin-top:6px; font-size:13px; line-height:1.5; color:var(--muted);}
+.eg-exp-head p{margin-top:6px; font-size:var(--body); line-height:1.5; color:var(--muted);}
 
 .eg-exp-list{list-style:none; margin:0; padding:0; position:relative;
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
@@ -3619,7 +3620,7 @@ html[data-theme="dark"] #gbp-what{
   font-variant-numeric:tabular-nums;}
 .eg-exp-list b small{font-size:12px; font-weight:700; letter-spacing:.08em;
   text-transform:uppercase; color:var(--text);}
-.eg-exp-list p{margin-top:7px; font-size:13.4px; line-height:1.55; color:var(--text-2);}
+.eg-exp-list p{margin-top:7px; font-size:var(--body); line-height:1.55; color:var(--text-2);}
 
 /* the caveat: one line across the foot of the band */
 .eg-exp-note{grid-column:1 / -1; display:flex; align-items:center; gap:10px;
@@ -3733,7 +3734,7 @@ html[data-theme="dark"] #gbp-what{
 .hs .hs-lede-1{max-width:58ch;}
 @media (max-width:440px){ .hs .hs-h1 em{white-space:normal;} }
 /* this page's headline runs long: it is set a little tighter */
-.hs .hs-h1{font-size:clamp(30px,4.4vw,58px); line-height:1.06;}
+.hs .hs-h1{font-size:var(--h1); line-height:1.06;}
 
 /* === hs-stat === */
 /* the market figure under the hero copy: one line, set apart from the
@@ -3792,7 +3793,7 @@ html[data-theme="dark"] #gbp-what{
 /* ---- the claim ---- */
 .wc-say h2{letter-spacing:-0.045em; line-height:1.04;}
 .wc-say h2 em{font-style:normal; color:var(--brand-text);}
-.wc-say > p{margin-top:20px; font-size:15.5px; line-height:1.7; color:var(--text-2);
+.wc-say > p{margin-top:20px; font-size:var(--body); line-height:1.7; color:var(--text-2);
   max-width:44ch;}
 .wc-say .btn{margin-top:28px;}
 
@@ -3844,7 +3845,7 @@ html[data-theme="dark"] #gbp-what{
 @keyframes wcIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
 .wc-panel h3{font-family:var(--font-display);
   font-weight:800; letter-spacing:-0.035em; line-height:1.18; max-width:22ch;}
-.wc-panel > p{margin-top:12px; font-size:14.4px; line-height:1.65; color:var(--text-2);
+.wc-panel > p{margin-top:12px; font-size:var(--body); line-height:1.65; color:var(--text-2);
   max-width:48ch;}
 
 /* ---- the instrument ---- */
@@ -4070,7 +4071,7 @@ html[data-theme="dark"] .dv{
 .dv-n{display:block; font-family:var(--font-display); font-size:13px; font-weight:800;
   letter-spacing:.06em; line-height:1; color:var(--brand-text); font-variant-numeric:tabular-nums;}
 .dv-card h3{margin:6px 0 7px; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(16.5px,1.4vw,19px); line-height:1.25; letter-spacing:-0.03em;
+  font-size:var(--h3); line-height:1.25; letter-spacing:-0.03em;
   color:var(--text); text-transform:none;}
 .dv-card p{margin:0; max-width:52ch; font-family:var(--font); font-size:13.6px; line-height:1.6;
   color:var(--text-2);}
@@ -4111,7 +4112,7 @@ html[data-theme="dark"] .dv{
   background:var(--brand-soft); color:var(--brand-text);}
 .dv-tile svg{width:26px; height:26px;}
 .dv-opt.is-key .dv-tile{background:var(--primary); color:#fff;}
-.dv-opt h4{margin:0; font-family:var(--font-display); font-weight:700; font-size:18.5px;
+.dv-opt h4{margin:0; font-family:var(--font-display); font-weight:700; font-size:var(--h4);
   letter-spacing:-0.03em; color:var(--text); text-transform:none;}
 .dv-opt dl{margin:0;}
 .dv-row{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.12fr); gap:14px;
@@ -4278,7 +4279,7 @@ html[data-theme="dark"] .dv{--il-blob:hsl(var(--brand-h) 45% 15%); --il-glow:hsl
   .dv .dv-art{height:150px; align-self:auto;}
   .dv .dv-card .dv-card-svg{max-width:none; width:auto; height:150px;}
   .dv .dv-say{display:flex; flex-direction:column; padding:6px 20px 20px;}
-  .dv .dv-card h3{font-size:17px; min-height:2.5em;}
+  .dv .dv-card h3{font-size:var(--h3); min-height:2.5em;}
   .dv .dv-card p{font-size:13.4px; flex:1;}
   .dv .dv-tag{align-self:flex-start; margin-right:0;}
   .dv .dv-go{top:14px; right:14px; bottom:auto; width:34px; height:34px;}
@@ -4360,7 +4361,7 @@ html[data-theme="dark"] .fw-ic{border-color:var(--border);}
 .fw-ic svg{width:20px; height:20px;}
 .fw-step:hover .fw-ic{background:var(--primary); color:#fff; transform:rotate(-8deg);}
 .fw-step h3{margin:14px 0 8px; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(15.5px,1.25vw,17.5px); line-height:1.25; letter-spacing:-0.03em;
+  font-size:var(--h3); line-height:1.25; letter-spacing:-0.03em;
   color:var(--text); text-transform:none;}
 .fw-step p{margin:0; font-family:var(--font); font-size:13.2px; line-height:1.55; color:var(--text-2);}
 .fw-step.rv.in .fw-art .fw-svg{animation:fwPop .9s var(--pop) both; animation-delay:calc(var(--d,0ms) + 150ms);}
@@ -4382,7 +4383,7 @@ html[data-theme="dark"] .em-card{background:linear-gradient(135deg,hsl(var(--bra
 .em-art .fw-svg{transition:transform .6s var(--pop);}
 .em-card:hover .em-art .fw-svg{transform:scale(1.07) rotate(-2deg);}
 .em-say{display:block;}
-.em-card h3{margin:0 0 8px; font-family:var(--font-display); font-weight:700; font-size:clamp(16px,1.35vw,18.5px);
+.em-card h3{margin:0 0 8px; font-family:var(--font-display); font-weight:700; font-size:var(--h3);
   letter-spacing:-0.03em; line-height:1.25; color:var(--text); text-transform:none;}
 .em-card p{margin:0; font-family:var(--font); font-size:13.6px; line-height:1.58; color:var(--text-2);}
 .em-go{display:grid; place-items:center; width:34px; height:34px; margin-top:14px; border-radius:50%;
@@ -4452,7 +4453,7 @@ html[data-theme="dark"] .fw .fw-art{
 .fw .fw-step:hover .fw-num{transform:none;}
 .fw .fw-ic{grid-column:1; grid-row:2; margin-left:10px; width:40px; height:40px; border-radius:12px;
   background:var(--brand-soft); border:0; box-shadow:none;}
-.fw .fw-step h3{grid-column:2; grid-row:2; margin:0; font-size:clamp(16.5px,1.35vw,19px);}
+.fw .fw-step h3{grid-column:2; grid-row:2; margin:0; font-size:var(--h3);}
 .fw .fw-step p{grid-column:1 / -1; grid-row:3; align-self:start; margin:12px 10px 0; font-size:14px; line-height:1.62;}
 .fw .fw-step:hover{transform:translateY(-6px);}
 .fw .fw-step:hover .fw-art{background:
@@ -4616,7 +4617,7 @@ html[data-theme="dark"] .pr-cta{background:linear-gradient(120deg,hsl(var(--bran
   box-shadow:0 10px 20px -8px hsl(var(--brand-h) 100% 40% / .6);}
 .pr-cta-ic svg{width:25px; height:25px;}
 .pr-cta h3{margin:0; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(18px,1.9vw,25px); letter-spacing:-0.035em; color:var(--text); text-transform:none;}
+  font-size:var(--h3); letter-spacing:-0.035em; color:var(--text); text-transform:none;}
 .pr-cta h3 em{font-style:normal; color:var(--brand-text);}
 .pr-cta p{margin:6px 0 0; font-size:14px; color:var(--text-2);}
 .pr-go{display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
@@ -4718,7 +4719,7 @@ html[data-theme="dark"] .fw-foot{background:var(--surface);
 .tk-cat-ic svg{width:26px; height:26px;}
 .tk-row:hover .tk-cat-ic{background:var(--primary); color:#fff; transform:rotate(-8deg);}
 .tk-cat h3{margin:0 0 6px; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(16.5px,1.4vw,19px); letter-spacing:-0.03em; line-height:1.25;
+  font-size:var(--h3); letter-spacing:-0.03em; line-height:1.25;
   color:var(--text); text-transform:none;}
 .tk-cat p{margin:0; font-size:13.4px; line-height:1.55; color:var(--text-2);}
 
@@ -4828,7 +4829,7 @@ html[data-theme="dark"] .tk-count{border-color:var(--border); background:var(--s
   .tk-logo,.tk-abbr{width:16px; height:16px;}
   .tk-cat{padding:12px 13px;}
   .tk-cat-ic{width:40px; height:40px;} .tk-cat-ic svg{width:19px; height:19px;}
-  .tk-cat h3{font-size:15.5px;}
+  .tk-cat h3{font-size:var(--h3);}
   .tk-cat p{font-size:12.4px;}
   .tk-count{margin-top:9px;}
 }
@@ -4993,7 +4994,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .wk-say h3{display:flex; align-items:baseline; gap:12px;
   font-family:var(--font-display);
   font-weight:800; letter-spacing:-0.035em; color:var(--text);}
-.wk-say h3 i{font-style:normal; font-size:12px; font-weight:700;
+.wk-say h3 i{font-style:normal; font-size:var(--h3); font-weight:700;
   letter-spacing:.1em; color:var(--subtle); font-variant-numeric:tabular-nums;}
 .wk-say p{margin-top:10px; font-size:14px; line-height:1.58; color:var(--text-2);
   max-width:46ch;}
@@ -5132,7 +5133,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .gr-meta{ display:flex; align-items:center; gap:10px; margin-top:12px; }
 .gr-when{ font-size:11.8px; color:var(--muted); }
 .gr-text{
-  margin:10px 0 0; font-size:13.6px; line-height:1.62; color:var(--text-2);}
+  margin:10px 0 0; font-size:var(--body); line-height:1.62; color:var(--text-2);}
 .gr-tags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
 .gr-tag{
   font-size:11px; font-weight:600; color:var(--text-2);
@@ -5413,7 +5414,7 @@ html[data-theme="dark"] .sc-no{background:hsl(var(--brand-h) 15% 13%);}
 .sc-yes .sc-badge{background:var(--primary); box-shadow:0 8px 16px -8px hsl(var(--brand-h) 100% 40% / .7);}
 .sc-no .sc-badge{background:#8A94A6;}
 .sc-top h3{margin:2px 0 4px; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(17px,1.5vw,20px); letter-spacing:-0.03em; color:var(--text); text-transform:none;}
+  font-size:var(--h3); letter-spacing:-0.03em; color:var(--text); text-transform:none;}
 .sc-top p{margin:0; font-size:13.4px; line-height:1.5; color:var(--text-2);}
 .sc-list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
 .sc-yes .sc-list{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px;}
@@ -5441,7 +5442,7 @@ html[data-theme="dark"] .sc-no .sc-ic{background:hsl(var(--brand-h) 12% 20%); co
     var(--surface);}
 html[data-theme="dark"] .sc-price{background:radial-gradient(90% 140% at 0% 50%, hsl(var(--brand-h) 50% 16%) 0%, transparent 58%), var(--surface);}
 .sc-price h3{margin:0 0 8px; font-family:var(--font-display); font-weight:700;
-  font-size:clamp(18px,1.7vw,22px); letter-spacing:-0.03em; line-height:1.2; color:var(--text); text-transform:none;}
+  font-size:var(--h3); letter-spacing:-0.03em; line-height:1.2; color:var(--text); text-transform:none;}
 .sc-price h3 em{font-style:normal; color:var(--brand-text); display:block;}
 .sc-price p{margin:0; font-size:13.6px; line-height:1.55; color:var(--text-2);}
 .sc-factors{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;}
@@ -5598,7 +5599,7 @@ html[data-theme="dark"] .sc-cost{border-color:var(--border);
 .bq-ic svg{width:36px; height:36px;}
 .bq:hover .bq-ic{background:var(--primary); color:#fff; transform:scale(1.05);}
 .bq:hover .bq-ic::after{opacity:1; transform:rotate(90deg);}
-.bq h3{margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(15px,1.25vw,17px);
+.bq h3{margin:0; font-family:var(--font-display); font-weight:700; font-size:var(--h3);
   letter-spacing:-0.03em; line-height:1.28; color:var(--text); text-transform:none; min-height:2.6em;
   display:flex; align-items:center; justify-content:center;}
 .bq h3::after{content:none;}
@@ -5637,14 +5638,14 @@ html[data-theme="dark"] .bs{border-color:var(--border);
 /* compact pass two: no divider under the titles, and everything tighter */
 .bq p::before{content:none;}
 .bq p{margin-top:8px; padding-top:0; font-size:13px; line-height:1.5;}
-#guide{padding-block:clamp(32px,3.4vw,50px);}
-.bg-head .sec-lede{margin-top:10px; font-size:14.2px; line-height:1.55;}
+#guide{padding-block:var(--sec-y);}
+.bg-head .sec-lede{margin-top:10px; font-size:var(--body); line-height:1.55;}
 .bg-head .smark{margin-bottom:12px;}
 .bq-row{margin-top:clamp(18px,2vw,26px); gap:clamp(10px,1.1vw,14px);}
 .bq{padding:clamp(16px,1.6vw,20px) clamp(12px,1.2vw,16px) clamp(16px,1.6vw,20px); border-radius:18px;}
 .bq-ic{width:60px; height:60px; margin-bottom:12px;}
 .bq-ic svg{width:29px; height:29px;}
-.bq h3{font-size:clamp(14.5px,1.15vw,16px); min-height:2.6em;}
+.bq h3{font-size:var(--h3); min-height:2.6em;}
 .bs{margin-top:clamp(12px,1.4vw,18px); padding:clamp(12px,1.3vw,16px) clamp(16px,1.8vw,22px); border-radius:18px;}
 .bs-badge{width:50px; height:50px; box-shadow:0 0 0 5px var(--surface), 0 10px 20px -12px hsl(var(--brand-h) 100% 40% / .7);}
 .bs-badge svg{width:25px; height:25px;}
@@ -6026,20 +6027,29 @@ html[data-theme="dark"] #process .eg-exp-note{
 /* ══════════════════════════════════════════════════════════════════════
    SITE CONSISTENCY — load LAST on every page (after page CSS).
 
-   One section rhythm: equal padding-top and padding-bottom via --sec-y.
-   One type scale: h1–h6 and reading <p> share the same tokens everywhere.
-   Heroes (.hs / .ct-hero) are not .sec and keep their own hero padding.
+   Single design system for Tekcroft:
+   - One type scale for h1–h6 + body
+   - One section vertical rhythm (--sec-y)
+   - One eyebrow / spacing language
+   - H2 stays ≤ 2 lines via width, not font-size hacks
+   Heroes (.hs / .ct-hero) keep their own hero padding.
    ══════════════════════════════════════════════════════════════════════ */
 
 :root{
-  --h1:clamp(30px,4.4vw,58px);
-  --h2:clamp(29px,3.6vw,46px);
-  --h3:clamp(17px,1.8vw,22px);
-  --h4:clamp(14px,1.3vw,16px);
-  --h5:clamp(12.5px,1.15vw,14px);
+  /* Type scale — one value per level, site-wide (responsive via clamp) */
+  --h1:clamp(32px,4.2vw,56px);
+  --h2:clamp(28px,3.2vw,44px);
+  --h3:clamp(17px,1.7vw,22px);
+  --h4:clamp(14px,1.25vw,16px);
+  --h5:clamp(12.5px,1.1vw,14px);
+  --h6:clamp(12px,1.05vw,13px);
   --body:16px;
   --lede:16px;
-  --sec-y:clamp(58px,6vw,92px);
+  --body-lh:1.7;
+  --sec-y:clamp(52px,5.4vw,84px);
+  --head-gap:clamp(12px,1.2vw,16px);
+  --lede-gap:clamp(14px,1.4vw,20px);
+  --block-gap:clamp(22px,2.4vw,36px);
 }
 
 /* ── Equal vertical padding on every content section ───────────────── */
@@ -6063,6 +6073,11 @@ section.sec,
 .sec.svc,
 .sec.beam-zone,
 .sec.tb,
+.sec.tm,
+.sec.ls,
+.sec.lp,
+.sec.ws,
+.sec.clients,
 #who.sec,
 #vs.sec,
 #model.sec,
@@ -6079,44 +6094,85 @@ section.sec,
 #get.sec,
 #platforms.sec,
 #ai.sec,
-#crawl-check.sec{
+#crawl-check.sec,
+#what-local.sec,
+#services-2.sec,
+#pack.sec,
+#apart.sec,
+#clients.sec,
+#fit.sec,
+#industries.sec,
+#proof.sec{
   padding-block:var(--sec-y) !important;
 }
 
-/* ── Headings: one size per level, site-wide ─────────────────────────── */
-h1,
-.hs-h1,
-.ct-hero h1{
+/* Proof strip under hero stays intentionally tighter */
+.sec.tb,
+#proof.sec{
+  padding-block:clamp(36px,4vw,56px) !important;
+}
+
+/* ── Headings: one size per level — beat page-local clamps ──────────── */
+html body :is(h1, .hs-h1, .ct-hero h1),
+html body .hs .hs-h1{
   font-size:var(--h1) !important;
+  line-height:1.08 !important;
 }
-h2,
-.sec-head h2,
-.ac-head h2,
-.wy-say h2,
-.mp-say h2,
-.gw-say h2,
-.pf-head h2,
-.cta3 h2,
-.eg-sec h2,
-.hx .sec-head h2,
-.sg-head h2,
-.ct-side h2,
-.ct-next-head h2{
+html body :is(h2),
+html body .sec-head h2,
+html body .ac-head h2,
+html body .wy-say h2,
+html body .mp-say h2,
+html body .gw-say h2,
+html body .pf-head h2,
+html body .cta3 h2,
+html body .eg-sec h2,
+html body .hx .sec-head h2,
+html body .sg-head h2,
+html body .ct-side h2,
+html body .ct-next-head h2,
+html body .tm-head h2,
+html body .ls-say h2,
+html body .lp-say h2,
+html body .pw-head h2,
+html body .ps-head h2,
+html body .fp-head h2,
+html body .dc-head h2,
+html body .cq-top h2,
+html body #services-2 .sec-head h2,
+html body #services-2 h2,
+html body #what-local h2,
+html body #pack h2,
+html body #process h2,
+html body #faq h2,
+html body #duplicate-v2 h2,
+html body #duplicate-v2 h2 span,
+html body #duplicate-v2 h2 em,
+html body #duplicate-v2 h2 small{
   font-size:var(--h2) !important;
+  line-height:1.12 !important;
+  letter-spacing:-0.04em !important;
 }
-h3,
-.ac-card h3,
-.eg-card h3,
-.pf-card h3,
-.ws-item h3,
-.gw-block h3,
-.sp-top h3,
-.wc-panel h3,
-.wn-card h3{
+html body :is(h3),
+html body .ac-card h3,
+html body .eg-card h3,
+html body .pf-card h3,
+html body .ws-item h3,
+html body .gw-block h3,
+html body .sp-top h3,
+html body .wc-panel h3,
+html body .wn-card h3,
+html body .tm-card h3,
+html body .dv-card h3,
+html body .fw-step h3,
+html body .em-card h3,
+html body .faq-aside h3{
   font-size:var(--h3) !important;
+  line-height:1.25 !important;
 }
 /* Hero form title stays compact when marked up as h3 */
-.hs-form > h3{
+html body .hs-form > h3,
+html body .hs-done h3{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
   line-height:1.22 !important;
@@ -6124,47 +6180,91 @@ h3,
   margin:0 !important;
   text-transform:none !important;
 }
-h4{ font-size:var(--h4) !important; }
-h5,
-h6{ font-size:var(--h5) !important; }
+html body :is(h4){ font-size:var(--h4) !important; line-height:1.3 !important; }
+html body :is(h5){ font-size:var(--h5) !important; line-height:1.35 !important; }
+html body :is(h6){ font-size:var(--h6) !important; line-height:1.35 !important; }
 
-/* ── Body / lede reading size (content sections + heroes) ───────────── */
-.sec p,
-.sec-lede,
-.hs-lede,
-.ac-lede,
-.cta3 > p,
-.cta3-line,
-.faq-a p,
-.faq-aside p,
-.wy-pane p,
-.wy-say > p,
-.wc-panel > p,
-.wn-panel > p,
-.ac-card p,
-.eg-card p,
-.pf-card > p,
-.gr-text,
-.mp-say > p,
-.gw-say > p,
-.wc-say > p,
-.wn-say p{
+/* ── H2 ≤ 2 lines: give titles enough measure — never shrink the type ─ */
+html body .sec-head{
+  max-width:min(100%, 62ch) !important;
+}
+html body .sec-head.mid{
+  max-width:min(100%, 68ch) !important;
+  margin-inline:auto !important;
+}
+html body .sec h2,
+html body .sec-head h2{
+  text-wrap:balance;
+}
+/* Never force a third stacked line inside an h2 */
+html body h2 > span + span + span{
+  display:inline !important;
+}
+
+/* ── Body / lede reading size ───────────────────────────────────────── */
+html body .sec p,
+html body .sec-lede,
+html body .hs-lede,
+html body .ac-lede,
+html body .cta3 > p,
+html body .cta3-line,
+html body .faq-a p,
+html body .faq-aside p,
+html body .wy-pane p,
+html body .wy-say > p,
+html body .wc-panel > p,
+html body .wn-panel > p,
+html body .ac-card p,
+html body .eg-card p,
+html body .pf-card > p,
+html body .gr-text,
+html body .mp-say > p,
+html body .gw-say > p,
+html body .wc-say > p,
+html body .wn-say p,
+html body .tm-aside p,
+html body .tm-foot p,
+html body .lp-lede,
+html body .ls-say p,
+html body .tm-card p{
   font-size:var(--body) !important;
+  line-height:var(--body-lh) !important;
 }
 
 /* Keep form errors / helper chrome from inheriting body size */
-.sec .hs-err,
-.sec .ct-err,
-.sec .form-err,
-.hs-err,
-.ct-err,
-.hs-sub{
+html body .sec .hs-err,
+html body .sec .ct-err,
+html body .sec .form-err,
+html body .hs-err,
+html body .ct-err,
+html body .hs-sub{
   font-size:13px !important;
+  line-height:1.45 !important;
 }
 
-/* ── Section eyebrows: one pill + blue dot, every page ─────────────────
-   Canonical look is .smark (e.g. LOCAL SEO). Other section eyebrow classes
-   are forced to the same shape so pages cannot drift. */
+/* ── Heading → description / content gaps ───────────────────────────── */
+html body .sec-head .smark,
+html body .sec-head > .smark{
+  margin-bottom:var(--head-gap) !important;
+}
+html body .sec-head h2,
+html body .ac-head h2,
+html body .tm-head h2,
+html body .ls-say h2,
+html body .lp-say h2{
+  margin:0 !important;
+}
+html body .sec-head .sec-lede,
+html body .sec-lede,
+html body .ls-say p,
+html body .lp-lede,
+html body .wy-say > p,
+html body .mp-say > p,
+html body .gw-say > p{
+  margin-top:var(--lede-gap) !important;
+}
+
+/* ── Section eyebrows: one pill + blue dot ───────────────────────────── */
 .smark,
 .wy-eyebrow,
 .gw-eyebrow,
@@ -6173,7 +6273,7 @@ h6{ font-size:var(--h5) !important; }
   display:inline-flex !important;
   align-items:center !important;
   gap:10px !important;
-  margin-bottom:clamp(16px,1.8vw,22px) !important;
+  margin-bottom:var(--head-gap) !important;
   padding:8px 18px !important;
   border:1px solid var(--border) !important;
   border-radius:30px !important;
@@ -6201,7 +6301,6 @@ h6{ font-size:var(--h5) !important; }
   color:var(--brand-text) !important;
   font-family:inherit !important;
 }
-/* Blue dot — ::before for classes without a real <i> tip */
 .smark::before,
 .gw-eyebrow::before,
 .vs-rule::before{
@@ -6218,7 +6317,6 @@ h6{ font-size:var(--h5) !important; }
   box-shadow:none !important;
   background-image:none !important;
 }
-/* Kill the old ruled-eyebrow hairlines */
 .vs-rule::after{
   content:none !important;
   display:none !important;
@@ -6226,7 +6324,6 @@ h6{ font-size:var(--h5) !important; }
   height:0 !important;
   background:none !important;
 }
-/* Real <i> tip for wy / nsr — same 7px blue disc; hide nsr star SVG */
 .wy-eyebrow > i,
 .nsr-eyebrow > i{
   display:block !important;
@@ -6244,7 +6341,6 @@ h6{ font-size:var(--h5) !important; }
 .nsr-eyebrow > i svg{
   display:none !important;
 }
-/* Dark / photo sections keep a glass pill */
 .on-dark .smark,
 .on-dark .wy-eyebrow,
 .on-dark .gw-eyebrow,
@@ -6263,4 +6359,24 @@ h6{ font-size:var(--h5) !important; }
 #fit .smark b,
 #stack .smark b{
   color:#fff !important;
+}
+
+/* ── Alternating grounds helper (pages set --ground / --panel) ──────── */
+.sec[data-ground="tint"],
+.sec.is-tint{
+  --ground:var(--bg-alt);
+  --panel:var(--surface);
+  background:var(--ground) !important;
+}
+.sec[data-ground="white"],
+.sec.is-white{
+  --ground:var(--surface);
+  --panel:var(--bg-alt);
+  background:var(--ground) !important;
+}
+.sec[data-ground="soft"],
+.sec.is-soft{
+  --ground:var(--bg);
+  --panel:var(--surface);
+  background:var(--ground) !important;
 }
