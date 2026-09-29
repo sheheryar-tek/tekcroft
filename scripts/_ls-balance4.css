@@ -1,0 +1,12 @@
+
+@media (min-width:1041px){
+  /* the last 60px: the heading breathes a touch more and the cards sit
+     tighter still, so the columns finish together */
+  #what-local .ls-say h2{line-height:1.12;}
+  #what-local .ls-say p{margin-top:22px; line-height:1.9;}
+  #what-local .ls-stage{gap:8px;}
+  #what-local .gb-card{gap:6px; padding:10px 13px;}
+  #what-local .ls-out{padding:10px 13px;}
+  #what-local .sc{padding:7px;}
+  #what-local .sc-map{height:28px;}
+}

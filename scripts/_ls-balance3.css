@@ -1,0 +1,9 @@
+
+@media (min-width:1041px){
+  /* the last of the air comes out of the cards, and the paragraphs get
+     a little more room, so both columns land on the same height */
+  #what-local .ls-say p{margin-top:20px;}
+  #what-local .ls-stat{padding:10px 13px;}
+  #what-local .ls-revs{gap:3px;}
+  #what-local .sc-h{font-size:10px;}
+}

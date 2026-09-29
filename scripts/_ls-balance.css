@@ -1,0 +1,23 @@
+
+/* the two columns finish level: the copy sits a touch larger and the
+   three cards are tightened so the stack matches its height */
+#what-local .ls-grid{align-items:stretch; grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);}
+#what-local .ls-say{display:flex; flex-direction:column; justify-content:center;}
+#what-local .ls-say p{font-size:clamp(14px,1.1vw,15.6px); line-height:1.75;}
+#what-local .ls-stage{align-content:space-between; gap:clamp(8px,1vw,12px);}
+#what-local .gb-card,#what-local .ls-out,#what-local .ls-stat{padding:12px 14px;}
+#what-local .gb-card{gap:8px;}
+#what-local .gb-photos{display:none;}
+#what-local .gb-nap{gap:5px; padding:9px 11px; font-size:11.2px;}
+#what-local .gb-actions em{padding:5px 11px; font-size:10.6px;}
+#what-local .gb-cite{padding:4px 9px; font-size:10px;}
+#what-local .ls-h{margin-bottom:8px;}
+#what-local .sc{gap:6px; padding:9px;}
+#what-local .sc-map{height:38px;}
+#what-local .ls-ring{width:64px; height:64px;}
+#what-local .ls-ring b{font-size:17px;}
+#what-local .ls-stat p{font-size:12.6px;}
+@media (max-width:1040px){
+  #what-local .ls-grid{grid-template-columns:minmax(0,1fr);}
+  #what-local .gb-photos{display:grid;}
+}

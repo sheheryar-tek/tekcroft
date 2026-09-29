@@ -1,0 +1,28 @@
+
+/* the copy carries a little more air and the cards give some back, so
+   the two columns are the same height without either looking stretched */
+@media (min-width:1041px){
+  #what-local .ls-say p{font-size:16px; line-height:1.85;}
+  #what-local .ls-say h2{font-size:clamp(28px,3vw,41px);}
+  #what-local .ls-stage{gap:9px;}
+  #what-local .gb-card,#what-local .ls-out,#what-local .ls-stat{padding:11px 13px;}
+  #what-local .gb-card{gap:7px;}
+  #what-local .gb-top{gap:9px;}
+  #what-local .gb-logo{width:34px; height:34px; font-size:15px;}
+  #what-local .gb-id b{font-size:13.4px;}
+  #what-local .gb-rate{font-size:10.8px;}
+  #what-local .gb-nap{padding:8px 10px; gap:4px; font-size:10.8px;}
+  #what-local .gb-actions em{padding:4px 10px; font-size:10.2px;}
+  #what-local .gb-cite{padding:3px 8px; font-size:9.6px;}
+  #what-local .gb-cite b{font-size:9px; padding:1px 6px;}
+  #what-local .ls-h{margin-bottom:7px; font-size:10.6px;}
+  #what-local .sc{padding:8px; gap:5px;}
+  #what-local .sc-map{height:32px;}
+  #what-local .sc-snip,#what-local .sc-ai{font-size:9.4px; line-height:1.4;}
+  #what-local .ls-stat{gap:12px;}
+  #what-local .ls-ring{width:58px; height:58px;}
+  #what-local .ls-ring b{font-size:15.5px;}
+  #what-local .ls-stat p{font-size:12px; line-height:1.5;}
+  #what-local .rv-line span{height:5px;}
+  #what-local .ls-revs{gap:4px;}
+}

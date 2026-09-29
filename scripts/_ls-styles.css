@@ -1,0 +1,82 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHAT ARE LOCAL SEO SERVICES — the copy on the left; on the right the
+   four parts joining into one block, the three places the work shows up,
+   and the review figure the copy ends on.
+   ══════════════════════════════════════════════════════════════════════ */
+#what-local{padding-block:clamp(38px,4.2vw,62px); background:var(--bg-alt);}
+.ls-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(24px,3.4vw,54px);
+  align-items:center;}
+.ls-say .smark{margin-bottom:12px;}
+#what-local h2{margin:0; font-size:clamp(26px,2.8vw,38px); line-height:1.08; letter-spacing:-.04em;
+  text-transform:none;}
+#what-local h2 em{font-style:normal; color:var(--brand-text);}
+.ls-say p{margin:14px 0 0; font-size:clamp(13.8px,1.06vw,15.2px); line-height:1.7; color:var(--text-2); max-width:58ch;}
+
+.ls-stage{display:grid; gap:clamp(10px,1.2vw,14px);}
+.ls-h{display:block; font-family:var(--font-display); font-size:11.4px; font-weight:800; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+.ls-board,.ls-out,.ls-stat{padding:clamp(14px,1.6vw,20px); border-radius:18px; background:var(--surface);
+  border:1px solid var(--border); box-shadow:0 20px 40px -34px hsl(var(--brand-h) 90% 25% / .9);}
+
+/* the four parts, sitting as one block rather than four separate ones */
+.ls-board{position:relative;}
+.ls-parts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
+.ls-part{display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:12px;
+  background:var(--bg-alt); border:1px solid var(--border);
+  animation:lsJoin .6s var(--pop, cubic-bezier(.2,.8,.2,1)) both; animation-delay:calc(var(--k) * .12s);}
+@keyframes lsJoin{
+  from{opacity:0; transform:translate(calc(var(--k, 0) * 0px), 14px) scale(.96);}
+  to{opacity:1; transform:none;}}
+.ls-p-ic{display:grid; place-items:center; width:30px; height:30px; border-radius:9px; flex:none;
+  background:hsl(var(--brand-h) 85% 95%); color:var(--brand-text);}
+.ls-p-ic svg{width:16px; height:16px;}
+.ls-part b{font-family:var(--font-display); font-size:11.8px; font-weight:700; letter-spacing:-.015em;
+  line-height:1.25; color:var(--text);}
+.ls-join{position:absolute; left:50%; top:calc(50% + 12px); width:44px; height:44px; margin:-22px 0 0 -22px;
+  border-radius:50%; background:var(--primary); box-shadow:0 0 0 6px var(--surface);
+  animation:lsPulse 3.4s ease-in-out infinite;}
+.ls-join::after{content:""; position:absolute; inset:0; border-radius:50%;
+  background:radial-gradient(circle, transparent 0 9px, #fff 9px 11px, transparent 11px),
+             radial-gradient(circle, #fff 0 4px, transparent 4px);}
+@keyframes lsPulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.07);}}
+
+/* where it shows up */
+.ls-surfaces{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px;}
+.ls-surface{display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px 8px;
+  border-radius:12px; background:var(--bg-alt); border:1px solid var(--border);
+  font-family:var(--font-display); font-size:11.4px; font-weight:700; color:var(--text); text-align:center;
+  animation:lsUp .55s var(--pop) both; animation-delay:calc(.45s + var(--k) * .14s);}
+@keyframes lsUp{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+.ls-surface i{display:grid; place-items:center; width:28px; height:28px; border-radius:50%;
+  background:var(--surface); border:1px solid var(--border);}
+.ls-surface i svg{width:15px; height:15px;}
+.ls-surface i.sp{background:var(--primary); border-color:var(--primary); color:#fff;}
+
+/* the figure the copy ends on */
+.ls-stat{display:flex; align-items:center; gap:clamp(12px,1.6vw,18px);}
+.ls-ring{position:relative; display:grid; place-items:center; width:74px; height:74px; flex:none;}
+.ls-ring svg{position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg);}
+.ls-trk{fill:none; stroke:hsl(var(--brand-h) 85% 92%); stroke-width:10;}
+.ls-arc{fill:none; stroke:var(--primary); stroke-width:10; stroke-linecap:round;
+  stroke-dasharray:301.6; stroke-dashoffset:301.6; animation:lsArc 1.4s var(--ease) .3s forwards;}
+@keyframes lsArc{to{stroke-dashoffset:9;}}   /* 97% of the circle */
+.ls-ring b{position:relative; font-family:var(--font-display); font-size:19px; font-weight:800;
+  letter-spacing:-.03em; color:var(--brand-text);}
+.ls-ring b::after{content:"%"; font-size:12px; margin-left:1px;}
+.ls-stat p{margin:0; font-size:clamp(12.6px,1vw,13.8px); line-height:1.55; color:var(--text-2);}
+
+@media (max-width:1040px){
+  .ls-grid{grid-template-columns:minmax(0,1fr); gap:26px;}
+  .ls-say p{max-width:none;}
+}
+@media (max-width:560px){
+  .ls-parts{grid-template-columns:minmax(0,1fr);}
+  .ls-join{display:none;}
+  .ls-surfaces{grid-template-columns:minmax(0,1fr);}
+  .ls-surface{flex-direction:row; justify-content:flex-start;}
+}
+@media (prefers-reduced-motion:reduce){
+  .ls-part,.ls-surface,.ls-arc,.ls-join{animation:none;}
+  .ls-arc{stroke-dashoffset:9;}
+}

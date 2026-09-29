@@ -1,0 +1,88 @@
+
+/* ── the real things, not stand-ins ──────────────────────────────────
+   A Google Business Profile card with its NAP, hours, actions and
+   citations; the three surfaces drawn the way they appear; and the
+   review split behind the figure the copy quotes. */
+.gb-card,.ls-out,.ls-stat{padding:clamp(13px,1.5vw,18px); border-radius:18px; background:var(--surface);
+  border:1px solid var(--border); box-shadow:0 20px 40px -34px hsl(var(--brand-h) 90% 25% / .9);}
+.gb-card{display:grid; gap:10px;}
+.gb-top{display:flex; align-items:center; gap:11px;}
+.gb-logo{display:grid; place-items:center; width:38px; height:38px; border-radius:11px; flex:none;
+  background:var(--primary); color:#fff; font-family:var(--font-display); font-size:17px; font-weight:800;}
+.gb-id{flex:1; min-width:0;}
+.gb-id b{display:block; font-family:var(--font-display); font-size:14.4px; font-weight:800;
+  letter-spacing:-.02em; color:var(--text);}
+.gb-rate{display:block; margin-top:2px; font-size:11.4px; color:var(--text-2);}
+.gb-rate i{font-style:normal; color:var(--muted);}
+.gb-stars{font-style:normal; margin-right:5px; letter-spacing:.5px; color:#F5A623;}
+.gb-tag{padding:4px 10px; border-radius:99px; background:hsl(var(--brand-h) 85% 95%);
+  color:var(--brand-text); font-size:10.4px; font-weight:800;}
+.gb-nap{display:grid; gap:6px; padding:10px 12px; border-radius:12px; background:var(--bg-alt);
+  font-size:11.6px; color:var(--text-2);}
+.gb-nap span{display:flex; align-items:center; gap:8px;}
+.gb-open{color:#129A5B; font-weight:800;}
+.gb-i{width:14px; height:14px; flex:none; background:var(--brand-text);
+  -webkit-mask:var(--m) center/contain no-repeat; mask:var(--m) center/contain no-repeat;}
+.gb-i.pin{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.6'/%3E%3C/svg%3E");}
+.gb-i.tel{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z'/%3E%3C/svg%3E");}
+.gb-i.clock{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='8.6'/%3E%3Cpath d='M12 7.5v4.8l3 1.7'/%3E%3C/svg%3E");}
+.gb-actions{display:flex; gap:6px; flex-wrap:wrap;}
+.gb-actions em{font-style:normal; padding:6px 12px; border-radius:99px; background:var(--primary); color:#fff;
+  font-size:11px; font-weight:700;}
+.gb-actions em.ghost{background:var(--bg-alt); color:var(--text-2); border:1px solid var(--border);}
+.gb-photos{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px;}
+.gb-photos i{display:block; height:34px; border-radius:8px;
+  background:linear-gradient(140deg, hsl(var(--brand-h) 60% 88%), hsl(var(--brand-h) 75% 72%));}
+.gb-photos i:nth-child(2){background:linear-gradient(140deg,#dbe6ef,#b9c9d8);}
+.gb-photos i:nth-child(3){background:linear-gradient(140deg,#d9ecdd,#aad4b7);}
+.gb-photos i:nth-child(4){background:linear-gradient(140deg,#efe3d6,#d8bfa4);}
+.gb-cites{display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
+.gb-h{font-size:10.4px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+  margin-right:2px;}
+.gb-cite{display:inline-flex; align-items:center; gap:7px; padding:5px 10px; border-radius:99px;
+  background:var(--bg-alt); border:1px solid var(--border); font-size:10.6px; font-weight:700; color:var(--text-2);}
+.gb-cite b{padding:2px 7px; border-radius:99px; background:#e7f6ec; color:#129A5B; font-size:9.4px;}
+
+/* the three surfaces */
+.ls-screens{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px;}
+.sc{display:grid; gap:7px; padding:10px; border-radius:12px; background:var(--bg-alt); border:1px solid var(--border);
+  animation:lsUp .55s var(--pop, cubic-bezier(.2,.8,.2,1)) both; animation-delay:calc(.35s + var(--k) * .12s);}
+.sc-h{display:flex; align-items:center; gap:6px; font-family:var(--font-display); font-size:10.6px;
+  font-weight:800; color:var(--text);}
+.sc-h svg{width:13px; height:13px;}
+.sc-sp{display:grid; place-items:center; width:15px; height:15px; border-radius:50%; background:var(--primary);
+  color:#fff;}
+.sc-sp svg{width:9px; height:9px;}
+.sc-map{position:relative; display:block; height:46px; border-radius:8px;
+  background:repeating-linear-gradient(112deg, transparent 0 14px, #e3e8ee 14px 15px), #eef1f4;}
+.sc-pin{position:absolute; display:grid; place-items:center; width:16px; height:16px; border-radius:50%;
+  font-style:normal; font-size:9px; font-weight:800; color:#fff;}
+.sc-pin.a{left:26%; top:40%; background:var(--primary);}
+.sc-pin.b{left:64%; top:22%; background:#9AA7B4;}
+.sc-row{display:flex; align-items:center; gap:5px; font-size:10px; color:var(--text-2);}
+.sc-row b{font-family:var(--font-display); font-size:10.4px; color:var(--text);}
+.sc-row i{font-style:normal; font-weight:700;}
+.sc-row .gb-stars{font-size:9px;}
+.sc-title{font-family:var(--font-display); font-size:10.6px; font-weight:700; line-height:1.3;
+  color:var(--brand-text);}
+.sc-url{font-size:9.4px; font-weight:600; color:#1a7f37;}
+.sc-snip,.sc-ai{font-size:9.8px; line-height:1.45; color:var(--text-2);}
+.sc-cite{font-size:9.4px; font-weight:600; color:var(--muted);}
+.sc-cite b{color:var(--brand-text);}
+
+/* the reviews */
+.ls-stat{align-items:center;}
+.ls-revs{flex:1; display:grid; gap:5px;}
+.ls-revs p{margin:0 0 3px;}
+.rv-line{display:grid; grid-template-columns:12px minmax(0,1fr); align-items:center; gap:8px;}
+.rv-line em{font-style:normal; font-size:10px; font-weight:700; color:var(--muted);}
+.rv-line span{display:block; height:6px; border-radius:99px; background:hsl(var(--brand-h) 85% 93%); overflow:hidden;}
+.rv-line i{display:block; height:100%; width:var(--w); border-radius:99px; background:#F5A623; transform-origin:left;
+  animation:lsGrow .9s var(--ease) .35s both;}
+@keyframes lsGrow{from{transform:scaleX(0);} to{transform:scaleX(1);}}
+
+@media (max-width:560px){
+  .ls-screens{grid-template-columns:minmax(0,1fr);}
+  .gb-photos{grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+@media (prefers-reduced-motion:reduce){ .sc,.rv-line i{animation:none;} }

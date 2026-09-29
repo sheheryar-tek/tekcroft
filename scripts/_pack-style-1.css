@@ -1,0 +1,95 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHAT DETERMINES YOUR LOCAL PACK RANKING — the copy on the left, and on
+   the right the thing it describes: a local pack with three results, and
+   the three factors as dials. Two of them move; distance is locked,
+   which is the point the copy makes.
+   ══════════════════════════════════════════════════════════════════════ */
+#local-pack{padding-block:clamp(38px,4.2vw,62px); background:var(--surface);}
+.lp-grid{display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); gap:clamp(24px,3.4vw,54px);
+  align-items:center;}
+.lp-say .smark{margin-bottom:12px;}
+#local-pack h2{margin:0; font-size:clamp(26px,2.8vw,38px); line-height:1.08; letter-spacing:-.04em;
+  text-transform:none;}
+#local-pack h2 em{font-style:normal; color:var(--brand-text);}
+.lp-lede{margin:14px 0 0; font-size:clamp(13.8px,1.06vw,15.2px); line-height:1.7; color:var(--text-2); max-width:58ch;}
+
+.lp-list{list-style:none; margin:clamp(16px,1.8vw,22px) 0 0; padding:0; display:grid; gap:9px;}
+.lp-item{display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:12px;
+  padding:12px 14px; border-radius:14px; background:var(--bg-alt); border:1px solid var(--border);
+  font-size:clamp(13px,1.02vw,14.2px); line-height:1.55; color:var(--text-2);
+  transition:border-color .3s var(--ease), transform .3s var(--ease);}
+.lp-item b{color:var(--text);}
+.lp-item:hover{border-color:hsl(var(--brand-h) 70% 80%); transform:translateX(2px);}
+.lp-ic{display:grid; place-items:center; width:36px; height:36px; border-radius:11px; flex:none;
+  background:hsl(var(--brand-h) 85% 95%); color:var(--brand-text);}
+.lp-ic svg{width:18px; height:18px;}
+.lp-state{display:grid; place-items:center; width:26px; height:26px; border-radius:50%;
+  background:hsl(var(--brand-h) 85% 95%); color:var(--brand-text);}
+.lp-state svg{width:14px; height:14px;}
+.lp-item.is-locked{background:var(--surface);}
+.lp-item.is-locked .lp-ic,.lp-item.is-locked .lp-state{background:var(--border-soft, #eceff3); color:var(--muted);}
+.lp-foot{margin:clamp(14px,1.6vw,20px) 0 0; font-size:clamp(13px,1.02vw,14.2px); line-height:1.6;
+  color:var(--text); font-weight:600;}
+
+/* the pack itself */
+.lp-stage{display:grid; gap:clamp(12px,1.4vw,18px);}
+.lp-pack{padding:clamp(14px,1.6vw,20px); border-radius:20px; background:var(--surface);
+  border:1px solid var(--border); box-shadow:0 22px 44px -34px hsl(var(--brand-h) 90% 25% / .9);}
+.lp-pack-h{display:block; font-family:var(--font-display); font-size:11.6px; font-weight:800;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+.lp-map{position:relative; height:clamp(140px,15vw,180px); border-radius:14px; overflow:hidden;
+  background:repeating-linear-gradient(112deg, transparent 0 22px, hsl(var(--brand-h) 40% 90%) 22px 23px),
+             repeating-linear-gradient(22deg, transparent 0 26px, hsl(var(--brand-h) 40% 92%) 26px 27px),
+             var(--bg-alt);}
+.lp-radius{position:absolute; left:34%; top:48%; width:132px; height:132px; margin:-66px 0 0 -66px;
+  border-radius:50%; border:1.6px dashed hsl(var(--brand-h) 70% 74%);
+  animation:lpPulse 3.6s ease-out infinite;}
+@keyframes lpPulse{0%{transform:scale(.72); opacity:0;} 25%{opacity:.9;} 100%{transform:scale(1.12); opacity:0;}}
+.lp-me,.lp-p{position:absolute; width:14px; height:18px; border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg); background:hsl(var(--brand-h) 70% 74%);}
+.lp-me{left:34%; top:48%; background:var(--primary); width:17px; height:22px;
+  box-shadow:0 8px 16px -8px hsl(var(--brand-h) 95% 35% / .9);}
+.lp-p.p1{left:58%; top:30%;} .lp-p.p2{left:72%; top:64%;} .lp-p.p3{left:20%; top:74%;}
+
+.lp-results{list-style:none; margin:12px 0 0; padding:0; display:grid; gap:7px;}
+.lp-results li{display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:9px 12px; border-radius:11px; background:var(--bg-alt); border:1px solid transparent;
+  font-size:12px; color:var(--text-2); transition:border-color .3s var(--ease), background .3s var(--ease);}
+.lp-results b{font-family:var(--font-display); font-weight:700; color:var(--text);}
+.lp-results em{font-style:normal; font-weight:600;}
+.lp-results li.on{background:hsl(var(--brand-h) 85% 96%); border-color:hsl(var(--brand-h) 70% 82%);}
+.lp-results li.on b{color:var(--brand-text);}
+
+/* the three factors */
+.lp-dials{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(8px,1vw,12px);}
+.lp-dial{padding:12px; border-radius:14px; background:var(--surface); border:1px solid var(--border);
+  transition:border-color .3s var(--ease), transform .3s var(--ease);}
+.lp-dial b{display:block; font-family:var(--font-display); font-size:12.4px; font-weight:800;
+  letter-spacing:-.02em; color:var(--text);}
+.lp-dial span{display:block; height:8px; margin:9px 0 7px; border-radius:99px;
+  background:hsl(var(--brand-h) 85% 93%); overflow:hidden;}
+.lp-dial i{display:block; height:100%; width:var(--w); border-radius:99px; background:var(--primary);
+  transform-origin:left; animation:lpGrow .9s var(--ease) both;}
+.lp-dial:nth-child(2) i{animation-delay:.15s;} .lp-dial:nth-child(3) i{animation-delay:.3s;}
+@keyframes lpGrow{from{transform:scaleX(0);} to{transform:scaleX(1);}}
+.lp-dial em{font-style:normal; font-size:10.4px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--brand-text);}
+.lp-dial.is-locked i{background:var(--border);}
+.lp-dial.is-locked em{color:var(--muted);}
+.lp-dial:hover{border-color:hsl(var(--brand-h) 70% 80%); transform:translateY(-2px);}
+.lp-dial.is-locked:hover{transform:none; border-color:var(--border);}
+
+@media (max-width:1040px){
+  .lp-grid{grid-template-columns:minmax(0,1fr); gap:26px;}
+  .lp-lede{max-width:none;}
+}
+@media (max-width:560px){
+  .lp-dials{grid-template-columns:minmax(0,1fr);}
+  .lp-item{grid-template-columns:auto minmax(0,1fr);}
+  .lp-state{grid-column:1 / -1; justify-self:start;}
+}
+@media (prefers-reduced-motion:reduce){
+  .lp-radius,.lp-dial i{animation:none;}
+  .lp-radius{opacity:.5;}
+}

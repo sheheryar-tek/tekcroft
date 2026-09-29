@@ -1,0 +1,42 @@
+
+/* the pack drawn as a pack: streets, a park and the water behind three
+   lettered markers, and rows that carry the rating, the review count and
+   the distance the way the real one does */
+.lp-map{position:relative; height:clamp(156px,17vw,196px); border-radius:14px; overflow:hidden;
+  background:none; border:1px solid var(--border);}
+.lp-mapsvg{position:absolute; inset:0; width:100%; height:100%;}
+.m-land{fill:#eef1f4;}
+.m-block{fill:#e3e8ee;}
+.m-park{fill:#d8ecd9;}
+.m-water{fill:#cfe4f5;}
+.m-road{stroke:#fff; stroke-width:7; fill:none; stroke-linecap:round;}
+.m-road.thin{stroke-width:3.4; stroke:#f7f9fb;}
+.lp-pin{position:absolute; display:grid; place-items:center; width:24px; height:30px;
+  transform:translate(-50%,-100%); filter:drop-shadow(0 5px 6px rgba(20,40,60,.28));}
+.lp-pin::before{content:""; position:absolute; inset:0;
+  -webkit-mask:var(--pin) center/contain no-repeat; mask:var(--pin) center/contain no-repeat;
+  background:#9AA7B4;}
+.lp-pin b{position:relative; z-index:1; margin-bottom:6px; font-family:var(--font-display);
+  font-size:11px; font-weight:800; color:#fff;}
+.lp-map{--pin:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cpath d='M16 42s16-18 16-26A16 16 0 1 0 0 16c0 8 16 26 16 26z'/%3E%3C/svg%3E");}
+.lp-pin.me{width:30px; height:38px; left:34%; top:56%;}
+.lp-pin.me::before{background:var(--primary);}
+.lp-pin.p2{left:64%; top:36%;} .lp-pin.p3{left:80%; top:74%;}
+.lp-radius{left:34%; top:56%; width:130px; height:130px; margin:-65px 0 0 -65px;
+  border-color:hsl(var(--brand-h) 80% 58% / .55);}
+
+.lp-results li{align-items:flex-start; gap:12px; padding:10px 12px;}
+.lp-mark{display:grid; place-items:center; width:22px; height:22px; border-radius:50%; flex:none;
+  background:#9AA7B4; color:#fff; font-family:var(--font-display); font-size:10.5px; font-weight:800;}
+.lp-results li.on .lp-mark{background:var(--primary);}
+.lp-results li > div{flex:1; min-width:0;}
+.lp-meta{display:block; margin-top:3px; font-size:11.2px; color:var(--text-2);}
+.lp-meta i{font-style:normal; color:var(--muted);}
+.lp-stars{font-style:normal; margin-right:5px; letter-spacing:.5px; color:#F5A623;}
+.lp-dist{font-size:11.4px; font-weight:700; color:var(--muted); white-space:nowrap; padding-top:2px;}
+
+/* the dials read in their own colours: what can be moved, and what cannot */
+.lp-dial i{background:#129A5B;}
+.lp-dial em{color:#129A5B;}
+.lp-dial.is-locked i{background:#c3cbd4;}
+.lp-dial.is-locked em{color:var(--muted);}
