@@ -4036,7 +4036,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
     linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
                     rgba(0,0,0,.90) 100%);}
 .mm-copy{position:relative; z-index:2; color:#fff;}
-.mm-copy h3{font-size:var(--h3); line-height:1.24; color:#fff; text-wrap:balance;}
+.mm-copy h3, .mm-copy .mm-title{font-size:var(--h3); line-height:1.24; color:#fff; text-wrap:balance;}
 .mm-copy p{margin:9px 0 0; font-size:13.5px; line-height:1.5; max-width:30ch;
   color:rgba(255,255,255,.84);}
 
@@ -4076,7 +4076,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
 @media (max-width:1240px){
   .mm-hero-grid{grid-template-columns:1fr 210px; gap:14px;}
   .mm-hero{min-height:280px; padding:20px 18px;}
-  .mm-copy h3{font-size:var(--h3);}
+  .mm-copy h3, .mm-copy .mm-title{font-size:var(--h3);}
   .mm-dsc{display:none;}
 }
 /* below this the site switches to the burger, so the panel stands down */
@@ -4413,7 +4413,7 @@ html[data-theme="dark"] .cta3-actions .btn-primary:hover{
     opacity:0; transition:opacity .26s var(--ease),
                transform .52s var(--pop), background .3s var(--ease);}
   .cn .cn-tab.on .cn-go{
-    opacity:1; background:#0a1a29; color:#fff;
+    opacity:1; background:var(--primary); color:#fff;
     -webkit-backdrop-filter:none; backdrop-filter:none;
     box-shadow:none;}
   .cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
@@ -4630,7 +4630,7 @@ html[data-theme="dark"] .modal .field.sel select{
   content:""; width:6px; height:6px; border-radius:50%;
   background:var(--primary); flex:none;}
 /* restored */
-.mm-copy h3{font-size:var(--h3); font-weight:800; letter-spacing:-.03em;
+.mm-copy h3, .mm-copy .mm-title{font-size:var(--h3); font-weight:800; letter-spacing:-.03em;
   line-height:1.22; color:#fff; text-transform:none;}
 .faq-aside p{
   margin:10px 0 0; font-size:var(--body); line-height:1.6;
@@ -5191,8 +5191,8 @@ h1, h2, h3, h4, h5, h6{
              box-shadow .3s var(--ease);}
 #why .wy-tab:hover{color:var(--text);}
 
-#why .wy-tab.on{background:hsl(var(--brand-h) 100% 35%); color:#fff;
-  box-shadow:0 8px 20px -8px hsl(var(--brand-h) 100% 40% / .5);}
+#why .wy-tab.on{background:var(--primary); color:#fff;
+  box-shadow:0 8px 20px -8px hsl(var(--brand-h) 100% 40% / .55);}
 #why .wy-tab.on:hover{color:#fff;}
 #why .wy-tab:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
 
@@ -5866,7 +5866,7 @@ html[data-theme="dark"] .bw-ic{background:hsl(var(--brand-h) 40% 18%);}
   align-items:end; margin-bottom:clamp(20px,2.4vw,30px);}
 .cv-say .smark{margin-bottom:12px;}
 #about-v6 h2{margin:0; font-size:var(--h2); line-height:1.06; letter-spacing:-.04em; text-transform:none;}
-#about-v6 h2 em{display:block; font-style:normal; color:var(--brand-text);}
+#about-v6 h2 em{display:inline; font-style:normal; color:var(--brand-text);}
 .cv-copy p{margin:0 0 12px; font-size:clamp(13.4px,1.04vw,14.8px); line-height:1.62; color:var(--text-2);}
 .cv-copy p + p{margin-bottom:14px;}
 
@@ -6617,7 +6617,7 @@ html[data-theme="dark"] .sc{background:hsl(var(--brand-h) 45% 14%); color:var(--
    on the right; the ribbon and the figures below are unchanged */
 #about-v6 .cv-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center;
   gap:clamp(24px,3.4vw,56px); margin-bottom:clamp(24px,2.8vw,36px);}
-#about-v6 .cv-say h2 em{display:block;}
+#about-v6 .cv-say h2 em{display:inline;}
 #about-v6 .cv-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.66;
   color:var(--text-2); max-width:54ch;}
 #about-v6 .cv-say .btn{margin-top:18px;}
@@ -6746,7 +6746,7 @@ html[data-theme="dark"] .sc{background:hsl(var(--brand-h) 45% 14%); color:var(--
    ribbon running across the board below */
 #about .cv-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center;
   gap:clamp(24px,3.4vw,56px); margin-bottom:clamp(22px,2.6vw,34px);}
-#about .cv-say h2 em{display:block;}
+#about .cv-say h2 em{display:inline; font-style:normal; color:var(--brand-text);}
 #about .cv-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.66;
   color:var(--text-2); max-width:54ch;}
 #about .cv-say .btn{margin-top:18px;}
@@ -6947,8 +6947,9 @@ html body .faq-aside h3{
   font-size:var(--h3) !important;
   line-height:1.25 !important;
 }
-/* Hero form title stays compact when marked up as h3 */
+/* Hero form title stays compact (p.hs-form-title or legacy h3) */
 html body .hs-form > h3,
+html body .hs-form > .hs-form-title,
 html body .hs-done h3{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
@@ -6976,6 +6977,14 @@ html body .sec-head h2{
 /* Never force a third stacked line inside an h2 */
 html body h2 > span + span + span{
   display:inline !important;
+}
+/* Headings must flow as one phrase — no forced line breaks via <em>/<span> */
+html body :is(h1, h2, h3, h4, h5, h6) em,
+html body :is(h1, h2, h3, h4, h5, h6) > br{
+  display:inline !important;
+}
+html body :is(h1, h2, h3, h4, h5, h6) br{
+  display:none !important;
 }
 
 /* ── Body / lede reading size ───────────────────────────────────────── */
@@ -7017,6 +7026,16 @@ html body .ct-err,
 html body .hs-sub{
   font-size:13px !important;
   line-height:1.45 !important;
+}
+/* Hero form title is a label (p.hs-form-title), not body copy — keep compact */
+html body .hs-form > h3,
+html body .hs-form > .hs-form-title{
+  font-size:clamp(17px,1.5vw,19px) !important;
+  font-weight:700 !important;
+  line-height:1.22 !important;
+  letter-spacing:-0.035em !important;
+  margin:0 !important;
+  text-transform:none !important;
 }
 
 /* ── Heading → description / content gaps ───────────────────────────── */

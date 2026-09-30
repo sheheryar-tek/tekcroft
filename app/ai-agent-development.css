@@ -88,7 +88,7 @@
 
  /* the homepage sizes a heading inside its own form dialog at 26px rather
     than at --h2, which is a section's size; this is that heading. */
-.hs-form > h3{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.5vw,19px) !important;
+.hs-form > h3, .hs-form > .hs-form-title{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700; letter-spacing:-0.035em; line-height:1.22; color:#fff;}
 .hs-rule{display:block; width:52px; height:3px; margin:14px auto 0; border-radius:3px;
   background:var(--primary);}
@@ -1046,7 +1046,7 @@ html[data-theme="dark"] .cn .cn-stat{
   opacity:0; transition:opacity .26s var(--ease),
              transform .52s var(--pop), background .3s var(--ease);}
 .cn .cn-tab.on .cn-go{
-  opacity:1; background:#0a1a29; color:#fff;
+  opacity:1; background:var(--primary); color:#fff;
   -webkit-backdrop-filter:none; backdrop-filter:none;
   box-shadow:none;}
 .cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
@@ -1287,7 +1287,7 @@ html[data-theme="light"] .hs-field input,
 html[data-theme="light"] .hs-field select{
   background:#fff;}
 
-html[data-theme="light"] .hs-form > h3{color:var(--text);}
+html[data-theme="light"] .hs-form > h3, .hs-form > .hs-form-title{color:var(--text);}
 html[data-theme="light"] .hs-sub{color:var(--text-2);}
 html[data-theme="light"] .hs-field label{color:var(--text);}
 html[data-theme="light"] .hs-field:focus-within label{color:var(--brand-text);}
@@ -2991,7 +2991,7 @@ html[data-theme="dark"] .lo-strip li:hover{background:hsl(var(--brand-h) 50% 12%
 
    The one type override is .eg-card h3, which drops from --h3 to a
    smaller ramp. It is the same kind of exception the sheet already makes
-   for .mm-copy h3 and .hs-form h2 — a heading inside a dense component
+   for .mm-copy h3, .mm-copy .mm-title and .hs-form h2 — a heading inside a dense component
    rather than a heading on the page. */
 /* no background here: the section reads --ground like every other one on
    the page, so the run is decided in one place rather than in whichever
@@ -6879,7 +6879,7 @@ html[data-theme="dark"] #services-2 .cn-plate::after{
   background:transparent !important; box-shadow:none !important;
   backdrop-filter:none !important; -webkit-backdrop-filter:none !important; opacity:0;}
 #services-2 .cn-tab.on .cn-go{
-  opacity:1 !important; background:#0a1a29 !important; color:#fff !important;
+  opacity:1 !important; background:var(--primary) !important; color:#fff !important;
   backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
 #services-2 .cn-sheet{ background:#fff !important; }
 html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
@@ -7251,8 +7251,9 @@ html body .faq-aside h3{
   font-size:var(--h3) !important;
   line-height:1.25 !important;
 }
-/* Hero form title stays compact when marked up as h3 */
+/* Hero form title stays compact (p.hs-form-title or legacy h3) */
 html body .hs-form > h3,
+html body .hs-form > .hs-form-title,
 html body .hs-done h3{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
@@ -7280,6 +7281,14 @@ html body .sec-head h2{
 /* Never force a third stacked line inside an h2 */
 html body h2 > span + span + span{
   display:inline !important;
+}
+/* Headings must flow as one phrase — no forced line breaks via <em>/<span> */
+html body :is(h1, h2, h3, h4, h5, h6) em,
+html body :is(h1, h2, h3, h4, h5, h6) > br{
+  display:inline !important;
+}
+html body :is(h1, h2, h3, h4, h5, h6) br{
+  display:none !important;
 }
 
 /* ── Body / lede reading size ───────────────────────────────────────── */
@@ -7321,6 +7330,16 @@ html body .ct-err,
 html body .hs-sub{
   font-size:13px !important;
   line-height:1.45 !important;
+}
+/* Hero form title is a label (p.hs-form-title), not body copy — keep compact */
+html body .hs-form > h3,
+html body .hs-form > .hs-form-title{
+  font-size:clamp(17px,1.5vw,19px) !important;
+  font-weight:700 !important;
+  line-height:1.22 !important;
+  letter-spacing:-0.035em !important;
+  margin:0 !important;
+  text-transform:none !important;
 }
 
 /* ── Heading → description / content gaps ───────────────────────────── */

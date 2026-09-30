@@ -1138,144 +1138,28 @@ var $$ = function(s, r){
 })();
 
 
-/* === hx-wire-script === */
-
-/* ══════════════════════════════════════════════════════════════════════
-   DRAWING THE FOUR WIRES
-
-   One path per card, hub edge to card edge, with the turn where the CSS
-   bracket used to put it: the middle of the gap. Measured rather than
-   declared, because the gap is a clamp and the cards size themselves.
-
-   Two passes so every resting wire is under every lit one — appended in
-   card order, a later card's hairline would otherwise sit on an earlier
-   card's light.
-
-   The section is marked is-wired only after a path exists. Until then,
-   and if any of this fails, the CSS bracket is what is on screen.
-   ══════════════════════════════════════════════════════════════════════ */
+/* === aiv-script (AI Search tabs) === */
 (function(){
-  var NS  = "http://www.w3.org/2000/svg";
-  var sec = document.querySelector(".hx");
-  if (!sec) return;
-  var grid = sec.querySelector(".hx-grid");
-  var core = sec.querySelector(".hx-core");
-  if (!grid || !core) return;
-
-  /* reading order, which is the order the light will take */
-  var l = sec.querySelectorAll(".hx-l > .hx-card");
-  var r = sec.querySelectorAll(".hx-r > .hx-card");
-  var cards = [];
-  if (l[0]) cards.push({el:l[0], side:-1});
-  if (r[0]) cards.push({el:r[0], side: 1});
-  if (l[1]) cards.push({el:l[1], side:-1});
-  if (r[1]) cards.push({el:r[1], side: 1});
-  if (!cards.length) return;
-
-  var svg = document.createElementNS(NS, "svg");
-  svg.setAttribute("class", "hx-net");
-  svg.setAttribute("aria-hidden", "true");
-  svg.setAttribute("preserveAspectRatio", "none");
-  var gBase  = document.createElementNS(NS, "g");
-  var gTrace = document.createElementNS(NS, "g");
-  svg.appendChild(gBase); svg.appendChild(gTrace);
-  grid.insertBefore(svg, grid.firstChild);
-
-  /* out from the hub, along to the middle of the gap, down or up to the
-     card's line, and in to its edge. The corner radius is the bracket's
-     14, given back whatever the three runs can spare. */
-  function wire(hx, hy, cx, cy){
-    var tx = (hx + cx) / 2;
-    var dx = tx > hx ? 1 : -1;
-    var dy = cy > hy ? 1 : -1;
-    var drop = Math.abs(cy - hy);
-    if (drop < 2) return "M" + hx + "," + hy + " L" + cx + "," + cy;
-    var rr = Math.min(14, Math.abs(tx - hx) * .8,
-                          Math.abs(cx - tx) * .8, drop * .45);
-    return "M" + hx + "," + hy +
-           " L" + (tx - dx * rr) + "," + hy +
-           " Q" + tx + "," + hy + " " + tx + "," + (hy + dy * rr) +
-           " L" + tx + "," + (cy - dy * rr) +
-           " Q" + tx + "," + cy + " " + (tx + dx * rr) + "," + cy +
-           " L" + cx + "," + cy;
-  }
-
-  var lastW = 0, lastH = 0;
-
-  function build(force){
-    if (window.matchMedia("(max-width:920px)").matches) return;
-    var g = grid.getBoundingClientRect();
-    if (!g.width || !g.height) return;
-    if (!force && Math.abs(g.width - lastW) < 1 && Math.abs(g.height - lastH) < 1) return;
-    lastW = g.width; lastH = g.height;
-
-    var c  = core.getBoundingClientRect();
-    var hy = c.top + c.height / 2 - g.top;
-
-    svg.setAttribute("viewBox", "0 0 " + g.width + " " + g.height);
-    while (gBase.firstChild)  gBase.removeChild(gBase.firstChild);
-    while (gTrace.firstChild) gTrace.removeChild(gTrace.firstChild);
-
-    cards.forEach(function(item, i){
-      var b  = item.el.getBoundingClientRect();
-      var cy = b.top + b.height / 2 - g.top;
-      var hx = (item.side < 0 ? c.left  : c.right) - g.left;
-      var cx = (item.side < 0 ? b.right : b.left)  - g.left;
-      var d  = wire(hx, hy, cx, cy);
-
-      var base = document.createElementNS(NS, "path");
-      base.setAttribute("d", d);
-      base.setAttribute("class", "base");
-      gBase.appendChild(base);
-
-      var tr = document.createElementNS(NS, "path");
-      tr.setAttribute("d", d);
-      tr.setAttribute("class", "trace");
-      gTrace.appendChild(tr);
-
-      var len = tr.getTotalLength();
-      tr.style.setProperty("--len",   len.toFixed(1) + "px");
-      tr.style.setProperty("--comet", Math.max(36, Math.min(104, len * .3)).toFixed(1) + "px");
-      tr.style.setProperty("--i", i);
-      item.trace = tr;
-    });
-
-    sec.classList.add("is-wired");
-  }
-
-  /* a card under the pointer holds its own wire and stops the loop */
-  cards.forEach(function(item){
-    function hold(){
-      grid.classList.add("is-held");
-      if (item.trace) item.trace.classList.add("is-lit");
-    }
-    function drop(){
-      grid.classList.remove("is-held");
-      if (item.trace) item.trace.classList.remove("is-lit");
-    }
-    item.el.addEventListener("mouseenter", hold);
-    item.el.addEventListener("mouseleave", drop);
-    item.el.addEventListener("focusin",  hold);
-    item.el.addEventListener("focusout", drop);
+  var root=document.getElementById('ai'); if(!root) return;
+  var tabs=[].slice.call(root.querySelectorAll('.aiv-tab')), panels=[].slice.call(root.querySelectorAll('.aiv-panel'));
+  var cur=0, timer=null, stopped=false, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i,focus){ cur=i; tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle('on',on);
+      t.setAttribute('aria-selected',on?'true':'false'); t.tabIndex=on?0:-1; panels[k].hidden=!on; });
+    if(focus) tabs[i].focus(); restartBar(); }
+  function restartBar(){ tabs.forEach(function(t){ var b=t.querySelector('.aiv-bar'); b.style.animation='none'; void b.offsetWidth; b.style.animation=''; }); }
+  function start(){ if(stopped||reduce) return; clearInterval(timer); timer=setInterval(function(){ show((cur+1)%tabs.length); },6000); root.classList.add('aiv-auto'); }
+  function stop(){ clearInterval(timer); root.classList.remove('aiv-auto'); }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){ stopped=true; stop(); show(i); });
+    t.addEventListener('keydown',function(e){ var n=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') n=(i+1)%tabs.length; if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=(i-1+tabs.length)%tabs.length;
+      if(e.key==='Home') n=0; if(e.key==='End') n=tabs.length-1;
+      if(n!==null){ e.preventDefault(); stopped=true; stop(); show(n,true); } });
   });
-
-  /* nothing runs while the section is not being looked at */
-  if ("IntersectionObserver" in window){
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){ grid.classList.toggle("is-live", e.isIntersecting); });
-    }, {rootMargin:"120px"}).observe(grid);
-  } else {
-    grid.classList.add("is-live");
-  }
-
-  build(true);
-  window.addEventListener("load", function(){ build(true); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ build(true); });
-
-  var t;
-  function later(){ clearTimeout(t); t = setTimeout(function(){ build(false); }, 140); }
-  window.addEventListener("resize", later);
-  if ("ResizeObserver" in window) new ResizeObserver(later).observe(grid);
+  var box=root.querySelector('.aiv-box');
+  box.addEventListener('mouseenter',stop); box.addEventListener('mouseleave',start);
+  box.addEventListener('focusin',stop);
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?start():stop(); }); },{threshold:.3}).observe(root); } else start();
 })();
 
 /* === tm-script (Our Technical SEO Model) === */

@@ -70,7 +70,7 @@
    small text; one step darker takes it to 4.6 and the blue is, to look
    at, the same blue. The same step the numbered badges on the other
    sections take, for the same reason. */
-.wy-tab.on{background:hsl(var(--brand-h) 100% 35%); color:#fff;
+.wy-tab.on{background:var(--primary); color:#fff;
   box-shadow:0 8px 20px -8px hsl(var(--brand-h) 100% 40% / .5);}
 .wy-tab.on:hover{color:#fff;}
 .wy-tab:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}

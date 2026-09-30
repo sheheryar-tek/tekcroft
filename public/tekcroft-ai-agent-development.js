@@ -1287,16 +1287,6 @@ var $$ = function(s, r){
 /* === p2-script === */
 
 (function(){
-  /* variant switch (review aid): one problem section shows at a time */
-  var secs={1:document.getElementById('problem'),2:document.getElementById('problem-v2')};
-  var btns=[].slice.call(document.querySelectorAll('.vsw button'));
-  function pick(v){ Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden = (+k!==+v); });
-    btns.forEach(function(b){ b.classList.toggle('on', +b.dataset.v===+v); b.setAttribute('aria-pressed', +b.dataset.v===+v); });
-    try{ localStorage.setItem('tk-problem-variant', v); }catch(e){} }
-  var saved=2; try{ saved=+localStorage.getItem('tk-problem-variant')||2; }catch(e){}
-  btns.forEach(function(b){ b.addEventListener('click',function(){ pick(b.dataset.v); }); });
-  pick(saved);
-
   /* variant 2: numbers count up; rows open in turn; pointing or tapping picks one */
   var box=document.querySelector('.p2-list'); if(!box) return;
   var rows=[].slice.call(box.querySelectorAll('.p2-row')), cur=0, t=null, paused=false;

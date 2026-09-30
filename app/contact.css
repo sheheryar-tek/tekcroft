@@ -1191,8 +1191,9 @@ html body .faq-aside h3{
   font-size:var(--h3) !important;
   line-height:1.25 !important;
 }
-/* Hero form title stays compact when marked up as h3 */
+/* Hero form title stays compact (p.hs-form-title or legacy h3) */
 html body .hs-form > h3,
+html body .hs-form > .hs-form-title,
 html body .hs-done h3{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
@@ -1220,6 +1221,14 @@ html body .sec-head h2{
 /* Never force a third stacked line inside an h2 */
 html body h2 > span + span + span{
   display:inline !important;
+}
+/* Headings must flow as one phrase — no forced line breaks via <em>/<span> */
+html body :is(h1, h2, h3, h4, h5, h6) em,
+html body :is(h1, h2, h3, h4, h5, h6) > br{
+  display:inline !important;
+}
+html body :is(h1, h2, h3, h4, h5, h6) br{
+  display:none !important;
 }
 
 /* ── Body / lede reading size ───────────────────────────────────────── */
@@ -1261,6 +1270,16 @@ html body .ct-err,
 html body .hs-sub{
   font-size:13px !important;
   line-height:1.45 !important;
+}
+/* Hero form title is a label (p.hs-form-title), not body copy — keep compact */
+html body .hs-form > h3,
+html body .hs-form > .hs-form-title{
+  font-size:clamp(17px,1.5vw,19px) !important;
+  font-weight:700 !important;
+  line-height:1.22 !important;
+  letter-spacing:-0.035em !important;
+  margin:0 !important;
+  text-transform:none !important;
 }
 
 /* ── Heading → description / content gaps ───────────────────────────── */

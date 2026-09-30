@@ -186,22 +186,15 @@
   var track = document.getElementById("tbMarq");
   if (track && !calm) track.innerHTML += track.innerHTML;
 
-  /* ---------------- count-up ---------------- */  function countUp(el){
-    var raw = el.getAttribute("data-count");
-    var target = parseFloat(raw);
+  /* ---------------- count-up ---------------- */
+  function countUp(el){
+    var target = parseFloat(el.getAttribute("data-count"));
     if (isNaN(target)) return;
     var prefix = el.getAttribute("data-prefix") || "";
     var suffix = el.getAttribute("data-suffix") || "";
-    /* How many decimals the authored value carries decides how the count
-       is rounded and printed. Without this a rating of 4.9 counts up to a
-       flat 5, because Math.round was the only rounding here. An integer
-       target has no decimals and keeps the thousands separator it had. */
-    var dec = (String(raw).split(".")[1] || "").length;
     function affix(t){ return t ? '<i class="fig-af">' + t + '</i>' : ""; }
     function show(n){
-      var v = dec ? n.toFixed(dec)
-                  : (n >= 1000 ? n.toLocaleString("en-US") : n);
-      return affix(prefix) + v + affix(suffix);
+      return affix(prefix) + (n >= 1000 ? n.toLocaleString("en-US") : n) + affix(suffix);
     }
     if (calm){ el.innerHTML = show(target); return; }
     var t0 = null, dur = 1400;
@@ -209,7 +202,7 @@
       if (t0 === null) t0 = t;
       var p = Math.min((t - t0) / dur, 1);
       var e = 1 - Math.pow(1 - p, 3);
-      el.innerHTML = show(dec ? +(target * e).toFixed(dec) : Math.round(target * e));
+      el.innerHTML = show(Math.round(target * e));
       if (p < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -226,204 +219,6 @@
 })();
 
 
-/* === walk-script === */
-
-/* ══════════════════════════════════════════════════════════════════════
-   THE WALK — ported from the homepage.
-
-   Named eg-script once, after the section it arrived with. That section
-   is gone; the blueprint row uses it now, through the same data-walk
-   attribute. Nothing in here is tied to either.
-
-   Any layout marked data-walk steps a light along its .walk-step
-   children and publishes the index on the container as data-at, so a
-   progress arc or a row of pips can be drawn from it without needing a
-   script of its own. Each keeps its own timer, and the timer runs only
-   while that layout is on screen.
-
-   Everything the section has to say is readable before the light starts
-   moving: the cards are all revealed on first sight, and the stepping is
-   decoration on top of that.
-   ══════════════════════════════════════════════════════════════════════ */
-(function(){
-  "use strict";
-  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  $$("[data-walk]").forEach(function(pw){
-    var steps = $$(".walk-step", pw), at = -1, tick = null;
-
-    /* On the narrow layout the lit step is pulled to the head of the list
-       with `order`, and order cannot be transitioned — the card is simply
-       somewhere else on the next frame. So the move is played back: the
-       tops are read before the class changes and again after, each card is
-       put back where it was with a transform, and then the transform is
-       released. The browser animates the release, which looks like the
-       card travelling to its new place.
-
-       On the wide layout nothing reorders, every delta is zero, and this
-       costs one rect read per step. */
-    function tops(){
-      return steps.map(function(s){ return s.getBoundingClientRect().top; });
-    }
-    function play(before){
-      /* Every read first, then every write — otherwise reading a rect,
-         writing a style and forcing a commit inside one loop pass makes
-         the browser lay the page out again on every card. */
-      var deltas = steps.map(function(s, k){
-        return before[k] - s.getBoundingClientRect().top;
-      });
-      var moved = [];
-      steps.forEach(function(s, k){
-        if (!deltas[k]) return;
-        s.style.transition = "none";
-        s.style.transform = "translateY(" + deltas[k] + "px)";
-        moved.push(s);
-      });
-      if (!moved.length) return;
-      void moved[0].offsetHeight;                 /* one commit for them all */
-      moved.forEach(function(s){
-        s.style.transition = "transform .52s cubic-bezier(.16,1,.3,1)";
-        s.style.transform = "";
-        s.addEventListener("transitionend", function done(){
-          s.style.transition = "";
-          s.removeEventListener("transitionend", done);
-        });
-      });
-    }
-
-    function go(){
-      var before = calm ? null : tops();
-      at = (at + 1) % steps.length;
-      steps.forEach(function(s, k){ s.classList.toggle("on", k === at); });
-      pw.setAttribute("data-at", at);
-      if (before) play(before);
-    }
-
-    /* ── narrow: the reader walks it, not the timer ───────────────────
-       On one column the light stepping every 1.6s is unreadable — five
-       cards is more than anyone can catch at that rate, and the layout
-       used to reorder them under the thumb as well. Here each card lights
-       as it is scrolled to and stays lit until the next one is reached,
-       so the section is read at the reader's own pace and the disc still
-       counts the stage being looked at.
-
-       The rootMargin pins the trigger to a band across the middle of the
-       screen rather than the edge: a card lights when it is where the eye
-       is, not when a corner of it appears. */
-    var narrow = window.matchMedia("(max-width: 1000px)");
-
-    function stop(){
-      if (tick){ clearInterval(tick); tick = null; }
-    }
-
-    function light(k){
-      if (k === at) return;
-      at = k;
-      steps.forEach(function(s, i){ s.classList.toggle("on", i === k); });
-      pw.setAttribute("data-at", k);
-    }
-
-    /* 1.6s is the wide layout's pace, where all five cards are readable
-       already and the light is only pointing at one of them. Here the
-       light IS the card, so the interval is what a stage takes to read
-       rather than what a pointer takes to move. */
-    function run(){
-      if (tick) return;
-      tick = setInterval(function(){ light((at + 1) % steps.length); }, 7000);
-    }
-
-    var wired = false;
-
-    /* Moving a stage by hand restarts the clock rather than stopping it.
-       Killing the timer outright meant one drag left the carousel dead
-       for the rest of the visit; resetting it gives the stage just landed
-       on a full read before anything moves on its own again. */
-    function move(d){
-      light((at + d + steps.length) % steps.length);
-      if (tick){ clearInterval(tick); tick = null; }
-      if (!calm) run();
-    }
-
-    /* ── narrow: the drag ─────────────────────────────────────────────
-       Wired once, not per entry into view, or every scroll back would
-       add another set of listeners and one drag would move two stages.
-
-       Touch events for fingers and pointer events for a mouse, rather
-       than pointer events for both. A pointer sequence on a phone is
-       taken over by the browser the moment it decides the gesture might
-       be a scroll: it fires pointercancel and no pointerup ever arrives,
-       so a swipe that started even slightly off the horizontal was
-       simply never seen. touchend always arrives. The pointer path is
-       kept for a mouse only, so a drag is never counted twice.
-
-       Vertical drags are left alone; the page still has to scroll. A
-       drag only counts when it is clearly sideways and long enough to
-       have been meant. */
-    function wire(){
-      if (wired) return;
-      wired = true;
-      var list = pw.querySelector(".eg-list");
-      if (!list) return;
-      var x0 = null, y0 = null;
-
-      function start(x, y){ x0 = x; y0 = y; }
-      function end(x, y){
-        if (x0 === null) return;
-        var dx = x - x0, dy = y - y0;
-        x0 = null;
-        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) move(dx < 0 ? 1 : -1);
-      }
-
-      list.addEventListener("touchstart", function(e){
-        var t = e.changedTouches[0]; start(t.clientX, t.clientY);
-      }, { passive: true });
-      list.addEventListener("touchend", function(e){
-        var t = e.changedTouches[0]; end(t.clientX, t.clientY);
-      }, { passive: true });
-      list.addEventListener("touchcancel", function(){ x0 = null; }, { passive: true });
-
-      list.addEventListener("pointerdown", function(e){
-        if (e.pointerType === "mouse") start(e.clientX, e.clientY);
-      }, { passive: true });
-      list.addEventListener("pointerup", function(e){
-        if (e.pointerType === "mouse") end(e.clientX, e.clientY);
-      }, { passive: true });
-    }
-
-    var io = new IntersectionObserver(function(entries){
-      var here = entries[0].isIntersecting;
-      if (!here){ stop(); return; }
-      steps.forEach(function(s){ s.classList.add("seen"); });
-
-      /* Narrow shows one stage at a time, so a stage has to be lit for
-         anything to be on screen at all — even when the reader has asked
-         for no motion, where the first one is simply shown and left. */
-      if (narrow.matches){
-        wire();
-        if (at < 0) light(0);
-        if (calm) return;
-        run();
-        return;
-      }
-
-      if (calm) return;                            /* drawn, and left still */
-      if (!tick){
-        go();
-        tick = setInterval(go, 1600);
-      }
-    }, { threshold:0.25 });
-    io.observe(pw);
-
-    /* turn a phone on its side, or drag a window across the breakpoint,
-       and the section swaps which of the two it is running */
-    var swap = function(){ stop(); io.unobserve(pw); io.observe(pw); };
-    if (narrow.addEventListener) narrow.addEventListener("change", swap);
-    else narrow.addListener(swap);
-  });
-})();
-
-
 /* === ft-script === */
 
 /* The footer's run of service names. One row written twice, because the
@@ -433,10 +228,10 @@
   "use strict";
   var el = document.getElementById("ftMarq");
   if (!el) return;
-  var row = ["Technical SEO","Site audits","Crawl and indexation","Core Web Vitals",
-             "Page speed","Site architecture","Internal linking","Structured data",
-             "JavaScript SEO","Site migrations","Log file analysis",
-             "Answer engine visibility","Monitoring"]
+  var row = ["SEO","On-page SEO","Title tags","Meta descriptions",
+             "Content optimization","Internal linking","Schema markup",
+             "Keyword mapping","Heading structure","Technical SEO",
+             "Analytics","Reporting"]
     .map(function(t){ return "<span>" + t + "</span><i></i>"; }).join("");
   el.innerHTML = row + row;
 })();
@@ -655,6 +450,328 @@
 })();
 
 
+/* === ws-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE TILT
+
+   The pointer's position inside a card, as a fraction from its centre,
+   written back as two angles the stylesheet turns into a rotation. Four
+   degrees each way: enough to read as a solid thing being turned,
+   little enough that the type stays square to the eye.
+
+   Read on pointermove and written on the next frame rather than
+   immediately — a rect read and a style write in the same handler makes
+   the browser lay out the section again on every pixel of movement.
+
+   pointerenter/leave rather than mouseenter/leave, and the whole thing is
+   skipped where a pointer cannot hover, so a tap on a phone does not
+   leave a card stuck at an angle nobody asked for.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var MAX = 4;                                   /* degrees, each way */
+  document.querySelectorAll(".ws-item").forEach(function(card){
+    var frame = null, box = null;
+
+    card.addEventListener("pointerenter", function(){
+      box = card.getBoundingClientRect();        /* once, on the way in */
+    });
+
+    card.addEventListener("pointermove", function(e){
+      if (!box || frame) return;
+      var x = (e.clientX - box.left) / box.width  - .5;
+      var y = (e.clientY - box.top)  / box.height - .5;
+      frame = requestAnimationFrame(function(){
+        card.style.setProperty("--ry", (x *  MAX * 2).toFixed(2) + "deg");
+        card.style.setProperty("--rx", (y * -MAX * 2).toFixed(2) + "deg");
+        frame = null;
+      });
+    });
+
+    card.addEventListener("pointerleave", function(){
+      if (frame) { cancelAnimationFrame(frame); frame = null; }
+      card.style.setProperty("--ry", "0deg");
+      card.style.setProperty("--rx", "0deg");
+      box = null;
+    });
+  });
+})();
+
+
+/* === pf-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE PLATFORM RUN
+
+   The track holds the seven cards twice, because the slide travels a flat
+   half of it and the second half has to be an exact copy for the loop to
+   have no seam. Doing it here rather than in the markup means each
+   platform is written once.
+
+   ── the copy only exists while the run does ────────────────────────
+   Below 600px the run is switched off in the stylesheet and the cards go
+   back to a stack the page scrolls through. The copy was still being made
+   there, so the stack was fourteen cards long: the seven read through,
+   and then the same seven again. That is the repeat.
+
+   So the copy follows the layout rather than being made once at load. The
+   same query the stylesheet uses is asked here, and it is listened to —
+   turn a phone on its side, or drag a window across the breakpoint, and
+   the copies are added or taken away to match. Each one is marked so it
+   can be found again; nothing else in the track is touched.
+
+   None of it happens under a reduced-motion preference either: there the
+   track does not move and the rail is an ordinary scroller, where a
+   second copy would just be the same seven cards twice.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var track = document.querySelector(".pf-track");
+  if (!track) return;
+
+  /* the breakpoint the stylesheet stacks at, asked the same way here */
+  var running = window.matchMedia("(min-width: 601px)");
+
+  /* The list is snapshotted before anything is appended. track.children
+     is a live collection: appending one of its members back into the
+     track removes it from the collection at the same time, so walking it
+     while appending would skip every other card and leave the second run
+     short. */
+  var cards = Array.prototype.slice.call(track.children);
+
+  function add(){
+    cards.forEach(function(card){
+      var copy = card.cloneNode(true);
+      /* The originals are marked .rv, which holds an element at opacity 0
+         until the reveal observer gives it .in. That observer collected
+         its list before these copies existed, so nothing would ever light
+         them — the second half of the track would be there, travelling,
+         and invisible the whole way. The copies do not need revealing:
+         the cards they duplicate have already been seen. */
+      copy.classList.remove("rv");
+      copy.removeAttribute("style");
+      copy.setAttribute("aria-hidden", "true");
+      copy.setAttribute("tabindex", "-1");
+      copy.setAttribute("data-copy", "");
+      track.appendChild(copy);
+    });
+  }
+
+  function drop(){
+    Array.prototype.slice.call(track.querySelectorAll("[data-copy]"))
+      .forEach(function(el){ el.remove(); });
+  }
+
+  function sync(){
+    var has = !!track.querySelector("[data-copy]");
+    if (running.matches && !has) add();
+    else if (!running.matches && has) drop();
+  }
+
+  sync();
+  if (running.addEventListener) running.addEventListener("change", sync);
+  else running.addListener(sync);          /* older Safari */
+})();
+
+
+/* === eg-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE WALK — ported from the homepage
+
+   Any layout marked data-walk steps a light along its .walk-step
+   children and publishes the index on the container as data-at, so a
+   progress arc or a row of pips can be drawn from it without needing a
+   script of its own. Each keeps its own timer, and the timer runs only
+   while that layout is on screen.
+
+   Everything the section has to say is readable before the light starts
+   moving: the cards are all revealed on first sight, and the stepping is
+   decoration on top of that.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  $$("[data-walk]").forEach(function(pw){
+    var steps = $$(".walk-step", pw), at = -1, tick = null;
+
+    /* On the narrow layout the lit step is pulled to the head of the list
+       with `order`, and order cannot be transitioned — the card is simply
+       somewhere else on the next frame. So the move is played back: the
+       tops are read before the class changes and again after, each card is
+       put back where it was with a transform, and then the transform is
+       released. The browser animates the release, which looks like the
+       card travelling to its new place.
+
+       On the wide layout nothing reorders, every delta is zero, and this
+       costs one rect read per step. */
+    function tops(){
+      return steps.map(function(s){ return s.getBoundingClientRect().top; });
+    }
+    function play(before){
+      /* Every read first, then every write — otherwise reading a rect,
+         writing a style and forcing a commit inside one loop pass makes
+         the browser lay the page out again on every card. */
+      var deltas = steps.map(function(s, k){
+        return before[k] - s.getBoundingClientRect().top;
+      });
+      var moved = [];
+      steps.forEach(function(s, k){
+        if (!deltas[k]) return;
+        s.style.transition = "none";
+        s.style.transform = "translateY(" + deltas[k] + "px)";
+        moved.push(s);
+      });
+      if (!moved.length) return;
+      void moved[0].offsetHeight;                 /* one commit for them all */
+      moved.forEach(function(s){
+        s.style.transition = "transform .52s cubic-bezier(.16,1,.3,1)";
+        s.style.transform = "";
+        s.addEventListener("transitionend", function done(){
+          s.style.transition = "";
+          s.removeEventListener("transitionend", done);
+        });
+      });
+    }
+
+    function go(){
+      var before = calm ? null : tops();
+      at = (at + 1) % steps.length;
+      steps.forEach(function(s, k){ s.classList.toggle("on", k === at); });
+      pw.setAttribute("data-at", at);
+      if (before) play(before);
+    }
+
+    /* ── narrow: the reader walks it, not the timer ───────────────────
+       On one column the light stepping every 1.6s is unreadable — five
+       cards is more than anyone can catch at that rate, and the layout
+       used to reorder them under the thumb as well. Here each card lights
+       as it is scrolled to and stays lit until the next one is reached,
+       so the section is read at the reader's own pace and the disc still
+       counts the stage being looked at.
+
+       The rootMargin pins the trigger to a band across the middle of the
+       screen rather than the edge: a card lights when it is where the eye
+       is, not when a corner of it appears. */
+    var narrow = window.matchMedia("(max-width: 1000px)");
+
+    function stop(){
+      if (tick){ clearInterval(tick); tick = null; }
+    }
+
+    function light(k){
+      if (k === at) return;
+      at = k;
+      steps.forEach(function(s, i){ s.classList.toggle("on", i === k); });
+      pw.setAttribute("data-at", k);
+    }
+
+    /* 1.6s is the wide layout's pace, where all five cards are readable
+       already and the light is only pointing at one of them. Here the
+       light IS the card, so the interval is what a stage takes to read
+       rather than what a pointer takes to move. */
+    function run(){
+      if (tick) return;
+      tick = setInterval(function(){ light((at + 1) % steps.length); }, 7000);
+    }
+
+    var wired = false;
+
+    /* Moving a stage by hand restarts the clock rather than stopping it.
+       Killing the timer outright meant one drag left the carousel dead
+       for the rest of the visit; resetting it gives the stage just landed
+       on a full read before anything moves on its own again. */
+    function move(d){
+      light((at + d + steps.length) % steps.length);
+      if (tick){ clearInterval(tick); tick = null; }
+      if (!calm) run();
+    }
+
+    /* ── narrow: the drag ─────────────────────────────────────────────
+       Wired once, not per entry into view, or every scroll back would
+       add another set of listeners and one drag would move two stages.
+
+       Touch events for fingers and pointer events for a mouse, rather
+       than pointer events for both. A pointer sequence on a phone is
+       taken over by the browser the moment it decides the gesture might
+       be a scroll: it fires pointercancel and no pointerup ever arrives,
+       so a swipe that started even slightly off the horizontal was
+       simply never seen. touchend always arrives. The pointer path is
+       kept for a mouse only, so a drag is never counted twice.
+
+       Vertical drags are left alone; the page still has to scroll. A
+       drag only counts when it is clearly sideways and long enough to
+       have been meant. */
+    function wire(){
+      if (wired) return;
+      wired = true;
+      var list = pw.querySelector(".eg-list");
+      if (!list) return;
+      var x0 = null, y0 = null;
+
+      function start(x, y){ x0 = x; y0 = y; }
+      function end(x, y){
+        if (x0 === null) return;
+        var dx = x - x0, dy = y - y0;
+        x0 = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) move(dx < 0 ? 1 : -1);
+      }
+
+      list.addEventListener("touchstart", function(e){
+        var t = e.changedTouches[0]; start(t.clientX, t.clientY);
+      }, { passive: true });
+      list.addEventListener("touchend", function(e){
+        var t = e.changedTouches[0]; end(t.clientX, t.clientY);
+      }, { passive: true });
+      list.addEventListener("touchcancel", function(){ x0 = null; }, { passive: true });
+
+      list.addEventListener("pointerdown", function(e){
+        if (e.pointerType === "mouse") start(e.clientX, e.clientY);
+      }, { passive: true });
+      list.addEventListener("pointerup", function(e){
+        if (e.pointerType === "mouse") end(e.clientX, e.clientY);
+      }, { passive: true });
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      var here = entries[0].isIntersecting;
+      if (!here){ stop(); return; }
+      steps.forEach(function(s){ s.classList.add("seen"); });
+
+      /* Narrow shows one stage at a time, so a stage has to be lit for
+         anything to be on screen at all — even when the reader has asked
+         for no motion, where the first one is simply shown and left. */
+      if (narrow.matches){
+        wire();
+        if (at < 0) light(0);
+        if (calm) return;
+        run();
+        return;
+      }
+
+      if (calm) return;                            /* drawn, and left still */
+      if (!tick){
+        go();
+        tick = setInterval(go, 1600);
+      }
+    }, { threshold:0.25 });
+    io.observe(pw);
+
+    /* turn a phone on its side, or drag a window across the breakpoint,
+       and the section swaps which of the two it is running */
+    var swap = function(){ stop(); io.unobserve(pw); io.observe(pw); };
+    if (narrow.addEventListener) narrow.addEventListener("change", swap);
+    else narrow.addListener(swap);
+  });
+})();
+
+
 /* === wc-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -732,6 +849,20 @@
   } else {
     show(0);
   }
+})();
+
+
+/* === dv-script === */
+
+/* Develop apps: the build cards' glow follows the pointer */
+(function(){
+  document.querySelectorAll(".dv-card").forEach(function(c){
+    c.addEventListener("pointermove", function(e){
+      var r=c.getBoundingClientRect();
+      c.style.setProperty("--mx", (e.clientX-r.left)+"px");
+      c.style.setProperty("--my", (e.clientY-r.top)+"px");
+    });
+  });
 })();
 
 
@@ -1061,282 +1192,142 @@ var $$ = function(s, r){
 })();
 
 
-/* === pf-script === */
+/* === wc-six-script === */
 
-/* ══════════════════════════════════════════════════════════════════════
-   THE PLATFORM RUN
-
-   The track holds the seven cards twice, because the slide travels a flat
-   half of it and the second half has to be an exact copy for the loop to
-   have no seam. Doing it here rather than in the markup means each
-   platform is written once.
-
-   ── the copy only exists while the run does ────────────────────────
-   Below 600px the run is switched off in the stylesheet and the cards go
-   back to a stack the page scrolls through. The copy was still being made
-   there, so the stack was fourteen cards long: the seven read through,
-   and then the same seven again. That is the repeat.
-
-   So the copy follows the layout rather than being made once at load. The
-   same query the stylesheet uses is asked here, and it is listened to —
-   turn a phone on its side, or drag a window across the breakpoint, and
-   the copies are added or taken away to match. Each one is marked so it
-   can be found again; nothing else in the track is touched.
-
-   None of it happens under a reduced-motion preference either: there the
-   track does not move and the rail is an ordinary scroller, where a
-   second copy would just be the same seven cards twice.
-   ══════════════════════════════════════════════════════════════════════ */
+/* The reason strip is wider than a phone, so the tab you choose is
+   brought to the middle of the strip: the one before it slides off and
+   the next one comes into view. */
 (function(){
-  "use strict";
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var track = document.querySelector(".pf-track");
-  if (!track) return;
-
-  /* the breakpoint the stylesheet stacks at, asked the same way here */
-  var running = window.matchMedia("(min-width: 601px)");
-
-  /* The list is snapshotted before anything is appended. track.children
-     is a live collection: appending one of its members back into the
-     track removes it from the collection at the same time, so walking it
-     while appending would skip every other card and leave the second run
-     short. */
-  var cards = Array.prototype.slice.call(track.children);
-
-  function add(){
-    cards.forEach(function(card){
-      var copy = card.cloneNode(true);
-      /* The originals are marked .rv, which holds an element at opacity 0
-         until the reveal observer gives it .in. That observer collected
-         its list before these copies existed, so nothing would ever light
-         them — the second half of the track would be there, travelling,
-         and invisible the whole way. The copies do not need revealing:
-         the cards they duplicate have already been seen. */
-      copy.classList.remove("rv");
-      copy.removeAttribute("style");
-      copy.setAttribute("aria-hidden", "true");
-      copy.setAttribute("tabindex", "-1");
-      copy.setAttribute("data-copy", "");
-      track.appendChild(copy);
-    });
+  var strip = document.querySelector("#wcPanel .wc-tabs");
+  if (!strip) return;
+  function show(tab){
+    if (!tab || strip.scrollWidth <= strip.clientWidth + 4) return;
+    var left = tab.offsetLeft - (strip.clientWidth - tab.offsetWidth) / 2;
+    strip.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
   }
-
-  function drop(){
-    Array.prototype.slice.call(track.querySelectorAll("[data-copy]"))
-      .forEach(function(el){ el.remove(); });
-  }
-
-  function sync(){
-    var has = !!track.querySelector("[data-copy]");
-    if (running.matches && !has) add();
-    else if (!running.matches && has) drop();
-  }
-
-  sync();
-  if (running.addEventListener) running.addEventListener("change", sync);
-  else running.addListener(sync);          /* older Safari */
-})();
-
-
-/* === hx-wire-script === */
-
-/* ══════════════════════════════════════════════════════════════════════
-   DRAWING THE FOUR WIRES
-
-   One path per card, hub edge to card edge, with the turn where the CSS
-   bracket used to put it: the middle of the gap. Measured rather than
-   declared, because the gap is a clamp and the cards size themselves.
-
-   Two passes so every resting wire is under every lit one — appended in
-   card order, a later card's hairline would otherwise sit on an earlier
-   card's light.
-
-   The section is marked is-wired only after a path exists. Until then,
-   and if any of this fails, the CSS bracket is what is on screen.
-   ══════════════════════════════════════════════════════════════════════ */
-(function(){
-  var NS  = "http://www.w3.org/2000/svg";
-  var sec = document.querySelector(".hx");
-  if (!sec) return;
-  var grid = sec.querySelector(".hx-grid");
-  var core = sec.querySelector(".hx-core");
-  if (!grid || !core) return;
-
-  /* reading order, which is the order the light will take */
-  var l = sec.querySelectorAll(".hx-l > .hx-card");
-  var r = sec.querySelectorAll(".hx-r > .hx-card");
-  var cards = [];
-  if (l[0]) cards.push({el:l[0], side:-1});
-  if (r[0]) cards.push({el:r[0], side: 1});
-  if (l[1]) cards.push({el:l[1], side:-1});
-  if (r[1]) cards.push({el:r[1], side: 1});
-  if (!cards.length) return;
-
-  var svg = document.createElementNS(NS, "svg");
-  svg.setAttribute("class", "hx-net");
-  svg.setAttribute("aria-hidden", "true");
-  svg.setAttribute("preserveAspectRatio", "none");
-  var gBase  = document.createElementNS(NS, "g");
-  var gTrace = document.createElementNS(NS, "g");
-  svg.appendChild(gBase); svg.appendChild(gTrace);
-  grid.insertBefore(svg, grid.firstChild);
-
-  /* out from the hub, along to the middle of the gap, down or up to the
-     card's line, and in to its edge. The corner radius is the bracket's
-     14, given back whatever the three runs can spare. */
-  function wire(hx, hy, cx, cy){
-    var tx = (hx + cx) / 2;
-    var dx = tx > hx ? 1 : -1;
-    var dy = cy > hy ? 1 : -1;
-    var drop = Math.abs(cy - hy);
-    if (drop < 2) return "M" + hx + "," + hy + " L" + cx + "," + cy;
-    var rr = Math.min(14, Math.abs(tx - hx) * .8,
-                          Math.abs(cx - tx) * .8, drop * .45);
-    return "M" + hx + "," + hy +
-           " L" + (tx - dx * rr) + "," + hy +
-           " Q" + tx + "," + hy + " " + tx + "," + (hy + dy * rr) +
-           " L" + tx + "," + (cy - dy * rr) +
-           " Q" + tx + "," + cy + " " + (tx + dx * rr) + "," + cy +
-           " L" + cx + "," + cy;
-  }
-
-  var lastW = 0, lastH = 0;
-
-  function build(force){
-    if (window.matchMedia("(max-width:920px)").matches) return;
-    var g = grid.getBoundingClientRect();
-    if (!g.width || !g.height) return;
-    if (!force && Math.abs(g.width - lastW) < 1 && Math.abs(g.height - lastH) < 1) return;
-    lastW = g.width; lastH = g.height;
-
-    var c  = core.getBoundingClientRect();
-    var hy = c.top + c.height / 2 - g.top;
-
-    svg.setAttribute("viewBox", "0 0 " + g.width + " " + g.height);
-    while (gBase.firstChild)  gBase.removeChild(gBase.firstChild);
-    while (gTrace.firstChild) gTrace.removeChild(gTrace.firstChild);
-
-    cards.forEach(function(item, i){
-      var b  = item.el.getBoundingClientRect();
-      var cy = b.top + b.height / 2 - g.top;
-      var hx = (item.side < 0 ? c.left  : c.right) - g.left;
-      var cx = (item.side < 0 ? b.right : b.left)  - g.left;
-      var d  = wire(hx, hy, cx, cy);
-
-      var base = document.createElementNS(NS, "path");
-      base.setAttribute("d", d);
-      base.setAttribute("class", "base");
-      gBase.appendChild(base);
-
-      var tr = document.createElementNS(NS, "path");
-      tr.setAttribute("d", d);
-      tr.setAttribute("class", "trace");
-      gTrace.appendChild(tr);
-
-      var len = tr.getTotalLength();
-      tr.style.setProperty("--len",   len.toFixed(1) + "px");
-      tr.style.setProperty("--comet", Math.max(36, Math.min(104, len * .3)).toFixed(1) + "px");
-      tr.style.setProperty("--i", i);
-      item.trace = tr;
-    });
-
-    sec.classList.add("is-wired");
-  }
-
-  /* a card under the pointer holds its own wire and stops the loop */
-  cards.forEach(function(item){
-    function hold(){
-      grid.classList.add("is-held");
-      if (item.trace) item.trace.classList.add("is-lit");
-    }
-    function drop(){
-      grid.classList.remove("is-held");
-      if (item.trace) item.trace.classList.remove("is-lit");
-    }
-    item.el.addEventListener("mouseenter", hold);
-    item.el.addEventListener("mouseleave", drop);
-    item.el.addEventListener("focusin",  hold);
-    item.el.addEventListener("focusout", drop);
+  strip.addEventListener("click", function(e){
+    var tab = e.target.closest(".wc-tab");
+    if (tab) setTimeout(function(){ show(tab); }, 30);
   });
-
-  /* nothing runs while the section is not being looked at */
-  if ("IntersectionObserver" in window){
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){ grid.classList.toggle("is-live", e.isIntersecting); });
-    }, {rootMargin:"120px"}).observe(grid);
-  } else {
-    grid.classList.add("is-live");
-  }
-
-  build(true);
-  window.addEventListener("load", function(){ build(true); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ build(true); });
-
-  var t;
-  function later(){ clearTimeout(t); t = setTimeout(function(){ build(false); }, 140); }
-  window.addEventListener("resize", later);
-  if ("ResizeObserver" in window) new ResizeObserver(later).observe(grid);
+  window.addEventListener("load", function(){ show(strip.querySelector(".wc-tab.on")); });
 })();
 
-/* === tm-script (Our Technical SEO Model) === */
+
+/* === pw-script === */
+
 (function(){
-  var rail=document.querySelector('[data-tm]'); if(!rail) return;
-  var items=[].slice.call(rail.querySelectorAll('.tm-item'));
-  items.forEach(function(el){ var b=document.createElement('span'); b.className='tm-prog';
-    b.setAttribute('aria-hidden','true'); el.appendChild(b); });
-  var at=0, timer=null, held=false;
+  /* the chatbot diagram runs one request end to end, on a loop:
+     the question arrives, the bot types, answers, then works through
+     inventory, orders and accounts, lighting each system as it goes.
+     Pointing at a system pauses the loop on that step. */
+  var v=document.querySelector('.pw-viz'); if(!v) return;
+  var steps=[1,2,3,4,5,6,7], i=0, timer=null, held=false;
+  var dur={1:900,2:1200,3:1300,4:1100,5:1100,6:1100,7:2200};
+  function show(n){ v.setAttribute('data-step',n); }
+  function next(){ if(held) return; i=(i+1)%(steps.length+1); if(i===0){ show(0); timer=setTimeout(next,500); return; }
+    show(steps[i-1]); timer=setTimeout(next,dur[steps[i-1]]); }
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function show(i){
-    at=(i+items.length)%items.length;
-    items.forEach(function(el,k){ var on=k===at; el.classList.toggle('on',on);
-      el.setAttribute('aria-selected',String(on));
-      if(on){ var b=el.querySelector('.tm-prog'); if(b){ b.style.animation='none'; void b.offsetWidth; b.style.animation=''; } }
-    });
+  if(reduce){ show(7); } else {
+    var io=new IntersectionObserver(function(e){ e.forEach(function(x){ if(x.isIntersecting && !timer){ next(); } }); },{threshold:.3});
+    io.observe(v);
   }
-  function play(){ stop(); rail.classList.remove('paused'); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },6000); }
-  function stop(){ clearInterval(timer); }
-  function hold(){ held=true; stop(); rail.classList.add('paused'); clearTimeout(hold._t);
-    hold._t=setTimeout(function(){ held=false; play(); },12000); }
-  items.forEach(function(el,i){
-    el.addEventListener('mouseenter',function(){ show(i); });
-    el.addEventListener('click',function(){ hold(); show(i); });
-    el.addEventListener('keydown',function(e){
-      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hold(); show(i); return; }
-      var to = e.key==='ArrowRight'||e.key==='ArrowDown' ? i+1 : e.key==='ArrowLeft'||e.key==='ArrowUp' ? i-1 : -1;
-      if(to<0||to>=items.length) return;
-      e.preventDefault(); items[to].focus(); hold(); show(to);
-    });
+  v.querySelectorAll('.pw-node').forEach(function(nd){
+    function hold(){ held=true; clearTimeout(timer); timer=null; show(4+ +nd.dataset.n); }
+    function go(){ held=false; if(!reduce){ clearTimeout(timer); timer=setTimeout(next,700); } }
+    nd.addEventListener('mouseenter',hold); nd.addEventListener('focus',hold);
+    nd.addEventListener('mouseleave',go); nd.addEventListener('blur',go);
   });
-  rail.addEventListener('mouseenter',function(){ stop(); rail.classList.add('paused'); });
-  rail.addEventListener('mouseleave',function(){ rail.classList.remove('paused'); if(!held) play(); });
-  show(0);
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
-  io.observe(rail);
 })();
 
-/* === why-v2 tabs (technical-seo) === */
+
+/* === ty-script === */
+
+/* Each chatbot type plays its own workflow, one step at a time: every
+   part carries data-at (the step it appears on) and, if it should go
+   away again, data-until. The box also carries data-s for the pieces
+   that change rather than appear. Only boxes on screen run. */
 (function(){
-  "use strict";
-  var box = document.querySelector("#why [data-tabs]");
-  if (!box) return;
-  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
-      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
-  function show(i){
-    tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle("on",on); t.setAttribute("aria-selected",String(on)); });
-    panes.forEach(function(p,k){ p.classList.toggle("on", k===i); });
-  }
-  box.querySelector(".wy-rail").addEventListener("click", function(e){
-    var b = e.target.closest(".wy-tab");
-    if (!b) return;
-    show(+b.getAttribute("data-p"));
-  });
-  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
-    var b = e.target.closest(".wy-tab");
-    if (!b) return;
-    var i = +b.getAttribute("data-p");
-    var to = e.key==="ArrowRight"||e.key==="ArrowDown" ? i+1 : e.key==="ArrowLeft"||e.key==="ArrowUp" ? i-1 : -1;
-    if (to<0 || to>=tabs.length) return;
-    e.preventDefault(); tabs[to].focus(); show(to);
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.ty-viz[data-steps]').forEach(function(box){
+    var n=+box.dataset.steps, s=0, t=null;
+    var parts=[].slice.call(box.querySelectorAll('[data-at]'));
+    function paint(){ box.setAttribute('data-s',s);
+      parts.forEach(function(p){ var a=+p.dataset.at, u=p.dataset.until?+p.dataset.until:99;
+        p.classList.toggle('is-on', s>=a && s<=u); }); }
+    function tick(){ s = s>=n ? 0 : s+1; paint(); t=setTimeout(tick, s===0 ? 600 : (s===n ? 2600 : 1050)); }
+    if(reduce){ s=n; paint(); return; }
+    paint();
+    new IntersectionObserver(function(es){ es.forEach(function(e){
+      if(e.isIntersecting && !t){ tick(); }
+      else if(!e.isIntersecting && t){ clearTimeout(t); t=null; s=0; paint(); } }); },{threshold:.35}).observe(box);
   });
 })();
 
+
+/* === cm2-script === */
+
+/* the diagram under each service plays its workflow a step at a time
+   (parts carry data-at / data-until). It runs only while its card is
+   open and on screen, and starts over whenever the card is reopened. */
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.cn-motion[data-steps]').forEach(function(box){
+    var n=+box.dataset.steps, s=0, t=null, parts=[].slice.call(box.querySelectorAll('[data-at]'));
+    function paint(){ box.setAttribute('data-s',s); parts.forEach(function(p){ var a=+p.dataset.at, u=p.dataset.until?+p.dataset.until:99; p.classList.toggle('is-on', s>=a && s<=u); }); }
+    function tick(){ s = s>=n ? 0 : s+1; paint(); t=setTimeout(tick, s===0 ? 500 : (s===n ? 2800 : 950)); }
+    function stop(){ clearTimeout(t); t=null; s=0; paint(); }
+    if(reduce){ s=n; paint(); return; }
+    paint();
+    new IntersectionObserver(function(es){ es.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRect.height>0){ if(!t){ s=0; tick(); } } else if(t){ stop(); } }); },{threshold:.2}).observe(box);
+  });
+})();
+
+
+/* === p2-script === */
+
+(function(){
+  /* variant 2: numbers count up; rows open in turn; pointing or tapping picks one */
+  var box=document.querySelector('.p2-list'); if(!box) return;
+  var rows=[].slice.call(box.querySelectorAll('.p2-row')), cur=0, t=null, paused=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function open(i){ cur=i; rows.forEach(function(r,k){ r.classList.toggle('is-on',k===i); r.setAttribute('aria-expanded',k===i); }); }
+  function loop(){ clearTimeout(t); if(paused||reduce) return; t=setTimeout(function(){ open((cur+1)%rows.length); loop(); },4200); }
+  rows.forEach(function(r,k){
+    r.addEventListener('mouseenter',function(){ paused=true; clearTimeout(t); open(k); });
+    r.addEventListener('focus',function(){ paused=true; clearTimeout(t); open(k); });
+    r.addEventListener('click',function(){ open(k); });
+  });
+  box.addEventListener('mouseleave',function(){ paused=false; loop(); });
+  function count(){ box.querySelectorAll('.p2-n').forEach(function(n){ var to=+n.dataset.to, t0=null;
+      if(reduce){ n.textContent=to; return; }
+      function step(ts){ if(!t0) t0=ts; var p=Math.min(1,(ts-t0)/1100); n.textContent=Math.round(to*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }
+      requestAnimationFrame(step); }); }
+  var seen=false;
+  new IntersectionObserver(function(es){ es.forEach(function(e){
+    if(e.isIntersecting){ box.classList.add('go'); if(!seen){ seen=true; count(); } paused=false; loop(); }
+    else { clearTimeout(t); } }); },{threshold:.35}).observe(box);
+})();
+
+
+/* === ts-script === */
+
+/* runs the stack: one layer lit at a time, top to bottom, with the spine
+   filling to it; hovering or focusing a layer holds it */
+(function(){
+  var box=document.querySelector('#tech-stack .ts-stack'); if(!box) return;
+  var layers=[].slice.call(box.querySelectorAll('.ts-layer')), spine=box.querySelector('.ts-spine');
+  var i=-1, t=null, held=false, reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n){ i=n; layers.forEach(function(l,k){ l.classList.toggle('is-on',k===n); });
+    if(spine){ var r=spine.getBoundingClientRect(), l=layers[n].getBoundingClientRect();
+      var pct=Math.max(0,Math.min(100,((l.top+l.height/2)-r.top)/r.height*100)); spine.style.setProperty('--fill',pct+'%'); } }
+  function next(){ if(held) return; show((i+1)%layers.length); t=setTimeout(next,1800); }
+  layers.forEach(function(l,k){ l.tabIndex=0;
+    function hold(){ held=true; clearTimeout(t); show(k); }
+    function go(){ held=false; clearTimeout(t); t=setTimeout(next,1200); }
+    l.addEventListener('mouseenter',hold); l.addEventListener('focus',hold);
+    l.addEventListener('mouseleave',go); l.addEventListener('blur',go); });
+  if(reduce){ show(0); return; }
+  new IntersectionObserver(function(es){ es.forEach(function(e){
+    if(e.isIntersecting){ if(!t && !held) next(); } else { clearTimeout(t); t=null; } }); },{threshold:.3}).observe(box);
+})();

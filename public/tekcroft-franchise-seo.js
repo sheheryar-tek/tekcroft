@@ -1325,19 +1325,6 @@ var $$ = function(s, r){
 
 
 /* === lp-switch === */
-
-(function(){
-  var secs={1:document.getElementById('duplicate'),2:document.getElementById('duplicate-v2')};
-  var btns=[].slice.call(document.querySelectorAll('.vsw button'));
-  function pick(v){ Object.keys(secs).forEach(function(k){ if(secs[k]) secs[k].hidden=(+k!==+v); });
-    btns.forEach(function(b){ var on=+b.dataset.v===+v; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
-    try{ localStorage.setItem('tk-lp-variant',v); }catch(e){} }
-  var saved=2; try{ saved=+localStorage.getItem('tk-lp-variant')||2; }catch(e){}
-  btns.forEach(function(b){ b.addEventListener('click',function(){ pick(b.dataset.v); }); });
-  pick(saved);
-})();
-
-
 /* === ac-script (deliverables panels) === */
 (function(){
  document.querySelectorAll('[data-acc]').forEach(function(acc){
@@ -1378,4 +1365,39 @@ var $$ = function(s, r){
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
   io.observe(acc);
  });
+})();
+
+
+/* === why tabs (franchise) === */
+(function(){
+  "use strict";
+  var box = document.querySelector("#why [data-tabs]");
+  if (!box) return;
+  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
+      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
+
+  function open(i){
+    tabs.forEach(function(t, n){
+      t.classList.toggle("on", n === i);
+      t.setAttribute("aria-selected", n === i ? "true" : "false");
+    });
+    panes.forEach(function(p, n){ p.classList.toggle("on", n === i); });
+  }
+
+  box.querySelector(".wy-rail").addEventListener("click", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (b) open(tabs.indexOf(b));
+  });
+
+  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
+    var i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    var to = e.key === "ArrowRight" || e.key === "ArrowDown" ? i + 1
+           : e.key === "ArrowLeft"  || e.key === "ArrowUp"   ? i - 1 : -1;
+    if (to < 0 && to !== -1) to = tabs.length - 1;
+    if (to === -1) return;
+    e.preventDefault();
+    to = to % tabs.length;
+    tabs[to].focus(); open(to);
+  });
 })();

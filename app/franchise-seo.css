@@ -88,7 +88,7 @@
 
  /* the homepage sizes a heading inside its own form dialog at 26px rather
     than at --h2, which is a section's size; this is that heading. */
-.hs-form > h3{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.5vw,19px) !important;
+.hs-form > h3, .hs-form > .hs-form-title{margin:0; font-family:var(--font-display); font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700; letter-spacing:-0.035em; line-height:1.22; color:#fff;}
 .hs-rule{display:block; width:52px; height:3px; margin:14px auto 0; border-radius:3px;
   background:var(--primary);}
@@ -1046,7 +1046,7 @@ html[data-theme="dark"] .cn .cn-stat{
   opacity:0; transition:opacity .26s var(--ease),
              transform .52s var(--pop), background .3s var(--ease);}
 .cn .cn-tab.on .cn-go{
-  opacity:1; background:#0a1a29; color:#fff;
+  opacity:1; background:var(--primary); color:#fff;
   -webkit-backdrop-filter:none; backdrop-filter:none;
   box-shadow:none;}
 .cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
@@ -1287,7 +1287,7 @@ html[data-theme="light"] .hs-field input,
 html[data-theme="light"] .hs-field select{
   background:#fff;}
 
-html[data-theme="light"] .hs-form > h3{color:var(--text);}
+html[data-theme="light"] .hs-form > h3, .hs-form > .hs-form-title{color:var(--text);}
 html[data-theme="light"] .hs-sub{color:var(--text-2);}
 html[data-theme="light"] .hs-field label{color:var(--text);}
 html[data-theme="light"] .hs-field:focus-within label{color:var(--brand-text);}
@@ -2991,7 +2991,7 @@ html[data-theme="dark"] .lo-strip li:hover{background:hsl(var(--brand-h) 50% 12%
 
    The one type override is .eg-card h3, which drops from --h3 to a
    smaller ramp. It is the same kind of exception the sheet already makes
-   for .mm-copy h3 and .hs-form h2 — a heading inside a dense component
+   for .mm-copy h3, .mm-copy .mm-title and .hs-form h2 — a heading inside a dense component
    rather than a heading on the page. */
 /* no background here: the section reads --ground like every other one on
    the page, so the run is decided in one place rather than in whichever
@@ -4026,7 +4026,7 @@ html[data-theme="dark"] #gbp-what{
 
 /* === wc-app === */
 /* Why choose us on the app page: white ground between two tinted sections */
-#whyus{--ground:var(--bg); --panel:var(--surface);}
+#why{--ground:var(--bg); --panel:var(--surface);}
 
 /* === dv-styles === */
 /* ══════════════════════════════════════════════════════════════════════
@@ -5210,9 +5210,9 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 
 /* === wc-six === */
 /* franchise SEO: the ticket tags are good news, so they take the brand blue, not the alert red */
-@media (max-width:480px){ #whyus .wc-say .btn{width:100%; justify-content:center; font-size:14px; padding-inline:18px; gap:10px;} }
-#whyus .wc-tkt-pri{background:hsl(var(--brand-h) 80% 94%); color:var(--brand-text);}
-html[data-theme="dark"] #whyus .wc-tkt-pri{background:hsl(var(--brand-h) 40% 18%);}
+@media (max-width:480px){ #why .wc-say .btn{width:100%; justify-content:center; font-size:14px; padding-inline:18px; gap:10px;} }
+#why .wc-tkt-pri{background:hsl(var(--brand-h) 80% 94%); color:var(--brand-text);}
+html[data-theme="dark"] #why .wc-tkt-pri{background:hsl(var(--brand-h) 40% 18%);}
 
 /* six reasons instead of four: the folder shape is kept, but with six
    tabs the strip is wider than a phone, so it scrolls sideways and
@@ -6353,7 +6353,7 @@ html[data-theme="dark"] #stack .st-table thead th{background:hsl(var(--brand-h) 
 
 /* === wc-case === */
 /* the reasons keep the casing they were written in */
-#whyus .wc-panel h3{text-transform:none;}
+#why .wc-panel h3{text-transform:none;}
 
 /* === cm2-styles === */
 /* ══════════════════════════════════════════════════════════════════════
@@ -7190,11 +7190,11 @@ html[data-theme="dark"] .d2-card p{color:var(--text-2);}
 /* === smark-tint === */
 /* eyebrows on the tinted bands: the grey hairline disappeared into the
    blue, so the pill is solid white with a brand-coloured edge there */
-#proof .smark,#signs .smark,#industries .smark,#duplicate .smark,#duplicate-v2 .smark,#whyus .smark,#work .smark,#faq .smark{
+#proof .smark,#signs .smark,#industries .smark,#duplicate .smark,#duplicate-v2 .smark,#why .smark,#work .smark,#faq .smark{
   background:var(--surface); border-color:hsl(var(--brand-h) 75% 76%);
   box-shadow:0 4px 12px -6px hsl(var(--brand-h) 90% 35% / .28);}
 html[data-theme="dark"] #proof .smark,html[data-theme="dark"] #signs .smark,html[data-theme="dark"] #industries .smark,
-html[data-theme="dark"] #duplicate .smark,html[data-theme="dark"] #duplicate-v2 .smark,html[data-theme="dark"] #whyus .smark,
+html[data-theme="dark"] #duplicate .smark,html[data-theme="dark"] #duplicate-v2 .smark,html[data-theme="dark"] #why .smark,
 html[data-theme="dark"] #work .smark,html[data-theme="dark"] #faq .smark{border-color:hsl(var(--brand-h) 60% 36%);}
 
 /* === cq-styles === */
@@ -7358,7 +7358,7 @@ html[data-theme="dark"] .gv-c{background:hsl(var(--brand-h) 40% 18%);}
 #duplicate{--ground:var(--bg-alt) !important;}
 #duplicate-v2{--ground:var(--bg-alt) !important;}
 #compare{--ground:var(--bg) !important;}
-#whyus{--ground:var(--bg-alt) !important;}
+#why{--ground:var(--bg-alt) !important;}
 #pricing{--ground:var(--bg) !important;}
 #work{--ground:var(--bg-alt) !important;}
 #faq{--ground:var(--bg-alt) !important; --panel:var(--surface);}
@@ -7377,7 +7377,7 @@ html[data-theme="dark"] .gv-c{background:hsl(var(--brand-h) 40% 18%);}
 #industries,
 #duplicate,
 #duplicate-v2,
-#whyus,
+#why,
 #work,
 #faq{
   --ground:var(--bg-alt) !important;
@@ -7401,7 +7401,7 @@ html[data-theme="dark"] #pricing .pr-row{
 #duplicate,
 #duplicate-v2,
 #compare,
-#whyus,
+#why,
 #pricing,
 #work,
 #faq,
@@ -7438,7 +7438,7 @@ html[data-theme="dark"] #services-2 .cn-plate::after{
   background:transparent !important; box-shadow:none !important;
   backdrop-filter:none !important; -webkit-backdrop-filter:none !important; opacity:0;}
 #services-2 .cn-tab.on .cn-go{
-  opacity:1 !important; background:#0a1a29 !important; color:#fff !important;
+  opacity:1 !important; background:var(--primary) !important; color:#fff !important;
   backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;}
 #services-2 .cn-sheet{ background:#fff !important; }
 html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important; }
@@ -8530,6 +8530,98 @@ html[data-theme="dark"] #services-2 .ac-card,html[data-theme="dark"] #services-2
   #services-2.acv .ac{height:clamp(400px,40vw,500px);}
 }
 
+/* ══════════════════════════════════════════════════════════════════════
+   WHY CHOOSE US — franchise (#why) tabbed design
+   ══════════════════════════════════════════════════════════════════════ */
+#why.wy{--wy-w:100%;}
+#why .wy-in{display:grid; gap:clamp(24px,3vw,40px); justify-items:stretch;}
+#why .wy-say{text-align:center;}
+#why .wy-say h2{margin:clamp(16px,1.9vw,24px) auto 0; max-width:22ch;
+  font-size:var(--h2); line-height:1.1; letter-spacing:-0.045em;}
+#why .wy-say h2 em{font-style:normal; color:var(--brand-text);}
+#why .wy-box{display:grid; gap:clamp(14px,1.6vw,22px);}
+#why .wy-rail{width:var(--wy-w); margin-inline:auto;
+  display:grid; grid-auto-flow:column; grid-auto-columns:1fr;
+  gap:6px; padding:6px; border-radius:16px;
+  background:var(--surface); border:1px solid var(--border);}
+#why .wy-tab{padding:12px 14px; border:0; border-radius:11px; cursor:pointer;
+  background:transparent; color:var(--text-2);
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(11.5px,1vw,14px); line-height:1.25; letter-spacing:-0.02em;
+  text-align:center;
+  transition:background .3s var(--ease), color .3s var(--ease),
+             box-shadow .3s var(--ease);}
+#why .wy-tab:hover{color:var(--text);}
+#why .wy-tab.on{background:var(--primary); color:#fff;
+  box-shadow:0 8px 20px -8px hsl(var(--brand-h) 100% 40% / .55);}
+#why .wy-tab.on:hover{color:#fff;}
+#why .wy-tab:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
+#why .wy-panes{width:var(--wy-w); margin-inline:auto;
+  display:grid; padding:clamp(22px,2.6vw,36px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:calc(var(--r-lg) + 8px);
+  box-shadow:0 26px 60px -38px rgba(var(--ink-rgb),.4);}
+#why .wy-pane{grid-area:1 / 1; visibility:hidden; opacity:0;
+  transform:translateY(8px); pointer-events:none;
+  display:grid; grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+  gap:clamp(18px,2.4vw,38px); align-items:center;
+  transition:opacity .34s var(--ease), transform .34s var(--ease);}
+#why .wy-pane.on{visibility:visible; opacity:1; transform:none; pointer-events:auto;}
+#why .wy-txt{grid-column:1; align-self:center;}
+#why .wy-mark{display:grid; place-items:center;
+  width:clamp(40px,3.6vw,48px); aspect-ratio:1; border-radius:13px;
+  background:var(--disc); color:var(--primary); margin-bottom:14px;}
+#why .wy-mark svg{width:50%; height:50%;}
+#why .wy-pane h3{font-family:var(--font-display); font-weight:800;
+  font-size:var(--h3); line-height:1.2; letter-spacing:-0.035em;
+  color:var(--text); text-transform:none;}
+#why .wy-pane p{margin:clamp(9px,1vw,13px) 0 0;
+  font-size:var(--body); line-height:1.7; color:var(--text-2);}
+#why .wy-fig{grid-column:2; align-self:center;
+  margin:0; padding:clamp(16px,1.8vw,22px);
+  border-radius:var(--r-lg); background:var(--bg-alt);}
+#why .wy-fig figcaption{display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin-bottom:clamp(12px,1.4vw,18px);}
+#why .wy-fig figcaption b{font-family:var(--font-display); font-weight:800;
+  font-size:clamp(13px,1.1vw,15px); letter-spacing:-0.03em; color:var(--text);}
+#why .wy-chip{display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+  padding:6px 12px; border-radius:99px;
+  background:var(--surface); border:1px solid var(--border);
+  font-size:11px; font-weight:600; color:var(--text-2);}
+#why .br{list-style:none; margin:0; padding:0; display:grid; gap:clamp(11px,1.3vw,16px);}
+#why .br-top{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  margin-bottom:7px;}
+#why .br-top span{font-size:12.5px; color:var(--text-2);}
+#why .br-top b{font-family:var(--font-display); font-weight:800; font-size:13.5px;
+  letter-spacing:-0.03em; color:var(--brand-text); font-variant-numeric:tabular-nums;}
+#why .br-rail{display:block; height:6px; border-radius:99px; background:var(--border);
+  overflow:hidden;}
+#why .br-rail i{display:block; height:100%; width:var(--w); border-radius:99px;
+  background:var(--primary); transform:scaleX(0); transform-origin:left center;}
+#why .wy-pane.on .br-rail i{transform:none; transition:transform .9s var(--ease) .2s;}
+#why .wy-cta{display:flex; justify-content:center; margin-top:clamp(4px,.6vw,8px);}
+@media (max-width:980px){
+  #why .wy-pane{grid-template-columns:1fr; gap:clamp(16px,2.4vw,24px);}
+  #why .wy-txt, #why .wy-fig{grid-column:1;}
+}
+@media (max-width:900px){
+  #why .wy-rail{grid-auto-flow:row; grid-auto-columns:auto;}
+  #why .wy-tab{text-align:left; padding:12px 16px;}
+}
+@media (max-width:600px){
+  #why .wy-cta .btn{width:100%; justify-content:center;}
+}
+@media (prefers-reduced-motion:reduce){
+  #why .wy-pane{transition:none;}
+  #why .br-rail i{transform:none;}
+}
+/* Soft brand wash for Why section (matches design) */
+#why.wy{
+  background:hsl(var(--brand-h) 60% 98%) !important;
+}
+html[data-theme="dark"] #why.wy{background:var(--bg-alt) !important;}
+
+
 /* === SITE CONSISTENCY LOCK (do not edit here — edit site-consistency.css) === */
 /* ══════════════════════════════════════════════════════════════════════
    SITE CONSISTENCY — load LAST on every page (after page CSS).
@@ -8590,7 +8682,7 @@ section.sec,
 #model.sec,
 #process.sec,
 #why.sec,
-#whyus.sec,
+#why.sec,
 #receive.sec,
 #pricing.sec,
 #reviews.sec,
@@ -8677,8 +8769,9 @@ html body .faq-aside h3{
   font-size:var(--h3) !important;
   line-height:1.25 !important;
 }
-/* Hero form title stays compact when marked up as h3 */
+/* Hero form title stays compact (p.hs-form-title or legacy h3) */
 html body .hs-form > h3,
+html body .hs-form > .hs-form-title,
 html body .hs-done h3{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
@@ -8706,6 +8799,14 @@ html body .sec-head h2{
 /* Never force a third stacked line inside an h2 */
 html body h2 > span + span + span{
   display:inline !important;
+}
+/* Headings must flow as one phrase — no forced line breaks via <em>/<span> */
+html body :is(h1, h2, h3, h4, h5, h6) em,
+html body :is(h1, h2, h3, h4, h5, h6) > br{
+  display:inline !important;
+}
+html body :is(h1, h2, h3, h4, h5, h6) br{
+  display:none !important;
 }
 
 /* ── Body / lede reading size ───────────────────────────────────────── */
@@ -8747,6 +8848,16 @@ html body .ct-err,
 html body .hs-sub{
   font-size:13px !important;
   line-height:1.45 !important;
+}
+/* Hero form title is a label (p.hs-form-title), not body copy — keep compact */
+html body .hs-form > h3,
+html body .hs-form > .hs-form-title{
+  font-size:clamp(17px,1.5vw,19px) !important;
+  font-weight:700 !important;
+  line-height:1.22 !important;
+  letter-spacing:-0.035em !important;
+  margin:0 !important;
+  text-transform:none !important;
 }
 
 /* ── Heading → description / content gaps ───────────────────────────── */
