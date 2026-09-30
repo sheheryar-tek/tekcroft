@@ -1115,9 +1115,11 @@ html[data-theme="dark"] .modal-x:hover{background:rgba(255,255,255,.2);
 .modal-card > *:not(.modal-x){position:relative; z-index:2;}
 .modal-hero{display:grid; grid-template-columns:1.16fr .84fr;
   gap:calc(22 * var(--u)); align-items:center;}
-.modal-card h2{font-family:var(--font-display); font-size:var(--h2);
+.modal-card h2,
+.modal-card .modal-title{font-family:var(--font-display); font-size:var(--h2);
   font-weight:800; text-transform:uppercase; letter-spacing:-0.035em; line-height:1.06;}
-.modal-card h2 em{display:block; font-style:normal; color:var(--brand-text);}
+.modal-card h2 em,
+.modal-card .modal-title em{display:block; font-style:normal; color:var(--brand-text);}
 .modal-eyebrow{margin-bottom:calc(16 * var(--u));}
 .modal-intro{font-size:calc(14.8 * var(--u)); line-height:1.58; color:var(--text-2);
   max-width:44ch; margin:calc(13 * var(--u)) 0 0;}
@@ -1246,7 +1248,8 @@ html[data-theme="dark"] .field select:focus{background:var(--n850);
   border-color:var(--primary);}
 html[data-theme="dark"] .field label{color:#fff;}
 html[data-theme="dark"] .field:focus-within label{color:var(--brand-text);}
-html[data-theme="dark"] .modal-card h2{color:#fff;}
+html[data-theme="dark"] .modal-card h2,
+html[data-theme="dark"] .modal-card .modal-title{color:#fff;}
 html[data-theme="dark"] .modal-intro{color:rgba(255,255,255,.82);}
 /* a white-on-white-tint pill disappears against a blurred photograph; on the
    brand it has an edge of its own */
@@ -1478,6 +1481,8 @@ html[data-theme="dark"] .cn{background:var(--n925); border:1px solid var(--borde
      with it */
   transition:color .26s var(--ease), background .3s var(--ease),
              box-shadow .3s var(--ease);}
+.cn-tab h3{margin:0; font:inherit; font-size:inherit; font-weight:inherit;
+  letter-spacing:inherit; line-height:inherit; color:inherit; text-transform:none;}
 .cn-tab:focus-visible{outline:2px solid var(--primary); outline-offset:-3px;}
 
 /* The row itself never changes size now. It used to grow by the overhang
@@ -3958,7 +3963,8 @@ html[data-theme="dark"] .ax{
   .modal{overflow-y:auto;}
   .modal-frame{--u:1px;}
   .modal-card{padding:46px 20px 22px;}
-  .modal-card h2{font-size:var(--h2);}
+  .modal-card h2,
+  .modal-card .modal-title{font-size:var(--h2);}
   .modal-hero{grid-template-columns:1fr;}
   .modal-art{display:none;}
   .mf{grid-template-columns:1fr;}
@@ -4503,7 +4509,8 @@ h1,h2,h3,h4,h5,h6{ text-transform:capitalize; }
   .modal-card{
     padding:calc(38 * var(--u)) calc(18 * var(--u)) calc(18 * var(--u));
     max-height:none; overflow:hidden;}
-  .modal-card h2{ font-size:var(--h2); line-height:1.14; }
+  .modal-card h2,
+  .modal-card .modal-title{ font-size:var(--h2); line-height:1.14; }
   .modal-intro{ font-size:calc(13.2 * var(--u)); line-height:1.46;
     margin-top:calc(6 * var(--u)); }
   .modal-eyebrow{ font-size:calc(10.6 * var(--u)); }
@@ -4531,7 +4538,8 @@ h1,h2,h3,h4,h5,h6{ text-transform:capitalize; }
    dropping the decorative line rather than squeezing the fields further */
 @media (max-width:760px) and (max-height:620px){
   .modal-intro{ display:none; }
-  .modal-card h2{ font-size:var(--h2); }
+  .modal-card h2,
+  .modal-card .modal-title{ font-size:var(--h2); }
 }
 
 /* ── 18. the service dropdown's chevron ────────────────────────────────
@@ -6874,6 +6882,7 @@ section.sec,
 #crawl-check.sec,
 #what-local.sec,
 #services-2.sec,
+#franchise-covers.sec,
 #pack.sec,
 #apart.sec,
 #clients.sec,
@@ -6894,6 +6903,8 @@ html body :is(h1, .hs-h1, .ct-hero h1),
 html body .hs .hs-h1{
   font-size:var(--h1) !important;
   line-height:1.08 !important;
+  /* Negative letter-spacing on display type leaves an optical left gap — pull flush */
+  margin-inline-start:-0.04em;
 }
 html body :is(h2),
 html body .sec-head h2,
@@ -6918,10 +6929,17 @@ html body .dc-head h2,
 html body .cq-top h2,
 html body #services-2 .sec-head h2,
 html body #services-2 h2,
+html body #franchise-covers .sec-head h2,
+html body #franchise-covers h2,
+html body #franchise-covers .tm-head h2,
 html body #what-local h2,
 html body #pack h2,
 html body #process h2,
 html body #faq h2,
+html body #duplicate h2,
+html body #duplicate h2 span,
+html body #duplicate h2 em,
+html body #duplicate h2 small,
 html body #duplicate-v2 h2,
 html body #duplicate-v2 h2 span,
 html body #duplicate-v2 h2 em,
@@ -6946,6 +6964,15 @@ html body .em-card h3,
 html body .faq-aside h3{
   font-size:var(--h3) !important;
   line-height:1.25 !important;
+}
+/* What-we-do console tabs keep rail size (h3 is semantic only) */
+html body .cn-tab h3{
+  font-size:inherit !important;
+  line-height:inherit !important;
+  letter-spacing:inherit !important;
+  font-weight:inherit !important;
+  margin:0 !important;
+  color:inherit !important;
 }
 /* Hero form title stays compact (p.hs-form-title or legacy h3) */
 html body .hs-form > h3,
@@ -6978,9 +7005,9 @@ html body .sec-head h2{
 html body h2 > span + span + span{
   display:inline !important;
 }
-/* Headings must flow as one phrase — no forced line breaks via <em>/<span> */
+/* Headings must flow as one phrase — no forced line breaks via <em>/<span>/<br> */
 html body :is(h1, h2, h3, h4, h5, h6) em,
-html body :is(h1, h2, h3, h4, h5, h6) > br{
+html body :is(h1, h2, h3, h4, h5, h6) > span{
   display:inline !important;
 }
 html body :is(h1, h2, h3, h4, h5, h6) br{

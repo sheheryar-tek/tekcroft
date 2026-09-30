@@ -73,7 +73,7 @@ html[data-theme="dark"]{
   font-family:var(--font-display); font-weight:800; letter-spacing:-0.04em;
   line-height:1.08; font-size:var(--h1); color:#fff;}
 .hs-h1 em{font-style:normal; color:var(--primary);}
-.hs-h1 span{display:block;}
+.hs-h1 span{display:inline;}
 
 .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px); max-width:48ch;
   font-size:var(--body); line-height:1.65; color:rgba(255,255,255,.76);}
@@ -4626,6 +4626,7 @@ section.sec,
 #crawl-check.sec,
 #what-local.sec,
 #services-2.sec,
+#franchise-covers.sec,
 #pack.sec,
 #apart.sec,
 #clients.sec,
@@ -4646,6 +4647,8 @@ html body :is(h1, .hs-h1, .ct-hero h1),
 html body .hs .hs-h1{
   font-size:var(--h1) !important;
   line-height:1.08 !important;
+  /* Negative letter-spacing on display type leaves an optical left gap — pull flush */
+  margin-inline-start:-0.04em;
 }
 html body :is(h2),
 html body .sec-head h2,
@@ -4670,10 +4673,17 @@ html body .dc-head h2,
 html body .cq-top h2,
 html body #services-2 .sec-head h2,
 html body #services-2 h2,
+html body #franchise-covers .sec-head h2,
+html body #franchise-covers h2,
+html body #franchise-covers .tm-head h2,
 html body #what-local h2,
 html body #pack h2,
 html body #process h2,
 html body #faq h2,
+html body #duplicate h2,
+html body #duplicate h2 span,
+html body #duplicate h2 em,
+html body #duplicate h2 small,
 html body #duplicate-v2 h2,
 html body #duplicate-v2 h2 span,
 html body #duplicate-v2 h2 em,
@@ -4698,6 +4708,15 @@ html body .em-card h3,
 html body .faq-aside h3{
   font-size:var(--h3) !important;
   line-height:1.25 !important;
+}
+/* What-we-do console tabs keep rail size (h3 is semantic only) */
+html body .cn-tab h3{
+  font-size:inherit !important;
+  line-height:inherit !important;
+  letter-spacing:inherit !important;
+  font-weight:inherit !important;
+  margin:0 !important;
+  color:inherit !important;
 }
 /* Hero form title stays compact (p.hs-form-title or legacy h3) */
 html body .hs-form > h3,
@@ -4730,9 +4749,9 @@ html body .sec-head h2{
 html body h2 > span + span + span{
   display:inline !important;
 }
-/* Headings must flow as one phrase — no forced line breaks via <em>/<span> */
+/* Headings must flow as one phrase — no forced line breaks via <em>/<span>/<br> */
 html body :is(h1, h2, h3, h4, h5, h6) em,
-html body :is(h1, h2, h3, h4, h5, h6) > br{
+html body :is(h1, h2, h3, h4, h5, h6) > span{
   display:inline !important;
 }
 html body :is(h1, h2, h3, h4, h5, h6) br{
