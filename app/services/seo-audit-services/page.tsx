@@ -11,6 +11,7 @@ import "@/app/seo-audit-services.css";
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
+  keywords: meta.keywords,
   alternates: { canonical: meta.canonical },
   openGraph: {
     type: "website",
