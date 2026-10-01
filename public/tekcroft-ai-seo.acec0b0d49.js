@@ -1,3 +1,23 @@
+/* === wy-script === */
+
+(function(){
+  var root=document.getElementById('why'); if(!root) return;
+  var tabs=[].slice.call(root.querySelectorAll('.wy-tab')), panels=[].slice.call(root.querySelectorAll('.wy-panel')), cur=0, timer=null, user=false,
+      reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i,focus){ cur=i; tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle('on',on); t.setAttribute('aria-selected',on?'true':'false'); t.tabIndex=on?0:-1; panels[k].hidden=!on; });
+    if(focus) tabs[i].focus(); tabs.forEach(function(t){ var b=t.querySelector('.wy-bar'); b.style.animation='none'; void b.offsetWidth; b.style.animation=''; }); }
+  function play(){ if(user||reduce) return; stop(); root.classList.add('wy-auto'); timer=setInterval(function(){ show((cur+1)%tabs.length); },6000); }
+  function stop(){ clearInterval(timer); root.classList.remove('wy-auto'); }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){ user=true; stop(); show(i); });
+    t.addEventListener('keydown',function(e){ var n=null; if(e.key==='ArrowRight') n=(i+1)%tabs.length; if(e.key==='ArrowLeft') n=(i-1+tabs.length)%tabs.length;
+      if(e.key==='Home') n=0; if(e.key==='End') n=tabs.length-1; if(n!==null){ e.preventDefault(); user=true; stop(); show(n,true); } });
+  });
+  var box=root.querySelector('.wy-box'); box.addEventListener('mouseenter',stop); box.addEventListener('mouseleave',play);
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?play():stop(); }); },{threshold:.3}).observe(root); } else play();
+})();
+
+
 /* === chrome === */
 
 (function(){
@@ -186,15 +206,22 @@
   var track = document.getElementById("tbMarq");
   if (track && !calm) track.innerHTML += track.innerHTML;
 
-  /* ---------------- count-up ---------------- */
-  function countUp(el){
-    var target = parseFloat(el.getAttribute("data-count"));
+  /* ---------------- count-up ---------------- */  function countUp(el){
+    var raw = el.getAttribute("data-count");
+    var target = parseFloat(raw);
     if (isNaN(target)) return;
     var prefix = el.getAttribute("data-prefix") || "";
     var suffix = el.getAttribute("data-suffix") || "";
+    /* How many decimals the authored value carries decides how the count
+       is rounded and printed. Without this a rating of 4.9 counts up to a
+       flat 5, because Math.round was the only rounding here. An integer
+       target has no decimals and keeps the thousands separator it had. */
+    var dec = (String(raw).split(".")[1] || "").length;
     function affix(t){ return t ? '<i class="fig-af">' + t + '</i>' : ""; }
     function show(n){
-      return affix(prefix) + (n >= 1000 ? n.toLocaleString("en-US") : n) + affix(suffix);
+      var v = dec ? n.toFixed(dec)
+                  : (n >= 1000 ? n.toLocaleString("en-US") : n);
+      return affix(prefix) + v + affix(suffix);
     }
     if (calm){ el.innerHTML = show(target); return; }
     var t0 = null, dur = 1400;
@@ -202,7 +229,7 @@
       if (t0 === null) t0 = t;
       var p = Math.min((t - t0) / dur, 1);
       var e = 1 - Math.pow(1 - p, 3);
-      el.innerHTML = show(Math.round(target * e));
+      el.innerHTML = show(dec ? +(target * e).toFixed(dec) : Math.round(target * e));
       if (p < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -219,318 +246,14 @@
 })();
 
 
-/* === ft-script === */
-
-/* The footer's run of service names. One row written twice, because the
-   slide travels exactly half the track — so the copy arrives where the
-   original left and the loop has no seam. */
-(function(){
-  "use strict";
-  var el = document.getElementById("ftMarq");
-  if (!el) return;
-  var row = ["SEO","On-page SEO","Title tags","Meta descriptions",
-             "Content optimization","Internal linking","Schema markup",
-             "Keyword mapping","Heading structure","Technical SEO",
-             "Analytics","Reporting"]
-    .map(function(t){ return "<span>" + t + "</span><i></i>"; }).join("");
-  el.innerHTML = row + row;
-})();
-
-
-/* === faq-script (hardened) === */
-(function(){
-  function panelFor(btn){
-    var id = btn.getAttribute("aria-controls");
-    return id ? document.getElementById(id) : null;
-  }
-  function closeAll(list){
-    list.querySelectorAll(".faq-q").forEach(function(b){
-      b.setAttribute("aria-expanded", "false");
-      var p = panelFor(b);
-      if (p){ p.setAttribute("data-open", "false"); p.classList.remove("is-open"); }
-    });
-  }
-  document.addEventListener("click", function(e){
-    var t = e.target;
-    if (t && t.nodeType === 3) t = t.parentElement;
-    if (!t || typeof t.closest !== "function") return;
-    var btn = t.closest(".faq-q");
-    if (!btn) return;
-    var list = btn.closest(".faq-list");
-    if (!list) return;
-    var panel = panelFor(btn);
-    if (!panel) return;
-    var isOpen = btn.getAttribute("aria-expanded") === "true";
-    closeAll(list);
-    if (!isOpen){
-      btn.setAttribute("aria-expanded", "true");
-      panel.setAttribute("data-open", "true");
-      panel.classList.add("is-open");
-      var wrap = list.closest(".faq-wrap");
-      if (wrap){
-        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
-        wrap.dataset.at = String(qs.indexOf(btn) + 1);
-      }
-    }
-  });
-})();
-
-/* === cn-script === */
+/* === walk-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
-   THE SERVICES CONSOLE — ported from the homepage, unchanged.
-   ══════════════════════════════════════════════════════════════════════ */
-(function(){
-  "use strict";
-  var $  = function(s, r){ return (r || document).querySelector(s); };
-  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+   THE WALK — ported from the homepage.
 
-  $$("[data-console]").forEach(function(cn){
-    var cnTabs  = $$(".cn-tab", cn),
-        cnCards = $$(".cn-card", cn),
-        cnSheet = $(".cn-sheet", cn),
-        cnLift  = $(".cn-lift", cn),
-        cnFold  = window.matchMedia("(max-width:1040px)"),
-        cnAt    = 0,
-        cnSeated = false,
-        cnTries = 0;
-
-    /* ---- the travelling pane ----
-       The lit pill is one pane parked over the rail, and switching a
-       service moves it rather than repainting a row. Where it goes is the
-       only thing here that needs measuring, and it is read off the row it
-       is going to — four numbers set once, and the transition does the
-       carrying. Nothing is tracked frame by frame.
-
-       The width it is given is the row's own column: the row plus the
-       right margin the row keeps clear of the sheet. The overhang past
-       that is padding on the pane itself, so the reach never has to be
-       worked out twice.
-
-       The first placement is not animated. There is nowhere for a pane to
-       travel from before anything has been chosen, and a pane sliding in
-       from the corner of the block on load would say a switch had been
-       thrown when nobody had touched it. */
-    function cnPlaceLift(i, animate){
-      if (!cnLift) return;
-      if (cnFold.matches || i < 0){ cnLift.classList.remove("on"); return; }
-      var t = cnTabs[i];
-      if (!t) return;
-      /* A row with no height has not been laid out yet — the block can be
-         reached before the webfont has settled its lines. Measuring it now
-         would park the pane on nothing, so the frame is given back and the
-         measurement retried, a bounded number of times so a row that is
-         genuinely never laid out cannot spin. */
-      if (!t.offsetHeight){
-        if (cnTries++ < 20) requestAnimationFrame(function(){ cnPlaceLift(cnAt, false); });
-        return;
-      }
-      cnTries = 0;
-      var gap = parseFloat(getComputedStyle(t).marginRight) || 0;
-      if (!animate) cnLift.style.transition = "none";
-      cnLift.style.top    = t.offsetTop + "px";
-      cnLift.style.left   = t.offsetLeft + "px";
-      cnLift.style.height = t.offsetHeight + "px";
-      cnLift.style.width  = (t.offsetWidth + gap) + "px";
-      cnLift.classList.add("on");
-      if (!animate){ void cnLift.offsetWidth; cnLift.style.transition = ""; }
-    }
-
-    /* Where a card lives depends on the shape of the block. Beside a rail
-       it belongs to the sheet, stacked with its siblings. Once the rail
-       has nothing to stand beside, the open card is lifted out and put
-       directly after the row that called for it — that is the accordion.
-       The rest go back to the sheet, which is out of the paint there. */
-    function cnHouse(i){
-      if (!cnFold.matches){
-        var strayed = cnCards.some(function(c){ return c.parentNode !== cnSheet; });
-        if (strayed) cnCards.forEach(function(c){ cnSheet.appendChild(c); });
-        return;
-      }
-      cnCards.forEach(function(c, k){
-        if (k === i){
-          if (c.previousElementSibling !== cnTabs[k]){
-            cnTabs[k].insertAdjacentElement("afterend", c);
-          }
-        } else if (c.parentNode !== cnSheet){
-          cnSheet.appendChild(c);
-        }
-      });
-    }
-
-    /* Whichever service is chosen, its answer should already be under the
-       eye. On the wide layout that means the sheet's top edge; on the
-       accordion it means the row itself, since the card opens beneath it.
-       Not done on every click — if the thing already sits somewhere
-       readable the page is left still, because jogging it for no reason
-       is worse than not moving at all. */
-    function cnReveal(i){
-      var mark = cnFold.matches ? cnTabs[i] : cnSheet;
-      if (!mark) return;
-
-      var navH = parseFloat(getComputedStyle(document.documentElement)
-                  .getPropertyValue("--nav-h")) || 74,
-          rest = navH + (cnFold.matches ? 10 : 14),
-          top;
-
-      /* a pinned row reports where it is pinned, not where it sits, and
-         aiming at that would open the card above the fold — so the pin is
-         lifted for the length of one measurement */
-      if (cnFold.matches){
-        var held = mark.style.position;
-        mark.style.position = "static";
-        top = mark.getBoundingClientRect().top;
-        mark.style.position = held;
-      } else {
-        top = mark.getBoundingClientRect().top;
-      }
-
-      var slack = cnFold.matches ? rest + 90 : window.innerHeight * 0.42;
-      if (top >= rest - 2 && top <= slack) return;
-
-      window.scrollTo({
-        top: top + window.pageYOffset - rest,
-        behavior: calm ? "auto" : "smooth"
-      });
-    }
-
-    /* i of -1 is a shut accordion — reachable only on the folded layout */
-    function cnShow(i, move){
-      cnAt = i;
-      cnTabs.forEach(function(t, k){
-        t.classList.toggle("on", k === i);
-        t.setAttribute("aria-selected", k === i ? "true" : "false");
-      });
-      cnCards.forEach(function(c, k){ c.classList.toggle("on", k === i); });
-      cnHouse(i);
-      cnPlaceLift(i, cnSeated && !calm);
-      cnSeated = true;
-      if (move && i >= 0) cnReveal(i);
-    }
-
-    cnTabs.forEach(function(t, i){
-      t.addEventListener("click", function(){
-        /* a second tap on the open row shuts it, and walks the page back
-           to that row, so the index resumes where the reader left it
-           rather than wherever the vanished card dropped the scroll */
-        if (cnFold.matches && cnAt === i){ cnShow(-1, false); cnReveal(i); return; }
-        cnShow(i, true);
-      });
-      t.addEventListener("keydown", function(e){
-        var step = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : 0;
-        if (!step) return;
-        e.preventDefault();
-        var next = (i + step + cnTabs.length) % cnTabs.length;
-        cnTabs[next].focus();
-        /* arrowing the list is browsing, not choosing — the page is held
-           still so the rail does not slide out from under the keys */
-        cnShow(next, false);
-      });
-    });
-
-    /* crossing the width re-houses the cards, and a block left shut on
-       the accordion cannot arrive on the wide layout empty */
-    function cnRehouse(){ cnShow(cnAt < 0 && !cnFold.matches ? 0 : cnAt, false); }
-    if (cnFold.addEventListener) cnFold.addEventListener("change", cnRehouse);
-    else if (cnFold.addListener) cnFold.addListener(cnRehouse);
-
-    /* The rail changes width with the column and its rows change height
-       when the webfont lands, and the pane is parked at pixel positions
-       that were true before either happened. Both are re-measured, and
-       neither is animated: this is the pane being put back where it
-       already was, not being sent anywhere. */
-    window.addEventListener("resize", function(){ cnPlaceLift(cnAt, false); });
-    if (document.fonts && document.fonts.ready){
-      document.fonts.ready.then(function(){ cnPlaceLift(cnAt, false); });
-    }
-
-    cnShow(0, false);   /* seat the opening card in whichever layout is live */
-  });
-})();
-
-
-/* === pf-script === */
-
-/* ══════════════════════════════════════════════════════════════════════
-   THE PLATFORM RUN
-
-   The track holds the seven cards twice, because the slide travels a flat
-   half of it and the second half has to be an exact copy for the loop to
-   have no seam. Doing it here rather than in the markup means each
-   platform is written once.
-
-   ── the copy only exists while the run does ────────────────────────
-   Below 600px the run is switched off in the stylesheet and the cards go
-   back to a stack the page scrolls through. The copy was still being made
-   there, so the stack was fourteen cards long: the seven read through,
-   and then the same seven again. That is the repeat.
-
-   So the copy follows the layout rather than being made once at load. The
-   same query the stylesheet uses is asked here, and it is listened to —
-   turn a phone on its side, or drag a window across the breakpoint, and
-   the copies are added or taken away to match. Each one is marked so it
-   can be found again; nothing else in the track is touched.
-
-   None of it happens under a reduced-motion preference either: there the
-   track does not move and the rail is an ordinary scroller, where a
-   second copy would just be the same seven cards twice.
-   ══════════════════════════════════════════════════════════════════════ */
-(function(){
-  "use strict";
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var track = document.querySelector(".pf-track");
-  if (!track) return;
-
-  /* the breakpoint the stylesheet stacks at, asked the same way here */
-  var running = window.matchMedia("(min-width: 601px)");
-
-  /* The list is snapshotted before anything is appended. track.children
-     is a live collection: appending one of its members back into the
-     track removes it from the collection at the same time, so walking it
-     while appending would skip every other card and leave the second run
-     short. */
-  var cards = Array.prototype.slice.call(track.children);
-
-  function add(){
-    cards.forEach(function(card){
-      var copy = card.cloneNode(true);
-      /* The originals are marked .rv, which holds an element at opacity 0
-         until the reveal observer gives it .in. That observer collected
-         its list before these copies existed, so nothing would ever light
-         them — the second half of the track would be there, travelling,
-         and invisible the whole way. The copies do not need revealing:
-         the cards they duplicate have already been seen. */
-      copy.classList.remove("rv");
-      copy.removeAttribute("style");
-      copy.setAttribute("aria-hidden", "true");
-      copy.setAttribute("tabindex", "-1");
-      copy.setAttribute("data-copy", "");
-      track.appendChild(copy);
-    });
-  }
-
-  function drop(){
-    Array.prototype.slice.call(track.querySelectorAll("[data-copy]"))
-      .forEach(function(el){ el.remove(); });
-  }
-
-  function sync(){
-    var has = !!track.querySelector("[data-copy]");
-    if (running.matches && !has) add();
-    else if (!running.matches && has) drop();
-  }
-
-  sync();
-  if (running.addEventListener) running.addEventListener("change", sync);
-  else running.addListener(sync);          /* older Safari */
-})();
-
-
-/* === eg-script === */
-
-/* ══════════════════════════════════════════════════════════════════════
-   THE WALK — ported from the homepage
+   Named eg-script once, after the section it arrived with. That section
+   is gone; the blueprint row uses it now, through the same data-walk
+   attribute. Nothing in here is tied to either.
 
    Any layout marked data-walk steps a light along its .walk-step
    children and publishes the index on the container as data-at, so a
@@ -721,85 +444,61 @@
 })();
 
 
-/* === wc-script === */
+/* === ft-script === */
 
-/* ══════════════════════════════════════════════════════════════════════
-   WHY CHOOSE US — the panel.
-
-   Each instrument is drawn from nothing every time its tab is opened.
-   The panel is taken out of the document and put back so the CSS
-   animations restart; the ring's arcs are the exception, since a dash
-   cannot be animated from a value it is already sitting on, so they are
-   reset to zero and committed before the real one is set.
-   ══════════════════════════════════════════════════════════════════════ */
+/* The footer's run of service names. One row written twice, because the
+   slide travels exactly half the track — so the copy arrives where the
+   original left and the loop has no seam. */
 (function(){
-  var panel = document.querySelector("#wcPanel");
-  if (!panel) return;
-
-  var $$ = function(s, r){
-    return Array.prototype.slice.call((r || document).querySelectorAll(s));
-  };
-  var tabs   = $$(".wc-tab", panel),
-      panels = $$(".wc-panel", panel),
-      body   = panel.querySelector(".wc-body");
-
-  /* the line is measured so its draw ends where the line does */
-  $$(".wc-line", panel).forEach(function(pth){
-    pth.style.setProperty("--len", pth.getTotalLength().toFixed(1));
-  });
-
-  function redraw(pnl){
-    $$(".seg", pnl).forEach(function(seg){
-      seg.style.strokeDasharray = "0 999";
-      void seg.getBoundingClientRect();
-      seg.style.strokeDasharray = seg.getAttribute("data-dash");
-    });
-  }
-
-  function show(i){
-    /* the panel squares whichever corner has a tab standing on it */
-    if (body){
-      body.classList.toggle("first", i === 0);
-      body.classList.toggle("last",  i === tabs.length - 1);
-    }
-    tabs.forEach(function(t, k){
-      t.classList.toggle("on", k === i);
-      t.setAttribute("aria-selected", k === i ? "true" : "false");
-    });
-    panels.forEach(function(pnl, k){
-      pnl.classList.remove("on");
-      if (k === i){
-        void pnl.offsetWidth;              /* restart the panel's animations */
-        pnl.classList.add("on");
-        redraw(pnl);
-      }
-    });
-  }
-
-  tabs.forEach(function(t, i){
-    t.addEventListener("click", function(){ show(i); });
-    t.addEventListener("keydown", function(e){
-      var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-      if (!step) return;
-      e.preventDefault();
-      var n = (i + step + tabs.length) % tabs.length;
-      tabs[n].focus(); show(n);
-    });
-  });
-
-  /* it draws when it is first reached, not while it is still off-screen */
-  if ("IntersectionObserver" in window){
-    var io = new IntersectionObserver(function(e){
-      if (!e[0].isIntersecting) return;
-      show(0);
-      io.disconnect();
-    }, { threshold:.2 });
-    io.observe(panel);
-  } else {
-    show(0);
-  }
+  "use strict";
+  var el = document.getElementById("ftMarq");
+  if (!el) return;
+  var row = ["Technical SEO","Site audits","Crawl and indexation","Core Web Vitals",
+             "Page speed","Site architecture","Internal linking","Structured data",
+             "JavaScript SEO","Site migrations","Log file analysis",
+             "Answer engine visibility","Monitoring"]
+    .map(function(t){ return "<span>" + t + "</span><i></i>"; }).join("");
+  el.innerHTML = row + row;
 })();
 
+
+/* === faq-script (hardened) === */
+(function(){
+  function panelFor(btn){
+    var id = btn.getAttribute("aria-controls");
+    return id ? document.getElementById(id) : null;
+  }
+  function closeAll(list){
+    list.querySelectorAll(".faq-q").forEach(function(b){
+      b.setAttribute("aria-expanded", "false");
+      var p = panelFor(b);
+      if (p){ p.setAttribute("data-open", "false"); p.classList.remove("is-open"); }
+    });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (t && t.nodeType === 3) t = t.parentElement;
+    if (!t || typeof t.closest !== "function") return;
+    var btn = t.closest(".faq-q");
+    if (!btn) return;
+    var list = btn.closest(".faq-list");
+    if (!list) return;
+    var panel = panelFor(btn);
+    if (!panel) return;
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    closeAll(list);
+    if (!isOpen){
+      btn.setAttribute("aria-expanded", "true");
+      panel.setAttribute("data-open", "true");
+      panel.classList.add("is-open");
+      var wrap = list.closest(".faq-wrap");
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll(".faq-q"));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
+    }
+  });
+})();
 
 /* === wk-script === */
 
@@ -1127,22 +826,132 @@ var $$ = function(s, r){
 })();
 
 
-/* === wc-six-script === */
+/* === pf-script === */
 
-/* The reason strip is wider than a phone, so the tab you choose is
-   brought to the middle of the strip: the one before it slides off and
-   the next one comes into view. */
+/* ══════════════════════════════════════════════════════════════════════
+   THE PLATFORM RUN
+
+   The track holds the seven cards twice, because the slide travels a flat
+   half of it and the second half has to be an exact copy for the loop to
+   have no seam. Doing it here rather than in the markup means each
+   platform is written once.
+
+   ── the copy only exists while the run does ────────────────────────
+   Below 600px the run is switched off in the stylesheet and the cards go
+   back to a stack the page scrolls through. The copy was still being made
+   there, so the stack was fourteen cards long: the seven read through,
+   and then the same seven again. That is the repeat.
+
+   So the copy follows the layout rather than being made once at load. The
+   same query the stylesheet uses is asked here, and it is listened to —
+   turn a phone on its side, or drag a window across the breakpoint, and
+   the copies are added or taken away to match. Each one is marked so it
+   can be found again; nothing else in the track is touched.
+
+   None of it happens under a reduced-motion preference either: there the
+   track does not move and the rail is an ordinary scroller, where a
+   second copy would just be the same seven cards twice.
+   ══════════════════════════════════════════════════════════════════════ */
 (function(){
-  var strip = document.querySelector("#wcPanel .wc-tabs");
-  if (!strip) return;
-  function show(tab){
-    if (!tab || strip.scrollWidth <= strip.clientWidth + 4) return;
-    var left = tab.offsetLeft - (strip.clientWidth - tab.offsetWidth) / 2;
-    strip.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+  "use strict";
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var track = document.querySelector(".pf-track");
+  if (!track) return;
+
+  /* the breakpoint the stylesheet stacks at, asked the same way here */
+  var running = window.matchMedia("(min-width: 601px)");
+
+  /* The list is snapshotted before anything is appended. track.children
+     is a live collection: appending one of its members back into the
+     track removes it from the collection at the same time, so walking it
+     while appending would skip every other card and leave the second run
+     short. */
+  var cards = Array.prototype.slice.call(track.children);
+
+  function add(){
+    cards.forEach(function(card){
+      var copy = card.cloneNode(true);
+      /* The originals are marked .rv, which holds an element at opacity 0
+         until the reveal observer gives it .in. That observer collected
+         its list before these copies existed, so nothing would ever light
+         them — the second half of the track would be there, travelling,
+         and invisible the whole way. The copies do not need revealing:
+         the cards they duplicate have already been seen. */
+      copy.classList.remove("rv");
+      copy.removeAttribute("style");
+      copy.setAttribute("aria-hidden", "true");
+      copy.setAttribute("tabindex", "-1");
+      copy.setAttribute("data-copy", "");
+      track.appendChild(copy);
+    });
   }
-  strip.addEventListener("click", function(e){
-    var tab = e.target.closest(".wc-tab");
-    if (tab) setTimeout(function(){ show(tab); }, 30);
+
+  function drop(){
+    Array.prototype.slice.call(track.querySelectorAll("[data-copy]"))
+      .forEach(function(el){ el.remove(); });
+  }
+
+  function sync(){
+    var has = !!track.querySelector("[data-copy]");
+    if (running.matches && !has) add();
+    else if (!running.matches && has) drop();
+  }
+
+  sync();
+  if (running.addEventListener) running.addEventListener("change", sync);
+  else running.addListener(sync);          /* older Safari */
+})();
+
+
+/* === tm-script === */
+
+(function(){
+  var rail=document.querySelector('[data-tm]'); if(!rail) return;
+  var items=[].slice.call(rail.querySelectorAll('.tm-item'));
+  items.forEach(function(el){ var b=document.createElement('span'); b.className='tm-prog';
+    b.setAttribute('aria-hidden','true'); el.appendChild(b); });
+  var at=0, timer=null, held=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i){
+    at=(i+items.length)%items.length;
+    items.forEach(function(el,k){ var on=k===at; el.classList.toggle('on',on);
+      el.setAttribute('aria-selected',String(on));
+      if(on){ var b=el.querySelector('.tm-prog'); if(b){ b.style.animation='none'; void b.offsetWidth; b.style.animation=''; } }
+    });
+  }
+  function play(){ stop(); rail.classList.remove('paused'); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },6000); }
+  function stop(){ clearInterval(timer); }
+  function hold(){ held=true; stop(); rail.classList.add('paused'); clearTimeout(hold._t);
+    hold._t=setTimeout(function(){ held=false; play(); },12000); }
+  items.forEach(function(el,i){
+    el.addEventListener('mouseenter',function(){ show(i); });
+    el.addEventListener('click',function(){ hold(); show(i); });
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hold(); show(i); return; }
+      var to = e.key==='ArrowRight'||e.key==='ArrowDown' ? i+1 : e.key==='ArrowLeft'||e.key==='ArrowUp' ? i-1 : -1;
+      if(to<0||to>=items.length) return;
+      e.preventDefault(); items[to].focus(); hold(); show(to);
+    });
   });
-  window.addEventListener("load", function(){ show(strip.querySelector(".wc-tab.on")); });
+  rail.addEventListener('mouseenter',function(){ stop(); rail.classList.add('paused'); });
+  rail.addEventListener('mouseleave',function(){ rail.classList.remove('paused'); if(!held) play(); });
+  show(0);
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
+  io.observe(rail);
+})();
+
+/* === mr-script === */
+(function(){
+  var root=document.getElementById('measure'); if(!root) return;
+  var ms=[].slice.call(root.querySelectorAll('.mr-m')), ts=[].slice.call(root.querySelectorAll('.mr-tile')), cur=0, timer=null, user=false,
+      reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function set(k){ cur=k; ms.forEach(function(m,i){ m.classList.toggle('on',i===k); });
+    ts.forEach(function(t){ t.classList.toggle('on',+t.getAttribute('data-m')===k); }); root.setAttribute('data-m',k); }
+  function play(){ if(user||reduce) return; stop(); timer=setInterval(function(){ set((cur+1)%ms.length); },3400); }
+  function stop(){ clearInterval(timer); }
+  ms.forEach(function(m,i){ m.addEventListener('mouseenter',function(){ stop(); set(i); }); });
+  ts.forEach(function(t){ t.addEventListener('mouseenter',function(){ stop(); set(+t.getAttribute('data-m')); }); });
+  root.querySelector('.mr-body').addEventListener('mouseleave',play);
+  set(0);
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?play():stop(); }); },{threshold:.3}).observe(root); } else play();
 })();

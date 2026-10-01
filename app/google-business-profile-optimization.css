@@ -6435,3 +6435,8 @@ html body .gw-say > p{
   --panel:var(--surface);
   background:var(--ground) !important;
 }
+/* Process steps: icons only — hide step numbers in titles */
+#process .eg-card h3 i{
+  display:none !important;
+  margin:0 !important;
+}

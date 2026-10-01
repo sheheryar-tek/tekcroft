@@ -4,18 +4,17 @@ import path from "path";
 import Script from "next/script";
 import Homepage from "@/components/Homepage";
 import assets from "@/lib/asset-manifest.json";
-import meta from "@/lib/ai-chatbot-development-meta.json";
-import lcp from "@/lib/ai-chatbot-development-lcp.json";
-import "@/app/ai-chatbot-development.css";
+import meta from "@/lib/ai-seo-meta.json";
+import lcp from "@/lib/ai-seo-lcp.json";
+import "@/app/ai-seo.css";
 
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  keywords: meta.keywords,
   alternates: { canonical: meta.canonical },
   openGraph: {
     type: "website",
-    siteName: "TekCroft",
+    siteName: "Tekcroft",
     url: meta.canonical,
     title: meta.title,
     description: meta.description,
@@ -27,9 +26,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AiChatbotDevelopmentServicesPage() {
+export default function AiSeoServicesPage() {
   const html = fs.readFileSync(
-    path.join(process.cwd(), "lib", "ai-chatbot-development-body.html"),
+    path.join(process.cwd(), "lib", "ai-seo-body.html"),
     "utf8"
   );
 
@@ -43,7 +42,7 @@ export default function AiChatbotDevelopmentServicesPage() {
         fetchPriority="high"
       />
       <Homepage html={html} />
-      <Script src={assets.aiChatbotDevelopment} strategy="afterInteractive" />
+      <Script src={assets.aiSeo} strategy="afterInteractive" />
     </>
   );
 }

@@ -1282,3 +1282,359 @@ var $$ = function(s, r){
       if(e.isIntersecting && e.intersectionRect.height>0){ if(!t){ s=0; tick(); } } else if(t){ stop(); } }); },{threshold:.2}).observe(box);
   });
 })();
+
+/* === why-v2 tabs (chatbot) === */
+(function(){
+  "use strict";
+  var box = document.querySelector("#why [data-tabs]");
+  if (!box) return;
+  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
+      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
+  function show(i){
+    tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle("on",on); t.setAttribute("aria-selected",String(on)); });
+    panes.forEach(function(p,k){ p.classList.toggle("on", k===i); });
+  }
+  box.querySelector(".wy-rail").addEventListener("click", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (!b) return;
+    show(+b.getAttribute("data-p"));
+  });
+  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (!b) return;
+    var i = +b.getAttribute("data-p");
+    var to = e.key==="ArrowRight"||e.key==="ArrowDown" ? i+1 : e.key==="ArrowLeft"||e.key==="ArrowUp" ? i-1 : -1;
+    if (to<0 || to>=tabs.length) return;
+    e.preventDefault(); tabs[to].focus(); show(to);
+  });
+})();
+
+/* === wc-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHY CHOOSE US — the panel.
+
+   Each instrument is drawn from nothing every time its tab is opened.
+   The panel is taken out of the document and put back so the CSS
+   animations restart; the ring's arcs are the exception, since a dash
+   cannot be animated from a value it is already sitting on, so they are
+   reset to zero and committed before the real one is set.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  var panel = document.querySelector("#wcPanel");
+  if (!panel) return;
+
+  var $$ = function(s, r){
+    return Array.prototype.slice.call((r || document).querySelectorAll(s));
+  };
+  var tabs   = $$(".wc-tab", panel),
+      panels = $$(".wc-panel", panel),
+      body   = panel.querySelector(".wc-body");
+
+  /* the line is measured so its draw ends where the line does */
+  $$(".wc-line", panel).forEach(function(pth){
+    pth.style.setProperty("--len", pth.getTotalLength().toFixed(1));
+  });
+
+  function redraw(pnl){
+    $$(".seg", pnl).forEach(function(seg){
+      seg.style.strokeDasharray = "0 999";
+      void seg.getBoundingClientRect();
+      seg.style.strokeDasharray = seg.getAttribute("data-dash");
+    });
+  }
+
+  function show(i){
+    /* the panel squares whichever corner has a tab standing on it */
+    if (body){
+      body.classList.toggle("first", i === 0);
+      body.classList.toggle("last",  i === tabs.length - 1);
+    }
+    tabs.forEach(function(t, k){
+      t.classList.toggle("on", k === i);
+      t.setAttribute("aria-selected", k === i ? "true" : "false");
+    });
+    panels.forEach(function(pnl, k){
+      pnl.classList.remove("on");
+      if (k === i){
+        void pnl.offsetWidth;              /* restart the panel's animations */
+        pnl.classList.add("on");
+        redraw(pnl);
+      }
+    });
+  }
+
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ show(i); });
+    t.addEventListener("keydown", function(e){
+      var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!step) return;
+      e.preventDefault();
+      var n = (i + step + tabs.length) % tabs.length;
+      tabs[n].focus(); show(n);
+    });
+  });
+
+  /* it draws when it is first reached, not while it is still off-screen */
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(e){
+      if (!e[0].isIntersecting) return;
+      show(0);
+      io.disconnect();
+    }, { threshold:.2 });
+    io.observe(panel);
+  } else {
+    show(0);
+  }
+})();
+
+
+/* === dv-script === */
+
+/* Develop apps: the build cards' glow follows the pointer */
+(function(){
+  document.querySelectorAll(".dv-card").forEach(function(c){
+    c.addEventListener("pointermove", function(e){
+      var r=c.getBoundingClientRect();
+      c.style.setProperty("--mx", (e.clientX-r.left)+"px");
+      c.style.setProperty("--my", (e.clientY-r.top)+"px");
+    });
+  });
+})();
+
+/* === eg-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE WALK — ported from the homepage
+
+   Any layout marked data-walk steps a light along its .walk-step
+   children and publishes the index on the container as data-at, so a
+   progress arc or a row of pips can be drawn from it without needing a
+   script of its own. Each keeps its own timer, and the timer runs only
+   while that layout is on screen.
+
+   Everything the section has to say is readable before the light starts
+   moving: the cards are all revealed on first sight, and the stepping is
+   decoration on top of that.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  $$("[data-walk]").forEach(function(pw){
+    var steps = $$(".walk-step", pw), at = -1, tick = null;
+
+    /* On the narrow layout the lit step is pulled to the head of the list
+       with `order`, and order cannot be transitioned — the card is simply
+       somewhere else on the next frame. So the move is played back: the
+       tops are read before the class changes and again after, each card is
+       put back where it was with a transform, and then the transform is
+       released. The browser animates the release, which looks like the
+       card travelling to its new place.
+
+       On the wide layout nothing reorders, every delta is zero, and this
+       costs one rect read per step. */
+    function tops(){
+      return steps.map(function(s){ return s.getBoundingClientRect().top; });
+    }
+    function play(before){
+      /* Every read first, then every write — otherwise reading a rect,
+         writing a style and forcing a commit inside one loop pass makes
+         the browser lay the page out again on every card. */
+      var deltas = steps.map(function(s, k){
+        return before[k] - s.getBoundingClientRect().top;
+      });
+      var moved = [];
+      steps.forEach(function(s, k){
+        if (!deltas[k]) return;
+        s.style.transition = "none";
+        s.style.transform = "translateY(" + deltas[k] + "px)";
+        moved.push(s);
+      });
+      if (!moved.length) return;
+      void moved[0].offsetHeight;                 /* one commit for them all */
+      moved.forEach(function(s){
+        s.style.transition = "transform .52s cubic-bezier(.16,1,.3,1)";
+        s.style.transform = "";
+        s.addEventListener("transitionend", function done(){
+          s.style.transition = "";
+          s.removeEventListener("transitionend", done);
+        });
+      });
+    }
+
+    function go(){
+      var before = calm ? null : tops();
+      at = (at + 1) % steps.length;
+      steps.forEach(function(s, k){ s.classList.toggle("on", k === at); });
+      pw.setAttribute("data-at", at);
+      if (before) play(before);
+    }
+
+    /* ── narrow: the reader walks it, not the timer ───────────────────
+       On one column the light stepping every 1.6s is unreadable — five
+       cards is more than anyone can catch at that rate, and the layout
+       used to reorder them under the thumb as well. Here each card lights
+       as it is scrolled to and stays lit until the next one is reached,
+       so the section is read at the reader's own pace and the disc still
+       counts the stage being looked at.
+
+       The rootMargin pins the trigger to a band across the middle of the
+       screen rather than the edge: a card lights when it is where the eye
+       is, not when a corner of it appears. */
+    var narrow = window.matchMedia("(max-width: 1000px)");
+
+    function stop(){
+      if (tick){ clearInterval(tick); tick = null; }
+    }
+
+    function light(k){
+      if (k === at) return;
+      at = k;
+      steps.forEach(function(s, i){ s.classList.toggle("on", i === k); });
+      pw.setAttribute("data-at", k);
+    }
+
+    /* 1.6s is the wide layout's pace, where all five cards are readable
+       already and the light is only pointing at one of them. Here the
+       light IS the card, so the interval is what a stage takes to read
+       rather than what a pointer takes to move. */
+    function run(){
+      if (tick) return;
+      tick = setInterval(function(){ light((at + 1) % steps.length); }, 7000);
+    }
+
+    var wired = false;
+
+    /* Moving a stage by hand restarts the clock rather than stopping it.
+       Killing the timer outright meant one drag left the carousel dead
+       for the rest of the visit; resetting it gives the stage just landed
+       on a full read before anything moves on its own again. */
+    function move(d){
+      light((at + d + steps.length) % steps.length);
+      if (tick){ clearInterval(tick); tick = null; }
+      if (!calm) run();
+    }
+
+    /* ── narrow: the drag ─────────────────────────────────────────────
+       Wired once, not per entry into view, or every scroll back would
+       add another set of listeners and one drag would move two stages.
+
+       Touch events for fingers and pointer events for a mouse, rather
+       than pointer events for both. A pointer sequence on a phone is
+       taken over by the browser the moment it decides the gesture might
+       be a scroll: it fires pointercancel and no pointerup ever arrives,
+       so a swipe that started even slightly off the horizontal was
+       simply never seen. touchend always arrives. The pointer path is
+       kept for a mouse only, so a drag is never counted twice.
+
+       Vertical drags are left alone; the page still has to scroll. A
+       drag only counts when it is clearly sideways and long enough to
+       have been meant. */
+    function wire(){
+      if (wired) return;
+      wired = true;
+      var list = pw.querySelector(".eg-list");
+      if (!list) return;
+      var x0 = null, y0 = null;
+
+      function start(x, y){ x0 = x; y0 = y; }
+      function end(x, y){
+        if (x0 === null) return;
+        var dx = x - x0, dy = y - y0;
+        x0 = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) move(dx < 0 ? 1 : -1);
+      }
+
+      list.addEventListener("touchstart", function(e){
+        var t = e.changedTouches[0]; start(t.clientX, t.clientY);
+      }, { passive: true });
+      list.addEventListener("touchend", function(e){
+        var t = e.changedTouches[0]; end(t.clientX, t.clientY);
+      }, { passive: true });
+      list.addEventListener("touchcancel", function(){ x0 = null; }, { passive: true });
+
+      list.addEventListener("pointerdown", function(e){
+        if (e.pointerType === "mouse") start(e.clientX, e.clientY);
+      }, { passive: true });
+      list.addEventListener("pointerup", function(e){
+        if (e.pointerType === "mouse") end(e.clientX, e.clientY);
+      }, { passive: true });
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      var here = entries[0].isIntersecting;
+      if (!here){ stop(); return; }
+      steps.forEach(function(s){ s.classList.add("seen"); });
+
+      /* Narrow shows one stage at a time, so a stage has to be lit for
+         anything to be on screen at all — even when the reader has asked
+         for no motion, where the first one is simply shown and left. */
+      if (narrow.matches){
+        wire();
+        if (at < 0) light(0);
+        if (calm) return;
+        run();
+        return;
+      }
+
+      if (calm) return;                            /* drawn, and left still */
+      if (!tick){
+        go();
+        tick = setInterval(go, 1600);
+      }
+    }, { threshold:0.25 });
+    io.observe(pw);
+
+    /* turn a phone on its side, or drag a window across the breakpoint,
+       and the section swaps which of the two it is running */
+    var swap = function(){ stop(); io.unobserve(pw); io.observe(pw); };
+    if (narrow.addEventListener) narrow.addEventListener("change", swap);
+    else narrow.addListener(swap);
+  });
+})();
+
+
+/* === ac-script (deliverables panels) === */
+(function(){
+ document.querySelectorAll('[data-acc]').forEach(function(acc){
+  var items=[].slice.call(acc.querySelectorAll('.ac-item'));
+  var at=0, timer=null, held=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(i){
+    at=(i+items.length)%items.length;
+    items.forEach(function(el,k){ var on=k===at; el.classList.toggle('on',on); el.setAttribute('aria-selected',String(on)); });
+  }
+  function play(){ stop(); acc.classList.remove('paused'); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },5000); }
+  function stop(){ clearInterval(timer); }
+  function hold(){ held=true; stop(); acc.classList.add('paused'); clearTimeout(hold._t);
+    hold._t=setTimeout(function(){ held=false; play(); },12000); }
+
+  items.forEach(function(el,i){
+    el.addEventListener('mouseenter',function(){ show(i); });
+    el.addEventListener('click',function(){ hold(); show(i); });
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); hold(); show(i); return; }
+      var to = e.key==='ArrowRight'||e.key==='ArrowDown' ? i+1 : e.key==='ArrowLeft'||e.key==='ArrowUp' ? i-1 : -1;
+      if(to<0 || to>=items.length) return;
+      e.preventDefault(); items[to].focus(); hold(); show(to);
+    });
+  });
+  acc.addEventListener('mouseenter',function(){ stop(); acc.classList.add('paused'); });
+  acc.addEventListener('mouseleave',function(){ acc.classList.remove('paused'); if(!held) play(); });
+
+  acc.addEventListener('pointermove',function(e){
+    var open=acc.querySelector('.ac-item.on'); if(!open) return;
+    var r=open.getBoundingClientRect();
+    open.style.setProperty('--mx', Math.min(Math.max((e.clientX-r.left)/r.width,0),1).toFixed(3));
+    open.style.setProperty('--my', Math.min(Math.max((e.clientY-r.top)/r.height,0),1).toFixed(3));
+  });
+
+  show(0);
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
+  io.observe(acc);
+ });
+})();
+

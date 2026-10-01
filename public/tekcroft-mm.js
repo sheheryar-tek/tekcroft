@@ -12,7 +12,7 @@ var SERVICES = [
       {name:"SEO Audit Services", href:"/services/seo-audit-services", note:"Find what is holding the site back.", img:"mentor"},
       {name:"On-Page SEO Services", href:"/services/on-page-seo", note:"Titles, content and internal links.", img:"meeting"},
       {name:"Technical SEO Services", href:"/services/technical-seo", note:"Crawling, speed and indexing fixes.", img:"devs"},
-      {name:"AI SEO Services", href:"#services", note:"Get cited inside AI answers.", img:"laptops"}
+      {name:"AI SEO Services", href:"/services/ai-seo-services", note:"Get cited inside AI answers.", img:"laptops"}
     ]},
   { title:"Local SEO", href:"#services", icon:"pin", img:"keys",
     items:[

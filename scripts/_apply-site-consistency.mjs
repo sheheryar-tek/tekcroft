@@ -25,6 +25,7 @@ const cssFiles = [
   "app/custom-software-development.css",
   "app/ai-agent-development.css",
   "app/ai-chatbot-development.css",
+  "app/ai-seo.css",
   "app/contact.css",
 ];
 
@@ -57,6 +58,7 @@ const pages = [
   "app/services/software-development-services/page.tsx",
   "app/services/ai-agent-development-services/page.tsx",
   "app/services/ai-chatbot-development-services/page.tsx",
+  "app/services/ai-seo-services/page.tsx",
 ];
 
 for (const rel of pages) {
