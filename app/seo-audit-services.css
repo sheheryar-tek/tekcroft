@@ -1082,17 +1082,13 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
    that must not break either way is the blue phrase, which is two words
    and reads as a unit ? that is the nowrap.
    ?????????????????????????????????????????????????????????????????????? */
-.hs-h1 em{white-space:nowrap;}
+/* Headline flows as one sentence ? no nowrap on the blue phrase,
+   so "You What" stay together when width allows. */
+#hero-1 .hs-h1, #hero-1 .hs-h1 em{white-space:normal !important;}
+.hs-h1 em{white-space:normal;}
 
-/* Below the full column, and on every screen in variant 02 ? where the
-   headline shares its row with two more columns and never has the width
-   for an authored break ? the sentence wraps on its own. */
 @media (max-width:1240px){
   .hs-h1 span{display:inline;}
-  /* Four words is past the point where holding the blue phrase on one
-     line is safe. Once the authored breaks are released it wraps with
-     the rest of the sentence rather than running past the column. */
-  .hs-h1 em{white-space:normal;}
 }
 
 
@@ -3178,13 +3174,12 @@ html[data-theme="dark"] .cn .cn-stat{
 .sec,
 html[data-theme="dark"] .sec{ background:var(--ground); }
 
-/* Strict white ? tint down the page after the white proof strip.
+/* Strict white ? tint after the white proof strip.
    Order: who(tint) ? services(white) ? vs(tint) ? process(white) ?
-   why(tint) ? receive(white) ? pricing(tint) ? reviews(white) ?
-   work(tint) ? faq(white) ? contact(tint). Cards read --panel. */
-#who,#vs,#why,#pricing,#work,#contact{
+   receive(tint) ? reviews(white) ? work(tint) ? faq(white) ? contact(tint). */
+#who,#vs,#why,#pricing,#receive,#work,#contact{
   --ground:var(--bg-alt);  --panel:var(--surface); }
-#services-2,#process,#receive,#reviews,#faq{
+#services-2,#process,#reviews,#faq{
   --ground:var(--surface); --panel:var(--bg-alt); }
 
 /* Paint every content section from --ground so later component CSS
@@ -3493,48 +3488,31 @@ html body #who .wn-say h2 > span > em{display:inline !important;}
    belongs to.
    ?????????????????????????????????????????????????????????????????????? */
 
-.vs{--vs-c1:36%; --vs-col:21.333%;   /* 36 + 21.333?3 = 100 */
+.vs{--vs-c1:36%; --vs-col:21.333%;   /* 36 + 21.333*3 = 100 */
   --vs-ai:hsl(222 24% 97.5%);
-  /* the hero's overlay, on the hero's own token. Override it here to
-     darken this section alone; change --veil to move both together. */
   --vs-veil:var(--veil);
-  /* This section holds more rows than any other holds anything, so it
-     runs tighter than the page default of clamp(58px,6vw,92px). The
-     table is the reason: seven rows of the standard cell padding put
-     the checklist under it a screenful further down than it needs to
-     be, and nothing here rewards the extra scroll. */
   --sec-y:clamp(44px,4.4vw,68px);
-  position:relative; isolation:isolate; color:#fff;}
+  position:relative; isolation:isolate; color:#fff;
+  /* Keep section transparent so the photo shows; never use position:fixed
+     on the photo ? it paints over earlier sections (hero, who, etc.). */
+  background:transparent !important;}
 html[data-theme="dark"] .vs{--vs-ai:rgba(255,255,255,.045);}
+#vs.vs,
+#vs.sec,
+.sec.vs[data-ground]{
+  background:transparent !important;
+}
 
-/* ?? the photograph, held still ????????????????????????????????????
-   Two layers rather than one background with a gradient over it: the
-   picture is fixed to the viewport and the wash is not, so they cannot
-   share a shorthand. Negative z-index puts both above the section's own
-   --ground fill and below everything the reader came for.
-
-   The wash is the flat overlay the hero lays over its own photograph ?
-   the same token, so the two are the same darkness. That makes this the
-   one section in the run whose ground is dark, which is why the head
-   below turns white and the two panels standing on it stay white.
-
-   The picture is one of the seven the page already carries. Point it at
-   another --shot-* and nothing else changes. */
+/* Photograph clipped to this section only + veil + content above. */
 .vs::before{content:none;}
 .vs > .vs-bg{
-  position:absolute; inset:0; z-index:-2; pointer-events:none; overflow:hidden;}
+  position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
 .vs > .vs-bg img{
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; object-position:center; display:block;}
-/* Desktop: hold the photo still like the previous fixed background. */
-@media (min-width:901px) and (hover:hover){
-  .vs{overflow:clip;}
-  .vs > .vs-bg img{
-    position:fixed; left:0; top:0; right:0; bottom:0;
-    width:100vw; height:100vh; inset:auto;}
-}
-.vs::after{content:""; position:absolute; inset:0; z-index:-1;
+.vs::after{content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
   background:var(--vs-veil);}
+.vs > .wrap{position:relative; z-index:2;}
 
 /* ?? what the dark ground changes ??????????????????????????????????
    Only the type that sits directly ON the photograph. Both panels are
@@ -4700,13 +4678,19 @@ html[data-theme="dark"] #receive .pf-card{background:var(--surface) !important;}
    with their number and name on edge.
    ?????????????????????????????????????????????????????????????????????? */
 .acv{padding-block:clamp(32px,3.6vw,52px); background:var(--ground);}
-.ac-head{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(20px,3vw,48px);
-  align-items:end; margin-bottom:clamp(18px,2.2vw,28px);}
+/* Match AI SEO What-we-do head: title left, bordered lede right */
+#services-2 .ac-head,
+.ac-head{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:clamp(24px,5vw,90px);
+  align-items:end; margin-bottom:clamp(24px,2.6vw,36px);}
 .ac-head .smark{margin-bottom:10px;}
 .acv h2{margin:0; font-size:var(--h2); line-height:1.06; letter-spacing:-.04em; text-transform:none;}
-.acv h2 em{font-style:normal; color:var(--brand-text);}
+.acv h2 em{font-style:normal; color:var(--primary);}
+#services-2 .ac-lede,
+.ac-lede{margin:0; justify-self:end; max-width:44ch; padding-left:clamp(16px,1.6vw,22px);
+  border-left:2px solid var(--primary);
+  font-size:clamp(15px,1.1vw,17px); line-height:1.6; color:var(--text-2);}
+#services-2 .ac-cta{display:flex; justify-content:center; margin-top:clamp(26px,3vw,40px);}
 .ac-aside{display:flex; align-items:flex-end; justify-content:space-between; gap:clamp(16px,2vw,28px);}
-.ac-lede{margin:0; font-size:var(--body); line-height:1.6; color:var(--text-2); max-width:46ch;}
 .ac-aside .btn{flex:none;}
 
 .ac{display:flex; gap:8px; height:clamp(360px,38vw,440px);}
@@ -4766,10 +4750,13 @@ html[data-theme="dark"] #receive .pf-card{background:var(--surface) !important;}
   background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.24);}
 .ac-chip i{width:6px; height:6px; border-radius:50%; background:hsl(var(--brand-h) 90% 62%);}
 
-@media (max-width:1040px){
-  .ac-head{grid-template-columns:minmax(0,1fr); gap:16px; align-items:start;}
+@media (max-width:900px){
+  #services-2 .ac-head,
+  .ac-head{grid-template-columns:minmax(0,1fr); gap:14px; align-items:start;}
+  #services-2 .ac-lede,
+  .ac-lede{justify-self:start; max-width:none;}
+  #services-2 .ac-cta .btn{width:100%; justify-content:center;}
   .ac-aside{flex-direction:column; align-items:flex-start; gap:14px;}
-  .ac-lede{max-width:none;}
 }
 @media (max-width:980px){
   /* stacked: the slats become rows that open downward */
@@ -4781,7 +4768,6 @@ html[data-theme="dark"] #receive .pf-card{background:var(--surface) !important;}
   .ac-vt{margin-top:0; writing-mode:horizontal-tb; transform:none; font-size:14px; max-height:none;}
   .ac-open{position:relative; inset:auto; padding:20px;}
   .ac-ico{margin-top:14px;}
-  .ac-aside .btn{width:100%; justify-content:center;}
 }
 @media (prefers-reduced-motion:reduce){
   .ac-item,.ac-open,.ac-bg{transition:none;}
@@ -5708,27 +5694,6 @@ html[data-theme="dark"] #services-2 .ac-card,html[data-theme="dark"] #services-2
 @media (prefers-reduced-motion:reduce){
   #why .wy-pane{transition:none;}
   #why .br-rail i{transform:none;}
-}
-
-/* === seo-audit why (homepage design extras) === */
-#why .wy-say h2{max-width:22ch;}
-#why .wy-say > p{margin:clamp(12px,1.4vw,18px) auto 0; max-width:62ch;
-  font-size:var(--body); line-height:1.7; color:var(--text-2);}
-#why .wy-facts{display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-  gap:clamp(14px,2vw,28px); margin-top:clamp(18px,2vw,28px);}
-#why .wy-fact{text-align:center;}
-#why .wy-fact b{display:block; font-family:var(--font-display); font-weight:800;
-  font-size:clamp(20px,2vw,26px); letter-spacing:-.03em; color:var(--text);}
-#why .wy-fact span{display:block; margin-top:5px; font-size:12.5px; line-height:1.35; color:var(--muted);}
-#why .wy-facts i{width:1px; align-self:stretch; background:var(--border);}
-#why .wy-quote{margin:clamp(18px,2vw,28px) auto 0; max-width:52ch; text-align:center;
-  padding:16px 18px; border-radius:14px; background:var(--surface); border:1px solid var(--border-soft);}
-#why .wy-quote blockquote{margin:0; font-family:var(--font-display); font-size:15px; font-weight:700;
-  letter-spacing:-.02em; color:var(--text);}
-#why .wy-quote figcaption{margin-top:6px; font-size:12.6px; color:var(--muted);}
-@media (max-width:900px){
-  #why .wy-rail{grid-auto-flow:row; grid-auto-columns:auto;}
-  #why .wy-tab{text-align:left;}
 }
 
 /* === pz-styles (SEO audit pricing rows) === */
