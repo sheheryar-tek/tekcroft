@@ -3122,24 +3122,17 @@ html[data-theme="dark"] .cn .cn-stat{
   transition:transform 1.6s var(--ease);}
 .faq-aside:hover > .faq-pics{ transform:scale(1.05); }
 
-.faq-pic{position:absolute; inset:0;
-  background:var(--pic) center / cover no-repeat;
-  opacity:0; transition:opacity .55s var(--ease);}
-.faq-wrap[data-at="1"] .faq-pic:nth-child(1),
-.faq-wrap[data-at="2"] .faq-pic:nth-child(2),
-.faq-wrap[data-at="3"] .faq-pic:nth-child(3),
-.faq-wrap[data-at="4"] .faq-pic:nth-child(4),
-.faq-wrap[data-at="5"] .faq-pic:nth-child(5),
-.faq-wrap[data-at="6"] .faq-pic:nth-child(6),
-.faq-wrap[data-at="7"] .faq-pic:nth-child(7),
-.faq-wrap[data-at="8"] .faq-pic:nth-child(8){ opacity:1; }
-
-/* With every question shut — which only happens on the narrow layout —
-   the aside would go to bare scrim. It keeps the first picture instead. */
-.faq-wrap:not([data-at]) .faq-pic:nth-child(1){ opacity:1; }
+/* Single FAQ photo — same overlay strength as on-page (tekcroft default). */
+#faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
+#faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;}
+#faq .faq-aside::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.45) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.52) 42%,
+                    rgba(0,0,0,.92) 100%);}
 
 @media (prefers-reduced-motion:reduce){
-  .faq-pic{ transition:none; }
   .faq-aside:hover > .faq-pics{ transform:none; }
 }
 
@@ -3283,9 +3276,10 @@ html[data-theme="dark"] .mp-panel{
    block as well as a span, which is what puts the blue phrase on its own
    line the way the two-line heads elsewhere do. */
 .wn-say h2{font-size:var(--h2); line-height:1.16; letter-spacing:-0.038em;}
-.wn-say h2 span,
-.wn-say h2 em{display:block;}
-.wn-say h2 em{font-style:normal; color:var(--brand-text);}
+html body #who .wn-say h2 > span,
+html body #who .wn-say h2 > em{display:block !important;}
+html body #who .wn-say h2 em{font-style:normal; color:var(--primary) !important;}
+html body #who .wn-say h2 > span > em{display:inline !important;}
 .wn-say .sec-lede{margin-top:clamp(14px,1.6vw,20px); max-width:46ch;}
 
 /* ── the dashboard ────────────────────────────────────────────────────
@@ -3527,7 +3521,7 @@ html[data-theme="dark"] .vs{--vs-ai:rgba(255,255,255,.045);}
    The picture is one of the seven the page already carries. Point it at
    another --shot-* and nothing else changes. */
 .vs::before{content:""; position:absolute; inset:0; z-index:-2;
-  background:var(--shot-3) center / cover fixed no-repeat;}
+  background:url("/images/seo-audit-vs-178dfe4b26.webp") center / cover fixed no-repeat;}
 .vs::after{content:""; position:absolute; inset:0; z-index:-1;
   background:var(--vs-veil);}
 
@@ -3564,9 +3558,10 @@ html[data-theme="dark"] .vs{--vs-ai:rgba(255,255,255,.045);}
    The first line of this heading is thirty characters at --h2 and needs
    the room; the sentence under it does not, and keeps a measure. */
 .vs .sec-head{max-width:min(100%,960px);}
-.vs .sec-head h2 span,
-.vs .sec-head h2 em{display:block;}
-.vs .sec-head h2 em{font-style:normal; color:var(--brand-text);}
+/* Authored two-line claim: "DIY Vs ChatGPT Vs" / "Professional SEO Audit" */
+html body #vs .sec-head h2{text-wrap:pretty;}
+html body #vs .sec-head h2 > span{display:block !important;}
+html body #vs .sec-head h2 em{display:inline !important; font-style:normal; color:var(--primary) !important;}
 .vs .sec-head .sec-lede{max-width:58ch;}
 
 /* ── the margin note ───────────────────────────────────────────────
@@ -5499,7 +5494,9 @@ html[data-theme="dark"] .acv .vz-au-row.on{background:hsl(var(--brand-h) 45% 20%
    stays readable whatever the picture does behind it.
    ══════════════════════════════════════════════════════════════════════ */
 #services-2 .ac-item.on{background:#0A0C0E; border-color:#0A0C0E;}
-#services-2 .ac-fb{background:url("/images/onpage-deliverables-panel.jpg") center/cover no-repeat;}
+#services-2 .ac-fb{background:#0A0C0E;}
+#services-2 .ac-fb > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;}
 #services-2 .ac-fb::before{
   background-image:linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
                    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
@@ -6224,7 +6221,7 @@ html body .gw-say > p{
   --panel:var(--surface);
   background:var(--ground) !important;
 }
-/* Process steps: icons only � hide step numbers in titles */
+/* Process steps: icons only � hide step numbers in titles */
 #process .eg-card h3 i{
   display:none !important;
   margin:0 !important;

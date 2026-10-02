@@ -132,7 +132,7 @@
 .hs-done i{display:grid; place-items:center; width:52px; height:52px; margin:0 auto 16px;
   border-radius:50%; background:hsl(var(--brand-h) 100% 45% / .18); color:var(--primary);}
 .hs-done i svg{width:24px; height:24px;}
-.hs-done h3{margin:0 0 8px; font-family:var(--font-display); font-size:var(--h3); font-weight:700;
+.hs-done-title{margin:0 0 8px; font-family:var(--font-display); font-size:clamp(17px,1.5vw,19px); font-weight:700;
   letter-spacing:-0.03em; color:#fff;}
 .hs-done p{margin:0; font-size:14px; line-height:1.6; color:rgba(255,255,255,.74);}
 
@@ -361,25 +361,11 @@
 }
 
 /* === hero-copy-styles === */
-/* ??????????????????????????????????????????????????????????????????????
-   THE HEADLINE'S LINE BREAKS
+/* Headline flows as one sentence ? no forced line breaks, no nowrap on
+   the blue phrase. Wrap follows the same column width as other service pages. */
+#hero-1 .hs-h1, #hero-1 .hs-h1 em{white-space:normal !important;}
+.hs-h1 em{white-space:normal;}
 
-   The four <span>s are the authored line breaks ? they hold the shape the
-   copy was written to, with the blue phrase alone on the second line. They
-   are only safe while the column is wide enough for the longest of them
-   ("Ecommerce SEO Agency"); below that a forced line has nowhere to go and
-   would run past the column edge instead of wrapping.
-
-   So the breaks are held at full width and released everywhere else: the
-   spans go inline and the browser wraps the sentence itself. The one thing
-   that must not break either way is the blue phrase, which is two words
-   and reads as a unit ? that is the nowrap.
-   ?????????????????????????????????????????????????????????????????????? */
-.hs-h1 em{white-space:nowrap;}
-
-/* Below the full column, and on every screen in variant 02 ? where the
-   headline shares its row with two more columns and never has the width
-   for an authored break ? the sentence wraps on its own. */
 @media (max-width:1240px){
   .hs-h1 span{display:inline;}
 }
@@ -1403,8 +1389,8 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
 .pb-t{margin:0 0 4px;
   padding-top:4px;
   font-family:var(--font-display); font-weight:700;
-  font-size:clamp(15px,1.5vw,17.5px); letter-spacing:-0.03em;
-  line-height:1.22; color:var(--text);}
+  font-size:var(--h3); letter-spacing:-0.03em;
+  line-height:1.25; color:var(--text);}
 .pb-d{margin:0;
   font-size:13.6px; line-height:1.62; color:var(--text-2);}
 /* No softened white on this plate ? at 2.9:1 there is nothing spare to
@@ -1824,7 +1810,7 @@ html[data-theme="light"] .hs-field[data-bad="true"] :is(input,select):focus{
   box-shadow:0 0 0 3px hsl(3 65% 54% / .26);}
 html[data-theme="light"] .hs-err{color:var(--ui-bad);}
 
-html[data-theme="light"] .hs-done h3{color:var(--text);}
+html[data-theme="light"] .hs-done-title{color:var(--text);}
 html[data-theme="light"] .hs-done p{color:var(--text-2);}
 
 /* === cn-refine === */
@@ -2675,13 +2661,19 @@ html[data-theme="dark"] #process .eg-card::after{
    with their number and name on edge.
    ?????????????????????????????????????????????????????????????????????? */
 .acv{padding-block:clamp(32px,3.6vw,52px); background:var(--ground);}
-.ac-head{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(20px,3vw,48px);
-  align-items:end; margin-bottom:clamp(18px,2.2vw,28px);}
+/* Match AI SEO What-we-do head: title left, bordered lede right */
+#services-2 .ac-head,
+.ac-head{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:clamp(24px,5vw,90px);
+  align-items:end; margin-bottom:clamp(24px,2.6vw,36px);}
 .ac-head .smark{margin-bottom:10px;}
 .acv h2{margin:0; font-size:var(--h2); line-height:1.06; letter-spacing:-.04em; text-transform:none;}
-.acv h2 em{font-style:normal; color:var(--brand-text);}
+.acv h2 em{font-style:normal; color:var(--primary);}
+#services-2 .ac-lede,
+.ac-lede{margin:0; justify-self:end; max-width:44ch; padding-left:clamp(16px,1.6vw,22px);
+  border-left:2px solid var(--primary);
+  font-size:clamp(15px,1.1vw,17px); line-height:1.6; color:var(--text-2);}
+#services-2 .ac-cta{display:flex; justify-content:center; margin-top:clamp(26px,3vw,40px);}
 .ac-aside{display:flex; align-items:flex-end; justify-content:space-between; gap:clamp(16px,2vw,28px);}
-.ac-lede{margin:0; font-size:var(--body); line-height:1.6; color:var(--text-2); max-width:46ch;}
 .ac-aside .btn{flex:none;}
 
 .ac{display:flex; gap:8px; height:clamp(360px,38vw,440px);}
@@ -2741,10 +2733,13 @@ html[data-theme="dark"] #process .eg-card::after{
   background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.24);}
 .ac-chip i{width:6px; height:6px; border-radius:50%; background:hsl(var(--brand-h) 90% 62%);}
 
-@media (max-width:1040px){
-  .ac-head{grid-template-columns:minmax(0,1fr); gap:16px; align-items:start;}
+@media (max-width:900px){
+  #services-2 .ac-head,
+  .ac-head{grid-template-columns:minmax(0,1fr); gap:14px; align-items:start;}
+  #services-2 .ac-lede,
+  .ac-lede{justify-self:start; max-width:none;}
+  #services-2 .ac-cta .btn{width:100%; justify-content:center;}
   .ac-aside{flex-direction:column; align-items:flex-start; gap:14px;}
-  .ac-lede{max-width:none;}
 }
 @media (max-width:980px){
   /* stacked: the slats become rows that open downward */
@@ -3681,7 +3676,7 @@ html body .tm-card h3,
 html body .dv-card h3,
 html body .fw-step h3,
 html body .em-card h3,
-html body .faq-aside h3{
+html body .pb-t{
   font-size:var(--h3) !important;
   line-height:1.25 !important;
 }
@@ -3696,8 +3691,7 @@ html body .cn-tab h3{
 }
 /* Hero form title stays compact (p.hs-form-title or legacy h3) */
 html body .hs-form > h3,
-html body .hs-form > .hs-form-title,
-html body .hs-done h3{
+html body .hs-form > .hs-form-title{
   font-size:clamp(17px,1.5vw,19px) !important;
   font-weight:700 !important;
   line-height:1.22 !important;
@@ -3705,6 +3699,27 @@ html body .hs-done h3{
   margin:0 !important;
   text-transform:none !important;
 }
+html body .hs-done-title{
+  font-size:clamp(17px,1.5vw,19px) !important;
+  font-weight:700 !important;
+  line-height:1.22 !important;
+  letter-spacing:-0.035em !important;
+  margin:0 0 8px !important;
+  text-transform:none !important;
+  color:#fff;
+}
+html body .hs-done-title b{font-weight:700;}
+#faq .faq-aside-lead{
+  margin:10px 0 0;
+  font-family:var(--font-display);
+  font-size:var(--body) !important;
+  font-weight:700 !important;
+  letter-spacing:-0.02em;
+  line-height:1.35 !important;
+  color:#fff !important;
+  text-transform:none;
+}
+#faq .faq-aside-lead b{font-weight:700;}
 html body :is(h4){ font-size:var(--h4) !important; line-height:1.3 !important; }
 html body :is(h5){ font-size:var(--h5) !important; line-height:1.35 !important; }
 html body :is(h6){ font-size:var(--h6) !important; line-height:1.35 !important; }
@@ -3927,4 +3942,25 @@ html body .gw-say > p{
 #process .eg-card h3 i{
   display:none !important;
   margin:0 !important;
+}
+
+
+html body #services-2 .ac-lede{
+  margin:0 !important;
+  justify-self:end;
+  max-width:44ch !important;
+  padding-left:clamp(16px,1.6vw,22px) !important;
+  border-left:2px solid var(--primary) !important;
+  font-size:clamp(15px,1.1vw,17px) !important;
+  line-height:1.6 !important;
+  color:var(--text-2) !important;
+}
+/* unify remaining page h3 */
+html body #services-2 h3,
+html body #platforms h3,
+html body #problem h3,
+html body #process h3,
+html body h3.pb-t{
+  font-size:var(--h3) !important;
+  line-height:1.25 !important;
 }
