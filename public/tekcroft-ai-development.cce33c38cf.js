@@ -1,3 +1,100 @@
+/* === sy-script === */
+
+(function(){
+  var root=document.getElementById('guide'); if(!root) return;
+  var board=root.querySelector('.sy-board'), hs=[].slice.call(root.querySelectorAll('.sy-hs')), its=[].slice.call(root.querySelectorAll('.sy-it[data-k]')),
+      cur=-1, timer=null, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function set(k){ cur=k; hs.forEach(function(h,i){ h.classList.toggle('on',i===k); }); its.forEach(function(t,i){ t.classList.toggle('on',i===k); }); board.classList.toggle('focus',k>-1); }
+  function play(){ if(reduce) return; stop(); timer=setInterval(function(){ set((cur+1)%its.length); },3200); }
+  function stop(){ clearInterval(timer); }
+  its.forEach(function(t,i){ t.addEventListener('mouseenter',function(){ stop(); set(i); }); });
+  hs.forEach(function(h,i){ h.addEventListener('mouseenter',function(){ stop(); set(i); }); h.addEventListener('click',function(){ stop(); set(i); }); });
+  [board, root.querySelector('.sy-list')].forEach(function(el){ el.addEventListener('mouseleave',play); });
+  var started=false;
+  function start(){ if(started) return; started=true; root.classList.add('sy-run');
+    setTimeout(function(){ root.classList.add('sy-guarded'); }, reduce?0:1300);
+    setTimeout(function(){ set(0); play(); }, reduce?0:2600); }
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) start(); else stop(); }); },{threshold:.35}).observe(board); } else start();
+})();
+
+
+/* === v3-script === */
+
+(function(){
+  var root=document.getElementById('guide-v3'); if(!root) return;
+  var map=root.querySelector('.v3-map'), svg=root.querySelector('.v3-links'), hub=root.querySelector('.v3-hub .r1'), cards=[].slice.call(root.querySelectorAll('.v3-card')), NS='http://www.w3.org/2000/svg';
+  function draw(){
+    if(root.hidden || getComputedStyle(svg).display==='none') return;
+    var m=map.getBoundingClientRect(), h=hub.getBoundingClientRect(); svg.setAttribute('viewBox','0 0 '+m.width+' '+m.height); svg.innerHTML='';
+    var cx=h.left+h.width/2-m.left, cy=h.top+h.height/2-m.top, R=h.width/2;
+    cards.forEach(function(c,i){
+      var r=c.getBoundingClientRect(), x1, y1, tx, ty, vert=false;
+      var ccx=r.left+r.width/2-m.left, ccy=r.top+r.height/2-m.top, L=r.left-m.left, Rr=r.right-m.left, T=r.top-m.top, Bm=r.bottom-m.top;
+      if(Bm < cy-R*0.6){ vert=true; ty=Bm; tx=Math.max(L+40,Math.min(Rr-40,cx+(ccx-cx)*0.35)); }
+      else if(T > cy+R*0.6){ vert=true; ty=T; tx=Math.max(L+40,Math.min(Rr-40,cx+(ccx-cx)*0.35)); }
+      else { tx=(ccx<cx? Rr : L); ty=ccy; }
+      var ang=Math.atan2(ty-cy,tx-cx); x1=cx+Math.cos(ang)*R; y1=cy+Math.sin(ang)*R;
+      var mx=(x1+tx)/2, my=(y1+ty)/2;
+      var d=vert? ('M'+x1+' '+y1+' C'+x1+' '+my+' '+tx+' '+my+' '+tx+' '+ty) : ('M'+x1+' '+y1+' C'+mx+' '+y1+' '+mx+' '+ty+' '+tx+' '+ty);
+      var p=document.createElementNS(NS,'path'); p.setAttribute('d',d); p.setAttribute('class','ln'); p.dataset.k=i; svg.appendChild(p);
+      var p2=document.createElementNS(NS,'path'); p2.setAttribute('d',d); p2.setAttribute('class','fl'); p2.dataset.k=i; svg.appendChild(p2);
+      [[x1,y1],[tx,ty]].forEach(function(pt){ var c2=document.createElementNS(NS,'circle'); c2.setAttribute('cx',pt[0]); c2.setAttribute('cy',pt[1]); c2.setAttribute('r',4.5); svg.appendChild(c2); });
+    });
+  }
+  cards.forEach(function(c,i){ c.addEventListener('mouseenter',function(){ [].forEach.call(svg.querySelectorAll('[data-k="'+i+'"]'),function(p){p.classList.add('on');}); });
+    c.addEventListener('mouseleave',function(){ [].forEach.call(svg.querySelectorAll('.on'),function(p){p.classList.remove('on');}); }); });
+  window.addEventListener('resize',draw); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(draw);
+  draw(); setTimeout(draw,700); setTimeout(draw,1600);
+  new MutationObserver(function(){ setTimeout(draw,50); }).observe(root,{attributes:true,attributeFilter:['hidden']});
+})();
+
+
+/* === v4-script === */
+(function(){
+const P=[["db","Unprepared data","Disparate or untagged records get audited before building begins, not found halfway into the project."],["flag","Pilot projects that never reach production","Each build is run against real-world systems and real-world loads, not sample data."],["undo","Writeback issues","Any write to your CRM or database gets tracked and rolled back should it fail partway through."],["gauge","Latency under load","Latency is tested using your real traffic, not a quiet environment designed for demos."],["coin","Uncontrolled costs post-launch","Usage costs and retries are limited and watched from day one, not open-ended."],["layers","Model version drift","Model versions are locked and validated before any provider updates your system."],["shield","Security issues around access","Retrieval adheres to your permissions, so nothing can be returned that a user is not authorized to view."]];
+const ic=k=>`<svg viewBox="0 0 24 24"><use href="#v4-${k}"/></svg>`;
+P.forEach((p,i)=>{document.getElementById(i<3?"v4L":i<6?"v4R":"v4B").insertAdjacentHTML("beforeend",`<div class="card" style="--i:${i}"><div class="ic">${ic(p[0])}</div><div><h3>${p[1]}</h3><p>${p[2]}</p></div></div>`)});
+P.forEach((t,i)=>document.getElementById("v4T").insertAdjacentHTML("beforeend",`<div class="tile" style="--i:${i}">${ic(t[0])}<span>${t[1]}</span><u>!</u></div>`));
+})();
+
+/* === vsw-script === */
+
+(function(){
+  var vs={'1':document.getElementById('guide'),'2':document.getElementById('guide-v2'),'3':document.getElementById('guide-v3'),'4':document.getElementById('guide-v4')}, sw=document.querySelector('.vsw'); if(!sw) return;
+  var btns=[].slice.call(sw.querySelectorAll('button')), key='tk-guide-variant';
+  function pick(v){ Object.keys(vs).forEach(function(k){ if(vs[k]) vs[k].hidden=k!==v; }); btns.forEach(function(b){ b.classList.toggle('on',b.dataset.v===v); b.setAttribute('aria-pressed',b.dataset.v===v?'true':'false'); });
+    try{localStorage.setItem(key,v);}catch(e){} window.dispatchEvent(new Event('resize')); }
+  var saved='4'; try{ saved=localStorage.getItem(key)||'4'; }catch(e){}
+  btns.forEach(function(b){ b.addEventListener('click',function(){ pick(b.dataset.v); vs[b.dataset.v].scrollIntoView({behavior:'smooth',block:'start'}); }); });
+  pick(saved);
+})();
+
+
+/* === sc3-script === */
+
+(function(){
+  var root=document.getElementById('security'); if(!root) return;
+  var rows=[].slice.call(root.querySelectorAll('.sc3-req li')), sign=root.querySelector('.sc3-sign'), timer=null, ran=false,
+      reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tiles=[].slice.call(root.querySelectorAll('.sc3-b')), steps=root.querySelector('.sc3-steps'), carry=[].slice.call(root.querySelectorAll('.sc3-steps li.carry')), cur=-1, cyc=null;
+  function pick(k){ cur=k; tiles.forEach(function(t,i){t.classList.toggle('on',i===k);}); rows.forEach(function(r,i){r.classList.toggle('on',i===k);}); }
+  function run(){ rows.forEach(function(r){r.classList.remove('done');}); sign.classList.remove('ok'); steps.classList.remove('go'); carry.forEach(function(c){c.classList.remove('lit');});
+    rows.forEach(function(r,i){ setTimeout(function(){ r.classList.add('done'); },reduce?0:400+i*380); });
+    var t=reduce?0:400+rows.length*380+200;
+    setTimeout(function(){ sign.classList.add('ok'); steps.classList.add('go'); },t);
+    carry.forEach(function(c,i){ setTimeout(function(){ c.classList.add('lit'); },reduce?0:t+500+i*500); });
+    setTimeout(function(){ pick(0); play(); },reduce?0:t+1600); }
+  function play(){ if(reduce) return; clearInterval(cyc); cyc=setInterval(function(){ pick((cur+1)%rows.length); },3200); }
+  function stop(){ clearInterval(cyc); }
+  tiles.forEach(function(t,i){ t.addEventListener('mouseenter',function(){stop(); pick(i);}); t.addEventListener('click',function(){stop(); pick(i);}); });
+  rows.forEach(function(r,i){ r.addEventListener('mouseenter',function(){stop(); pick(i);}); });
+  [root.querySelector('.sc3-badges'), root.querySelector('.sc3-req')].forEach(function(el){ el.addEventListener('mouseleave',play); });
+  var started=false;
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){
+      if(e.isIntersecting){ if(!started){ started=true; run(); } else play(); } else stop(); }); },{threshold:.35}).observe(root); } else run();
+})();
+
+
 /* === chrome === */
 
 (function(){
@@ -228,10 +325,7 @@
   "use strict";
   var el = document.getElementById("ftMarq");
   if (!el) return;
-  var row = ["SEO","On-page SEO","Title tags","Meta descriptions",
-             "Content optimization","Internal linking","Schema markup",
-             "Keyword mapping","Heading structure","Technical SEO",
-             "Analytics","Reporting"]
+  var row = ["AI development","Generative AI","AI chatbots","AI agents","Machine learning","Computer vision","MLOps","AI integration","AI consulting","Model monitoring","Data audits","Proof of concept"]
     .map(function(t){ return "<span>" + t + "</span><i></i>"; }).join("");
   el.innerHTML = row + row;
 })();
@@ -446,6 +540,57 @@
     }
 
     cnShow(0, false);   /* seat the opening card in whichever layout is live */
+  });
+})();
+
+
+/* === ws-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE TILT
+
+   The pointer's position inside a card, as a fraction from its centre,
+   written back as two angles the stylesheet turns into a rotation. Four
+   degrees each way: enough to read as a solid thing being turned,
+   little enough that the type stays square to the eye.
+
+   Read on pointermove and written on the next frame rather than
+   immediately — a rect read and a style write in the same handler makes
+   the browser lay out the section again on every pixel of movement.
+
+   pointerenter/leave rather than mouseenter/leave, and the whole thing is
+   skipped where a pointer cannot hover, so a tap on a phone does not
+   leave a card stuck at an angle nobody asked for.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var MAX = 4;                                   /* degrees, each way */
+  document.querySelectorAll(".ws-item").forEach(function(card){
+    var frame = null, box = null;
+
+    card.addEventListener("pointerenter", function(){
+      box = card.getBoundingClientRect();        /* once, on the way in */
+    });
+
+    card.addEventListener("pointermove", function(e){
+      if (!box || frame) return;
+      var x = (e.clientX - box.left) / box.width  - .5;
+      var y = (e.clientY - box.top)  / box.height - .5;
+      frame = requestAnimationFrame(function(){
+        card.style.setProperty("--ry", (x *  MAX * 2).toFixed(2) + "deg");
+        card.style.setProperty("--rx", (y * -MAX * 2).toFixed(2) + "deg");
+        frame = null;
+      });
+    });
+
+    card.addEventListener("pointerleave", function(){
+      if (frame) { cancelAnimationFrame(frame); frame = null; }
+      card.style.setProperty("--ry", "0deg");
+      card.style.setProperty("--rx", "0deg");
+      box = null;
+    });
   });
 })();
 
@@ -721,83 +866,17 @@
 })();
 
 
-/* === wc-script === */
+/* === dv-script === */
 
-/* ══════════════════════════════════════════════════════════════════════
-   WHY CHOOSE US — the panel.
-
-   Each instrument is drawn from nothing every time its tab is opened.
-   The panel is taken out of the document and put back so the CSS
-   animations restart; the ring's arcs are the exception, since a dash
-   cannot be animated from a value it is already sitting on, so they are
-   reset to zero and committed before the real one is set.
-   ══════════════════════════════════════════════════════════════════════ */
+/* Develop apps: the build cards' glow follows the pointer */
 (function(){
-  var panel = document.querySelector("#wcPanel");
-  if (!panel) return;
-
-  var $$ = function(s, r){
-    return Array.prototype.slice.call((r || document).querySelectorAll(s));
-  };
-  var tabs   = $$(".wc-tab", panel),
-      panels = $$(".wc-panel", panel),
-      body   = panel.querySelector(".wc-body");
-
-  /* the line is measured so its draw ends where the line does */
-  $$(".wc-line", panel).forEach(function(pth){
-    pth.style.setProperty("--len", pth.getTotalLength().toFixed(1));
-  });
-
-  function redraw(pnl){
-    $$(".seg", pnl).forEach(function(seg){
-      seg.style.strokeDasharray = "0 999";
-      void seg.getBoundingClientRect();
-      seg.style.strokeDasharray = seg.getAttribute("data-dash");
-    });
-  }
-
-  function show(i){
-    /* the panel squares whichever corner has a tab standing on it */
-    if (body){
-      body.classList.toggle("first", i === 0);
-      body.classList.toggle("last",  i === tabs.length - 1);
-    }
-    tabs.forEach(function(t, k){
-      t.classList.toggle("on", k === i);
-      t.setAttribute("aria-selected", k === i ? "true" : "false");
-    });
-    panels.forEach(function(pnl, k){
-      pnl.classList.remove("on");
-      if (k === i){
-        void pnl.offsetWidth;              /* restart the panel's animations */
-        pnl.classList.add("on");
-        redraw(pnl);
-      }
-    });
-  }
-
-  tabs.forEach(function(t, i){
-    t.addEventListener("click", function(){ show(i); });
-    t.addEventListener("keydown", function(e){
-      var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-      if (!step) return;
-      e.preventDefault();
-      var n = (i + step + tabs.length) % tabs.length;
-      tabs[n].focus(); show(n);
+  document.querySelectorAll(".dv-card").forEach(function(c){
+    c.addEventListener("pointermove", function(e){
+      var r=c.getBoundingClientRect();
+      c.style.setProperty("--mx", (e.clientX-r.left)+"px");
+      c.style.setProperty("--my", (e.clientY-r.top)+"px");
     });
   });
-
-  /* it draws when it is first reached, not while it is still off-screen */
-  if ("IntersectionObserver" in window){
-    var io = new IntersectionObserver(function(e){
-      if (!e[0].isIntersecting) return;
-      show(0);
-      io.disconnect();
-    }, { threshold:.2 });
-    io.observe(panel);
-  } else {
-    show(0);
-  }
 })();
 
 
@@ -1007,30 +1086,30 @@ var $$ = function(s, r){
      carried: written for layout, not collected from clients. Replace every
      one of these with the real Google review before this goes live. */
   var GR = [
-    { name:"Dana Whitfield", initials:"DW", guide:true,
+    { name:"Client Name", initials:"CN", guide:true,
       meta:"24 reviews \u00b7 6 photos", when:"2 weeks ago",
-      text:"We had three agencies before this one. TekCroft is the first that could tell me, in one sentence, what my money bought last month.",
-      tags:["SEO","Paid Media","B2B SaaS"], helpful:24 },
-    { name:"Marcus Reyes", initials:"MR", guide:false,
+      text:"Placeholder review. Replace with a real Google review from a client whose AI project you shipped.",
+      tags:["AI Agents","CRM Integration"], helpful:24 },
+    { name:"Client Name", initials:"CN", guide:false,
       meta:"8 reviews \u00b7 2 photos", when:"1 month ago",
-      text:"They rebuilt the site and then ranked it. Not having to referee between two vendors was worth the fee on its own.",
-      tags:["Web Build","SEO"], helpful:18 },
-    { name:"Priya Raman", initials:"PR", guide:false,
+      text:"Placeholder review. Paste the review exactly as the client wrote it, including the result they mention.",
+      tags:["AI Chatbot","Support"], helpful:18 },
+    { name:"Client Name", initials:"CN", guide:false,
       meta:"11 reviews", when:"2 months ago",
-      text:"The free review found a redirect chain that had been eating a third of our organic traffic for two years. They sent it before we paid them anything.",
-      tags:["Technical SEO","Audit"], helpful:32 },
-    { name:"Elena Fischer", initials:"EF", guide:true,
+      text:"Placeholder review. A good one names the problem, what was built and what changed afterwards.",
+      tags:["Machine Learning","Forecasting"], helpful:32 },
+    { name:"Client Name", initials:"CN", guide:true,
       meta:"31 reviews \u00b7 4 photos", when:"3 months ago",
-      text:"Placeholder review. One strategist owns the account, the dashboard is live, and the monthly call is about decisions rather than screenshots.",
-      tags:["Local SEO","Reporting"], helpful:15 },
-    { name:"Tobias Lang", initials:"TL", guide:false,
+      text:"Placeholder review. Replace with a real Google review before this goes live.",
+      tags:["Computer Vision","Quality Control"], helpful:15 },
+    { name:"Client Name", initials:"CN", guide:false,
       meta:"6 reviews", when:"4 months ago",
-      text:"Placeholder review. Audit in week one, strategy in week two, campaigns live in week four, and nothing in between that we had to chase.",
-      tags:["Onboarding","Paid Media"], helpful:9 },
-    { name:"Amara Diallo", initials:"AD", guide:false,
+      text:"Placeholder review. Replace with a real Google review before this goes live.",
+      tags:["MLOps","Deployment"], helpful:9 },
+    { name:"Client Name", initials:"CN", guide:false,
       meta:"17 reviews \u00b7 1 photo", when:"5 months ago",
-      text:"Placeholder review. They said no to two things we asked for and explained why, which is the part that made us trust the rest of it.",
-      tags:["Ecommerce SEO","CRO"], helpful:21 }
+      text:"Placeholder review. Replace with a real Google review before this goes live.",
+      tags:["Enterprise AI","Integration"], helpful:21 }
   ];
 
   var STAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3.6 2.7 5.5 6 .9-4.35 4.25 1.03 6L12 17.42 6.62 20.25l1.03-6L3.3 10l6-.9z"/></svg>';
@@ -1127,65 +1206,54 @@ var $$ = function(s, r){
 })();
 
 
-/* === wc-six-script === */
+/* === cm2-script === */
 
-/* The reason strip is wider than a phone, so the tab you choose is
-   brought to the middle of the strip: the one before it slides off and
-   the next one comes into view. */
+/* the diagram under each service plays its workflow a step at a time
+   (parts carry data-at / data-until). It runs only while its card is
+   open and on screen, and starts over whenever the card is reopened. */
 (function(){
-  var strip = document.querySelector("#wcPanel .wc-tabs");
-  if (!strip) return;
-  function show(tab){
-    if (!tab || strip.scrollWidth <= strip.clientWidth + 4) return;
-    var left = tab.offsetLeft - (strip.clientWidth - tab.offsetWidth) / 2;
-    strip.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
-  }
-  strip.addEventListener("click", function(e){
-    var tab = e.target.closest(".wc-tab");
-    if (tab) setTimeout(function(){ show(tab); }, 30);
-  });
-  window.addEventListener("load", function(){ show(strip.querySelector(".wc-tab.on")); });
-})();
-
-/* === ac-script (deliverables panels) === */
-(function(){
- document.querySelectorAll('[data-acc]').forEach(function(acc){
-  var items=[].slice.call(acc.querySelectorAll('.ac-item'));
-  var at=0, timer=null, held=false;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function show(i){
-    at=(i+items.length)%items.length;
-    items.forEach(function(el,k){ var on=k===at; el.classList.toggle('on',on); el.setAttribute('aria-selected',String(on)); });
-  }
-  function play(){ stop(); acc.classList.remove('paused'); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },5000); }
-  function stop(){ clearInterval(timer); }
-  function hold(){ held=true; stop(); acc.classList.add('paused'); clearTimeout(hold._t);
-    hold._t=setTimeout(function(){ held=false; play(); },12000); }
-
-  items.forEach(function(el,i){
-    el.addEventListener('mouseenter',function(){ show(i); });
-    el.addEventListener('click',function(){ hold(); show(i); });
-    el.addEventListener('keydown',function(e){
-      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); hold(); show(i); return; }
-      var to = e.key==='ArrowRight'||e.key==='ArrowDown' ? i+1 : e.key==='ArrowLeft'||e.key==='ArrowUp' ? i-1 : -1;
-      if(to<0 || to>=items.length) return;
-      e.preventDefault(); items[to].focus(); hold(); show(to);
-    });
+  document.querySelectorAll('.cn-motion[data-steps]').forEach(function(box){
+    var n=+box.dataset.steps, s=0, t=null, parts=[].slice.call(box.querySelectorAll('[data-at]'));
+    function paint(){ box.setAttribute('data-s',s); parts.forEach(function(p){ var a=+p.dataset.at, u=p.dataset.until?+p.dataset.until:99; p.classList.toggle('is-on', s>=a && s<=u); }); }
+    function tick(){ s = s>=n ? 0 : s+1; paint(); t=setTimeout(tick, s===0 ? 500 : (s===n ? 2800 : 950)); }
+    function stop(){ clearTimeout(t); t=null; s=0; paint(); }
+    if(reduce){ s=n; paint(); return; }
+    paint();
+    new IntersectionObserver(function(es){ es.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRect.height>0){ if(!t){ s=0; tick(); } } else if(t){ stop(); } }); },{threshold:.2}).observe(box);
   });
-  acc.addEventListener('mouseenter',function(){ stop(); acc.classList.add('paused'); });
-  acc.addEventListener('mouseleave',function(){ acc.classList.remove('paused'); if(!held) play(); });
-
-  acc.addEventListener('pointermove',function(e){
-    var open=acc.querySelector('.ac-item.on'); if(!open) return;
-    var r=open.getBoundingClientRect();
-    open.style.setProperty('--mx', Math.min(Math.max((e.clientX-r.left)/r.width,0),1).toFixed(3));
-    open.style.setProperty('--my', Math.min(Math.max((e.clientY-r.top)/r.height,0),1).toFixed(3));
-  });
-
-  show(0);
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
-  io.observe(acc);
- });
 })();
 
+
+/* === ax-script === */
+
+(function(){
+  var box = document.getElementById("ax"); if(!box) return;
+  var ps = [].slice.call(box.querySelectorAll(".ax-p"));
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* photographs come from the mega menu's image stack, so no picture is carried twice */
+  ps.forEach(function(p){
+    var im = document.querySelector('.mm-stack img[data-key="' + p.dataset.img + '"]');
+    if (im) p.style.setProperty("--bgimg", "url(" + im.src + ")");
+  });
+  function show(i){
+    ps.forEach(function(p, k){
+      var on = k === i;
+      p.classList.toggle("on", on);
+      p.setAttribute("aria-selected", on ? "true" : "false");
+      var bar = p.querySelector(".ax-prog");
+      if (bar){ bar.style.animation = "none"; bar.offsetWidth; bar.style.animation = ""; }
+    });
+  }
+  ps.forEach(function(p, k){
+    p.addEventListener("click", function(){ show(k); });
+    p.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " "){ e.preventDefault(); show(k); }
+      if (e.key === "ArrowRight" || e.key === "ArrowDown"){ e.preventDefault(); ps[(k + 1) % ps.length].focus(); show((k + 1) % ps.length); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp"){ e.preventDefault(); ps[(k + ps.length - 1) % ps.length].focus(); show((k + ps.length - 1) % ps.length); }
+    });
+    var bar = p.querySelector(".ax-prog");
+    if (bar && !calm) bar.addEventListener("animationend", function(){ if (p.classList.contains("on")) show((k + 1) % ps.length); });
+  });
+})();

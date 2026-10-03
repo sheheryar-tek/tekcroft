@@ -28,6 +28,7 @@ var SERVICES = [
     ]},
   { title:"AI Development and Automation", href:"/#services", icon:"chip", img:"devs",
     items:[
+      {name:"AI Development Services", href:"/services/ai-development-services", note:"Models wired into your own stack.", img:"devs"},
       {name:"AI Chatbot Development Services", href:"/services/ai-chatbot-development-services", note:"Answer customers day and night.", img:"mentor"},
       {name:"AI Agent Development Services", href:"/services/ai-agent-development-services", note:"Run multi-step work end to end.", img:"meeting"}
     ]}

@@ -1,4 +1,4 @@
-/* Technical SEO Services — design from tekcroft-technical-seo HTML; chrome in tekcroft.css */
+﻿/* Technical SEO Services â€” design from tekcroft-technical-seo HTML; chrome in tekcroft.css */
 /* === technical-seo tokens (from tk-core) === */
 :root{
   --veil:rgba(0,0,0,.78);
@@ -9,12 +9,12 @@ html[data-theme="dark"]{
 }
 
 /* === hs-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   TECHNICAL SEO — SERVICE HERO
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TECHNICAL SEO â€” SERVICE HERO
    A three-line claim on one side, the form on the other, over a single
    flat sheet of ink. Every colour, radius, typeface and easing is the
    homepage's own, so the two pages read as the same site.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .hs{
   /* ONE flat overlay over the photograph. Raise it to darken the hero,
@@ -28,13 +28,13 @@ html[data-theme="dark"]{
   padding:calc(var(--nav-h) + clamp(30px,3.4vw,62px)) 0 clamp(48px,5.4vw,104px);}
 
 /* An author-set display beats the browser's own rule for [hidden], so the
-   hidden hero has to be told to stay down explicitly — otherwise both
+   hidden hero has to be told to stay down explicitly â€” otherwise both
    variants paint at once. */
 .hs[hidden]{display:none;
-  /* the floor, if the photograph never arrives — the same flat ink */
+  /* the floor, if the photograph never arrives â€” the same flat ink */
   background:var(--ink-plate);}
 
-/* ── the photograph ──────────────────────────────────────────────────
+/* â”€â”€ the photograph â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    To swap it, replace the one <img> src in the markup. Nothing else
    needs to change. */
 .hs-bg{position:absolute; inset:0; z-index:0;}
@@ -47,7 +47,7 @@ html[data-theme="dark"]{
 .hs-veil{position:absolute; inset:0; z-index:1; pointer-events:none;
   background:var(--hs-veil);}
 
-/* ── the two sides ──
+/* â”€â”€ the two sides â”€â”€
    The container is the homepage's own .wrap: --maxw wide, 26px of side
    padding. Nothing here sets a width of its own, so this page's column
    is the same column every section of the homepage sits in. */
@@ -56,15 +56,15 @@ html[data-theme="dark"]{
   grid-template-columns:minmax(0,1fr) minmax(344px,412px);
   gap:clamp(24px, 2.6vw, 46px);}
 
-/* ─────────────────────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    THE CLAIM
-   ───────────────────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hs-copy{min-width:0;}
 .hs-copy > *{opacity:0; transform:translateY(14px);
   transition:opacity .7s var(--ease) var(--d,0ms), transform .7s var(--pop) var(--d,0ms);}
 .hs.play .hs-copy > *{opacity:1; transform:none;}
 
-/* the eyebrow is the homepage's own .tag pill — same glass, same blue dot,
+/* the eyebrow is the homepage's own .tag pill â€” same glass, same blue dot,
    same white cut on a dark surface. Only its place in the entrance and the
    gap under it are set here. */
 .hs .tag{--d:40ms; margin-bottom:clamp(18px,2vw,26px);}
@@ -82,16 +82,16 @@ html[data-theme="dark"]{
 
 /* ---- a two-paragraph lede ----
    The gap between the two paragraphs is the paragraph gap, not the wider
-   gap that separates the lede from the button — so the pair reads as one
+   gap that separates the lede from the button â€” so the pair reads as one
    block. :has() is what lets the first paragraph know a second follows;
    with only one paragraph the rule never fires and nothing changes. */
 .hs-lede:has(+ .hs-lede){margin-bottom:clamp(14px,1.5vw,18px);}
 .hs-lede + .hs-lede{--d:250ms;}
 
-/* ─────────────────────────────────────────────────────────────
-   THE FORM — the only thing in the hero that can be typed in, so it is
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   THE FORM â€” the only thing in the hero that can be typed in, so it is
    the one panel with a frame around it.
-   ───────────────────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hs-form-wrap{min-width:0; padding:clamp(10px,1vw,14px);
   border:1px solid rgba(255,255,255,.22); border-radius:clamp(24px,2.2vw,34px);
   opacity:0; transform:translateY(20px);
@@ -155,9 +155,9 @@ html[data-theme="dark"]{
   letter-spacing:-0.03em; color:#fff;}
 .hs-done p{margin:0; font-size:14px; line-height:1.6; color:rgba(255,255,255,.74);}
 
-/* ─────────────────────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    RESPONSIVE
-   ───────────────────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width:960px){
   .hs-in{grid-template-columns:minmax(0,1fr); gap:clamp(30px,4vw,42px);}
   .hs-form-wrap{width:min(100%, 508px);}
@@ -205,7 +205,7 @@ html[data-theme="dark"]{
   .hs-copy > *,.hs-form-wrap{opacity:1 !important; transform:none !important;}
 }
 
-/* ── the shoe, kept ──────────────────────────────────────────────────
+/* â”€â”€ the shoe, kept â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The shop-front illustration went with hero 02, and its rules with it.
    These three do not: the marketplaces panel still draws the shoe from
    the sprite and reads its colours from here. */
@@ -214,19 +214,19 @@ html[data-theme="dark"]{
 .sh-c{--su:#DBE2E9; --sd:#C2CBD4; --sl:#FFFFFF; --so:#8A949E; --ss:#F4F6F8; --sb:#D2D9E0;}
 
 /* === tb-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   THE TRUST BAR — proof strip + client carousel, directly under the hero
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   THE TRUST BAR â€” proof strip + client carousel, directly under the hero
 
    The hero above is dark in both themes because it is a photograph. This
    section is not: it is an ordinary page section and follows the theme
    the way every homepage section does, so it reads white in light mode
-   and ink in dark. That is why nothing here is a hard-coded colour —
+   and ink in dark. That is why nothing here is a hard-coded colour â€”
    every surface, rule and text tone comes from the theme tokens.
 
    It takes the page column (.wrap) and the shared .sec padding, with
    --sec-y cut down: a full 104px here would open a gap between the hero
    and its own proof.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .tb{--sec-y:clamp(38px,4.4vw,64px);
   background:var(--ground, var(--bg)); color:var(--text);
@@ -241,15 +241,15 @@ html[data-theme="dark"]{
   pointer-events:none;}
 .tb > .wrap{position:relative; z-index:2;}
 
-/* ── the figures panel ───────────────────────────────────────────────
+/* â”€â”€ the figures panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    One panel, four cells, hairlines between them. The dividers are the
    cells' own left borders rather than separate elements, so the count
    can change without touching the markup for the rules.
 
    No icons here: the figure is the whole point of the cell, and a disc
    beside it only competed with it. What carries the colour instead is
-   the affix — the %, the + , the $ — and the meter along the foot.
-   ══════════════════════════════════════════════════════════════════ */
+   the affix â€” the %, the + , the $ â€” and the meter along the foot.
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .tb-figs{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
   border:1px solid var(--border); border-radius:var(--r-lg);
   background:var(--surface); box-shadow:var(--shadow);
@@ -257,7 +257,7 @@ html[data-theme="dark"]{
 
 /* A column, with the meter pushed to the bottom by margin-top:auto. That
    is what keeps the four meters on one line when one caption runs to two
-   lines and another to one — the cell grows, the meter stays at its foot. */
+   lines and another to one â€” the cell grows, the meter stays at its foot. */
 .tb-fig{display:flex; flex-direction:column; min-width:0;
   padding:clamp(4px,.6vw,8px) clamp(16px,1.9vw,26px);}
 .tb-fig + .tb-fig{border-left:1px solid var(--border);}
@@ -271,7 +271,7 @@ html[data-theme="dark"]{
    digits and read as a unit with them rather than as another number. Every
    property the old icon rule set is still unset here, so an <i> written by
    the count-up can never pick up styling meant for something else. */
-/* Sora is loaded upright only — the sheet asks for 400/600/700/800 and no
+/* Sora is loaded upright only â€” the sheet asks for 400/600/700/800 and no
    italic axis. font-style:italic therefore gets nothing to load and the
    browser fakes one by shearing the upright glyphs, which is what made
    these read as slightly wrong. The lean is drawn deliberately instead: a
@@ -284,19 +284,19 @@ html[data-theme="dark"]{
   transform:none; font-size:.70em; letter-spacing:-0.02em;
   vertical-align:0.12em;}
 
-/* The caption is targeted by class, never as ".tb-fig span" — a bare-tag
+/* The caption is targeted by class, never as ".tb-fig span" â€” a bare-tag
    rule here would also catch the meter, which is a span too. Earlier
    versions of this panel made exactly that mistake twice. */
 /* No max-width. 22ch is about 156px, well inside the cell's own ~240,
-   so the cap — not the cell — was deciding where the line broke, and the
+   so the cap â€” not the cell â€” was deciding where the line broke, and the
    longest caption fell to three lines while its neighbours took two. The
    cell is the right measure: at this size it holds these captions in two. */
 .tb-fig .tb-cap{display:block; margin-top:clamp(10px,1.1vw,14px);
   font-size:13.5px; line-height:1.5; font-weight:500; color:var(--text-2);}
 
-/* ── the meter ───────────────────────────────────────────────────────
+/* â”€â”€ the meter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The fill is a pseudo-element rather than a nested tag, so the cell
-   stays two elements deep, and it is drawn from --fill on the cell — one
+   stays two elements deep, and it is drawn from --fill on the cell â€” one
    value per figure, in one place. It grows when the panel reveals, on the
    same beat as the numbers counting up. */
 .tb-meter{display:block; position:relative; margin-top:auto;
@@ -306,7 +306,7 @@ html[data-theme="dark"]{
   transition:width 1.3s var(--ease) .25s;}
 .tb-figs.in .tb-meter::after{width:var(--fill,0%);}
 
-/* ── the client carousel ─────────────────────────────────────────────
+/* â”€â”€ the client carousel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The homepage's own ticker: one track holding the list twice, slid a
    flat half of its width, so the copy arrives exactly where the original
    left. Masked at both edges so logos fade rather than clip, and paused
@@ -334,10 +334,10 @@ html[data-theme="dark"]{
 
 /* Each logo is type, not artwork, so the row stays crisp at any size and
    weighs nothing. Drop a real <img>/<svg> in place of the <b> when the
-   client marks arrive — the cell keeps its own sizing either way. */
+   client marks arrive â€” the cell keeps its own sizing either way. */
 /* Each mark now sits on its own plate rather than loose on the ground.
    The plate is what carries the padding, so the track's gap comes down to
-   match — otherwise the cards' own inner space and the gap between them
+   match â€” otherwise the cards' own inner space and the gap between them
    would add up and the run would read as too airy. */
 .tb-logo{display:inline-flex; align-items:center; gap:8px; flex-shrink:0;
   padding:clamp(11px,1.2vw,15px) clamp(18px,2.2vw,30px);
@@ -359,7 +359,7 @@ html[data-theme="dark"]{
 .tb-logo.is-boxed b{border:1.4px solid currentColor; padding:4px 9px; border-radius:3px;
   font-size:clamp(11px,1.15vw,13px); letter-spacing:.06em;}
 
-/* ── responsive ─────────────────────────────────────────────────── */
+/* â”€â”€ responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width:1080px){
   .tb-figs{grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 0;}
   /* the vertical rules have to be re-cut for two columns: only the right
@@ -388,10 +388,10 @@ html[data-theme="dark"]{
 }
 
 /* === hero-copy-styles === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE HEADLINE'S LINE BREAKS
 
-   The four <span>s are the authored line breaks — they hold the shape the
+   The four <span>s are the authored line breaks â€” they hold the shape the
    copy was written to, with the blue phrase alone on the second line. They
    are only safe while the column is wide enough for the longest of them
    ("Technical SEO"); below that a forced line has nowhere to go and
@@ -400,13 +400,13 @@ html[data-theme="dark"]{
    So the breaks are held at full width and released everywhere else: the
    spans go inline and the browser wraps the sentence itself. The one thing
    that must not break either way is the blue phrase, which is two words
-   and reads as a unit — that is the nowrap.
-   ══════════════════════════════════════════════════════════════════════ */
+   and reads as a unit â€” that is the nowrap.
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .hs-h1 em{white-space:nowrap;}
 
-/* Below the full column, and on every screen in variant 02 — where the
+/* Below the full column, and on every screen in variant 02 â€” where the
    headline shares its row with two more columns and never has the width
-   for an authored break — the sentence wraps on its own. */
+   for an authored break â€” the sentence wraps on its own. */
 @media (max-width:1240px){
   .hs-h1 span{display:inline;}
   /* Four words is past the point where holding the blue phrase on one
@@ -416,15 +416,15 @@ html[data-theme="dark"]{
 }
 
 /* === svc-styles === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SHARED FURNITURE, PORTED FROM THE HOMEPAGE / SPOTLIGHT FILE
 
    Copied rather than re-invented, so a badge or a corner mark here is
    the same object it is everywhere else: same padding, same rule, same
    timing. Check the source before changing anything in this block.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* the sheet mark — brand dot, sheet number, a short rule, then the label.
+/* the sheet mark â€” brand dot, sheet number, a short rule, then the label.
    The rule draws itself when the head reveals, so the badge arrives in
    two moves rather than one. */
 .smark{display:inline-flex; align-items:center; gap:10px; margin-bottom:22px;
@@ -444,7 +444,7 @@ html[data-theme="dark"]{
   .sec-bar{grid-template-columns:1fr; align-items:start;}
 }
 
-/* ── the section bar's second column ──────────────────────────────────
+/* â”€â”€ the section bar's second column â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    A heading on the left, and on the right the button with the sentence
    that qualifies it beneath. Both columns are bottom-aligned by .sec-bar,
    so the two end on the same line however long either one runs. */
@@ -456,13 +456,13 @@ html[data-theme="dark"]{
 }
 
 
-/* the registration ticks — two corners marked at rest, the frame closing
+/* the registration ticks â€” two corners marked at rest, the frame closing
    in two strokes when the panel is pointed at */
 .tick{position:relative; --tick:36px;}
 /* Two marks, but not two shapes. Both pseudo-elements are the same complete
    rounded frame; each is simply clipped to the corner it is marking. Opening
    the clip windows reveals the rest of each frame, and because the two are
-   pixel-identical they land exactly on top of one another — there is no seam
+   pixel-identical they land exactly on top of one another â€” there is no seam
    to fall out of line, and the corners are correct by construction. */
 .tick::before,.tick::after{content:""; position:absolute; inset:-1px; z-index:2;
   pointer-events:none; border:2px solid var(--primary);
@@ -478,7 +478,7 @@ html[data-theme="dark"]{
 /* ---- the dot field and the brand wash ----
    Two layers that belong together: the dots give the ground a texture
    and the beam lights the top of it, both masked to fade out before
-   they reach the foot. A section that carries one carries both — dots
+   they reach the foot. A section that carries one carries both â€” dots
    on their own read as a pattern nobody lit.
 
    --beam is a theme token (.15 light, .26 dark), so the wash is
@@ -494,22 +494,22 @@ html[data-theme="dark"]{
     hsl(var(--brand-h) 100% 45% / var(--beam)) 0%, transparent 70%);}
 
 /* === mpc-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   MID-PAGE CTA — "Selling on Marketplaces Too?"
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   MID-PAGE CTA â€” "Selling on Marketplaces Too?"
 
    Two columns inside one raised panel: the argument on the left, a
    diagram of the thing being argued about on the right.
 
-   ── the colours the comp introduces ────────────────────────────────
+   â”€â”€ the colours the comp introduces â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The comp is painted in a royal blue that is not this site's blue, plus
    a green and a purple in the small tiles. The stylesheet upstream is
-   deliberately two hues — brand and ink — with gold, green and red named
+   deliberately two hues â€” brand and ink â€” with gold, green and red named
    as the only exceptions. All three are declared once here rather than
    scattered through the block. --cta-blue maps the comp's royal blue
    onto the site's own brand blue, which is what keeps this section
    sitting beside the hero without reading as a second brand. Set it to
    #1F4FE0 for the comp's literal blue.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .mpc{
   --cta-blue:var(--primary);        /* comp: #1F4FE0 */
   --cta-pos:var(--ui-open);         /* the green tiles */
@@ -521,7 +521,7 @@ html[data-theme="dark"]{
 /* The panel's height is set by the diagram, not by the copy: the art
    holds an aspect ratio and everything inside it is in cqw, so the
    drawing is as tall as its column is wide. Narrowing that column is
-   therefore what shortens the panel — it scales the whole diagram down
+   therefore what shortens the panel â€” it scales the whole diagram down
    rather than cropping it, which is what changing the ratio would do.
    The padding comes in with it, and the three feature items that used to
    fill the left column are gone, so nothing is left stranded. */
@@ -538,11 +538,11 @@ html[data-theme="dark"] .mp-panel{
   border-color:rgba(255,255,255,.09);}
 
 /* Line one is a block so the break is authored rather than left to the
-   column's width, and the blue sits on part of line two only — which is
+   column's width, and the blue sits on part of line two only â€” which is
    what keeps "Too?" in ink beside it. */
 /* The badge takes --panel, which is the colour the SECTION is not. Here
    it does not stand on the section: it stands on .mp-panel, which is
-   already carrying that colour — so it came out tint on tint. On this
+   already carrying that colour â€” so it came out tint on tint. On this
    panel it is white, the same reading it has everywhere else. */
 .mp-say .smark{background:var(--surface);}
 
@@ -553,24 +553,24 @@ html[data-theme="dark"] .mp-panel{
 .mp-say > p{margin-top:clamp(16px,1.8vw,24px); max-width:46ch;
   font-size:var(--body); line-height:1.75; color:var(--text-2);}
 
-/* the call is the site's own button — same pill, same ink wipe, same
+/* the call is the site's own button â€” same pill, same ink wipe, same
    rolling label as the homepage. Only its place under the paragraph is
    set here. */
 .mp-say .btn{margin-top:clamp(22px,2.4vw,30px);}
 
-/* ══════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    right: the diagram
 
    The whole thing is one box at the comp's own aspect ratio, and
-   everything inside is placed as a percentage of it — including the arch
+   everything inside is placed as a percentage of it â€” including the arch
    and the connector lines, which live in a single SVG on the same
-   750×685 grid. That is what keeps the arrowheads landing on the tiles
+   750Ã—685 grid. That is what keeps the arrowheads landing on the tiles
    at every width instead of drifting apart as the column narrows.
 
    Text inside uses cqw so it scales with the drawing, with a max() floor
    so it never falls below readable on a phone.
-   ══════════════════════════════════════════════════════════════════ */
-/* The diagram is as tall as it is wide, times its ratio — so on a wide
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* The diagram is as tall as it is wide, times its ratio â€” so on a wide
    page the column alone was making the panel taller than a screen. It is
    capped here instead of narrowing the column further: past this size the
    drawing grows without telling the reader anything more, and capping it
@@ -587,12 +587,12 @@ html[data-theme="dark"] .mp-panel{
 .mp-arch{fill:#E9EEF6;}
 html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 
-/* ── the three marketplace tiles ── */
+/* â”€â”€ the three marketplace tiles â”€â”€ */
 .mp-mk{display:grid; place-items:center; aspect-ratio:1;
   width:14.67%; border-radius:3.2cqw;
   background:var(--n0); box-shadow:0 12px 30px -12px rgba(var(--ink-rgb),.28);}
-/* Each mark has its own proportions — the Etsy wordmark is wide, the
-   Walmart spark is nearly square — so the tile caps both dimensions and
+/* Each mark has its own proportions â€” the Etsy wordmark is wide, the
+   Walmart spark is nearly square â€” so the tile caps both dimensions and
    lets contain decide which one binds. That way one rule sizes all three
    and no mark is stretched to fill a box it was not drawn for. */
 .mp-mk img{max-width:62%; max-height:56%; width:auto; height:auto;
@@ -601,12 +601,12 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 .mp-mk-b{left:5.07%;  top:28.47%;}  /* left */
 .mp-mk-c{left:79.07%; top:28.47%;}  /* right */
 
-/* ── the browser window ── */
+/* â”€â”€ the browser window â”€â”€ */
 .mp-win{left:24.67%; top:34.31%; width:49.33%;
   border-radius:2.13cqw; overflow:hidden;
   background:var(--n0); box-shadow:0 20px 48px -20px rgba(var(--ink-rgb),.32);}
 /* the chrome. Its three lights are a picture of a browser rather than
-   part of the palette, which is why they are literal here — the same
+   part of the palette, which is why they are literal here â€” the same
    licence the hero's shop front takes with its white cards. */
 .mp-bar{display:flex; align-items:center; gap:1cqw;
   height:6cqw; padding:0 2.4cqw; border-bottom:1px solid #EDF1F5;}
@@ -638,14 +638,14 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
   font-size:max(9px,1.73cqw); font-weight:700; letter-spacing:-0.01em;}
 .mp-cart svg{width:2.2cqw; height:2.2cqw; flex-shrink:0;}
 
-/* ── the outcomes bar ── */
+/* â”€â”€ the outcomes bar â”€â”€ */
 .mp-stats{left:.27%; top:81%; width:98%;
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
   padding:2.93cqw 1cqw; border-radius:2.13cqw;
   background:var(--n0); box-shadow:0 18px 44px -22px rgba(var(--ink-rgb),.26);}
 .mp-stat{display:flex; align-items:center; gap:1.6cqw; padding:0 2cqw; min-width:0;}
 /* The label block for a stat. Named as the wrapper's child rather than a
-   bare span, or the icon's own <span> would be styled as a caption too —
+   bare span, or the icon's own <span> would be styled as a caption too â€”
    the trap that has caught this sheet before. */
 .mp-txt{min-width:0;}
 .mp-txt b{display:block; font-size:1.55cqw; font-weight:700; line-height:1.2;
@@ -661,17 +661,17 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 .mp-s3 .mp-si{background:#EFEBFC; color:var(--cta-alt);}
 
 /* The drawing is a picture of white cards and stays white in both
-   themes, the way the hero's shop front does — a dark version of it
+   themes, the way the hero's shop front does â€” a dark version of it
    would be a different illustration, not the same one re-tinted. */
 
-/* ══════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    the diagram arrives
 
    Everything hangs off the panel's own reveal, so the drawing assembles
    itself the first time it is scrolled to and never again. The order is
    the order the diagram is read in: the marketplaces, then the wires
    between them, then the listing they point at, then what it produces.
-   ══════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .mp-mk,.mp-win,.mp-stats{opacity:0; transform:translateY(16px) scale(.94);
   transition:opacity .7s var(--ease) var(--d,0ms),
              transform .8s var(--pop) var(--d,0ms);}
@@ -685,7 +685,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 .mp-panel.in .mp-wires{opacity:1;}
 
 /* The dashes march toward their arrowheads once the drawing is up. The
-   pattern is 7 on, 8 off, so one full period is 15 — offsetting by
+   pattern is 7 on, 8 off, so one full period is 15 â€” offsetting by
    exactly that lands the pattern back where it started and the loop has
    no seam. This is the one thing on the page that keeps moving, and it
    is carrying the diagram's whole point: the channels and the listing
@@ -694,7 +694,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 .mp-panel.in .mp-flow{animation:mpFlow 1.5s linear infinite;}
 @keyframes mpFlow{ to{ stroke-dashoffset:-15; } }
 
-/* ── responsive ─────────────────────────────────────────────────── */
+/* â”€â”€ responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width:980px){
   .mp-panel{grid-template-columns:minmax(0,1fr); gap:clamp(34px,5vw,52px);}
   .mp-say > p{max-width:none;}
@@ -710,26 +710,26 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 }
 
 /* === pf-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   PLATFORMS — the four storefronts, and what changes on each
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   PLATFORMS â€” the four storefronts, and what changes on each
 
    A head with a small orbit diagram beside it, four cards under both,
    and one call at the foot.
 
-   ── the four brand colours ─────────────────────────────────────────
+   â”€â”€ the four brand colours â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Each platform is named in its own colour, which is what the comp does
    and what these marks are recognised by. That is four hues the site
    does not otherwise carry, so they are declared once here and used
-   nowhere else — the tile tints are the same four at low opacity rather
+   nowhere else â€” the tile tints are the same four at low opacity rather
    than four more hand-mixed values.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .pf{--ring:hsl(var(--brand-h) 30% 70%);
     --pf-shopify:#5E8E3E;
     --pf-woo:#7F54B3;
     --pf-magento:#EE5C24;
     --pf-bigc:#24252A;
     /* the three marketplaces. Etsy and Amazon are set a step darker than
-       their brand oranges, the way Shopify's green already is here — at
+       their brand oranges, the way Shopify's green already is here â€” at
        their published values neither holds against a white card at
        heading weight. eBay's mark is four colours; its blue is the one
        that carries the name. */
@@ -739,7 +739,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
     background:var(--bg-alt);}
 .pf-in{position:relative; z-index:3;}
 
-/* ── the head, with the diagram beside it ────────────────────────── */
+/* â”€â”€ the head, with the diagram beside it â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .pf-head{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.82fr);
   gap:clamp(30px,4%,64px); align-items:center;}
 .pf-head .sec-head{max-width:none;}
@@ -748,21 +748,21 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 .pf-head h2 em{font-style:normal; color:var(--brand-text);}
 .pf-head .sec-lede{margin-top:clamp(16px,1.8vw,24px); max-width:44ch;}
 
-/* ══════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    the orbit
 
    One box at a fixed ratio with everything inside placed as a
-   percentage of it, including the rings — which live in a single SVG on
-   the same 480×310 grid the tiles are placed on, so a tile always sits
+   percentage of it, including the rings â€” which live in a single SVG on
+   the same 480Ã—310 grid the tiles are placed on, so a tile always sits
    on its ring rather than near it.
-   ══════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 /* The frame is close to square now. A circular orbit needs room in both
-   directions, and the old 480×310 could not give it: at the radii the
+   directions, and the old 480Ã—310 could not give it: at the radii the
    comp places the tiles at, two of them would have swung off the top and
    bottom edges. At 5:4 the outer orbit clears the frame with the tile's
    own half-width to spare. */
 /* The arms are square boxes turned to every angle, and a turned box has
-   a bigger bounding box than the one it started with — about 447px wide
+   a bigger bounding box than the one it started with â€” about 447px wide
    inside a 350px frame at the angles two of them sit at. Nothing was
    catching that: this section opts out of beam-zone so its panel can
    stick, so the overhang ran all the way out to the document and gave
@@ -780,7 +780,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
    near-white hairline sitting on the section's own near-white ground,
    so in daylight there was effectively nothing there. Dark mode was
    fine, because there the same token resolves to a light line on a dark
-   plate. They now get their own value per theme — a brand-tinted grey
+   plate. They now get their own value per theme â€” a brand-tinted grey
    that reads against --bg-alt without hardening into a drawn circle. */
 .pf-rings{inset:0; width:100%; height:100%; color:var(--ring);}
 .pf-halo{fill:hsl(var(--brand-h) 100% 45% / .10);}
@@ -794,7 +794,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
   box-shadow:0 10px 26px -10px hsl(var(--brand-h) 100% 40% / .8);}
 .pf-core svg{width:46%; height:46%;}
 
-/* ══════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    the orbit
 
    Three boxes per platform, and each one has exactly one job, because
@@ -806,7 +806,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
      .pf-tile  sits at the centre and is pushed out along the arm by
                --r, then spun backwards at the arm's own rate so the
                logo stays upright the whole way round rather than
-               tumbling — the moon keeping one face to us.
+               tumbling â€” the moon keeping one face to us.
      .pf-face  the white square, free to answer a pointer.
 
    --r is a percentage of the tile's own width, and the tile's width is a
@@ -815,7 +815,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 
    Each arm's resting angle is --a, and the keyframes run from --a to
    --a plus a full turn. That way the tiles are already spread around
-   their ring before anything moves — no start delays to keep in sync,
+   their ring before anything moves â€” no start delays to keep in sync,
    and with animation switched off they simply stay where they were
    placed instead of collapsing onto one point. */
 .pf-arm{inset:0; --dur:44s; --r:214%;
@@ -843,14 +843,14 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
   from{ transform:translate(-50%,-50%) translateX(var(--r)) rotate(calc(-1 * var(--a))); }
   to  { transform:translate(-50%,-50%) translateX(var(--r)) rotate(calc(-1 * var(--a) - 360deg)); } }
 
-/* All seven share one ring and one period, set 360/7 = 51.43° apart.
+/* All seven share one ring and one period, set 360/7 = 51.43Â° apart.
 
-   Equal spacing is only preserved if nothing is gaining on anything —
-   same radius, same duration — so the angle they start with is the angle
+   Equal spacing is only preserved if nothing is gaining on anything â€”
+   same radius, same duration â€” so the angle they start with is the angle
    they keep. --r 214% of a tile that is 14% of the frame puts them on
    the ring at 30% of the frame's width from the centre. */
 /* Six arms at sixty degrees, starting at the top. Seven used to sit at
-   51.43° — 360 over the count, and the count is the only thing that
+   51.43Â° â€” 360 over the count, and the count is the only thing that
    changed. Every arm is on the brand hue now: what it carries is a part
    of one deliverable rather than seven separate companies, and giving
    each a colour of its own would have been colour that means nothing. */
@@ -864,7 +864,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 @keyframes pfBreathe{ 0%,100%{transform:scale(1); opacity:1;}
                       50%{transform:scale(1.07); opacity:.72;} }
 
-/* ── a tile answers, and so does its card ─────────────────────────
+/* â”€â”€ a tile answers, and so does its card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Pointing at either half of the pair lights both, so the diagram and
    the cards read as the same four things rather than as two lists that
    happen to share names. One pair per line, so the count here is only
@@ -876,24 +876,24 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
 .pf-in:has(.pf-c4:hover) .pf-o4 .pf-face{
   transform:scale(1.14); box-shadow:0 18px 36px -12px hsl(var(--pf-h) / .5);}
 
-/* ── the carousel ─────────────────────────────────────────────────────
+/* â”€â”€ the carousel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Four in view, six in the track. A wrapped grid left the last row
    three-wide and hanging; a scroller keeps every card the same width and
    lets the set be longer than the frame, which is what it now is.
 
    The rail is the scroller. Overflow on one axis forces the other to
-   clip too, so the vertical room the cards need — the lift on hover and
-   the shadow under it — is bought with padding and given straight back
+   clip too, so the vertical room the cards need â€” the lift on hover and
+   the shadow under it â€” is bought with padding and given straight back
    as negative margin. Without that the top of every lifted card would be
    sliced off by its own scroller.
 
    The width of a card is worked out from the gap rather than guessed, so
-   four land exactly across and the fifth is cut at the edge — which is
+   four land exactly across and the fifth is cut at the edge â€” which is
    the thing that says there is more. */
 
 /* The run moves on its own, so the rail is a window rather than a
    scroller and there is nothing to drive. It pauses under a pointer and
-   whenever anything inside it takes focus — the cards are links, and a
+   whenever anything inside it takes focus â€” the cards are links, and a
    link that is walking away while it is being aimed at is not a link.
 
    The track holds the seven cards twice and slides a flat half of its
@@ -902,7 +902,7 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
    middle of the join between the two runs, so the offset is corrected by
    half a gap or the loop jumps by that much every lap. */
 
-/* A card is a quarter of the RAIL, not of the track — the track is as
+/* A card is a quarter of the RAIL, not of the track â€” the track is as
    wide as its contents, so sizing a card off it would be circular. The
    rail is a container, which is what cqw is for. */
 
@@ -945,14 +945,14 @@ html[data-theme="dark"] .mp-arch{fill:rgba(255,255,255,.05);}
              transform .42s var(--pop);}
 .pf-go svg{width:18px; height:18px;}
 
-/* ── each card is about one platform, so it is coloured by one value ──
+/* â”€â”€ each card is about one platform, so it is coloured by one value â”€â”€
    The hue is set once per card and everything else reads from it: the
    name, the tile, the tint, the edge, the arrow, the watermark. Adding a
    fifth platform is a class with two custom properties, not a fifth copy
    of nine rules. */
 /* The watermark was the platform's initial. A deliverable has no
    initial worth reading, but it does have a position in the list, so the
-   figure that rises on hover is the card's own number — the same number
+   figure that rises on hover is the card's own number â€” the same number
    printed small at the top of it, said once more at 150px. */
 /* Shopify */
 .pf-c1{--pf-h:81 62% 46%; --pf:hsl(var(--pf-h));
@@ -991,7 +991,7 @@ html[data-theme="dark"] .pf{--ring:var(--border-soft);}
    A background rather than `content:url()`. Both can put an image in a
    pseudo-element, but content replaces the box with the image at its own
    intrinsic size and browsers disagree about whether width and height
-   then apply — as a background it is sized here and behaves the same
+   then apply â€” as a background it is sized here and behaves the same
    everywhere. It also leaves opacity free to do the fading, which is
    what makes the mark a watermark rather than a logo in the corner. */
 .pf-card::after{content:""; position:absolute; z-index:-1;
@@ -1006,9 +1006,9 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 
 /* ---- each card's own colour ----
    --pf-h is the mark's hue, saturation and lightness, read off the mark
-   itself; --pf is that as a colour. Everything the card tints on hover —
+   itself; --pf is that as a colour. Everything the card tints on hover â€”
    the border, the wash rising from its foot, the rule under the name, the
-   number and the arrow — already reads one or the other, so setting the
+   number and the arrow â€” already reads one or the other, so setting the
    pair per card is all it takes for a card to turn Shopify green or
    JavaScript yellow rather than the one blue they all used to share.
 
@@ -1017,7 +1017,7 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
    on hover the card stops being generically blue and becomes the
    platform's: the top edge, the number, the arrow and the tile all move
    onto the one hue at once */
-/* border-color first, then the top edge — the shorthand would otherwise
+/* border-color first, then the top edge â€” the shorthand would otherwise
    reset the very side being set */
 .pf-card:hover{border-color:hsl(var(--pf-h) / .32); border-top-color:var(--pf);}
 .pf-card:hover .pf-n{color:var(--pf);}
@@ -1031,17 +1031,17 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 .pf-card > p{transition:border-color .4s var(--ease);}
 .pf-n{transition:color .4s var(--ease);}
 
-/* ── the call ────────────────────────────────────────────────────── */
+/* â”€â”€ the call â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .pf-cta{display:flex; justify-content:center;
   margin-top:clamp(34px,3.8vw,54px);}
 
-/* ── responsive ─────────────────────────────────────────────────── */
+/* â”€â”€ responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* None of this is information, so it all stops for anyone who has asked
    for less movement. The diagram still reads: the rings, the halo and
    the tiles are all in their resting positions already. */
 @media (prefers-reduced-motion:reduce){
   .pf-arm,.pf-tile,.pf-halo{animation:none;}
-  /* the run holds still, so the window becomes a scroller again — the
+  /* the run holds still, so the window becomes a scroller again â€” the
      cards past the fourth have to stay reachable somehow */
   .pf-card{scroll-snap-align:start;}
   .pf-card::after{transition:opacity .01ms;}
@@ -1059,8 +1059,8 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 }
 
 /* === eg-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   HOW A FIX IS RANKED — the homepage's orbit, brought over.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HOW A FIX IS RANKED â€” the homepage's orbit, brought over.
 
    The blueprint row that was here said the same four things in a line,
    and a line is the wrong shape for this: the last stage feeds the
@@ -1074,20 +1074,20 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
    arc-lengths between the four stops, so its head lands where it should
    at any width. Nothing here is measured in script.
 
-   ── what it is driven by ───────────────────────────────────────────
+   â”€â”€ what it is driven by â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Nothing of its own. The row carries data-walk, and the page's walker
    steps .on along the .walk-step cards and publishes the index on the
    container as data-at. The arc, the number in the disc and the lit dot
-   are all written off that one attribute — which is why the whole
+   are all written off that one attribute â€” which is why the whole
    section adds no JavaScript.
 
-   ── what changed from the homepage's copy ──────────────────────────
+   â”€â”€ what changed from the homepage's copy â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The section sets no ground and no border of its own. This page runs an
    alternation: each section names a --ground and a --panel, and --panel
    is always the other one. So the cards, the dots and the pointers read
    --panel rather than naming --surface, and they keep their contrast
    wherever the section ends up in the run.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .eg{margin-top:clamp(28px,3.2vw,44px);
   display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
@@ -1138,7 +1138,7 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 .eg-face > *{position:relative; z-index:1;}
 /* The disc is the middle of an orbit whose arc is already a progress bar,
    so what belongs in it is position: the stage the light is on. The cards
-   give the names, the disc gives the number — nothing is said twice. The
+   give the names, the disc gives the number â€” nothing is said twice. The
    four numbers are stacked in one grid cell and the lit one is chosen by
    data-at, so this needs no script of its own. */
 .eg-lab,.eg-of{display:block; font-size:11.5px; font-weight:700;
@@ -1224,7 +1224,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 
 @media (max-width:1000px){
   /* One column, so there is no gutter for a pointer to cross. The circle
-     stays — it is the section's own shape, and the arc inside it is still
+     stays â€” it is the section's own shape, and the arc inside it is still
      a working progress bar. It is also the only thing that says where in
      the four the reader is once the cards are down to one, which is what
      the block below does. */
@@ -1250,7 +1250,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
    to scroll past, and the disc counting them sits off the top of the
    screen by the second. So the four are stacked in one cell and only the
    one the disc is counting is drawn. The stack is what makes the height
-   hold still — the cell is as tall as the longest card, so nothing under
+   hold still â€” the cell is as tall as the longest card, so nothing under
    it moves as the stages change.
 
    The swipe was already written: the walker wires a drag on .eg-list and
@@ -1298,20 +1298,20 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 }
 
 /* === wc-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   WHY CHOOSE US — the homepage's folder panel.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WHY CHOOSE US â€” the homepage's folder panel.
 
    The claim is on the left and the proof of it is on the right, in a
    panel with the tabs sitting on its edge like the tabs on a folder.
-   Each tab brings its own instrument — a set of bars, a ring, a line —
+   Each tab brings its own instrument â€” a set of bars, a ring, a line â€”
    and each is drawn from nothing every time it is opened, so the panel
    is doing the thing it describes rather than showing a picture of it.
 
-   ── two changes were needed to bring it here ───────────────────────
+   â”€â”€ two changes were needed to bring it here â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
    1. THE PREFIX. It arrived as .wn-*, which collided with a "Who needs
       it" section this page had at the time. That section has since been
-      replaced and its sheet removed, so the collision is gone — but the
+      replaced and its sheet removed, so the collision is gone â€” but the
       names stay .wc-* here, because renaming a working component back to
       a prefix nothing uses buys nothing.
 
@@ -1319,11 +1319,11 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
       and the card inside it on --surface. That reads there because its
       --p100 is nearly white. On this page --p100 is four steps of
       lightness darker, so the panel would have come out DARKER than the
-      tint it stands on — the wrong way round for a thing meant to sit
+      tint it stands on â€” the wrong way round for a thing meant to sit
       forward of its ground. So the panel takes white and the card takes
       the tint, which is the relationship the homepage renders, arrived
       at through the tokens this page actually has.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* the claim on the left, the panel answering on the right: read left to
    right, the argument comes before its evidence */
@@ -1353,7 +1353,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 /* ---- the folder ---- */
 /* The tabs fill the panel's width between them. Left to size themselves,
    the last one stops short of the right edge and the panel's rounded
-   corner opens up beside it — a wedge of ground where the two should
+   corner opens up beside it â€” a wedge of ground where the two should
    be meeting. */
 .wc-tabs{display:flex; gap:2px; position:relative; z-index:2;}
 .wc-tab{position:relative; flex:1 1 0; text-align:center;
@@ -1369,7 +1369,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
   padding-bottom:22px;}
 /* The focus ring is drawn on three sides only. A full outline runs along
    the tab's bottom edge as well, and that edge is the join with the
-   panel — the ring cuts the two apart and reads as a gap under the open
+   panel â€” the ring cuts the two apart and reads as a gap under the open
    tab. */
 .wc-tab:focus-visible{outline:none;
   box-shadow:inset 0 3px 0 0 var(--primary),
@@ -1474,7 +1474,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 
      What had to give is the type and the padding, not the shape. The
      label comes down to nine points between 320 and 390 so the longest
-     of them — REPORTING — clears its share of the row at every width
+     of them â€” REPORTING â€” clears its share of the row at every width
      rather than at most of them. It is the one word the row is sized
      against.
 
@@ -1497,12 +1497,12 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 
 /* === wk-styles === */
 /* ============================================================
-   SELECTED WORK — the deck
+   SELECTED WORK â€” the deck
    A single row of sheets that runs off both edges of the screen, so
    the set reads as longer than the window and the next one is always
    half-visible. The rail is a scroll container, not a transform: it
    snaps, it takes a trackpad swipe, it takes the arrow keys, and if
-   the script never runs it still works — the buttons and the counter
+   the script never runs it still works â€” the buttons and the counter
    are the only things JavaScript adds.
 
    One measurement drives the whole block. --wk-w is the width of a
@@ -1524,7 +1524,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
   --wk-shot:calc(var(--wk-w) / 1.6);
   /* headroom for the centre sheet to grow into, top and bottom. A rail with
      overflow-x:auto clips on the cross axis as well, so without this the
-     growth — and the shadow under it — would be cut off. */
+     growth â€” and the shadow under it â€” would be cut off. */
   --wk-lift:44px;}
 .wk .wrap{position:relative; z-index:2;}
 
@@ -1538,7 +1538,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 .wk-count span{font-family:var(--font-display); font-size:12.5px; font-weight:700;
   letter-spacing:.14em; color:var(--muted); font-variant-numeric:tabular-nums;}
 /* 800, not the browser's bolder. <b> inside a span that is already 700
-   computes to 900, and 900 is not a cut of Sora that this page loads —
+   computes to 900, and 900 is not a cut of Sora that this page loads â€”
    the counter was being faked by the renderer rather than set in the
    typeface. 800 is the weight above 700 that actually exists here. */
 .wk-count b{color:var(--brand-text); font-weight:800;}
@@ -1576,7 +1576,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
    comes forward: it grows from its own centre, so it stands proud at the
    top and the foot alike, and it grows past the gap on either side so the
    two next to it pass behind rather than beside it. The six around it are
-   left exactly as they are — nothing is dimmed to make this one read.
+   left exactly as they are â€” nothing is dimmed to make this one read.
 
    Transform and z-index only. Neither changes the layout, so the snap
    positions and the ring's arithmetic are untouched. */
@@ -1589,7 +1589,7 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
   box-shadow:0 10px 26px -18px rgba(var(--ink-rgb),.30);
   transition:box-shadow .45s var(--ease), border-color .26s var(--ease);}
 /* depth is carried by the shadow alone. The outline is not part of being
-   the centre sheet — it answers the pointer, and it does it by recolouring
+   the centre sheet â€” it answers the pointer, and it does it by recolouring
    the hairline the picture already has rather than adding a second edge on
    top of it, so nothing shifts by a pixel when it lights up. */
 .wk-deck.wired .wk-card.on .wk-shot{
@@ -1622,11 +1622,11 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .wk-card:hover .wk-img{transform:scale(1.04);}
 /* The one in the middle is shown at full size and the ones either side
    step back, so the centre reads as the sheet being looked at. Only the
-   picture is scaled — the copy under it is faded rather than shrunk, so
+   picture is scaled â€” the copy under it is faded rather than shrunk, so
    nothing typographic is ever drawn at a fraction of its size. Gated on
    .wired: without the script nothing is chosen, and dimming five of
    seven sheets for no reason would be worse than dimming none. */
-/* the address is the proof — it says the site is live, not a mockup. It is
+/* the address is the proof â€” it says the site is live, not a mockup. It is
    the one thing here that keeps fixed colours, because it lies on a
    photograph rather than on the page */
 .wk-url{position:absolute; left:14px; top:14px; display:inline-flex;
@@ -1656,7 +1656,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .wk-tags li:first-child{border-color:var(--brand-text); color:var(--brand-text);}
 
 /* ---- the arrows ----
-   One at each edge of the screen, on the middle line of the picture —
+   One at each edge of the screen, on the middle line of the picture â€”
    which is --wk-shot / 2 down from the top of the rail, whatever the
    sheets happen to be measuring. Added by the script, because without
    it they would be two buttons that do nothing. */
@@ -1692,22 +1692,22 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 /* the beam and the dots sit behind the column */
 .revs-in{position:relative; z-index:3;}
 
-/* ══════════════════════════════════════════════════════════════════════
-   REVIEWS — ported alongside the deck.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   REVIEWS â€” ported alongside the deck.
 
    The two sections came across whole: no class was renamed, because
    nothing on this page uses .wk-* or .gr-*, and no colour was added,
    because neither carries a palette of its own. Both read the page's
    text tokens and the ground the alternation hands them.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* ══════════════════════════════════════════════════════════════════════
-   REVIEWS — a ratings bar over a row of review cards
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   REVIEWS â€” a ratings bar over a row of review cards
    Replaces the single rotating quote. Same three reviews, shown at once.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .gr{ margin-top:clamp(26px,3.2vw,42px); }
 
-/* ── the ratings bar ───────────────────────────────────────────────── */
+/* â”€â”€ the ratings bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gr-bar{
   display:grid; grid-template-columns:auto 1fr auto; align-items:center;
   gap:clamp(14px,2vw,26px);
@@ -1733,12 +1733,12 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .gr-src:hover{ color:var(--primary); border-color:var(--primary); }
 .gr-acts{ display:flex; align-items:center; gap:10px; }
 
-/* stars — one shape, filled to the rating by a clip on the wrapper */
+/* stars â€” one shape, filled to the rating by a clip on the wrapper */
 .gr-stars{ display:inline-flex; gap:2px; color:#FBB03B; }
 .gr-stars svg{ width:15px; height:15px; }
 .gr-stars .off{ color:var(--border); }
 
-/* ── the cards ─────────────────────────────────────────────────────── */
+/* â”€â”€ the cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* a snap track at every width: three across on the desktop, fewer as the
    room runs out, and the same controls underneath either way */
 .gr-track{
@@ -1798,7 +1798,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .gr-foot button:hover{ color:var(--primary); }
 .gr-foot svg{ width:14px; height:14px; }
 
-/* ── the carousel controls, only where the row cannot fit ──────────── */
+/* â”€â”€ the carousel controls, only where the row cannot fit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gr-nav{ display:flex; align-items:center; justify-content:center; gap:14px;
   margin-top:clamp(16px,1.8vw,22px);}
 .gr-arrow{
@@ -1817,7 +1817,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 
 .gr-end{ display:flex; justify-content:center; margin-top:clamp(20px,2.4vw,30px); }
 
-/* ── responsive: below three-up the row becomes a swipe track ──────── */
+/* â”€â”€ responsive: below three-up the row becomes a swipe track â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width:1000px){
   .gr-bar{ grid-template-columns:auto 1fr; }
   .gr-acts{ grid-column:1 / -1; justify-content:flex-start; }
@@ -1833,28 +1833,28 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 }
 
 /* === sg-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   THE FIVE SIGNS — a stack beside a photograph.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   THE FIVE SIGNS â€” a stack beside a photograph.
 
-   ── the head ───────────────────────────────────────────────────────
+   â”€â”€ the head â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Centred over both columns, with a ghosted figure behind it. The figure
    is aria-hidden and set in the page's own display face at a weight it is
    never otherwise used at, so it reads as texture rather than as
    something anybody is meant to finish reading.
 
-   ── the stack ──────────────────────────────────────────────────────
+   â”€â”€ the stack â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Each sign is a card with its number and a tab on the outer edge. The
    tab is a gradient rather than a flat mark, which is the reference's own
    move: it gives the card a side without giving it a border.
 
-   ── the photograph ─────────────────────────────────────────────────
+   â”€â”€ the photograph â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    And the plate that hangs off its foot, overlapping it. The overlap is
    what makes the two read as one object; the plate is pulled up by a
    negative margin rather than positioned absolutely, so the media column
    still ends where the plate ends and the row below it is not guessed at.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* ── the head ──────────────────────────────────────────────────────── */
+/* â”€â”€ the head â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sg-head{position:relative; isolation:isolate; text-align:center;
   max-width:64ch; margin-inline:auto;}
 .sg-ghost{position:absolute; left:50%; top:-.34em; z-index:-1;
@@ -1867,14 +1867,14 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 .sg-head h2 em{font-style:normal; color:var(--brand-text);}
 .sg-head .sec-lede{margin-top:clamp(12px,1.4vw,18px); margin-inline:auto;}
 
-/* ── the two columns ───────────────────────────────────────────────── */
+/* â”€â”€ the two columns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* Stretch, not start: the photograph runs the height of the stack beside
    it and the two columns finish on the same line. */
 .sg-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
   gap:clamp(26px,3.2vw,52px); align-items:stretch;
   margin-top:clamp(32px,3.8vw,54px);}
 
-/* ── the stack ─────────────────────────────────────────────────────── */
+/* â”€â”€ the stack â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sg-list{list-style:none; margin:0; padding:0; display:grid;
   gap:clamp(11px,1.2vw,16px);}
 .sg-item{position:relative; display:grid;
@@ -1893,7 +1893,7 @@ html[data-theme="dark"] .wk-deck.wired .wk-card.on .wk-shot{
 
 /* ---- the number ----
    --disc is a tint meant to be read against a light card. On the dark one
-   it came out at 1.2 to 1 against the card behind it — the fill was there
+   it came out at 1.2 to 1 against the card behind it â€” the fill was there
    and the eye could not find its edge, so the number looked like it was
    printed on nothing. The tile is given its own value on each ground.
 
@@ -1920,7 +1920,7 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
    language gets the right ones without anyone editing the text */
 .sg-item q{quotes:"\201C" "\201D"; font-weight:600; color:var(--text);}
 
-/* ── the photograph ────────────────────────────────────────────────── */
+/* â”€â”€ the photograph â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* A column, so the photograph can take whatever height is left once the
    plate has had its own. The padding that used to hold room under it is
    gone: the plate is the last thing in the column now, so the column
@@ -1929,7 +1929,7 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
 .sg-shot{display:block; flex:1 1 auto; min-height:clamp(240px,26vw,340px);
   border-radius:calc(var(--r-lg) + 6px);
   /* cover rather than contain: this is a photograph of a room, so the
-     crop takes some of the room and nothing that was the point of it —
+     crop takes some of the room and nothing that was the point of it â€”
      unlike an illustration, where the edges are the subject */
   background:var(--shot-2) center / cover no-repeat, var(--n200);
   box-shadow:0 32px 70px -34px rgba(var(--ink-rgb),.5);}
@@ -1952,7 +1952,7 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
 
 .sg-act{margin-top:clamp(30px,3.4vw,46px); text-align:center;}
 
-/* ── narrower ────────────────────────────────────────────────────────
+/* â”€â”€ narrower â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    One column, and the photograph goes first: it is the thing that sets
    the section's tone, and below five cards it would be arriving after the
    argument it is meant to open. */
@@ -1973,21 +1973,21 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
 }
 
 /* === cn-subs === */
-/* ══════════════════════════════════════════════════════════════════════
-   THE CONSOLE — main services on the rail, their parts in the pane.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   THE CONSOLE â€” main services on the rail, their parts in the pane.
 
    The eleven services were flat: eleven tabs, and each pane a paragraph
    with a checklist under it. They are six now, and what used to be a tick
-   list is the list of services that sit under the one you have opened —
+   list is the list of services that sit under the one you have opened â€”
    each with its own name and its own line, so the pane answers "what is
    in this" rather than "what do you check".
 
-   ── the pane takes the full width ──────────────────────────────────
+   â”€â”€ the pane takes the full width â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    .cn-card is itself a two-column grid, 1.14fr and .86fr, and it holds
    one child. Two-fifths of every pane was empty. It is one column now,
-   and the list inside keeps the two — which is where the second column
+   and the list inside keeps the two â€” which is where the second column
    was always meant to be.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .cn-card{grid-template-columns:minmax(0,1fr);}
 
 .cn-subs{margin-top:clamp(22px,2.4vw,30px); list-style:none;
@@ -2007,23 +2007,23 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
 }
 
 /* === wc-five === */
-/* ══════════════════════════════════════════════════════════════════════
-   WHY CHOOSE US — five tabs, and the three panels that are not charts.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WHY CHOOSE US â€” five tabs, and the three panels that are not charts.
 
-   ── the strip ──────────────────────────────────────────────────────
+   â”€â”€ the strip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The tabs share the panel's width between them, so five get a fifth
    each where three got a third. The label is the only thing that can
    give: it comes down a point and loses most of its tracking. That is
-   also why the words on the tabs are one each — "Prioritization" does
+   also why the words on the tabs are one each â€” "Prioritization" does
    not fit a fifth of this panel at any size worth reading.
 
-   ── not every panel wants a chart ──────────────────────────────────
+   â”€â”€ not every panel wants a chart â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Two of the five are quantities and keep their instruments. The other
    three are not: what a ticket looks like, when the migration work
    happens, and what you are told before you commit. Drawing a bar chart
    for any of them would have been a picture standing in for the thing
    rather than showing it, so each gets the shape of its own answer.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 /* and only while they are a strip. Below 560 they are four pills in a
    grid and size themselves against their cell, not against the panel;
    this rule reaching down there was overriding that and pushing the row
@@ -2077,24 +2077,24 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
   font-variant-numeric:tabular-nums; text-align:right;}
 
 /* === pf-three === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE PLATFORM ROW, AT THREE
 
-   ── the run is gone ────────────────────────────────────────────────
+   â”€â”€ the run is gone â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    .pf-card was sized to a quarter of the rail and the track slid it past
    on a 44-second loop, because seven cards did not fit a four-card
-   window. Three fit. What is left of the component — the card, its hue
+   window. Three fit. What is left of the component â€” the card, its hue
    on hover, the watermark, the tile that lights with its partner in the
-   orbit — is untouched; only the box around it changed from a moving
+   orbit â€” is untouched; only the box around it changed from a moving
    track to a row.
 
-   ── the orbit answers the row ──────────────────────────────────────
+   â”€â”€ the orbit answers the row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Four arms, evenly spaced, and the :has() pairing that lights a tile
    when its card is hovered runs to four. The angles are set on the arms
    in the base sheet; here they are only redistributed.
-   ══════════════════════════════════════════════════════════════════════ */
-/* ══════════════════════════════════════════════════════════════════════
-   THE RUN — the ecommerce page's own, carried over whole.
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   THE RUN â€” the ecommerce page's own, carried over whole.
 
    The rail is the window, the track is what moves inside it, and the
    track holds the cards twice so the loop has no seam. It pauses under a
@@ -2104,13 +2104,13 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
 
    One number changed: the card was a quarter of the rail and is a third,
    because three are wanted in view rather than four.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .pf-carousel{--pf-gap:clamp(16px,1.7vw,24px);
   margin-top:clamp(30px,3.4vw,48px);}
 
 /* The run moves on its own, so the rail is a window rather than a
    scroller and there is nothing to drive. It pauses under a pointer and
-   whenever anything inside it takes focus — the cards are links, and a
+   whenever anything inside it takes focus â€” the cards are links, and a
    link that is walking away while it is being aimed at is not a link.
 
    The track holds the seven cards twice and slides a flat half of its
@@ -2129,7 +2129,7 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
 .pf-rail:focus-within .pf-track{animation-play-state:paused;}
 @keyframes pfSlide{ to{ transform:translateX(calc(-50% - var(--pf-gap) / 2)); } }
 
-/* A card is a quarter of the RAIL, not of the track — the track is as
+/* A card is a quarter of the RAIL, not of the track â€” the track is as
    wide as its contents, so sizing a card off it would be circular. The
    rail is a container, which is what cqw is for. */
 /* Three in view rather than the four this was written for: the card
@@ -2156,13 +2156,13 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
      every card behind the top one visible, which is what says there is a
      pile rather than one card.
 
-     Two things this needs. The section clips itself — .beam-zone sets
-     overflow:hidden — and a clipping ancestor is the scroll container for
+     Two things this needs. The section clips itself â€” .beam-zone sets
+     overflow:hidden â€” and a clipping ancestor is the scroll container for
      anything sticky inside it, so nothing would have stuck. And the cards
      have to be opaque, or the one underneath would read through; they take
      --panel, which is already a solid fill. */
   .pf{overflow:visible;}
-  /* A sticky card cannot stack inside a clipped box — that box becomes
+  /* A sticky card cannot stack inside a clipped box â€” that box becomes
      its containing block and it sticks to that instead of to the page. So
      the rail gives up its overflow and its mask here, the track stops
      moving and goes back to a column, and the second copy of the cards is
@@ -2197,10 +2197,10 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
   text-align:center;}
 
 /* === hx-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   AI SEARCH — a hub, and the cards that answer to it.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   AI SEARCH â€” a hub, and the cards that answer to it.
 
-   ── the brackets ───────────────────────────────────────────────────
+   â”€â”€ the brackets â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The line joining a stack to the hub is two pseudo-elements on the
    stack itself, not a drawing laid over the row: a bracket sitting in
    the first half of the grid gap, and a straight run across the second
@@ -2211,7 +2211,7 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
    The gap is a named length rather than a bare value in the grid,
    because the two halves of the join are measured off it. Change it in
    one place and the bracket and the run follow.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* ---- the resting line ----
    --border is the colour of a card's edge, and a card's edge is meant to
@@ -2252,7 +2252,7 @@ html[data-theme="dark"] .hx{--hx-wire:1px solid hsl(var(--brand-h) 26% 34%);}
    answers it, and the drawing underneath stays centred because it is the
    one thing in here that is symmetrical.
 
-   1.05fr against 1fr, not half and half — the heading is display type at
+   1.05fr against 1fr, not half and half â€” the heading is display type at
    --h2 and wants a little more room than the body beside it to break
    where it wants to. */
 .hx-head{display:grid;
@@ -2286,7 +2286,7 @@ html[data-theme="dark"] .hx{--hx-wire:1px solid hsl(var(--brand-h) 26% 34%);}
    above it than it did when it followed the heading */
 .hx-grid{margin-top:clamp(22px,2.6vw,34px);}
 
-/* ── the three columns ─────────────────────────────────────────────── */
+/* â”€â”€ the three columns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hx-grid{display:grid;
   grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
   column-gap:var(--hx-gap); align-items:center;
@@ -2301,7 +2301,7 @@ html[data-theme="dark"] .hx{--hx-wire:1px solid hsl(var(--brand-h) 26% 34%);}
 
 /* the bracket, and the run from it into the hub. 24 per cent is the
    middle of the first card and of the last, for two rows with the gap
-   this stack uses — close enough that the ends meet the cards' centres
+   this stack uses â€” close enough that the ends meet the cards' centres
    and the whole joint moves with the stack rather than with a number */
 .hx-side::before,
 .hx-side::after{content:""; position:absolute; pointer-events:none;}
@@ -2314,20 +2314,20 @@ html[data-theme="dark"] .hx{--hx-wire:1px solid hsl(var(--brand-h) 26% 34%);}
 .hx-r::before{right:100%; border-left:var(--hx-wire); border-radius:14px 0 0 14px;}
 .hx-r::after {right:calc(100% + var(--hx-gap) * .5);}
 
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE LINES DRAW THEMSELVES
 
    Measured off the reference clip: the joint is not a line with something
-   moving along it — it is a line that draws itself from the foot up to the
+   moving along it â€” it is a line that draws itself from the foot up to the
    head over about a second and a half, holds, fades, and starts again.
 
-   ── two layers, because there are two states ───────────────────────
+   â”€â”€ two layers, because there are two states â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The faint rule is always there; the lit one is a second copy of the
    same geometry in the brand colour, and that is what draws. One layer
    would have meant animating a border colour, which cannot be made to
    arrive a bit at a time.
 
-   ── a band, not a reveal ───────────────────────────────────────────
+   â”€â”€ a band, not a reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    A light runs the joint from the foot to the head and passes each card's
    stub on the way. The mask is three times the element's height with a
    lit window in the middle third; sliding it upward walks that window
@@ -2335,15 +2335,15 @@ html[data-theme="dark"] .hx{--hx-wire:1px solid hsl(var(--brand-h) 26% 34%);}
    corners with the path instead of cutting across them.
 
    stroke-dashoffset would have been the obvious way and would have meant
-   an SVG — and an SVG here has to stretch to a gap and a stack that size
+   an SVG â€” and an SVG here has to stretch to a gap and a stack that size
    independently, which turns the corner radius into an ellipse.
 
-   ── and the cards answer it ────────────────────────────────────────
+   â”€â”€ and the cards answer it â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Each card lights as the band reaches its own stub. Nothing measures
    that: the band's crossing and the four wakes are on one clock,
    --hx-beat, and each card's delay is where its stub sits along the run.
    Change the beat and the whole sequence keeps its order and its spacing.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .hx-side::after{border-top:var(--hx-wire);}
 
 .hx-lit{position:absolute; pointer-events:none;
@@ -2413,7 +2413,7 @@ html[data-theme="dark"] .hx{--hx-wire:1px solid hsl(var(--brand-h) 26% 34%);}
   0 30px 66px -16px hsl(var(--brand-h) 100% 42% / .62);}
 .hx-core{transition:box-shadow .34s var(--ease);}
 
-/* ── a card ────────────────────────────────────────────────────────── */
+/* â”€â”€ a card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hx-card{padding:clamp(20px,2.1vw,28px);
   background:var(--panel); border:1px solid var(--border);
   border-radius:calc(var(--r-lg) + 2px);
@@ -2426,7 +2426,7 @@ html[data-theme="dark"] .hx{--hx-wire:1px solid hsl(var(--brand-h) 26% 34%);}
    would be the same note twice.
 
    --text inverts with the theme, so in the dark it became a near-white
-   tile carrying a white glyph — the mark was there and could not be seen.
+   tile carrying a white glyph â€” the mark was there and could not be seen.
    The tile is named rather than derived now, and the glyph takes whichever
    of black or white the tile is not. */
 .hx-ic{--hx-tile:#12181F; --hx-glyph:#fff;
@@ -2445,7 +2445,7 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 .hx-card p{margin:clamp(8px,.9vw,11px) 0 0; font-size:12.8px; line-height:1.62;
   color:var(--text-2);}
 
-/* ── the hub ───────────────────────────────────────────────────────── */
+/* â”€â”€ the hub â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hx-hub{display:grid; place-items:center;}
 .hx-core{position:relative; display:grid; place-items:center;
   padding:clamp(8px,.9vw,12px);
@@ -2464,7 +2464,7 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 .hx-core::after{content:""; position:absolute; inset:0; border-radius:inherit;
   border:1px solid hsl(var(--brand-h) 100% 50% / .55);
   animation:hxPulse var(--hx-beat) var(--ease) infinite;}
-/* Twice a cycle, and at the moment the light actually reaches the hub —
+/* Twice a cycle, and at the moment the light actually reaches the hub â€”
    which is halfway through a band's crossing, not at the start of it.
    The band takes 28% of the beat, so the middle stub is passed at 14%
    and again at 40% + 14%. Not a beat of its own: it is the light
@@ -2494,7 +2494,7 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
   animation:hxBob 5.2s var(--ease) infinite;}
 @keyframes hxBob{50%{transform:translateY(-3px);}}
 
-/* ── narrower ────────────────────────────────────────────────────────
+/* â”€â”€ narrower â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    One column, and the joint goes with it. The bracket exists to show four
    cards reporting to a middle; stacked, there is no middle to point at
    and the lines would be pointing at whatever card happened to be next. */
@@ -2518,21 +2518,21 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 }
 
 /* === gt-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   WHAT YOU GET — five cards.
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WHAT YOU GET â€” five cards.
 
-   ── the rule across the top ────────────────────────────────────────
+   â”€â”€ the rule across the top â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Drawn as a pseudo-element rather than a border, because a border-top
    cannot hold a gradient and keep the card's rounded corners: the corner
    radius would cut the ends of it square. Inset a little from each side,
    the way the reference has it, so it reads as a drawn line on the card
    rather than as the card's own edge.
 
-   ── the run of five ────────────────────────────────────────────────
+   â”€â”€ the run of five â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Five into three columns leaves two on the last row. The track is six
    columns: the first three take two each, the last two take three. Every
    row is full and nothing sits beside a gap.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .gt-grid{list-style:none; margin:clamp(32px,3.8vw,50px) 0 0; padding:0;
   display:grid; grid-template-columns:repeat(6,minmax(0,1fr));
@@ -2551,7 +2551,7 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 /* ---- the rule ----
    An element rather than a pseudo, because both pseudos are spoken for by
    the picture and its overlay below, and the rule has to paint ON TOP of
-   the overlay — a pseudo-element paints above every background the card
+   the overlay â€” a pseudo-element paints above every background the card
    has, so it could not have been a background layer either. */
 .gt-rule{position:absolute;
   left:clamp(16px,1.8vw,24px); right:clamp(16px,1.8vw,24px); top:-1px;
@@ -2580,7 +2580,7 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
    The accent phrase does NOT cross. It was lifting to a paler step of the
    ramp so it would clear the dark behind it, and that read as the phrase
    changing colour rather than the card changing state. It keeps the blue
-   it has at rest — on the veil that is about four to one, which the
+   it has at rest â€” on the veil that is about four to one, which the
    phrase carries at this size and weight. */
 .gt-card:hover b{color:#fff;}
 .gt-card:hover p{color:rgba(255,255,255,.80);}
@@ -2628,11 +2628,11 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 }
 
 /* === faq-pics === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE ASIDE CHANGES WITH THE QUESTION
 
    Six layers, one per question, and the open one is chosen by a single
-   data-at on the wrapper — so which picture is showing is decided by the
+   data-at on the wrapper â€” so which picture is showing is decided by the
    same click that opens the answer, with no second piece of state to keep
    in step.
 
@@ -2644,7 +2644,7 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
    this page already carries. The nth-child rules below still run to
    eight, so an eighth question needs a layer here and no stylesheet
    edit at all.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* the original single photo is replaced by the stack */
 .faq-aside::before{ content:none; }
@@ -2666,7 +2666,7 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 .faq-wrap[data-at="7"] .faq-pic:nth-child(7),
 .faq-wrap[data-at="8"] .faq-pic:nth-child(8){ opacity:1; }
 
-/* With every question shut — which only happens on the narrow layout —
+/* With every question shut â€” which only happens on the narrow layout â€”
    the aside would go to bare scrim. It keeps the first picture instead. */
 .faq-wrap:not([data-at]) .faq-pic:nth-child(1){ opacity:1; }
 
@@ -2676,8 +2676,8 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 }
 
 /* === rhythm-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   ONE RHYTHM, AND SECTIONS THAT ALTERNATE — the homepage's own rules
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ONE RHYTHM, AND SECTIONS THAT ALTERNATE â€” the homepage's own rules
 
    Two things settle here, both copied from the sheet the homepage loads
    last: a single fluid gap between sections, and a ground that goes
@@ -2685,9 +2685,9 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
    carries the division on its own, which is what lets the hairlines
    between sections go.
 
-   ── the part that had to be worked out rather than copied ──────────
+   â”€â”€ the part that had to be worked out rather than copied â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    On the homepage the sections that take the white ground hold content
-   that is not itself white — a dark console, a photo deck, a dial. This
+   that is not itself white â€” a dark console, a photo deck, a dial. This
    page is card-heavy: nearly every section is white panels on a tint. So
    copying "white, tint, white" alone would have put white cards on a
    white ground half the way down and flattened them.
@@ -2701,18 +2701,18 @@ html[data-theme="dark"] .hx-ic{--hx-tile:#F2F5F8; --hx-glyph:#12181F;}
 
    Illustrations are left out of it. The dashboard, the marketplace
    tiles, the browser window and the orbit discs are pictures of white
-   objects and stay white in both themes — they are drawn on --n0, not
+   objects and stay white in both themes â€” they are drawn on --n0, not
    on --surface, so none of this reaches them.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* ── 1. one gap, everywhere ─────────────────────────────────────── */
+/* â”€â”€ 1. one gap, everywhere â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root{ --sec-y:clamp(58px, 6vw, 92px); }
 .sec{ padding-block:var(--sec-y); }
 /* the one that keeps its own: the proof strip is deliberately tight
    under the hero */
 .tb{ --sec-y:clamp(38px,4.4vw,64px); }
 
-/* ── 2. the alternation ─────────────────────────────────────────── */
+/* â”€â”€ 2. the alternation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sec,
 html[data-theme="dark"] .sec{ background:var(--ground); }
 
@@ -2722,7 +2722,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    there: proof, marketplaces, why and faq on white; services, platforms,
    process and the invitation on the tint.
 
-   Two of those white sections hold pictures of white objects — the
+   Two of those white sections hold pictures of white objects â€” the
    marketplace tiles and browser window, and the dashboard with its
    figures bar. Those are drawn on --n0, not --surface, so they stay
    white whatever the section does, and on a white ground they would
@@ -2739,11 +2739,11 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    rather than against a named section, so they follow a shift on their
    own and needed no edit either time. */
 /* Regenerated for the live section order (crawl-check removed).
-   Strict white ↔ tint down the page after the dark hero:
+   Strict white â†” tint down the page after the dark hero:
 
-     proof(white) → signs(tint) → services(white) → why(tint) →
-     process(white) → get(tint) → platforms(white) → ai(tint) →
-     work(white) → reviews(tint) → faq(white) → contact(tint).
+     proof(white) â†’ signs(tint) â†’ services(white) â†’ why(tint) â†’
+     process(white) â†’ get(tint) â†’ platforms(white) â†’ ai(tint) â†’
+     work(white) â†’ reviews(tint) â†’ faq(white) â†’ contact(tint).
 
    Cards read --panel (the opposite of --ground). */
 #proof,#model,#process,#platforms,#work,#faq{
@@ -2765,7 +2765,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
 .pf-card,
 .faq-list{ background:var(--panel); }
 /* The panel takes the colour the section is not. It used to fall from one
-   to the other, which was fine while the section was tinted — but on white
+   to the other, which was fine while the section was tinted â€” but on white
    the fall ended in white, and the figures bar sitting at the foot of the
    panel is white too, so the bottom of the illustration lost its ground.
    One flat fill, with a breath of brand at the far corner for depth. */
@@ -2777,51 +2777,51 @@ html[data-theme="dark"] .mp-panel{
 
 /* The same insurance one section up. The marketplace panel takes
    whichever colour its section is not, and the three objects standing on
-   it — the two marks, the listing window and the outcomes bar — are
+   it â€” the two marks, the listing window and the outcomes bar â€” are
    pictures of white objects with nothing but a shadow to be read by. On
    the panel's white turn they would have none. A hairline each costs
    nothing on the tinted turn, so it is unconditional rather than tied to
    a ground that may shift again. */
 .mp-mk,.mp-win,.mp-stats{ border:1px solid var(--border); }
 
-/* ── 3. no rules at the top or foot of a section ────────────────── */
+/* â”€â”€ 3. no rules at the top or foot of a section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sec,.svc-cn,.faq,.pf,.mpc,.tb,.wk,.revs{
   border-top:0; border-bottom:0; }
 
 /* === hs-form-theme === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE HERO FORM FOLLOWS THE THEME
 
-   The hero itself is dark in both themes — it is a photograph, and a
+   The hero itself is dark in both themes â€” it is a photograph, and a
    photograph does not have a light version. The form standing on it does
    not have to be: it is a panel of the site's own furniture, and in
    daylight it now reads as one.
 
    In light mode it becomes a pale frosted card with ink type; in dark it
    is left exactly as it was. Everything inside had a colour written into
-   it for the dark card — the heading, the sub, the field labels, the
-   note, the confirmation — so each of those is answered here rather than
+   it for the dark card â€” the heading, the sub, the field labels, the
+   note, the confirmation â€” so each of those is answered here rather than
    being left white on white.
 
    Two details the flip turns up. The fields are white, which was
    invisible edging on a near-black card and needs a real edge on a pale
    one. And the error text was a light red picked to carry on black; on a
    light card it takes the sheet's own --ui-bad instead.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 html[data-theme="light"] .hs-form-wrap{
   border-color:rgba(255,255,255,.42);}
 
 /* Glass, not paint. The blur was already there for the dark card, so what
    makes this read as a pane is letting the photograph through it: a white
    fill in the sixties and seventies rather than the ninety it was, over
-   the same blur turned up and given more saturation — colour that has
+   the same blur turned up and given more saturation â€” colour that has
    been blurred goes grey, and lifting the saturation is what keeps the
    picture behind looking like a picture.
 
    Two things hold it together. The fill falls from top to bottom, so the
    pane looks lit from above rather than evenly frosted. And the inset
    hairline along the top edge is the highlight a real sheet of glass
-   catches — it is the single detail that stops this reading as a
+   catches â€” it is the single detail that stops this reading as a
    half-transparent box.
 
    It does not go lower than this. Under about .65 the mid-grey type in
@@ -2868,10 +2868,10 @@ html[data-theme="light"] .hs-done p{color:var(--text-2);}
 
 /* === cn-styles === */
 /* ============================================================
-   SERVICES — VARIANT 4 : the console
+   SERVICES â€” VARIANT 4 : the console
    A dark index of every service against a light sheet that answers for
    the one chosen. The sheet is laid over the rail rather than set beside
-   it, and the chosen row is a brand pill that runs out onto it — a
+   it, and the chosen row is a brand pill that runs out onto it â€” a
    switch thrown, not a link hovered. Everything the sheet holds is
    sized from two custom properties, --cn-over and --cn-lap, so the pill
    can never come to rest on top of the copy it introduces.
@@ -2904,7 +2904,7 @@ html[data-theme="dark"] .cn{background:var(--n925); border:1px solid var(--borde
    different object. So the shape, the padding and the height are settled
    here once and .on only changes what the pill is filled with. The height
    is set by the disc on the end rather than by the padding, which is why
-   the block padding is 5px on both states — a row cannot change size when
+   the block padding is 5px on both states â€” a row cannot change size when
    it is picked. The right margin keeps an unlit pill inside the dark
    plate; the lit one cancels it and runs out onto the sheet. */
 .cn-tab{position:relative; display:grid; grid-template-columns:1fr auto;
@@ -2929,7 +2929,7 @@ html[data-theme="dark"] .cn{background:var(--n925); border:1px solid var(--borde
 
 /* The row itself never changes size now. It used to grow by the overhang
    the moment it was picked, which meant picking a service relaid the rail
-   — and a pane cannot glide from one row to another if the rows are
+   â€” and a pane cannot glide from one row to another if the rows are
    moving while it travels. The reach is carried by the pane and by the
    disc, both of which are transforms, so nothing here is laid out twice. */
 .cn-tab.on{color:#fff; z-index:2;}
@@ -2943,7 +2943,7 @@ html[data-theme="dark"] .cn{background:var(--n925); border:1px solid var(--borde
 
 /* ---- the pane that travels ----
    The lit pill is not drawn on the row any more. It is one pane, parked
-   over the rail, that moves to whichever row was asked for — so switching
+   over the rail, that moves to whichever row was asked for â€” so switching
    a service reads as the same piece of glass being carried down the list
    rather than one blinking out and another blinking on.
 
@@ -2981,7 +2981,7 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
    The card used to arrive as one slab: the whole panel slid up and faded,
    which reads as a page changing rather than as an answer being given. Now
    the card itself only fades, and the things inside it come in on their own
-   timing — the sentence, then the list one line at a time, then the link.
+   timing â€” the sentence, then the list one line at a time, then the link.
 
    They arrive from opposite sides. The copy comes in from the left, where
    the rail that was just clicked is, so the answer looks like it came from
@@ -2990,7 +2990,7 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
    stops it feeling like a slide deck.
 
    Everything is an animation rather than a transition, so it replays on
-   every switch — a transition would only run the first time each card is
+   every switch â€” a transition would only run the first time each card is
    opened, and thereafter the card would simply appear. */
 @keyframes cnFromL{from{opacity:0; transform:translateX(-20px);}}
 @keyframes cnFromR{from{opacity:0; transform:translateX(20px);}}
@@ -3010,7 +3010,7 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
 
 /* The ring redraws with it. The offset it should rest at is on the element
    as a presentation attribute, and CSS outranks one of those without
-   needing !important — so the closed state parks it at empty and letting
+   needing !important â€” so the closed state parks it at empty and letting
    go of that rule is what draws it back to its own number. */
 @media (prefers-reduced-motion:no-preference){
   .cn-card:not(.on) .cn-fill{stroke-dashoffset:276.46;}
@@ -3021,12 +3021,12 @@ html[data-theme="dark"] .cn-sheet{background:var(--n875);}
   .cn-dial .cn-fill{transition:none;}
 }
 
-/* It is a paragraph, not a heading, so it is not on the heading scale — this
+/* It is a paragraph, not a heading, so it is not on the heading scale â€” this
    is its own size. Brought down a step: at 19px it was competing with the h2
    above it for the same job. */
 /* the lead is two sentences of running copy, so it is set in the text
    face. Sora is the page's display face and does that job everywhere
-   else — on headings, on the small caps, on figures — but a paragraph
+   else â€” on headings, on the small caps, on figures â€” but a paragraph
    somebody has to read through is Inter's. The weight and the size say
    it leads; the typeface does not have to say it again. */
 .cn-lead{
@@ -3073,8 +3073,8 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
    backing of: the sheet is opaque and lies over the rest.
 
    There was a photograph here for a long time and it has been taken out.
-   Glass is only legible as a difference — a shape sharp outside the panel
-   and the same shape soft inside it — and a photograph gives that
+   Glass is only legible as a difference â€” a shape sharp outside the panel
+   and the same shape soft inside it â€” and a photograph gives that
    difference nowhere to be seen: every part of it is busy, so softening
    one rectangle of it reads as a smudge rather than as a pane.
 
@@ -3090,8 +3090,8 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
    so the plate stands down and the flat ink comes back.
    ------------------------------------------------------------------ */
 /* The frame is fitted by HEIGHT and pinned left, not covered. Cover would
-   scale a portrait picture to the width of the whole block — the rail and
-   the sheet together — and crop it down to a strip of shoulder. Fitted to
+   scale a portrait picture to the width of the whole block â€” the rail and
+   the sheet together â€” and crop it down to a strip of shoulder. Fitted to
    the height it stands at its own proportion in the one column anyone
    sees, and it happens to come out a shade wider than that column, so
    where it ends is already under the sheet.
@@ -3102,11 +3102,11 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
 .cn-plate{position:absolute; inset:0; z-index:0; overflow:hidden;
   border-radius:inherit; pointer-events:none;
   background:
-    /* The homepage sizes this "auto 100%" — full height, width following —
+    /* The homepage sizes this "auto 100%" â€” full height, width following â€”
        and notes that where the picture ends is already under the sheet.
        That holds for its four rows. This rail carries six, and the console's
        height is no longer set by the rail alone but by whichever of the
-       rail and the sheet is taller — a ten-item list in the sheet can now
+       rail and the sheet is taller â€” a ten-item list in the sheet can now
        decide it. Once the two disagree, a width derived from the height
        stops being a width that reaches across the column, and the gradient
        shows through beside the frame.
@@ -3121,8 +3121,8 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
     radial-gradient(96% 84% at 108% 106%, hsl(var(--brand-h) 78% 15%) 0%,
                     transparent 62%),
     linear-gradient(152deg, #0b1d2e 0%, #0e2537 46%, #061320 100%);}
-/* The frame is the subject now — chrome has more edges in one arm than a
-   page of drawn discs — so only two rings are left, low and faint. A ring
+/* The frame is the subject now â€” chrome has more edges in one arm than a
+   page of drawn discs â€” so only two rings are left, low and faint. A ring
    is two edges close together, and two edges is the clearest thing a pane
    can be asked to soften; they are kept as insurance for the rows that
    land on plain sky. */
@@ -3138,7 +3138,7 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
    flat dark blue, and a pane over something flat has nothing to show. It
    comes down about a fifth: the chrome keeps its highlights, so there are
    edges behind the pills to be softened, and white type on an unlit row
-   still holds — which is the only thing this layer is for. */
+   still holds â€” which is the only thing this layer is for. */
 .cn-plate::after{content:""; position:absolute; inset:0; pointer-events:none;
   background:linear-gradient(180deg, rgba(4,14,24,.38) 0%,
                              rgba(4,14,24,.30) 46%, rgba(4,14,24,.56) 100%);}
@@ -3147,7 +3147,7 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
    Everything the pill does, it does with an edge and a blur. There is no
    halo and no drop shadow on any of these any more: a glow around a pane
    is light the pane is emitting, which glass does not do, and it was the
-   loudest thing in the block — it read as a shadow effect stuck on top
+   loudest thing in the block â€” it read as a shadow effect stuck on top
    rather than as a pane resting on something.
 
    What is left is what an actual pane has: a hairline of light along the
@@ -3162,7 +3162,7 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
    One colour and one only: #0096D5. No gradient, no second shade, no
    deeper blue anywhere on it.
 
-   The fill is thin — under a third — because the plate behind it is
+   The fill is thin â€” under a third â€” because the plate behind it is
    already this blue, so what comes through the pane is the brand rather
    than something the brand has to fight. That is what lets the discs
    behind carry on across the pill instead of stopping at its edge, which
@@ -3172,7 +3172,7 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
    backdrop looks like a tint; only a heavy one reads as frost. */
 .cn .cn-lift{
   /* This pane sits on a dark plate, so it brightens and saturates what it
-     takes in — the opposite of the one on the invitation card, which sits
+     takes in â€” the opposite of the one on the invitation card, which sits
      on a lit photograph and has to darken. The two had ended up sharing a
      rule and this one was being dimmed for a reason that belongs to the
      other.
@@ -3198,7 +3198,7 @@ html[data-theme="dark"] .cn-stat{background:var(--n825);
 
 /* The disc used to appear only on the chosen row, which meant three of
    the four rows changed height the moment one was picked. It is on every
-   row now. On the lit row it is not a second blue — it is the same blue,
+   row now. On the lit row it is not a second blue â€” it is the same blue,
    thicker: a denser pane set into a thinner one, which is why it sits
    brighter than the pill around it without another colour being used. */
 .cn .cn-go{
@@ -3271,7 +3271,7 @@ html[data-theme="dark"] .cn .cn-stat{
   /* the halo the wide pill throws is a lot of light for a row in a list,
      so here the lit row keeps the fill and takes an ordinary drop shadow */
   /* The plate stands down under 1040, so there is no photograph left
-     behind the pill to look through — glass over flat ink only reads as
+     behind the pill to look through â€” glass over flat ink only reads as
      a faded blue. Here the fill goes solid. */
   .cn .cn-tab.on{
     background:var(--primary);
@@ -3315,11 +3315,11 @@ html[data-theme="dark"] .cn .cn-stat{
   .cn-lead{max-width:none;}
 }
 
-/* ── what this variant changes ────────────────────────────────────────
+/* â”€â”€ what this variant changes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The homepage's card is a paragraph beside a figure. This one has no
    figure to show: the right-hand column is where the sub-services go,
    and they are the point of the section. So the card is one column and
-   the list runs in two — which is also what keeps a ten-item list from
+   the list runs in two â€” which is also what keeps a ten-item list from
    turning the sheet into a scroll.
 
    The stagger had five steps because the homepage's lists have five
@@ -3344,11 +3344,11 @@ html[data-theme="dark"] .cn .cn-stat{
 }
 
 /* === cn-refine === */
-/* ══════════════════════════════════════════════════════════════════════
-   THE CONSOLE, WITHOUT THE GLASS — the homepage's own refinements
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   THE CONSOLE, WITHOUT THE GLASS â€” the homepage's own refinements
 
    The block I ported first is the console as it was originally built: a
-   photograph with frosted panes floating on it — translucent pills on
+   photograph with frosted panes floating on it â€” translucent pills on
    every row, a blurred disc on each, a frosted figure card. The homepage
    does not look like that any more. It loads a later sheet that takes all
    the frosting off and leaves the arrangement drawn in flat colour: dark
@@ -3358,7 +3358,7 @@ html[data-theme="dark"] .cn .cn-stat{
    glassy. These are those refinements, copied across so the two pages
    show the same object. The photograph stays; only what was floating on
    top of it goes.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* the two faint rings existed to give the panes edges to soften.
    No panes, no reason. */
@@ -3366,7 +3366,7 @@ html[data-theme="dark"] .cn .cn-stat{
 
 /* The floor was kept deliberately thin so the frame still had highlights
    showing through the panes. With the panes gone it goes back to being
-   what it says it is — and it is the hero's own tint, so the rail, the
+   what it says it is â€” and it is the hero's own tint, so the rail, the
    menu and the invitation all sit under the same one. */
 .cn-plate::after{
   background:
@@ -3415,26 +3415,26 @@ html[data-theme="dark"] .cn .cn-stat{
 .cn-tab b{ text-transform:none; }
 
 /* === consistency === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ONE SET OF RULES FOR THE WHOLE PAGE
 
    Sections were built at different times and each brought its own
-   furniture. Nothing here is a new idea — it settles the parts that had
+   furniture. Nothing here is a new idea â€” it settles the parts that had
    drifted onto one value each.
 
-   ── the badge ──────────────────────────────────────────────────────
+   â”€â”€ the badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    There were three shapes doing one job: .smark (a numbered pill),
    .mp-eyebrow (a filled pill) and .wy-eyebrow (a pill with a star in a
    disc). They are all .smark now. The numbers were renumbered to close
    the gaps left by deleted sections, and have been renumbered since.
 
-   ── the headings ───────────────────────────────────────────────────
+   â”€â”€ the headings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Every h2 already read --h2 except the process, which had a clamp of
    its own that came out a shade smaller. And the tracking split two ways:
    -0.042em from the base rule, -0.038em from the three sections that
    restated it. One value now, on the base rule, and the restatements set
    only what they add.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* the sections that restated the tracking give it back */
 .mp-say h2,.pf-head h2{ letter-spacing:-0.04em; }
@@ -3447,34 +3447,34 @@ h2{ letter-spacing:-0.04em; }
 .smark{ background:var(--panel); }
 
 /* === consistency-2 === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE SECOND PASS OVER THE PAGE
 
    Three things had drifted since the first one.
 
-   ── the badge above a heading ──────────────────────────────────────
+   â”€â”€ the badge above a heading â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Four shapes were doing it: .smark on eight sections, .hx-tag on the AI
-   section, and .vs-rule on two more — and .vs-rule was never written, so
+   section, and .vs-rule on two more â€” and .vs-rule was never written, so
    those two were rendering a bare span with no pill at all. All of them
    are .smark in the markup now; the only thing left here is closing the
    space the AI section's own heading margin was adding on top of the
    badge's.
 
-   ── the headings ───────────────────────────────────────────────────
+   â”€â”€ the headings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Tracking had gone back out to four values (-0.038, -0.04, -0.042,
    -0.045) and the leading to three. One of each, and the AI section's
    private font-size clamp gives way to --h2 like every other h2.
 
-   ── the icons ──────────────────────────────────────────────────────
+   â”€â”€ the icons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Eleven stroke weights between 1.2 and 2.9 across 84 glyphs on one
    24-unit grid, which is visible: the same drawing reads heavier in one
    section than the next. Two weights now, and they are a distinction
-   worth keeping — 1.8 for a glyph sitting in a tile, which is saying
+   worth keeping â€” 1.8 for a glyph sitting in a tile, which is saying
    what a thing is, and 2.2 for the arrows, chevrons and signs, which are
    small and are controls. Set here rather than on 84 attributes because
    a stroke-width attribute is a presentation attribute and a stylesheet
    outranks it.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* the badge carries the space above the heading, everywhere: those two
    were adding a margin of their own on top of the badge's and coming out
@@ -3502,13 +3502,13 @@ h2,.hx .sec-head h2,.sg-head h2,.mp-say h2,.pf-head h2,.wc-say h2{
 /* the tile's corner is the wires' corner */
 .hx-ic{border-radius:14px;}
 
-/* ── the badge above a heading, in all three of its grounds ─────────
+/* â”€â”€ the badge above a heading, in all three of its grounds â”€â”€â”€â”€â”€â”€â”€â”€â”€
    .smark is the pill eight sections use. Two more places introduce a
    heading and neither could be a .smark: the hero's sits on a photograph
    and takes the glass the rest of the hero is built from, and the closing
    call to action's sits inside a panel that is already a pill. They keep
    their grounds. What they had no reason to keep was three different
-   settings of the same eleven-and-a-half-point line — sentence case at
+   settings of the same eleven-and-a-half-point line â€” sentence case at
    .02em in the hero, 800 at .14em in the call to action, 700 at .16em
    everywhere else. One setting now, so the badge reads as one thing
    wherever it turns up. */
@@ -3516,18 +3516,18 @@ h2,.hx .sec-head h2,.sg-head h2,.mp-say h2,.pf-head h2,.wc-say h2{
   text-transform:uppercase;}
 .tag{font-family:var(--font-display);}
 
-/* ── a platform's colour belongs to the platform, not to the heading ──
+/* â”€â”€ a platform's colour belongs to the platform, not to the heading â”€â”€
    Each card carries its own --pf, and the whole of its heading was
    painted in it: Shopify green, WordPress near-black, JavaScript yellow,
    Webflow blue, four headings and four colours in one row. A reader sees
    a rainbow, not a list. The colour is still there and still each
-   platform's own — it is on the mark, and on the border, rule and glow
+   platform's own â€” it is on the mark, and on the border, rule and glow
    the card takes when it is pointed at, which is where a brand that is
    not ours is allowed to speak. The headings are headings. */
 .pf-card h3 em{color:var(--text);}
 
 /* === hx-trace === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE JOINT CARRIES ONE LIGHT AT A TIME
 
    What was here before was a band sliding down a masked copy of the
@@ -3537,19 +3537,19 @@ h2,.hx .sec-head h2,.sg-head h2,.mp-say h2,.pf-head h2,.wc-say h2{
 
    This is the literal thing instead: four separate wires, each one
    running from the hub's edge out to a card's edge, and a lit head that
-   travels along one wire at a time — out to the card, a beat sitting on
+   travels along one wire at a time â€” out to the card, a beat sitting on
    it while the card rings, then out. Then the next card. Four cards,
    four quarters of the beat, so the circuit reads round.
 
-   ── why SVG and not more CSS ───────────────────────────────────────
+   â”€â”€ why SVG and not more CSS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    A dash travelling a path is the one way to get a head that turns a
    corner with the wire instead of cutting across it, and stroke-dashoffset
    needs a real path. The path is measured from the cards and the hub at
    runtime (hx-wire-script below), so it follows the clamp on the gap and
    the cards' own heights rather than a percentage that was true at one
-   width. Without the script the old CSS bracket is still there — the
+   width. Without the script the old CSS bracket is still there â€” the
    script hides it only once it has drawn something to replace it.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* the resting wire needs its colour on its own, not inside a border
    shorthand, because SVG strokes take a colour */
@@ -3557,7 +3557,7 @@ h2,.hx .sec-head h2,.sg-head h2,.mp-say h2,.pf-head h2,.wc-say h2{
     /* Twenty-four seconds, four cards, six seconds each. The run out
        takes 0.9s of that, the line and the card hold the next 4.6s
        together, and the last half second is the gap before the next wire
-       starts — so a stage is lit for about as long as it takes to read
+       starts â€” so a stage is lit for about as long as it takes to read
        it, and no two are ever lit at once. */
     --hx-beat:24s;}
 html[data-theme="dark"] .hx{--hx-wire-c:hsl(var(--brand-h) 26% 34%);}
@@ -3591,7 +3591,7 @@ html[data-theme="dark"] .hx{--hx-wire-c:hsl(var(--brand-h) 26% 34%);}
   animation-delay:calc(var(--i) * var(--hx-beat) / 4);}
 
 /* The head runs out in 0.9s and then the tail catches up to it, so what
-   is left is the whole wire lit from the hub to the card — and it stays
+   is left is the whole wire lit from the hub to the card â€” and it stays
    lit for exactly as long as the card does. They go out together.
 
    Before this the head arrived and faded while the card carried on
@@ -3604,7 +3604,7 @@ html[data-theme="dark"] .hx{--hx-wire-c:hsl(var(--brand-h) 26% 34%);}
    --comet and a gap of --len, so only one head is ever on the wire; at
    the arrival the dash grows to --len and the offset runs to zero, which
    holds the head at the end of the path and walks the tail up to the
-   start. Nothing is added to the drawing — it is the same one path. */
+   start. Nothing is added to the drawing â€” it is the same one path. */
 @keyframes hxTrace{
   0%      {stroke-dasharray:var(--comet) var(--len);
            stroke-dashoffset:var(--comet); opacity:0;
@@ -3625,7 +3625,7 @@ html[data-theme="dark"] .hx{--hx-wire-c:hsl(var(--brand-h) 26% 34%);}
    because that is the order somebody takes the four in anyway.
 
    The delay is the arrival, 3.75% of the beat, and the window ends at
-   20.25% of the card's own clock — which is 24% of the wire's, the frame
+   20.25% of the card's own clock â€” which is 24% of the wire's, the frame
    the wire goes out on. That is the whole point of these two numbers: the
    card and the line it belongs to stop at the same instant. A slot is
    25%, so the one going out and the one coming in never overlap either.
@@ -3645,7 +3645,7 @@ html[data-theme="dark"] .hx{--hx-wire-c:hsl(var(--brand-h) 26% 34%);}
    hover turned the tile blue, the cycle only drew a ring. One state now,
    so what the light does to a card is the same thing a reader can do to
    it by hand. The tile is animated rather than switched with a class
-   because there is no class — the whole sequence is four delays on one
+   because there is no class â€” the whole sequence is four delays on one
    clock, and adding a script to set one would be a script to say what
    the stylesheet already knows. */
 .hx-ic{animation:hxTile var(--hx-beat) var(--ease) infinite;
@@ -3715,12 +3715,12 @@ html[data-theme="dark"] .hx{--hx-wire-c:hsl(var(--brand-h) 26% 34%);}
 }
 
 /* === foot-lift === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE FOOT AS ONE OBJECT
 
    The run of service names and the footer plate were two plates with the
    same fill, rounded at the top, ten pixels apart on the page's own
-   ground — so the seam between them read as a join rather than as one
+   ground â€” so the seam between them read as a join rather than as one
    thing. The gap goes, the second plate drops its own rounding because
    the first is already carrying it, and the strip between them is a
    hairline instead of a stripe of background.
@@ -3729,7 +3729,7 @@ html[data-theme="dark"] .hx{--hx-wire-c:hsl(var(--brand-h) 26% 34%);}
    the only shadow on the page pointing that way, which is the whole
    trick: everything above it casts downward, so a single upward throw
    reads as this block sitting in front of the page rather than under it.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .ftm{ margin-bottom:0; position:relative; z-index:2;
   box-shadow:0 -16px 40px -22px rgba(var(--ink-rgb),.30); }
 html[data-theme="dark"] .ftm{
@@ -3738,7 +3738,7 @@ html[data-theme="dark"] .ftm{
 .ft4-plate{ border-radius:0; border-top:1px solid var(--border-soft); }
 
 /* === foot-final === */
-/* ══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE FOOT, FINISHED
 
    Three things, and two of them are the same mistake: when the footer was
@@ -3751,20 +3751,20 @@ html[data-theme="dark"] .ftm{
 
    Rather than reorder a sheet that reads correctly on its own, the two
    settled values are stated once here, last.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* the run is the same plate as the footer, not a strip resting on it */
 .ftm{ background:var(--surface); border-block:0; }
 .ft4{ padding-top:0; }
 
-/* ── the sprite ────────────────────────────────────────────────────────
+/* â”€â”€ the sprite â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    The shoe outline lives in a <symbol> after the footer, and the
    marketplace panel draws it from there. An <svg> is a replaced element:
    left to itself it takes the default 300x150, which is exactly the empty
    block that appeared under the footer. It was being held at nothing by a
    rule that came off with the hero-02 illustration it was filed with.
 
-   Taken out of flow rather than display:none — Safari has historically
+   Taken out of flow rather than display:none â€” Safari has historically
    refused to resolve a <use> into a hidden tree. */
 .eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
 /* Beat homepage section fills so this page's rhythm --ground wins */
@@ -3830,7 +3830,7 @@ html[data-theme="dark"] #model .cn-sheet{ background:var(--n875) !important; }
   #model .cn-go svg{display:none !important;}
 }
 
-/* page perf helpers — design unchanged */
+/* page perf helpers â€” design unchanged */
 .sec{ content-visibility:auto; contain-intrinsic-size:auto 800px; }
 .ct-hero, .hs, #hero-1, #top, #faq, #why, #model {
   content-visibility:visible !important; contain-intrinsic-size:auto none !important;
@@ -3846,11 +3846,11 @@ html[data-theme="dark"] #model .cn-sheet{ background:var(--n875) !important; }
   Sora = headings only.
 
   Still smaller on purpose (not reading paragraphs):
-  - nav / mega-menu / buttons → chrome, not body copy
-  - eyebrows, badges, step numbers, uppercase track labels → hierarchy labels
-  - form labels, errors, helper notes → UI chrome
-  - footer link lists, map overlay labels → micro chrome
-  - chart legends, review metadata (avatar/date/tag) → data UI, not prose
+  - nav / mega-menu / buttons â†’ chrome, not body copy
+  - eyebrows, badges, step numbers, uppercase track labels â†’ hierarchy labels
+  - form labels, errors, helper notes â†’ UI chrome
+  - footer link lists, map overlay labels â†’ micro chrome
+  - chart legends, review metadata (avatar/date/tag) â†’ data UI, not prose
 */
 h1, h2, h3, h4, h5, h6{
   font-family:var(--font-display);
@@ -3994,7 +3994,7 @@ html[data-theme="dark"] #process .eg-exp-note{
   color:var(--text-2);
   font-size:var(--body);
 }
-/* fig-af: upright + smaller — no italic/skew on %, +, $M+ */
+/* fig-af: upright + smaller â€” no italic/skew on %, +, $M+ */
 .tb-fig b .fig-af{
   font-style:normal !important;
   transform:none !important;
@@ -4005,11 +4005,11 @@ html[data-theme="dark"] #process .eg-exp-note{
 
 /* === tm-styles === */
 /* === tm-styles === */
-/* ══════════════════════════════════════════════════════════════════════
-   OUR TECHNICAL SEO MODEL — eleven panels side by side. The open one
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   OUR TECHNICAL SEO MODEL â€” eleven panels side by side. The open one
    carries a photograph under a black wash with the service written on a
    white card; the rest stand closed with their number and name on edge.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #model{padding-block:clamp(36px,4vw,58px); background:var(--surface);}
 .tm-head{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px,3vw,48px);
   align-items:end; margin-bottom:clamp(18px,2.2vw,28px);}
@@ -4125,12 +4125,12 @@ html[data-theme="dark"] .tm-chip{background:hsl(var(--brand-h) 40% 18%);}
 }
 
 /* === tm-viz === */
-/* ── each service draws itself beside its card ────────────────────────
+/* â”€â”€ each service draws itself beside its card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Audit findings ticking off, crawl requests split, the three field
    targets, schema earning its stars, raw against rendered HTML, three
    duplicates folding into one canonical, mobile-first, a redirect map,
    the server log, deploys watched, and the AI crawlers reading the page.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #model .tm-open{gap:clamp(14px,1.8vw,26px);}
 .tm-viz{flex:1; min-width:0; display:grid; place-items:center;}
 .tv{width:min(100%,320px); padding:16px; border-radius:18px; display:flex; flex-direction:column; gap:9px;
@@ -4272,8 +4272,8 @@ html[data-theme="dark"] .tv{background:rgba(10,22,34,.92); border-color:rgba(255
 /* === technical-seo model ground === */
 #model.tm{background:var(--ground) !important; border-block:0 !important;}
 
-/* === aix-styles (AI Search section — exact from tekcroft-technical-seo-v2) === */
-/* AI SEARCH — compact: the claim beside the RAG pipeline, the walls in one strip, four changes, one close */
+/* === aix-styles (AI Search section â€” exact from tekcroft-technical-seo-v2) === */
+/* AI SEARCH â€” compact: the claim beside the RAG pipeline, the walls in one strip, four changes, one close */
 .aix .sec-head h2{margin-top:clamp(12px,1.4vw,18px); text-transform:none;}
 .aix-top{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:clamp(24px,3.6vw,56px); align-items:stretch;}
 .aix-p{margin:clamp(12px,1.4vw,18px) 0 0; font-size:clamp(14.5px,1.05vw,16px); line-height:1.65; color:var(--text-2);}
@@ -4367,7 +4367,7 @@ html[data-theme="dark"] .aix-close{background:hsl(var(--brand-h) 40% 14%); borde
 }
 @media (prefers-reduced-motion:reduce){ .aix-flow::after,.aix-bot{animation:none;} }
 
-/* ── VARIANT 2: two columns, one screen. The four changes sit behind tabs. ── */
+/* â”€â”€ VARIANT 2: two columns, one screen. The four changes sit behind tabs. â”€â”€ */
 .aiv .sec-head h2{font-size:clamp(30px,3.2vw,46px); line-height:1.06;}
 .aiv-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:clamp(18px,2vw,24px) clamp(24px,3.4vw,52px); align-items:stretch;}
 .aiv-l,.aiv-r{display:flex; flex-direction:column; gap:clamp(14px,1.6vw,18px); min-width:0;}
@@ -4411,7 +4411,7 @@ html[data-theme="dark"] .aiv-tab{background:var(--surface); border-color:hsl(var
   .aiv-close .btn{width:100%; justify-content:center; white-space:normal;}
 }
 
-/* ── real-world visuals (variant 2) ── */
+/* â”€â”€ real-world visuals (variant 2) â”€â”€ */
 #ai .rw-i{flex:none; display:inline-block; vertical-align:-2px;}
 .rw-win{display:flex; flex-direction:column; border-radius:12px; overflow:hidden; border:1px solid #D5DBE1; background:#fff; box-shadow:0 8px 22px -14px rgba(15,30,50,.35); min-width:0;}
 .rw-bar{display:flex; align-items:center; gap:10px; padding:6px 10px; background:#F1F3F5; border-bottom:1px solid #E1E5E9;}
@@ -4552,20 +4552,20 @@ html body #ai.aix .sec-head h2{
   text-transform:none;
 }
 
-/* === SITE CONSISTENCY LOCK (do not edit here — edit site-consistency.css) === */
-/* ══════════════════════════════════════════════════════════════════════
-   SITE CONSISTENCY — load LAST on every page (after page CSS).
+/* === SITE CONSISTENCY LOCK (do not edit here â€” edit site-consistency.css) === */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SITE CONSISTENCY â€” load LAST on every page (after page CSS).
 
    Single design system for Tekcroft:
-   - One type scale for h1–h6 + body
+   - One type scale for h1â€“h6 + body
    - One section vertical rhythm (--sec-y)
    - One eyebrow / spacing language
-   - H2 stays ≤ 2 lines via width, not font-size hacks
+   - H2 stays â‰¤ 2 lines via width, not font-size hacks
    Heroes (.hs / .ct-hero) keep their own hero padding.
-   ══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 :root{
-  /* Type scale — one value per level, site-wide (responsive via clamp) */
+  /* Type scale â€” one value per level, site-wide (responsive via clamp) */
   --h1:clamp(32px,4.2vw,56px);
   --h2:clamp(28px,3.2vw,44px);
   --h3:clamp(17px,1.7vw,22px);
@@ -4581,7 +4581,7 @@ html body #ai.aix .sec-head h2{
   --block-gap:clamp(22px,2.4vw,36px);
 }
 
-/* ── Equal vertical padding on every content section ───────────────── */
+/* â”€â”€ Equal vertical padding on every content section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sec,
 section.sec,
 .sec.acv,
@@ -4642,12 +4642,12 @@ section.sec,
   padding-block:clamp(36px,4vw,56px) !important;
 }
 
-/* ── Headings: one size per level — beat page-local clamps ──────────── */
+/* â”€â”€ Headings: one size per level â€” beat page-local clamps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 html body :is(h1, .hs-h1, .ct-hero h1),
 html body .hs .hs-h1{
   font-size:var(--h1) !important;
   line-height:1.08 !important;
-  /* Negative letter-spacing on display type leaves an optical left gap — pull flush */
+  /* Negative letter-spacing on display type leaves an optical left gap â€” pull flush */
   margin-inline-start:-0.04em;
 }
 html body :is(h2),
@@ -4733,7 +4733,7 @@ html body :is(h4){ font-size:var(--h4) !important; line-height:1.3 !important; }
 html body :is(h5){ font-size:var(--h5) !important; line-height:1.35 !important; }
 html body :is(h6){ font-size:var(--h6) !important; line-height:1.35 !important; }
 
-/* ── H2 ≤ 2 lines: give titles enough measure — never shrink the type ─ */
+/* â”€â”€ H2 â‰¤ 2 lines: give titles enough measure â€” never shrink the type â”€ */
 html body .sec-head{
   max-width:min(100%, 62ch) !important;
 }
@@ -4749,7 +4749,7 @@ html body .sec-head h2{
 html body h2 > span + span + span{
   display:inline !important;
 }
-/* Headings must flow as one phrase — no forced line breaks via <em>/<span>/<br> */
+/* Headings must flow as one phrase â€” no forced line breaks via <em>/<span>/<br> */
 html body :is(h1, h2, h3, h4, h5, h6) em,
 html body :is(h1, h2, h3, h4, h5, h6) > span{
   display:inline !important;
@@ -4758,7 +4758,7 @@ html body :is(h1, h2, h3, h4, h5, h6) br{
   display:none !important;
 }
 
-/* ── Body / lede reading size ───────────────────────────────────────── */
+/* â”€â”€ Body / lede reading size â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 html body .sec p,
 html body .sec-lede,
 html body .hs-lede,
@@ -4798,7 +4798,7 @@ html body .hs-sub{
   font-size:13px !important;
   line-height:1.45 !important;
 }
-/* Hero form title is a label (p.hs-form-title), not body copy — keep compact */
+/* Hero form title is a label (p.hs-form-title), not body copy â€” keep compact */
 html body .hs-form > h3,
 html body .hs-form > .hs-form-title{
   font-size:clamp(17px,1.5vw,19px) !important;
@@ -4809,7 +4809,7 @@ html body .hs-form > .hs-form-title{
   text-transform:none !important;
 }
 
-/* ── Heading → description / content gaps ───────────────────────────── */
+/* â”€â”€ Heading â†’ description / content gaps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 html body .sec-head .smark,
 html body .sec-head > .smark{
   margin-bottom:var(--head-gap) !important;
@@ -4831,7 +4831,7 @@ html body .gw-say > p{
   margin-top:var(--lede-gap) !important;
 }
 
-/* ── Section eyebrows: one pill + blue dot ───────────────────────────── */
+/* â”€â”€ Section eyebrows: one pill + blue dot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .smark,
 .wy-eyebrow,
 .gw-eyebrow,
@@ -4891,6 +4891,21 @@ html body .gw-say > p{
   height:0 !important;
   background:none !important;
 }
+/* Eyebrows never get flanking rules — pill + blue dot only */
+.fw-mark{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:0 !important;
+}
+.fw-mark::before,
+.fw-mark::after{
+  content:none !important;
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+  background:none !important;
+  margin:0 !important;
+}
 .wy-eyebrow > i,
 .nsr-eyebrow > i{
   display:block !important;
@@ -4928,7 +4943,7 @@ html body .gw-say > p{
   color:#fff !important;
 }
 
-/* ── Alternating grounds helper (pages set --ground / --panel) ──────── */
+/* â”€â”€ Alternating grounds helper (pages set --ground / --panel) â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sec[data-ground="tint"],
 .sec.is-tint{
   --ground:var(--bg-alt);
@@ -4947,8 +4962,9 @@ html body .gw-say > p{
   --panel:var(--surface);
   background:var(--ground) !important;
 }
-/* Process steps: icons only � hide step numbers in titles */
+/* Process steps: icons only — hide step numbers in titles */
 #process .eg-card h3 i{
   display:none !important;
   margin:0 !important;
 }
+

@@ -1,4 +1,4 @@
-/* Extracted from tekcroft-site-mega-menus ? do not reformat */
+﻿/* Extracted from tekcroft-site-mega-menus ? do not reformat */
 
 /* ============================================================
    TEKCROFT ? SPOTLIGHT LANDING PAGE
@@ -7157,6 +7157,21 @@ html body .gw-say > p{
   height:0 !important;
   background:none !important;
 }
+/* Eyebrows never get flanking rules — pill + blue dot only */
+.fw-mark{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:0 !important;
+}
+.fw-mark::before,
+.fw-mark::after{
+  content:none !important;
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+  background:none !important;
+  margin:0 !important;
+}
 .wy-eyebrow > i,
 .nsr-eyebrow > i{
   display:block !important;
@@ -7218,3 +7233,4 @@ html body .gw-say > p{
   display:none !important;
   margin:0 !important;
 }
+
