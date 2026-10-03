@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
 import "./tekcroft.css";
+import "./responsive.css";
 import "./perf.css";
 
 /* Self-hosted via next/font — same families/weights, no render-blocking Google CSS */
