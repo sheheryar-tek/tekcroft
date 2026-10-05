@@ -14,7 +14,11 @@ const table = `    <div class="vs-hold rv" style="--d:80ms">
         <div class="vs-stage">
 
           <table class="vs-table">
-            <colgroup><col class="c1"><col class="cx"><col class="cx"></colgroup>
+            <colgroup>
+              <col class="c1" style="width:22%">
+              <col class="c-us" style="width:42%">
+              <col class="c-why" style="width:36%">
+            </colgroup>
 
             <thead>
               <tr>
