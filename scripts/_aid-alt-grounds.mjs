@@ -7,20 +7,19 @@ const bodyPath = path.join(ROOT, "lib", "ai-development-body.html");
 const cssPath = path.join(ROOT, "app", "ai-development.css");
 
 const map = {
-  proof: "white",
+  "proof": "white",
   "services-2": "tint",
-  process: "white",
-  cmp: "tint",
-  guide: "white",
-  "guide-v2": "tint",
+  "process": "white",
+  "cmp": "tint",
+  "guide": "white",
+  "guide-v2": "white",
   "guide-v3": "white",
-  "guide-v4": "tint",
-  reviews: "white",
-  industries: "tint",
-  security: "white",
-  work: "tint",
-  faq: "white",
-  contact: "tint",
+  "guide-v4": "white",
+  "reviews": "tint",
+  "industries": "white",
+  "security": "tint",
+  "work": "white",
+  "faq": "tint"
 };
 
 let html = fs.readFileSync(bodyPath, "utf8");

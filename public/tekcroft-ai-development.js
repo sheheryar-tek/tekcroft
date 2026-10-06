@@ -1237,6 +1237,44 @@ var $$ = function(s, r){
     var im = document.querySelector('.mm-stack img[data-key="' + p.dataset.img + '"]');
     if (im) p.style.setProperty("--bgimg", "url(" + im.src + ")");
   });
+  function fitRail(){
+    if (window.matchMedia("(max-width:980px)").matches){
+      box.style.minHeight = "";
+      return;
+    }
+    var onP = box.querySelector(".ax-p.on") || ps[0];
+    var body = onP ? onP.querySelector(".ax-body") : null;
+    var liveCard = onP ? onP.querySelector(".ax-card") : null;
+    var pad = 56;
+    if (body){
+      var cs = window.getComputedStyle(body);
+      pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0) || 56;
+    }
+    var measureW = liveCard && liveCard.clientWidth ? liveCard.clientWidth : 460;
+    var probe = document.createElement("div");
+    probe.setAttribute("aria-hidden", "true");
+    probe.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;pointer-events:none;width:0;height:0;overflow:hidden;";
+    document.body.appendChild(probe);
+    var tallest = 0;
+    ps.forEach(function(p){
+      var card = p.querySelector(".ax-card");
+      if (!card) return;
+      var clone = card.cloneNode(true);
+      clone.style.cssText = "box-sizing:border-box;width:" + measureW + "px;max-width:460px;height:auto;max-height:none;overflow:visible;position:static;display:block;";
+      probe.appendChild(clone);
+      tallest = Math.max(tallest, clone.scrollHeight || clone.offsetHeight || 0);
+      probe.removeChild(clone);
+    });
+    document.body.removeChild(probe);
+    if (tallest > 0){
+      box.style.minHeight = Math.ceil(Math.max(560, tallest + pad)) + "px";
+    }
+  }
+  var fitTimer = null;
+  function scheduleFit(){
+    clearTimeout(fitTimer);
+    fitTimer = setTimeout(fitRail, 40);
+  }
   function show(i){
     ps.forEach(function(p, k){
       var on = k === i;
@@ -1256,4 +1294,10 @@ var $$ = function(s, r){
     var bar = p.querySelector(".ax-prog");
     if (bar && !calm) bar.addEventListener("animationend", function(){ if (p.classList.contains("on")) show((k + 1) % ps.length); });
   });
+  fitRail();
+  window.addEventListener("resize", scheduleFit);
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(scheduleFit).catch(function(){});
+  }
+  window.addEventListener("load", scheduleFit);
 })();

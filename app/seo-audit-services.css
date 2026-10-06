@@ -3488,7 +3488,8 @@ html body #who .wn-say h2 > span > em{display:inline !important;}
    belongs to.
    ?????????????????????????????????????????????????????????????????????? */
 
-.vs{--vs-c1:36%; --vs-col:21.333%;   /* 36 + 21.333*3 = 100 */
+.vs{--vs-c1:34%; --vs-col:22%;   /* 34 + 22*3 = 100; halo at left 78% */
+  --vs-us-left:78%;
   --vs-ai:hsl(222 24% 97.5%);
   --vs-veil:var(--veil);
   --sec-y:clamp(44px,4.4vw,68px);
@@ -3567,14 +3568,15 @@ html body #vs .sec-head h2 em{display:inline !important; font-style:normal; colo
 .vs-scroll{overflow-x:auto; overscroll-behavior-x:contain;
   scrollbar-width:none; padding:22px 0 14px; margin:-22px 0 -14px;}
 .vs-scroll::-webkit-scrollbar{display:none;}
-.vs-stage{position:relative; min-width:780px;}
+.vs-stage{position:relative; width:100%; min-width:780px;}
 
-.vs-table{width:100%; border-collapse:collapse; table-layout:fixed;
+.vs-table{width:100%; max-width:none; border-collapse:collapse; table-layout:fixed;
   background:var(--n0); border:1px solid var(--border);
   border-radius:var(--r-lg); overflow:hidden;
   box-shadow:0 30px 64px -40px rgba(var(--ink-rgb),.4);}
 .vs-table col.c1{width:var(--vs-c1);}
 .vs-table col.cx{width:var(--vs-col);}
+.vs-table col.c-us{width:var(--vs-col);}
 
 /* The row height is the icon plus this padding, so both come down
    together ? trimming the padding alone would have left six discs
@@ -3610,7 +3612,7 @@ html body #vs .sec-head h2 em{display:inline !important; font-style:normal; colo
 .vs-ric svg{width:52%; height:52%;}
 
 /* ?? the verdicts ???????????????????????????????????????????????????? */
-.vs-v{display:flex; align-items:center; gap:10px;
+.vs-v{display:flex; align-items:center; gap:12px; justify-content:flex-start;
   font-size:clamp(13px,.95vw,14.5px); color:var(--text-2);}
 .vs-m{display:grid; place-items:center; flex-shrink:0;
   width:21px; height:21px;}
@@ -3656,7 +3658,7 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
 
 /* ?? the frame over the last column ?????????????????????????????????? */
 .vs-halo{position:absolute; z-index:2; pointer-events:none;
-  right:0; width:var(--vs-col); top:-13px; bottom:-8px;
+  left:var(--vs-us-left, 78%); right:auto; width:var(--vs-col); top:-13px; bottom:-8px;
   border:1.6px solid var(--primary); border-radius:calc(var(--r-lg) + 4px);
   background:hsl(var(--brand-h) 100% 50% / .035);
   box-shadow:0 26px 54px -34px hsl(var(--brand-h) 100% 32% / .55);}
@@ -6228,5 +6230,58 @@ html body .gw-say > p{
 #process .eg-card h3 i{
   display:none !important;
   margin:0 !important;
+}
+
+/* === #vs comparison table lock (full-width card + Tekcroft halo) === */
+#vs{
+  --vs-c1:34%;
+  --vs-col:22%;
+  --vs-us-left:78%;
+}
+#vs .vs-stage{
+  position:relative;
+  width:100%;
+  max-width:none;
+}
+#vs .vs-table{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  table-layout:fixed !important;
+}
+#vs .vs-table col.c1{width:34% !important;}
+#vs .vs-table col.cx{width:22% !important;}
+#vs .vs-table col.c-us{width:22% !important;}
+#vs .vs-table th,
+#vs .vs-table td{
+  text-align:left !important;
+  padding-left:clamp(12px,1.4vw,20px);
+  padding-right:clamp(12px,1.4vw,20px);
+}
+#vs .vs-h,
+#vs .vs-r,
+#vs .vs-v{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  justify-content:flex-start;
+}
+#vs .vs-halo{
+  left:var(--vs-us-left) !important;
+  right:auto !important;
+  width:var(--vs-col) !important;
+  top:-13px;
+  bottom:-8px;
+  height:auto;
+}
+@media (max-width:900px){
+  #vs .vs-halo{display:none !important;}
+  #vs .vs-table td.c-us{
+    margin-top:5px;
+    padding:9px 13px;
+    border-radius:12px;
+    background:hsl(var(--brand-h) 100% 50% / .07);
+    border-left:2px solid var(--primary);
+  }
 }
 

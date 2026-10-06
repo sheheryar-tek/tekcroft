@@ -1204,3 +1204,49 @@ var $$ = function(s, r){
   });
 })();
 
+/* === #vs Tekcroft Audit halo sync === */
+(function(){
+  var stage = document.querySelector("#vs .vs-stage");
+  var table = stage && stage.querySelector(".vs-table");
+  var halo = stage && stage.querySelector(".vs-halo");
+  var us = table && table.querySelector("thead th.c-us");
+  if (!stage || !table || !halo || !us) return;
+
+  function syncHalo(){
+    if (window.matchMedia("(max-width:900px)").matches){
+      halo.style.left = "";
+      halo.style.width = "";
+      halo.style.top = "";
+      halo.style.bottom = "";
+      halo.style.height = "";
+      halo.style.right = "";
+      return;
+    }
+    var sr = stage.getBoundingClientRect();
+    var tr = table.getBoundingClientRect();
+    var ur = us.getBoundingClientRect();
+    if (!sr.width || !tr.width || !ur.width) return;
+    var left = ur.left - sr.left;
+    var width = Math.max(ur.width, tr.right - ur.left);
+    halo.style.left = left + "px";
+    halo.style.width = width + "px";
+    halo.style.right = "auto";
+    halo.style.top = (tr.top - sr.top - 13) + "px";
+    halo.style.bottom = "auto";
+    halo.style.height = (tr.height + 21) + "px";
+  }
+
+  var t = null;
+  function schedule(){
+    clearTimeout(t);
+    t = setTimeout(syncHalo, 40);
+  }
+
+  syncHalo();
+  window.addEventListener("resize", schedule);
+  window.addEventListener("load", schedule);
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(schedule).catch(function(){});
+  }
+})();
+

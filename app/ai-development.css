@@ -86,9 +86,10 @@
           backdrop-filter:blur(18px) saturate(1.25);
   box-shadow:0 34px 80px -34px rgba(0,0,0,.9);}
 
- /* the homepage sizes a heading inside its own form dialog at 26px rather
-    than at --h2, which is a section's size; this is that heading. */
-.hs-form h2{margin:0; font-family:var(--font-display); font-size:26px;
+ /* Same compact form title as other service pages (hs-form-title / h3). */
+.hs-form > .hs-form-title,
+.hs-form > h3{margin:0; font-family:var(--font-display);
+  font-size:clamp(17px,1.5vw,19px);
   font-weight:700; letter-spacing:-0.035em; line-height:1.22; color:#fff;}
 .hs-rule{display:block; width:52px; height:3px; margin:14px auto 0; border-radius:3px;
   background:var(--primary);}
@@ -210,16 +211,11 @@
    ══════════════════════════════════════════════════════════════════════ */
 
 .tb{--sec-y:clamp(38px,4.4vw,64px);
-  background:var(--bg); color:var(--text);
+  background:var(--surface); color:var(--text);
   position:relative; isolation:isolate; overflow:hidden;}
 
-/* one soft brand wash at the top edge, so the panel does not sit on a
-   flat field. Set from the brand hue, so it tints rather than darkens
-   and works over either theme's background. */
-.tb::before{content:""; position:absolute; z-index:0; inset:-40% 0 auto 0; height:150%;
-  background:radial-gradient(60% 55% at 50% 0%,
-    hsl(var(--brand-h) 100% 45% / .10), transparent 70%);
-  pointer-events:none;}
+/* No brand wash — proof panel stays white like other pages. */
+.tb::before{display:none;}
 .tb > .wrap{position:relative; z-index:2;}
 
 /* ── the figures panel ───────────────────────────────────────────────
@@ -233,8 +229,9 @@
    ══════════════════════════════════════════════════════════════════ */
 .tb-figs{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
   border:1px solid var(--border); border-radius:var(--r-lg);
-  background:var(--surface); box-shadow:var(--shadow);
+  background:#fff; box-shadow:var(--shadow);
   padding:clamp(22px,2.4vw,30px) clamp(8px,1vw,14px);}
+html[data-theme="dark"] .tb-figs{background:var(--surface);}
 
 /* A column, with the meter pushed to the bottom by margin-top:auto. That
    is what keeps the four meters on one line when one caption runs to two
@@ -1284,7 +1281,8 @@ html[data-theme="light"] .hs-field input,
 html[data-theme="light"] .hs-field select{
   background:#fff;}
 
-html[data-theme="light"] .hs-form h2{color:var(--text);}
+html[data-theme="light"] .hs-form > .hs-form-title,
+html[data-theme="light"] .hs-form > h3{color:var(--text);}
 html[data-theme="light"] .hs-sub{color:var(--text-2);}
 html[data-theme="light"] .hs-field label{color:var(--text);}
 html[data-theme="light"] .hs-field:focus-within label{color:var(--brand-text);}
@@ -7115,22 +7113,22 @@ html[data-theme="dark"] .sc3-b{background:var(--surface); border-color:var(--bor
 @media (max-width:980px){ .sc3-wrap{grid-template-columns:minmax(0,1fr);} .sc3-stage::before{display:none;} }
 @media (max-width:560px){ .sc3-badges{grid-template-columns:repeat(3,minmax(0,1fr));} .sc3-req .sk{display:none;} }
 /* Section grounds — white / tint alternation */
-#services-2,
+#proof,
 #process,
 #guide,
-#guide-v3,
-#reviews,
-#security,
-#faq{
-  --ground:var(--surface);
-  --panel:var(--bg-alt);
-}
-#proof,
-#cmp,
 #guide-v2,
+#guide-v3,
 #guide-v4,
 #industries,
 #work{
+  --ground:var(--surface);
+  --panel:var(--bg-alt);
+}
+#services-2,
+#cmp,
+#reviews,
+#security,
+#faq{
   --ground:var(--bg-alt);
   --panel:var(--surface);
 }
@@ -7408,58 +7406,6 @@ html[data-theme="dark"] #process .eg-exp-note{
 /* Halo alignment is owned by the #cmp white-card lock below — do not hide here. */
 
 
-/* === AI Development alternating grounds (white / tint) === */
-#proof[data-ground],
-#services-2[data-ground],
-#process[data-ground],
-#cmp[data-ground],
-#guide[data-ground],
-#guide-v2[data-ground],
-#guide-v3[data-ground],
-#guide-v4[data-ground],
-#reviews[data-ground],
-#industries[data-ground],
-#security[data-ground],
-#work[data-ground],
-#faq[data-ground]{
-  background:var(--ground) !important;
-  border-block:0 !important;
-}
-#proof[data-ground="white"],
-#services-2[data-ground="white"],
-#process[data-ground="white"],
-#cmp[data-ground="white"],
-#guide[data-ground="white"],
-#guide-v2[data-ground="white"],
-#guide-v3[data-ground="white"],
-#guide-v4[data-ground="white"],
-#reviews[data-ground="white"],
-#industries[data-ground="white"],
-#security[data-ground="white"],
-#work[data-ground="white"],
-#faq[data-ground="white"]{
-  --ground:var(--surface) !important;
-  --panel:var(--bg-alt) !important;
-}
-#proof[data-ground="tint"],
-#services-2[data-ground="tint"],
-#process[data-ground="tint"],
-#cmp[data-ground="tint"],
-#guide[data-ground="tint"],
-#guide-v2[data-ground="tint"],
-#guide-v3[data-ground="tint"],
-#guide-v4[data-ground="tint"],
-#reviews[data-ground="tint"],
-#industries[data-ground="tint"],
-#security[data-ground="tint"],
-#work[data-ground="tint"],
-#faq[data-ground="tint"]{
-  --ground:var(--bg-alt) !important;
-  --panel:var(--surface) !important;
-}
-/* Keep designed photo/scrim bands readable */
-#cmp[data-ground]{ --vs-veil:rgba(0,0,0,.75); }
-
 
 /* === #cmp white-card comparison (web-design fit table design) === */
 #cmp.vs::before,
@@ -7593,72 +7539,38 @@ html[data-theme="dark"] #cmp .vs-h:not(.is-us) .vs-hic{background:hsl(var(--bran
 }
 
 /* === AI Development alternating grounds (white / tint) === */
-#proof[data-ground],
-#services-2[data-ground],
-#process[data-ground],
-#cmp[data-ground],
-#guide[data-ground],
-#guide-v2[data-ground],
-#guide-v3[data-ground],
-#guide-v4[data-ground],
-#reviews[data-ground],
-#industries[data-ground],
-#security[data-ground],
-#work[data-ground],
-#faq[data-ground]{
+.sec[data-ground="tint"],
+#guide-v4[data-ground="tint"]{
+  --ground:var(--bg-alt) !important;
+  --panel:var(--surface) !important;
   background:var(--ground) !important;
   border-block:0 !important;
 }
-#proof[data-ground="white"],
-#services-2[data-ground="white"],
-#process[data-ground="white"],
-#cmp[data-ground="white"],
-#guide[data-ground="white"],
-#guide-v2[data-ground="white"],
-#guide-v3[data-ground="white"],
-#guide-v4[data-ground="white"],
-#reviews[data-ground="white"],
-#industries[data-ground="white"],
-#security[data-ground="white"],
-#work[data-ground="white"],
-#faq[data-ground="white"]{
+.sec[data-ground="white"],
+#guide-v4[data-ground="white"]{
   --ground:var(--surface) !important;
   --panel:var(--bg-alt) !important;
+  background:var(--ground) !important;
+  border-block:0 !important;
 }
-#proof[data-ground="tint"],
-#services-2[data-ground="tint"],
-#process[data-ground="tint"],
-#cmp[data-ground="tint"],
-#guide[data-ground="tint"],
-#guide-v2[data-ground="tint"],
-#guide-v3[data-ground="tint"],
-#guide-v4[data-ground="tint"],
-#reviews[data-ground="tint"],
-#industries[data-ground="tint"],
-#security[data-ground="tint"],
-#work[data-ground="tint"],
-#faq[data-ground="tint"]{
-  --ground:hsl(var(--brand-h) 42% 95%) !important;
-  --panel:var(--surface) !important;
-}
-html[data-theme="dark"] #proof[data-ground="tint"],
-html[data-theme="dark"] #services-2[data-ground="tint"],
-html[data-theme="dark"] #process[data-ground="tint"],
-html[data-theme="dark"] #cmp[data-ground="tint"],
-html[data-theme="dark"] #guide[data-ground="tint"],
-html[data-theme="dark"] #guide-v2[data-ground="tint"],
-html[data-theme="dark"] #guide-v3[data-ground="tint"],
-html[data-theme="dark"] #guide-v4[data-ground="tint"],
-html[data-theme="dark"] #reviews[data-ground="tint"],
-html[data-theme="dark"] #industries[data-ground="tint"],
-html[data-theme="dark"] #security[data-ground="tint"],
-html[data-theme="dark"] #work[data-ground="tint"],
-html[data-theme="dark"] #faq[data-ground="tint"]{
-  --ground:hsl(var(--brand-h) 28% 12%) !important;
-}
+#security.sc3[data-ground]{background:var(--ground) !important;}
 #guide-v4[data-ground]{background:var(--ground) !important;}
 html[data-theme="dark"] #guide-v4[data-ground]{background:var(--ground) !important;}
 
+/* Proof stats panel: solid white (no brand tint wash) */
+#proof.tb,
+#proof[data-ground="white"]{
+  background:#fff !important;
+  --ground:#fff !important;
+}
+html[data-theme="dark"] #proof.tb,
+html[data-theme="dark"] #proof[data-ground="white"]{
+  background:var(--surface) !important;
+  --ground:var(--surface) !important;
+}
+#proof .tb-figs{background:#fff !important;}
+html[data-theme="dark"] #proof .tb-figs{background:var(--surface) !important;}
+#proof.tb::before{display:none !important;}
 
 /* === footer restore (site chrome) === */
 #contact.cta,
@@ -7774,4 +7686,169 @@ footer.ft4,
 @media (max-width:620px){
   .ft4-top{grid-template-columns:minmax(0,1fr) !important;}
   .ft4-bar{flex-direction:column; align-items:flex-start;}
+}
+
+/* === #services-2 accordion lock (match reference left head + inset card) === */
+#services-2 .ax-head{
+  display:grid !important;
+  grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  align-items:end;
+  gap:clamp(24px,5vw,90px);
+  max-width:none !important;
+  margin:0 0 clamp(28px,3vw,44px) !important;
+  text-align:left !important;
+  justify-content:initial !important;
+}
+#services-2 .ax-head .sec-head{
+  max-width:none !important;
+  margin:0 !important;
+  margin-inline:0 !important;
+  text-align:left !important;
+}
+#services-2 .ax-head .sec-head .smark{margin-inline:0 !important;}
+#services-2 .ax-head h2{
+  text-align:left !important;
+  margin:0;
+}
+#services-2 .ax-head h2 em{
+  display:block !important;
+  font-style:normal;
+  color:var(--primary);
+}
+#services-2 .ax-lede{
+  text-align:left !important;
+  justify-self:end;
+  max-width:44ch !important;
+  width:100%;
+  margin:0 !important;
+  padding-left:clamp(16px,1.6vw,22px) !important;
+  border-left:2px solid var(--primary);
+  color:var(--text-2);
+  font-size:clamp(14.5px,1.2vw,16.5px) !important;
+  line-height:1.65 !important;
+}
+#services-2 .ax{
+  height:auto !important;
+  min-height:560px;
+}
+#services-2 .ax-p,
+#services-2 .ax-p.on{
+  min-height:inherit;
+}
+#services-2 .ax-body{
+  display:flex !important;
+  align-items:center;
+  gap:clamp(16px,2vw,28px);
+  padding:clamp(18px,2vw,28px);
+  box-sizing:border-box;
+  height:100%;
+  min-width:0 !important;
+  overflow:visible;
+}
+#services-2 .ax-card{
+  position:relative;
+  height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+  overflow-x:visible !important;
+  overflow-y:visible !important;
+  align-self:center;
+  flex:0 1 460px;
+  flex-shrink:0;
+  min-width:0;
+  width:auto !important;
+  max-width:460px !important;
+  padding:clamp(20px,2vw,28px) !important;
+  border-radius:22px !important;
+  box-sizing:border-box;
+  border:0 !important;
+  transform:none !important;
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.5);
+}
+#services-2 .ax-card:hover{
+  transform:none !important;
+  border-color:transparent !important;
+}
+#services-2 .ax-card h3{
+  font-size:clamp(20px,1.7vw,24px) !important;
+  line-height:1.15 !important;
+  margin:0 0 10px;
+}
+#services-2 .ax-card p{
+  font-size:15px !important;
+  line-height:1.6 !important;
+  margin:0 0 14px;
+}
+#services-2 .ax-lk{
+  font-size:14px !important;
+  line-height:1.45;
+  margin-bottom:14px;
+}
+#services-2 .ax-pill{
+  font-size:12.5px !important;
+}
+#services-2 .ax-g{
+  flex:1 1 0;
+  width:auto;
+  max-width:360px;
+  min-width:0;
+  align-self:center;
+  height:auto;
+}
+@media (max-width:1024px){
+  #services-2 .ax-head{
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+  }
+  #services-2 .ax-lede{justify-self:start;}
+}
+@media (max-width:980px){
+  #services-2 .ax{
+    height:auto !important;
+    min-height:0 !important;
+  }
+  #services-2 .ax-p,
+  #services-2 .ax-p.on{
+    min-height:0;
+  }
+  #services-2 .ax-body{
+    min-width:0 !important;
+    padding:clamp(14px,2vw,20px);
+    height:auto;
+  }
+  #services-2 .ax-card{
+    flex:1 1 auto;
+    max-width:none !important;
+    width:100% !important;
+    max-height:none !important;
+    overflow:visible !important;
+  }
+  #services-2 .ax-g{display:none;}
+}
+@media (max-width:760px){
+  #services-2 .ax-head{
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+    gap:18px;
+  }
+  #services-2 .ax-lede{justify-self:start;}
+  #services-2 .ax-body{
+    position:relative;
+    inset:auto;
+    flex-direction:column;
+    align-items:stretch;
+    height:auto;
+    gap:12px;
+  }
+  #services-2 .ax-card{
+    max-width:none !important;
+    width:100% !important;
+    overflow:visible !important;
+  }
+  #services-2 .ax-g{
+    display:block;
+    flex:none;
+    width:100%;
+    max-width:none;
+  }
 }
