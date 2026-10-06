@@ -5,6 +5,7 @@ import Script from "next/script";
 import Homepage from "@/components/Homepage";
 import assets from "@/lib/asset-manifest.json";
 import "@/app/contact.css";
+import "@/app/footer-lock.css";
 
 export const metadata: Metadata = {
   title: "Blog | Tekcroft",

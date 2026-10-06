@@ -1,4 +1,4 @@
-﻿/* Extracted from tekcroft-site-mega-menus ? do not reformat */
+/* Extracted from tekcroft-site-mega-menus ? do not reformat */
 
 /* ============================================================
    TEKCROFT ? SPOTLIGHT LANDING PAGE
@@ -4413,17 +4413,17 @@ html[data-theme="dark"] .cta3-actions .btn-primary:hover{
 /* the disc: nothing on an unlit row, ink on the lit one ? desktop only.
    Under 1040 the same disc is the accordion + / ? on every row. */
 @media (min-width:1041px){
-  .cn .cn-go{
-    background:transparent; box-shadow:none;
-    -webkit-backdrop-filter:none; backdrop-filter:none;
-    opacity:0; transition:opacity .26s var(--ease),
-               transform .52s var(--pop), background .3s var(--ease);}
-  .cn .cn-tab.on .cn-go{
+.cn .cn-go{
+  background:transparent; box-shadow:none;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  opacity:0; transition:opacity .26s var(--ease),
+             transform .52s var(--pop), background .3s var(--ease);}
+.cn .cn-tab.on .cn-go{
     opacity:1; background:var(--primary); color:#fff;
-    -webkit-backdrop-filter:none; backdrop-filter:none;
-    box-shadow:none;}
-  .cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
-    transform:translateX(7px); box-shadow:none; }
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  box-shadow:none;}
+.cn-tab:not(.on):hover .cn-go{ opacity:.55; background:rgba(255,255,255,.10);
+  transform:translateX(7px); box-shadow:none; }
 }
 
 /* the figure card is paper, not frost */

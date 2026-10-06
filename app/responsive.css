@@ -35,8 +35,7 @@ table {
   -webkit-overflow-scrolling: touch;
 }
 .wrap,
-.nav-shell,
-.ft4-plate {
+.nav-shell {
   width: 100%;
   max-width: var(--maxw, 1240px);
   box-sizing: border-box;
@@ -318,8 +317,7 @@ form {
 /* Large desktops: keep content controlled */
 @media (min-width: 1600px) {
   .wrap,
-  .nav-shell,
-  .ft4-plate {
+  .nav-shell {
     max-width: var(--maxw, 1240px);
   }
 }

@@ -7,6 +7,7 @@ import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/google-business-profile-optimization-meta.json";
 import lcp from "@/lib/google-business-profile-optimization-lcp.json";
 import "@/app/google-business-profile-optimization.css";
+import "@/app/footer-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,

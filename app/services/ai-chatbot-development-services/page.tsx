@@ -7,6 +7,7 @@ import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/ai-chatbot-development-meta.json";
 import lcp from "@/lib/ai-chatbot-development-lcp.json";
 import "@/app/ai-chatbot-development.css";
+import "@/app/footer-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,

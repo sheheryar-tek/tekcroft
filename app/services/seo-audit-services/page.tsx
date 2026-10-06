@@ -7,6 +7,7 @@ import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/seo-audit-services-meta.json";
 import lcp from "@/lib/seo-audit-services-lcp.json";
 import "@/app/seo-audit-services.css";
+import "@/app/footer-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,
