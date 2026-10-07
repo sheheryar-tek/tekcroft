@@ -64,7 +64,11 @@
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    mnav.addEventListener("click", function(e){ if (e.target.closest("a,button")) closeMenu(); });
+    mnav.addEventListener("click", function(e){
+      /* Accordion toggles must not close the menu — only real nav links / CTA */
+      if (e.target.closest(".mm-acc")) return;
+      if (e.target.closest("a[href], .btn, [data-jump]")) closeMenu();
+    });
   }
 
   /* every "Get a Free Proposal" points at whichever form is on screen */
@@ -450,57 +454,6 @@
 })();
 
 
-/* === ws-script === */
-
-/* ══════════════════════════════════════════════════════════════════════
-   THE TILT
-
-   The pointer's position inside a card, as a fraction from its centre,
-   written back as two angles the stylesheet turns into a rotation. Four
-   degrees each way: enough to read as a solid thing being turned,
-   little enough that the type stays square to the eye.
-
-   Read on pointermove and written on the next frame rather than
-   immediately — a rect read and a style write in the same handler makes
-   the browser lay out the section again on every pixel of movement.
-
-   pointerenter/leave rather than mouseenter/leave, and the whole thing is
-   skipped where a pointer cannot hover, so a tap on a phone does not
-   leave a card stuck at an angle nobody asked for.
-   ══════════════════════════════════════════════════════════════════════ */
-(function(){
-  if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  var MAX = 4;                                   /* degrees, each way */
-  document.querySelectorAll(".ws-item").forEach(function(card){
-    var frame = null, box = null;
-
-    card.addEventListener("pointerenter", function(){
-      box = card.getBoundingClientRect();        /* once, on the way in */
-    });
-
-    card.addEventListener("pointermove", function(e){
-      if (!box || frame) return;
-      var x = (e.clientX - box.left) / box.width  - .5;
-      var y = (e.clientY - box.top)  / box.height - .5;
-      frame = requestAnimationFrame(function(){
-        card.style.setProperty("--ry", (x *  MAX * 2).toFixed(2) + "deg");
-        card.style.setProperty("--rx", (y * -MAX * 2).toFixed(2) + "deg");
-        frame = null;
-      });
-    });
-
-    card.addEventListener("pointerleave", function(){
-      if (frame) { cancelAnimationFrame(frame); frame = null; }
-      card.style.setProperty("--ry", "0deg");
-      card.style.setProperty("--rx", "0deg");
-      box = null;
-    });
-  });
-})();
-
-
 /* === pf-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -772,6 +725,32 @@
 })();
 
 
+/* === why-v2 tabs (software) === */
+(function(){
+  "use strict";
+  var box = document.querySelector("#why [data-tabs]");
+  if (!box) return;
+  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
+      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
+  function show(i){
+    tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle("on",on); t.setAttribute("aria-selected",String(on)); });
+    panes.forEach(function(p,k){ p.classList.toggle("on", k===i); });
+  }
+  box.querySelector(".wy-rail").addEventListener("click", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (!b) return;
+    show(+b.getAttribute("data-p"));
+  });
+  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
+    var b = e.target.closest(".wy-tab");
+    if (!b) return;
+    var i = +b.getAttribute("data-p");
+    var to = e.key==="ArrowRight"||e.key==="ArrowDown" ? i+1 : e.key==="ArrowLeft"||e.key==="ArrowUp" ? i-1 : -1;
+    if (to<0 || to>=tabs.length) return;
+    e.preventDefault(); tabs[to].focus(); show(to);
+  });
+})();
+
 /* === wc-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -849,20 +828,6 @@
   } else {
     show(0);
   }
-})();
-
-
-/* === dv-script === */
-
-/* Develop apps: the build cards' glow follows the pointer */
-(function(){
-  document.querySelectorAll(".dv-card").forEach(function(c){
-    c.addEventListener("pointermove", function(e){
-      var r=c.getBoundingClientRect();
-      c.style.setProperty("--mx", (e.clientX-r.left)+"px");
-      c.style.setProperty("--my", (e.clientY-r.top)+"px");
-    });
-  });
 })();
 
 
@@ -1212,136 +1177,6 @@ var $$ = function(s, r){
   window.addEventListener("load", function(){ show(strip.querySelector(".wc-tab.on")); });
 })();
 
-
-/* === pw-script === */
-
-(function(){
-  /* the chatbot diagram runs one request end to end, on a loop:
-     the question arrives, the bot types, answers, then works through
-     inventory, orders and accounts, lighting each system as it goes.
-     Pointing at a system pauses the loop on that step. */
-  var v=document.querySelector('.pw-viz'); if(!v) return;
-  var steps=[1,2,3,4,5,6,7], i=0, timer=null, held=false;
-  var dur={1:900,2:1200,3:1300,4:1100,5:1100,6:1100,7:2200};
-  function show(n){ v.setAttribute('data-step',n); }
-  function next(){ if(held) return; i=(i+1)%(steps.length+1); if(i===0){ show(0); timer=setTimeout(next,500); return; }
-    show(steps[i-1]); timer=setTimeout(next,dur[steps[i-1]]); }
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ show(7); } else {
-    var io=new IntersectionObserver(function(e){ e.forEach(function(x){ if(x.isIntersecting && !timer){ next(); } }); },{threshold:.3});
-    io.observe(v);
-  }
-  v.querySelectorAll('.pw-node').forEach(function(nd){
-    function hold(){ held=true; clearTimeout(timer); timer=null; show(4+ +nd.dataset.n); }
-    function go(){ held=false; if(!reduce){ clearTimeout(timer); timer=setTimeout(next,700); } }
-    nd.addEventListener('mouseenter',hold); nd.addEventListener('focus',hold);
-    nd.addEventListener('mouseleave',go); nd.addEventListener('blur',go);
-  });
-})();
-
-
-/* === ty-script === */
-
-/* Each chatbot type plays its own workflow, one step at a time: every
-   part carries data-at (the step it appears on) and, if it should go
-   away again, data-until. The box also carries data-s for the pieces
-   that change rather than appear. Only boxes on screen run. */
-(function(){
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.ty-viz[data-steps]').forEach(function(box){
-    var n=+box.dataset.steps, s=0, t=null;
-    var parts=[].slice.call(box.querySelectorAll('[data-at]'));
-    function paint(){ box.setAttribute('data-s',s);
-      parts.forEach(function(p){ var a=+p.dataset.at, u=p.dataset.until?+p.dataset.until:99;
-        p.classList.toggle('is-on', s>=a && s<=u); }); }
-    function tick(){ s = s>=n ? 0 : s+1; paint(); t=setTimeout(tick, s===0 ? 600 : (s===n ? 2600 : 1050)); }
-    if(reduce){ s=n; paint(); return; }
-    paint();
-    new IntersectionObserver(function(es){ es.forEach(function(e){
-      if(e.isIntersecting && !t){ tick(); }
-      else if(!e.isIntersecting && t){ clearTimeout(t); t=null; s=0; paint(); } }); },{threshold:.35}).observe(box);
-  });
-})();
-
-
-/* === cm2-script === */
-
-/* the diagram under each service plays its workflow a step at a time
-   (parts carry data-at / data-until). It runs only while its card is
-   open and on screen, and starts over whenever the card is reopened. */
-(function(){
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.cn-motion[data-steps]').forEach(function(box){
-    var n=+box.dataset.steps, s=0, t=null, parts=[].slice.call(box.querySelectorAll('[data-at]'));
-    function paint(){ box.setAttribute('data-s',s); parts.forEach(function(p){ var a=+p.dataset.at, u=p.dataset.until?+p.dataset.until:99; p.classList.toggle('is-on', s>=a && s<=u); }); }
-    function tick(){ s = s>=n ? 0 : s+1; paint(); t=setTimeout(tick, s===0 ? 500 : (s===n ? 2800 : 950)); }
-    function stop(){ clearTimeout(t); t=null; s=0; paint(); }
-    if(reduce){ s=n; paint(); return; }
-    paint();
-    new IntersectionObserver(function(es){ es.forEach(function(e){
-      if(e.isIntersecting && e.intersectionRect.height>0){ if(!t){ s=0; tick(); } } else if(t){ stop(); } }); },{threshold:.2}).observe(box);
-  });
-})();
-
-
-/* === p2-script === */
-
-(function(){
-  /* variant 2: numbers count up; rows open in turn; pointing or tapping picks one */
-  var box=document.querySelector('.p2-list'); if(!box) return;
-  var rows=[].slice.call(box.querySelectorAll('.p2-row')), cur=0, t=null, paused=false;
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function open(i){ cur=i; rows.forEach(function(r,k){ r.classList.toggle('is-on',k===i); r.setAttribute('aria-expanded',k===i); }); }
-  function loop(){ clearTimeout(t); if(paused||reduce) return; t=setTimeout(function(){ open((cur+1)%rows.length); loop(); },4200); }
-  rows.forEach(function(r,k){
-    r.addEventListener('mouseenter',function(){ paused=true; clearTimeout(t); open(k); });
-    r.addEventListener('focus',function(){ paused=true; clearTimeout(t); open(k); });
-    r.addEventListener('click',function(){ open(k); });
-  });
-  box.addEventListener('mouseleave',function(){ paused=false; loop(); });
-  function count(){ box.querySelectorAll('.p2-n').forEach(function(n){ var to=+n.dataset.to, t0=null;
-      if(reduce){ n.textContent=to; return; }
-      function step(ts){ if(!t0) t0=ts; var p=Math.min(1,(ts-t0)/1100); n.textContent=Math.round(to*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }
-      requestAnimationFrame(step); }); }
-  var seen=false;
-  new IntersectionObserver(function(es){ es.forEach(function(e){
-    if(e.isIntersecting){ box.classList.add('go'); if(!seen){ seen=true; count(); } paused=false; loop(); }
-    else { clearTimeout(t); } }); },{threshold:.35}).observe(box);
-})();
-
-
-/* === ts-script === */
-
-/* runs the stack: one layer lit at a time, top to bottom, with the spine
-   filling to it; hovering or focusing a layer holds it */
-/* === tech-stack st (exact from source) === */
-(function(){
-  var root=document.getElementById('tech-stack'); if(!root) return;
-  var rows=[].slice.call(root.querySelectorAll('.st-row')), plates=[].slice.call(root.querySelectorAll('.st-plate'));
-  var cur=0, timer=null, user=false, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function set(k){ cur=k;
-    rows.forEach(function(r,i){ r.classList.toggle('on',i===k); r.setAttribute('aria-pressed',i===k?'true':'false'); });
-    var n=plates.length; plates.forEach(function(p,i){
-      var slot=(i-k+n)%n, z=(n-1-slot)*58, prev=p._slot, wasOn=p.classList.contains('on');
-      if(prev!==undefined && Math.abs(slot-prev)>1 && !reduce){
-        p.style.setProperty('--z0',(n-1-prev)*58); p.style.setProperty('--lift0',wasOn?'14px':'0px');
-        p.classList.remove('arc'); void p.offsetWidth; p.classList.add('arc');
-      }
-      p.style.setProperty('--z',z); p.classList.toggle('on',i===k); p._slot=slot; }); }
-  function play(){ if(user||reduce) return; stop(); timer=setInterval(function(){ set((cur+1)%rows.length); },3200); }
-  function stop(){ clearInterval(timer); }
-  set(0);
-  plates.forEach(function(p){ p.addEventListener('animationend',function(e){ if(e.animationName==='stArc') p.classList.remove('arc'); }); });
-  rows.forEach(function(r,i){
-    r.addEventListener('mouseenter',function(){ stop(); set(i); });
-    r.addEventListener('focus',function(){ stop(); set(i); });
-    r.addEventListener('click',function(){ user=true; stop(); set(i); });
-  });
-  root.querySelector('.st-rows').addEventListener('mouseleave',play);
-  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?play():stop(); }); },{threshold:.3}).observe(root); } else play();
-})();
-
-
 /* === ac-script (deliverables panels) === */
 (function(){
  document.querySelectorAll('[data-acc]').forEach(function(acc){
@@ -1384,28 +1219,3 @@ var $$ = function(s, r){
  });
 })();
 
-/* === why-v2 tabs (agent) === */
-(function(){
-  "use strict";
-  var box = document.querySelector("#why [data-tabs]");
-  if (!box) return;
-  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
-      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
-  function show(i){
-    tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle("on",on); t.setAttribute("aria-selected",String(on)); });
-    panes.forEach(function(p,k){ p.classList.toggle("on", k===i); });
-  }
-  box.querySelector(".wy-rail").addEventListener("click", function(e){
-    var b = e.target.closest(".wy-tab");
-    if (!b) return;
-    show(+b.getAttribute("data-p"));
-  });
-  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
-    var b = e.target.closest(".wy-tab");
-    if (!b) return;
-    var i = +b.getAttribute("data-p");
-    var to = e.key==="ArrowRight"||e.key==="ArrowDown" ? i+1 : e.key==="ArrowLeft"||e.key==="ArrowUp" ? i-1 : -1;
-    if (to<0 || to>=tabs.length) return;
-    e.preventDefault(); tabs[to].focus(); show(to);
-  });
-})();

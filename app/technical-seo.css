@@ -37,8 +37,8 @@ html[data-theme="dark"]{
 /* â”€â”€ the photograph â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    To swap it, replace the one <img> src in the markup. Nothing else
    needs to change. */
-.hs-bg{position:absolute; inset:0; z-index:0;}
-.hs-bg img{width:100%; height:100%; object-fit:cover; display:block;
+.hs-bg{position:absolute; inset:0; z-index:0; max-height:none;}
+.hs-bg img{width:100%; height:100%; max-width:none; object-fit:cover; object-position:center top; display:block;
   transform:scale(1.06); animation:hsDrift 28s var(--ease) infinite alternate;
   will-change:transform;}
 @keyframes hsDrift{ from{transform:scale(1.06) translate3d(0,0,0);}
@@ -5875,6 +5875,37 @@ html body .gw-say > p{
     min-height:0 !important;
     padding-top:calc(var(--nav-h, 64px) + var(--hero-pad-top)) !important;
     padding-bottom:var(--hero-pad-bot) !important;
+  }
+  /* Full-height photo + veil behind entire mobile hero (not just the H1) */
+  html body .hs-bg,
+  html body .hero-slider,
+  html body .hero-scrim,
+  html body .hs-veil{
+    position:absolute !important;
+    inset:0 !important;
+    max-height:none !important;
+    height:auto !important;
+  }
+  html body .hs-bg img,
+  html body .hero-slide img{
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    max-height:none !important;
+    object-fit:cover !important;
+    object-position:center top !important;
+  }
+  html body .mnav > a,
+  html body .mnav .mm-acc,
+  html body .mnav .mm-acc .mm-acc-label,
+  html body .mnav .mm-accp a{
+    text-align:left !important;
+  }
+  html body .mnav .mm-acc{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    width:100% !important;
   }
   html body .hs-in{
     gap:var(--block-gap) !important;

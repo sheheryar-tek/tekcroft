@@ -28,6 +28,20 @@ iframe {
 img[width][height] {
   height: auto;
 }
+/* Full-bleed hero photos must fill their absolute frames — do not
+   collapse to intrinsic height (that cuts the image off on tall mobile heroes). */
+.hs-bg img,
+.hs-bg img[width][height],
+.hero-slide img,
+.hero-slide img[width][height],
+.hero-slider img,
+.hero-slider img[width][height] {
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
 table {
   display: block;
   max-width: 100%;

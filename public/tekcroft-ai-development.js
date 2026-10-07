@@ -161,7 +161,11 @@ P.forEach((t,i)=>document.getElementById("v4T").insertAdjacentHTML("beforeend",`
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    mnav.addEventListener("click", function(e){ if (e.target.closest("a,button")) closeMenu(); });
+    mnav.addEventListener("click", function(e){
+      /* Accordion toggles must not close the menu — only real nav links / CTA */
+      if (e.target.closest(".mm-acc")) return;
+      if (e.target.closest("a[href], .btn, [data-jump]")) closeMenu();
+    });
   }
 
   /* every "Get a Free Proposal" points at whichever form is on screen */

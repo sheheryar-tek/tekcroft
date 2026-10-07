@@ -151,7 +151,7 @@ var mslot = document.getElementById('mmMobile');
 if(mslot){
   mslot.innerHTML = SERVICES.map(function(s,i){
     return '<button class="mm-acc" type="button" aria-expanded="false" aria-controls="mmacc'+i+'">'
-      + esc(s.title) + DOWN + '</button>'
+      + '<span class="mm-acc-label">'+esc(s.title)+'</span>' + DOWN + '</button>'
       + '<div class="mm-accp" id="mmacc'+i+'" data-open="false"><div>'
       + s.items.map(function(it){ return '<a href="'+it.href+'">'+esc(it.name)+'</a>'; }).join('')
       + '</div></div>';
@@ -159,8 +159,21 @@ if(mslot){
   mslot.addEventListener('click', function(e){
     var h = e.target.closest('.mm-acc');
     if(!h) return;
-    var p = document.getElementById(h.getAttribute('aria-controls'));
+    /* Toggle submenu only — never close the burger menu */
+    e.preventDefault();
+    e.stopPropagation();
+    var panelId = h.getAttribute('aria-controls');
+    var p = document.getElementById(panelId);
+    if(!p) return;
     var isOpen = p.dataset.open === 'true';
+    /* Accordion: close other dropdowns */
+    mslot.querySelectorAll('.mm-acc').forEach(function(btn){
+      var id = btn.getAttribute('aria-controls');
+      var pane = id ? document.getElementById(id) : null;
+      if(btn === h) return;
+      btn.setAttribute('aria-expanded', 'false');
+      if(pane) pane.dataset.open = 'false';
+    });
     p.dataset.open = isOpen ? 'false' : 'true';
     h.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   });

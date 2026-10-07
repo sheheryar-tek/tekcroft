@@ -64,7 +64,11 @@
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    mnav.addEventListener("click", function(e){ if (e.target.closest("a,button")) closeMenu(); });
+    mnav.addEventListener("click", function(e){
+      /* Accordion toggles must not close the menu — only real nav links / CTA */
+      if (e.target.closest(".mm-acc")) return;
+      if (e.target.closest("a[href], .btn, [data-jump]")) closeMenu();
+    });
   }
 
   /* every "Get a Free Proposal" points at whichever form is on screen */
@@ -450,6 +454,57 @@
 })();
 
 
+/* === ws-script === */
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE TILT
+
+   The pointer's position inside a card, as a fraction from its centre,
+   written back as two angles the stylesheet turns into a rotation. Four
+   degrees each way: enough to read as a solid thing being turned,
+   little enough that the type stays square to the eye.
+
+   Read on pointermove and written on the next frame rather than
+   immediately — a rect read and a style write in the same handler makes
+   the browser lay out the section again on every pixel of movement.
+
+   pointerenter/leave rather than mouseenter/leave, and the whole thing is
+   skipped where a pointer cannot hover, so a tap on a phone does not
+   leave a card stuck at an angle nobody asked for.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var MAX = 4;                                   /* degrees, each way */
+  document.querySelectorAll(".ws-item").forEach(function(card){
+    var frame = null, box = null;
+
+    card.addEventListener("pointerenter", function(){
+      box = card.getBoundingClientRect();        /* once, on the way in */
+    });
+
+    card.addEventListener("pointermove", function(e){
+      if (!box || frame) return;
+      var x = (e.clientX - box.left) / box.width  - .5;
+      var y = (e.clientY - box.top)  / box.height - .5;
+      frame = requestAnimationFrame(function(){
+        card.style.setProperty("--ry", (x *  MAX * 2).toFixed(2) + "deg");
+        card.style.setProperty("--rx", (y * -MAX * 2).toFixed(2) + "deg");
+        frame = null;
+      });
+    });
+
+    card.addEventListener("pointerleave", function(){
+      if (frame) { cancelAnimationFrame(frame); frame = null; }
+      card.style.setProperty("--ry", "0deg");
+      card.style.setProperty("--rx", "0deg");
+      box = null;
+    });
+  });
+})();
+
+
 /* === pf-script === */
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -526,126 +581,6 @@
   else running.addListener(sync);          /* older Safari */
 })();
 
-
-
-/* === why-v2 tabs (mobile-app) === */
-(function(){
-  "use strict";
-  var box = document.querySelector("#why [data-tabs]");
-  if (!box) return;
-  var tabs  = Array.prototype.slice.call(box.querySelectorAll(".wy-tab")),
-      panes = Array.prototype.slice.call(box.querySelectorAll(".wy-pane"));
-  function show(i){
-    tabs.forEach(function(t,k){ var on=k===i; t.classList.toggle("on",on); t.setAttribute("aria-selected",String(on)); });
-    panes.forEach(function(p,k){ p.classList.toggle("on", k===i); });
-  }
-  box.querySelector(".wy-rail").addEventListener("click", function(e){
-    var b = e.target.closest(".wy-tab");
-    if (!b) return;
-    show(+b.getAttribute("data-p"));
-  });
-  box.querySelector(".wy-rail").addEventListener("keydown", function(e){
-    var b = e.target.closest(".wy-tab");
-    if (!b) return;
-    var i = +b.getAttribute("data-p");
-    var to = e.key==="ArrowRight"||e.key==="ArrowDown" ? i+1 : e.key==="ArrowLeft"||e.key==="ArrowUp" ? i-1 : -1;
-    if (to<0 || to>=tabs.length) return;
-    e.preventDefault(); tabs[to].focus(); show(to);
-  });
-})();
-
-/* === wc-script === */
-
-/* ══════════════════════════════════════════════════════════════════════
-   WHY CHOOSE US — the panel.
-
-   Each instrument is drawn from nothing every time its tab is opened.
-   The panel is taken out of the document and put back so the CSS
-   animations restart; the ring's arcs are the exception, since a dash
-   cannot be animated from a value it is already sitting on, so they are
-   reset to zero and committed before the real one is set.
-   ══════════════════════════════════════════════════════════════════════ */
-(function(){
-  var panel = document.querySelector("#wcPanel");
-  if (!panel) return;
-
-  var $$ = function(s, r){
-    return Array.prototype.slice.call((r || document).querySelectorAll(s));
-  };
-  var tabs   = $$(".wc-tab", panel),
-      panels = $$(".wc-panel", panel),
-      body   = panel.querySelector(".wc-body");
-
-  /* the line is measured so its draw ends where the line does */
-  $$(".wc-line", panel).forEach(function(pth){
-    pth.style.setProperty("--len", pth.getTotalLength().toFixed(1));
-  });
-
-  function redraw(pnl){
-    $$(".seg", pnl).forEach(function(seg){
-      seg.style.strokeDasharray = "0 999";
-      void seg.getBoundingClientRect();
-      seg.style.strokeDasharray = seg.getAttribute("data-dash");
-    });
-  }
-
-  function show(i){
-    /* the panel squares whichever corner has a tab standing on it */
-    if (body){
-      body.classList.toggle("first", i === 0);
-      body.classList.toggle("last",  i === tabs.length - 1);
-    }
-    tabs.forEach(function(t, k){
-      t.classList.toggle("on", k === i);
-      t.setAttribute("aria-selected", k === i ? "true" : "false");
-    });
-    panels.forEach(function(pnl, k){
-      pnl.classList.remove("on");
-      if (k === i){
-        void pnl.offsetWidth;              /* restart the panel's animations */
-        pnl.classList.add("on");
-        redraw(pnl);
-      }
-    });
-  }
-
-  tabs.forEach(function(t, i){
-    t.addEventListener("click", function(){ show(i); });
-    t.addEventListener("keydown", function(e){
-      var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-      if (!step) return;
-      e.preventDefault();
-      var n = (i + step + tabs.length) % tabs.length;
-      tabs[n].focus(); show(n);
-    });
-  });
-
-  /* it draws when it is first reached, not while it is still off-screen */
-  if ("IntersectionObserver" in window){
-    var io = new IntersectionObserver(function(e){
-      if (!e[0].isIntersecting) return;
-      show(0);
-      io.disconnect();
-    }, { threshold:.2 });
-    io.observe(panel);
-  } else {
-    show(0);
-  }
-})();
-
-
-/* === dv-script === */
-
-/* Develop apps: the build cards' glow follows the pointer */
-(function(){
-  document.querySelectorAll(".dv-card").forEach(function(c){
-    c.addEventListener("pointermove", function(e){
-      var r=c.getBoundingClientRect();
-      c.style.setProperty("--mx", (e.clientX-r.left)+"px");
-      c.style.setProperty("--my", (e.clientY-r.top)+"px");
-    });
-  });
-})();
 
 /* === eg-script === */
 
@@ -840,45 +775,39 @@
   });
 })();
 
-/* === ac-script (deliverables panels) === */
+
+/* === tm-script (GBP process panels) === */
 (function(){
- document.querySelectorAll('[data-acc]').forEach(function(acc){
-  var items=[].slice.call(acc.querySelectorAll('.ac-item'));
+  var rail=document.querySelector('[data-tm]'); if(!rail) return;
+  var items=[].slice.call(rail.querySelectorAll('.tm-item'));
+  items.forEach(function(el){ var b=document.createElement('span'); b.className='tm-prog';
+    b.setAttribute('aria-hidden','true'); el.appendChild(b); });
   var at=0, timer=null, held=false;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   function show(i){
     at=(i+items.length)%items.length;
-    items.forEach(function(el,k){ var on=k===at; el.classList.toggle('on',on); el.setAttribute('aria-selected',String(on)); });
+    items.forEach(function(el,k){ var on=k===at; el.classList.toggle('on',on);
+      el.setAttribute('aria-selected',String(on));
+      if(on){ var b=el.querySelector('.tm-prog'); if(b){ b.style.animation='none'; void b.offsetWidth; b.style.animation=''; } }
+    });
   }
-  function play(){ stop(); acc.classList.remove('paused'); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },5000); }
+  function play(){ stop(); rail.classList.remove('paused'); if(!held && !reduce) timer=setInterval(function(){ show(at+1); },6000); }
   function stop(){ clearInterval(timer); }
-  function hold(){ held=true; stop(); acc.classList.add('paused'); clearTimeout(hold._t);
+  function hold(){ held=true; stop(); rail.classList.add('paused'); clearTimeout(hold._t);
     hold._t=setTimeout(function(){ held=false; play(); },12000); }
-
   items.forEach(function(el,i){
     el.addEventListener('mouseenter',function(){ show(i); });
     el.addEventListener('click',function(){ hold(); show(i); });
     el.addEventListener('keydown',function(e){
-      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); hold(); show(i); return; }
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hold(); show(i); return; }
       var to = e.key==='ArrowRight'||e.key==='ArrowDown' ? i+1 : e.key==='ArrowLeft'||e.key==='ArrowUp' ? i-1 : -1;
-      if(to<0 || to>=items.length) return;
+      if(to<0||to>=items.length) return;
       e.preventDefault(); items[to].focus(); hold(); show(to);
     });
   });
-  acc.addEventListener('mouseenter',function(){ stop(); acc.classList.add('paused'); });
-  acc.addEventListener('mouseleave',function(){ acc.classList.remove('paused'); if(!held) play(); });
-
-  acc.addEventListener('pointermove',function(e){
-    var open=acc.querySelector('.ac-item.on'); if(!open) return;
-    var r=open.getBoundingClientRect();
-    open.style.setProperty('--mx', Math.min(Math.max((e.clientX-r.left)/r.width,0),1).toFixed(3));
-    open.style.setProperty('--my', Math.min(Math.max((e.clientY-r.top)/r.height,0),1).toFixed(3));
-  });
-
+  rail.addEventListener('mouseenter',function(){ stop(); rail.classList.add('paused'); });
+  rail.addEventListener('mouseleave',function(){ rail.classList.remove('paused'); if(!held) play(); });
   show(0);
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
-  io.observe(acc);
- });
+  io.observe(rail);
 })();
-
