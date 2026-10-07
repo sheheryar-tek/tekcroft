@@ -99,8 +99,8 @@ form {
   }
 
   .sec {
-    padding-top: clamp(48px, 10vw, 72px);
-    padding-bottom: clamp(48px, 10vw, 72px);
+    padding-top: var(--sec-y, clamp(48px, 10vw, 72px));
+    padding-bottom: var(--sec-y, clamp(48px, 10vw, 72px));
   }
 
   .nav-shell {

@@ -3,8 +3,9 @@ import { Inter, Sora } from "next/font/google";
 import "./tekcroft.css";
 import "./responsive.css";
 import "./perf.css";
-import "./site-consistency.css";
 import "./footer-lock.css";
+/* Source of truth for type + spacing tokens; also appended to page CSS via scripts/_apply-site-consistency.mjs */
+import "./site-consistency.css";
 
 /* Self-hosted via next/font — same families/weights, no render-blocking Google CSS */
 const inter = Inter({

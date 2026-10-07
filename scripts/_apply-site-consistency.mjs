@@ -26,6 +26,7 @@ const cssFiles = [
   "app/ai-agent-development.css",
   "app/ai-chatbot-development.css",
   "app/ai-seo.css",
+  "app/ai-development.css",
   "app/contact.css",
 ];
 
@@ -41,13 +42,15 @@ for (const rel of cssFiles) {
   console.log("locked", rel);
 }
 
-/* Remove imports — appended CSS is the source of cascade truth */
-const pages = [
-  "app/layout.tsx",
+/* Keep layout import of site-consistency AFTER footer-lock (homepage + safety net).
+   Strip duplicate page-level imports — page stylesheets already get the lock appended. */
+const stripPages = [
   "app/page.tsx",
   "app/contact/page.tsx",
+  "app/blog/page.tsx",
+  "app/privacy/page.tsx",
   "app/services/on-page-seo/page.tsx",
-  "app/services/technical-seo/page.tsx",
+  "app/services/technical-seo-services/page.tsx",
   "app/services/seo-audit-services/page.tsx",
   "app/services/local-seo/page.tsx",
   "app/services/ecommerce-seo/page.tsx",
@@ -59,10 +62,12 @@ const pages = [
   "app/services/ai-agent-development-services/page.tsx",
   "app/services/ai-chatbot-development-services/page.tsx",
   "app/services/ai-seo-services/page.tsx",
+  "app/services/ai-development-services/page.tsx",
 ];
 
-for (const rel of pages) {
+for (const rel of stripPages) {
   const fp = path.join(ROOT, rel);
+  if (!fs.existsSync(fp)) continue;
   let src = fs.readFileSync(fp, "utf8");
   const next = src
     .replace(/\r?\nimport ["']@\/app\/site-consistency\.css["'];/g, "")
@@ -71,4 +76,28 @@ for (const rel of pages) {
     fs.writeFileSync(fp, next);
     console.log("unwired import", rel);
   }
+}
+
+/* Ensure layout loads site-consistency last (after footer-lock) */
+{
+  const fp = path.join(ROOT, "app/layout.tsx");
+  let src = fs.readFileSync(fp, "utf8");
+  // Drop prior consistency imports + their comment lines, then re-add once after footer-lock
+  src = src
+    .replace(/\r?\n\/\* Source of truth for type \+ spacing tokens[^*]*\*\/\r?\n/g, "\n")
+    .replace(/\r?\nimport ["']\.\/site-consistency\.css["'];/g, "")
+    .replace(/\r?\nimport ["']@\/app\/site-consistency\.css["'];/g, "");
+  if (src.includes('import "./footer-lock.css";')) {
+    src = src.replace(
+      'import "./footer-lock.css";',
+      'import "./footer-lock.css";\n/* Source of truth for type + spacing tokens; also appended to page CSS via scripts/_apply-site-consistency.mjs */\nimport "./site-consistency.css";'
+    );
+  } else if (!src.includes("site-consistency.css")) {
+    src = src.replace(
+      'import "./perf.css";',
+      'import "./perf.css";\nimport "./site-consistency.css";'
+    );
+  }
+  fs.writeFileSync(fp, src);
+  console.log("wired layout site-consistency last");
 }
