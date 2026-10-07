@@ -5,6 +5,15 @@ const nextConfig = {
   images: {
     formats: ["image/webp", "image/avif"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/services/technical-seo",
+        destination: "/services/technical-seo-services",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     const immutable = [
       {
