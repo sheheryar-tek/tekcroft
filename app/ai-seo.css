@@ -450,7 +450,6 @@ html[data-theme="dark"]{
   gap:clamp(30px,4%,64px); align-items:center;}
 .pf-head .sec-head{max-width:none;}
 .pf-head h2{font-size:var(--h2); line-height:1.16; letter-spacing:-0.038em;}
-.pf-head h2 span{display:block;}
 .pf-head h2 em{font-style:normal; color:var(--brand-text);}
 .pf-head .sec-lede{margin-top:clamp(16px,1.8vw,24px); max-width:44ch;}
 
@@ -1591,25 +1590,15 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    every other card on this page follows, and naming it pinned the
    section to the tint. They read --panel now, so the section is free and
    the offer had a middle slot to move into. */
-#proof,#services-2,#crawl-check,#ai,#contact{
+/* Strict white / tint after the dark hero.
+   Order: model(W) > process(T) > measure(W) > results(T) >
+   why(W) > industries(T) > reviews(W) > faq(T) > contact(W). */
+#model,#measure,#why,#reviews,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
-#signs,#whyus,#get,#platforms,#work,#faq{
+#process,#results,#industries,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
-/* and one that takes the light slot with the pair the other way round.
-   The process orbit is four cards in a row and a card in that layout is
-   white â€” on the tint they came out tinted, which is not what a card is
-   anywhere else on this page. So the section takes --bg, the page's own
-   near-white, and gives the cards the white. The beat is unchanged: tint
-   either side of it, and at a two per cent step the light slot still
-   reads as white. In the dark the same pair puts the cards a shade above
-   their ground rather than below it, which is the right way round there
-   too.
-
-   The badge is the exception and keeps the tint. It is a pill with a
-   hairline, not a panel with a shadow, so on a near-white ground a white
-   one would have nothing to stand on. */
-#process,#reviews{ --ground:var(--bg); --panel:var(--surface); }
-#process .smark,#reviews .smark{ background:var(--bg-alt); }
+#process .smark{ background:var(--surface); }
+#reviews .smark{ background:var(--bg-alt); }
 
 /* #reviews takes the same pair for the same reason. A Google card is
    white â€” that is the whole of what makes it read as a Google card â€” so
@@ -2620,10 +2609,13 @@ html[data-theme="dark"] #industries .pf-card{background:var(--surface) !importan
 @media (max-width:560px){ #contact .cta3-actions .btn{width:100%; justify-content:center;} }
 
 /* alternating section grounds â€” white / #DAEEF6 beat (wins over global #industries etc.) */
+/* alternating section grounds — white / #DAEEF6 beat */
 html:not([data-theme="dark"]) #model,
 html:not([data-theme="dark"]) #measure,
 html:not([data-theme="dark"]) #why,
-html:not([data-theme="dark"]) #reviews{
+html:not([data-theme="dark"]) #reviews,
+html:not([data-theme="dark"]) #contact,
+html:not([data-theme="dark"]) .sec[data-ground="white"]{
   background:#FFFFFF !important;
   --ground:#FFFFFF;
   --panel:#DAEEF6;
@@ -2631,16 +2623,7 @@ html:not([data-theme="dark"]) #reviews{
 html:not([data-theme="dark"]) #process,
 html:not([data-theme="dark"]) #results,
 html:not([data-theme="dark"]) #industries,
-html:not([data-theme="dark"]) #faq{
-  background:#DAEEF6 !important;
-  --ground:#DAEEF6;
-  --panel:#FFFFFF;
-}
-html:not([data-theme="dark"]) .sec[data-ground="white"]{
-  background:#FFFFFF !important;
-  --ground:#FFFFFF;
-  --panel:#DAEEF6;
-}
+html:not([data-theme="dark"]) #faq,
 html:not([data-theme="dark"]) .sec[data-ground="tint"]{
   background:#DAEEF6 !important;
   --ground:#DAEEF6;

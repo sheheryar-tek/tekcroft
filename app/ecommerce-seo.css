@@ -494,8 +494,7 @@ html[data-theme="dark"] .mp-panel{
    panel it is white, the same reading it has everywhere else. */
 .mp-say .smark{background:var(--surface);}
 
-.mp-say h2{font-size:var(--h2); line-height:1.16; letter-spacing:-0.038em;}
-.mp-say h2 span{display:block;}
+.mp-say h2{font-size:var(--h2); line-height:1.16; letter-spacing:-0.038em; word-spacing:normal;}
 .mp-say h2 em{font-style:normal; color:var(--cta-blue);}
 
 .mp-say > p{margin-top:clamp(16px,1.8vw,24px); max-width:46ch;
@@ -1688,12 +1687,12 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
 .sec,
 html[data-theme="dark"] .sec{ background:var(--ground); }
 
-/* Strict white ? tint after the dark hero / white proof strip.
-   Order: proof(W) ? services(T) ? platforms(W) ? marketplaces(T) ?
-   why(W) ? problem(T) ? process(W) ? faq(T) ? contact(W). */
-#services-2,#marketplaces,#problem,#faq{
+/* Strict white ↔ tint after the dark hero / white proof strip.
+   Order: proof(W) → services(T) → problem(W) → platforms(T) →
+   marketplaces(W) → why(T) → process(W) → faq(T) → contact(W). */
+#services-2,#platforms,#why,#faq{
   --ground:var(--bg-alt);  --panel:var(--surface); }
-#platforms,#why,#process,#contact{
+#problem,#marketplaces,#process,#contact{
   --ground:var(--surface); --panel:var(--bg-alt); }
 
 /* Force the run so component sheets cannot re-paint a neighbour the same */
@@ -4798,4 +4797,25 @@ html body .gw-say > p{
     --lede-gap:clamp(14px,1.4vw,20px) !important;
     --block-gap:clamp(22px,2.4vw,36px) !important;
   }
+}
+
+/* Marketplace heading: line 1 = Selling on Marketplaces, line 2 = Too?
+   (do not reuse .mp-line — that class styles the product-card skeleton lines) */
+html body .mp-say h2 > .mp-h2-row{
+  display:block !important;
+  height:auto !important;
+  width:auto !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:none !important;
+  border-radius:0 !important;
+  letter-spacing:inherit !important;
+  word-spacing:normal !important;
+  color:inherit !important;
+}
+html body .mp-say h2 > .mp-h2-row em{
+  display:inline !important;
+  font-style:normal !important;
+  color:var(--cta-blue) !important;
 }
