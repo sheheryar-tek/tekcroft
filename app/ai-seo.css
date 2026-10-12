@@ -38,7 +38,8 @@ html[data-theme="dark"]{
    To swap it, replace the one <img> src in the markup. Nothing else
    needs to change. */
 .hs-bg{position:absolute; inset:0; z-index:0;}
-.hs-bg img{width:100%; height:100%; object-fit:cover; display:block;
+.hs-bg picture{display:contents;}
+.hs-bg img{width:100%; height:100%; object-fit:cover; object-position:center; display:block;
   transform:scale(1.06); animation:hsDrift 28s var(--ease) infinite alternate;
   will-change:transform;}
 @keyframes hsDrift{ from{transform:scale(1.06) translate3d(0,0,0);}
@@ -1493,24 +1494,17 @@ html[data-theme="dark"] .gr-card{ background:var(--surface); }
   transition:transform 1.6s var(--ease);}
 .faq-aside:hover > .faq-pics{ transform:scale(1.05); }
 
-.faq-pic{position:absolute; inset:0;
-  background:var(--pic) center / cover no-repeat;
-  opacity:0; transition:opacity .55s var(--ease);}
-.faq-wrap[data-at="1"] .faq-pic:nth-child(1),
-.faq-wrap[data-at="2"] .faq-pic:nth-child(2),
-.faq-wrap[data-at="3"] .faq-pic:nth-child(3),
-.faq-wrap[data-at="4"] .faq-pic:nth-child(4),
-.faq-wrap[data-at="5"] .faq-pic:nth-child(5),
-.faq-wrap[data-at="6"] .faq-pic:nth-child(6),
-.faq-wrap[data-at="7"] .faq-pic:nth-child(7),
-.faq-wrap[data-at="8"] .faq-pic:nth-child(8){ opacity:1; }
-
-/* With every question shut — which only happens on the narrow layout —
-   the aside would go to bare scrim. It keeps the first picture instead. */
-.faq-wrap:not([data-at]) .faq-pic:nth-child(1){ opacity:1; }
+/* Single FAQ photo — same overlay strength as other service pages. */
+#faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
+#faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;}
+#faq .faq-aside::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.45) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.52) 42%,
+                    rgba(0,0,0,.92) 100%);}
 
 @media (prefers-reduced-motion:reduce){
-  .faq-pic{ transition:none; }
   .faq-aside:hover > .faq-pics{ transform:none; }
 }
 
@@ -1919,9 +1913,19 @@ html[data-theme="dark"] .ftm{
 .tm-item:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
 
 .tm-bg{position:absolute; inset:0; opacity:0; transition:opacity .55s var(--ease) .05s;
-  background:url("/images/aiseo-css1-78c6234db0.webp") center/cover no-repeat;}
+  background-color:#0A0C0E; background-position:center; background-size:cover; background-repeat:no-repeat;}
+#model .tm-bg > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+#model .tm-item[data-i="0"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="1"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="2"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="3"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="4"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="5"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="6"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="7"] .tm-bg{background-image:none;}
+#model .tm-item[data-i="8"] .tm-bg{background-image:none;}
 .tm-item.on .tm-bg{opacity:1;}
-.tm-veil{position:absolute; inset:0; background:rgba(0,0,0,.78);}
+.tm-veil{position:absolute; inset:0; background:rgba(0,0,0,.78); z-index:1;}
 
 /* closed */
 .tm-slim{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
@@ -2625,13 +2629,14 @@ html[data-theme="dark"] #industries .pf-card{background:var(--surface) !importan
 
 
 
-/* ten questions: the picture panel keeps cycling its six shots past the sixth */
-.faq-wrap[data-at="7"] .faq-pic:nth-child(2),.faq-wrap[data-at="8"] .faq-pic:nth-child(3),
-.faq-wrap[data-at="9"] .faq-pic:nth-child(4),.faq-wrap[data-at="10"] .faq-pic:nth-child(5){opacity:1;}
-
-
 #contact .cta3-actions{display:flex; flex-wrap:wrap; justify-content:center; gap:12px;}
 @media (max-width:560px){ #contact .cta3-actions .btn{width:100%; justify-content:center;} }
+
+/* CTA band photo — desktop landscape / mobile portrait */
+#contact.cta{ --cta-shot:url("/images/aiseo-cta-94cf9546fa.webp"); }
+@media (max-width:960px){
+  #contact.cta{ --cta-shot:url("/images/aiseo-cta-m-257cbc1f8a.webp"); }
+}
 
 /* alternating section grounds — white / #DAEEF6 beat (wins over global #industries etc.) */
 /* alternating section grounds — white / #DAEEF6 beat */
@@ -2819,6 +2824,29 @@ html[data-theme="dark"] #process .eg-exp-note{
   color:var(--text-2);
   font-size:var(--body);
 }
+
+/* Per-step disc photos (5 phases) — replace single --shot-3 ::before */
+#process .eg-face::before{display:none;}
+#process .eg-face::after{z-index:1;}
+#process .eg-pic{
+  position:absolute; inset:0; z-index:0;
+  background:none;
+  opacity:0; visibility:hidden;
+  transition:opacity .45s var(--ease), visibility 0s linear .45s;
+}
+#process .eg[data-at="0"] .eg-pic:nth-child(1),
+#process .eg[data-at="1"] .eg-pic:nth-child(2),
+#process .eg[data-at="2"] .eg-pic:nth-child(3),
+#process .eg[data-at="3"] .eg-pic:nth-child(4),
+#process .eg[data-at="4"] .eg-pic:nth-child(5),
+#process .eg:not([data-at]) .eg-pic:nth-child(1){
+  opacity:1; visibility:visible; transition-delay:0s;
+}
+#process .eg-pic > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;
+}
+#process .eg-face > *:not(.eg-pic){position:relative; z-index:2;}
 
 /* fig-af: upright + smaller — no italic/skew on %, +, $M+ */
 .tb-fig b .fig-af{

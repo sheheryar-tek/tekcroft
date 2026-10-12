@@ -1,3 +1,6 @@
 {
-  "preload": "/images/hero-1.webp"
+  "preload": "/images/aiseo-hero-d04c616caa.webp",
+  "preloadMobile": "/images/aiseo-hero-m-4e5a2e9f78.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "aiseo-proc-discovery",
+    "file": "/images/aiseo-proc-discovery-3069d27fb7.webp",
+    "label": "Prompt Discovery & AI Visibility Baseline",
+    "kb": 45.6,
+    "q": 88,
+    "w": 720,
+    "src": "Prompt Discovery & AI Visibility Baseline/1.jpg"
+  },
+  {
+    "slug": "aiseo-proc-influence",
+    "file": "/images/aiseo-proc-influence-fc7518ac16.webp",
+    "label": "Source Influence Mapping",
+    "kb": 59.4,
+    "q": 88,
+    "w": 720,
+    "src": "Source Influence Mapping/1.jpg"
+  },
+  {
+    "slug": "aiseo-proc-citation",
+    "file": "/images/aiseo-proc-citation-6607e41bf0.webp",
+    "label": "On-Site Citation Optimization",
+    "kb": 54.5,
+    "q": 88,
+    "w": 720,
+    "src": "On-Site Citation Optimization/2.jpg"
+  },
+  {
+    "slug": "aiseo-proc-outreach",
+    "file": "/images/aiseo-proc-outreach-3a813b4fc4.webp",
+    "label": "Third-Party Source Outreach",
+    "kb": 54.3,
+    "q": 88,
+    "w": 720,
+    "src": "Third-Party Source Outreach/1.jpg"
+  },
+  {
+    "slug": "aiseo-proc-tracking",
+    "file": "/images/aiseo-proc-tracking-1fe3d17def.webp",
+    "label": "Recommendation Tracking & Iteration",
+    "kb": 47.5,
+    "q": 88,
+    "w": 720,
+    "src": "Recommendation Tracking & Iteration/1.jpg"
+  }
+]
