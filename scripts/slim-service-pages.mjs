@@ -1415,7 +1415,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
       {
         title: "Local SEO Services | Tekcroft",
         description,
-        canonical: "https://www.tekcroft.com/services/local-seo",
+        canonical: "https://www.tekcroft.com/services/local-seo-services",
       },
       null,
       2

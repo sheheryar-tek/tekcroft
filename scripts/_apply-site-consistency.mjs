@@ -52,7 +52,7 @@ const stripPages = [
   "app/services/on-page-seo/page.tsx",
   "app/services/technical-seo-services/page.tsx",
   "app/services/seo-audit-services/page.tsx",
-  "app/services/local-seo/page.tsx",
+  "app/services/local-seo-services/page.tsx",
   "app/services/ecommerce-seo/page.tsx",
   "app/services/franchise-seo-services/page.tsx",
   "app/services/google-business-profile-optimization/page.tsx",

@@ -12,6 +12,11 @@ const nextConfig = {
         destination: "/services/technical-seo-services",
         permanent: true,
       },
+      {
+        source: "/services/local-seo",
+        destination: "/services/local-seo-services",
+        permanent: true,
+      },
     ];
   },
   async headers() {

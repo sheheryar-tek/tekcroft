@@ -2,7 +2,7 @@ import { chromium } from "playwright";
 
 const targets = [
   { route: "/services/technical-seo", width: 320 },
-  { route: "/services/local-seo", width: 320 },
+  { route: "/services/local-seo-services", width: 320 },
   { route: "/services/franchise-seo-services", width: 320 },
   { route: "/services/on-page-seo", width: 1024 },
 ];

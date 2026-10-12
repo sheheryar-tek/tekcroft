@@ -9,7 +9,7 @@ const routes = [
   "/services/on-page-seo",
   "/services/technical-seo",
   "/services/ai-seo-services",
-  "/services/local-seo",
+  "/services/local-seo-services",
   "/services/google-business-profile-optimization",
   "/services/franchise-seo-services",
   "/services/web-design-and-development-services",
