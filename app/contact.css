@@ -1,4 +1,4 @@
-﻿/* Contact page-only styles â€” shared chrome in tekcroft.css */
+﻿/* Contact page-only styles — shared chrome in tekcroft.css */
 /* === ct-styles === */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CONTACT
@@ -19,7 +19,7 @@
    this way the words are on the same surface the picture is, and where
    one stops and the other starts is a gradient rather than a seam. */
 /* The block sits in the middle of the band. The two paddings cannot be
-   equal â€” the top has to clear the fixed bar â€” so the bar's height is
+   equal — the top has to clear the fixed bar — so the bar's height is
    reserved on its own and the breathing space above and below it is the
    same number. Centring then happens inside what is left, and it holds
    whether the copy runs long or short. */
@@ -32,7 +32,7 @@
 .ct-hero > .wrap{position:relative; z-index:3; width:100%;}
 
 /* Not `center`. On a wide viewport the frame is scaled to about 1.44 and
-   320px of its height is cropped away, half off the top â€” which took the
+   320px of its height is cropped away, half off the top — which took the
    subject's head with it. Biased upward, the crop comes off the desk
    instead, which is where there is something to spare. On a phone the
    frame is taller than it is cropped, so this changes nothing there. */
@@ -49,11 +49,11 @@
    white type holds anywhere across it.
 
    The horizontal gradient that used to clear the left side has gone with
-   the copy that stood there â€” it would now be darkening the one part of
+   the copy that stood there — it would now be darkening the one part of
    the frame nothing is written on. */
 /* The service page's hero overlay, and it is deliberately not the three
    stacked gradients this hero used to carry. That one hero is ONE flat
-   overlay over the photograph â€” raise the number to darken it, lower it
+   overlay over the photograph — raise the number to darken it, lower it
    to let more of the picture through, and there is nothing else to keep
    in step. Two heroes on one site should be lit the same way. */
 .ct-hero{--ct-veil:rgba(0,0,0,.78);}
@@ -62,11 +62,11 @@
 
 /* Centred, not held to one side. The picture is a full-bleed field
    rather than a column of its own, so there is no right half for the
-   copy to be balanced against â€” off to the left it reads as a page with
+   copy to be balanced against — off to the left it reads as a page with
    one side empty, which is what the wide view showed. */
 .ct-hero-say{max-width:62ch; margin-inline:auto; text-align:center;}
 
-/* The two badges are the site's own, not new ones. The band uses .tag â€”
+/* The two badges are the site's own, not new ones. The band uses .tag —
    the glass pill the hero of every other page opens with, which reads its
    dark colours off .on-dark on the section. The card uses .smark, the
    ringed pill the sections use, ported here because this page had never
@@ -92,8 +92,8 @@
 
 /* â”€â”€ where the band ends â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    In daylight the join needs nothing: a dark band meeting a pale page
-   is its own edge. In dark mode both sides are near-black â€” the band's
-   foot and the page differ by a few points of grey â€” so the picture just
+   is its own edge. In dark mode both sides are near-black — the band's
+   foot and the page differ by a few points of grey — so the picture just
    dissolved into the section under it and the two read as one soft area.
 
    Two things fix it, and both are needed. The band's foot scrim now
@@ -106,7 +106,7 @@ html[data-theme="dark"] .ct-body{border-top:1px solid rgba(255,255,255,.09);}
    the three ways in
 
    They lead, before the form that takes longer. Each is one fact said
-   plainly â€” the number, the address, the inbox â€” with a line under it
+   plainly — the number, the address, the inbox — with a line under it
    for the thing you would otherwise have to ask.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 /* no margin of its own: the section's top padding is already the gap
@@ -162,8 +162,8 @@ html[data-theme="dark"] .ct-map-frame{filter:saturate(.7) brightness(.82);}
    the card: details beside the form
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 /* One gap, used four times. The blocks in here had picked up four
-   different margins as they were added â€” the cards close to the form
-   card, the map and the last call further off â€” so the column read as
+   different margins as they were added — the cards close to the form
+   card, the map and the last call further off — so the column read as
    unevenly spaced rather than as a rhythm. They all take --ct-gap now,
    and the section's own top padding is that same value so the first gap,
    from the band down to the cards, matches the three below it.
@@ -176,7 +176,7 @@ html[data-theme="dark"] .ct-map-frame{filter:saturate(.7) brightness(.82);}
   padding-top:var(--ct-gap); padding-bottom:0;}
 /* Three boxes now, not two: the intro, the details under it, and the form
    beside both. They are placed by name rather than by source order,
-   because the phone wants the intro, then the form, then the details â€”
+   because the phone wants the intro, then the form, then the details —
    an order no single column of two boxes can produce. */
 .ct-card{position:relative; z-index:4;
   margin-top:var(--ct-gap);
@@ -191,7 +191,7 @@ html[data-theme="dark"] .ct-map-frame{filter:saturate(.7) brightness(.82);}
    the page has one dark rather than three. */
 /* The dark half stands on a photograph rather than a flat plate. Under a
    scrim heavy enough for white type it reads as texture rather than as a
-   picture competing with the words â€” which is the point: it gives this
+   picture competing with the words — which is the point: it gives this
    side something to be, so it is not simply the absence of the white
    half beside it.
 
@@ -206,7 +206,7 @@ html[data-theme="dark"] .ct-map-frame{filter:saturate(.7) brightness(.82);}
    Both halves of the card being one colour costs the card its seam, so
    the seam is drawn: a hairline down the inside edge. It is the divider
    the scrim used to be, and it flips to the bottom edge once the card
-   stacks â€” where the two halves are above and below rather than beside
+   stacks — where the two halves are above and below rather than beside
    each other. */
 .ct-intro{grid-area:intro; position:relative;
   padding:clamp(26px,3vw,42px) clamp(26px,3vw,42px) 0;
@@ -244,7 +244,7 @@ html[data-theme="dark"] .ct-map-frame{filter:saturate(.7) brightness(.82);}
 
    The fills are mixed to opaque rather than laid on at low alpha,
    because a see-through tile would show the dashed line running under
-   it â€” which is precisely what the tile is there to interrupt. */
+   it — which is precisely what the tile is there to interrupt. */
 .ct-ways{display:grid;}
 .ct-way{position:relative; display:flex; align-items:flex-start; gap:14px;
   padding-block:clamp(11px,1.3vw,15px);}
@@ -281,7 +281,7 @@ a.ct-way-v:hover{text-decoration:underline;}
    so the resting glyph takes the magenta the gradient passes through and
    the hover lays the gradient itself.
 
-   X's colour is black, which on a dark page is nothing â€” so there it
+   X's colour is black, which on a dark page is nothing — so there it
    becomes the page's own light ink, and the hover reverses. */
 .ct-social-t{margin:clamp(24px,2.8vw,34px) 0 12px; font-size:12.5px;
   font-weight:700; color:var(--text);}
@@ -298,15 +298,15 @@ a.ct-way-v:hover{text-decoration:underline;}
   background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4);}
 /* X alone keeps its colour in the sheet rather than in the markup. An
    inline custom property wins over any stylesheet rule, so a hex set on
-   the element could not be swapped for the dark theme â€” which is exactly
+   the element could not be swapped for the dark theme — which is exactly
    what this one mark needs. */
 .ct-social .is-x{--sc:#0F1419;}
 html[data-theme="dark"] .ct-social .is-x{--sc:#E8EAED;}
 html[data-theme="dark"] .ct-social .is-x:hover{color:var(--n975);}
 
-/* The disc on the seam. It is decoration rather than a control â€” there is
+/* The disc on the seam. It is decoration rather than a control — there is
    nothing for it to do that the button at the foot of the form does not
-   already do â€” so it is marked hidden and takes no pointer. */
+   already do — so it is marked hidden and takes no pointer. */
 .ct-seam{position:absolute; z-index:5; left:calc(41% - 22px); top:50%;
   transform:translateY(-50%);
   display:grid; place-items:center; width:44px; height:44px; border-radius:50%;
@@ -317,7 +317,7 @@ html[data-theme="dark"] .ct-social .is-x:hover{color:var(--n975);}
 
 /* â”€â”€ the card in dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    A shadow is how this card is read in daylight, and a shadow on a
-   near-black page is nothing â€” which is why it disappeared. A hairline
+   near-black page is nothing — which is why it disappeared. A hairline
    helped but not enough, because the real problem was underneath it: the
    form half is --surface (#1E1F20) and the page is --bg (#131314), and
    eleven points of grey apart is not a card, it is a slightly different
@@ -327,7 +327,7 @@ html[data-theme="dark"] .ct-social .is-x:hover{color:var(--n975);}
    darkest step on the scale, the form half climbs to the one above
    surface, and the fields inside drop back down so they still read as
    wells cut into it rather than as more of the same plate. On top of
-   that a brighter edge, and one soft brand ring â€” the only light on the
+   that a brighter edge, and one soft brand ring — the only light on the
    page that is not white, which is what makes the eye find this first.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 html[data-theme="dark"] .ct-body{background:var(--n975);}
@@ -338,7 +338,7 @@ html[data-theme="dark"] .ct-card{
      from above rather than merely lighter. The flat ring outside it firms
      the border without thickening it. The long black shadow gives the
      card somewhere to stand. And the brand glow is the only colour on the
-     page that is not white â€” it is what actually draws the eye here
+     page that is not white — it is what actually draws the eye here
      rather than just separating the card from the ground. */
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12),
              0 0 0 1px rgba(255,255,255,.06),
@@ -388,7 +388,7 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
   box-shadow:0 0 0 4px hsl(var(--brand-h) 100% 50% / .16);}
 
 /* The send: full width, label centred, and the disc pinned to the right
-   edge rather than sitting beside the words â€” which is what .btn
+   edge rather than sitting beside the words — which is what .btn
    normally does. */
 .ct-send{position:relative; width:100%; justify-content:center;
   margin-top:clamp(4px,.6vw,8px);}
@@ -412,7 +412,7 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
 
      Done with `order` rather than by moving the markup, because the
      source order is what a screen reader and the tab key follow, and
-     details-then-form is the right reading order either way â€” the
+     details-then-form is the right reading order either way — the
      details are three links, the form is the task. Only the eye is
      re-ordered, and only here.
 
@@ -447,7 +447,7 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
 /* The photograph answers the pointer: it is held a little over size and
    shifted by a fraction of where the cursor is, so the band has some
    depth without anything on it actually moving. The number arrives as
-   --mx/--my on the section, and the travel is worked out here â€” the
+   --mx/--my on the section, and the travel is worked out here — the
    script never touches a transform. The easing is on the layer rather
    than in the script, which is what keeps it from feeling nailed to the
    cursor. */
@@ -459,10 +459,10 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
 
 /* === cta3-styles === */
 /* ============================================================
-   THE INVITATION â€” VARIANT 3 : the split
+   THE INVITATION — VARIANT 3 : the split
    Where variant 2 empties the panel and stands the ask alone in the
    middle, this one splits it in half: the ask stays left-aligned and
-   plain-spoken, and the right half is given over to a small proof â€”
+   plain-spoken, and the right half is given over to a small proof —
    a mock search result showing the brand outranking two placeholders.
    It is a picture of the promise in the headline, not a decoration.
    ============================================================ */
@@ -473,7 +473,7 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
    band cut across it.
 
    It does mean the panel cannot be see-through glass any more, and it is
-   worth being plain about why. Glass is read as a difference â€” the same
+   worth being plain about why. Glass is read as a difference — the same
    thing sharp outside a pane and soft inside it. With the frame inside
    the panel there is nothing outside it to compare against but white
    paper, so a translucent panel would only be a grey rectangle. What is
@@ -482,8 +482,8 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
    off the underside for thickness, and one soft shadow so the card sits
    on the page rather than in it.
 
-   The frame itself is pulled onto the brand â€” its own colour taken down
-   and a deep brand duotone laid over it â€” so it reads as a blue field
+   The frame itself is pulled onto the brand — its own colour taken down
+   and a deep brand duotone laid over it — so it reads as a blue field
    with a photograph's structure in it rather than as a stock product
    shot dropped behind some type.
 
@@ -528,8 +528,8 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
   display:flex; align-items:center; flex-wrap:wrap; justify-content:center;
   gap:clamp(16px,2.2vw,26px); margin-top:clamp(20px,2.6vw,30px);}
 .cta3-actions > *{position:relative; z-index:1;}
-/* This was its own button once â€” its own fill, its own radius, its own
-   hover distance â€” and then its own pane of glass on top of that. All of
+/* This was its own button once — its own fill, its own radius, its own
+   hover distance — and then its own pane of glass on top of that. All of
    it is gone. It is the page's button now, with no local rule at all:
    same fill, same rim, same wipe across it on hover, same label roll,
    same lift. A visitor who has pressed one button on this site should
@@ -563,7 +563,7 @@ html[data-theme="dark"] .ct-field :is(input,select,textarea):focus{
   background:var(--cta-shot) center / cover no-repeat;
   transform:scale(1); transition:transform 1.6s var(--ease);}
 .cta > .wrap:hover::before{ transform:scale(1.04); }
-/* only enough tint to seat the picture and keep its edges from glaring â€”
+/* only enough tint to seat the picture and keep its edges from glaring —
    the contrast for the type comes from the card, not from here */
 .cta > .wrap::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
@@ -635,7 +635,7 @@ html[data-theme="dark"]  .cta3-div{ background:rgba(255,255,255,.22); }
    hover moves onto the colour instead */
 .cta3-mail{ border-bottom:0; padding-bottom:0; gap:10px;
   transition:color .2s var(--ease); }
-/* The card is dark glass in BOTH themes â€” the heading and the paragraph
+/* The card is dark glass in BOTH themes — the heading and the paragraph
    above are forced white for exactly that reason. The address was left on
    the theme's own ink in light mode, which is near-black, so on light it
    was dark type on a dark card: present, and unreadable. It takes white
@@ -680,15 +680,15 @@ html[data-theme="dark"] .cta3-actions .btn-primary:hover{
 
    These came off with the invitation band. That block and the footer's
    refinements were in the same sheet upstream, so removing the one took
-   the other with it â€” which is why this page still had the run of service
+   the other with it — which is why this page still had the run of service
    names as a separate strip, ruled top and bottom, with fifty-odd pixels
    of page showing between it and the footer plate. Both plates now carry
    the same fill and meet with no gap; the second drops its own rounding
    because the first is already holding it.
 
    The lift is a shadow thrown upward from the top edge of the run. It is
-   the only shadow on the page pointing that way â€” everything above casts
-   downward â€” so a single upward throw reads as this block sitting in
+   the only shadow on the page pointing that way — everything above casts
+   downward — so a single upward throw reads as this block sitting in
    front of the page rather than under it.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .ftm{ background:var(--surface); border-block:0; margin-bottom:0;
@@ -704,7 +704,7 @@ html[data-theme="dark"] .ftm{
 /* and the site's one section rhythm, so the body does not stand off the
    foot by the old flat 104 */
 :root{ --sec-y:clamp(58px, 6vw, 92px); }
-/* page perf helpers â€” design unchanged */
+/* page perf helpers — design unchanged */
 .sec{ content-visibility:auto; contain-intrinsic-size:auto 800px; }
 .ct-hero, .hs, #hero-1, #top, #faq, #why, #services-2 {
   content-visibility:visible !important; contain-intrinsic-size:auto none !important;
@@ -727,19 +727,19 @@ html[data-theme="dark"] .ftm{
    WHAT HAPPENS NEXT
 
    Three steps, directly under the form, because this is the moment the
-   question gets asked â€” not at the bottom of the page. On a phone the
+   question gets asked — not at the bottom of the page. On a phone the
    card stacks details-then-form, so this lands right after Send.
 
    Each step is an outlined frame with a tab on its top edge and a card
    set inside it, and a line with a ring joins one frame to the next.
 
    â”€â”€ one hue, three depths â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   The reference runs light green to teal to navy â€” three colours, but
+   The reference runs light green to teal to navy — three colours, but
    read left to right they are one thing getting deeper, which is what
    makes the row feel like a sequence rather than three items. That
    reading is what has been kept, in the brand's own ramp: a light blue,
    then --primary, then --p700. Three arbitrary hues would have been the
-   surface of the reference and not its point â€” and this page already
+   surface of the reference and not its point — and this page already
    spends its one multi-colour moment on the contact tiles above.
 
    â”€â”€ the frame is not a card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -780,7 +780,7 @@ html[data-theme="dark"] .ftm{
    a halo of that same colour opens behind the frame.
 
    Every one of those is derived from the step's own --c, so a step
-   cannot hover into a colour that is not its own â€” and the three of them
+   cannot hover into a colour that is not its own — and the three of them
    need no separate hover rules between them.
 
    The lift is on the frame and the fill is on the tile: two elements, so
@@ -827,7 +827,7 @@ html[data-theme="dark"] .ct-s1{--c:hsl(var(--brand-h) 45% 55%);}
 html[data-theme="dark"] .ct-s3{--c:hsl(var(--brand-h) 90% 66%);}
 
 /* The tab sits ON the frame's top edge, so it needs the frame's own
-   border width subtracted from where it starts â€” otherwise it hangs
+   border width subtracted from where it starts — otherwise it hangs
    three pixels proud of the line it is meant to be part of. */
 .ct-step-tab{position:absolute; top:-3px; left:clamp(26px,3vw,38px);
   width:clamp(72px,9vw,116px); height:11px;
@@ -847,7 +847,7 @@ html[data-theme="dark"] .ct-s3{--c:hsl(var(--brand-h) 90% 66%);}
     0 8px 18px -10px rgba(var(--ink-rgb),.10),
     0 26px 50px -26px rgba(var(--ink-rgb),.15);}
 
-/* On a dark page a shadow is invisible â€” depth there is an edge, not a
+/* On a dark page a shadow is invisible — depth there is an edge, not a
    smudge, so the card takes a lit top edge instead. */
 html[data-theme="dark"] .ct-step-in{
   box-shadow:inset 0 1px 0 hsl(0 0% 100% / .06);}
@@ -909,7 +909,7 @@ html[data-theme="dark"] .ct-step-in{
   .ct-step{transition:none;}
   /* the circuit stops. The ring is hidden rather than frozen mid-lap,
      because a light parked on one frame would read as that step being
-     marked out â€” the plain coloured frames say nothing they should not. */
+     marked out — the plain coloured frames say nothing they should not. */
 }
 
 /* === type-scale lock === */
@@ -1044,12 +1044,12 @@ h1, h2, h3, h4, h5, h6{
   .faq-a p{font-size:var(--body);}
 }
 
-/* === SITE CONSISTENCY LOCK (do not edit here â€” edit site-consistency.css) === */
+/* === SITE CONSISTENCY LOCK (do not edit here — edit site-consistency.css) === */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   SITE CONSISTENCY â€” load LAST on every page (after page CSS).
+   SITE CONSISTENCY — load LAST on every page (after page CSS).
 
    Single design system for Tekcroft:
-   - One type scale for h1â€“h6 + body
+   - One type scale for h1–h6 + body
    - One section vertical rhythm (--sec-y)
    - One eyebrow / spacing language
    - H2 stays â‰¤ 2 lines via width, not font-size hacks
@@ -1057,7 +1057,7 @@ h1, h2, h3, h4, h5, h6{
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 :root{
-  /* Type scale â€” one value per level, site-wide (responsive via clamp) */
+  /* Type scale — one value per level, site-wide (responsive via clamp) */
   --h1:clamp(32px,4.2vw,56px);
   --h2:clamp(28px,3.2vw,44px);
   --h3:clamp(17px,1.7vw,22px);
@@ -1134,12 +1134,12 @@ section.sec,
   padding-block:clamp(36px,4vw,56px) !important;
 }
 
-/* â”€â”€ Headings: one size per level â€” beat page-local clamps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ Headings: one size per level — beat page-local clamps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 html body :is(h1, .hs-h1, .ct-hero h1),
 html body .hs .hs-h1{
   font-size:var(--h1) !important;
   line-height:1.08 !important;
-  /* Negative letter-spacing on display type leaves an optical left gap â€” pull flush */
+  /* Negative letter-spacing on display type leaves an optical left gap — pull flush */
   margin-inline-start:-0.04em;
 }
 html body :is(h2),
@@ -1225,7 +1225,7 @@ html body :is(h4){ font-size:var(--h4) !important; line-height:1.3 !important; }
 html body :is(h5){ font-size:var(--h5) !important; line-height:1.35 !important; }
 html body :is(h6){ font-size:var(--h6) !important; line-height:1.35 !important; }
 
-/* â”€â”€ H2 â‰¤ 2 lines: give titles enough measure â€” never shrink the type â”€ */
+/* â”€â”€ H2 â‰¤ 2 lines: give titles enough measure — never shrink the type â”€ */
 html body .sec-head{
   max-width:min(100%, 62ch) !important;
 }
@@ -1241,7 +1241,7 @@ html body .sec-head h2{
 html body h2 > span + span + span{
   display:inline !important;
 }
-/* Headings must flow as one phrase â€” no forced line breaks via <em>/<span>/<br> */
+/* Headings must flow as one phrase — no forced line breaks via <em>/<span>/<br> */
 html body :is(h1, h2, h3, h4, h5, h6) em,
 html body :is(h1, h2, h3, h4, h5, h6) > span{
   display:inline !important;
@@ -1290,7 +1290,7 @@ html body .hs-sub{
   font-size:13px !important;
   line-height:1.45 !important;
 }
-/* Hero form title is a label (p.hs-form-title), not body copy â€” keep compact */
+/* Hero form title is a label (p.hs-form-title), not body copy — keep compact */
 html body .hs-form > h3,
 html body .hs-form > .hs-form-title{
   font-size:clamp(17px,1.5vw,19px) !important;
