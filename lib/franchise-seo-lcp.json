@@ -1,3 +1,6 @@
 {
-  "preload": "/images/fseo-hero-6ef691051f.webp"
+  "preload": "/images/fseo-hero-b228b5271b.webp",
+  "preloadMobile": "/images/fseo-hero-m-f8da38b250.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

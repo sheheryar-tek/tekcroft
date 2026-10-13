@@ -20,7 +20,7 @@ const PAGES = [
   {
     body: "lib/google-business-profile-optimization-body.html",
     id: "gbp-process",
-    path: "/services/google-business-profile-optimization",
+    path: "/services/google-business-profile-optimization-services",
   },
 ];
 

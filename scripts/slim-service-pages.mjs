@@ -1993,7 +1993,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
         title: "Google Business Profile Optimization | Tekcroft",
         description,
         canonical:
-          "https://www.tekcroft.com/services/google-business-profile-optimization",
+          "https://www.tekcroft.com/services/google-business-profile-optimization-services",
       },
       null,
       2
@@ -2263,7 +2263,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
         description:
           (descMatch && descMatch[1].trim()) ||
           "Native iOS, native Android and cross-platform mobile app development for startups and businesses across the US.",
-        canonical: "https://www.tekcroft.com/services/mobile-app-development",
+        canonical: "https://www.tekcroft.com/services/mobile-app-development-services",
       },
       null,
       2

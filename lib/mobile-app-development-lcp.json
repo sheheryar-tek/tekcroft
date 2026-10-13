@@ -1,3 +1,6 @@
 {
-  "preload": "/images/mad-hero-6ef691051f.webp"
+  "preload": "/images/mad-hero-38f0d58787.webp",
+  "preloadMobile": "/images/mad-hero-m-6dd6f3446f.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "csd-proc-discovery",
+    "file": "/images/csd-proc-discovery-eb3890dc24.webp",
+    "label": "Discovery & Requirements",
+    "kb": 56.7,
+    "q": 88,
+    "w": 720,
+    "src": "Discovery & Requirements/2.jpg"
+  },
+  {
+    "slug": "csd-proc-design",
+    "file": "/images/csd-proc-design-fdaa911628.webp",
+    "label": "Design & Architecture",
+    "kb": 56.1,
+    "q": 88,
+    "w": 720,
+    "src": "Design & Architecture/2.jpg"
+  },
+  {
+    "slug": "csd-proc-agile",
+    "file": "/images/csd-proc-agile-4fd4fc3830.webp",
+    "label": "Agile Development",
+    "kb": 64.2,
+    "q": 88,
+    "w": 640,
+    "src": "Agile Development/2.jpg"
+  },
+  {
+    "slug": "csd-proc-qa",
+    "file": "/images/csd-proc-qa-485f6e2861.webp",
+    "label": "Testing & QA",
+    "kb": 58.6,
+    "q": 88,
+    "w": 720,
+    "src": "Testing & QA/2.jpg"
+  },
+  {
+    "slug": "csd-proc-launch",
+    "file": "/images/csd-proc-launch-faef178ebc.webp",
+    "label": "Launch & Ongoing Support",
+    "kb": 60.7,
+    "q": 88,
+    "w": 640,
+    "src": "Launch & Ongoing Support/2.jpg"
+  }
+]

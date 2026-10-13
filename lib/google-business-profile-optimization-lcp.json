@@ -1,3 +1,6 @@
 {
-  "preload": "/images/hero-1.webp"
+  "preload": "/images/gbp-hero-8b9ce51a14.webp",
+  "preloadMobile": "/images/gbp-hero-m-04ec51c3e2.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

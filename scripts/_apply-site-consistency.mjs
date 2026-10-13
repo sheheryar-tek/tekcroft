@@ -31,12 +31,15 @@ const cssFiles = [
 ];
 
 const block = "\n\n" + MARK + "\n" + lock + "\n";
+/** Match any prior lock marker (em dash / en dash / hyphen / mojibake). */
+const LOCK_RE =
+  /\/\* === SITE CONSISTENCY LOCK \(do not edit here . edit site-consistency\.css\) === \*\//;
 
 for (const rel of cssFiles) {
   const fp = path.join(ROOT, rel);
   let css = fs.readFileSync(fp, "utf8");
-  const i = css.indexOf(MARK);
-  if (i >= 0) css = css.slice(0, i).trimEnd();
+  const m = LOCK_RE.exec(css);
+  if (m) css = css.slice(0, m.index).trimEnd();
   css = css.trimEnd() + block;
   fs.writeFileSync(fp, css);
   console.log("locked", rel);
@@ -55,10 +58,10 @@ const stripPages = [
   "app/services/local-seo-services/page.tsx",
   "app/services/ecommerce-seo/page.tsx",
   "app/services/franchise-seo-services/page.tsx",
-  "app/services/google-business-profile-optimization/page.tsx",
-  "app/services/mobile-app-development/page.tsx",
+  "app/services/google-business-profile-optimization-services/page.tsx",
+  "app/services/mobile-app-development-services/page.tsx",
   "app/services/web-design-and-development-services/page.tsx",
-  "app/services/software-development-services/page.tsx",
+  "app/services/custom-software-development-services/page.tsx",
   "app/services/ai-agent-development-services/page.tsx",
   "app/services/ai-chatbot-development-services/page.tsx",
   "app/services/ai-seo-services/page.tsx",

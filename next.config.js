@@ -17,6 +17,32 @@ const nextConfig = {
         destination: "/services/local-seo-services",
         permanent: true,
       },
+      {
+        source: "/services/google-business-profile-optimization",
+        destination:
+          "/services/google-business-profile-optimization-services",
+        permanent: true,
+      },
+      {
+        source: "/services/franchise-seo",
+        destination: "/services/franchise-seo-services",
+        permanent: true,
+      },
+      {
+        source: "/services/web-design-and-development",
+        destination: "/services/web-design-and-development-services",
+        permanent: true,
+      },
+      {
+        source: "/services/software-development-services",
+        destination: "/services/custom-software-development-services",
+        permanent: true,
+      },
+      {
+        source: "/services/mobile-app-development",
+        destination: "/services/mobile-app-development-services",
+        permanent: true,
+      },
     ];
   },
   async headers() {

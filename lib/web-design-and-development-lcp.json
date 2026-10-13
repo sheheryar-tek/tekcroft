@@ -1,3 +1,6 @@
 {
-  "preload": "/images/wdd-hero-6ef691051f.webp"
+  "preload": "/images/wdd-hero-0d1a2741a0.webp",
+  "preloadMobile": "/images/wdd-hero-m-a5f75f0da1.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

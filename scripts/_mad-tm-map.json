@@ -1,0 +1,52 @@
+[
+  {
+    "i": 0,
+    "file": "/images/mad-tm-01-64f1fc2013.webp",
+    "alt": "Roadmap & User Flows",
+    "kb": 52.9,
+    "q": 72,
+    "w": 1400,
+    "h": 842,
+    "src": "Roadmap & User Flows/Desktop/2.jpg"
+  },
+  {
+    "i": 1,
+    "file": "/images/mad-tm-02-d719a27826.webp",
+    "alt": "Native & Cross-Platform Development",
+    "kb": 46.6,
+    "q": 72,
+    "w": 1400,
+    "h": 842,
+    "src": "Native & Cross-Platform Development/Desktop/2.jpg"
+  },
+  {
+    "i": 2,
+    "file": "/images/mad-tm-03-38b554f26e.webp",
+    "alt": "Infrastructure & APIs",
+    "kb": 58,
+    "q": 68,
+    "w": 1200,
+    "h": 722,
+    "src": "Infrastructure & APIs/Desktop/2.jpg"
+  },
+  {
+    "i": 3,
+    "file": "/images/mad-tm-04-36eba8c078.webp",
+    "alt": "Testing & Store Submission",
+    "kb": 52.5,
+    "q": 72,
+    "w": 1400,
+    "h": 842,
+    "src": "Testing & Store Submission/Desktop/2.jpg"
+  },
+  {
+    "i": 4,
+    "file": "/images/mad-tm-05-e11500b0a4.webp",
+    "alt": "Post-Launch Support",
+    "kb": 47.1,
+    "q": 72,
+    "w": 1400,
+    "h": 842,
+    "src": "Post-Launch Support/Desktop/2.jpg"
+  }
+]

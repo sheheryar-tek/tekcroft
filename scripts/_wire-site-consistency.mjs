@@ -18,10 +18,10 @@ const pages = [
   "app/services/local-seo-services/page.tsx",
   "app/services/ecommerce-seo/page.tsx",
   "app/services/franchise-seo-services/page.tsx",
-  "app/services/google-business-profile-optimization/page.tsx",
-  "app/services/mobile-app-development/page.tsx",
+  "app/services/google-business-profile-optimization-services/page.tsx",
+  "app/services/mobile-app-development-services/page.tsx",
   "app/services/web-design-and-development-services/page.tsx",
-  "app/services/software-development-services/page.tsx",
+  "app/services/custom-software-development-services/page.tsx",
   "app/services/ai-agent-development-services/page.tsx",
   "app/services/ai-chatbot-development-services/page.tsx",
 ];

@@ -1,0 +1,14 @@
+/* core service = section header: solid icon tile + bold title + hairline rule */
+.mm-svc-col .mm-gp{display:flex !important; align-items:center; gap:10px; width:100% !important; box-sizing:border-box; white-space:normal !important;
+  margin:0 !important; padding:0 8px 12px !important; border-radius:0 !important; background:none !important; color:var(--text) !important;
+  border-bottom:1px solid var(--border-soft,#E6EEF3); font-family:var(--font-display) !important; font-size:15px !important; font-weight:800 !important;
+  letter-spacing:-.01em !important; line-height:1.25 !important; box-shadow:none !important; transition:color .2s;}
+.mm-svc-col .mm-gp{min-height:52px !important;}
+.mm-svc-col .mm-gp .mm-gi{flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:10px; background:var(--primary); color:#fff;}
+.mm-svc-col .mm-gp .mm-gi svg{width:16px; height:16px;}
+.mm-svc-col .mm-gp::after{content:"\2192" !important; display:block !important; margin-left:auto; font-size:15px; font-weight:700; color:var(--primary); opacity:0; transform:translateX(-4px); transition:opacity .2s, transform .2s;}
+.mm-svc-col .mm-gp::before{content:none !important; display:none !important;}
+.mm-svc-col .mm-gp:hover,.mm-svc-col .mm-gp:focus-visible{background:none !important; color:var(--primary) !important;}
+.mm-svc-col .mm-gp:hover::after,.mm-svc-col .mm-gp:focus-visible::after{opacity:1; transform:none;}
+html[data-theme="dark"] .mm-svc-col .mm-gp{background:none !important; color:var(--text) !important; border-color:var(--border);}
+html[data-theme="dark"] .mm-svc-col .mm-gp:hover{color:#5CC8F2 !important;}

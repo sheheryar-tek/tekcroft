@@ -69,7 +69,12 @@
        Placeholder: this is the homepage hero's own shot, so the two pages
        already match. Drop the mobile app photograph in here and
        nothing else changes. -->
-  <div class="hs-bg" aria-hidden="true"><img src="/images/mad-hero-6ef691051f.webp" width="1920" height="1080" alt="" decoding="async" fetchpriority="high"></div>
+  <div class="hs-bg" aria-hidden="true">
+    <picture>
+      <source media="(max-width:960px)" srcset="/images/mad-hero-m-6dd6f3446f.webp" type="image/webp" width="571" height="1024">
+      <img src="/images/mad-hero-38f0d58787.webp" width="1024" height="571" alt="Mobile App Development Services | Tekcroft" title="Mobile App Development Services | Tekcroft" decoding="async" fetchpriority="high">
+    </picture>
+  </div>
   <div class="hs-veil" aria-hidden="true"></div>
 
   <div class="wrap hs-in">
@@ -216,26 +221,6 @@
 
     </div>
 
-    <div class="tb-wall rv" style="--d:180ms">
-      <p>Trusted by Brands That Grow Through Search</p>
-
-      <!-- The track holds the list once. The script appends a second copy
-           at load, which is what lets the slide loop seamlessly, so the
-           eight logos below are the only place a name is edited. -->
-      <div class="tb-marq">
-        <div class="tb-marq-track" id="tbMarq">
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 9.4h14.8l-1.4 10.2H6Z"/><path d="M8.8 9.4V6.8a3.2 3.2 0 0 1 6.4 0v2.6"/></svg><b>Kitchenary</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4.4c0 8.4-4.6 12.6-9.6 12.6A6.4 6.4 0 0 1 4 10.6C4 6.2 9.4 4.4 20 4.4Z"/><path d="M4.6 20.4c1.6-4.4 4.4-7.4 8.4-9.4"/></svg><b>Freshly</b></span>
-          <span class="tb-logo is-light"><b>Thread Beast</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 14.6 9l6.6.4-5.1 4.2 1.7 6.4L12 16.4 6.2 20l1.7-6.4L2.8 9.4 9.4 9Z"/></svg><b>Vitacost</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.6" y="2.6" width="10.8" height="18.8" rx="2.6"/><path d="M10.8 18.6h2.4"/></svg><b>PhoneBazis</b></span>
-          <span class="tb-logo"><b>Soly Hux</b></span>
-          <span class="tb-logo is-light"><b>Zulily</b></span>
-          <span class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.4 12h2.2M9 8.4v7.2M13.4 5.2v13.6M17.8 8.4v7.2M21.4 12h-1"/></svg><b>Fitbit</b></span>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -363,158 +348,154 @@
      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     WHAT WE DO — acv panels (mobile app content)
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-<section class="sec acv" id="services-2" data-ground="tint">
+<!-- ══════════════════════════════════════════════════════════════════
+     WHAT WE DO — tm panels (match other service pages)
+     ══════════════════════════════════════════════════════════════════ -->
+<section class="sec tm" id="services-2" data-ground="tint">
   <div class="wrap">
 
-    <div class="ac-head rv">
+    <div class="tm-head rv">
       <div>
-        <span class="smark"><b>What we do</b></span>
         <h2>Mobile App Development: <em>From First Sketch to Long-Term Support</em></h2>
       </div>
-      <div class="ac-aside">
-        <p class="ac-lede">Your app doesn&rsquo;t start with code. It starts with figuring out what actually needs to be built.</p>
-        <a class="btn btn-primary" href="#contact">Explore all services <span class="arw">&uarr;</span></a>
-      </div>
+      <p class="ax-lede">Your app doesn&rsquo;t start with code. It starts with figuring out what actually needs to be built.</p>
     </div>
 
-    <div class="ac" role="tablist" aria-label="Mobile app development services" data-acc>
-        <div class="ac-item on" data-i="0" role="tab"
-             tabindex="0" aria-selected="true">
-          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
-            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4.2-1 10.3-10.3a2.1 2.1 0 0 0-3-3L5.2 16 4 20z"/><path d="M13.8 7.2l3 3M4 20h16"/></svg></span></span>
-          <span class="ac-slim" aria-hidden="true">
-            <b class="ac-n">01</b>
-            <span class="ac-vt">Roadmap &amp; Design</span>
-                </span>
-          <div class="ac-open">
-            <div class="ac-card">
-              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4.2-1 10.3-10.3a2.1 2.1 0 0 0-3-3L5.2 16 4 20z"/><path d="M13.8 7.2l3 3M4 20h16"/></svg></span><span class="ac-num">01</span></span>
+    <div class="tm-rail" role="tablist" aria-label="Mobile app development services" data-tm>
+        <div class="tm-item on" data-i="0" role="tab" tabindex="0"
+             aria-selected="true">
+          <span class="tm-bg" aria-hidden="true"><img src="/images/mad-tm-01-64f1fc2013.webp" width="1400" height="842" alt="Roadmap &amp; User Flows" title="Roadmap &amp; User Flows" decoding="async" loading="lazy"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">01</b>
+            <span class="tm-vt">Roadmap & Design</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4.2-1 10.3-10.3a2.1 2.1 0 0 0-3-3L5.2 16 4 20z"/><path d="M13.8 7.2l3 3M4 20h16"/></svg></span><span class="tm-num">01</span></span>
               <h3>Roadmap &amp; User Flows</h3>
               <p>We shape the roadmap first, as product and user flows. From there, our designers turn those requirements into wireframes and prototypes you can react to before development begins.</p>
-              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Product and user flows first</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Roadmap shaped before code</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Wireframes you can react to</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Prototypes before development</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Requirements locked in early</span></li></ul>
-              <span class="ac-chip"><i></i>Service 01 of 05</span>
-          </div>
-            <div class="ac-viz"><div class="vz vz-checks">
-  <span class="vz-row" style="--k:0"><i></i><em>Product and user flows first</em></span>
-  <span class="vz-row" style="--k:1"><i></i><em>Roadmap shaped before code</em></span>
-  <span class="vz-row" style="--k:2"><i></i><em>Wireframes you can react to</em></span>
-  <span class="vz-row" style="--k:3"><i></i><em>Prototypes before development</em></span>
-  <span class="vz-row" style="--k:4"><i></i><em>Requirements locked in early</em></span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-audit">
+  <span class="tv-h">Roadmap & Design</span>
+  <ul class="tv-rows">
+    <li style="--k:0"><i></i>Product and user flows first</li>
+    <li style="--k:1"><i></i>Roadmap shaped before code</li>
+    <li style="--k:2"><i></i>Wireframes you can react to</li>
+    <li style="--k:3"><i></i>Prototypes before development</li>
+    <li style="--k:4"><i></i>Requirements locked in early</li>
+  </ul>
 </div></div>
-            <span class="ac-prog" aria-hidden="true"></span>
-        </div>
           </div>
-        <div class="ac-item" data-i="1" role="tab"
-             tabindex="0" aria-selected="false">
-          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
-            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4"/><path d="M10.5 5h3M10.5 19h3"/></svg></span></span>
-          <span class="ac-slim" aria-hidden="true">
-            <b class="ac-n">02</b>
-            <span class="ac-vt">Native &amp; Cross-Platform</span>
-                </span>
-          <div class="ac-open">
-            <div class="ac-card">
-              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4"/><path d="M10.5 5h3M10.5 19h3"/></svg></span><span class="ac-num">02</span></span>
+        </div>
+        <div class="tm-item" data-i="1" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><img src="/images/mad-tm-02-d719a27826.webp" width="1400" height="842" alt="Native &amp; Cross-Platform Development" title="Native &amp; Cross-Platform Development" decoding="async" loading="lazy"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">02</b>
+            <span class="tm-vt">Native & Cross-Platform</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4"/><path d="M10.5 5h3M10.5 19h3"/></svg></span><span class="tm-num">02</span></span>
               <h3>Native &amp; Cross-Platform Development</h3>
               <p>When the product calls for it, we build natively in Swift or Kotlin. For products where getting to both platforms quickly matters more, Flutter and React Native give us another route.</p>
-              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Native Swift for iOS</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Native Kotlin for Android</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Flutter when speed to both stores matters</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>React Native as another shared route</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Platform choice matched to the product</span></li></ul>
-              <span class="ac-chip"><i></i>Service 02 of 05</span>
-          </div>
-            <div class="ac-viz"><div class="vz vz-checks">
-  <span class="vz-row" style="--k:0"><i></i><em>Native Swift for iOS</em></span>
-  <span class="vz-row" style="--k:1"><i></i><em>Native Kotlin for Android</em></span>
-  <span class="vz-row" style="--k:2"><i></i><em>Flutter when speed to both stores matters</em></span>
-  <span class="vz-row" style="--k:3"><i></i><em>React Native as another shared route</em></span>
-  <span class="vz-row" style="--k:4"><i></i><em>Platform choice matched to the product</em></span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-audit">
+  <span class="tv-h">Native & Cross-Platform</span>
+  <ul class="tv-rows">
+    <li style="--k:0"><i></i>Native Swift for iOS</li>
+    <li style="--k:1"><i></i>Native Kotlin for Android</li>
+    <li style="--k:2"><i></i>Flutter when speed to both stores matters</li>
+    <li style="--k:3"><i></i>React Native as another shared route</li>
+    <li style="--k:4"><i></i>Platform choice matched to the product</li>
+  </ul>
 </div></div>
-            <span class="ac-prog" aria-hidden="true"></span>
+          </div>
         </div>
-        </div>
-        <div class="ac-item" data-i="2" role="tab"
-             tabindex="0" aria-selected="false">
-          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
-            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 10v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-4"/><path d="M4.5 14v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-4"/></svg></span></span>
-          <span class="ac-slim" aria-hidden="true">
-            <b class="ac-n">03</b>
-            <span class="ac-vt">Backend &amp; Integrations</span>
-                </span>
-          <div class="ac-open">
-            <div class="ac-card">
-              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 10v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-4"/><path d="M4.5 14v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-4"/></svg></span><span class="ac-num">03</span></span>
+        <div class="tm-item" data-i="2" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><img src="/images/mad-tm-03-38b554f26e.webp" width="1200" height="722" alt="Infrastructure &amp; APIs" title="Infrastructure &amp; APIs" decoding="async" loading="lazy"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">03</b>
+            <span class="tm-vt">Backend & Integrations</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 10v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-4"/><path d="M4.5 14v4c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-4"/></svg></span><span class="tm-num">03</span></span>
               <h3>Infrastructure &amp; APIs</h3>
               <p>Behind the app, we handle the less visible pieces too: backend architecture, databases, APIs, payment systems, CRMs, ERPs, analytics integrations, etc.</p>
-              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Backend architecture</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Databases and APIs</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Payment systems</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>CRM and ERP connections</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Analytics integrations</span></li></ul>
-              <span class="ac-chip"><i></i>Service 03 of 05</span>
-          </div>
-            <div class="ac-viz"><div class="vz vz-checks">
-  <span class="vz-row" style="--k:0"><i></i><em>Backend architecture</em></span>
-  <span class="vz-row" style="--k:1"><i></i><em>Databases and APIs</em></span>
-  <span class="vz-row" style="--k:2"><i></i><em>Payment systems</em></span>
-  <span class="vz-row" style="--k:3"><i></i><em>CRM and ERP connections</em></span>
-  <span class="vz-row" style="--k:4"><i></i><em>Analytics integrations</em></span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-audit">
+  <span class="tv-h">Backend & Integrations</span>
+  <ul class="tv-rows">
+    <li style="--k:0"><i></i>Backend architecture</li>
+    <li style="--k:1"><i></i>Databases and APIs</li>
+    <li style="--k:2"><i></i>Payment systems</li>
+    <li style="--k:3"><i></i>CRM and ERP connections</li>
+    <li style="--k:4"><i></i>Analytics integrations</li>
+  </ul>
 </div></div>
-            <span class="ac-prog" aria-hidden="true"></span>
+          </div>
         </div>
-        </div>
-        <div class="ac-item" data-i="3" role="tab"
-             tabindex="0" aria-selected="false">
-          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
-            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.4c0 4.6-3.2 8.3-7.5 9.6-4.3-1.3-7.5-5-7.5-9.6V6z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.8"/></svg></span></span>
-          <span class="ac-slim" aria-hidden="true">
-            <b class="ac-n">04</b>
-            <span class="ac-vt">Testing &amp; Submission</span>
-                </span>
-          <div class="ac-open">
-            <div class="ac-card">
-              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.4c0 4.6-3.2 8.3-7.5 9.6-4.3-1.3-7.5-5-7.5-9.6V6z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.8"/></svg></span><span class="ac-num">04</span></span>
+        <div class="tm-item" data-i="3" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><img src="/images/mad-tm-04-36eba8c078.webp" width="1400" height="842" alt="Testing &amp; Store Submission" title="Testing &amp; Store Submission" decoding="async" loading="lazy"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">04</b>
+            <span class="tm-vt">Testing & Submission</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.4c0 4.6-3.2 8.3-7.5 9.6-4.3-1.3-7.5-5-7.5-9.6V6z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.8"/></svg></span><span class="tm-num">04</span></span>
               <h3>Testing &amp; Store Submission</h3>
               <p>Testing happens on real devices as well as through automated checks. Once everything is ready, we handle the App Store and Google Play submission process.</p>
-              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Testing on real devices</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Automated checks</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>App Store submission</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Google Play submission</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Ready before you ship</span></li></ul>
-              <span class="ac-chip"><i></i>Service 04 of 05</span>
-          </div>
-            <div class="ac-viz"><div class="vz vz-checks">
-  <span class="vz-row" style="--k:0"><i></i><em>Testing on real devices</em></span>
-  <span class="vz-row" style="--k:1"><i></i><em>Automated checks</em></span>
-  <span class="vz-row" style="--k:2"><i></i><em>App Store submission</em></span>
-  <span class="vz-row" style="--k:3"><i></i><em>Google Play submission</em></span>
-  <span class="vz-row" style="--k:4"><i></i><em>Ready before you ship</em></span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-audit">
+  <span class="tv-h">Testing & Submission</span>
+  <ul class="tv-rows">
+    <li style="--k:0"><i></i>Testing on real devices</li>
+    <li style="--k:1"><i></i>Automated checks</li>
+    <li style="--k:2"><i></i>App Store submission</li>
+    <li style="--k:3"><i></i>Google Play submission</li>
+    <li style="--k:4"><i></i>Ready before you ship</li>
+  </ul>
 </div></div>
-            <span class="ac-prog" aria-hidden="true"></span>
+          </div>
         </div>
-        </div>
-        <div class="ac-item" data-i="4" role="tab"
-             tabindex="0" aria-selected="false">
-          <span class="ac-bg" aria-hidden="true"><span class="ac-fb"></span><span class="ac-veil"></span>
-            <span class="ac-wm is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.6-4.4L4 8M4 3.5V8h4.5M4 13a8 8 0 0 0 14.6 4.4L20 16M20 20.5V16h-4.5"/></svg></span></span>
-          <span class="ac-slim" aria-hidden="true">
-            <b class="ac-n">05</b>
-            <span class="ac-vt">Post-Launch Support</span>
-                </span>
-          <div class="ac-open">
-            <div class="ac-card">
-              <span class="ac-card-top"><span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.6-4.4L4 8M4 3.5V8h4.5M4 13a8 8 0 0 0 14.6 4.4L20 16M20 20.5V16h-4.5"/></svg></span><span class="ac-num">05</span></span>
+        <div class="tm-item" data-i="4" role="tab" tabindex="0"
+             aria-selected="false">
+          <span class="tm-bg" aria-hidden="true"><img src="/images/mad-tm-05-e11500b0a4.webp" width="1400" height="842" alt="Post-Launch Support" title="Post-Launch Support" decoding="async" loading="lazy"><span class="tm-veil"></span></span>
+          <span class="tm-slim" aria-hidden="true">
+            <b class="tm-n">05</b>
+            <span class="tm-vt">Post-Launch Support</span>
+          </span>
+          <div class="tm-open">
+            <div class="tm-card">
+              <span class="tm-card-top"><span class="tm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.6-4.4L4 8M4 3.5V8h4.5M4 13a8 8 0 0 0 14.6 4.4L20 16M20 20.5V16h-4.5"/></svg></span><span class="tm-num">05</span></span>
               <h3>Post-Launch Support</h3>
               <p>Launch isn&rsquo;t the finish line for us. OS updates, security patches, monitoring, or further feature work can all stay within the same team.</p>
-              <ul class="ac-list ac-list-m"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>OS updates</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Security patches</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Ongoing monitoring</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Further feature work</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg><span>Same team after launch</span></li></ul>
-              <span class="ac-chip"><i></i>Service 05 of 05</span>
-          </div>
-            <div class="ac-viz"><div class="vz vz-checks">
-  <span class="vz-row" style="--k:0"><i></i><em>OS updates</em></span>
-  <span class="vz-row" style="--k:1"><i></i><em>Security patches</em></span>
-  <span class="vz-row" style="--k:2"><i></i><em>Ongoing monitoring</em></span>
-  <span class="vz-row" style="--k:3"><i></i><em>Further feature work</em></span>
-  <span class="vz-row" style="--k:4"><i></i><em>Same team after launch</em></span>
+            </div>
+            <div class="tm-viz"><div class="tv tv-audit">
+  <span class="tv-h">Post-Launch Support</span>
+  <ul class="tv-rows">
+    <li style="--k:0"><i></i>OS updates</li>
+    <li style="--k:1"><i></i>Security patches</li>
+    <li style="--k:2"><i></i>Ongoing monitoring</li>
+    <li style="--k:3"><i></i>Further feature work</li>
+    <li style="--k:4"><i></i>Same team after launch</li>
+  </ul>
 </div></div>
-            <span class="ac-prog" aria-hidden="true"></span>
+          </div>
         </div>
-      </div>
     </div>
+
+    <div class="tm-cta rv"><a class="btn btn-primary" href="#contact"><span class="btn-label">Explore all services</span><span class="arw">&uarr;</span></a></div>
 
   </div>
 </section>
+
+
+
 
 <section class="sec dv" id="build" data-ground="white">
   <svg class="dv-waves" viewBox="0 0 320 260" fill="none" aria-hidden="true"><path d="M-20 60c60 10 90 60 120 110s70 90 160 100"/><path d="M-20 90c55 10 82 55 110 100s64 82 150 92"/><path d="M-20 120c50 10 74 50 100 90s58 74 140 84"/><path d="M-20 150c45 10 66 45 90 80s52 66 130 76"/></svg>
@@ -860,7 +841,13 @@
         <span class="eg-node" aria-hidden="true"></span>
 
         <div class="eg-face">
-          <span class="eg-lab">The 6-step process</span>
+          <span class="eg-pic"><img src="/images/mad-proc-discovery-d07c7ee843.webp" width="720" height="720" alt="Discovery &amp; Scoping" title="Discovery &amp; Scoping" decoding="async" loading="lazy"></span>
+          <span class="eg-pic"><img src="/images/mad-proc-design-3512bcb561.webp" width="720" height="720" alt="Design" title="Design" decoding="async" loading="lazy"></span>
+          <span class="eg-pic"><img src="/images/mad-proc-development-d4582e1c4e.webp" width="720" height="720" alt="Development" title="Development" decoding="async" loading="lazy"></span>
+          <span class="eg-pic"><img src="/images/mad-proc-qa-f9947475bd.webp" width="720" height="720" alt="QA &amp; Testing" title="QA &amp; Testing" decoding="async" loading="lazy"></span>
+          <span class="eg-pic"><img src="/images/mad-proc-launch-be38d41b5d.webp" width="720" height="720" alt="Launch" title="Launch" decoding="async" loading="lazy"></span>
+          <span class="eg-pic"><img src="/images/mad-proc-support-255bb92449.webp" width="720" height="720" alt="Support" title="Support" decoding="async" loading="lazy"></span>
+<span class="eg-lab">The 6-step process</span>
           <b class="eg-num" aria-hidden="true"><i>01</i><i>02</i><i>03</i><i>04</i><i>05</i><i>06</i></b>
           <span class="eg-rule" aria-hidden="true"></span>
           <span class="eg-of">of six stages</span>
@@ -1440,7 +1427,7 @@
             <a href="/services/ai-development-services">AI development</a>
             <a href="/services/ai-agent-development-services">Automation</a>
             <a href="/services/web-design-and-development-services">Web development</a>
-            <a href="/services/software-development-services">Software development</a>
+            <a href="/services/custom-software-development-services">Software development</a>
             <a href="/#services">Digital marketing</a>
           </div>
 

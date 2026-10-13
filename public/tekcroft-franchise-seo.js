@@ -64,11 +64,7 @@
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    mnav.addEventListener("click", function(e){
-      /* Accordion toggles must not close the menu — only real nav links / CTA */
-      if (e.target.closest(".mm-acc")) return;
-      if (e.target.closest("a[href], .btn, [data-jump]")) closeMenu();
-    });
+    mnav.addEventListener("click", function(e){ if (e.target.closest(".mm-acc")) return; if (e.target.closest("a[href],[data-jump]")) closeMenu(); });
   }
 
   /* every "Get a Free Proposal" points at whichever form is on screen */
@@ -1364,4 +1360,16 @@ var $$ = function(s, r){
   show(0);
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
   io.observe(rail);
+})();
+
+/* === fs-script (Franchise SEO Signs) === */
+(function(){
+  var root=document.getElementById('franchise-signs'); if(!root) return;
+  var rs=[].slice.call(root.querySelectorAll('.fs-row')), cur=-1, t=null,
+      reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function set(k){ cur=k; rs.forEach(function(r,i){ r.classList.toggle('on',i===k); }); }
+  function play(){ if(reduce||t) return; t=setInterval(function(){ set((cur+1)%rs.length); },2600); }
+  function stop(){ clearInterval(t); t=null; set(-1); }
+  var g=root.querySelector('.fs-grid'); g.addEventListener('mouseenter',stop); g.addEventListener('mouseleave',play);
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) play(); else { clearInterval(t); t=null; } }); },{threshold:.3}).observe(root); } else play();
 })();

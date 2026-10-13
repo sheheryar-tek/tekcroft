@@ -1,0 +1,62 @@
+[
+  {
+    "i": 0,
+    "file": "/images/csd-ac-01-8489cf9949.webp",
+    "alt": "Enterprise Software Development",
+    "kb": 68.9,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Enterprise Software Development/Desktop/2.jpg"
+  },
+  {
+    "i": 1,
+    "file": "/images/csd-ac-02-16100c6cd8.webp",
+    "alt": "CRM & ERP System",
+    "kb": 61.1,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "CRM & ERP System/Desktop/2.jpg"
+  },
+  {
+    "i": 2,
+    "file": "/images/csd-ac-03-54af2848e2.webp",
+    "alt": "SaaS Product Development",
+    "kb": 44.9,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "SaaS Product Development/Desktop/2.jpg"
+  },
+  {
+    "i": 3,
+    "file": "/images/csd-ac-04-4bcc569151.webp",
+    "alt": "AI-Powered Software Development",
+    "kb": 58.6,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "AI-Powered Software Development/Desktop/2.jpg"
+  },
+  {
+    "i": 4,
+    "file": "/images/csd-ac-05-da76bc380a.webp",
+    "alt": "Legacy System Modernization",
+    "kb": 57.4,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Legacy System Modernization/Desktop/2.jpg"
+  },
+  {
+    "i": 5,
+    "file": "/images/csd-ac-06-99dfe0419f.webp",
+    "alt": "Software Support & Maintenance",
+    "kb": 64.9,
+    "width": 1024,
+    "height": 616,
+    "enc": "w1024q56",
+    "src": "Software Support & Maintenance/Desktop/2.jpg"
+  }
+]

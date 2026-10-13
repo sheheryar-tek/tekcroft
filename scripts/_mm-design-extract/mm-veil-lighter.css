@@ -1,0 +1,4 @@
+/* services mega menu: lighter tint over the photo — text stays readable at the top, image shows clearly */
+.mm-veil{background:
+  linear-gradient(180deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.48) 40%, rgba(0,0,0,.38) 70%, rgba(0,0,0,.55) 100%) !important;}
+.mm-copy .mm-title,.mm-copy .mm-note{text-shadow:0 1px 3px rgba(0,0,0,.45);}

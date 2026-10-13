@@ -1,0 +1,4 @@
+/* even rhythm: same gap between the core pill and its first service as between services */
+.mm-svc-col{display:flex !important; flex-direction:column; align-items:flex-start; gap:10px;}
+.mm-svc-col .mm-gp{margin:0 0 0 8px !important;}
+.mm-svc-col .mm-row{width:100%; box-sizing:border-box; margin:0 !important; padding:8px !important;}

@@ -1,0 +1,62 @@
+[
+  {
+    "i": 0,
+    "file": "/images/wdd-tm-01-c7ad000a5a.webp",
+    "alt": "Custom Web Design",
+    "kb": 58.2,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Custom Web Design/Desktop/2.jpg"
+  },
+  {
+    "i": 1,
+    "file": "/images/wdd-tm-02-6dcb644656.webp",
+    "alt": "Custom Web Development",
+    "kb": 34.6,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Custom Web Development/Desktop/2.jpg"
+  },
+  {
+    "i": 2,
+    "file": "/images/wdd-tm-03-8752e7509a.webp",
+    "alt": "E-commerce Development",
+    "kb": 36.3,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "E-commerce Development/Desktop/2.jpg"
+  },
+  {
+    "i": 3,
+    "file": "/images/wdd-tm-04-9a803a44ce.webp",
+    "alt": "Website Redesign",
+    "kb": 61.5,
+    "width": 1200,
+    "height": 722,
+    "enc": "w1200q68",
+    "src": "Website Redesign/desktop/2.jpg"
+  },
+  {
+    "i": 4,
+    "file": "/images/wdd-tm-05-981ea99d1b.webp",
+    "alt": "Small Business Web Design",
+    "kb": 43,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Small Business Web Design/desktop/2.jpg"
+  },
+  {
+    "i": 5,
+    "file": "/images/wdd-tm-06-b8db6986b7.webp",
+    "alt": "WordPress / Shopify / Webflow Development",
+    "kb": 63.3,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "WordPress  Shopify  Webflow Development/Desktop/2.jpg"
+  }
+]

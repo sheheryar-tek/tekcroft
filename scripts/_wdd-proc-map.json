@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "wdd-proc-discovery",
+    "file": "/images/wdd-proc-discovery-84b05c116d.webp",
+    "label": "Discovery",
+    "kb": 55.8,
+    "q": 88,
+    "w": 720,
+    "src": "Discovery/1.jpg"
+  },
+  {
+    "slug": "wdd-proc-design",
+    "file": "/images/wdd-proc-design-b53155ba60.webp",
+    "label": "Design",
+    "kb": 44.4,
+    "q": 88,
+    "w": 720,
+    "src": "Design/1.jpg"
+  },
+  {
+    "slug": "wdd-proc-development",
+    "file": "/images/wdd-proc-development-0fa1772cd7.webp",
+    "label": "Development",
+    "kb": 44.4,
+    "q": 88,
+    "w": 720,
+    "src": "Development/1.jpg"
+  },
+  {
+    "slug": "wdd-proc-qa",
+    "file": "/images/wdd-proc-qa-377033cba2.webp",
+    "label": "QA & Testing",
+    "kb": 60.3,
+    "q": 88,
+    "w": 720,
+    "src": "QA & Testing/1.jpg"
+  },
+  {
+    "slug": "wdd-proc-launch",
+    "file": "/images/wdd-proc-launch-273f91377b.webp",
+    "label": "Launch",
+    "kb": 62.7,
+    "q": 88,
+    "w": 720,
+    "src": "Launch/1.jpg"
+  }
+]

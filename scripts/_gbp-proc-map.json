@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "gbp-proc-audit",
+    "file": "/images/gbp-proc-audit-296fa01a1a.webp",
+    "label": "Audit",
+    "kb": 34,
+    "q": 88,
+    "w": 720,
+    "src": "Audit/1.jpg"
+  },
+  {
+    "slug": "gbp-proc-foundation",
+    "file": "/images/gbp-proc-foundation-8e993dfa07.webp",
+    "label": "Foundation Fix",
+    "kb": 39.9,
+    "q": 88,
+    "w": 720,
+    "src": "Foundation Fix/1.jpg"
+  },
+  {
+    "slug": "gbp-proc-content",
+    "file": "/images/gbp-proc-content-cd547d8d78.webp",
+    "label": "Content & Media Buildout",
+    "kb": 68.5,
+    "q": 88,
+    "w": 640,
+    "src": "Content & Media Buildout/1.jpg"
+  },
+  {
+    "slug": "gbp-proc-management",
+    "file": "/images/gbp-proc-management-a72adc4e52.webp",
+    "label": "Google Business Profile Management",
+    "kb": 62.9,
+    "q": 88,
+    "w": 720,
+    "src": "Google Business Profile Management/1.jpg"
+  }
+]

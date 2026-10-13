@@ -1,0 +1,9 @@
+/* the page you're on is marked in the menu */
+.mm-svc-col .mm-row.is-current{position:relative; background:#EAF6FC !important;}
+.mm-svc-col .mm-row.is-current::before{content:""; position:absolute; left:0; top:8px; bottom:8px; width:3px; border-radius:0 3px 3px 0; background:var(--primary);}
+.mm-svc-col .mm-row.is-current .mm-n{color:var(--primary) !important; font-weight:700 !important;}
+.mm-svc-col .mm-row.is-current .mm-dot{background:var(--primary) !important; color:#fff !important; box-shadow:none !important;}
+.mm-svc-col .mm-gp.is-current-parent{color:var(--primary) !important;}
+html[data-theme="dark"] .mm-svc-col .mm-row.is-current{background:hsl(var(--brand-h) 60% 16%) !important;}
+html[data-theme="dark"] .mm-svc-col .mm-row.is-current .mm-n,html[data-theme="dark"] .mm-svc-col .mm-gp.is-current-parent{color:#5CC8F2 !important;}
+#mmTrigger.is-current-parent{color:var(--primary);}

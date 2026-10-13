@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "mad-proc-discovery",
+    "file": "/images/mad-proc-discovery-d07c7ee843.webp",
+    "label": "Discovery & Scoping",
+    "kb": 51.9,
+    "q": 88,
+    "w": 720,
+    "src": "Discovery & Scoping/2.jpg"
+  },
+  {
+    "slug": "mad-proc-design",
+    "file": "/images/mad-proc-design-3512bcb561.webp",
+    "label": "Design",
+    "kb": 58.3,
+    "q": 88,
+    "w": 720,
+    "src": "Design/2.jpg"
+  },
+  {
+    "slug": "mad-proc-development",
+    "file": "/images/mad-proc-development-d4582e1c4e.webp",
+    "label": "Development",
+    "kb": 44.2,
+    "q": 88,
+    "w": 720,
+    "src": "Development/2.jpg"
+  },
+  {
+    "slug": "mad-proc-qa",
+    "file": "/images/mad-proc-qa-f9947475bd.webp",
+    "label": "QA & Testing",
+    "kb": 41.2,
+    "q": 88,
+    "w": 720,
+    "src": "QA & Testing/2.jpg"
+  },
+  {
+    "slug": "mad-proc-launch",
+    "file": "/images/mad-proc-launch-be38d41b5d.webp",
+    "label": "Launch",
+    "kb": 45.6,
+    "q": 88,
+    "w": 720,
+    "src": "Launch/2.jpg"
+  },
+  {
+    "slug": "mad-proc-support",
+    "file": "/images/mad-proc-support-255bb92449.webp",
+    "label": "Support",
+    "kb": 47.5,
+    "q": 88,
+    "w": 720,
+    "src": "Support/2.jpg"
+  }
+]

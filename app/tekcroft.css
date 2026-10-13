@@ -4116,6 +4116,96 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
 .mnav .mm-accp a{display:block; padding:10px 0 10px 16px; font-size:14px; font-weight:500;
   text-align:left; color:var(--muted); border-bottom:1px solid var(--border-soft);}
 
+/* === MEGA MENU DESIGN LAYERS (from mega-menu.html) === */
+/* === mm-veil-lighter === */
+/* services mega menu: lighter tint over the photo — text stays readable at the top, image shows clearly */
+.mm-veil{background:
+  linear-gradient(180deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.48) 40%, rgba(0,0,0,.38) 70%, rgba(0,0,0,.55) 100%) !important;}
+.mm-copy .mm-title,.mm-copy .mm-note{text-shadow:0 1px 3px rgba(0,0,0,.45);}
+
+/* === mm-bottom-copy === */
+/* services mega menu: caption sits at the bottom of the photo; service rows show the name only */
+.mm-hero{justify-content:flex-end !important;}
+.mm-hero .mm-copy{display:block !important; margin-top:auto; position:relative; z-index:2;}
+.mm-veil{background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.05) 40%, rgba(0,0,0,.55) 72%, rgba(0,0,0,.82) 100%) !important;}
+.mm-copy .mm-title,.mm-copy .mm-note{text-shadow:0 1px 3px rgba(0,0,0,.45);}
+.mm-row .mm-dsc{display:none !important;}
+.mm-row{align-items:center !important;}
+
+/* === mm-core-pills === */
+/* core service headings as brand pills */
+.mm-svc-col .mm-gp{display:inline-flex !important; align-items:center; gap:7px; width:auto; margin:0 0 10px 8px !important; padding:7px 14px !important; border-radius:99px;
+  background:#EAF6FC; color:var(--primary) !important; font-size:12.5px !important; font-weight:800 !important; letter-spacing:.01em; line-height:1.2;
+  box-shadow:inset 0 0 0 1px hsl(var(--brand-h) 70% 82%); text-decoration:none; transition:background .2s, color .2s, box-shadow .2s;}
+.mm-svc-col .mm-gp::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--primary);}
+.mm-svc-col .mm-gp:hover,.mm-svc-col .mm-gp:focus-visible{background:var(--primary); color:#fff !important; box-shadow:none;}
+.mm-svc-col .mm-gp:hover::before,.mm-svc-col .mm-gp:focus-visible::before{background:#fff;}
+html[data-theme="dark"] .mm-svc-col .mm-gp{background:hsl(var(--brand-h) 60% 16%); box-shadow:inset 0 0 0 1px hsl(var(--brand-h) 60% 30%); color:#5CC8F2 !important;}
+html[data-theme="dark"] .mm-svc-col .mm-gp::before{background:#5CC8F2;}
+.mm-svc-col .mm-gp{white-space:nowrap; max-width:none; margin-left:0 !important; font-size:11.5px !important; padding:7px 11px !important; gap:6px; letter-spacing:0;}
+.mm-svc-col .mm-gp::before{flex:none;}
+
+/* === mm-core-strong === */
+/* core services: solid primary pill, sized to its text */
+.mm-svc-col .mm-gp{display:inline-flex !important; align-items:center; width:auto !important; min-height:0 !important; white-space:nowrap !important;
+  margin:0 0 12px 0 !important; padding:7px 12px !important; border-radius:12px !important; background:var(--primary) !important; color:#fff !important;
+  font-family:var(--font-display) !important; font-size:12.2px !important; font-weight:700 !important; letter-spacing:0 !important; line-height:1.2 !important;
+  box-shadow:none !important; transform:none !important; transition:background .2s;}
+.mm-svc-col .mm-gp::before,.mm-svc-col .mm-gp::after{content:none !important; display:none !important;}
+.mm-svc-col .mm-gp:hover,.mm-svc-col .mm-gp:focus-visible{background:var(--primary-ink,#0078AB) !important; transform:none !important; box-shadow:none !important;}
+html[data-theme="dark"] .mm-svc-col .mm-gp{background:var(--primary) !important; color:#fff !important; box-shadow:none !important;}
+/* sub-services: lighter, smaller */
+.mm-svc-col .mm-row{padding:6px 8px !important; gap:10px !important; grid-template-columns:26px 1fr !important;}
+.mm-svc-col .mm-row .mm-dot{width:26px !important; height:26px !important; border-radius:8px !important; background:transparent !important; box-shadow:inset 0 0 0 1px hsl(var(--brand-h) 60% 84%);}
+.mm-svc-col .mm-row .mm-dot svg{width:14px; height:14px;}
+.mm-svc-col .mm-row .mm-n{font-size:13px !important; font-weight:500 !important; color:var(--text-2) !important;}
+.mm-svc-col .mm-row:hover .mm-n{color:var(--primary) !important;}
+.mm-svc-col .mm-row:hover .mm-dot{background:#EAF6FC !important;}
+html[data-theme="dark"] .mm-svc-col .mm-row .mm-dot{box-shadow:inset 0 0 0 1px var(--border);}
+
+/* === mm-spacing === */
+/* even rhythm: same gap between the core pill and its first service as between services */
+.mm-svc-col{display:flex !important; flex-direction:column; align-items:flex-start; gap:10px;}
+.mm-svc-col .mm-gp{margin:0 0 0 8px !important;}
+.mm-svc-col .mm-row{width:100%; box-sizing:border-box; margin:0 !important; padding:8px !important;}
+
+/* === mm-core-v3 === */
+/* core service = section header: solid icon tile + bold title + hairline rule */
+.mm-svc-col .mm-gp{display:flex !important; align-items:center; gap:10px; width:100% !important; box-sizing:border-box; white-space:normal !important;
+  margin:0 !important; padding:0 8px 12px !important; border-radius:0 !important; background:none !important; color:var(--text) !important;
+  border-bottom:1px solid var(--border-soft,#E6EEF3); font-family:var(--font-display) !important; font-size:15px !important; font-weight:800 !important;
+  letter-spacing:-.01em !important; line-height:1.25 !important; box-shadow:none !important; transition:color .2s;}
+.mm-svc-col .mm-gp{min-height:52px !important;}
+.mm-svc-col .mm-gp .mm-gi{flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:10px; background:var(--primary); color:#fff;}
+.mm-svc-col .mm-gp .mm-gi svg{width:16px; height:16px;}
+.mm-svc-col .mm-gp::after{content:"\2192" !important; display:block !important; margin-left:auto; font-size:15px; font-weight:700; color:var(--primary); opacity:0; transform:translateX(-4px); transition:opacity .2s, transform .2s;}
+.mm-svc-col .mm-gp::before{content:none !important; display:none !important;}
+.mm-svc-col .mm-gp:hover,.mm-svc-col .mm-gp:focus-visible{background:none !important; color:var(--primary) !important;}
+.mm-svc-col .mm-gp:hover::after,.mm-svc-col .mm-gp:focus-visible::after{opacity:1; transform:none;}
+html[data-theme="dark"] .mm-svc-col .mm-gp{background:none !important; color:var(--text) !important; border-color:var(--border);}
+html[data-theme="dark"] .mm-svc-col .mm-gp:hover{color:#5CC8F2 !important;}
+
+/* === mm-core-fit === */
+/* keep core headings to 1 line where possible, max 2 */
+.mm-svc-col .mm-gp{position:relative; gap:9px !important; padding:0 22px 12px 8px !important; font-size:14px !important; letter-spacing:-.015em !important;}
+.mm-svc-col .mm-gp .mm-gi{width:28px !important; height:28px !important; border-radius:9px !important;}
+.mm-svc-col .mm-gp .mm-gi svg{width:15px !important; height:15px !important;}
+.mm-svc-col .mm-gp::after{position:absolute; right:4px; top:calc(50% - 6px); transform:translate(-4px,-50%) !important; margin:0 !important;}
+.mm-svc-col .mm-gp:hover::after,.mm-svc-col .mm-gp:focus-visible::after{transform:translate(0,-50%) !important;}
+.mm-svc-col .mm-gp .mm-gt{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
+
+/* === mm-current === */
+/* the page you're on is marked in the menu */
+.mm-svc-col .mm-row.is-current{position:relative; background:#EAF6FC !important;}
+.mm-svc-col .mm-row.is-current::before{content:""; position:absolute; left:0; top:8px; bottom:8px; width:3px; border-radius:0 3px 3px 0; background:var(--primary);}
+.mm-svc-col .mm-row.is-current .mm-n{color:var(--primary) !important; font-weight:700 !important;}
+.mm-svc-col .mm-row.is-current .mm-dot{background:var(--primary) !important; color:#fff !important; box-shadow:none !important;}
+.mm-svc-col .mm-gp.is-current-parent{color:var(--primary) !important;}
+html[data-theme="dark"] .mm-svc-col .mm-row.is-current{background:hsl(var(--brand-h) 60% 16%) !important;}
+html[data-theme="dark"] .mm-svc-col .mm-row.is-current .mm-n,html[data-theme="dark"] .mm-svc-col .mm-gp.is-current-parent{color:#5CC8F2 !important;}
+#mmTrigger.is-current-parent{color:var(--primary);}
+
+
 
 
 
@@ -6827,425 +6917,6 @@ html[data-theme="dark"] .iw-box{background:hsl(var(--brand-h) 45% 12%);}
 #approach,
 #reviews,
 #contact{ background:var(--bg-alt); }
-
-/* === SITE CONSISTENCY LOCK (do not edit here ? edit site-consistency.css) === */
-/* ??????????????????????????????????????????????????????????????????????
-   SITE CONSISTENCY ? load LAST on every page (after page CSS).
-
-   Single design system for Tekcroft:
-   - One type scale for h1?h6 + body
-   - One section vertical rhythm (--sec-y)
-   - One eyebrow / spacing language
-   - H2 stays ? 2 lines via width, not font-size hacks
-   Heroes (.hs / .ct-hero) keep their own hero padding.
-   ?????????????????????????????????????????????????????????????????????? */
-
-:root{
-  /* Type scale ? one value per level, site-wide (responsive via clamp) */
-  --h1:clamp(32px,4.2vw,56px);
-  --h2:clamp(28px,3.2vw,44px);
-  --h3:clamp(17px,1.7vw,22px);
-  --h4:clamp(14px,1.25vw,16px);
-  --h5:clamp(12.5px,1.1vw,14px);
-  --h6:clamp(12px,1.05vw,13px);
-  --body:16px;
-  --lede:16px;
-  --body-lh:1.7;
-  --sec-y:clamp(52px,5.4vw,84px);
-  --head-gap:clamp(12px,1.2vw,16px);
-  --lede-gap:clamp(14px,1.4vw,20px);
-  --block-gap:clamp(22px,2.4vw,36px);
-}
-
-/* ?? Equal vertical padding on every content section ????????????????? */
-.sec,
-section.sec,
-.sec.acv,
-.sec.ax,
-.sec.bl-sec,
-.sec.eg-sec,
-.sec.revs,
-.sec.faq,
-.sec.wy,
-.sec.pz,
-.sec.pf,
-.sec.wn,
-.sec.vs,
-.sec.wk,
-.sec.cta,
-.sec.tsm,
-.sec.wc-sec,
-.sec.svc,
-.sec.beam-zone,
-.sec.tb,
-.sec.tm,
-.sec.ls,
-.sec.lp,
-.sec.ws,
-.sec.clients,
-#who.sec,
-#vs.sec,
-#model.sec,
-#process.sec,
-#why.sec,
-#whyus.sec,
-#receive.sec,
-#pricing.sec,
-#reviews.sec,
-#work.sec,
-#faq.sec,
-#contact.sec,
-#signs.sec,
-#get.sec,
-#platforms.sec,
-#ai.sec,
-#crawl-check.sec,
-#what-local.sec,
-#services-2.sec,
-#franchise-covers.sec,
-#pack.sec,
-#apart.sec,
-#clients.sec,
-#fit.sec,
-#industries.sec,
-#proof.sec{
-  padding-block:var(--sec-y) !important;
-}
-
-/* Proof strip under hero stays intentionally tighter */
-.sec.tb,
-#proof.sec{
-  padding-block:clamp(36px,4vw,56px) !important;
-}
-
-/* ?? Headings: one size per level ? beat page-local clamps ???????????? */
-html body :is(h1, .hs-h1, .ct-hero h1),
-html body .hs .hs-h1{
-  font-size:var(--h1) !important;
-  line-height:1.08 !important;
-  /* Negative letter-spacing on display type leaves an optical left gap ? pull flush */
-  margin-inline-start:-0.04em;
-}
-html body :is(h2),
-html body .sec-head h2,
-html body .ac-head h2,
-html body .wy-say h2,
-html body .mp-say h2,
-html body .gw-say h2,
-html body .pf-head h2,
-html body .cta3 h2,
-html body .eg-sec h2,
-html body .hx .sec-head h2,
-html body .sg-head h2,
-html body .ct-side h2,
-html body .ct-next-head h2,
-html body .tm-head h2,
-html body .ls-say h2,
-html body .lp-say h2,
-html body .pw-head h2,
-html body .ps-head h2,
-html body .fp-head h2,
-html body .dc-head h2,
-html body .cq-top h2,
-html body #services-2 .sec-head h2,
-html body #services-2 h2,
-html body #franchise-covers .sec-head h2,
-html body #franchise-covers h2,
-html body #franchise-covers .tm-head h2,
-html body #what-local h2,
-html body #pack h2,
-html body #process h2,
-html body #faq h2,
-html body #duplicate h2,
-html body #duplicate h2 span,
-html body #duplicate h2 em,
-html body #duplicate h2 small,
-html body #duplicate-v2 h2,
-html body #duplicate-v2 h2 span,
-html body #duplicate-v2 h2 em,
-html body #duplicate-v2 h2 small{
-  font-size:var(--h2) !important;
-  line-height:1.12 !important;
-  letter-spacing:-0.04em !important;
-}
-html body :is(h3),
-html body .ac-card h3,
-html body .eg-card h3,
-html body .pf-card h3,
-html body .ws-item h3,
-html body .gw-block h3,
-html body .sp-top h3,
-html body .wc-panel h3,
-html body .wn-card h3,
-html body .tm-card h3,
-html body .dv-card h3,
-html body .fw-step h3,
-html body .em-card h3,
-html body .faq-aside h3{
-  font-size:var(--h3) !important;
-  line-height:1.25 !important;
-}
-/* What-we-do console tabs keep rail size (h3 is semantic only) */
-html body .cn-tab h3{
-  font-size:inherit !important;
-  line-height:inherit !important;
-  letter-spacing:inherit !important;
-  font-weight:inherit !important;
-  margin:0 !important;
-  color:inherit !important;
-}
-/* Hero form title stays compact (p.hs-form-title or legacy h3) */
-html body .hs-form > h3,
-html body .hs-form > .hs-form-title,
-html body .hs-done h3{
-  font-size:clamp(17px,1.5vw,19px) !important;
-  font-weight:700 !important;
-  line-height:1.22 !important;
-  letter-spacing:-0.035em !important;
-  margin:0 !important;
-  text-transform:none !important;
-}
-html body :is(h4){ font-size:var(--h4) !important; line-height:1.3 !important; }
-html body :is(h5){ font-size:var(--h5) !important; line-height:1.35 !important; }
-html body :is(h6){ font-size:var(--h6) !important; line-height:1.35 !important; }
-
-/* H2 measure: only center .sec-head.mid; left heads keep natural align */
-html body .sec-head{
-  max-width:min(100%, 62ch) !important;
-  text-align:left;
-  margin-inline:0;
-}
-html body .sec-head.mid{
-  max-width:min(100%, 68ch) !important;
-  margin-inline:auto !important;
-  text-align:center !important;
-}
-html body .sec h2,
-html body .sec-head h2{
-  text-wrap:balance;
-}
-/* Never force a third stacked line inside an h2 */
-html body h2 > span + span + span{
-  display:inline !important;
-}
-/* Headings must flow as one phrase ? no forced line breaks via <em>/<span>/<br> */
-html body :is(h1, h2, h3, h4, h5, h6) em,
-html body :is(h1, h2, h3, h4, h5, h6) > span{
-  display:inline !important;
-}
-html body :is(h1, h2, h3, h4, h5, h6) br{
-  display:none !important;
-}
-
-/* ?? Body / lede reading size ????????????????????????????????????????? */
-html body .sec p,
-html body .sec-lede,
-html body .hs-lede,
-html body .ac-lede,
-html body .cta3 > p,
-html body .cta3-line,
-html body .faq-a p,
-html body .faq-aside p,
-html body .wy-pane p,
-html body .wy-say > p,
-html body .wc-panel > p,
-html body .wn-panel > p,
-html body .ac-card p,
-html body .eg-card p,
-html body .pf-card > p,
-html body .gr-text,
-html body .mp-say > p,
-html body .gw-say > p,
-html body .wc-say > p,
-html body .wn-say p,
-html body .tm-aside p,
-html body .tm-foot p,
-html body .lp-lede,
-html body .ls-say p,
-html body .tm-card p{
-  font-size:var(--body) !important;
-  line-height:var(--body-lh) !important;
-}
-
-/* Keep form errors / helper chrome from inheriting body size */
-html body .sec .hs-err,
-html body .sec .ct-err,
-html body .sec .form-err,
-html body .hs-err,
-html body .ct-err,
-html body .hs-sub{
-  font-size:13px !important;
-  line-height:1.45 !important;
-}
-/* Hero form title is a label (p.hs-form-title), not body copy ? keep compact */
-html body .hs-form > h3,
-html body .hs-form > .hs-form-title{
-  font-size:clamp(17px,1.5vw,19px) !important;
-  font-weight:700 !important;
-  line-height:1.22 !important;
-  letter-spacing:-0.035em !important;
-  margin:0 !important;
-  text-transform:none !important;
-}
-
-/* ?? Heading ? description / content gaps ????????????????????????????? */
-html body .sec-head .smark,
-html body .sec-head > .smark{
-  margin-bottom:var(--head-gap) !important;
-}
-html body .sec-head h2,
-html body .ac-head h2,
-html body .tm-head h2,
-html body .ls-say h2,
-html body .lp-say h2{
-  margin:0 !important;
-}
-html body .sec-head .sec-lede,
-html body .sec-lede,
-html body .ls-say p,
-html body .lp-lede,
-html body .wy-say > p,
-html body .mp-say > p,
-html body .gw-say > p{
-  margin-top:var(--lede-gap) !important;
-}
-
-/* ?? Section eyebrows: one pill + blue dot ????????????????????????????? */
-.smark,
-.wy-eyebrow,
-.gw-eyebrow,
-.nsr-eyebrow,
-.vs-rule{
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:10px !important;
-  margin-bottom:var(--head-gap) !important;
-  padding:8px 18px !important;
-  border:1px solid var(--border) !important;
-  border-radius:30px !important;
-  background:var(--surface) !important;
-  white-space:nowrap !important;
-  box-shadow:none !important;
-  font-size:11.5px !important;
-  font-weight:700 !important;
-  letter-spacing:.16em !important;
-  text-transform:uppercase !important;
-  color:var(--brand-text) !important;
-  font-family:inherit !important;
-  line-height:1.2 !important;
-  width:fit-content !important;
-  max-width:100% !important;
-  flex:none !important;
-  justify-content:flex-start !important;
-}
-.smark b,
-.vs-rule b{
-  font-size:11.5px !important;
-  font-weight:700 !important;
-  letter-spacing:.16em !important;
-  text-transform:uppercase !important;
-  color:var(--brand-text) !important;
-  font-family:inherit !important;
-}
-.smark::before,
-.gw-eyebrow::before,
-.vs-rule::before{
-  content:"" !important;
-  display:block !important;
-  width:7px !important;
-  height:7px !important;
-  border-radius:50% !important;
-  background:var(--primary) !important;
-  flex-shrink:0 !important;
-  margin:0 !important;
-  padding:0 !important;
-  border:0 !important;
-  box-shadow:none !important;
-  background-image:none !important;
-}
-.vs-rule::after{
-  content:none !important;
-  display:none !important;
-  width:0 !important;
-  height:0 !important;
-  background:none !important;
-}
-/* Eyebrows never get flanking rules — pill + blue dot only */
-.fw-mark{
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:0 !important;
-}
-.fw-mark::before,
-.fw-mark::after{
-  content:none !important;
-  display:none !important;
-  width:0 !important;
-  height:0 !important;
-  background:none !important;
-  margin:0 !important;
-}
-.wy-eyebrow > i,
-.nsr-eyebrow > i{
-  display:block !important;
-  width:7px !important;
-  height:7px !important;
-  border-radius:50% !important;
-  background:var(--primary) !important;
-  flex-shrink:0 !important;
-  margin:0 !important;
-  padding:0 !important;
-  color:transparent !important;
-  overflow:hidden !important;
-}
-.wy-eyebrow > i svg,
-.nsr-eyebrow > i svg{
-  display:none !important;
-}
-.on-dark .smark,
-.on-dark .wy-eyebrow,
-.on-dark .gw-eyebrow,
-.on-dark .nsr-eyebrow,
-.on-dark .vs-rule,
-.ws .smark,
-#fit .smark,
-#stack .smark{
-  background:rgba(255,255,255,.10) !important;
-  border-color:rgba(255,255,255,.20) !important;
-  color:#fff !important;
-}
-.on-dark .smark b,
-.on-dark .vs-rule b,
-.ws .smark b,
-#fit .smark b,
-#stack .smark b{
-  color:#fff !important;
-}
-
-/* ?? Alternating grounds helper (pages set --ground / --panel) ???????? */
-.sec[data-ground="tint"],
-.sec.is-tint{
-  --ground:var(--bg-alt);
-  --panel:var(--surface);
-  background:var(--ground) !important;
-}
-.sec[data-ground="white"],
-.sec.is-white{
-  --ground:var(--surface);
-  --panel:var(--bg-alt);
-  background:var(--ground) !important;
-}
-.sec[data-ground="soft"],
-.sec.is-soft{
-  --ground:var(--bg);
-  --panel:var(--surface);
-  background:var(--ground) !important;
-}
-/* Process steps: icons only ? hide step numbers in titles */
-#process .eg-card h3 i{
-  display:none !important;
-  margin:0 !important;
-}
 
 /* === SITE CONSISTENCY LOCK (do not edit here — edit site-consistency.css) === */
 /* ══════════════════════════════════════════════════════════════════════
