@@ -2193,6 +2193,26 @@ html[data-theme="dark"] .fw .fw-step:hover .fw-art{background:
 #fit .tl-table{--vs-c1:28%;}
 #fit .tl-hold .vs-halo{left:auto; right:0; width:30%;}
 #fit .tl-hold .vs-stage{min-width:760px;}
+/* responsive.css sets table{display:block}, which drops colgroup widths and
+   leaves the absolute .vs-halo sitting over empty space beside the columns.
+   Restore real table layout for this section on desktop only. */
+@media (min-width:901px){
+  #fit .tl-table{
+    display:table !important;
+    width:100%;
+    max-width:none;
+    table-layout:fixed;
+    border-collapse:collapse;
+    overflow:hidden;
+  }
+  #fit .tl-table colgroup{display:table-column-group !important;}
+  #fit .tl-table col{display:table-column !important;}
+  #fit .tl-table thead{display:table-header-group !important;}
+  #fit .tl-table tbody{display:table-row-group !important;}
+  #fit .tl-table tr{display:table-row !important;}
+  #fit .tl-table th,
+  #fit .tl-table td{display:table-cell !important;}
+}
 .tl-sub{display:block; margin-top:3px; font-family:var(--font); font-size:12.4px; font-weight:500;
   letter-spacing:0; color:var(--muted);}
 .tl-table tbody th,.tl-table tbody td{padding-top:clamp(16px,1.6vw,20px); padding-bottom:clamp(16px,1.6vw,20px);}

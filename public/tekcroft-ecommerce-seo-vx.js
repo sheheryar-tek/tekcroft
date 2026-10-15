@@ -169,15 +169,31 @@
        elapsed time, so it feels the same at 60, 120 and 144 Hz and a jump in the scroll position glides instead of snapping;
      · positions are snapped to whole device pixels, so the edges stay crisp while it moves;
      · a click on the small film does not use the browser's smooth scroll (its speed depends on the distance);
-       it runs its own eased glide, and the video starts when the film has landed. */
+       it runs its own eased glide, and the video starts when the film has landed.
+     Phones / tall narrow screens use normal-flow layout (see CSS) and only drive the film's scale. */
   var OMEGA = 13;         /* spring stiffness: higher follows the scroll more tightly, lower is floatier */
   var d = {}, cur = 0, goal = 0, vel = 0, raf = 0, last = 0, pin = 0, dpr = 1, lastE = -1, g = null;
+  var flowMQ = window.matchMedia("(max-width:760px), (max-width:1100px) and (max-aspect-ratio:1/1)");
+  var flow = false, opened = false;
   function clamp(v){ return v < 0 ? 0 : (v > 1 ? 1 : v); }
   function lerp(a, b, t){ return a + (b - a) * t; }
   function ease(t){ return t * t * (3 - 2 * t); }
   function easeIO(t){ return t < .5 ? .5 * Math.pow(2 * t, 2.5) : 1 - .5 * Math.pow(2 * (1 - t), 2.5); }   /* in and out, a little quicker off the mark than a cubic */
 
+  function clearInline(){
+    frame.removeAttribute("style");
+    head.removeAttribute("style");
+    cta.removeAttribute("style");
+    if (glow) glow.removeAttribute("style");
+    if (cue) cue.removeAttribute("style");
+    lastE = -1;
+  }
+
   function measure(){
+    var wasFlow = flow;
+    flow = flowMQ.matches;
+    if (flow !== wasFlow) clearInline();
+    if (flow) { d = { flow: true, s0: .8, r0: 20, r1: 16 }; return; }
     var vw = stage.clientWidth, vh = stage.clientHeight;
     var narrow = vw < 760;
     var m = narrow ? 8 : 12;                       /* margin left around the film when it is full */
@@ -206,15 +222,35 @@
   function trackTop(){ return trackEl.getBoundingClientRect().top + window.pageYOffset; }   /* the track's place on the page */
 
   function readGoal(){
+    if (d.flow) {
+      var vh = window.innerHeight;
+      var fr = frame.getBoundingClientRect();
+      var c = fr.top + fr.height / 2;
+      goal = opened ? 1 : clamp((vh * .9 - c) / (vh * .42));
+      return;
+    }
     goal = d.travel > 0 ? clamp((pin - trackEl.getBoundingClientRect().top) / d.travel) : 0;
   }
 
   function snap(v){ return Math.round(v * dpr) / dpr; }
 
+  function paintFlow(e){
+    var s = lerp(d.s0, 1, e);
+    var fs = frame.style, sh = Math.max(0, 1 - e * 4);
+    fs.transform = s > .9995 ? "none" : "scale(" + s.toFixed(4) + ")";
+    fs.borderRadius = lerp(d.r0, d.r1, e).toFixed(1) + "px";
+    fs.boxShadow = sh > 0
+      ? "0 44px 90px -46px rgba(0,150,213," + (.55 * sh).toFixed(3) + "), 0 28px 56px -36px rgba(var(--ink-rgb)," + (.40 * sh).toFixed(3) + ")"
+      : "none";
+    if (cover) cover.style.transform = "scale(" + (1.06 - .06 * e).toFixed(4) + ")";
+    if (glow) glow.style.opacity = (1 - e).toFixed(3);
+  }
+
   function paint(p){
     var e = ease(clamp(p));
     if (Math.abs(e - lastE) < .00005) return;       /* nothing moved, so nothing to write */
     lastE = e;
+    if (d.flow) { paintFlow(e); return; }
     var w = snap(lerp(d.w0, d.w1, e)), h = snap(lerp(d.h0, d.h1, e));
     var c = lerp(d.c0, d.vh / 2, e);
     var x = snap((d.vw - w) / 2), t = snap(c - h / 2);
@@ -270,8 +306,10 @@
   function settle(){ measure(); readGoal(); cur = goal; vel = 0; lastE = -1; paint(cur); }
 
   /* click on the small film: glide the page down to where the film is full size (about a second, eased in
-     and out), then call back so the video can start. Returns false when there is nothing to grow. */
+     and out), then call back so the video can start. Returns false when there is nothing to grow.
+     In flow mode a tap eases the film to full size and starts the video immediately. */
   expand = function(done){
+    if (flow) { opened = true; readGoal(); kick(); return false; }
     if (goal > .97 || !d.travel) return false;
     var base = trackTop() - pin;
     g = { from: window.pageYOffset, to: base + d.travel, base: base, t0: 0, done: done || null,

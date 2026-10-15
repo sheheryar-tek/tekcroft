@@ -1,0 +1,77 @@
+
+/* KNOW THE DIFFERENCE — DIY vs professional: a label column and two
+   options, with the frame over the professional column on the right. */
+#fit .vs-table{--vs-c1:30%; --vs-col:35%;}
+#fit .vs-halo{left:auto; right:0; width:35%;}
+#fit .vs-stage{min-width:720px;}
+#fit .sec-head .sec-lede{max-width:70ch;}
+#fit .sec-head .sec-lede + .sec-lede{margin-top:10px;}
+.vs-go{display:flex; justify-content:center; margin-top:clamp(26px,3vw,40px);}
+@media (max-width:900px){ #fit .vs-stage{min-width:0;} }
+@media (max-width:600px){ .vs-go .btn{width:100%; justify-content:center; white-space:normal; text-align:center;} }
+
+
+/* ---- */
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   HOW LONG DOES IT TAKE — the comparison table carries three tiers. The
+   middle column draws each tier across the first twelve months; the
+   framed column gives the number. What stretches a timeline sits under.
+   ══════════════════════════════════════════════════════════════════════ */
+#fit .tl-table{--vs-c1:28%;}
+#fit .tl-hold .vs-halo{left:auto; right:0; width:30%;}
+#fit .tl-hold .vs-stage{min-width:760px;}
+.tl-sub{display:block; margin-top:3px; font-family:var(--font); font-size:12.4px; font-weight:500;
+  letter-spacing:0; color:var(--muted);}
+.tl-table tbody th,.tl-table tbody td{padding-top:clamp(16px,1.6vw,20px); padding-bottom:clamp(16px,1.6vw,20px);}
+.tl-ic{display:grid; place-items:center; width:30px; height:30px; flex:none; border-radius:50%;
+  color:var(--brand-text); background:var(--brand-soft);}
+.tl-ic svg{width:16px; height:16px;}
+.tl-table td.c-us .vs-v{font-family:var(--font-display); font-size:clamp(15px,1.25vw,17px); font-weight:700;
+  letter-spacing:-0.02em; color:var(--text);}
+
+.tl-axis{display:flex; justify-content:space-between; margin-top:8px; padding-right:2px;
+  font-size:10.5px; font-weight:600; letter-spacing:.04em; color:var(--muted);}
+.tl-axis i{font-style:normal;}
+.tl-bar{position:relative; display:block; height:12px; border-radius:99px;
+  background:
+    linear-gradient(90deg, transparent calc(25% - .5px), var(--border) calc(25% - .5px) calc(25% + .5px), transparent calc(25% + .5px)),
+    linear-gradient(90deg, transparent calc(50% - .5px), var(--border) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)),
+    linear-gradient(90deg, transparent calc(75% - .5px), var(--border) calc(75% - .5px) calc(75% + .5px), transparent calc(75% + .5px)),
+    var(--border-soft);}
+.tl-bar i{position:absolute; top:0; bottom:0; left:var(--a); width:calc(var(--b) - var(--a));
+  border-radius:99px; background:linear-gradient(90deg,#35BDF2,var(--primary));
+  box-shadow:0 4px 12px -4px hsl(var(--brand-h) 100% 40% / .55);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 1s var(--pop); transition-delay:calc(.35s + var(--i) * .18s);}
+.tl-hold.in .tl-bar i{transform:scaleX(1);}
+.tl-bar.is-more i{border-radius:99px 0 0 99px;
+  -webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);
+          mask-image:linear-gradient(90deg,#000 82%,transparent);}
+.tl-table tbody tr{transition:background .25s var(--ease);}
+.tl-table tbody tr:hover{background:hsl(var(--brand-h) 100% 50% / .04);}
+.tl-table tbody tr:hover .tl-bar i{filter:brightness(1.08);}
+
+/* what stretches a timeline */
+.tl-notes{list-style:none; margin:clamp(20px,2.2vw,28px) 0 0; padding:0;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,1.4vw,18px);}
+.tl-note{display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:12px; row-gap:4px;
+  padding:16px 18px; border-radius:16px;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  transition:background .3s var(--ease), transform .4s var(--pop);}
+.tl-note:hover{background:rgba(255,255,255,.13); transform:translateY(-3px);}
+.tl-nic{grid-row:1 / span 2; display:grid; place-items:center; width:38px; height:38px; border-radius:11px;
+  color:#fff; background:var(--primary);}
+.tl-nic svg{width:19px; height:19px;}
+.tl-note b{font-family:var(--font-display); font-size:15px; font-weight:700; letter-spacing:-0.02em; color:#fff;}
+.tl-note span{font-size:13.4px; line-height:1.55; color:rgba(255,255,255,.74);}
+
+@media (max-width:900px){
+  #fit .tl-hold .vs-stage{min-width:0;}
+  .tl-axis{display:none;}
+  .tl-table td .tl-bar{width:55%;}
+  .tl-notes{grid-template-columns:minmax(0,1fr);}
+}
+@media (prefers-reduced-motion:reduce){ .tl-bar i{transition:none; transform:none;} .tl-note{transition:none;} }

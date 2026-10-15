@@ -1,0 +1,170 @@
+
+/* ══════════════════════════════════════════════════════════════════
+   VIDEO CTA — scroll-expand
+
+   The film starts as a pill in the middle of a dark stage and grows to
+   fill the screen as the page is scrolled. The stage is pinned
+   (position:sticky) inside a tall track, so how far the track has
+   scrolled decides how big the film is — see #vx-script. Everything the
+   script animates arrives as custom properties on .vx-stage (--vx-w,
+   --vx-h, --vx-t, --vx-r, --vx-e, --vx-head), so this sheet is the only
+   place the look is set.
+
+   The section takes the page's own surface and text tokens, so it reads
+   white in light mode and ink in dark mode like every other section.
+   For the brand tint instead of white, set --vx-bg to var(--bg-alt).
+   ══════════════════════════════════════════════════════════════════ */
+.vx{--vx-bg:var(--surface);   /* the same surface as the section that follows, so there is no seam under the film */
+  position:relative; background:var(--vx-bg); color:var(--text);}
+
+/* the track is the scroll distance: one stage-height of pinning plus
+   about a screen and a bit of travel while the pill grows */
+.vx-track{position:relative;
+  height:calc(100vh - var(--nav-h) + 115vh);
+  height:calc(100svh - var(--nav-h) + 115svh);}
+
+.vx-stage{position:sticky; top:var(--nav-h); overflow:hidden; isolation:isolate;
+  height:calc(100vh - var(--nav-h));
+  height:calc(100svh - var(--nav-h));
+  /* start state, so nothing jumps before the script has measured */
+  --vx-w:80vw; --vx-h:52vh; --vx-t:200px; --vx-r:28px; --vx-e:0; --vx-head:1;}
+
+/* a faint brand glow behind the pill that fades as the film fills the screen (its opacity is set by the script) */
+.vx-glow{position:absolute; inset:0; z-index:-1; pointer-events:none; will-change:opacity;
+  background:radial-gradient(58% 52% at 50% 60%, rgba(0,150,213,.14), transparent 72%);}
+
+/* ---- the words above the pill; they leave as it grows ---- */
+.vx-head{position:absolute; left:0; right:0; top:0; z-index:1; text-align:center; pointer-events:none;
+  padding:clamp(18px,3.4vh,36px) 20px 0; will-change:opacity,transform;
+  opacity:var(--vx-head);
+  transform:translateY(calc((1 - var(--vx-head)) * -34px));}
+.vx-head .smark{margin-bottom:16px;}
+.vx-head h2{max-width:24ch; margin:0 auto; font-size:clamp(26px,3.3vw,44px);}
+
+/* ---- the film ---- */
+/* the script places the film with a transform (not top/left), so a scroll never makes the page re-flow;
+   left/top/transform below are only the first-paint position, before the script has measured */
+.vx-frame{position:absolute; left:50%; top:0;
+  width:var(--vx-w); height:var(--vx-h);
+  transform:translate3d(-50%, var(--vx-t), 0);
+  border-radius:var(--vx-r); overflow:hidden; isolation:isolate;
+  background:radial-gradient(120% 90% at 28% 18%, #0c4663, #0d1820 62%, #090d11);
+  /* the depth shadow belongs to the pill; it is gone by the time the film has
+     grown a quarter of the way, so nothing is left under the full-width film */
+  --vx-sh:max(0, calc(1 - var(--vx-e) * 4));
+  box-shadow:0 44px 90px -46px rgba(0,150,213,calc(.55 * var(--vx-sh))),
+             0 28px 56px -36px rgba(var(--ink-rgb),calc(.40 * var(--vx-sh)));
+  will-change:transform;}
+.vx-media{position:absolute; inset:0;}
+/* the cover photo: framed on the devices (they sit low in the picture), with a
+   slight zoom that settles as the film grows */
+.vx-poster{display:block; width:100%; height:100%; object-fit:cover; object-position:50% 82%;
+  transform:scale(calc(1.06 - .06 * var(--vx-e)));}
+/* the video file fills the film edge to edge, so there are no black sides. The film is wider than the
+   video's 16:9 (see FILL in the script), so the top and bottom are cropped; the crop is weighted a little
+   toward the top */
+.vx-media video{position:absolute; inset:0; width:100%; height:100%; background:#000; object-fit:cover; object-position:50% 45%;}
+.vx-spin{position:absolute; left:50%; top:50%; z-index:2; width:54px; height:54px; margin:-27px 0 0 -27px;
+  border-radius:50%; border:3px solid rgba(255,255,255,.25); border-top-color:#fff; pointer-events:none;
+  animation:vxSpin .9s linear infinite;}
+.vx-spin[hidden]{display:none;}
+@keyframes vxSpin{to{transform:rotate(360deg);}}
+.vx-msg{position:absolute; inset:0; z-index:2; margin:0; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:10px; padding:24px; text-align:center; font-size:15px; font-weight:600; color:#fff;
+  background:rgba(8,8,8,.82);}
+.vx-msg small{display:block; max-width:62ch; font-size:12.5px; font-weight:500; line-height:1.5; color:rgba(255,255,255,.7);}
+/* a light shade at the foot so the button reads; the photo is otherwise left as it is */
+.vx-frame::after{content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(180deg, rgba(8,8,8,0) 62%, rgba(8,8,8,.34));
+  transition:opacity .4s var(--ease);}
+.vx.is-playing .vx-frame::after{opacity:0;}
+/* a hairline edge, so a bright corner of the photo does not dissolve into the white page */
+.vx-frame::before{content:""; position:absolute; inset:0; z-index:3; pointer-events:none;
+  border-radius:inherit; border:1px solid rgba(var(--ink-rgb),.16);}
+
+/* the whole film is the play button, so the target is as large as it can be */
+.vx-play{position:absolute; inset:0; z-index:2; width:100%; height:100%; padding:0; border:0;
+  background:transparent; display:grid; place-items:center; cursor:pointer;}
+.vx-play-ic{display:grid; place-items:center; width:84px; height:84px; border-radius:50%;
+  /* solid brand blue, so it reads on the bright laptop screen as well as the dark desk */
+  background:var(--primary); border:2px solid rgba(255,255,255,.7);
+  box-shadow:0 14px 34px -10px rgba(0,60,90,.6);
+  transition:transform .35s var(--pop), background-color .3s var(--ease), border-color .3s var(--ease);}
+.vx-play-ic svg{width:28px; height:28px; margin-left:4px; fill:#fff;}
+.vx-play:hover .vx-play-ic, .vx-play:focus-visible .vx-play-ic{
+  transform:scale(1.1); background:var(--p600); border-color:#fff;}
+.vx-play:focus-visible{outline-offset:-6px;}
+.vx.is-playing .vx-play{display:none;}
+
+/* the button sits on the stage, over the film, in a strip that has the film's own width and
+   centre (so it needs no transform of its own — .btn-primary uses one for its hover lift).
+   The strip follows the film: before play its foot is on the film's bottom edge. */
+.vx-cta-wrap{position:absolute; left:50%; width:var(--vx-w); z-index:5;
+  display:flex; justify-content:center; padding:0 16px; pointer-events:none;
+  top:calc(var(--vx-t) + var(--vx-h) - clamp(16px,3.4vh,36px));
+  transform:translate(-50%,-100%);}
+.vx-cta-wrap .btn{pointer-events:auto;}
+.vx.is-playing .vx-cta-wrap .btn{padding:11px 18px; font-size:13.5px;}
+/* while it plays, the button goes to the film's top-right corner: the film puts its logo at the
+   top-left, its subtitles along the bottom and its graphics in the middle, so the corner is the
+   one place the button covers nothing (the browser's own controls sit along the bottom) */
+.vx.is-playing .vx-cta-wrap{top:calc(var(--vx-t) + clamp(14px,2.6vh,26px)); transform:translateX(-50%);
+  justify-content:flex-end; padding:0 clamp(14px,1.8vw,24px);}
+
+/* the vertical SCROLL cue, gone as soon as the film starts to grow */
+.vx-scroll{position:absolute; right:clamp(14px,2.2vw,32px); bottom:clamp(26px,6vh,58px); z-index:4;
+  display:flex; align-items:center; gap:14px; pointer-events:none;
+  writing-mode:vertical-rl; font-size:11px; font-weight:700; line-height:1;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--text-2);
+  opacity:calc(1 - var(--vx-e) * 5);}
+.vx-scroll i{display:block; width:10px; height:10px; border-radius:50%;
+  border:1.5px solid var(--primary); position:relative;}
+.vx-scroll i::after{content:""; position:absolute; inset:2px; border-radius:50%; background:var(--primary);}
+
+/* the cursor that follows the pointer over the film (fine pointers only) */
+.vx-cursor{position:absolute; left:0; top:0; z-index:6; width:0; height:0;
+  pointer-events:none; opacity:0; transition:opacity .25s var(--ease);}
+.vx-cursor.on{opacity:1;}
+.vx-cursor-ring{position:absolute; left:-24px; top:-24px; width:48px; height:48px; border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.9);
+  transition:transform .4s var(--pop), background-color .3s var(--ease), border-color .3s var(--ease);}
+.vx-cursor-dot{position:absolute; left:-4px; top:-4px; width:8px; height:8px; border-radius:50%;
+  background:#fff; transition:opacity .2s var(--ease);}
+.vx-cursor b{position:absolute; left:-40px; top:-6px; width:80px; text-align:center; font-size:11px; line-height:12px;
+  font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:#fff;
+  opacity:0; transition:opacity .2s var(--ease) .08s;}
+.vx-cursor.big .vx-cursor-ring{transform:scale(1.9); background:rgba(0,150,213,.92); border-color:transparent;}
+.vx-cursor.big .vx-cursor-dot{opacity:0;}
+.vx-cursor.big b{opacity:1;}
+.vx.has-cursor .vx-play{cursor:none;}
+.vx.is-playing .vx-cursor{display:none;}
+
+@media (max-width:760px){
+  .vx-poster{object-position:60% 62%;}
+  .vx-head h2{font-size:clamp(24px,7vw,30px);}
+  .vx-play-ic{width:66px; height:66px;}
+  .vx-play-ic svg{width:24px; height:24px;}
+  /* on a phone the film is a full-width 16:9, so the button goes under it, not over it */
+  .vx-cta-wrap, .vx.is-playing .vx-cta-wrap{left:0; width:100%; transform:none; justify-content:center; padding:0 16px;
+    top:calc(var(--vx-t) + var(--vx-h) + 22px);}
+  .vx-cta-wrap .btn, .vx.is-playing .vx-cta-wrap .btn{font-size:14px; padding:14px 22px;}
+  .vx-scroll{display:none;}
+}
+
+/* reduced motion: no pinning and no growing — the film sits in the page
+   at its large size, in the normal flow */
+@media (prefers-reduced-motion:reduce){
+  .vx-spin{animation:none;}
+  .vx-track{height:auto;}
+  .vx-stage{position:relative; top:auto; height:auto; overflow:visible;
+    padding-bottom:clamp(36px,6vw,72px);}
+  .vx-head{position:relative; opacity:1; transform:none; padding-top:clamp(40px,6vw,72px); padding-bottom:30px;}
+  .vx-frame{position:relative; left:auto; top:auto; transform:none; will-change:auto;
+    width:min(100% - 40px, 1200px); height:auto; aspect-ratio:2/1; margin:0 auto; border-radius:22px;}
+  @media (max-width:760px){ .vx-frame{aspect-ratio:16/9;} }
+  .vx-poster{transform:none;}
+  .vx-scroll{display:none;}
+  .vx-cta-wrap, .vx.is-playing .vx-cta-wrap{position:relative; left:auto; top:auto; width:auto; transform:none;
+    margin-top:22px; justify-content:center; padding:0 20px;}
+  .vx.is-playing .vx-cta-wrap .btn{padding:14px 22px; font-size:14px;}
+}
