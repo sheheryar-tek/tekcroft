@@ -8,6 +8,10 @@ import meta from "@/lib/franchise-seo-meta.json";
 import lcp from "@/lib/franchise-seo-lcp.json";
 import "@/app/franchise-seo.css";
 import "@/app/footer-lock.css";
+/* Shared service hero shell — same style/design on every /services page */
+import "@/app/service-hero-lock.css";
+/* Expanding panels shell — shared intro line + centered CTA */
+import "@/app/tm-shell-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,

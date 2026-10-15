@@ -26,7 +26,7 @@ var SERVICES = [
       {name:"Custom Software Development Services", href:"/services/custom-software-development-services", note:"Custom platforms and internal tools.", img:"devs"},
       {name:"Mobile App Development Services", href:"/services/mobile-app-development-services", note:"iOS and Android, one codebase.", img:"table"}
     ]},
-  { title:"AI Development and Automation", href:"/#services", icon:"chip", img:"devs",
+  { title:"Artificial Intelligence Services", href:"/services/artificial-intelligence-services", icon:"chip", img:"devs",
     items:[
       {name:"AI Development Services", href:"/services/ai-development-services", note:"Models wired into your own stack.", img:"devs"},
       {name:"AI Chatbot Development Services", href:"/services/ai-chatbot-development-services", note:"Answer customers day and night.", img:"mentor"},

@@ -1,4 +1,4 @@
-﻿/* Franchise SEO Services — design from source HTML; chrome in tekcroft.css */
+/* Franchise SEO Services — design from source HTML; chrome in tekcroft.css */
 /* === hs-styles === */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ECOMMERCE SEO — SERVICE HERO
@@ -7438,10 +7438,10 @@ html[data-theme="dark"] #franchise-covers .cn-sheet{ background:var(--n875) !imp
 .tm-aside .btn{flex:none;}
 
 .tm-rail{display:flex; gap:7px; height:clamp(360px,38vw,452px);}
-.tm-item{position:relative; flex:0 0 46px; min-width:46px; overflow:hidden; cursor:pointer;
+.tm-item{position:relative; flex-grow:0; flex-shrink:0; min-width:0; overflow:hidden; cursor:pointer;
   border-radius:18px; border:1px solid var(--border); background:var(--surface);
-  transition:flex .6s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);}
-.tm-item.on{flex:1 1 auto; min-width:300px; border-color:#0A0C0E;
+  transition:border-color .4s var(--ease), box-shadow .4s var(--ease);}
+.tm-item.on{min-width:0; border-color:#0A0C0E;
   box-shadow:0 30px 60px -34px rgba(4,12,20,.9);}
 .tm-item:hover:not(.on){border-color:hsl(var(--brand-h) 70% 78%); background:hsl(var(--brand-h) 85% 97%);}
 .tm-item:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
@@ -7528,7 +7528,7 @@ html[data-theme="dark"] .tm-chip{background:hsl(var(--brand-h) 40% 18%);}
 #franchise-covers .tm-card{max-height:100%; overflow:auto; scrollbar-width:thin;}
 #franchise-covers .tm-card::-webkit-scrollbar{width:6px;}
 #franchise-covers .tm-card::-webkit-scrollbar-thumb{background:hsl(var(--brand-h) 60% 84%); border-radius:99px;}
-#franchise-covers .tm-item.on{min-width:340px;}
+#franchise-covers .tm-item.on{/* min-width cleared for flex-basis open */}
 @media (max-width:980px){
   #franchise-covers .tm-rail{height:auto;}
   #franchise-covers .tm-card{max-height:none; overflow:visible;}

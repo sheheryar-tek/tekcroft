@@ -1,0 +1,92 @@
+/* Shared expanding-panels shell (.tm / .tm-head / .tm-rail / .tm-cta)
+   Intro blue line + centered primary CTA — every service page that uses
+   the vertical numbered panels. Import AFTER page stylesheets. */
+
+section.tm .tm-head{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:clamp(20px,3vw,48px) !important;
+  align-items:center !important;
+  margin-bottom:clamp(18px,2.2vw,28px) !important;
+}
+section.tm .tm-head:not(:has(.ax-lede)){
+  grid-template-columns:minmax(0,1fr) !important;
+}
+section.tm .ax-lede{
+  margin:0 !important;
+  justify-self:end !important;
+  max-width:44ch !important;
+  padding-left:clamp(16px,1.6vw,22px) !important;
+  border-left:2px solid var(--primary) !important;
+  font-size:clamp(15px,1.1vw,17px) !important;
+  line-height:1.6 !important;
+  color:var(--text-2) !important;
+}
+section.tm .ax-lede p{
+  margin:0;
+  font-size:inherit;
+  line-height:inherit;
+  color:inherit;
+}
+section.tm .ax-lede p + p{margin-top:10px;}
+@media (max-width:860px){
+  section.tm .tm-head{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:16px !important;
+    align-items:start !important;
+  }
+  section.tm .ax-lede{justify-self:start !important;}
+}
+
+section.tm .tm-cta{
+  display:flex !important;
+  justify-content:center !important;
+  margin-top:clamp(28px,3vw,40px) !important;
+  position:relative;
+  z-index:2;
+}
+section.tm .tm-cta .btn{flex:none;}
+@media (max-width:600px){
+  section.tm .tm-cta .btn{width:100%; justify-content:center;}
+}
+
+/* Smooth panel open (.tm): flex-basis ease + delayed .tm-open fade/slide.
+   Desktop only. --tm-n / optional --tm-slim|--tm-gap set on each .tm-rail.
+   !important beats per-page transition:flex and AIS unlock.css !important. */
+@media (min-width:981px){
+  .tm-rail,
+  html[data-design="raw"] .tm-rail{
+    --tm-slim:64px; --tm-gap:7px; container-type:inline-size;
+  }
+  .tm-item, .tm-item:not(.on), .tm-item.on,
+  html[data-design="raw"] .tm-item,
+  html[data-design="raw"] .tm-item:not(.on),
+  html[data-design="raw"] .tm-item.on{
+    flex-grow:0 !important; flex-shrink:0 !important; min-width:0 !important;
+    transition:flex-basis .8s cubic-bezier(.65,0,.35,1), border-color .5s ease, box-shadow .6s ease !important;
+  }
+  .tm-item:not(.on),
+  html[data-design="raw"] .tm-item:not(.on){
+    flex-basis:var(--tm-slim) !important;
+  }
+  .tm-item.on,
+  html[data-design="raw"] .tm-item.on{
+    flex-basis:calc(100% - (var(--tm-n) - 1) * (var(--tm-slim) + var(--tm-gap))) !important;
+  }
+  .tm-bg,
+  html[data-design="raw"] .tm-bg{ transition:opacity .7s ease .1s !important; }
+  .tm-slim,
+  html[data-design="raw"] .tm-slim{ transition:opacity .35s ease !important; }
+  .tm-open,
+  html[data-design="raw"] .tm-open{
+    right:auto !important; max-width:none !important;
+    width:calc(100cqw - (var(--tm-n) - 1) * (var(--tm-slim) + var(--tm-gap))) !important;
+    transform:translateY(14px) !important;
+    transition:opacity .35s ease, transform .5s cubic-bezier(.2,.8,.2,1) !important;
+  }
+  .tm-item.on .tm-open,
+  html[data-design="raw"] .tm-item.on .tm-open{
+    transform:none !important;
+    transition:opacity .55s ease .5s, transform .7s cubic-bezier(.2,.8,.2,1) .5s !important;
+  }
+}

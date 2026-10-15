@@ -10,7 +10,7 @@
     linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.52) 42%,
                     rgba(0,0,0,.92) 100%);}
 
-﻿/* Google Business Profile Optimization — design from tekcroft-gmb HTML; chrome in tekcroft.css */
+/* Google Business Profile Optimization — design from tekcroft-gmb HTML; chrome in tekcroft.css */
 /* === gbp tokens (from tk-core) === */
 :root{
   --veil:rgba(0,0,0,.78);
@@ -1463,6 +1463,35 @@ html[data-theme="dark"] .vs{--vs-ai:rgba(255,255,255,.045);}
    scrolls with the section. Same image, no jank. */
 @media (max-width:900px), (hover:none){
   .vs::before{background-attachment:scroll;}
+}
+
+/* Know the difference (#fit) — shop-front photo is the section background.
+   Scoped to #fit only so other .vs sections keep the shared --shot-3 plate.
+   Kill ::before (office --shot-3), pin .vs-bg img to cover, veil on top. */
+#fit.vs{
+  overflow:hidden;
+  position:relative;
+}
+#fit.vs::before{
+  content:none !important;
+  background:none !important;
+}
+#fit.vs > .vs-bg{
+  position:absolute; inset:0; z-index:0;
+  pointer-events:none; overflow:hidden;
+}
+#fit.vs > .vs-bg img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  max-width:none;
+  object-fit:cover; object-position:center;
+  display:block;
+}
+#fit.vs::after{
+  z-index:1;
+}
+#fit.vs > .wrap{
+  position:relative; z-index:2;
 }
 
 /* â”€â”€ the eyebrow, ruled either side â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -5647,10 +5676,10 @@ html[data-theme="dark"] #faq .faq-list{background:var(--surface);}
 .tm-aside .btn{flex:none;}
 
 .tm-rail{display:flex; gap:7px; height:clamp(360px,38vw,452px);}
-.tm-item{position:relative; flex:0 0 46px; min-width:46px; overflow:hidden; cursor:pointer;
+.tm-item{position:relative; flex-grow:0; flex-shrink:0; min-width:0; overflow:hidden; cursor:pointer;
   border-radius:18px; border:1px solid var(--border); background:var(--surface);
-  transition:flex .6s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);}
-.tm-item.on{flex:1 1 auto; min-width:300px; border-color:#0A0C0E;
+  transition:border-color .4s var(--ease), box-shadow .4s var(--ease);}
+.tm-item.on{min-width:0; border-color:#0A0C0E;
   box-shadow:0 30px 60px -34px rgba(4,12,20,.9);}
 .tm-item:hover:not(.on){border-color:hsl(var(--brand-h) 70% 78%); background:hsl(var(--brand-h) 85% 97%);}
 .tm-item:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
@@ -5738,7 +5767,7 @@ html[data-theme="dark"] .tm-chip{background:hsl(var(--brand-h) 40% 18%);}
 #gbp-process .tm-card{max-height:100%; overflow:auto; scrollbar-width:thin;}
 #gbp-process .tm-card::-webkit-scrollbar{width:6px;}
 #gbp-process .tm-card::-webkit-scrollbar-thumb{background:hsl(var(--brand-h) 60% 84%); border-radius:99px;}
-#gbp-process .tm-item.on{min-width:340px;}
+#gbp-process .tm-item.on{/* min-width cleared for flex-basis open */}
 @media (max-width:980px){
   #gbp-process .tm-rail{height:auto;}
   #gbp-process .tm-card{max-height:none; overflow:visible;}

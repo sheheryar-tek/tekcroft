@@ -71,6 +71,10 @@ const nextConfig = {
         headers: immutable,
       },
       {
+        source: "/tekcroft-artificial-intelligence-services.:hash.js",
+        headers: immutable,
+      },
+      {
         source: "/_next/static/:path*",
         headers: immutable,
       },      {

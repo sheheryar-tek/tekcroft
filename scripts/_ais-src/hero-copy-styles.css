@@ -1,0 +1,27 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE HEADLINE'S LINE BREAKS
+
+   The four <span>s are the authored line breaks — they hold the shape the
+   copy was written to, with the blue phrase alone on the second line. They
+   are only safe while the column is wide enough for the longest of them
+   ("Technical SEO"); below that a forced line has nowhere to go and
+   would run past the column edge instead of wrapping.
+
+   So the breaks are held at full width and released everywhere else: the
+   spans go inline and the browser wraps the sentence itself. The one thing
+   that must not break either way is the blue phrase, which is two words
+   and reads as a unit — that is the nowrap.
+   ══════════════════════════════════════════════════════════════════════ */
+.hs-h1 em{white-space:nowrap;}
+
+/* Below the full column, and on every screen in variant 02 — where the
+   headline shares its row with two more columns and never has the width
+   for an authored break — the sentence wraps on its own. */
+@media (max-width:1240px){
+  .hs-h1 span{display:inline;}
+  /* Four words is past the point where holding the blue phrase on one
+     line is safe. Once the authored breaks are released it wraps with
+     the rest of the sentence rather than running past the column. */
+  .hs-h1 em{white-space:normal;}
+}

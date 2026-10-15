@@ -1,4 +1,4 @@
-﻿/* Mobile App Development — design from tekcroft-mobile-app HTML; chrome in tekcroft.css */
+/* Mobile App Development — design from tekcroft-mobile-app HTML; chrome in tekcroft.css */
 /* === hs-styles === */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ECOMMERCE SEO — SERVICE HERO
@@ -2489,26 +2489,18 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
    was drawn for the near-white. Those three fix the parity of the other
    nine, which is why this is one block rather than a rule beside each
    section: a run cannot be decided a section at a time. */
-#industries,#ai-search,#faq{
-  --ground:var(--bg-alt);  --panel:var(--surface); }
-#services-2,#contact{
-  --ground:var(--surface); --panel:var(--bg-alt); }
-/* White cards need somewhere to be white against, so the process joins
-   the pair #scope and #clients use: the page's own near-white under
-   them, and each card read off its own edge rather than off a change of
-   colour. */
-/* #scope has gone, and #process moves off the near-white with it: it and
-   #clients were the only two left on that ground and they had become
-   neighbours, which is two near-white bands in a row. #clients cannot
-   move — its cells are written white — so #process takes the tint, where
-   its white cards read off a change of colour instead of an edge. */
+/* Grounds are finalized in the Section grounds block below — keep this
+   parity note for history only. #clients stays near-white for its wall. */
 #clients{ --ground:var(--bg); --panel:var(--surface); }
-#process{ --ground:var(--bg-alt); --panel:var(--surface); }
 
 /* and the closing band takes a different photograph from the one the FAQ
    aside already uses — the same picture twice on one page is the reader
    noticing the stock library instead of the offer */
-#contact{ --cta-pic:var(--shot-2); }
+/* CTA band photo — desktop landscape / mobile portrait */
+#contact.cta{ --cta-shot:url("/images/mad-cta-a32729540c.webp"); }
+@media (max-width:960px){
+  #contact.cta{ --cta-shot:url("/images/mad-cta-m-5a8220aee4.webp"); }
+}
 /* The client wall's cells are written white rather than reading --panel —
    a Google-style wall of names is white or it is not that wall — so the
    section cannot take the white slot. It takes --bg instead, the page's
@@ -3295,23 +3287,23 @@ html[data-theme="dark"] .ftm{
    Taken out of flow rather than display:none — Safari has historically
    refused to resolve a <use> into a hidden tree. */
 .eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
-/* Section grounds — strict white / tint / white / tint after the dark hero */
-
+/* Section grounds — strict white / tint alternation after the dark hero
+   Order: proof(w) → services(t) → build(w) → industries(t) → process(w)
+          → engagement(t) → fit(photo) → pricing(w) → why(t) → faq(w) → contact(cta) */
+#proof,
 #build,
 #process,
-#fit,
 #pricing,
 #faq{
-  --ground:var(--bg-alt);
-  --panel:var(--surface);
+  --ground:var(--surface);
+  --panel:var(--bg-alt);
 }
 #services-2,
 #industries,
 #engagement,
-#why,
-#contact{
-  --ground:var(--surface);
-  --panel:var(--bg-alt);
+#why{
+  --ground:var(--bg-alt);
+  --panel:var(--surface);
 }
 #fit{
   --panel:#FFFFFF;
@@ -3331,16 +3323,15 @@ html[data-theme="dark"] #engagement .em-card{
 }
 
 
+#proof,
 #services-2,
 #build,
 #industries,
 #process,
 #engagement,
-#fit,
 #pricing,
 #why,
-#faq,
-#contact{
+#faq{
   background:var(--ground) !important;
   border-block:0 !important;
 }
@@ -3720,8 +3711,8 @@ html[data-theme="dark"] .eg-ico{background:var(--surface-2);}
 .eg-card::after{background:var(--panel);}
 
 
-/* MAD process: tint ground + white cards (eg dial) */
-#process.eg-sec{--ground:var(--bg-alt); --panel:var(--surface);}
+/* MAD process: white ground + tinted panel cards (eg dial) */
+#process.eg-sec{--ground:var(--surface); --panel:var(--bg-alt);}
 #process .eg-card{background:var(--surface);}
 #process .eg-card::after{background:var(--surface);}
 #process.eg-sec h2 em{font-style:normal; color:var(--brand-text);}
@@ -4786,10 +4777,10 @@ html[data-theme="dark"] #services-2 .ac-card,html[data-theme="dark"] #services-2
 .tm-aside .btn{flex:none;}
 
 .tm-rail{display:flex; gap:7px; height:clamp(360px,38vw,452px);}
-.tm-item{position:relative; flex:0 0 46px; min-width:46px; overflow:hidden; cursor:pointer;
+.tm-item{position:relative; flex-grow:0; flex-shrink:0; min-width:0; overflow:hidden; cursor:pointer;
   border-radius:18px; border:1px solid var(--border); background:var(--surface);
-  transition:flex .6s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);}
-.tm-item.on{flex:1 1 auto; min-width:300px; border-color:#0A0C0E;
+  transition:border-color .4s var(--ease), box-shadow .4s var(--ease);}
+.tm-item.on{min-width:0; border-color:#0A0C0E;
   box-shadow:0 30px 60px -34px rgba(4,12,20,.9);}
 .tm-item:hover:not(.on){border-color:hsl(var(--brand-h) 70% 78%); background:hsl(var(--brand-h) 85% 97%);}
 .tm-item:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
@@ -4882,7 +4873,7 @@ html[data-theme="dark"] .tm-chip{background:hsl(var(--brand-h) 40% 18%);}
 #services-2 .tm-card{max-height:100%; overflow:auto; scrollbar-width:thin;}
 #services-2 .tm-card::-webkit-scrollbar{width:6px;}
 #services-2 .tm-card::-webkit-scrollbar-thumb{background:hsl(var(--brand-h) 60% 84%); border-radius:99px;}
-#services-2 .tm-item.on{min-width:340px;}
+#services-2 .tm-item.on{/* min-width cleared for flex-basis open */}
 @media (max-width:980px){
   #services-2 .tm-rail{height:auto;}
   #services-2 .tm-card{max-height:none; overflow:visible;}
@@ -5174,8 +5165,8 @@ html[data-theme="dark"] .gv-post{background:var(--surface);}
 
 
 
-/* Single FAQ aside photo (Web Design) */
-:root{ --faq-shot:url("/images/wdd-faq-62ec3b3c5f.webp"); }
+/* Single FAQ aside photo (Mobile App) */
+:root{ --faq-shot:url("/images/mad-faq-4ff7d430b0.webp"); }
 #faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
 #faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; object-position:center; display:block;}

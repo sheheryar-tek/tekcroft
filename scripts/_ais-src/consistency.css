@@ -1,0 +1,31 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   ONE SET OF RULES FOR THE WHOLE PAGE
+
+   Sections were built at different times and each brought its own
+   furniture. Nothing here is a new idea — it settles the parts that had
+   drifted onto one value each.
+
+   ── the badge ──────────────────────────────────────────────────────
+   There were three shapes doing one job: .smark (a numbered pill),
+   .mp-eyebrow (a filled pill) and .wy-eyebrow (a pill with a star in a
+   disc). They are all .smark now. The numbers were renumbered to close
+   the gaps left by deleted sections, and have been renumbered since.
+
+   ── the headings ───────────────────────────────────────────────────
+   Every h2 already read --h2 except the process, which had a clamp of
+   its own that came out a shade smaller. And the tracking split two ways:
+   -0.042em from the base rule, -0.038em from the three sections that
+   restated it. One value now, on the base rule, and the restatements set
+   only what they add.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the sections that restated the tracking give it back */
+.mp-say h2,.pf-head h2{ letter-spacing:-0.04em; }
+h2{ letter-spacing:-0.04em; }
+
+/* the badge sits the same distance above every heading it introduces */
+.smark{ margin-bottom:clamp(16px,1.8vw,22px); }
+/* it is a pale pill, so on the sections that stand on the tint it takes
+   the panel colour rather than a fixed white */
+.smark{ background:var(--panel); }

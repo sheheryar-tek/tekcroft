@@ -1,0 +1,38 @@
+/* Know the difference (#fit) — page photo is the section background.
+   Scoped to #fit only. Kill shared .vs::before office --shot-3 plate,
+   pin .vs-bg img to cover, dark veil (::after) on top of the photo.
+   Global (not a CSS Module). Import after each page stylesheet. */
+
+#fit.vs{
+  overflow:hidden;
+  position:relative;
+}
+#fit.vs::before{
+  content:none !important;
+  background:none !important;
+}
+#fit.vs > .vs-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+#fit.vs > .vs-bg img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  max-width:none !important;
+  max-height:none !important;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+#fit.vs::after{
+  z-index:1;
+}
+#fit.vs > .wrap{
+  position:relative;
+  z-index:2;
+}

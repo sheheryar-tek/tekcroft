@@ -1,0 +1,38 @@
+/* Franchise SEO hero — lock core .hs tokens (full-bleed photo + veil + height).
+   Loaded last so a poisoned/BOM-prefixed .hs rule cannot leave the veil empty. */
+#hero-1.hs{
+  --hs-veil:rgba(0,0,0,.78);
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  color:#fff;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:calc(var(--nav-h) + clamp(30px,3.4vw,62px)) 0 clamp(48px,5.4vw,104px);
+}
+#hero-1 .hs-veil{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:var(--hs-veil);
+}
+#hero-1 .hs-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+#hero-1 .hs-bg img{
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  display:block;
+}
+#hero-1 .hs-in{
+  position:relative;
+  z-index:3;
+}

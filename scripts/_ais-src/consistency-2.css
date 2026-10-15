@@ -1,0 +1,79 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE SECOND PASS OVER THE PAGE
+
+   Three things had drifted since the first one.
+
+   ── the badge above a heading ──────────────────────────────────────
+   Four shapes were doing it: .smark on eight sections, .hx-tag on the AI
+   section, and .vs-rule on two more — and .vs-rule was never written, so
+   those two were rendering a bare span with no pill at all. All of them
+   are .smark in the markup now; the only thing left here is closing the
+   space the AI section's own heading margin was adding on top of the
+   badge's.
+
+   ── the headings ───────────────────────────────────────────────────
+   Tracking had gone back out to four values (-0.038, -0.04, -0.042,
+   -0.045) and the leading to three. One of each, and the AI section's
+   private font-size clamp gives way to --h2 like every other h2.
+
+   ── the icons ──────────────────────────────────────────────────────
+   Eleven stroke weights between 1.2 and 2.9 across 84 glyphs on one
+   24-unit grid, which is visible: the same drawing reads heavier in one
+   section than the next. Two weights now, and they are a distinction
+   worth keeping — 1.8 for a glyph sitting in a tile, which is saying
+   what a thing is, and 2.2 for the arrows, chevrons and signs, which are
+   small and are controls. Set here rather than on 84 attributes because
+   a stroke-width attribute is a presentation attribute and a stylesheet
+   outranks it.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the badge carries the space above the heading, everywhere: those two
+   were adding a margin of their own on top of the badge's and coming out
+   a third again further from it than the other eight */
+.hx .sec-head h2,.sg-head h2{font-size:var(--h2); margin-top:0;}
+
+/* and the standfirst under it is the page's standfirst. The AI section
+   had set its own to semibold in the brand colour, which read as a
+   second, smaller heading rather than as the line under the first. */
+.hx .sec-lede{font-weight:inherit; color:var(--text-2);}
+
+h2,.hx .sec-head h2,.sg-head h2,.mp-say h2,.pf-head h2,.wc-say h2{
+  line-height:1.14; letter-spacing:-0.04em;}
+.eg-card h3,.pf-card h3,.mm h3,.wc-panel h3,.wk-say h3{letter-spacing:-0.03em;}
+
+/* a glyph in a tile */
+.hx-ic svg,.eg-ico svg,.pf-core svg,.mp-si svg,.mp-mk svg,.mp-cart svg,
+.tb-logo svg,.cn-subs svg,.gr-badge svg,.gr-foot svg,.ft4-contact svg{
+  stroke-width:1.8;}
+/* a control */
+.cn-go svg,.pf-go svg,.wk-arw svg,.wk-visit svg,.gr-arrow svg,
+.faq-sign svg,.hs-done svg,.mm-trigger svg,.wc-tkt-pri svg,
+.theme-btn svg,.ft-soc svg{stroke-width:2.2;}
+
+/* the tile's corner is the wires' corner */
+.hx-ic{border-radius:14px;}
+
+/* ── the badge above a heading, in all three of its grounds ─────────
+   .smark is the pill eight sections use. Two more places introduce a
+   heading and neither could be a .smark: the hero's sits on a photograph
+   and takes the glass the rest of the hero is built from, and the closing
+   call to action's sits inside a panel that is already a pill. They keep
+   their grounds. What they had no reason to keep was three different
+   settings of the same eleven-and-a-half-point line — sentence case at
+   .02em in the hero, 800 at .14em in the call to action, 700 at .16em
+   everywhere else. One setting now, so the badge reads as one thing
+   wherever it turns up. */
+.tag,.cta3-eyebrow{font-size:11.5px; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase;}
+.tag{font-family:var(--font-display);}
+
+/* ── a platform's colour belongs to the platform, not to the heading ──
+   Each card carries its own --pf, and the whole of its heading was
+   painted in it: Shopify green, WordPress near-black, JavaScript yellow,
+   Webflow blue, four headings and four colours in one row. A reader sees
+   a rainbow, not a list. The colour is still there and still each
+   platform's own — it is on the mark, and on the border, rule and glow
+   the card takes when it is pointed at, which is where a brand that is
+   not ours is allowed to speak. The headings are headings. */
+.pf-card h3 em{color:var(--text);}

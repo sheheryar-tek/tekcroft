@@ -41,6 +41,9 @@ const manifest = {
   aiChatbotDevelopment: hashFile("tekcroft-ai-chatbot-development.js"),
   aiAgentDevelopment: hashFile("tekcroft-ai-agent-development.js"),
   aiDevelopment: hashFile("tekcroft-ai-development.js"),
+  artificialIntelligenceServices: hashFile(
+    "tekcroft-artificial-intelligence-services.js"
+  ),
   franchiseSeo: hashFile("tekcroft-franchise-seo.js"),
   aiSeo: hashFile("tekcroft-ai-seo.js"),
   contact: hashFile("tekcroft-contact.js"),

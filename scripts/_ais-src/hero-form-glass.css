@@ -1,0 +1,10 @@
+
+/* hero form: clearer glass so the background photo shows through */
+#hero-1 .hs-form{
+  background:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.08) 100%) !important;
+  -webkit-backdrop-filter:blur(3px) saturate(1.2) !important; backdrop-filter:blur(3px) saturate(1.3) !important;
+  border:1px solid rgba(255,255,255,.45) !important;
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.5) !important;}
+#hero-1 .hs-form h2,#hero-1 .hs-form h3,#hero-1 .hs-form label,#hero-1 .hs-form .hs-field > span{color:#fff !important; text-shadow:0 1px 2px rgba(0,0,0,.35);}
+#hero-1 .hs-form p,#hero-1 .hs-form small{color:rgba(255,255,255,.88) !important; text-shadow:0 1px 2px rgba(0,0,0,.35);}
+#hero-1 .hs-form a{color:#fff !important;}

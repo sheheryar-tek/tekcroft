@@ -744,10 +744,10 @@ fs.writeFileSync(
     {
       title:
         (titleMatch && titleMatch[1].trim()) ||
-        "AI Development Services | Tekcroft",
+        "Custom AI Development Services | Artificial Intelligence Company",
       description:
         (descMatch && descMatch[1].trim()) ||
-        "Tekcroft builds custom AI development services for production.",
+        "Tekcroft builds custom AI development services for production. Generative AI, machine learning, and AI agents for US businesses. Talk to an AI engineer.",
       canonical:
         "https://www.tekcroft.com/services/ai-development-services",
     },

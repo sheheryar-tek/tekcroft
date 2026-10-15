@@ -1,0 +1,77 @@
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE HERO FORM FOLLOWS THE THEME
+
+   The hero itself is dark in both themes — it is a photograph, and a
+   photograph does not have a light version. The form standing on it does
+   not have to be: it is a panel of the site's own furniture, and in
+   daylight it now reads as one.
+
+   In light mode it becomes a pale frosted card with ink type; in dark it
+   is left exactly as it was. Everything inside had a colour written into
+   it for the dark card — the heading, the sub, the field labels, the
+   note, the confirmation — so each of those is answered here rather than
+   being left white on white.
+
+   Two details the flip turns up. The fields are white, which was
+   invisible edging on a near-black card and needs a real edge on a pale
+   one. And the error text was a light red picked to carry on black; on a
+   light card it takes the sheet's own --ui-bad instead.
+   ══════════════════════════════════════════════════════════════════════ */
+html[data-theme="light"] .hs-form-wrap{
+  border-color:rgba(255,255,255,.42);}
+
+/* Glass, not paint. The blur was already there for the dark card, so what
+   makes this read as a pane is letting the photograph through it: a white
+   fill in the sixties and seventies rather than the ninety it was, over
+   the same blur turned up and given more saturation — colour that has
+   been blurred goes grey, and lifting the saturation is what keeps the
+   picture behind looking like a picture.
+
+   Two things hold it together. The fill falls from top to bottom, so the
+   pane looks lit from above rather than evenly frosted. And the inset
+   hairline along the top edge is the highlight a real sheet of glass
+   catches — it is the single detail that stops this reading as a
+   half-transparent box.
+
+   It does not go lower than this. Under about .65 the mid-grey type in
+   the sub and the note starts losing the picture behind it, and the panel
+   is a form before it is an effect. */
+html[data-theme="light"] .hs-form{
+  background:linear-gradient(180deg,
+    rgba(255,255,255,.80) 0%, rgba(255,255,255,.66) 100%);
+  border-color:rgba(255,255,255,.66);
+  -webkit-backdrop-filter:blur(26px) saturate(1.7);
+          backdrop-filter:blur(26px) saturate(1.7);
+  box-shadow:0 34px 80px -34px rgba(var(--ink-rgb),.55),
+             inset 0 1px 0 rgba(255,255,255,.9);}
+
+/* the fields stay solid: glass is for the panel, and text being typed
+   into a pane with a photograph moving under it is harder to read for no
+   gain */
+html[data-theme="light"] .hs-field input,
+html[data-theme="light"] .hs-field select{
+  background:#fff;}
+
+html[data-theme="light"] .hs-form h2{color:var(--text);}
+html[data-theme="light"] .hs-sub{color:var(--text-2);}
+html[data-theme="light"] .hs-field label{color:var(--text);}
+html[data-theme="light"] .hs-field:focus-within label{color:var(--brand-text);}
+html[data-theme="light"] .hs-note{color:var(--text-2);}
+html[data-theme="light"] .hs-note a{color:var(--text);}
+
+/* a white field on a pale pane needs an edge of its own */
+html[data-theme="light"] .hs-field input,
+html[data-theme="light"] .hs-field select{
+  border-color:var(--border);}
+html[data-theme="light"] .hs-field :is(input,select):focus{
+  border-color:var(--primary);}
+
+html[data-theme="light"] .hs-field[data-bad="true"] :is(input,select){
+  border-color:var(--ui-bad);}
+html[data-theme="light"] .hs-field[data-bad="true"] :is(input,select):focus{
+  box-shadow:0 0 0 3px hsl(3 65% 54% / .26);}
+html[data-theme="light"] .hs-err{color:var(--ui-bad);}
+
+html[data-theme="light"] .hs-done h3{color:var(--text);}
+html[data-theme="light"] .hs-done p{color:var(--text-2);}

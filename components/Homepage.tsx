@@ -5,6 +5,8 @@ import assets from "@/lib/asset-manifest.json";
 
 type HomepageProps = {
   html: string;
+  /** Skip site-consistency overrides (page ships its own design lock). */
+  rawDesign?: boolean;
 };
 
 let mmPromise: Promise<void> | null = null;
@@ -101,8 +103,11 @@ function fillHeroMarq() {
   el.innerHTML = row + row;
 }
 
-export default function Homepage({ html }: HomepageProps) {
+export default function Homepage({ html, rawDesign = false }: HomepageProps) {
   useEffect(() => {
+    if (rawDesign) {
+      document.documentElement.setAttribute("data-design", "raw");
+    }
     const abort = new AbortController();
     const root = document.getElementById("tekcroft-root");
 
@@ -150,8 +155,11 @@ export default function Homepage({ html }: HomepageProps) {
     return () => {
       abort.abort();
       unwireFaq?.();
+      if (rawDesign) {
+        document.documentElement.removeAttribute("data-design");
+      }
     };
-  }, []);
+  }, [rawDesign]);
 
   return (
     <div

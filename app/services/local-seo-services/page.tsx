@@ -8,6 +8,12 @@ import meta from "@/lib/local-seo-meta.json";
 import lcp from "@/lib/local-seo-lcp.json";
 import "@/app/local-seo.css";
 import "@/app/footer-lock.css";
+/* Shared service hero shell — same style/design on every /services page */
+import "@/app/service-hero-lock.css";
+/* Expanding panels shell — shared intro line + centered CTA */
+import "@/app/tm-shell-lock.css";
+/* #fit Know the difference — page photo as full section background */
+import "@/app/fit-vs-bg.css";
 
 export const metadata: Metadata = {
   title: meta.title,

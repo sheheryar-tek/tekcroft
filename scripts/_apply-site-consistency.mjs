@@ -66,6 +66,7 @@ const stripPages = [
   "app/services/ai-chatbot-development-services/page.tsx",
   "app/services/ai-seo-services/page.tsx",
   "app/services/ai-development-services/page.tsx",
+  "app/services/artificial-intelligence-services/page.tsx",
 ];
 
 for (const rel of stripPages) {

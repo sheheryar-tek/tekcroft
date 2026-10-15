@@ -8,6 +8,8 @@ import meta from "@/lib/on-page-seo-meta.json";
 import lcp from "@/lib/on-page-seo-lcp.json";
 import "@/app/on-page-seo.css";
 import "@/app/footer-lock.css";
+/* Shared service hero shell — same style/design on every /services page */
+import "@/app/service-hero-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,

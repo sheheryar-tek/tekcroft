@@ -1,5 +1,5 @@
-﻿:root{ --faq-shot:url("/images/localseo-faq-04ee4cc9ef.webp"); }
-﻿/* Local SEO Services ? design from tekcroft-local-seo HTML; chrome in tekcroft.css */
+:root{ --faq-shot:url("/images/localseo-faq-04ee4cc9ef.webp"); }
+/* Local SEO Services ? design from tekcroft-local-seo HTML; chrome in tekcroft.css */
 /* === local-seo tokens (from tk-core) === */
 :root{
   --veil:rgba(0,0,0,.78);
@@ -1389,6 +1389,35 @@ html[data-theme="dark"] .vs{--vs-ai:rgba(255,255,255,.045);}
    scrolls with the section. Same image, no jank. */
 @media (max-width:900px), (hover:none){
   .vs::before{background-attachment:scroll;}
+}
+
+/* Know the difference (#fit) — street photo is the section background.
+   Scoped to #fit only so other .vs sections keep the shared --shot-3 plate.
+   Kill ::before (office --shot-3), pin .vs-bg img to cover, veil on top. */
+#fit.vs{
+  overflow:hidden;
+  position:relative;
+}
+#fit.vs::before{
+  content:none !important;
+  background:none !important;
+}
+#fit.vs > .vs-bg{
+  position:absolute; inset:0; z-index:0;
+  pointer-events:none; overflow:hidden;
+}
+#fit.vs > .vs-bg img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  max-width:none;
+  object-fit:cover; object-position:center;
+  display:block;
+}
+#fit.vs::after{
+  z-index:1;
+}
+#fit.vs > .wrap{
+  position:relative; z-index:2;
 }
 
 /* ?? the eyebrow, ruled either side ?????????????????????????????????? */
@@ -4039,10 +4068,10 @@ html[data-theme="dark"] #process .eg-exp-note{
 }
 
 .tm-rail{display:flex; gap:7px; height:clamp(360px,38vw,452px);}
-.tm-item{position:relative; flex:0 0 46px; min-width:46px; overflow:hidden; cursor:pointer;
+.tm-item{position:relative; flex-grow:0; flex-shrink:0; min-width:0; overflow:hidden; cursor:pointer;
   border-radius:18px; border:1px solid var(--border); background:var(--surface);
-  transition:flex .6s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);}
-.tm-item.on{flex:1 1 auto; min-width:300px; border-color:#0A0C0E;
+  transition:border-color .4s var(--ease), box-shadow .4s var(--ease);}
+.tm-item.on{min-width:0; border-color:#0A0C0E;
   box-shadow:0 30px 60px -34px rgba(4,12,20,.9);}
 .tm-item:hover:not(.on){border-color:hsl(var(--brand-h) 70% 78%); background:hsl(var(--brand-h) 85% 97%);}
 .tm-item:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
@@ -4126,7 +4155,7 @@ html[data-theme="dark"] .tm-chip{background:hsl(var(--brand-h) 40% 18%);}
 #services-2 .tm-card{max-height:100%; overflow:auto; scrollbar-width:thin;}
 #services-2 .tm-card::-webkit-scrollbar{width:6px;}
 #services-2 .tm-card::-webkit-scrollbar-thumb{background:hsl(var(--brand-h) 60% 84%); border-radius:99px;}
-#services-2 .tm-item.on{min-width:340px;}
+#services-2 .tm-item.on{/* min-width cleared for flex-basis open */}
 @media (max-width:980px){
   #services-2 .tm-rail{height:auto;}
   #services-2 .tm-card{max-height:none; overflow:visible;}
@@ -5187,6 +5216,19 @@ html body .gw-say > p{
   html body .sec > .wrap > :last-child{
     margin-bottom:0 !important;
   }
+}
+
+/* CTA under Everything We Do rail — same placement as other service pages */
+#services-2 .tm-cta{
+  display:flex;
+  justify-content:center;
+  margin-top:clamp(28px,3vw,40px);
+  position:relative;
+  z-index:2;
+}
+#services-2 .tm-cta .btn{flex:none;}
+@media (max-width:600px){
+  #services-2 .tm-cta .btn{width:100%; justify-content:center; text-align:center;}
 }
 
 /* Desktop — preserve breathing room; lock tokens against page media overrides */
