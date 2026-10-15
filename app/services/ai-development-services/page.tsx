@@ -10,6 +10,8 @@ import "@/app/ai-development.css";
 import "@/app/footer-lock.css";
 /* Shared service hero shell — same style/design on every /services page */
 import "@/app/service-hero-lock.css";
+/* Expanding panels shell — smooth open + shared CTA layout */
+import "@/app/tm-shell-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,

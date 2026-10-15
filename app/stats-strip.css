@@ -1,0 +1,33 @@
+/* stats, minimal: four figures on one line, hairline dividers, nothing else
+   Source: tekcroft-stats-section-final.html (#st-styles).
+   Selectors are scoped to #proof-v2 so class names stay verbatim without
+   colliding with existing .st-row stack/timeline UI elsewhere on the site. */
+#proof-v2.st{padding-block:clamp(34px,3.6vw,52px); background:var(--surface);}
+#proof-v2 .st-row{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));}
+html[data-theme="dark"] #proof-v2 .st-row{border-color:var(--border);}
+#proof-v2 .st-c{padding:clamp(22px,2.4vw,32px) clamp(16px,2vw,28px); text-align:center;}
+#proof-v2 .st-c + .st-c{border-left:1px solid #E6EEF3;}
+html[data-theme="dark"] #proof-v2 .st-c + .st-c{border-color:var(--border);}
+#proof-v2 .st-c b{display:inline-flex; align-items:baseline; gap:2px; font-family:var(--font-display); font-size:clamp(34px,3.4vw,50px); font-weight:800; letter-spacing:-.045em; line-height:1; color:var(--text);}
+#proof-v2 .st-c b em{font-style:normal; font-size:calc(1em - 2px); line-height:1; color:var(--primary); letter-spacing:-.045em;}
+#proof-v2 .st-c p{margin:10px auto 0; max-width:24ch; font-size:14px; line-height:1.5; color:var(--text-2);}
+@media (max-width:900px){
+  #proof-v2 .st-row{grid-template-columns:repeat(2,minmax(0,1fr));}
+  #proof-v2 .st-c:nth-child(3){border-left:0;}
+  #proof-v2 .st-c:nth-child(n+3){border-top:1px solid #E6EEF3;}
+}
+@media (max-width:420px){
+  #proof-v2 .st-c b{font-size:32px;}
+  #proof-v2 .st-c{padding:20px 10px;}
+}
+
+/* Light = solid white; dark keeps surface token */
+#proof-v2.st{background:#FFFFFF;}
+html[data-theme="dark"] #proof-v2.st{background:var(--surface);}
+/* Beat shared .sec padding — this strip owns its rhythm */
+html body #proof-v2.st.sec{
+  padding-block:clamp(34px,3.6vw,52px) !important;
+}
+@media (max-width:900px){
+  html[data-theme="dark"] #proof-v2 .st-c:nth-child(n+3){border-top-color:var(--border);}
+}

@@ -7022,14 +7022,13 @@ section.sec,
 #apart.sec,
 #clients.sec,
 #fit.sec,
-#industries.sec,
-#proof.sec{
+#industries.sec{
   padding-block:var(--sec-y) !important;
 }
 
-/* Proof strip under hero stays intentionally tighter */
+/* Under-hero stats strip rhythm is owned by stats-strip.css (#proof-v2).
+   Legacy #ai.tb (different section) stays tighter. */
 .sec.tb,
-#proof.sec,
 html body #ai.tb,
 html body #ai.tb.sec{
   padding-block:var(--sec-y-tight) !important;
@@ -7465,13 +7464,11 @@ html body .gw-say > p{
   html body #clients.sec,
   html body #fit.sec,
   html body #industries.sec,
-  html body #proof.sec,
   html body .sec-pad,
   html body .sec-pad-feat{
     padding-block:var(--sec-y) !important;
   }
   html body .sec.tb,
-  html body #proof.sec,
   html body .sec-pad-tight{
     padding-block:var(--sec-y-tight) !important;
   }

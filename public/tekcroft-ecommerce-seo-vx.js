@@ -18,11 +18,9 @@
       cta     = sec.querySelector(".vx-cta-wrap"),
       head    = sec.querySelector(".vx-head"),
       media   = sec.querySelector(".vx-media"),
-      play    = sec.querySelector(".vx-play"),
-      cursor  = sec.querySelector(".vx-cursor");
+      play    = sec.querySelector(".vx-play");
 
   var still   = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var fine    = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var src     = sec.getAttribute("data-video") || "";
   var videoId = src.split("?")[0].split("/").pop();          /* the file name, for the analytics events */
   var cover   = media.querySelector("img");
@@ -130,33 +128,6 @@
       if (vid && !es[0].isIntersecting && !vid.paused) vid.pause();
     }, { threshold: .05 });
     away.observe(stage);
-  }
-
-  /* ---- the cursor that follows the pointer over the film ---- */
-  if (fine && cursor) {
-    sec.classList.add("has-cursor");
-    var tx = 0, ty = 0, cx = 0, cy = 0, cRaf = 0, first = true;
-    var glide = function(){
-      cRaf = 0;
-      cx += (tx - cx) * .22; cy += (ty - cy) * .22;
-      cursor.style.transform = "translate3d(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px,0)";
-      if (Math.abs(tx - cx) > .3 || Math.abs(ty - cy) > .3) cRaf = requestAnimationFrame(glide);
-    };
-    var aim = function(e){
-      var r = stage.getBoundingClientRect();
-      tx = e.clientX - r.left; ty = e.clientY - r.top;
-      if (first) { cx = tx; cy = ty; first = false; }
-      if (!cRaf) cRaf = requestAnimationFrame(glide);
-    };
-    play.addEventListener("pointerenter", function(e){
-      aim(e);
-      cursor.classList.add("on");
-      requestAnimationFrame(function(){ cursor.classList.add("big"); });
-    });
-    play.addEventListener("pointermove", aim);
-    play.addEventListener("pointerleave", function(){
-      cursor.classList.remove("big"); cursor.classList.remove("on");
-    });
   }
 
   if (still) return;   /* reduced motion: the film stays put at full size */

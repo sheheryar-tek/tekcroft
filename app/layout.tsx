@@ -6,6 +6,8 @@ import "./perf.css";
 import "./footer-lock.css";
 /* Source of truth for type + spacing tokens; also appended to page CSS via scripts/_apply-site-consistency.mjs */
 import "./site-consistency.css";
+/* Shared under-hero stats strip (#proof-v2) — one design site-wide */
+import "./stats-strip.css";
 
 /* Self-hosted via next/font — same families/weights, no render-blocking Google CSS */
 const inter = Inter({
