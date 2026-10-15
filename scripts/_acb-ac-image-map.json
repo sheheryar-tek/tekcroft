@@ -1,0 +1,68 @@
+[
+  {
+    "i": 0,
+    "file": "/images/acb-ac-01-cda2b099e4.webp",
+    "alt": "AI Chatbot Consulting — workflow scoping and technical planning before build",
+    "title": "AI Chatbot Consulting",
+    "kb": 66.8,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "AI Chatbot Consulting/Desktop/2.jpg"
+  },
+  {
+    "i": 1,
+    "file": "/images/acb-ac-02-ccd30f37c7.webp",
+    "alt": "Custom AI Chatbot Development — CRM, ERP, and internal data integrations",
+    "title": "Custom AI Chatbot Development",
+    "kb": 64.4,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Custom AI Chatbot Development/Desktop/2.jpg"
+  },
+  {
+    "i": 2,
+    "file": "/images/acb-ac-03-cf674a6b8a.webp",
+    "alt": "Conversational AI and RAG Development — answers grounded in live documents",
+    "title": "Conversational AI and RAG Development",
+    "kb": 68,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Conversational AI and RAG Development/desktop/2.jpg"
+  },
+  {
+    "i": 3,
+    "file": "/images/acb-ac-04-39e5538b2e.webp",
+    "alt": "Chatbot Integration Services — Salesforce, Zendesk, Shopify, and internal APIs",
+    "title": "Chatbot Integration Services",
+    "kb": 54.9,
+    "width": 1200,
+    "height": 722,
+    "enc": "w1200q68",
+    "src": "Chatbot Integration Services/Desktop/2.jpg"
+  },
+  {
+    "i": 4,
+    "file": "/images/acb-ac-05-b0e3e1ca8a.webp",
+    "alt": "Multilingual Chatbot Development — one chatbot covering every customer language",
+    "title": "Multilingual Chatbot Development",
+    "kb": 69.1,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Multilingual Chatbot Development/Desktop/2.jpg"
+  },
+  {
+    "i": 5,
+    "file": "/images/acb-ac-06-4b46bd9d9b.webp",
+    "alt": "Chatbot Maintenance and Support — knowledge base updates after launch",
+    "title": "Chatbot Maintenance and Support",
+    "kb": 69.3,
+    "width": 1400,
+    "height": 842,
+    "enc": "w1400q72",
+    "src": "Chatbot Maintenance and Support/Desktop/2.jpg"
+  }
+]

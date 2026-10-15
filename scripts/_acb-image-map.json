@@ -1,0 +1,100 @@
+{
+  "hero": {
+    "name": "acb-hero-e308dd8769.webp",
+    "href": "/images/acb-hero-e308dd8769.webp",
+    "bytes": 79078,
+    "kb": 77.2,
+    "enc": "w1080q60",
+    "src": "1.jpg"
+  },
+  "services": [
+    {
+      "i": 0,
+      "file": "/images/acb-ac-01-cda2b099e4.webp",
+      "alt": "AI Chatbot Consulting",
+      "kb": 66.8,
+      "enc": "w1400q72"
+    },
+    {
+      "i": 1,
+      "file": "/images/acb-ac-02-ccd30f37c7.webp",
+      "alt": "Custom AI Chatbot Development",
+      "kb": 64.4,
+      "enc": "w1400q72"
+    },
+    {
+      "i": 2,
+      "file": "/images/acb-ac-03-cf674a6b8a.webp",
+      "alt": "Conversational AI and RAG Development",
+      "kb": 68,
+      "enc": "w1400q72"
+    },
+    {
+      "i": 3,
+      "file": "/images/acb-ac-04-f159fe36b2.webp",
+      "alt": "Chatbot Integration Services",
+      "kb": 58.9,
+      "enc": "w1260q68"
+    },
+    {
+      "i": 4,
+      "file": "/images/acb-ac-05-b0e3e1ca8a.webp",
+      "alt": "Multilingual Chatbot Development",
+      "kb": 69.1,
+      "enc": "w1400q72"
+    },
+    {
+      "i": 5,
+      "file": "/images/acb-ac-06-4b46bd9d9b.webp",
+      "alt": "Chatbot Maintenance and Support",
+      "kb": 69.3,
+      "enc": "w1400q72"
+    }
+  ],
+  "process": [
+    {
+      "i": 0,
+      "file": "/images/acb-proc-discovery-f2042ccb20.webp",
+      "kb": 41.3,
+      "title": "Discovery and Requirements Mapping"
+    },
+    {
+      "i": 1,
+      "file": "/images/acb-proc-design-c702b42e9c.webp",
+      "kb": 41.8,
+      "title": "Conversation Design and Escalation Logic"
+    },
+    {
+      "i": 2,
+      "file": "/images/acb-proc-build-44b8a4d07c.webp",
+      "kb": 49.5,
+      "title": "Development, RAG Setup and Model Integration"
+    },
+    {
+      "i": 3,
+      "file": "/images/acb-proc-qa-1618abaa6e.webp",
+      "kb": 52.8,
+      "title": "Testing, QA and Deployment"
+    },
+    {
+      "i": 4,
+      "file": "/images/acb-proc-monitor-2dc240d92c.webp",
+      "kb": 39.9,
+      "title": "Ongoing Monitoring, Retraining and Maintenance"
+    }
+  ],
+  "faq": {
+    "name": "acb-faq-6bda0c61c6.webp",
+    "href": "/images/acb-faq-6bda0c61c6.webp",
+    "bytes": 34056,
+    "kb": 33.3,
+    "enc": "w720q82"
+  },
+  "cta": {
+    "name": "acb-cta-8a2cd32d7a.webp",
+    "href": "/images/acb-cta-8a2cd32d7a.webp",
+    "bytes": 67856,
+    "kb": 66.3,
+    "enc": "w1400q82"
+  }
+}

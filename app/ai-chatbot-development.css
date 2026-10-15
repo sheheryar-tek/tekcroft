@@ -1192,7 +1192,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
 /* and the closing band takes a different photograph from the one the FAQ
    aside already uses — the same picture twice on one page is the reader
    noticing the stock library instead of the offer */
-#contact{ --cta-pic:var(--shot-2); }
+#contact{ --cta-pic:url("/images/acb-cta-8a2cd32d7a.webp"); --cta-shot:url("/images/acb-cta-8a2cd32d7a.webp"); }
 /* The client wall's cells are written white rather than reading --panel —
    a Google-style wall of names is white or it is not that wall — so the
    section cannot take the white slot. It takes --bg instead, the page's
@@ -6224,7 +6224,8 @@ html[data-theme="dark"] .tm-lg{background:hsl(var(--brand-h) 20% 22%);}
    opposite already uses. Raise it to darken, lower it to let more of the
    picture through. */
 #stack{ --ground:var(--bg-alt); --panel:var(--surface);
-  --vs-veil:rgba(0,0,0,.78); }
+  --vs-veil:rgba(0,0,0,.78);
+  --shot-3:url("/images/acb-stack-f784bbe73f.webp"); }
 /* the head is on a photograph now, so it takes the light type and the
    glass badge the other dark section does */
 #stack .sec-head h2,
@@ -7549,7 +7550,7 @@ html[data-theme="dark"] .acv .vz-au-row.on{background:hsl(var(--brand-h) 45% 20%
    stays readable whatever the picture does behind it.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #services-2 .ac-item.on{background:#0A0C0E; border-color:#0A0C0E;}
-#services-2 .ac-fb{background:url("/images/onpage-deliverables-panel.jpg") center/cover no-repeat;}
+#services-2 .ac-fb{display:none !important;}
 #services-2 .ac-fb::before{
   background-image:linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
                    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
@@ -7620,6 +7621,74 @@ html[data-theme="dark"] #services-2 .ac-card,html[data-theme="dark"] #services-2
   #why .wy-rail{grid-auto-flow:row; grid-auto-columns:auto;}
   #why .wy-tab{text-align:left;}
   #why .wy-cta{flex-direction:column;}
+}
+
+
+/* ACB What-we-do panel photos (#services-2 ACV) */
+#services-2 .ac-bg{background:none;}
+#services-2 .ac-bg > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+#services-2 .ac-fb{display:none !important;}
+#services-2 .ac-veil{z-index:1;}
+#services-2 .ac-wm{z-index:2;}
+
+
+/* ACB #process per-step disc photos */
+#process .eg-face{background:#0A0C0E; isolation:isolate;}
+#process .eg-face::before{display:none;}
+#process .eg-face::after{z-index:1;}
+#process .eg-pic{
+  position:absolute; inset:0; z-index:0;
+  background:none;
+  opacity:0; visibility:hidden;
+  transition:opacity .45s var(--ease), visibility 0s linear .45s;
+}
+#process .eg[data-at="0"] .eg-pic:nth-child(1),
+#process .eg[data-at="1"] .eg-pic:nth-child(2),
+#process .eg[data-at="2"] .eg-pic:nth-child(3),
+#process .eg[data-at="3"] .eg-pic:nth-child(4),
+#process .eg[data-at="4"] .eg-pic:nth-child(5),
+#process .eg:not([data-at]) .eg-pic:nth-child(1){
+  opacity:1; visibility:visible; transition-delay:0s;
+}
+#process .eg-pic > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;
+}
+#process .eg-face > *:not(.eg-pic){position:relative; z-index:2;}
+
+/* Single FAQ aside photo (AI Chatbot) */
+:root{ --faq-shot:url("/images/acb-faq-69ebc0ff8c.webp"); }
+#faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
+#faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;}
+#faq .faq-aside::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.45) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.52) 42%,
+                    rgba(0,0,0,.92) 100%);}
+
+
+/* ACB CTA shot carrier + band photo */
+#contact.cta,
+#contact.sec.cta{
+  background:var(--bg-alt) !important;
+}
+#contact.cta > .wrap::before,
+#contact.sec.cta > .wrap::before{
+  background:var(--cta-shot, var(--cta-pic)) 58% 45% / cover no-repeat !important;
+}
+#contact .cta-shot{
+  position:absolute !important; width:1px !important; height:1px !important;
+  padding:0 !important; margin:-1px !important; overflow:hidden !important;
+  clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important;
+}
+
+
+/* ACB #stack bg alt/title carrier — visual comes from .vs::before */
+#stack .stack-shot{
+  position:absolute !important; width:1px !important; height:1px !important;
+  padding:0 !important; margin:-1px !important; overflow:hidden !important;
+  clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important;
 }
 
 /* === SITE CONSISTENCY LOCK (do not edit here — edit site-consistency.css) === */
