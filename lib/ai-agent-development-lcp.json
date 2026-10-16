@@ -1,3 +1,6 @@
 {
-  "preload": "/images/aag-hero-6ef691051f.webp"
+  "preload": "/images/aag-hero-8c157e3ca4.webp",
+  "preloadMobile": "/images/aag-hero-m-8fa531b03e.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

@@ -7,6 +7,7 @@ import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/ai-agent-development-meta.json";
 import lcp from "@/lib/ai-agent-development-lcp.json";
 import "@/app/ai-agent-development.css";
+import "@/app/ai-agent-acv-head.css";
 import "@/app/footer-lock.css";
 /* Shared service hero shell — same style/design on every /services page */
 import "@/app/service-hero-lock.css";
@@ -14,6 +15,7 @@ import "@/app/service-hero-lock.css";
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
+  keywords: meta.keywords,
   alternates: { canonical: meta.canonical },
   openGraph: {
     type: "website",
@@ -42,6 +44,15 @@ export default function AiAgentDevelopmentServicesPage() {
         as="image"
         href={lcp.preload}
         type="image/webp"
+        media={lcp.desktopMedia}
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={lcp.preloadMobile}
+        type="image/webp"
+        media={lcp.mobileMedia}
         fetchPriority="high"
       />
       <Homepage html={html} />

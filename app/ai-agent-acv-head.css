@@ -1,0 +1,44 @@
+/* AI Agent — What we do head: lede + CTA one row (shared acv pattern) */
+#services-2.acv .ac-aside {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: clamp(16px, 2vw, 28px) !important;
+}
+#services-2.acv .ac-lede {
+  max-width: 46ch !important;
+  min-width: 0 !important;
+}
+#services-2.acv .ac-aside > .btn {
+  flex: none !important;
+}
+#services-2.acv .ac-ask,
+#services-2.acv .ac-cta,
+#services-2.acv .svc-ask {
+  display: none !important;
+}
+@media (max-width: 1040px) {
+  #services-2.acv .ac-aside {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  #services-2.acv .ac-lede {
+    max-width: none !important;
+  }
+}
+
+/* AI Agent CTA band photo */
+#contact.cta,
+#contact.sec.cta {
+  --cta-pic: url("/images/aag-cta-3a733870fa.webp") !important;
+  --cta-shot: url("/images/aag-cta-3a733870fa.webp") !important;
+}
+#contact.cta > .wrap::before,
+#contact.sec.cta > .wrap::before {
+  background-image: url("/images/aag-cta-3a733870fa.webp") !important;
+  background-position: 58% 45% !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}

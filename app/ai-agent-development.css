@@ -1192,7 +1192,7 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
 /* and the closing band takes a different photograph from the one the FAQ
    aside already uses — the same picture twice on one page is the reader
    noticing the stock library instead of the offer */
-#contact{ --cta-pic:var(--shot-2); }
+#contact{ --cta-pic:url("/images/aag-cta-3a733870fa.webp"); --cta-shot:url("/images/aag-cta-3a733870fa.webp"); }
 /* The client wall's cells are written white rather than reading --panel —
    a Google-style wall of names is white or it is not that wall — so the
    section cannot take the white slot. It takes --bg instead, the page's
@@ -7913,12 +7913,12 @@ html[data-theme="dark"] .acv .vz-au-row.on{background:hsl(var(--brand-h) 45% 20%
    stays readable whatever the picture does behind it.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #services-2 .ac-item.on{background:#0A0C0E; border-color:#0A0C0E;}
-#services-2 .ac-fb{background:url("/images/onpage-deliverables-panel.jpg") center/cover no-repeat;}
-#services-2 .ac-fb::before{
-  background-image:linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
-                   linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
-  background-size:46px 46px; -webkit-mask-image:none; mask-image:none; opacity:.7;}
-#services-2 .ac-fb::after{background:none;}
+/* AAG services panel photos (#services-2 .ac-bg img) */
+#services-2 .ac-bg{background:none;}
+#services-2 .ac-bg > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+#services-2 .ac-fb{display:none !important;}
+#services-2 .ac-fb::before,
+#services-2 .ac-fb::after{display:none !important; content:none !important;}
 /* the same wash the hero uses over its photograph */
 #services-2 .ac-item{--hs-veil:rgba(0,0,0,.78);}
 #services-2 .ac-veil{background:var(--hs-veil);}
@@ -7968,13 +7968,20 @@ html[data-theme="dark"] #services-2 .ac-card,html[data-theme="dark"] #services-2
 /* === mobile-app services-2 acv ground === */
 #services-2.acv{background:var(--ground) !important;}
 
-
-
-/* agent acv aside CTA stack */
-.acv .ac-aside{flex-wrap:wrap; align-items:flex-end;}
-.acv .ac-cta{display:grid; gap:10px; justify-items:start;}
-.acv .ac-ask{margin:0; font-size:var(--body); font-weight:600; color:var(--text); line-height:1.4;}
-
+/* What we do head — same as chatbot/shared acv: lede + CTA on one row */
+#services-2.acv .ac-aside{
+  display:flex;
+  flex-wrap:nowrap;
+  flex-direction:row;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:clamp(16px,2vw,28px);
+}
+#services-2.acv .ac-lede{max-width:46ch; min-width:0;}
+#services-2.acv .ac-aside > .btn{flex:none;}
+#services-2.acv .ac-ask,
+#services-2.acv .ac-cta,
+#services-2.acv .svc-ask{display:none !important;}
 
 /* === agent why (homepage tabbed design) === */
 #why{background:var(--ground);}
@@ -8891,3 +8898,59 @@ html body .gw-say > p{
     --block-gap:clamp(22px,2.4vw,36px) !important;
   }
 }
+
+/* AAG CTA shot carrier + band photo */
+#contact.cta,
+#contact.sec.cta{
+  background:var(--bg-alt) !important;
+  --cta-pic:url("/images/aag-cta-3a733870fa.webp") !important;
+  --cta-shot:url("/images/aag-cta-3a733870fa.webp") !important;
+}
+#contact.cta > .wrap::before,
+#contact.sec.cta > .wrap::before{
+  background-image:url("/images/aag-cta-3a733870fa.webp") !important;
+  background-position:58% 45% !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+}
+#contact .cta-shot{
+  position:absolute !important; width:1px !important; height:1px !important;
+  padding:0 !important; margin:-1px !important; overflow:hidden !important;
+  clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important;
+}
+
+/* Single FAQ aside photo (AI Agent) */
+:root{ --faq-shot:url("/images/aag-faq-180b4c0ff3.webp"); }
+#faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
+#faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;}
+#faq .faq-aside::after{
+  background:
+    radial-gradient(780px 440px at 50% 48%, rgba(0,0,0,.45) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.52) 42%,
+                    rgba(0,0,0,.92) 100%);}
+
+/* AAG #process per-step disc photos */
+#process .eg-face{background:#0A0C0E; isolation:isolate;}
+#process .eg-face::before{display:none;}
+#process .eg-face::after{z-index:1;}
+#process .eg-pic{
+  position:absolute; inset:0; z-index:0;
+  background:none;
+  opacity:0; visibility:hidden;
+  transition:opacity .45s var(--ease), visibility 0s linear .45s;
+}
+#process .eg[data-at="0"] .eg-pic:nth-child(1),
+#process .eg[data-at="1"] .eg-pic:nth-child(2),
+#process .eg[data-at="2"] .eg-pic:nth-child(3),
+#process .eg[data-at="3"] .eg-pic:nth-child(4),
+#process .eg[data-at="4"] .eg-pic:nth-child(5),
+#process .eg:not([data-at]) .eg-pic:nth-child(1){
+  opacity:1; visibility:visible; transition-delay:0s;
+}
+#process .eg-pic > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;
+}
+#process .eg-face > *:not(.eg-pic){position:relative; z-index:2;}
+
