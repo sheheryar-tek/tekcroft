@@ -550,7 +550,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
       {
         title: titleMatch ? titleMatch[1].trim() : "Ecommerce SEO Services | Tekcroft",
         description: descMatch ? descMatch[1] : "",
-        canonical: "https://www.tekcroft.com/services/ecommerce-seo",
+        canonical: "https://www.tekcroft.com/services/ecommerce-seo-services",
       },
       null,
       2

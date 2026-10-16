@@ -9,7 +9,7 @@ type HomepageProps = {
   rawDesign?: boolean;
 };
 
-let mmPromise: Promise<void> | null = null;
+const mmPromises = new Map<string, Promise<void>>();
 
 function loadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -27,8 +27,18 @@ function loadScript(src: string): Promise<void> {
 }
 
 function loadMm(): Promise<void> {
-  if (!mmPromise) mmPromise = loadScript(assets.mm);
-  return mmPromise;
+  const src = assets.mm;
+  // Drop older hashed mm scripts so a stale tab never keeps the previous bundle.
+  document.querySelectorAll('script[src*="tekcroft-mm."]').forEach((el) => {
+    const current = el.getAttribute("src") || "";
+    if (current !== src) el.remove();
+  });
+  let p = mmPromises.get(src);
+  if (!p) {
+    p = loadScript(src);
+    mmPromises.set(src, p);
+  }
+  return p;
 }
 
 function panelFor(btn: Element): HTMLElement | null {

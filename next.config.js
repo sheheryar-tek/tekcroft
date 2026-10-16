@@ -8,6 +8,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/services/ecommerce-seo",
+        destination: "/services/ecommerce-seo-services",
+        permanent: true,
+      },
+      {
         source: "/services/technical-seo",
         destination: "/services/technical-seo-services",
         permanent: true,
@@ -52,7 +57,7 @@ const nextConfig = {
         value: "public, max-age=31536000, immutable",
       },
     ];
-    return [
+    const headers = [
       { source: "/images/:path*", headers: immutable },
       { source: "/tekcroft-main.:hash.js", headers: immutable },
       { source: "/tekcroft-mm.:hash.js", headers: immutable },
@@ -75,13 +80,18 @@ const nextConfig = {
         headers: immutable,
       },
       {
-        source: "/_next/static/:path*",
-        headers: immutable,
-      },      {
         source: "/:path*",
         headers: [{ key: "X-Content-Type-Options", value: "nosniff" }],
       },
     ];
+    // Never pin /_next/static in dev — immutable headers freeze stale Turbopack chunks.
+    if (process.env.NODE_ENV === "production") {
+      headers.splice(-1, 0, {
+        source: "/_next/static/:path*",
+        headers: immutable,
+      });
+    }
+    return headers;
   },
 };
 

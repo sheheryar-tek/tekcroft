@@ -1,0 +1,56 @@
+{
+  "seoEcommerce": {
+    "file": "/images/mm-seo-ecommerce-5f6d7e2d51.webp",
+    "title": "Ecommerce SEO Services",
+    "alt": "Team reviewing ecommerce SEO analytics and product category rankings on a desktop dashboard",
+    "w": 760,
+    "h": 507,
+    "kb": 53.7,
+    "q": 86
+  },
+  "seoAudit": {
+    "file": "/images/mm-seo-audit-785fcd27e0.webp",
+    "title": "SEO Audit Services",
+    "alt": "Specialists reviewing an SEO audit report with crawl and ranking findings on screen",
+    "w": 760,
+    "h": 507,
+    "kb": 58.5,
+    "q": 86
+  },
+  "seoOnpage": {
+    "file": "/images/mm-seo-onpage-a9c4c0846e.webp",
+    "title": "On-Page SEO Services",
+    "alt": "Marketer optimizing on-page SEO titles, content structure, and internal links",
+    "w": 760,
+    "h": 507,
+    "kb": 32.5,
+    "q": 86
+  },
+  "seoTechnical": {
+    "file": "/images/mm-seo-technical-82e8b4c729.webp",
+    "title": "Technical SEO Services",
+    "alt": "Engineer fixing technical SEO issues for crawling, speed, and indexing",
+    "w": 760,
+    "h": 507,
+    "kb": 32.7,
+    "q": 86
+  },
+  "seoAi": {
+    "file": "/images/mm-seo-ai-04b7222b1b.webp",
+    "title": "AI SEO Services",
+    "alt": "Team analyzing AI search visibility and citation opportunities for AI SEO",
+    "w": 760,
+    "h": 507,
+    "kb": 41.2,
+    "q": 86
+  },
+  "seo": {
+    "file": "/images/mm-seo-ee25d585e6.webp",
+    "title": "SEO Services",
+    "alt": "SEO specialists reviewing search performance dashboards for TekCroft SEO services",
+    "w": 760,
+    "h": 507,
+    "kb": 42.5,
+    "q": 86
+  }
+}

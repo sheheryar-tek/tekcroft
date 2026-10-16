@@ -1,0 +1,38 @@
+{
+  "aiDev": {
+    "file": "/images/mm-ai-dev-e69aa64fea.webp",
+    "title": "AI Development Services",
+    "alt": "Engineers wiring AI models into a production software stack",
+    "w": 760,
+    "h": 507,
+    "kb": 59.8,
+    "q": 86
+  },
+  "aiChatbot": {
+    "file": "/images/mm-ai-chatbot-556d22b637.webp",
+    "title": "AI Chatbot Development Services",
+    "alt": "Team building an AI chatbot that answers customers around the clock",
+    "w": 760,
+    "h": 507,
+    "kb": 36.6,
+    "q": 86
+  },
+  "aiAgent": {
+    "file": "/images/mm-ai-agent-e2a21e5ca1.webp",
+    "title": "AI Agent Development Services",
+    "alt": "Specialists designing AI agents that run multi-step work end to end",
+    "w": 760,
+    "h": 507,
+    "kb": 30.9,
+    "q": 86
+  },
+  "ai": {
+    "file": "/images/mm-ai-cat-0d34cc0d0a.webp",
+    "title": "Artificial Intelligence Services",
+    "alt": "AI team collaborating on intelligent products and automation systems",
+    "w": 760,
+    "h": 507,
+    "kb": 44.3,
+    "q": 86
+  }
+}

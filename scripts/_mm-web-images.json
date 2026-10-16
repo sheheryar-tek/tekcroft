@@ -1,0 +1,38 @@
+{
+  "webDesign": {
+    "file": "/images/mm-web-9b5da82227.webp",
+    "title": "Web Design and Development Services",
+    "alt": "Designers and developers building a conversion-focused website interface",
+    "w": 760,
+    "h": 507,
+    "kb": 36.1,
+    "q": 86
+  },
+  "webSoftware": {
+    "file": "/images/mm-web-software-c140d05592.webp",
+    "title": "Custom Software Development Services",
+    "alt": "Engineers building custom software platforms and internal business tools",
+    "w": 760,
+    "h": 507,
+    "kb": 42.2,
+    "q": 86
+  },
+  "webMobile": {
+    "file": "/images/mm-web-mobile-95ffa25bf8.webp",
+    "title": "Mobile App Development Services",
+    "alt": "Mobile app developers shipping iOS and Android from one shared codebase",
+    "w": 760,
+    "h": 507,
+    "kb": 24.4,
+    "q": 86
+  },
+  "web": {
+    "file": "/images/mm-web-cat-11f5aab015.webp",
+    "title": "Web and Software Development",
+    "alt": "Web and software team collaborating on product and application development",
+    "w": 760,
+    "h": 507,
+    "kb": 49.6,
+    "q": 86
+  }
+}

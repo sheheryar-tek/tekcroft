@@ -658,7 +658,7 @@ html[data-theme="dark"]{  --mm-hover:rgba(255,255,255,.06); }
   margin:10px 4px 0; padding:12px 9px 6px; border-top:1px solid var(--border-soft);}
 .mm-foot b{display:block; font-family:var(--font-display); font-size:14px; font-weight:700;
   letter-spacing:-.02em;}
-.mm-foot span{display:block; margin-top:1px; font-size:12.5px; color:var(--muted);}
+.mm-foot > div > span{display:block; margin-top:1px; font-size:12.5px; color:var(--muted);}
 /* the panel carries its own button: the site's label-roll script rebuilds
    every .btn into per-letter spans, which collapses inside a hidden panel */
 .mm-cta{display:inline-flex; align-items:center; gap:9px; padding:13px 22px; flex:none;

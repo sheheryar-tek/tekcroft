@@ -6,43 +6,60 @@
    ══════════════════════════════════════════════════════════════════════ */
 (function(){
 var SERVICES = [
-  { title:"SEO Services", href:"/services/seo-services", icon:"chart", img:"team",
+  { title:"SEO Services", href:"/services/seo-services", icon:"chart", img:"seo",
     items:[
-      {name:"Ecommerce SEO Services", href:"/services/ecommerce-seo", note:"Rankings for product and category pages.", img:"table"},
-      {name:"SEO Audit Services", href:"/services/seo-audit-services", note:"Find what is holding the site back.", img:"mentor"},
-      {name:"On-Page SEO Services", href:"/services/on-page-seo", note:"Titles, content and internal links.", img:"meeting"},
-      {name:"Technical SEO Services", href:"/services/technical-seo-services", note:"Crawling, speed and indexing fixes.", img:"devs"},
-      {name:"AI SEO Services", href:"/services/ai-seo-services", note:"Get cited inside AI answers.", img:"laptops"}
+      {name:"Ecommerce SEO Services", href:"/services/ecommerce-seo-services", note:"Rankings for product and category pages.", img:"seoEcommerce"},
+      {name:"SEO Audit Services", href:"/services/seo-audit-services", note:"Find what is holding the site back.", img:"seoAudit"},
+      {name:"On-Page SEO Services", href:"/services/on-page-seo", note:"Titles, content and internal links.", img:"seoOnpage"},
+      {name:"Technical SEO Services", href:"/services/technical-seo-services", note:"Crawling, speed and indexing fixes.", img:"seoTechnical"},
+      {name:"AI SEO Services", href:"/services/ai-seo-services", note:"Get cited inside AI answers.", img:"seoAi"}
     ]},
-  { title:"Local SEO", href:"/#services", icon:"pin", img:"keys",
+  { title:"Local SEO Services", href:"/services/local-seo-services", icon:"pin", img:"localSeo",
     items:[
-      {name:"Local SEO Services", href:"/services/local-seo-services", note:"Rank across your whole service area.", img:"keys"},
-      {name:"Google Business Profile Optimization Services", href:"/services/google-business-profile-optimization-services", note:"Turn the listing into calls and visits.", img:"docs"},
-      {name:"Franchise SEO Services", href:"/services/franchise-seo-services", note:"One system across every location.", img:"meeting"}
+      {name:"Google Business Profile Optimization Services", href:"/services/google-business-profile-optimization-services", note:"Turn the listing into calls and visits.", img:"localGbp"},
+      {name:"Franchise SEO Services", href:"/services/franchise-seo-services", note:"One system across every location.", img:"localFranchise"}
     ]},
-  { title:"Web and Software Development", href:"/#services", icon:"code", img:"laptops",
+  { title:"Web and Software Development", href:"/#services", icon:"code", img:"web",
     items:[
-      {name:"Web Design and Development Services", href:"/services/web-design-and-development-services", note:"Sites built to convert, not just to look good.", img:"laptops"},
-      {name:"Custom Software Development Services", href:"/services/custom-software-development-services", note:"Custom platforms and internal tools.", img:"devs"},
-      {name:"Mobile App Development Services", href:"/services/mobile-app-development-services", note:"iOS and Android, one codebase.", img:"table"}
+      {name:"Web Design and Development Services", href:"/services/web-design-and-development-services", note:"Sites built to convert, not just to look good.", img:"webDesign"},
+      {name:"Custom Software Development Services", href:"/services/custom-software-development-services", note:"Custom platforms and internal tools.", img:"webSoftware"},
+      {name:"Mobile App Development Services", href:"/services/mobile-app-development-services", note:"iOS and Android, one codebase.", img:"webMobile"}
     ]},
-  { title:"Artificial Intelligence Services", href:"/services/artificial-intelligence-services", icon:"chip", img:"devs",
+  { title:"Artificial Intelligence Services", href:"/services/artificial-intelligence-services", icon:"chip", img:"ai",
     items:[
-      {name:"AI Development Services", href:"/services/ai-development-services", note:"Models wired into your own stack.", img:"devs"},
-      {name:"AI Chatbot Development Services", href:"/services/ai-chatbot-development-services", note:"Answer customers day and night.", img:"mentor"},
-      {name:"AI Agent Development Services", href:"/services/ai-agent-development-services", note:"Run multi-step work end to end.", img:"meeting"}
+      {name:"AI Development Services", href:"/services/ai-development-services", note:"Models wired into your own stack.", img:"aiDev"},
+      {name:"AI Chatbot Development Services", href:"/services/ai-chatbot-development-services", note:"Answer customers day and night.", img:"aiChatbot"},
+      {name:"AI Agent Development Services", href:"/services/ai-agent-development-services", note:"Run multi-step work end to end.", img:"aiAgent"}
     ]}
 ];
 
 var BG = {
-  team:"/images/mm-team.webp",
-  keys:"/images/mm-keys.webp",
-  laptops:"/images/mm-laptops.webp",
-  devs:"/images/mm-devs.webp",
-  meeting:"/images/mm-meeting.webp",
-  table:"/images/mm-table.webp",
-  docs:"/images/mm-docs.webp",
-  mentor:"/images/mm-mentor.webp"
+  seo:{src:"/images/mm-seo-ee25d585e6.webp", alt:"SEO specialists reviewing search performance dashboards for TekCroft SEO services", title:"SEO Services"},
+  seoEcommerce:{src:"/images/mm-seo-ecommerce-5f6d7e2d51.webp", alt:"Team reviewing ecommerce SEO analytics and product category rankings on a desktop dashboard", title:"Ecommerce SEO Services"},
+  seoAudit:{src:"/images/mm-seo-audit-785fcd27e0.webp", alt:"Specialists reviewing an SEO audit report with crawl and ranking findings on screen", title:"SEO Audit Services"},
+  seoOnpage:{src:"/images/mm-seo-onpage-a9c4c0846e.webp", alt:"Marketer optimizing on-page SEO titles, content structure, and internal links", title:"On-Page SEO Services"},
+  seoTechnical:{src:"/images/mm-seo-technical-82e8b4c729.webp", alt:"Engineer fixing technical SEO issues for crawling, speed, and indexing", title:"Technical SEO Services"},
+  seoAi:{src:"/images/mm-seo-ai-04b7222b1b.webp", alt:"Team analyzing AI search visibility and citation opportunities for AI SEO", title:"AI SEO Services"},
+  local:{src:"/images/mm-local-cat-59ce54437b.webp", alt:"Local SEO specialists mapping neighborhood rankings and location strategy", title:"Local SEO Services"},
+  localSeo:{src:"/images/mm-local-b28a2a8554.webp", alt:"Local SEO team planning map-based rankings and service-area visibility", title:"Local SEO Services"},
+  localGbp:{src:"/images/mm-local-gbp-93ba89bfb1.webp", alt:"Specialist optimizing a Google Business Profile listing for calls and visits", title:"Google Business Profile Optimization Services"},
+  localFranchise:{src:"/images/mm-local-franchise-88dcef3e9a.webp", alt:"Franchise SEO planners aligning multi-location search strategy across sites", title:"Franchise SEO Services"},
+  web:{src:"/images/mm-web-cat-11f5aab015.webp", alt:"Web and software team collaborating on product and application development", title:"Web and Software Development"},
+  webDesign:{src:"/images/mm-web-9b5da82227.webp", alt:"Designers and developers building a conversion-focused website interface", title:"Web Design and Development Services"},
+  webSoftware:{src:"/images/mm-web-software-c140d05592.webp", alt:"Engineers building custom software platforms and internal business tools", title:"Custom Software Development Services"},
+  webMobile:{src:"/images/mm-web-mobile-95ffa25bf8.webp", alt:"Mobile app developers shipping iOS and Android from one shared codebase", title:"Mobile App Development Services"},
+  ai:{src:"/images/mm-ai-cat-0d34cc0d0a.webp", alt:"AI team collaborating on intelligent products and automation systems", title:"Artificial Intelligence Services"},
+  aiDev:{src:"/images/mm-ai-dev-e69aa64fea.webp", alt:"Engineers wiring AI models into a production software stack", title:"AI Development Services"},
+  aiChatbot:{src:"/images/mm-ai-chatbot-556d22b637.webp", alt:"Team building an AI chatbot that answers customers around the clock", title:"AI Chatbot Development Services"},
+  aiAgent:{src:"/images/mm-ai-agent-e2a21e5ca1.webp", alt:"Specialists designing AI agents that run multi-step work end to end", title:"AI Agent Development Services"},
+  team:{src:"/images/mm-team.webp", alt:"TekCroft team collaborating on digital services", title:"TekCroft Services"},
+  keys:{src:"/images/mm-keys.webp", alt:"Local SEO planning with maps and location strategy", title:"Local SEO"},
+  laptops:{src:"/images/mm-laptops.webp", alt:"Developers working on web and software projects", title:"Web and Software Development"},
+  devs:{src:"/images/mm-devs.webp", alt:"Engineers building software and AI systems", title:"Artificial Intelligence Services"},
+  meeting:{src:"/images/mm-meeting.webp", alt:"Team meeting to plan TekCroft service delivery", title:"TekCroft Services"},
+  table:{src:"/images/mm-table.webp", alt:"Workshop table with product and service planning materials", title:"TekCroft Services"},
+  docs:{src:"/images/mm-docs.webp", alt:"Business profile and local listing optimization documents", title:"Google Business Profile Optimization Services"},
+  mentor:{src:"/images/mm-mentor.webp", alt:"Consultant mentoring a client through a service plan", title:"TekCroft Services"}
 };
 var BG_IDLE = 'meeting';
 var BG_KEYS = Object.keys(BG);
@@ -77,9 +94,25 @@ document.getElementById('mmCols').innerHTML = SERVICES.map(function(s){
 }).join('');
 
 /* ── the hero image stack ── */
+function imgKeyForPath(pathname){
+  var here = (pathname||'').replace(/\/+$/,'').toLowerCase();
+  if(!here) return null;
+  for(var i=0;i<SERVICES.length;i++){
+    var s = SERVICES[i];
+    try{ if(new URL(s.href, location.href).pathname.replace(/\/+$/,'').toLowerCase()===here) return s.img; }catch(e){}
+    for(var j=0;j<s.items.length;j++){
+      try{ if(new URL(s.items[j].href, location.href).pathname.replace(/\/+$/,'').toLowerCase()===here) return s.items[j].img; }catch(e){}
+    }
+  }
+  return null;
+}
+var activeImg = imgKeyForPath(location.pathname);
+if(activeImg && BG[activeImg]) BG_IDLE = activeImg;
+
 var stack = panel.querySelector('.mm-stack');
 stack.innerHTML = BG_KEYS.map(function(k){
-  return '<img src="'+BG[k]+'" alt="" width="760" height="507" loading="lazy" decoding="async" data-key="'+k+'"'+(k===BG_IDLE?' data-on="true"':'')+'>';
+  var meta = BG[k];
+  return '<img src="'+meta.src+'" alt="'+esc(meta.alt)+'" title="'+esc(meta.title)+'" width="760" height="507" loading="lazy" decoding="async" data-key="'+k+'"'+(k===BG_IDLE?' data-on="true"':'')+'>';
 }).join('');
 function showBg(key){
   var want = key || BG_IDLE;
@@ -99,7 +132,20 @@ function placeCaret(){
   panel.querySelector('.mm-caret').style.setProperty('--caret-x', (r.left + r.width/2 - box.left) + 'px');
 }
 function reset(){
-  showBg(null);
+  showBg(activeImg || null);
+  if(activeImg){
+    var cur = panel.querySelector('.mm-row.is-current, .mm-gp[aria-current="page"]');
+    if(cur){
+      titleEl.textContent = cur.dataset.title || baseTitle;
+      noteEl.textContent  = cur.dataset.note || baseNote;
+      return;
+    }
+    if(BG[activeImg]){
+      titleEl.textContent = BG[activeImg].title;
+      noteEl.textContent  = baseNote;
+      return;
+    }
+  }
   titleEl.textContent = baseTitle;
   noteEl.textContent  = baseNote;
 }
@@ -108,6 +154,7 @@ function open(){
   panel.hidden = false;
   btn.setAttribute('aria-expanded','true');
   placeCaret();
+  reset();
 }
 function close(){
   clearTimeout(showTimer);
@@ -150,11 +197,18 @@ window.addEventListener('scroll', function(){ if(!panel.hidden) placeCaret(); },
 var mslot = document.getElementById('mmMobile');
 if(mslot){
   mslot.innerHTML = SERVICES.map(function(s,i){
+    var itemsHtml = s.items.map(function(it){ return '<a href="'+it.href+'">'+esc(it.name)+'</a>'; }).join('');
+    /* Local SEO Services: heading is a real page link (same as desktop .mm-gp); chevron toggles. */
+    if(s.href === '/services/local-seo-services'){
+      return '<div class="mm-acc-head">'
+        + '<a class="mm-acc-label" href="'+s.href+'">'+esc(s.title)+'</a>'
+        + '<button class="mm-acc mm-acc-only" type="button" aria-expanded="false" aria-controls="mmacc'+i+'" aria-label="Toggle '+esc(s.title)+' submenu">'+DOWN+'</button>'
+        + '</div>'
+        + '<div class="mm-accp" id="mmacc'+i+'" data-open="false"><div>'+itemsHtml+'</div></div>';
+    }
     return '<button class="mm-acc" type="button" aria-expanded="false" aria-controls="mmacc'+i+'">'
       + '<span class="mm-acc-label">'+esc(s.title)+'</span>' + DOWN + '</button>'
-      + '<div class="mm-accp" id="mmacc'+i+'" data-open="false"><div>'
-      + s.items.map(function(it){ return '<a href="'+it.href+'">'+esc(it.name)+'</a>'; }).join('')
-      + '</div></div>';
+      + '<div class="mm-accp" id="mmacc'+i+'" data-open="false"><div>'+itemsHtml+'</div></div>';
   }).join('');
   mslot.addEventListener('click', function(e){
     var h = e.target.closest('.mm-acc');
@@ -173,11 +227,49 @@ if(mslot){
       if(btn === h) return;
       btn.setAttribute('aria-expanded', 'false');
       if(pane) pane.dataset.open = 'false';
+      var head = btn.closest('.mm-acc-head');
+      if(head) head.classList.remove('is-open');
     });
     p.dataset.open = isOpen ? 'false' : 'true';
     h.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    var head = h.closest('.mm-acc-head');
+    if(head) head.classList.toggle('is-open', !isOpen);
   });
 }
+})();
+
+/* ── Mega-menu footer CTA: label + arrow like primary buttons ── */
+(function(){
+  if(!document.getElementById('mm-foot-cta-fix')){
+    var st = document.createElement('style');
+    st.id = 'mm-foot-cta-fix';
+    st.textContent = [
+      '.mm-foot > div > span{display:block;margin-top:1px;font-size:12.5px;color:var(--muted);}',
+      '.mm-foot .mm-cta,.mm-foot .mm-cta2{color:#fff!important;font-size:15px!important;font-weight:700!important;}',
+      '.mm-foot .mm-cta .btn-label,.mm-foot .mm-cta2 .btn-label,.mm-foot .btn-label{display:inline!important;margin-top:0!important;color:#fff!important;font-size:15px!important;font-weight:700!important;}',
+      '.mm-foot .mm-cta .arw,.mm-foot .mm-cta2 .arw,.mm-foot .arw{display:grid!important;place-items:center;flex-shrink:0;width:32px;height:32px;margin:-7px -9px -7px 0;border-radius:50%;border:1px solid currentColor;font-size:14px;color:#fff!important;transform:rotate(45deg);}',
+      '.mm-foot .mm-cta:hover .arw,.mm-foot .mm-cta2:hover .arw{transform:rotate(90deg);background:var(--n0);color:var(--ink-plate)!important;border-color:transparent;}',
+      'html[data-theme="dark"] .mm-foot .mm-cta,html[data-theme="dark"] .mm-foot .mm-cta2,html[data-theme="dark"] .mm-foot .btn-label,html[data-theme="dark"] .mm-foot .arw{color:#fff!important;}'
+    ].join('');
+    document.head.appendChild(st);
+  }
+  var cta = document.querySelector('.mm-foot .mm-cta, .mm-foot .mm-cta2');
+  if(!cta) return;
+  if(!cta.querySelector('.btn-label')){
+    var text = (cta.textContent || '').replace(/\s+/g, ' ').trim();
+    while(cta.firstChild) cta.removeChild(cta.firstChild);
+    var lab = document.createElement('span');
+    lab.className = 'btn-label';
+    lab.textContent = text || 'Get a Free Proposal';
+    cta.appendChild(lab);
+  }
+  if(!cta.querySelector('.arw')){
+    var arw = document.createElement('span');
+    arw.className = 'arw';
+    arw.setAttribute('aria-hidden', 'true');
+    arw.innerHTML = '&uarr;';
+    cta.appendChild(arw);
+  }
 })();
 
 /* === MEGA MENU DESIGN LAYERS (from mega-menu.html) === */
@@ -194,14 +286,24 @@ if(mslot){
   var panel=document.getElementById('mmPanel'); if(!panel) return;
   function norm(p){ return (p||'').replace(/\/+$/,'').toLowerCase(); }
   var here=norm(location.pathname), forced=(panel.getAttribute('data-current')||'').toLowerCase().trim();
+  var marked=false;
   [].forEach.call(panel.querySelectorAll('.mm-row'),function(a){
     var name=(a.querySelector('.mm-n')||a).textContent.toLowerCase().trim(), hit=false;
     try{ var u=new URL(a.getAttribute('href'),location.href); hit = here && here!=='' && norm(u.pathname)===here && !u.hash; }catch(e){}
     if(!hit && forced) hit = name===forced;
     if(hit){ a.classList.add('is-current'); a.setAttribute('aria-current','page');
       var col=a.closest('.mm-svc-col'), gp=col&&col.querySelector('.mm-gp'); if(gp) gp.classList.add('is-current-parent');
-      var t=document.getElementById('mmTrigger'); if(t) t.classList.add('is-current-parent'); }
+      var t=document.getElementById('mmTrigger'); if(t) t.classList.add('is-current-parent');
+      marked=true; }
   });
+  if(!marked){
+    [].forEach.call(panel.querySelectorAll('.mm-gp'),function(gp){
+      var hit=false;
+      try{ var u=new URL(gp.getAttribute('href'),location.href); hit = here && here!=='' && norm(u.pathname)===here && !u.hash; }catch(e){}
+      if(hit){ gp.classList.add('is-current-parent'); gp.setAttribute('aria-current','page');
+        var t=document.getElementById('mmTrigger'); if(t) t.classList.add('is-current-parent'); }
+    });
+  }
 })();
 
 

@@ -4,7 +4,7 @@ const routes = [
   "/",
   "/blog",
   "/contact",
-  "/services/ecommerce-seo",
+  "/services/ecommerce-seo-services",
   "/services/seo-audit-services",
   "/services/on-page-seo",
   "/services/technical-seo",
