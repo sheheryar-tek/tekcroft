@@ -45,6 +45,15 @@ export default function EcommerceSeoPage() {
         as="image"
         href={lcp.preload}
         type="image/webp"
+        media={lcp.desktopMedia}
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={lcp.preloadMobile}
+        type="image/webp"
+        media={lcp.mobileMedia}
         fetchPriority="high"
       />
       <Homepage html={html} />
