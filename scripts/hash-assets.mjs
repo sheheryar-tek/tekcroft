@@ -28,6 +28,7 @@ const manifest = {
   main: hashFile("tekcroft-main.js"),
   mm: hashFile("tekcroft-mm.js"),
   ecommerceSeo: hashFile("tekcroft-ecommerce-seo.js"),
+  seoServices: hashFile("tekcroft-seo-services.js"),
   seoAuditServices: hashFile("tekcroft-seo-audit-services.js"),
   technicalSeo: hashFile("tekcroft-technical-seo.js"),
   localSeo: hashFile("tekcroft-local-seo.js"),
