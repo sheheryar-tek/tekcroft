@@ -104,3 +104,64 @@ html body .ft4-bar a:hover{color:var(--brand-text);}
   html body .ft4-top{grid-template-columns:minmax(0,1fr) !important;}
   html body .ft4-bar{flex-direction:column; align-items:flex-start;}
 }
+
+/* Services mega-menu .mm-hero — full-bleed photo (sitewide header) */
+html body .mm-hero{
+  position:relative !important;
+  overflow:hidden !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-end !important;
+  min-height:280px !important;
+  padding:20px 18px !important;
+  background:#0B1620 !important;
+}
+html body .mm-stack{
+  position:absolute !important;
+  inset:0 !important;
+  z-index:0 !important;
+}
+html body .mm-stack img{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  max-height:none !important;
+  aspect-ratio:auto !important;
+  object-fit:cover !important;
+  object-position:center top !important;
+  display:block !important;
+}
+html body .mm-veil{
+  position:absolute !important;
+  inset:0 !important;
+  z-index:1 !important;
+  pointer-events:none !important;
+  background:linear-gradient(180deg,
+    rgba(4,14,22,0) 0%,
+    rgba(4,14,22,.10) 35%,
+    rgba(4,14,22,.62) 62%,
+    rgba(4,14,22,.90) 100%) !important;
+}
+html body .mm-copy{
+  position:relative !important;
+  z-index:2 !important;
+  color:#fff !important;
+  margin-top:auto !important;
+}
+html body .mm-copy .mm-title,
+html body .mm-copy .mm-note{
+  text-shadow:0 1px 3px rgba(0,0,0,.45) !important;
+}
+html body .mm-copy .mm-note{
+  color:rgba(255,255,255,.88) !important;
+}
+html[data-theme="dark"] body .mm-hero{background:#0B1620 !important;}
+html[data-theme="dark"] body .mm-veil{
+  background:linear-gradient(180deg,
+    rgba(4,14,22,0) 0%,
+    rgba(4,14,22,.10) 35%,
+    rgba(4,14,22,.62) 62%,
+    rgba(4,14,22,.90) 100%) !important;
+}

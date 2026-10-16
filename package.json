@@ -14,7 +14,7 @@
     "verify:icons": "node scripts/verify-icons-live.mjs"
   },
   "dependencies": {
-    "next": "^15.5.25",
+    "next": "^16.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

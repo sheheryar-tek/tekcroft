@@ -6,7 +6,7 @@
    ══════════════════════════════════════════════════════════════════════ */
 (function(){
 var SERVICES = [
-  { title:"SEO", href:"/#services", icon:"chart", img:"team",
+  { title:"SEO Services", href:"/services/seo-services", icon:"chart", img:"team",
     items:[
       {name:"Ecommerce SEO Services", href:"/services/ecommerce-seo", note:"Rankings for product and category pages.", img:"table"},
       {name:"SEO Audit Services", href:"/services/seo-audit-services", note:"Find what is holding the site back.", img:"mentor"},
