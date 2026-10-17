@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Inter, Sora } from "next/font/google";
+import assets from "@/lib/asset-manifest.json";
 import "./tekcroft.css";
 import "./responsive.css";
 import "./perf.css";
@@ -8,6 +10,8 @@ import "./footer-lock.css";
 import "./site-consistency.css";
 /* Shared under-hero stats strip (#proof-v2) — one design site-wide */
 import "./stats-strip.css";
+/* Shared comparison-table highlighted-column halo (.vs-halo) */
+import "./vs-halo-lock.css";
 
 /* Self-hosted via next/font — same families/weights, no render-blocking Google CSS */
 const inter = Inter({
@@ -73,6 +77,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className} suppressHydrationWarning>
         {children}
+        <Script src={assets.vsHalo} strategy="afterInteractive" />
       </body>
     </html>
   );

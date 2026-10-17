@@ -13,6 +13,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/services/on-page-seo",
+        destination: "/services/on-page-seo-services",
+        permanent: true,
+      },
+      {
         source: "/services/technical-seo",
         destination: "/services/technical-seo-services",
         permanent: true,
@@ -61,6 +66,7 @@ const nextConfig = {
       { source: "/images/:path*", headers: immutable },
       { source: "/tekcroft-main.:hash.js", headers: immutable },
       { source: "/tekcroft-mm.:hash.js", headers: immutable },
+      { source: "/tekcroft-vs-halo.:hash.js", headers: immutable },
       { source: "/tekcroft-contact.:hash.js", headers: immutable },
       { source: "/tekcroft-ecommerce-seo.:hash.js", headers: immutable },
       { source: "/tekcroft-seo-audit-services.:hash.js", headers: immutable },

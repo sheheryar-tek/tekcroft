@@ -387,8 +387,20 @@ html[data-theme="dark"]{
 .hs-h1 em{white-space:nowrap;}
 
 /* The claim runs to two paragraphs here. They read as one block, so the
-   first sits closer to the second than the block does to the buttons. */
-.hs-lede-1{margin-bottom:clamp(12px,1.2vw,16px);}
+   first sits closer to the second than the block does to the buttons.
+   Scoped to #hero-1 so shared service-hero-lock / site-consistency
+   margin on .hs-lede cannot leave ~30–70px between the two ledes. */
+#hero-1 .hs-copy .hs-lede-1{
+  margin-bottom:0 !important;
+}
+#hero-1 .hs-copy .hs-lede + .hs-lede{
+  margin-top:14px !important;
+}
+@media (max-width:960px){
+  #hero-1 .hs-copy .hs-lede + .hs-lede{
+    margin-top:12px !important;
+  }
+}
 
 /* Below the full column, and on every screen in variant 02 — where the
    headline shares its row with two more columns and never has the width
@@ -2151,7 +2163,8 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
    opposite already uses. Raise it to darken, lower it to let more of the
    picture through. */
 #fit{ --ground:var(--bg-alt); --panel:var(--surface);
-  --vs-veil:rgba(0,0,0,.78); }
+  --vs-veil:rgba(0,0,0,.78);
+  --shot-3:url("/images/onpage-fit-b786112b77.webp"); }
 
 /* the head is on a photograph now, so it takes the light type and the
    glass badge the other dark section does */
@@ -2164,14 +2177,18 @@ html[data-theme="dark"] .c-us .vs-m{background:rgba(42,157,92,.20);}
 .vs-two tbody td{vertical-align:top;}
 .vs-two tbody .vs-m{margin-top:1px;}
 
-/* the frame moves to the first column, and the badge with it */
-.vs-halo-l{left:0; right:auto; width:50%;}
+/* Two-col fit table — halo position comes from vs-halo-lock + tekcroft-vs-halo.js */
+#fit .vs-stage{min-width:0; width:100%;}
+#fit .vs-table.vs-two col.cx{width:50% !important;}
 
-@media (max-width:760px){
-  /* the table is already a stack of cards at this width; the frame has
-     nothing rectangular left to draw around, so it goes and the badge
-     goes with it */
-  .vs-halo-l{display:none;}
+@media (max-width:900px){
+  /* stacked cards keep the c-us accent wash (halo is hidden by shared lock) */
+  #fit .vs-table.vs-two tbody td.c-us{
+    margin-top:5px;
+    padding:9px 13px !important;
+    border-radius:12px !important;
+    background:hsl(var(--brand-h) 100% 50% / .07) !important;
+  }
 }
 
 /* === ind-marks === */

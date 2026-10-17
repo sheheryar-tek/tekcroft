@@ -1643,7 +1643,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
           ? titleMatch[1].trim()
           : "On-Page SEO Services | Tekcroft",
         description: descMatch ? descMatch[1] : "",
-        canonical: "https://www.tekcroft.com/services/on-page-seo",
+        canonical: "https://www.tekcroft.com/services/on-page-seo-services",
       },
       null,
       2

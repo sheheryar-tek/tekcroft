@@ -1,0 +1,72 @@
+{
+  "audit-ac-technical": {
+    "file": "/images/audit-ac-technical-27df51b441.webp",
+    "kb": 51.2,
+    "q": 78,
+    "w": 1200,
+    "h": 800,
+    "title": "Technical SEO Audit",
+    "alt": "Technical SEO Audit reviewing crawlability, indexing, site speed, and Core Web Vitals",
+    "src": "C:\\Users\\Super\\Downloads\\SEO-Audit-20261016T121654Z-1-001\\SEO-Audit\\services\\02-Technical-Audit\\desktop\\Tekcroft-SEO-Audit-02-Technical-Audit-Option-01-1920x1080.jpg"
+  },
+  "audit-ac-content": {
+    "file": "/images/audit-ac-content-8a23ed479e.webp",
+    "kb": 66.4,
+    "q": 78,
+    "w": 1200,
+    "h": 800,
+    "title": "On-Page & Content Audit",
+    "alt": "On-Page and Content Audit checking titles, metadata, search intent, and content structure",
+    "src": "C:\\Users\\Super\\Downloads\\SEO-Audit-20261016T121654Z-1-001\\SEO-Audit\\services\\03-Content-Audit\\desktop\\Tekcroft-SEO-Audit-03-Content-Audit-Option-01-1920x1080.jpg"
+  },
+  "audit-ac-backlinks": {
+    "file": "/images/audit-ac-backlinks-5b8c1e2b72.webp",
+    "kb": 57.3,
+    "q": 78,
+    "w": 1200,
+    "h": 800,
+    "title": "Backlink & Authority Audit",
+    "alt": "Backlink and Authority Audit analyzing link profile quality, toxic links, and authority gaps",
+    "src": "C:\\Users\\Super\\Downloads\\SEO-Audit-20261016T121654Z-1-001\\SEO-Audit\\services\\04-Backlink-Audit\\desktop\\Tekcroft-SEO-Audit-04-Backlink-Audit-Option-01-1920x1080.jpg"
+  },
+  "audit-ac-competitor": {
+    "file": "/images/audit-ac-competitor-5bd67c2489.webp",
+    "kb": 59.1,
+    "q": 78,
+    "w": 1200,
+    "h": 800,
+    "title": "Competitor Gap Analysis",
+    "alt": "Competitor Gap Analysis mapping keyword, content, and ranking opportunities you are missing",
+    "src": "C:\\Users\\Super\\Downloads\\SEO-Audit-20261016T121654Z-1-001\\SEO-Audit\\services\\05-Competitor-Gaps\\desktop\\Tekcroft-SEO-Audit-05-Competitor-Gaps-Option-01-1920x1080.jpg"
+  },
+  "audit-ac-geo": {
+    "file": "/images/audit-ac-geo-b326ef293b.webp",
+    "kb": 45.1,
+    "q": 78,
+    "w": 1200,
+    "h": 800,
+    "title": "AI Search (GEO) Readiness Audit",
+    "alt": "AI Search GEO Readiness Audit for ChatGPT, Gemini, and AI Overview citation visibility",
+    "src": "C:\\Users\\Super\\Downloads\\SEO-Audit-20261016T121654Z-1-001\\SEO-Audit\\services\\06-AI-Search-Audit\\desktop\\Tekcroft-SEO-Audit-06-AI-Search-Audit-Option-01-1920x1080.jpg"
+  },
+  "audit-ac-analytics": {
+    "file": "/images/audit-ac-analytics-1db86c9b12.webp",
+    "kb": 47.6,
+    "q": 78,
+    "w": 1200,
+    "h": 800,
+    "title": "Analytics & Conversion Tracking Audit",
+    "alt": "Analytics and Conversion Tracking Audit verifying GA4 setup, goals, and reporting accuracy",
+    "src": "C:\\Users\\Super\\Downloads\\SEO-Audit-20261016T121654Z-1-001\\SEO-Audit\\services\\07-Analytics-Audit\\desktop\\Tekcroft-SEO-Audit-07-Analytics-Audit-Option-01-1920x1080.jpg"
+  },
+  "seo-audit-vs": {
+    "file": "/images/seo-audit-vs-3dfa117561.webp",
+    "kb": 75,
+    "q": 72,
+    "w": 1600,
+    "h": 900,
+    "title": "DIY Vs ChatGPT Vs Professional SEO Audit",
+    "alt": "DIY vs ChatGPT vs Professional SEO Audit comparison of audit approaches",
+    "src": "C:\\Users\\Super\\Downloads\\SEO-Audit-20261016T121654Z-1-001\\SEO-Audit\\services\\08-Audit-Comparison\\desktop\\Tekcroft-SEO-Audit-08-Audit-Comparison-Option-01-1920x1080.jpg"
+  }
+}

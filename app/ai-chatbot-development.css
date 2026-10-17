@@ -6267,7 +6267,7 @@ html[data-theme="dark"] .tm-lg{background:hsl(var(--brand-h) 20% 22%);}
    cells, and the same table on a phone (narrow columns, chips wrapping)
    instead of the stacked cards the comparison uses.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-#stack .vs-halo{display:none !important;}
+/* #stack halo shown via vs-halo-lock */
 #stack .vs-stage{min-width:0 !important;}
 #stack .vs-hold{overflow:hidden; border-radius:20px; background:var(--surface);
   box-shadow:0 30px 60px -40px rgba(0,0,0,.6);}

@@ -12,7 +12,7 @@ const pages = [
   "app/layout.tsx",
   "app/page.tsx",
   "app/contact/page.tsx",
-  "app/services/on-page-seo/page.tsx",
+  "app/services/on-page-seo-services/page.tsx",
   "app/services/technical-seo/page.tsx",
   "app/services/seo-audit-services/page.tsx",
   "app/services/local-seo-services/page.tsx",

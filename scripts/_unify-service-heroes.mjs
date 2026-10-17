@@ -16,7 +16,7 @@ const servicePages = [
   "app/services/google-business-profile-optimization-services/page.tsx",
   "app/services/ecommerce-seo-services/page.tsx",
   "app/services/technical-seo-services/page.tsx",
-  "app/services/on-page-seo/page.tsx",
+  "app/services/on-page-seo-services/page.tsx",
   "app/services/seo-audit-services/page.tsx",
   "app/services/ai-seo-services/page.tsx",
   "app/services/web-design-and-development-services/page.tsx",

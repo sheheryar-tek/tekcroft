@@ -6,7 +6,7 @@ const routes = [
   "/contact",
   "/services/ecommerce-seo-services",
   "/services/seo-audit-services",
-  "/services/on-page-seo",
+  "/services/on-page-seo-services",
   "/services/technical-seo",
   "/services/ai-seo-services",
   "/services/local-seo-services",

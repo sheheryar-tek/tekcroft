@@ -6271,7 +6271,7 @@ html[data-theme="dark"] .tm-lg{background:hsl(var(--brand-h) 20% 22%);}
    cells, and the same table on a phone (narrow columns, chips wrapping)
    instead of the stacked cards the comparison uses.
    ══════════════════════════════════════════════════════════════════════ */
-#stack .vs-halo{display:none !important;}#stack .vs-stage{min-width:0 !important;}#stack .vs-hold{overflow:hidden; border-radius:20px; background:var(--surface);
+/* #stack halo shown via vs-halo-lock */#stack .vs-stage{min-width:0 !important;}#stack .vs-hold{overflow:hidden; border-radius:20px; background:var(--surface);
   box-shadow:0 30px 60px -40px rgba(0,0,0,.6);}#stack table.st-table{display:table !important; width:100%; border-collapse:collapse; table-layout:fixed; background:var(--surface);}#stack .st-table thead{display:table-header-group !important;}#stack .st-table tbody{display:table-row-group !important;}#stack .st-table tr{display:table-row !important;}#stack .st-table th, #stack .st-table td{display:table-cell !important; vertical-align:middle; text-align:left;
   padding:16px 20px !important; border-bottom:1px solid var(--border); background:none;}#stack .st-table td + td, #stack .st-table th + td, #stack .st-table thead th + th{border-left:1px solid var(--border);}#stack .st-table tbody tr:last-child th, #stack .st-table tbody tr:last-child td{border-bottom:0;}#stack .st-table thead th{background:hsl(var(--brand-h) 80% 96%); padding-block:13px !important;}html[data-theme="dark"] #stack .st-table thead th{background:hsl(var(--brand-h) 40% 15%);}#stack .st-table thead .vs-h{font-family:var(--font-display); font-size:11px; font-weight:700; letter-spacing:.14em;
   text-transform:uppercase; color:var(--brand-text); gap:8px;}#stack .st-table thead .vs-h-blank{color:var(--brand-text);}#stack .st-table thead .vs-hic{display:none;}#stack .st-table td.c-us{background:none;}#stack .st-table tbody tr{transition:background .25s var(--ease);}#stack .st-table tbody tr:hover{background:hsl(var(--brand-h) 100% 50% / .04);}#stack .st-table td::before{content:none !important; display:none !important;}#stack .st-table .vs-k{font-family:var(--font-display); font-weight:700; font-size:16px; letter-spacing:-.02em; color:var(--text);}#stack .st-table .vs-v{display:flex; align-items:flex-start; gap:10px; font-size:14px; line-height:1.5; color:var(--text-2);}
@@ -7524,7 +7524,7 @@ html[data-theme="dark"] #cmp .vs-h:not(.is-us) .vs-hic{background:hsl(var(--bran
 #cmp .c-us .vs-m svg{width:62%; height:62%;}
 #cmp .c-us .vs-v{color:var(--text); font-weight:600;}
 /* Overlay halo removed — highlight is on .c-us cells */
-#cmp .vs-halo{display:none !important;}
+/* #cmp halo shown via vs-halo-lock */
 /* Best Fit column card (desktop) */
 @media (min-width:901px){
   #cmp .vs-table th.c-us{
@@ -7581,7 +7581,7 @@ html[data-theme="dark"] #cmp .vs-h:not(.is-us) .vs-hic{background:hsl(var(--bran
 @media (max-width:760px){
   #cmp .vs-scroll{overflow:visible; padding:0; margin:0;}
   #cmp .vs-stage{min-width:0 !important;}
-  #cmp .vs-halo{display:none !important;}
+  /* #cmp halo shown via vs-halo-lock */
   #cmp .vs-badge{display:none !important;}
   #cmp .vs-table{display:block; background:none !important; border:0; border-radius:0; box-shadow:none;}
   #cmp .vs-table colgroup,

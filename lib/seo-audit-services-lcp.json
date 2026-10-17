@@ -1,3 +1,6 @@
 {
-  "preload": "/images/seo-audit-hero-d8c96ef554.webp"
+  "preload": "/images/seo-audit-hero-b64ab6acc0.webp",
+  "preloadMobile": "/images/seo-audit-hero-m-0ab020dc2e.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

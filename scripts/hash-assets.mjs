@@ -27,6 +27,7 @@ function hashFile(name) {
 const manifest = {
   main: hashFile("tekcroft-main.js"),
   mm: hashFile("tekcroft-mm.js"),
+  vsHalo: hashFile("tekcroft-vs-halo.js"),
   ecommerceSeo: hashFile("tekcroft-ecommerce-seo.js"),
   seoServices: hashFile("tekcroft-seo-services.js"),
   seoAuditServices: hashFile("tekcroft-seo-audit-services.js"),

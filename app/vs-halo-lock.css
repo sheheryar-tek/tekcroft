@@ -1,0 +1,124 @@
+/* Shared comparison-table highlighted-column halo
+   Applies to every .vs-stage that carries a .vs-halo + th.c-us.
+   Position (left/width) is set by public/tekcroft-vs-halo.js. */
+
+@media (min-width:901px){
+  html body .vs-hold,
+  html body #stack .vs-hold,
+  html body #cmp .vs-hold,
+  html body #fit .vs-hold,
+  html body #vs .vs-hold,
+  html body .vs-stage,
+  html body #stack .vs-stage,
+  html body #cmp .vs-stage,
+  html body #fit .vs-stage,
+  html body #vs .vs-stage{
+    position:relative !important;
+    overflow:visible !important;
+  }
+
+  /* Room so the halo can sit 14px above/below the white card without clipping */
+  .vs-hold .vs-scroll{
+    overflow-x:auto !important;
+    overflow-y:visible !important;
+    padding-top:22px !important;
+    padding-bottom:22px !important;
+    margin-top:-8px !important;
+    margin-bottom:-8px !important;
+  }
+
+  /* responsive.css sets table{display:block} — restore real table layout */
+  .vs-stage > .vs-table,
+  .vs-stage > .st-table,
+  .vs-stage > table.vs-table{
+    display:table !important;
+    width:100% !important;
+    max-width:none !important;
+    table-layout:fixed !important;
+    position:relative;
+    z-index:1;
+  }
+  .vs-stage > .vs-table colgroup,
+  .vs-stage > .st-table colgroup{display:table-column-group !important;}
+  .vs-stage > .vs-table col,
+  .vs-stage > .st-table col{display:table-column !important;}
+  .vs-stage > .vs-table thead,
+  .vs-stage > .st-table thead{display:table-header-group !important;}
+  .vs-stage > .vs-table tbody,
+  .vs-stage > .st-table tbody{display:table-row-group !important;}
+  .vs-stage > .vs-table tr,
+  .vs-stage > .st-table tr{display:table-row !important;}
+  .vs-stage > .vs-table th,
+  .vs-stage > .vs-table td,
+  .vs-stage > .st-table th,
+  .vs-stage > .st-table td{
+    display:table-cell !important;
+    padding:16px 20px !important;
+  }
+
+  /* Halo box — left/width/top/bottom set by JS; kill hard-coded % fallbacks.
+     html body + child combinator beats page #stack/#cmp display:none rules. */
+  html body .vs-stage > .vs-halo,
+  html body #stack .vs-stage > .vs-halo,
+  html body #cmp .vs-stage > .vs-halo,
+  html body #fit .vs-stage > .vs-halo,
+  html body #vs .vs-stage > .vs-halo{
+    display:block !important;
+    position:absolute !important;
+    z-index:2 !important;
+    pointer-events:none !important;
+    top:-14px !important;
+    bottom:-14px !important;
+    height:auto !important;
+    right:auto !important;
+    border:1.5px solid var(--primary) !important;
+    border-radius:20px !important;
+    background:hsl(var(--brand-h) 100% 50% / .05) !important;
+    box-shadow:0 24px 48px -30px hsl(var(--brand-h) 90% 30% / .45) !important;
+  }
+
+  html[data-theme="dark"] body .vs-stage > .vs-halo,
+  html[data-theme="dark"] body #stack .vs-stage > .vs-halo,
+  html[data-theme="dark"] body #cmp .vs-stage > .vs-halo,
+  html[data-theme="dark"] body #fit .vs-stage > .vs-halo,
+  html[data-theme="dark"] body #vs .vs-stage > .vs-halo{
+    background:hsl(var(--brand-h) 100% 50% / .08) !important;
+    border-color:var(--primary) !important;
+  }
+
+  .vs-stage > .vs-halo .vs-badge{
+    position:absolute !important;
+    left:50% !important;
+    top:0 !important;
+    transform:translate(-50%,-50%) !important;
+    z-index:3 !important;
+  }
+
+  /* No cell-level double border / wash — the halo is the only highlight */
+  .vs-stage:has(> .vs-halo) thead th.c-us,
+  .vs-stage:has(> .vs-halo) tbody td.c-us{
+    background-color:transparent !important;
+    background-image:none !important;
+    border-left-color:transparent !important;
+    border-right-color:transparent !important;
+    border-top-color:transparent !important;
+  }
+  .vs-stage:has(> .vs-halo) thead th.c-us{
+    border-radius:0 !important;
+  }
+  .vs-stage:has(> .vs-halo) tbody tr:last-child td.c-us{
+    border-radius:0 !important;
+    border-bottom-color:transparent !important;
+  }
+
+  /* Badge must live in .vs-halo, not inside the header cell */
+  .vs-stage:has(> .vs-halo) thead th.c-us > .vs-badge{
+    display:none !important;
+  }
+}
+
+@media (max-width:900px){
+  .vs-stage > .vs-halo{
+    display:none !important;
+  }
+}
