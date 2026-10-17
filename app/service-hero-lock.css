@@ -243,11 +243,82 @@ html[data-theme="light"] #hero-1 .hs-field select{
   #hero-1 .hs-form-wrap{width:min(100%,508px);}
   #hero-1 .hs-lede{max-width:60ch;}
 }
-@media (max-width:560px){
-  #hero-1.hs{
-    min-height:auto;
-    padding-bottom:clamp(40px,7vw,56px);
+
+/* ≤900px: logos/ticker under CTAs in normal flow — no overlap.
+   Desktop (>900px) keeps absolute footer strip + viewport-tall hero. */
+@media (max-width:900px){
+  #hero-1.hs,
+  #top.hero,
+  header.hero{
+    height:auto !important;
+    min-height:100svh !important;
+    overflow:visible !important;
+    justify-content:flex-start !important;
+    padding-bottom:20px !important;
   }
+  #hero-1.hs:has(> .ticker),
+  #hero-1.hs:has(> .hs-logos),
+  #top.hero:has(> .ticker),
+  header.hero:has(> .ticker){
+    padding-bottom:20px !important;
+  }
+
+  #hero-1 .hs-in,
+  #top.hero .hero-in,
+  header.hero .hero-in{
+    flex:0 0 auto;
+    width:100%;
+  }
+
+  /* Client strip: relative, below buttons, full width */
+  #hero-1 .hs-logos,
+  #hero-1 > .ticker,
+  #top.hero > .ticker,
+  header.hero > .ticker,
+  .hs > .ticker{
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    inset:auto !important;
+    width:100% !important;
+    margin-top:32px !important;
+    z-index:3;
+  }
+
+  /* Background / veil / slider cover the full grown hero (incl. logos) */
+  #hero-1 .hs-bg,
+  #hero-1 .hs-veil{
+    position:absolute !important;
+    inset:0 !important;
+    width:auto !important;
+    height:auto !important;
+  }
+  #hero-1 .hs-bg img{
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    object-fit:cover !important;
+    object-position:center top;
+  }
+  #top.hero .hero-slider,
+  #top.hero .hero-scrim,
+  header.hero .hero-slider,
+  header.hero .hero-scrim{
+    position:absolute !important;
+    inset:0 !important;
+  }
+  #top.hero .hero-slide img,
+  header.hero .hero-slide img{
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    object-fit:cover !important;
+  }
+}
+
+@media (max-width:560px){
   #hero-1 .hs-copy{text-align:center;}
   #hero-1 .hs-lede{margin-inline:auto;}
   #hero-1 .hs-act{flex-direction:column; align-items:stretch;}
