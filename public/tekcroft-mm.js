@@ -5,6 +5,8 @@
    the burger accordion are all built from it.
    ══════════════════════════════════════════════════════════════════════ */
 (function(){
+if (window.__tekcroftMm) return;
+window.__tekcroftMm = true;
 var SERVICES = [
   { title:"SEO Services", href:"/services/seo-services", icon:"chart", img:"seo",
     items:[
@@ -193,49 +195,110 @@ document.addEventListener('keydown', function(e){
 window.addEventListener('resize', function(){ if(!panel.hidden) placeCaret(); });
 window.addEventListener('scroll', function(){ if(!panel.hidden) placeCaret(); }, {passive:true});
 
-/* ── Services inside the burger menu ── */
-var mslot = document.getElementById('mmMobile');
-if(mslot){
-  mslot.innerHTML = SERVICES.map(function(s,i){
-    var itemsHtml = s.items.map(function(it){ return '<a href="'+it.href+'">'+esc(it.name)+'</a>'; }).join('');
-    /* Local SEO Services: heading is a real page link (same as desktop .mm-gp); chevron toggles. */
-    if(s.href === '/services/local-seo-services'){
-      return '<div class="mm-acc-head">'
-        + '<a class="mm-acc-label" href="'+s.href+'">'+esc(s.title)+'</a>'
-        + '<button class="mm-acc mm-acc-only" type="button" aria-expanded="false" aria-controls="mmacc'+i+'" aria-label="Toggle '+esc(s.title)+' submenu">'+DOWN+'</button>'
-        + '</div>'
-        + '<div class="mm-accp" id="mmacc'+i+'" data-open="false"><div>'+itemsHtml+'</div></div>';
-    }
-    return '<button class="mm-acc" type="button" aria-expanded="false" aria-controls="mmacc'+i+'">'
-      + '<span class="mm-acc-label">'+esc(s.title)+'</span>' + DOWN + '</button>'
-      + '<div class="mm-accp" id="mmacc'+i+'" data-open="false"><div>'+itemsHtml+'</div></div>';
-  }).join('');
-  mslot.addEventListener('click', function(e){
-    var h = e.target.closest('.mm-acc');
-    if(!h) return;
-    /* Toggle submenu only — never close the burger menu */
-    e.preventDefault();
-    e.stopPropagation();
-    var panelId = h.getAttribute('aria-controls');
-    var p = document.getElementById(panelId);
-    if(!p) return;
-    var isOpen = p.dataset.open === 'true';
-    /* Accordion: close other dropdowns */
-    mslot.querySelectorAll('.mm-acc').forEach(function(btn){
-      var id = btn.getAttribute('aria-controls');
-      var pane = id ? document.getElementById(id) : null;
-      if(btn === h) return;
-      btn.setAttribute('aria-expanded', 'false');
-      if(pane) pane.dataset.open = 'false';
-      var head = btn.closest('.mm-acc-head');
-      if(head) head.classList.remove('is-open');
-    });
-    p.dataset.open = isOpen ? 'false' : 'true';
-    h.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-    var head = h.closest('.mm-acc-head');
-    if(head) head.classList.toggle('is-open', !isOpen);
-  });
+/* ── Burger menu (card design) — rebuild .mnav; desktop .mm untouched ── */
+var MX_ICONS = {
+  chart:'<path d="M4 20V10M10 20V5M16 20v-7M21 20H3"/>',
+  pin:'<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/>',
+  code:'<path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 6l-2 12"/>',
+  chip:'<rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/>'
+};
+var MX_CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function mxIc(n){
+  return '<span class="mx-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+(MX_ICONS[n]||MX_ICONS.chart)+'</svg></span>';
 }
+
+(function buildMobileNav(){
+  var mnav = document.querySelector('.js-mnav');
+  if(!mnav) return;
+  /* Rebuild if not yet v2, or if an older v2 still has the inner logo/X bar */
+  if(mnav.classList.contains('mnav-v2') && mnav.querySelector('.mx-scroll') && !mnav.querySelector('.mx-top')) return;
+
+  /* Preserve page-specific destinations + CTA behaviour from the old markup */
+  var oldLinks = [].slice.call(mnav.querySelectorAll(':scope > a'));
+  function hrefAt(i, fallback){
+    var a = oldLinks[i];
+    return (a && a.getAttribute('href')) || fallback;
+  }
+  var homeHref = hrefAt(0, '/');
+  var aboutHref = hrefAt(1, '/#about');
+  var workHref = hrefAt(2, '/#work');
+  var blogHref = hrefAt(3, '/blog');
+  var contactHref = hrefAt(4, '/contact');
+  var oldCta = mnav.querySelector(':scope > .btn, :scope > button[data-jump], :scope > button[data-modal]');
+  var ctaModal = oldCta && oldCta.hasAttribute('data-modal');
+  var ctaAttrs = ctaModal ? ' data-modal' : ' data-jump';
+
+  var cards = SERVICES.map(function(s, i){
+    var items = s.items.filter(function(it){
+      return String(it.name).toLowerCase() !== String(s.title).toLowerCase();
+    });
+    var subs = items.map(function(it){
+      return '<a class="mx-sub" href="'+it.href+'">'+esc(it.name)+'</a>';
+    }).join('');
+    var mainHref = s.href || '#';
+    return '<div class="mx-svc" data-i="'+i+'">'
+      + '<div class="mx-row">'
+      + '<a class="mx-main" href="'+mainHref+'">'+mxIc(s.icon)+'<span class="mx-t">'+esc(s.title)+'</span></a>'
+      + '<button class="mx-tg" type="button" aria-expanded="false" aria-controls="mxdrop'+i+'" aria-label="Show '+esc(s.title)+'">'+MX_CHEV+'</button>'
+      + '</div>'
+      + '<div class="mx-drop" id="mxdrop'+i+'"><div>'+subs+'</div></div>'
+      + '</div>';
+  }).join('');
+
+  mnav.classList.add('mnav-v2');
+  /* No inner logo/X — site header burger closes the panel */
+  mnav.innerHTML =
+    '<div class="mx-scroll">'
+    + '<a class="mx-link" href="'+homeHref+'">Home</a>'
+    + '<a class="mx-link" href="'+aboutHref+'">About us</a>'
+    + cards
+    + '<a class="mx-link" href="'+workHref+'">Case studies</a>'
+    + '<a class="mx-link" href="'+blogHref+'">Blog</a>'
+    + '<a class="mx-link" href="'+contactHref+'">Contact us</a>'
+    + '</div>'
+    + '<div class="mx-foot">'
+    + '<button class="mx-cta" type="button"'+ctaAttrs+'>Get a Free Proposal</button>'
+    + '</div>';
+
+  function closeBurger(){
+    if (typeof window.__tekcroftCloseMnav === 'function'){
+      window.__tekcroftCloseMnav();
+      return;
+    }
+    var burger = document.querySelector('.js-burger');
+    mnav.classList.remove('open');
+    if(burger){
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  mnav.addEventListener('click', function(e){
+    var tg = e.target.closest('.mx-tg');
+    if(tg && mnav.contains(tg)){
+      e.preventDefault();
+      e.stopPropagation();
+      var card = tg.closest('.mx-svc');
+      if(!card) return;
+      var willOpen = !card.classList.contains('open');
+      mnav.querySelectorAll('.mx-svc').forEach(function(c){
+        c.classList.remove('open');
+        var b = c.querySelector('.mx-tg');
+        if(b) b.setAttribute('aria-expanded', 'false');
+      });
+      if(willOpen){
+        card.classList.add('open');
+        tg.setAttribute('aria-expanded', 'true');
+      }
+      return;
+    }
+    /* Links / CTA close the drawer (chevron already returned) */
+    if(e.target.closest('a[href], .mx-cta, [data-jump], [data-modal]')){
+      /* defer so navigation / jump handlers still see the click */
+      setTimeout(closeBurger, 0);
+    }
+  });
+})();
 })();
 
 /* ── Mega-menu footer CTA: label + arrow like primary buttons ── */
@@ -469,5 +532,168 @@ if(mslot){
   track.addEventListener('scroll', paint, { passive:true });
   window.addEventListener('resize', paint);
   paint();
+})();
+
+/* ══════════════════════════════════════════════════════════════════════
+   Burger menu scroll-lock + --nav-h sync (all pages)
+   Open .mnav used to inflate nav.offsetHeight into --nav-h and leave the
+   hero with a huge top pad. Measure the top bar only, and always clear
+   any body lock styles when the menu closes.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  if (window.__tekcroftMnavChrome) return;
+  window.__tekcroftMnavChrome = true;
+
+  var mnav = document.querySelector('.js-mnav');
+  var burger = document.querySelector('.js-burger');
+  var savedY = 0;
+  var locked = false;
+  var wasOpen = !!(mnav && mnav.classList.contains('open'));
+  var lastPath = location.pathname + location.search;
+  var resizeTimer = 0;
+
+  function measureNavH(){
+    var nav = document.getElementById('nav') || document.querySelector('nav.nav');
+    if (!nav) return;
+    var bar = nav.querySelector('.nav-in');
+    var cs = getComputedStyle(nav);
+    var h = (bar ? bar.offsetHeight : 64)
+      + (parseFloat(cs.paddingTop) || 0)
+      + (parseFloat(cs.paddingBottom) || 0);
+    document.documentElement.style.setProperty('--nav-h', Math.round(h) + 'px');
+  }
+
+  function clearHeroInlineSizes(){
+    var nodes = document.querySelectorAll('#hero-1, #hero-1.hs, .hs, header.hero, #top.hero');
+    for (var i = 0; i < nodes.length; i++){
+      var el = nodes[i];
+      if (el.style.height) el.style.height = '';
+      if (el.style.minHeight) el.style.minHeight = '';
+      if (el.style.top) el.style.top = '';
+      if (el.style.paddingTop && /px$/.test(el.style.paddingTop) && parseFloat(el.style.paddingTop) > 120){
+        el.style.paddingTop = '';
+      }
+    }
+  }
+
+  function clearBodyLock(){
+    var b = document.body;
+    var h = document.documentElement;
+    b.style.position = '';
+    b.style.top = '';
+    b.style.left = '';
+    b.style.right = '';
+    b.style.overflow = '';
+    b.style.paddingRight = '';
+    b.style.width = '';
+    b.style.height = '';
+    h.style.overflow = '';
+    h.style.height = '';
+    h.style.position = '';
+    b.classList.remove('menu-open', 'no-scroll', 'mnav-open', 'nav-open');
+    h.classList.remove('menu-open', 'no-scroll', 'mnav-open', 'nav-open');
+  }
+
+  function lockScroll(){
+    if (locked) return;
+    locked = true;
+    savedY = window.scrollY || window.pageYOffset || 0;
+    var gap = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    if (gap > 0) document.body.style.paddingRight = gap + 'px';
+    /* Avoid position:fixed lock — it is what leaves a blank band if unlock fails.
+       Still clear those props on unlock in case anything else set them. */
+  }
+
+  function unlockScroll(){
+    clearBodyLock();
+    if (locked){
+      locked = false;
+      window.scrollTo(0, savedY);
+    }
+    measureNavH();
+    clearHeroInlineSizes();
+  }
+
+  function closeMenu(){
+    if (!mnav) return;
+    mnav.classList.remove('open');
+    if (burger){
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+    unlockScroll();
+  }
+
+  function onMenuOpenChange(open){
+    if (open){
+      lockScroll();
+      measureNavH();
+    } else {
+      unlockScroll();
+    }
+  }
+
+  if (mnav){
+    new MutationObserver(function(){
+      var open = mnav.classList.contains('open');
+      if (open === wasOpen) return;
+      wasOpen = open;
+      onMenuOpenChange(open);
+    }).observe(mnav, { attributes:true, attributeFilter:['class'] });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      measureNavH();
+      clearHeroInlineSizes();
+      if (window.innerWidth > 1080) closeMenu();
+    }, 100);
+  });
+
+  window.addEventListener('orientationchange', function(){
+    setTimeout(function(){
+      measureNavH();
+      clearHeroInlineSizes();
+      closeMenu();
+    }, 100);
+  });
+
+  if (window.visualViewport){
+    window.visualViewport.addEventListener('resize', function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){
+        measureNavH();
+        clearHeroInlineSizes();
+      }, 100);
+    });
+  }
+
+  /* Next.js client navigations / in-app link clicks */
+  setInterval(function(){
+    var now = location.pathname + location.search;
+    if (now !== lastPath){
+      lastPath = now;
+      closeMenu();
+      measureNavH();
+      clearHeroInlineSizes();
+    }
+  }, 400);
+
+  window.addEventListener('popstate', function(){
+    closeMenu();
+    measureNavH();
+    clearHeroInlineSizes();
+  });
+
+  measureNavH();
+  clearHeroInlineSizes();
+  window.__tekcroftMeasureNavH = measureNavH;
+  window.__tekcroftCloseMnav = closeMenu;
 })();
 

@@ -35,7 +35,14 @@
   var nav = $("#nav"), burger = $(".js-burger"), mnav = $(".js-mnav");
 
   function navHeight(){
-    if (nav) root.style.setProperty("--nav-h", nav.offsetHeight + "px");
+    if (nav){
+    var __bar = nav.querySelector(".nav-in");
+    var __cs = getComputedStyle(nav);
+    var __h = (__bar ? __bar.offsetHeight : 64)
+      + (parseFloat(__cs.paddingTop) || 0)
+      + (parseFloat(__cs.paddingBottom) || 0);
+    root.style.setProperty("--nav-h", Math.round(__h) + "px");
+  }
   }
   navHeight();
   window.addEventListener("resize", navHeight);

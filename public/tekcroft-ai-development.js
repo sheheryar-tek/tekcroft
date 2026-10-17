@@ -132,7 +132,14 @@ P.forEach((t,i)=>document.getElementById("v4T").insertAdjacentHTML("beforeend",`
   var nav = $("#nav"), burger = $(".js-burger"), mnav = $(".js-mnav");
 
   function navHeight(){
-    if (nav) root.style.setProperty("--nav-h", nav.offsetHeight + "px");
+    if (nav){
+    var __bar = nav.querySelector(".nav-in");
+    var __cs = getComputedStyle(nav);
+    var __h = (__bar ? __bar.offsetHeight : 64)
+      + (parseFloat(__cs.paddingTop) || 0)
+      + (parseFloat(__cs.paddingBottom) || 0);
+    root.style.setProperty("--nav-h", Math.round(__h) + "px");
+  }
   }
   navHeight();
   window.addEventListener("resize", navHeight);
@@ -152,14 +159,18 @@ P.forEach((t,i)=>document.getElementById("v4T").insertAdjacentHTML("beforeend",`
   function closeMenu(){
     if (!mnav) return;
     mnav.classList.remove("open");
-    burger.classList.remove("open");
-    burger.setAttribute("aria-expanded", "false");
+    if (burger){
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+    }
+    navHeight();
   }
   if (burger && mnav){
     burger.addEventListener("click", function(){
       var open = mnav.classList.toggle("open");
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      navHeight();
     });
     mnav.addEventListener("click", function(e){ if (e.target.closest(".mm-acc")) return; if (e.target.closest("a[href],[data-jump]")) closeMenu(); });
   }

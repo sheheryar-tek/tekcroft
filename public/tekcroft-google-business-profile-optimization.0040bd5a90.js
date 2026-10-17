@@ -35,7 +35,14 @@
   var nav = $("#nav"), burger = $(".js-burger"), mnav = $(".js-mnav");
 
   function navHeight(){
-    if (nav) root.style.setProperty("--nav-h", nav.offsetHeight + "px");
+    if (nav){
+    var __bar = nav.querySelector(".nav-in");
+    var __cs = getComputedStyle(nav);
+    var __h = (__bar ? __bar.offsetHeight : 64)
+      + (parseFloat(__cs.paddingTop) || 0)
+      + (parseFloat(__cs.paddingBottom) || 0);
+    root.style.setProperty("--nav-h", Math.round(__h) + "px");
+  }
   }
   navHeight();
   window.addEventListener("resize", navHeight);
@@ -215,11 +222,9 @@
       ioCount.unobserve(en.target);
     });
   }, { threshold:.4 });
-  $$("[data-count]").forEach(function(el){
-    if (el.closest && el.closest("#what-local .ls-ring")) return;
-    ioCount.observe(el);
-  });
+  $$("[data-count]").forEach(function(el){ ioCount.observe(el); });
 })();
+
 
 /* === ft-script === */
 
@@ -773,7 +778,8 @@
   });
 })();
 
-/* === tm-script (local SEO model panels) === */
+
+/* === tm-script (GBP process panels) === */
 (function(){
   var rail=document.querySelector('[data-tm]'); if(!rail) return;
   var items=[].slice.call(rail.querySelectorAll('.tm-item'));
@@ -807,25 +813,4 @@
   show(0);
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? play() : stop(); }); },{threshold:.25});
   io.observe(rail);
-})();
-
-
-/* === ls-script === */
-(function(){
-  var el=document.querySelector('#what-local [data-count]'); if(!el) return;
-  var target=parseFloat(el.getAttribute('data-count'))||0, done=false;
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function run(){
-    if(done) return; done=true;
-    if(reduce){ el.textContent=target; return; }
-    var t0=null;
-    requestAnimationFrame(function f(t){
-      if(t0===null) t0=t;
-      var p=Math.min((t-t0)/1400,1), e=1-Math.pow(1-p,3);
-      el.textContent=Math.round(target*e);
-      if(p<1) requestAnimationFrame(f);
-    });
-  }
-  new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) run(); }); },{threshold:.4})
-    .observe(el);
 })();

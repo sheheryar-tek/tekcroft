@@ -4162,18 +4162,49 @@ html[data-theme="dark"] .mm-foot .arw{
   transition:transform .22s var(--ease);}
 .mnav .mm-acc[aria-expanded="true"]{color:var(--primary);}
 .mnav .mm-acc[aria-expanded="true"] svg{transform:rotate(180deg);}
-/* Local SEO Services: linked heading + chevron toggle (desktop .mm-gp parity) */
-.mnav .mm-acc-head{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  border-bottom:1px solid var(--border-soft); box-sizing:border-box;
+/* Local SEO Services: linked heading + chevron toggle (desktop .mm-gp parity).
+   Beats html body .mnav .mm-acc{width:100%!important} so the label is not
+   squeezed to ~0 (which letter-stacks with overflow-wrap:anywhere). */
+.mnav .mm-acc-head,
+html body .mnav .mm-acc-head{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px;
+  width:100%;
+  box-sizing:border-box;
+  border-bottom:1px solid var(--border-soft);
 }
-.mnav .mm-acc-head .mm-acc-label{
-  flex:1 1 auto; min-width:0; padding:11px 0; font-size:15.5px; font-weight:600;
-  letter-spacing:.04em; text-transform:uppercase; text-align:left; line-height:1.35;
-  color:inherit; text-decoration:none;
+.mnav .mm-acc-head .mm-acc-label,
+html body .mnav .mm-acc-head .mm-acc-label,
+html body .mnav .mm-acc-head a.mm-acc-label{
+  display:block !important;
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  width:auto !important;
+  max-width:none !important;
+  padding:11px 0 !important;
+  border-bottom:0 !important;
+  font-size:15.5px;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  text-align:left !important;
+  line-height:1.35;
+  color:inherit;
+  text-decoration:none;
+  white-space:nowrap;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  writing-mode:horizontal-tb !important;
 }
-.mnav .mm-acc-head .mm-acc-only{
-  width:auto; flex:none; border-bottom:0; padding:11px 4px;
+.mnav .mm-acc-head .mm-acc-only,
+html body .mnav .mm-acc-head .mm-acc.mm-acc-only{
+  width:auto !important;
+  max-width:none !important;
+  flex:0 0 auto !important;
+  border-bottom:0 !important;
+  padding:11px 4px;
 }
 .mnav .mm-acc-head.is-open .mm-acc-label,
 .mnav .mm-acc-head .mm-acc-only[aria-expanded="true"]{color:var(--primary);}

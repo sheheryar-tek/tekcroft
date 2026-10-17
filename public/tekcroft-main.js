@@ -67,7 +67,12 @@
      the hero's top — is written against --nav-h, and the bar's height moves
      with the viewport, so it is measured rather than assumed. */
   function navHeight(){
-    document.documentElement.style.setProperty("--nav-h", nav.offsetHeight + "px");
+    var __bar = nav.querySelector(".nav-in");
+    var __cs = getComputedStyle(nav);
+    var __h = (__bar ? __bar.offsetHeight : 64)
+      + (parseFloat(__cs.paddingTop) || 0)
+      + (parseFloat(__cs.paddingBottom) || 0);
+    document.documentElement.style.setProperty("--nav-h", Math.round(__h) + "px");
   }
   navHeight();
   window.addEventListener("resize", navHeight);
@@ -81,19 +86,23 @@
   function closeMenu(){
     if (!mnav) return;
     mnav.classList.remove("open");
-    burger.classList.remove("open");
-    burger.setAttribute("aria-expanded", "false");
+    if (burger){
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+    }
+    navHeight();
   }
   if (burger){
     burger.addEventListener("click", function(){
       var open = mnav.classList.toggle("open");
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      navHeight();
     });
   }
   $$(".mnav a").forEach(function(a){ a.addEventListener("click", closeMenu); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeMenu(); });
-  window.addEventListener("resize", function(){ if (window.innerWidth > 1080) closeMenu(); });
+  window.addEventListener("resize", function(){ if (window.innerWidth > 1080) closeMenu(); else navHeight(); });
 
   /* the dialog needs somewhere to say it is open; everything the beam
      loop used to drive is now plain, static CSS */

@@ -9,6 +9,7 @@
   isolation:isolate;
   overflow:hidden;
   color:#fff;
+  height:auto !important;
   min-height:100vh !important;
   min-height:100svh !important;
   display:flex;

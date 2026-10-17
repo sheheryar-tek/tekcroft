@@ -8,6 +8,8 @@ import "./perf.css";
 import "./footer-lock.css";
 /* Source of truth for type + spacing tokens; also appended to page CSS via scripts/_apply-site-consistency.mjs */
 import "./site-consistency.css";
+/* Shared burger menu (card design) — all pages */
+import "./mobile-menu.css";
 /* Shared under-hero stats strip (#proof-v2) — one design site-wide */
 import "./stats-strip.css";
 /* Shared comparison-table highlighted-column halo (.vs-halo) */
@@ -78,6 +80,8 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         {children}
         <Script src={assets.vsHalo} strategy="afterInteractive" />
+        {/* Burger menu card UI — shared; desktop mega menu still lazy via Homepage warm */}
+        <Script src={assets.mm} strategy="afterInteractive" />
       </body>
     </html>
   );

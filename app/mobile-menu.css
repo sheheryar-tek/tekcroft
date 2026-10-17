@@ -1,0 +1,276 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Mobile burger menu (≤1080) — design from mobile-menu-design.html
+   Phone frame / preview chrome is NOT included. Desktop .mm mega menu untouched.
+   Header logo + burger/X stay in .nav-in; panel has no duplicate top bar.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1080px) {
+  /* Panel shell: under the nav bar, fixed foot, scroll middle */
+  html body .mnav.mnav-v2,
+  .mnav.mnav-v2 {
+    display: none;
+    flex-direction: column;
+    gap: 0 !important;
+    padding: 0 !important; /* beat site-consistency .mnav padding */
+    margin: 0 !important;
+    max-height: min(780px, calc(100dvh - var(--nav-h, 64px) - 12px));
+    overflow: hidden;
+    background: #fff;
+    border-top: 1px solid #e6eef3;
+    border-radius: 0 0 26px 26px;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  html[data-theme="dark"] .mnav.mnav-v2 {
+    background: #15191e;
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+  .mnav.mnav-v2.open {
+    display: flex;
+  }
+
+  /* Kill legacy uppercase / hairline rules on new menu anchors */
+  html body .mnav.mnav-v2 a,
+  .mnav.mnav-v2 a {
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    border-bottom: 0 !important;
+    padding: 0 !important;
+    font-size: inherit;
+    font-weight: inherit;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    writing-mode: horizontal-tb !important;
+    white-space: normal;
+    min-height: 0 !important;
+    text-align: left !important;
+  }
+
+  /* Hide any leftover inner top bar if an old bundle still injects it */
+  .mnav.mnav-v2 .mx-top {
+    display: none !important;
+  }
+
+  /* ── Scroll body ── */
+  .mnav.mnav-v2 .mx-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    box-sizing: border-box;
+    padding: 12px 20px 16px;
+  }
+  .mnav.mnav-v2 .mx-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .mnav.mnav-v2 .mx-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 99px;
+  }
+  html[data-theme="dark"] .mnav.mnav-v2 .mx-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .mnav.mnav-v2 .mx-link {
+    display: block !important;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #eef3f6 !important;
+    font-family: var(--font-display);
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: var(--text) !important;
+    text-decoration: none !important;
+    line-height: 1.3;
+  }
+  html[data-theme="dark"] .mnav.mnav-v2 .mx-link {
+    border-color: rgba(255, 255, 255, 0.07) !important;
+  }
+
+  .mnav.mnav-v2 .mx-link + .mx-svc {
+    margin-top: 12px;
+  }
+  .mnav.mnav-v2 .mx-svc {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 8px;
+    border-radius: 16px;
+    background: #f5fafd;
+    border: 1px solid #e1edf4;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  }
+  html[data-theme="dark"] body .mnav.mnav-v2 .mx-svc {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }
+  .mnav.mnav-v2 .mx-svc.open {
+    background: #fff;
+    border-color: var(--primary) !important;
+    box-shadow: 0 14px 30px -22px hsl(var(--brand-h) 90% 35% / 0.7);
+  }
+  html[data-theme="dark"] body .mnav.mnav-v2 .mx-svc.open {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--primary) !important;
+  }
+
+  .mnav.mnav-v2 .mx-row {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .mnav.mnav-v2 .mx-main {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 10px 12px 14px !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    box-sizing: border-box;
+  }
+  .mnav.mnav-v2 .mx-ic {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: var(--primary);
+    color: #fff;
+  }
+  .mnav.mnav-v2 .mx-ic svg {
+    width: 18px;
+    height: 18px;
+  }
+  .mnav.mnav-v2 .mx-t {
+    font-family: var(--font-display);
+    font-size: 15.5px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em !important;
+    color: var(--text);
+    text-transform: none !important;
+    white-space: normal;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+  .mnav.mnav-v2 .mx-svc.open .mx-t {
+    color: var(--primary);
+  }
+
+  .mnav.mnav-v2 .mx-tg {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 54px;
+    border-left: 1px solid #e1edf4;
+    color: var(--primary);
+  }
+  html[data-theme="dark"] .mnav.mnav-v2 .mx-tg {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .mnav.mnav-v2 .mx-tg svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.35s;
+  }
+  .mnav.mnav-v2 .mx-svc.open .mx-tg svg {
+    transform: rotate(180deg);
+  }
+
+  .mnav.mnav-v2 .mx-drop {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .mnav.mnav-v2 .mx-drop > div {
+    overflow: hidden;
+    padding: 0 12px;
+  }
+  .mnav.mnav-v2 .mx-svc.open .mx-drop {
+    grid-template-rows: 1fr;
+  }
+  .mnav.mnav-v2 .mx-svc.open .mx-drop > div {
+    padding-bottom: 12px;
+  }
+
+  .mnav.mnav-v2 .mx-sub {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2px;
+    padding: 11px 6px 11px 14px !important;
+    border-left: 2px solid #dcebf3 !important;
+    margin-left: 4px;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--text) !important;
+    line-height: 1.35;
+  }
+  html[data-theme="dark"] .mnav.mnav-v2 .mx-sub {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+  }
+  .mnav.mnav-v2 .mx-sub:hover,
+  .mnav.mnav-v2 .mx-sub:active {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+  }
+
+  /* ── Sticky foot CTA ── */
+  .mnav.mnav-v2 .mx-foot {
+    flex: none;
+    box-sizing: border-box;
+    padding: 14px 20px 18px;
+    border-top: 1px solid #e6eef3;
+    background: inherit;
+  }
+  html[data-theme="dark"] .mnav.mnav-v2 .mx-foot {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .mnav.mnav-v2 .mx-cta {
+    display: block !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px !important;
+    border: 0 !important;
+    border-radius: 99px !important;
+    background: var(--primary) !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-family: var(--font-display);
+    font-size: 15.5px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    cursor: pointer;
+    min-height: 0 !important;
+    margin: 0 !important;
+  }
+  .mnav.mnav-v2 .mx-cta:hover {
+    filter: brightness(1.05);
+  }
+
+  @media (max-width: 360px) {
+    .mnav.mnav-v2 .mx-scroll {
+      padding: 12px 16px 16px;
+    }
+    .mnav.mnav-v2 .mx-foot {
+      padding: 14px 16px 18px;
+    }
+  }
+}
