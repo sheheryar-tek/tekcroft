@@ -2170,6 +2170,27 @@ html[data-theme="dark"] .tv{background:rgba(10,22,34,.92); border-color:rgba(255
 .hs-points i::after{content:""; position:absolute; left:6.5px; top:4.5px; width:5px; height:8.5px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);}
 .hs-points + .hs-act{margin-top:clamp(20px,2.2vw,28px);}
 @media (max-width:980px){ .hs-points{width:max-content; max-width:100%; margin-inline:auto;} }
+
+/* AI SEO #hero-1 only — lede ↔ points (20px) and points ↔ CTAs (28px).
+   Beats service-hero-lock + site-consistency !important without touching shared CSS. */
+html body #hero-1.hs .hs-lede{
+  margin-bottom:0 !important;
+}
+html body #hero-1.hs .hs-points{
+  margin-top:20px;
+  margin-bottom:0;
+}
+html body #hero-1.hs .hs-points + .hs-act{
+  margin-top:28px !important;
+}
+@media (max-width:600px){
+  html body #hero-1.hs .hs-points{
+    margin-top:16px;
+  }
+  html body #hero-1.hs .hs-points + .hs-act{
+    margin-top:24px !important;
+  }
+}
 /* client names running along the foot of the hero */
 #hero-1{padding-bottom:0 !important;}
 #hero-1 .hs-logos{position:relative; z-index:2; margin-top:clamp(28px,3.4vw,48px); border-top:1px solid rgba(255,255,255,.14); padding-block:16px; overflow:hidden;
