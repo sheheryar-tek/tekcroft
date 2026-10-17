@@ -2814,7 +2814,11 @@ html[data-theme="dark"] .sec{ background:var(--ground); }
 /* and the closing band takes a different photograph from the one the FAQ
    aside already uses — the same picture twice on one page is the reader
    noticing the stock library instead of the offer */
-#contact{ --cta-pic:var(--shot-2); }
+/* CTA band photo — desktop landscape / mobile portrait */
+#contact.cta{ --cta-shot:url("/images/onpage-cta-3d46ba4166.webp"); }
+@media (max-width:960px){
+  #contact.cta{ --cta-shot:url("/images/onpage-cta-m-47811b0717.webp"); }
+}
 
 
 /* Every content card reads the panel rather than naming a colour. The

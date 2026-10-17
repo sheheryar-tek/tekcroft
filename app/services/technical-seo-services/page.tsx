@@ -16,6 +16,7 @@ import "@/app/tm-shell-lock.css";
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
+  keywords: meta.keywords,
   alternates: { canonical: meta.canonical },
   openGraph: {
     type: "website",
@@ -44,6 +45,15 @@ export default function TechnicalSeoPage() {
         as="image"
         href={lcp.preload}
         type="image/webp"
+        media={lcp.desktopMedia}
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={lcp.preloadMobile}
+        type="image/webp"
+        media={lcp.mobileMedia}
         fetchPriority="high"
       />
       <Homepage html={html} />

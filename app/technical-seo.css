@@ -83,10 +83,13 @@ html[data-theme="dark"]{
 /* ---- a two-paragraph lede ----
    The gap between the two paragraphs is the paragraph gap, not the wider
    gap that separates the lede from the button — so the pair reads as one
-   block. :has() is what lets the first paragraph know a second follows;
-   with only one paragraph the rule never fires and nothing changes. */
-.hs-lede:has(+ .hs-lede){margin-bottom:clamp(14px,1.5vw,18px);}
-.hs-lede + .hs-lede{--d:250ms;}
+   block. Scoped to #hero-1 so shared service-hero-lock / site-consistency
+   margin on .hs-lede cannot leave ~50px between the two ledes. */
+#hero-1 .hs-copy .hs-lede:has(+ .hs-lede){margin-bottom:0 !important;}
+#hero-1 .hs-copy .hs-lede + .hs-lede{--d:250ms; margin-top:14px !important;}
+@media (max-width:960px){
+  #hero-1 .hs-copy .hs-lede + .hs-lede{margin-top:12px !important;}
+}
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    THE FORM — the only thing in the hero that can be typed in, so it is
@@ -1934,7 +1937,13 @@ html[data-theme="dark"] .sg-n{--sg-fill:hsl(var(--brand-h) 100% 42% / .28);
   background:var(--shot-2) center / cover no-repeat, var(--n200);
   box-shadow:0 32px 70px -34px rgba(var(--ink-rgb),.5);}
 #signs .sg-shot{
-  background:url("/images/tech-signs-073fca0966.webp") center 28% / cover no-repeat, var(--n200);
+  position:relative;
+  overflow:hidden;
+  background:var(--n200);
+}
+#signs .sg-shot > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center 28%; display:block;
 }
 
 .sg-plate{position:relative; z-index:2; flex:0 0 auto;
@@ -4040,19 +4049,12 @@ html[data-theme="dark"] #process .eg-exp-note{
 
 .tm-bg{position:absolute; inset:0; opacity:0; transition:opacity .55s var(--ease) .05s;
   background-color:var(--n200); background-position:center; background-size:cover; background-repeat:no-repeat;}
-/* per-panel backgrounds — one image each */
-#model .tm-item[data-i="0"] .tm-bg{background-image:url("/images/tm-audit-7ee9824b01.webp");}
-#model .tm-item[data-i="1"] .tm-bg{background-image:url("/images/tm-crawl-c688e480ed.webp");}
-#model .tm-item[data-i="2"] .tm-bg{background-image:url("/images/tm-cwv-f36eab6411.webp");}
-#model .tm-item[data-i="3"] .tm-bg{background-image:url("/images/tm-schema-57c4629953.webp");}
-#model .tm-item[data-i="4"] .tm-bg{background-image:url("/images/tm-js-ae495fc19f.webp");}
-#model .tm-item[data-i="5"] .tm-bg{background-image:url("/images/tm-canon-da13d81322.webp");}
-#model .tm-item[data-i="6"] .tm-bg{background-image:url("/images/tm-mobile-d89aa5ddea.webp");}
-#model .tm-item[data-i="7"] .tm-bg{background-image:url("/images/tm-mig-eeef770b14.webp");}
-#model .tm-item[data-i="8"] .tm-bg{background-image:url("/images/tm-log-baba0d6721.webp");}
-#model .tm-item[data-i="9"] .tm-bg{background-image:url("/images/tm-mon-b9b9ee6d71.webp");}
-#model .tm-item[data-i="10"] .tm-bg{background-image:url("/images/tm-ai-6836229972.webp");}
 .tm-item.on .tm-bg{opacity:1;}
+/* Technical SEO Model panel photos (#model) */
+#model .tm-bg{background-image:none;}
+#model .tm-bg > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+#model .tm-veil{z-index:1;}
+
 .tm-veil{position:absolute; inset:0; background:rgba(0,0,0,.78);}
 
 /* closed */
@@ -4543,6 +4545,18 @@ section.sec,
 #reviews.sec,
 #work.sec,
 #faq.sec,
+/* CTA band photo — desktop landscape / mobile portrait */
+#contact.cta{ --cta-shot:url("/images/tech-cta-59716a820b.webp"); }
+@media (max-width:960px){
+  #contact.cta{ --cta-shot:url("/images/tech-cta-m-54ef971e87.webp"); }
+}
+/* SEO alt/title carrier — visual comes from wrap::before */
+#contact .cta-shot{
+  position:absolute !important; width:1px !important; height:1px !important;
+  padding:0 !important; margin:-1px !important; overflow:hidden !important;
+  clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important;
+}
+
 #contact.sec,
 #signs.sec,
 #get.sec,
@@ -5448,7 +5462,7 @@ html[data-theme="dark"] #get.yg{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:60% 30%;
+  object-position:center 40%;
   display:block;
   transition:transform .6s cubic-bezier(.2,.7,.2,1);
   transform:scale(1.02) translate(calc(var(--mx)*-6px),calc(var(--my)*-6px));

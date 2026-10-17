@@ -1,1 +1,6 @@
-{"preload":"/images/tech-seo-hero-f5f20faa95.webp"}
+{
+  "preload": "/images/tech-seo-hero-f3331df02f.webp",
+  "preloadMobile": "/images/tech-seo-hero-m-3d3706aa4d.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
+}
