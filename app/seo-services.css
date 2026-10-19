@@ -1505,7 +1505,14 @@ opened one at a time,
 with a standing invitation beside it.
    ══════════════════════════════════════════════════════════════════════ */
 
-#seo-services-page{ --faq-shot:url("/images/seo-services/seo-svc-faq-shot-08ee7566c9.webp"); }
+#seo-services-page{ --faq-shot:url("/images/seo-services/seo-svc-faq-shot-c5279d0597.webp"); }
+
+/* Single FAQ aside photo */
+#seo-services-page .faq-aside::before{ content:none; }
+#seo-services-page #faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
+#seo-services-page #faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center top; display:block;}
+
 
 #seo-services-page .faq-wrap{
   margin-top:clamp(28px,3.4vw,46px);
