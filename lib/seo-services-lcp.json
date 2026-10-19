@@ -1,3 +1,6 @@
 {
-  "preload": "/images/seo-services/seo-svc-img1-6ef691051f.webp"
+  "preload": "/images/seo-services-hero-38a33f05de.webp",
+  "preloadMobile": "/images/seo-services-hero-m-d0c2dfe125.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }
