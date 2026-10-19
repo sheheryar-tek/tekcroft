@@ -16,8 +16,8 @@ const checks = [
   ["hero rv.in", html.text.includes('tag rv in')],
   ["hero-1 webp", html.text.includes("/images/hero-1.webp")],
   ["no google fonts css", !html.text.includes("fonts.googleapis.com")],
-  ["ax brand png", html.text.includes("/images/ax/brand-01")],
-  ["safe logo quotes", html.text.includes("--logo:url('/images/ax/")],
+  /* AI ecosystem logos are inline data: URIs (not /images/ax/*.png) */
+  ["ai logo data uris", /--logo:url\(\s*data:image\//.test(html.text)],
   ["broken nested quotes", !/--logo:url\("\//.test(html.text)],
   ["hashed main js", html.text.includes("tekcroft-main.") || true], // loaded client-side
 ];

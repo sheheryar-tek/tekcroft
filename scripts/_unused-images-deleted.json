@@ -1,0 +1,82 @@
+{
+  "deletedAt": "2026-10-19",
+  "totalDeleted": 18,
+  "recoveredKB": 262.1,
+  "recoveredMB": 0.26,
+  "files": [
+    {
+      "path": "public/images/ais-css4-78c6234db0.webp",
+      "reason": "Orphan duplicate of seo-svc-shot hash; never referenced in HTML/CSS/JS"
+    },
+    {
+      "path": "public/images/audit-js1-f207a4ecb2.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/audit-js2-7092bd4a0e.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/audit-js3-4d5ef9c7a5.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/audit-js4-d3a8bdb7b4.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/audit-js5-fda6a66872.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/audit-js6-98303d83e8.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/audit-js7-002d3a99e2.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/audit-js8-b5a1342f92.webp",
+      "reason": "No references anywhere in site source"
+    },
+    {
+      "path": "public/images/ax/brand-01-1b0b79f123.png",
+      "reason": "Leftover from restore-ax-png-logos; site uses inline data:URI logos, not these files"
+    },
+    {
+      "path": "public/images/ax/brand-03-a4483a9ac7.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    },
+    {
+      "path": "public/images/ax/brand-05-0a0cad7e61.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    },
+    {
+      "path": "public/images/ax/brand-07-315a39714d.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    },
+    {
+      "path": "public/images/ax/brand-12-05be1aebd0.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    },
+    {
+      "path": "public/images/ax/brand-14-28eb8b5e98.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    },
+    {
+      "path": "public/images/ax/brand-15-450195ffc5.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    },
+    {
+      "path": "public/images/ax/brand-16-aa0fee6f52.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    },
+    {
+      "path": "public/images/ax/brand-17-abf75d6ee7.png",
+      "reason": "Leftover from restore-ax-png-logos; unused file path"
+    }
+  ],
+  "reviewCandidates": [],
+  "notes": "Audited 674 images under public/; kept 656 with confirmed references. Empty public/images/ax/ removed after deletes. Production build succeeded."
+}
