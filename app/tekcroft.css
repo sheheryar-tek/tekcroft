@@ -38,8 +38,9 @@
      artwork rather than a second drawing of it */
   --mark-white:url("/images/mark-white.webp");
 
-  --font:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display:'Sora', 'Inter', sans-serif;
+  /* Branding type — next/font vars from layout.tsx (Inter body, Sora display) */
+  --font:var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display:var(--font-sora), 'Sora', var(--font-inter), 'Inter', sans-serif;
 
   /* ===== THEME CONFIG ? sirf ye 2 lines badlein ===== */
   --brand-h:198;    /* primary hue : 198=blue, 15=orange, 262=violet, 152=green */

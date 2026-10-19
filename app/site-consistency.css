@@ -113,6 +113,17 @@ html body #ai.tb.sec{
   padding-block:var(--sec-y-tight) !important;
 }
 
+/* ── Branding fonts (Sora display / Inter body) — one stack site-wide ─ */
+html body{
+  font-family:var(--font);
+}
+html body :is(h1, h2, h3, h4, h5, h6, .hs-h1, .ct-hero h1),
+html body .hs .hs-h1,
+html body .sec-head h2,
+html body .lamp h1{
+  font-family:var(--font-display) !important;
+}
+
 /* ── Headings: one size per level — beat page-local clamps ──────────── */
 html body :is(h1, .hs-h1, .ct-hero h1),
 html body .hs .hs-h1{

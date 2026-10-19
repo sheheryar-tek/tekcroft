@@ -1,0 +1,40 @@
+# Normalize line endings — LF in repo and working tree (stops CRLF warnings on Windows)
+* text=auto eol=lf
+
+# Explicit text types
+*.css   text eol=lf
+*.scss  text eol=lf
+*.js    text eol=lf
+*.mjs   text eol=lf
+*.cjs   text eol=lf
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.jsx   text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.html  text eol=lf
+*.svg   text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+*.sh    text eol=lf
+
+# Windows scripts keep CRLF
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+*.ps1   text eol=crlf
+
+# Binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.mp4   binary
+*.pdf   binary
+*.zip   binary

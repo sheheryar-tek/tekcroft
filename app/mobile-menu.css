@@ -82,7 +82,7 @@
     width: 100%;
     padding: 15px 0 !important;
     border-bottom: 1px solid #eef3f6 !important;
-    font-family: var(--font-display);
+    font-family: var(--font-display) !important; /* Sora — same branding as page headings */
     font-size: 16px !important;
     font-weight: 700 !important;
     color: var(--text) !important;
@@ -101,7 +101,7 @@
     width: 100%;
     box-sizing: border-box;
     margin: 0 0 8px;
-    border-radius: 16px;
+    border-radius: 14px;
     background: #f5fafd;
     border: 1px solid #e1edf4;
     overflow: hidden;
@@ -125,6 +125,7 @@
     display: flex;
     align-items: stretch;
     width: 100%;
+    min-height: 52px;
     box-sizing: border-box;
   }
   .mnav.mnav-v2 .mx-main {
@@ -133,8 +134,8 @@
     width: auto !important;
     display: flex !important;
     align-items: center;
-    gap: 12px;
-    padding: 12px 10px 12px 14px !important;
+    gap: 10px;
+    padding: 10px 10px 10px 12px !important;
     text-decoration: none !important;
     color: inherit !important;
     box-sizing: border-box;
@@ -143,27 +144,33 @@
     flex: none;
     display: grid;
     place-items: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 11px;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
     background: var(--primary);
     color: #fff;
   }
   .mnav.mnav-v2 .mx-ic svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
+  /* Same branding face as Home / About us (.mx-link) — Sora via --font-display */
   .mnav.mnav-v2 .mx-t {
-    font-family: var(--font-display);
-    font-size: 15.5px;
-    font-weight: 800;
-    line-height: 1.25;
-    letter-spacing: -0.01em !important;
+    font-family: var(--font-display) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.3;
+    letter-spacing: normal !important;
     color: var(--text);
     text-transform: none !important;
     white-space: normal;
     word-break: normal !important;
-    overflow-wrap: normal !important;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
   }
   .mnav.mnav-v2 .mx-svc.open .mx-t {
     color: var(--primary);
@@ -173,10 +180,10 @@
     all: unset;
     box-sizing: border-box;
     cursor: pointer;
-    flex: 0 0 auto;
+    flex: 0 0 44px;
     display: grid;
     place-items: center;
-    width: 54px;
+    width: 44px;
     border-left: 1px solid #e1edf4;
     color: var(--primary);
   }
@@ -184,8 +191,8 @@
     border-color: rgba(255, 255, 255, 0.08);
   }
   .mnav.mnav-v2 .mx-tg svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     transition: transform 0.35s;
   }
   .mnav.mnav-v2 .mx-svc.open .mx-tg svg {
@@ -205,21 +212,24 @@
     grid-template-rows: 1fr;
   }
   .mnav.mnav-v2 .mx-svc.open .mx-drop > div {
-    padding-bottom: 12px;
+    padding-bottom: 10px;
   }
 
   .mnav.mnav-v2 .mx-sub {
     display: flex !important;
     flex-direction: column;
     gap: 2px;
-    padding: 11px 6px 11px 14px !important;
+    padding: 9px 6px 9px 12px !important;
     border-left: 2px solid #dcebf3 !important;
     margin-left: 4px;
     text-decoration: none !important;
+    font-family: var(--font-display) !important;
     font-size: 14px !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     color: var(--text) !important;
     line-height: 1.35;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
   html[data-theme="dark"] .mnav.mnav-v2 .mx-sub {
     border-color: rgba(255, 255, 255, 0.12) !important;
@@ -251,7 +261,7 @@
     background: var(--primary) !important;
     color: #fff !important;
     text-align: center !important;
-    font-family: var(--font-display);
+    font-family: var(--font-display) !important;
     font-size: 15.5px !important;
     font-weight: 800 !important;
     text-decoration: none !important;
