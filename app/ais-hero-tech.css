@@ -170,7 +170,9 @@ html[data-theme="dark"]{
   font-family:var(--font-display); font-weight:800; letter-spacing:-0.04em;
   line-height:1.08; font-size:var(--h1); color:#fff;}
 .hs-h1 em{font-style:normal; color:var(--primary);}
-.hs-h1 span{display:block;}
+/* Natural wrap only — balance parked the blue phrase alone on a line */
+#hero-1 .hs-h1{text-wrap:wrap;}
+#hero-1 .hs-h1 em{display:inline; white-space:normal;}
 
 .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px); max-width:48ch;
   font-size:clamp(15px,1.05vw,16.5px); line-height:1.65; color:rgba(255,255,255,.76);}
@@ -313,32 +315,10 @@ html[data-theme="dark"]{
 
 /* === hero-copy-styles === */
 
-/* ══════════════════════════════════════════════════════════════════════
-   THE HEADLINE'S LINE BREAKS
-
-   The four <span>s are the authored line breaks — they hold the shape the
-   copy was written to, with the blue phrase alone on the second line. They
-   are only safe while the column is wide enough for the longest of them
-   ("Technical SEO"); below that a forced line has nowhere to go and
-   would run past the column edge instead of wrapping.
-
-   So the breaks are held at full width and released everywhere else: the
-   spans go inline and the browser wraps the sentence itself. The one thing
-   that must not break either way is the blue phrase, which is two words
-   and reads as a unit — that is the nowrap.
-   ══════════════════════════════════════════════════════════════════════ */
-.hs-h1 em{white-space:nowrap;}
-
-/* Below the full column, and on every screen in variant 02 — where the
-   headline shares its row with two more columns and never has the width
-   for an authored break — the sentence wraps on its own. */
-@media (max-width:1240px){
-  .hs-h1 span{display:inline;}
-  /* Four words is past the point where holding the blue phrase on one
-     line is safe. Once the authored breaks are released it wraps with
-     the rest of the sentence rather than running past the column. */
-  .hs-h1 em{white-space:normal;}
-}
+/* Hero H1: one flowing sentence. Do not force authored breaks or nowrap
+   on the blue phrase — that parked "Scale With Confidence" on its own line. */
+#hero-1 .hs-h1 span{display:inline;}
+#hero-1 .hs-h1 em{display:inline; white-space:normal;}
 
 
 /* === hs-form-theme === */
@@ -995,4 +975,62 @@ html[data-theme="dark"] #tech-v4 .g1-l.s{border-color:var(--border);}
   min-width: 0 !important;
   justify-self: stretch !important;
   align-self: stretch !important;
+}
+
+/* AIS hero H1 only — beat unlock/raw !important if it reintroduces balance/nowrap */
+html[data-design="raw"] #hero-1 .hs-h1{
+  text-wrap:wrap !important;
+  /* "AI Development Services:" is ~4px wider than the copy column at --h1;
+     borrow a sliver of the grid gap so that phrase stays on one line. */
+  width:calc(100% + 12px);
+  max-width:none;
+  box-sizing:border-box;
+}
+html[data-design="raw"] #hero-1 .hs-h1 span{
+  display:inline !important;
+}
+html[data-design="raw"] #hero-1 .hs-h1 em{
+  display:inline !important;
+  white-space:normal !important;
+  font-style:normal !important;
+  color:var(--primary) !important;
+}
+
+/* Hero client ticker — same strip as other service pages (.ticker / #marqTrack) */
+@media (min-width:901px){
+  html[data-design="raw"] #hero-1.hs:has(> .ticker){
+    padding-bottom:max(clamp(48px,5.4vw,104px), 88px) !important;
+  }
+  html[data-design="raw"] #hero-1 > .ticker{
+    position:absolute !important;
+    left:0 !important; right:0 !important; bottom:0 !important;
+    top:auto !important;
+    z-index:4 !important;
+    margin:0 !important;
+    padding:18px 0 !important;
+    border-top:1px solid rgba(255,255,255,.16) !important;
+  }
+}
+html[data-design="raw"] #hero-1 .ticker .marq-track{
+  display:flex !important;
+  gap:44px !important;
+  width:max-content !important;
+  animation:slide 38s linear infinite !important;
+}
+html[data-design="raw"] #hero-1 .ticker .marq span{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+  color:rgba(255,255,255,.62) !important;
+  white-space:nowrap !important;
+}
+html[data-design="raw"] #hero-1 .ticker .marq span::before{
+  content:"" !important;
+  width:5px !important;
+  height:5px !important;
+  border-radius:50% !important;
+  background:var(--primary) !important;
+  flex-shrink:0 !important;
 }

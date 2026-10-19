@@ -1,3 +1,6 @@
 {
-  "preload": "/images/ais-img1-6ef691051f.webp"
+  "preload": "/images/ais-img1-104bd15bf2.webp",
+  "preloadMobile": "/images/ais-img1-m-b4b2f7ffa2.webp",
+  "mobileMedia": "(max-width:960px)",
+  "desktopMedia": "(min-width:961px)"
 }

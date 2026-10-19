@@ -69,7 +69,9 @@
   font-family:var(--font-display); font-weight:800; letter-spacing:-0.04em;
   line-height:1.08; font-size:var(--h1); color:#fff;}
 .hs-h1 em{font-style:normal; color:var(--primary);}
-.hs-h1 span{display:block;}
+#hero-1 .hs-h1{text-wrap:wrap;}
+#hero-1 .hs-h1 span{display:inline;}
+#hero-1 .hs-h1 em{display:inline; white-space:normal;}
 
 .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px); max-width:48ch;
   font-size:clamp(15px,1.05vw,16.5px); line-height:1.65; color:rgba(255,255,255,.76);}
@@ -398,18 +400,7 @@
    that must not break either way is the blue phrase, which is two words
    and reads as a unit — that is the nowrap.
    ══════════════════════════════════════════════════════════════════════ */
-.hs-h1 em{white-space:nowrap;}
-
-/* Below the full column, and on every screen in variant 02 — where the
-   headline shares its row with two more columns and never has the width
-   for an authored break — the sentence wraps on its own. */
-@media (max-width:1240px){
-  .hs-h1 span{display:inline;}
-  /* Four words is past the point where holding the blue phrase on one
-     line is safe. Once the authored breaks are released it wraps with
-     the rest of the sentence rather than running past the column. */
-  .hs-h1 em{white-space:normal;}
-}
+/* Hero H1 wraps as one sentence; blue <em> stays inline in the same flow. */
 
 /* === svc-styles === */
 /* ══════════════════════════════════════════════════════════════════════
@@ -1601,6 +1592,17 @@ html[data-theme="dark"] .cn .cn-stat{
 /* one of the few labels that is deliberately not title case */
 .cn-tab b{ text-transform:none; }
 
+
+/* Single FAQ aside photo (AI Services) */
+:root{ --faq-shot:url("/images/ais-faq-19a7df1833.webp"); }
+#faq .faq-aside::before{ content:none; }
+#faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
+#faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center top; display:block;}
+html[data-design="raw"] #faq .faq-pic{position:absolute !important; inset:0 !important; background:none !important; opacity:1 !important;}
+html[data-design="raw"] #faq .faq-pic > img{position:absolute !important; inset:0 !important; width:100% !important; height:100% !important;
+  object-fit:cover !important; object-position:center top !important; display:block !important;}
+
 /* === faq-pics === */
 /* ══════════════════════════════════════════════════════════════════════
    THE ASIDE CHANGES WITH THE QUESTION
@@ -1863,6 +1865,35 @@ html[data-theme="dark"] .mp-panel{
     linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.58) 42%,
                     rgba(0,0,0,.90) 100%);}
 .eg-face > *{position:relative; z-index:1;}
+/* Per-step disc photos (Our process — 5 stages) */
+#process .eg-face{background:#0A0C0E; isolation:isolate;}
+#process .eg-face::before{display:none !important;}
+#process .eg-face::after{z-index:1;}
+#process .eg-pic{
+  position:absolute; inset:0; z-index:0;
+  background:none;
+  opacity:0; visibility:hidden;
+  transition:opacity .45s var(--ease), visibility 0s linear .45s;
+}
+#process .eg[data-at="0"] .eg-pic:nth-child(1),
+#process .eg[data-at="1"] .eg-pic:nth-child(2),
+#process .eg[data-at="2"] .eg-pic:nth-child(3),
+#process .eg[data-at="3"] .eg-pic:nth-child(4),
+#process .eg[data-at="4"] .eg-pic:nth-child(5),
+#process .eg:not([data-at]) .eg-pic:nth-child(1){
+  opacity:1; visibility:visible; transition-delay:0s;
+}
+#process .eg-pic > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;
+}
+#process .eg-face > *:not(.eg-pic){position:relative; z-index:2;}
+html[data-design="raw"] #process .eg-face::before{display:none !important;}
+html[data-design="raw"] #process .eg-pic > img{
+  position:absolute !important; inset:0 !important; width:100% !important; height:100% !important;
+  object-fit:cover !important; object-position:center !important; display:block !important;
+}
+
 /* The disc is the middle of an orbit whose arc is already a progress bar,
    so what belongs in it is position: the stage the light is on. The cards
    give the names, the disc gives the number — nothing is said twice. The
@@ -1882,7 +1913,8 @@ html[data-theme="dark"] .mp-panel{
 .eg[data-at="0"] .eg-num i:nth-child(1),
 .eg[data-at="1"] .eg-num i:nth-child(2),
 .eg[data-at="2"] .eg-num i:nth-child(3),
-.eg[data-at="3"] .eg-num i:nth-child(4){opacity:1; visibility:visible;
+.eg[data-at="3"] .eg-num i:nth-child(4),
+.eg[data-at="4"] .eg-num i:nth-child(5){opacity:1; visibility:visible;
   transform:none; transition-delay:0s;}
 .eg-rule{display:block; width:64px; height:3px; border-radius:3px; margin:18px auto;
   background:var(--primary);}
@@ -3912,8 +3944,15 @@ html[data-theme="dark"] .mm-svc-col .mm-row.is-current .mm-n,html[data-theme="da
 .tm-item:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
 
 .tm-bg{position:absolute; inset:0; opacity:0; transition:opacity .55s var(--ease) .05s;
-  background:url("/images/ais-css4-78c6234db0.webp") center/cover no-repeat;}
+  background:none;}
 .tm-item.on .tm-bg{opacity:1;}
+/* AIS TM panel photos (#model) */
+#model .tm-bg{background:none !important;}
+#model .tm-bg > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+#model .tm-veil{z-index:1;}
+html[data-design="raw"] #model .tm-bg{background:none !important;}
+html[data-design="raw"] #model .tm-bg > img{position:absolute !important; inset:0 !important; width:100% !important; height:100% !important; object-fit:cover !important; display:block !important;}
+
 .tm-veil{position:absolute; inset:0; background:rgba(0,0,0,.78);}
 
 /* closed */
@@ -5376,7 +5415,39 @@ html[data-theme="dark"] .em-tag{background:hsl(var(--brand-h) 70% 22%); color:#B
 #faq{--ground:var(--surface); background:var(--surface) !important;} #faq h2,#faq h2 em,#faq .faq-t{text-transform:none !important;} #faq .faq-aside .btn{align-self:flex-start; margin-top:auto;}
 
 /* === cta-ai === */
-#contact{--ground:#DAEEF6; background:#DAEEF6 !important;} html[data-theme="dark"] #contact{--ground:var(--bg-alt); background:var(--bg-alt) !important;} #contact h2,#contact h2 em{text-transform:none !important;}
+#contact{--ground:#DAEEF6; background:#DAEEF6 !important;} html[data-theme="dark"] #contact{--ground:var(--bg-alt); background:var(--bg-alt) !important;}
+
+/* CTA band photo — AI Services (desktop landscape / mobile portrait) */
+#contact.cta{ --cta-shot:url("/images/ais-cta-b70dbcab37.webp"); }
+@media (max-width:960px){
+  #contact.cta{ --cta-shot:url("/images/ais-cta-m-44adc9a119.webp"); }
+}
+#contact.cta > .wrap{
+  padding:clamp(20px,3vw,44px) clamp(14px,2.6vw,38px) !important;
+  border-radius:clamp(20px,2.2vw,30px);
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+#contact.cta > .wrap::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:var(--cta-shot) 58% 45% / cover no-repeat;
+  transform:scale(1); transition:transform 1.6s var(--ease);
+}
+#contact.cta > .wrap:hover::before{ transform:scale(1.04); }
+#contact.cta > .wrap::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    radial-gradient(80% 70% at 50% 45%, rgba(0,0,0,.10) 0%, rgba(0,0,0,.34) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.10) 40%,
+                    rgba(0,0,0,.30) 100%);
+}
+#contact.cta > .wrap > *{ position:relative; z-index:2; }
+#contact.cta .cta3 h2,
+#contact.cta .cta3 h2 em{text-transform:none !important; color:#fff;}
+#contact.cta .cta3 h2 em{ color:var(--primary); }
+#contact.cta .cta3 > p{ color:rgba(255,255,255,.80); }
+
 
 /* === s5-styles === */
 #proof-v3.s5{padding-block:clamp(22px,2.4vw,36px); background:var(--surface);}

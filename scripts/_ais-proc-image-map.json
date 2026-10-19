@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "ais-proc-01",
+    "file": "/images/ais-proc-01-e2bfd8f568.webp",
+    "alt": "AI consultants mapping workflows and requirements on a whiteboard during the discovery phase",
+    "title": "1. Discovery — assess goals, workflows, and whether AI fits the problem",
+    "kb": 66.4,
+    "q": 88,
+    "src": "Discovery/1.jpg"
+  },
+  {
+    "slug": "ais-proc-02",
+    "file": "/images/ais-proc-02-38b21f30c4.webp",
+    "alt": "AI strategist designing solution architecture and success metrics on a large interactive display",
+    "title": "2. AI Strategy and Solution Design — architecture and success metrics",
+    "kb": 59.1,
+    "q": 88,
+    "src": "AI Strategy and Solution Design/Architect_working_on_touchscreen_2K_20261016162724.jpg"
+  },
+  {
+    "slug": "ais-proc-03",
+    "file": "/images/ais-proc-03-b33c3829e4.webp",
+    "alt": "Engineer building and integrating AI infrastructure at a server rack workstation",
+    "title": "3. Development — build, integrate, and keep stakeholders in the loop",
+    "kb": 62,
+    "q": 88,
+    "src": "Development/3.jpg"
+  },
+  {
+    "slug": "ais-proc-04",
+    "file": "/images/ais-proc-04-f236f4ed9c.webp",
+    "alt": "Specialist evaluating AI model metrics and performance charts before launch",
+    "title": "4. Testing and Evaluation — validate behavior with real data and edge cases",
+    "kb": 67.4,
+    "q": 88,
+    "src": "Testing and Evaluation/3.jpg"
+  },
+  {
+    "slug": "ais-proc-05",
+    "file": "/images/ais-proc-05-e12f914fc1.webp",
+    "alt": "Operations team monitoring a live AI system and iterating on performance after deployment",
+    "title": "5. Deployment and Improvement — launch, monitor, and refine in production",
+    "kb": 66.3,
+    "q": 88,
+    "src": "Deployment and Improvement/2.jpg"
+  }
+]

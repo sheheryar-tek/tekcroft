@@ -1,0 +1,29 @@
+[
+  {
+    "i": 0,
+    "file": "/images/ais-tm-01-d00be1112c.webp",
+    "alt": "Logistics specialist using a Tekcroft AI predictive dashboard for demand forecasting and inventory mapping in a warehouse",
+    "title": "Custom AI Development — predictive models and production systems built around your data",
+    "kb": 64,
+    "enc": "w1100q62",
+    "src": "Custom AI Development Services/Desktop/3.jpg"
+  },
+  {
+    "i": 1,
+    "file": "/images/ais-tm-02-4c00149d79.webp",
+    "alt": "Professional using a Tekcroft AI Assistant chatbot interface with knowledge base search in a modern office",
+    "title": "AI Chatbot Development — conversational AI for support and internal help desks",
+    "kb": 54.6,
+    "enc": "w1200q68",
+    "src": "AI Chatbot Development Services/Desktop/1.jpg"
+  },
+  {
+    "i": 2,
+    "file": "/images/ais-tm-03-79d4123ecb.webp",
+    "alt": "Manager reviewing Tekcroft Agent Workflow Manager with multi-step automation and a human approval checkpoint",
+    "title": "AI Agent Development — multi-step workflows with actions and guardrails",
+    "kb": 62,
+    "enc": "w1200q68",
+    "src": "AI Agent Development Services/Desktop/3.jpg"
+  }
+]
