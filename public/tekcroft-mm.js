@@ -129,9 +129,11 @@ var titleEl = panel.querySelector('.mm-title'), noteEl = panel.querySelector('.m
 var baseTitle = titleEl.textContent, baseNote = noteEl.textContent;
 
 function placeCaret(){
+  /* PERF: batch geometry reads before the CSS write */
   var box = panel.querySelector('.mm-panel').getBoundingClientRect();
   var r = btn.getBoundingClientRect();
-  panel.querySelector('.mm-caret').style.setProperty('--caret-x', (r.left + r.width/2 - box.left) + 'px');
+  var x = (r.left + r.width / 2 - box.left) + 'px';
+  panel.querySelector('.mm-caret').style.setProperty('--caret-x', x);
 }
 function reset(){
   showBg(activeImg || null);
@@ -552,15 +554,21 @@ function mxIc(n){
   var lastPath = location.pathname + location.search;
   var resizeTimer = 0;
 
+  var measureQueued = false;
   function measureNavH(){
-    var nav = document.getElementById('nav') || document.querySelector('nav.nav');
-    if (!nav) return;
-    var bar = nav.querySelector('.nav-in');
-    var cs = getComputedStyle(nav);
-    var h = (bar ? bar.offsetHeight : 64)
-      + (parseFloat(cs.paddingTop) || 0)
-      + (parseFloat(cs.paddingBottom) || 0);
-    document.documentElement.style.setProperty('--nav-h', Math.round(h) + 'px');
+    if (measureQueued) return;
+    measureQueued = true;
+    requestAnimationFrame(function(){
+      measureQueued = false;
+      var nav = document.getElementById('nav') || document.querySelector('nav.nav');
+      if (!nav) return;
+      var bar = nav.querySelector('.nav-in');
+      var cs = getComputedStyle(nav);
+      var h = (bar ? bar.offsetHeight : 64)
+        + (parseFloat(cs.paddingTop) || 0)
+        + (parseFloat(cs.paddingBottom) || 0);
+      document.documentElement.style.setProperty('--nav-h', Math.round(h) + 'px');
+    });
   }
 
   function clearHeroInlineSizes(){

@@ -2,6 +2,14 @@
   "name": "tekcroft",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "chrome >= 92",
+    "firefox >= 92",
+    "safari >= 15.4",
+    "edge >= 92",
+    "not dead",
+    "not op_mini all"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "node scripts/hash-assets.mjs && next build",

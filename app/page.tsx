@@ -48,6 +48,8 @@ export default function HomePage() {
         rel="preload"
         as="image"
         href="/images/home-hero-1.webp"
+        imageSrcSet="/images/home-hero-1-m.webp 720w, /images/home-hero-1.webp 1024w"
+        imageSizes="100vw"
         type="image/webp"
         fetchPriority="high"
       />

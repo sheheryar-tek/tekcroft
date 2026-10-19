@@ -14,6 +14,8 @@ import "./mobile-menu.css";
 import "./stats-strip.css";
 /* Shared comparison-table highlighted-column halo (.vs-halo) */
 import "./vs-halo-lock.css";
+/* Contrast + touch-target fixes only — does not alter layout or CTA primary fill */
+import "./a11y-lock.css";
 
 /* Self-hosted via next/font — same families/weights, no render-blocking Google CSS */
 const inter = Inter({
@@ -69,17 +71,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Nav logo is above-the-fold but not LCP — avoid competing with hero preload */}
         <link
           rel="preload"
           as="image"
           href="/images/logo-white.webp"
           type="image/webp"
-          fetchPriority="high"
         />
       </head>
       <body className={inter.className} suppressHydrationWarning>
         {children}
-        <Script src={assets.vsHalo} strategy="afterInteractive" />
+        {/* Below-fold comparison halo — defer past hydration */}
+        <Script src={assets.vsHalo} strategy="lazyOnload" />
         {/* Burger menu card UI — shared; desktop mega menu still lazy via Homepage warm */}
         <Script src={assets.mm} strategy="afterInteractive" />
       </body>

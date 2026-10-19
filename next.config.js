@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: false,
   poweredByHeader: false,
+  /* Modern browserslist in package.json — avoid shipping legacy polyfills */
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error"] } : false,
+  },
   images: {
     formats: ["image/webp", "image/avif"],
   },

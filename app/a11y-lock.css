@@ -1,0 +1,38 @@
+/* Accessibility helpers only — brand color stays #0096D5 via --primary / --brand-text.
+   Do not introduce alternate blues for buttons, highlights, or headings. */
+
+html[data-theme="light"] {
+  --brand-text: var(--primary); /* #0096D5 */
+}
+
+/* Review carousel dots: real 44×44 control; 7px disc via ::before (look unchanged) */
+.gr-dots {
+  gap: 4px;
+}
+.gr-dot {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  flex: none;
+  cursor: pointer;
+}
+.gr-dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: var(--border);
+  transition: width 0.28s var(--ease), background 0.28s var(--ease);
+}
+.gr-dot[aria-current="true"]::before {
+  width: 22px;
+  background: var(--primary);
+}

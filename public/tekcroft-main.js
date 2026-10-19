@@ -66,13 +66,20 @@
   /* Everything that has to clear the bar — sticky columns, scroll padding,
      the hero's top — is written against --nav-h, and the bar's height moves
      with the viewport, so it is measured rather than assumed. */
+  var __navHQueued = false;
   function navHeight(){
-    var __bar = nav.querySelector(".nav-in");
-    var __cs = getComputedStyle(nav);
-    var __h = (__bar ? __bar.offsetHeight : 64)
-      + (parseFloat(__cs.paddingTop) || 0)
-      + (parseFloat(__cs.paddingBottom) || 0);
-    document.documentElement.style.setProperty("--nav-h", Math.round(__h) + "px");
+    /* PERF: coalesce resize/menu measurements into one rAF (read then write) */
+    if (__navHQueued) return;
+    __navHQueued = true;
+    requestAnimationFrame(function(){
+      __navHQueued = false;
+      var __bar = nav.querySelector(".nav-in");
+      var __cs = getComputedStyle(nav);
+      var __h = (__bar ? __bar.offsetHeight : 64)
+        + (parseFloat(__cs.paddingTop) || 0)
+        + (parseFloat(__cs.paddingBottom) || 0);
+      document.documentElement.style.setProperty("--nav-h", Math.round(__h) + "px");
+    });
   }
   navHeight();
   window.addEventListener("resize", navHeight);
@@ -991,19 +998,26 @@
          would park the pane on nothing, so the frame is given back and the
          measurement retried, a bounded number of times so a row that is
          genuinely never laid out cannot spin. */
-      if (!t.offsetHeight){
+      var h = t.offsetHeight;
+      if (!h){
         if (cnTries++ < 20) requestAnimationFrame(function(){ cnPlaceLift(cnAt, false); });
         return;
       }
       cnTries = 0;
+      /* PERF: batch all layout reads before style writes */
       var gap = parseFloat(getComputedStyle(t).marginRight) || 0;
+      var top = t.offsetTop;
+      var left = t.offsetLeft;
+      var width = t.offsetWidth + gap;
       if (!animate) cnLift.style.transition = "none";
-      cnLift.style.top    = t.offsetTop + "px";
-      cnLift.style.left   = t.offsetLeft + "px";
-      cnLift.style.height = t.offsetHeight + "px";
-      cnLift.style.width  = (t.offsetWidth + gap) + "px";
+      cnLift.style.top    = top + "px";
+      cnLift.style.left   = left + "px";
+      cnLift.style.height = h + "px";
+      cnLift.style.width  = width + "px";
       cnLift.classList.add("on");
-      if (!animate){ void cnLift.offsetWidth; cnLift.style.transition = ""; }
+      if (!animate){
+        requestAnimationFrame(function(){ cnLift.style.transition = ""; });
+      }
     }
 
     /* Where a card lives depends on the shape of the block. Beside a rail
@@ -1074,13 +1088,48 @@
       var t = cnTabs[i];
       return t && t.getAttribute("data-shot");
     }
+    function cnSyncRoles(){
+      /* Accordion puts panels inside the rail — tablist must not own tabpanels.
+         Wide layout: real tabs. Folded: disclosure buttons + regions. */
+      var fold = cnFold.matches;
+      var rail = $(".cn-rail", cn);
+      if (rail){
+        if (fold) rail.removeAttribute("role");
+        else rail.setAttribute("role", "tablist");
+      }
+      cnTabs.forEach(function(t, k){
+        var on = k === cnAt;
+        if (fold){
+          t.setAttribute("role", "button");
+          t.removeAttribute("aria-selected");
+          t.setAttribute("aria-expanded", on ? "true" : "false");
+          t.setAttribute("tabindex", "0");
+        } else {
+          t.setAttribute("role", "tab");
+          t.removeAttribute("aria-expanded");
+          t.setAttribute("aria-selected", on ? "true" : "false");
+          t.setAttribute("tabindex", on ? "0" : "-1");
+        }
+      });
+      cnCards.forEach(function(c, k){
+        var on = k === cnAt;
+        if (fold){
+          c.setAttribute("role", "region");
+        } else {
+          c.setAttribute("role", "tabpanel");
+        }
+        c.setAttribute("aria-hidden", on ? "false" : "true");
+      });
+    }
     function cnShow(i, move){
       cnAt = i;
       cnTabs.forEach(function(t, k){
         t.classList.toggle("on", k === i);
-        t.setAttribute("aria-selected", k === i ? "true" : "false");
       });
-      cnCards.forEach(function(c, k){ c.classList.toggle("on", k === i); });
+      cnCards.forEach(function(c, k){
+        c.classList.toggle("on", k === i);
+      });
+      cnSyncRoles();
       if (i >= 0) cnSetShot(cnTabShot(i));
       cnHouse(i);
       cnPlaceLift(i, cnSeated && !calm);
@@ -1302,7 +1351,13 @@
     var centers = [];
     var lastOn = -1;
     function measureCenters(){
-      centers = all.map(function(c){ return c.offsetLeft + c.offsetWidth / 2; });
+      /* PERF: single pass of layout reads */
+      var next = new Array(all.length);
+      for (var k = 0; k < all.length; k++){
+        var c = all[k];
+        next[k] = c.offsetLeft + c.offsetWidth / 2;
+      }
+      centers = next;
     }
     function sync(){
       if (!centers.length) measureCenters();
@@ -1311,14 +1366,16 @@
         var d = Math.abs(centers[k] - mid);
         if (d < near){ near = d; i = k; }
       }
+      var real = ((i % n) + n) % n;
+      var label = ("0" + (real + 1)).slice(-2);
+      var pct = ((real + 1) / n * 100) + "%";
       if (i !== lastOn){
         if (lastOn >= 0 && all[lastOn]) all[lastOn].classList.remove("on");
         if (all[i]) all[i].classList.add("on");
         lastOn = i;
       }
-      var real = ((i % n) + n) % n;
-      at.textContent = ("0" + (real + 1)).slice(-2);
-      bar.style.width = ((real + 1) / n * 100) + "%";
+      at.textContent = label;
+      bar.style.width = pct;
     }
 
     /* The rail opens on the second sheet rather than the first, because at
@@ -1328,11 +1385,13 @@
        be read in. Done with smooth scrolling switched off, so it is a
        starting position rather than an animation nobody asked for. */
     function seat(){
-      if (!rail.clientWidth) return;
+      var cw = rail.clientWidth;
+      if (!cw) return;
       measureCenters();
       var held = rail.style.scrollBehavior, c = all[n + 1];
+      var left = c.offsetLeft + c.offsetWidth / 2 - cw / 2;
       rail.style.scrollBehavior = "auto";
-      rail.scrollLeft = c.offsetLeft + c.offsetWidth / 2 - rail.clientWidth / 2;
+      rail.scrollLeft = left;
       rail.style.scrollBehavior = held;
       lastOn = -1;
       sync();
@@ -1344,11 +1403,17 @@
        crosses zero, so it only re-reads position and leaves the reader where
        they were. */
     var wide = 0;
+    var relayoutQueued = false;
     function relayout(){
-      var w = rail.clientWidth;
-      measureCenters();
-      if (w && !wide) seat(); else { lastOn = -1; sync(); }
-      wide = w;
+      if (relayoutQueued) return;
+      relayoutQueued = true;
+      requestAnimationFrame(function(){
+        relayoutQueued = false;
+        var w = rail.clientWidth;
+        measureCenters();
+        if (w && !wide) seat(); else { lastOn = -1; sync(); }
+        wide = w;
+      });
     }
 
     arws.forEach(function(b){
@@ -1508,10 +1573,16 @@
 
   function open(i){
     tabs.forEach(function(t, n){
-      t.classList.toggle("on", n === i);
-      t.setAttribute("aria-selected", n === i ? "true" : "false");
+      var on = n === i;
+      t.classList.toggle("on", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.setAttribute("tabindex", on ? "0" : "-1");
     });
-    panes.forEach(function(p, n){ p.classList.toggle("on", n === i); });
+    panes.forEach(function(p, n){
+      var on = n === i;
+      p.classList.toggle("on", on);
+      p.setAttribute("aria-hidden", on ? "false" : "true");
+    });
   }
 
   box.querySelector(".wy-rail").addEventListener("click", function(e){
@@ -1542,9 +1613,13 @@
       io.observe(el);
     });
     requestAnimationFrame(function(){
-      Array.prototype.slice.call(root.querySelectorAll(".rv")).forEach(function(el){
-        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("in");
-      });
+      /* PERF: read all tops first, then write classes */
+      var nodes = Array.prototype.slice.call(root.querySelectorAll(".rv"));
+      var vh = window.innerHeight;
+      var tops = nodes.map(function(el){ return el.getBoundingClientRect().top; });
+      for (var i = 0; i < nodes.length; i++){
+        if (tops[i] < vh) nodes[i].classList.add("in");
+      }
     });
   }
 })();
