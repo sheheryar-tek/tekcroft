@@ -511,9 +511,16 @@ so the two pages read as the same site.
   font-family:var(--font-display); font-weight:800; letter-spacing:-0.04em;
   line-height:1.08; font-size:var(--h1); color:#fff;}
 
-#seo-services-page .hs-h1 em{font-style:normal; color:var(--primary);}
-
-#seo-services-page .hs-h1 span{display:block;}
+#seo-services-page #hero-1 .hs-h1{
+  text-wrap:balance;
+}
+#seo-services-page #hero-1 .hs-h1 em,
+#seo-services-page .hs-h1 em{
+  display:inline !important;
+  font-style:normal;
+  color:var(--primary);
+  white-space:normal !important;
+}
 
 #seo-services-page .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px); max-width:48ch;
   font-size:clamp(15px,1.05vw,16.5px); line-height:1.65; color:rgba(255,255,255,.76);}
@@ -538,8 +545,10 @@ so the two pages read as the same site.
           backdrop-filter:blur(18px) saturate(1.25);
   box-shadow:0 34px 80px -34px rgba(0,0,0,.9);}
 
-#seo-services-page .hs-form h2{margin:0; font-family:var(--font-display); font-size:26px;
-  font-weight:700; letter-spacing:-0.035em; line-height:1.22; color:#fff;}
+#seo-services-page .hs-form .hs-form-title,
+#seo-services-page .hs-form h2{margin:0; font-family:var(--font-display);
+  font-size:clamp(17px,1.5vw,19px); font-weight:700; letter-spacing:-0.035em;
+  line-height:1.22; color:#fff; text-align:center;}
 
 #seo-services-page .hs-rule{display:block; width:52px; height:3px; margin:14px auto 0; border-radius:3px;
   background:var(--primary);}
@@ -834,31 +843,6 @@ so the track's gap comes down to
 @media (prefers-reduced-motion:reduce){
 #seo-services-page .tb-marq-track{animation:none; justify-content:center; flex-wrap:wrap;
     width:100%; row-gap:22px;}
-}
-
-/* ══════════════════════════════════════════════════════════════════════
-   THE HEADLINE'S LINE BREAKS
-
-   The four <span>s are the authored line breaks — they hold the shape the
-   copy was written to,
-with the blue phrase alone on the second line. They
-   are only safe while the column is wide enough for the longest of them
-   ("Technical SEO"); below that a forced line has nowhere to go and
-   would run past the column edge instead of wrapping.
-
-   So the breaks are held at full width and released everywhere else: the
-   spans go inline and the browser wraps the sentence itself. The one thing
-   that must not break either way is the blue phrase,
-which is two words
-   and reads as a unit — that is the nowrap.
-   ══════════════════════════════════════════════════════════════════════ */
-
-#seo-services-page .hs-h1 em{white-space:nowrap;}
-
-@media (max-width:1240px){
-#seo-services-page .hs-h1 span{display:inline;}
-
-#seo-services-page .hs-h1 em{white-space:normal;}
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -2477,6 +2461,28 @@ and they keep their contrast
                     rgba(0,0,0,.90) 100%);}
 
 #seo-services-page .eg-face > *{position:relative; z-index:1;}
+/* Per-step disc photos (How We Approach SEO) — replace single --shot-3 ::before */
+#seo-services-page #process .eg-face::before{display:none;}
+#seo-services-page #process .eg-face::after{z-index:1;}
+#seo-services-page #process .eg-pic{
+  position:absolute; inset:0; z-index:0;
+  background:none;
+  opacity:0; visibility:hidden;
+  transition:opacity .45s var(--ease), visibility 0s linear .45s;
+}
+#seo-services-page #process .eg[data-at="0"] .eg-pic:nth-child(1),
+#seo-services-page #process .eg[data-at="1"] .eg-pic:nth-child(2),
+#seo-services-page #process .eg[data-at="2"] .eg-pic:nth-child(3),
+#seo-services-page #process .eg[data-at="3"] .eg-pic:nth-child(4),
+#seo-services-page #process .eg:not([data-at]) .eg-pic:nth-child(1){
+  opacity:1; visibility:visible; transition-delay:0s;
+}
+#seo-services-page #process .eg-pic > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;
+}
+#seo-services-page #process .eg-face > *:not(.eg-pic){position:relative; z-index:2;}
+
 
 #seo-services-page .eg-lab,
 #seo-services-page .eg-of{display:block; font-size:11.5px; font-weight:700;
@@ -4076,7 +4082,8 @@ html[data-theme="light"] #seo-services-page .hs-field input,
 html[data-theme="light"] #seo-services-page .hs-field select{
   background:#fff;}
 
-html[data-theme="light"] #seo-services-page .hs-form h2{color:var(--text);}
+html[data-theme="light"] #seo-services-page .hs-form h2,
+html[data-theme="light"] #seo-services-page .hs-form .hs-form-title{color:var(--text);}
 
 html[data-theme="light"] #seo-services-page .hs-sub{color:var(--text-2);}
 
@@ -4416,6 +4423,7 @@ everywhere: those two
 
 #seo-services-page #hero-1 .hs-form h2,
 #seo-services-page #hero-1 .hs-form h3,
+#seo-services-page #hero-1 .hs-form .hs-form-title,
 #seo-services-page #hero-1 .hs-form label,
 #seo-services-page #hero-1 .hs-form .hs-field > span{color:#fff !important; text-shadow:0 1px 2px rgba(0,0,0,.35);}
 
@@ -4693,10 +4701,14 @@ html[data-theme="dark"] #seo-services-page .f5-sig.a{background:rgba(245,158,11,
 
 #seo-services-page .tm-item:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
 
-#seo-services-page .tm-bg{position:absolute; inset:0; opacity:0; transition:opacity .55s var(--ease) .05s;
-  background:url("/images/seo-services/seo-svc-css1-78c6234db0.webp") center/cover no-repeat;}
+#seo-services-page .tm-bg{position:absolute; inset:0; opacity:0; transition:opacity .55s var(--ease) .05s; background:none;}
 
 #seo-services-page .tm-item.on .tm-bg{opacity:1;}
+/* SEO Services TM panel photos (#services) — per-panel WebP imgs */
+#seo-services-page #services .tm-bg{background:none !important;}
+#seo-services-page #services .tm-bg > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+#seo-services-page #services .tm-veil{z-index:1;}
+
 
 #seo-services-page .tm-veil{position:absolute; inset:0; background:rgba(0,0,0,.78);}
 
@@ -6560,28 +6572,19 @@ html[data-theme="dark"] #seo-services-page #contact{--ground:var(--bg-alt); back
 #seo-services-page #hero-1 .hs-h1 span,
 #seo-services-page #hero-1 .hs-h1 em{text-transform:none !important;}
 
+/* Hero H1: blue phrase stays inline so it continues after "Visibility in" */
+html body #seo-services-page #hero-1 .hs-h1{
+  text-wrap:balance;
+}
+html body #seo-services-page #hero-1 .hs-h1 em{
+  display:inline !important;
+  white-space:normal !important;
+}
+
 #seo-services-page html:not([data-theme="dark"]) main > section:not(#hero-1){background-color:#fff;}
-
-#seo-services-page #hero-1 .hs-logos{width:min(1220px,calc(100% - 52px)); margin-inline:auto; padding-block:14px;}
-
-#seo-services-page #hero-1.hs{padding-bottom:20px !important;}
 
 @media (min-width:901px){
 #seo-services-page #hero-1 .hs-in{margin-block:auto;}
-
-#seo-services-page #hero-1 .hs-logos{margin-top:32px;}
-}
-
-#seo-services-page #hero-1 .hs-logos-track{gap:clamp(30px,3.2vw,52px);}
-
-#seo-services-page #hero-1 .hs-logos-track li{font-size:15px; font-weight:600; gap:9px;}
-
-#seo-services-page #hero-1 .hs-logos-track li i{width:5px; height:5px;}
-
-@media (max-width:600px){
-#seo-services-page #hero-1 .hs-logos{width:calc(100% - 40px);}
-
-#seo-services-page #hero-1 .hs-logos-track li{font-size:14px;}
 }
 
 /* next/font bridge */
