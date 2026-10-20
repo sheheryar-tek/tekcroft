@@ -4,15 +4,19 @@
 #hero-1.hs{
   position:relative;
   isolation:isolate;
-  overflow:hidden;
+  overflow:visible;
   color:#fff;
+  height:auto;
   min-height:100vh;
   min-height:100svh;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  padding:calc(var(--nav-h, 74px) + 30px) 0 48px;
+  justify-content:flex-start;
+  padding:calc(var(--nav-h, 74px) + 30px) 0 20px;
   background:#0c0c0c;
+}
+@media (max-width:900px){
+  #hero-1.hs{min-height:0; overflow:visible;}
 }
 #hero-1 .hs-bg{
   position:absolute;

@@ -8,6 +8,7 @@ import meta from "@/lib/seo-services-meta.json";
 import lcp from "@/lib/seo-services-lcp.json";
 import "@/app/seo-services.css";
 import "@/app/footer-lock.css";
+import "@/app/service-hero-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,

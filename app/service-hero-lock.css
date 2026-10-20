@@ -3,19 +3,79 @@
    two-column claim + glass form, viewport height. Import AFTER each
    page stylesheet so BOM-poisoned or overridden .hs rules cannot win. */
 
+/* Desktop (>900): min-height 100svh, height auto, logos in flow at base.
+   Mobile (≤900): height auto, min-height 0 — form then logos, never overlap. */
 #hero-1.hs{
   --hs-veil:rgba(0,0,0,.78) !important;
   position:relative;
   isolation:isolate;
-  overflow:hidden;
+  /* visible so form/logos are never clipped into each other */
+  overflow:visible !important;
   color:#fff;
   height:auto !important;
+  max-height:none !important;
   min-height:100vh !important;
   min-height:100svh !important;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:calc(var(--nav-h) + clamp(30px,3.4vw,62px)) 0 clamp(48px,5.4vw,104px);
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  align-items:stretch !important;
+  padding:calc(var(--nav-h) + clamp(30px,3.4vw,62px)) 0 20px !important;
+}
+#top.hero,
+header.hero{
+  height:auto !important;
+  max-height:none !important;
+  min-height:100vh !important;
+  min-height:100svh !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  overflow:visible !important;
+  padding-bottom:20px !important;
+}
+#hero-1.hs:has(> .ticker),
+#hero-1.hs:has(> .hs-logos),
+#top.hero:has(> .ticker),
+header.hero:has(> .ticker),
+.hs:has(> .ticker),
+.hs:has(> .hs-logos){
+  padding-bottom:20px !important;
+}
+
+/* Form card: always in normal flow (never absolute / sticky over logos) */
+#hero-1 .hs-form-wrap{
+  position:relative !important;
+  top:auto !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  inset:auto !important;
+  transform:none !important;
+  margin-bottom:0 !important;
+  flex-shrink:0 !important;
+  z-index:4;
+}
+
+/* Client logos / ticker: normal flow under form+copy — never absolute */
+#hero-1 .hs-logos,
+#hero-1 > .ticker,
+#top.hero > .ticker,
+header.hero > .ticker,
+.hs > .ticker,
+.hs > .hs-logos{
+  position:relative !important;
+  top:auto !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  inset:auto !important;
+  width:100% !important;
+  margin-top:32px !important;
+  margin-bottom:0 !important;
+  flex-shrink:0 !important;
+  z-index:2;
+  padding-block:14px 16px !important;
 }
 #hero-1.hs[hidden]{
   display:none;
@@ -65,9 +125,20 @@
   position:relative;
   z-index:3;
   display:grid;
-  align-items:center;
+  align-items:start;
   grid-template-columns:minmax(0,1fr) minmax(344px,412px);
   gap:clamp(24px,2.6vw,46px);
+  /* Center claim+form in leftover viewport; logos strip stays at hero base */
+  margin-block:auto !important;
+  flex:0 0 auto !important;
+  width:100%;
+  min-height:0;
+}
+#top.hero .hero-in,
+header.hero .hero-in{
+  margin-block:auto !important;
+  flex:0 0 auto !important;
+  width:100%;
 }
 
 #hero-1 .hs-copy{min-width:0;}
@@ -113,12 +184,15 @@
 }
 
 #hero-1 .hs-form-wrap{
+  position:relative !important;
   min-width:0;
+  width:auto;
   padding:clamp(10px,1vw,14px);
   border:1px solid rgba(255,255,255,.22);
   border-radius:clamp(24px,2.2vw,34px);
   opacity:1;
-  transform:none;
+  transform:none !important;
+  margin-bottom:0 !important;
 }
 
 #hero-1 .hs-form{
@@ -240,23 +314,47 @@ html[data-theme="light"] #hero-1 .hs-field select{
   border-color:var(--border);
 }
 
+/* ≤960px: single column — badge → copy → buttons → form → logos */
 @media (max-width:960px){
   #hero-1 .hs-in{
-    grid-template-columns:minmax(0,1fr);
-    gap:clamp(30px,4vw,42px);
+    display:flex !important;
+    flex-direction:column !important;
+    grid-template-columns:none !important;
+    align-items:stretch !important;
+    gap:0 !important;
+    margin-block:0 !important;
   }
-  #hero-1 .hs-form-wrap{width:min(100%,508px);}
+  #hero-1 .hs-copy{
+    order:1;
+    width:100%;
+  }
+  #hero-1 .hs-form-wrap{
+    order:2;
+    position:relative !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin-top:24px !important;
+    margin-bottom:0 !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    transform:none !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    inset:auto !important;
+  }
   #hero-1 .hs-lede{max-width:60ch;}
 }
 
-/* ≤900px: logos/ticker under CTAs in normal flow — no overlap.
-   Desktop (>900px) keeps absolute footer strip + viewport-tall hero. */
+/* ≤900px: content-height hero — no 100vh/100svh; logos under form */
 @media (max-width:900px){
   #hero-1.hs,
   #top.hero,
   header.hero{
     height:auto !important;
-    min-height:100svh !important;
+    max-height:none !important;
+    min-height:0 !important;
     overflow:visible !important;
     justify-content:flex-start !important;
     padding-bottom:20px !important;
@@ -264,23 +362,36 @@ html[data-theme="light"] #hero-1 .hs-field select{
   #hero-1.hs:has(> .ticker),
   #hero-1.hs:has(> .hs-logos),
   #top.hero:has(> .ticker),
-  header.hero:has(> .ticker){
+  header.hero:has(> .ticker),
+  .hs:has(> .ticker),
+  .hs:has(> .hs-logos){
     padding-bottom:20px !important;
   }
 
   #hero-1 .hs-in,
   #top.hero .hero-in,
   header.hero .hero-in{
-    flex:0 0 auto;
+    display:flex !important;
+    flex-direction:column !important;
+    margin-block:0 !important;
+    flex:0 0 auto !important;
     width:100%;
   }
 
-  /* Client strip: relative, below buttons, full width */
+  #hero-1 .hs-form-wrap{
+    position:relative !important;
+    width:100% !important;
+    margin-top:24px !important;
+    margin-bottom:0 !important;
+    transform:none !important;
+  }
+
   #hero-1 .hs-logos,
   #hero-1 > .ticker,
   #top.hero > .ticker,
   header.hero > .ticker,
-  .hs > .ticker{
+  .hs > .ticker,
+  .hs > .hs-logos{
     position:relative !important;
     top:auto !important;
     left:auto !important;
@@ -288,11 +399,14 @@ html[data-theme="light"] #hero-1 .hs-field select{
     bottom:auto !important;
     inset:auto !important;
     width:100% !important;
-    margin-top:32px !important;
-    z-index:3;
+    margin-top:28px !important;
+    margin-bottom:0 !important;
+    flex-shrink:0 !important;
+    z-index:2;
+    padding-block:14px 16px !important;
   }
 
-  /* Background / veil / slider cover the full grown hero (incl. logos) */
+  /* Background / veil / slider cover the full grown hero (incl. form + logos) */
   #hero-1 .hs-bg,
   #hero-1 .hs-veil{
     position:absolute !important;

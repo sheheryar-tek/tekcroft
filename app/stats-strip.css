@@ -2,7 +2,7 @@
    Source: tekcroft-stats-section-final.html (#st-styles).
    Selectors are scoped to #proof-v2 so class names stay verbatim without
    colliding with existing .st-row stack/timeline UI elsewhere on the site. */
-#proof-v2.st{padding-block:clamp(34px,3.6vw,52px); background:var(--surface);}
+#proof-v2.st{margin-top:0; padding-block:clamp(34px,3.6vw,52px); background:var(--surface);}
 #proof-v2 .st-row{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));}
 html[data-theme="dark"] #proof-v2 .st-row{border-color:var(--border);}
 #proof-v2 .st-c{padding:clamp(22px,2.4vw,32px) clamp(16px,2vw,28px); text-align:center;}

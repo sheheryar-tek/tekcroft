@@ -4,14 +4,18 @@
   --hs-veil:rgba(0,0,0,.78);
   position:relative;
   isolation:isolate;
-  overflow:hidden;
+  overflow:visible;
   color:#fff;
+  height:auto;
   min-height:100vh;
   min-height:100svh;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  padding:calc(var(--nav-h) + clamp(30px,3.4vw,62px)) 0 clamp(48px,5.4vw,104px);
+  justify-content:flex-start;
+  padding:calc(var(--nav-h) + clamp(30px,3.4vw,62px)) 0 20px;
+}
+@media (max-width:900px){
+  #hero-1.hs{min-height:0; overflow:visible;}
 }
 #hero-1 .hs-veil{
   position:absolute;
