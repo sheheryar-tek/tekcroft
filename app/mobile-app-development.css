@@ -375,11 +375,13 @@
    that must not break either way is the blue phrase, which is two words
    and reads as a unit — that is the nowrap.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-.hs-h1 em{white-space:nowrap;}
+/* Keep "For" glued to "Businesses" — never orphan "For" at a line end */
+.hs .hs-h1 .hs-h1-keep{white-space:nowrap;}
+.hs .hs-h1 em{font-style:normal; color:var(--primary); white-space:normal !important; display:inline !important;}
 
 /* The claim runs to two paragraphs here. They read as one block, so the
    first sits closer to the second than the block does to the buttons. */
-.hs-lede-1{margin-bottom:clamp(12px,1.2vw,16px);}
+.hs-lede-1{margin-bottom:0;}
 
 /* Below the full column, and on every screen in variant 02 — where the
    headline shares its row with two more columns and never has the width
@@ -512,6 +514,21 @@
 .hs-stat b{color:#fff; font-weight:700; white-space:nowrap;}
 .hs-stat i{flex:none; width:8px; height:8px; margin-top:.5em; border-radius:50%;
   background:var(--primary); box-shadow:0 0 0 4px hsl(var(--brand-h) 100% 50% / .22);}
+
+/* Hero only: tight lede → divider (20px) → stat (16px); no extra lede margin */
+#hero-1 .hs-copy > .hs-lede{
+  margin-bottom:0 !important;
+}
+#hero-1 .hs-copy > .hs-stat{
+  margin-top:20px !important;
+  padding-top:16px !important;
+}
+@media (max-width:600px){
+  #hero-1 .hs-copy > .hs-stat{
+    margin-top:16px !important;
+    padding-top:14px !important;
+  }
+}
 
 /* === pf-styles === */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
