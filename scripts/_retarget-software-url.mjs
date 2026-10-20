@@ -3,8 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const OLD = "/services/custom-software-development-services";
-const NEW = "/services/custom-software-development-services";
+const OLD = "/custom-software-development-services";
+const NEW = "/custom-software-development-services";
 const roots = ["lib", "public", "scripts", "app"];
 let n = 0;
 
@@ -27,7 +27,7 @@ function walk(d) {
     let next = t.split(OLD).join(NEW);
     next = next.replace(
       /\{name:"Software Development Services", href:"\/services\/custom-software-development-services"/g,
-      '{name:"Custom Software Development Services", href:"/services/custom-software-development-services"'
+      '{name:"Custom Software Development Services", href:"/custom-software-development-services"'
     );
     next = next.replace(
       /(<a href="\/services\/custom-software-development-services">)Software Development Services(<\/a>)/g,
@@ -36,7 +36,7 @@ function walk(d) {
     // script path references for page.tsx
     next = next.replace(
       /app\/services\/software-development-services\/page\.tsx/g,
-      "app/services/custom-software-development-services/page.tsx"
+      "app/(site)/custom-software-development-services/page.tsx"
     );
 
     if (next !== t) {

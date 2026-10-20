@@ -11,21 +11,21 @@ const LOCK_COMMENT =
   "/* Shared service hero shell — same style/design on every /services page */";
 
 const servicePages = [
-  "app/services/franchise-seo-services/page.tsx",
-  "app/services/local-seo-services/page.tsx",
-  "app/services/google-business-profile-optimization-services/page.tsx",
-  "app/services/ecommerce-seo-services/page.tsx",
-  "app/services/technical-seo-services/page.tsx",
-  "app/services/on-page-seo-services/page.tsx",
-  "app/services/seo-audit-services/page.tsx",
-  "app/services/ai-seo-services/page.tsx",
-  "app/services/web-design-and-development-services/page.tsx",
-  "app/services/custom-software-development-services/page.tsx",
-  "app/services/mobile-app-development-services/page.tsx",
-  "app/services/ai-chatbot-development-services/page.tsx",
-  "app/services/ai-agent-development-services/page.tsx",
-  "app/services/ai-development-services/page.tsx",
-  "app/services/artificial-intelligence-services/page.tsx",
+  "app/(site)/franchise-seo-services/page.tsx",
+  "app/(site)/local-seo-services/page.tsx",
+  "app/(site)/google-business-profile-optimization-services/page.tsx",
+  "app/(site)/ecommerce-seo-services/page.tsx",
+  "app/(site)/technical-seo-services/page.tsx",
+  "app/(site)/on-page-seo-services/page.tsx",
+  "app/(site)/seo-audit-services/page.tsx",
+  "app/(site)/ai-seo-services/page.tsx",
+  "app/(site)/web-design-and-development-services/page.tsx",
+  "app/(site)/custom-software-development-services/page.tsx",
+  "app/(site)/mobile-app-development-services/page.tsx",
+  "app/(site)/ai-chatbot-development-services/page.tsx",
+  "app/(site)/ai-agent-development-services/page.tsx",
+  "app/(site)/ai-development-services/page.tsx",
+  "app/(site)/artificial-intelligence-services/page.tsx",
 ];
 
 const cssFiles = [

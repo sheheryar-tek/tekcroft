@@ -550,7 +550,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
       {
         title: titleMatch ? titleMatch[1].trim() : "Ecommerce SEO Services | Tekcroft",
         description: descMatch ? descMatch[1] : "",
-        canonical: "https://www.tekcroft.com/services/ecommerce-seo-services",
+        canonical: "https://www.tekcroft.com/ecommerce-seo-services",
       },
       null,
       2
@@ -883,7 +883,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
       {
         title: titleMatch ? titleMatch[1].trim() : "SEO Audit Services | Tekcroft",
         description: descMatch ? descMatch[1] : "",
-        canonical: "https://www.tekcroft.com/services/seo-audit-services",
+        canonical: "https://www.tekcroft.com/seo-audit-services",
       },
       null,
       2
@@ -1114,7 +1114,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
           ? titleMatch[1].trim()
           : "Technical SEO Services | Tekcroft",
         description: descMatch ? descMatch[1] : "",
-        canonical: "https://www.tekcroft.com/services/technical-seo",
+        canonical: "https://www.tekcroft.com/technical-seo",
       },
       null,
       2
@@ -1415,7 +1415,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
       {
         title: "Local SEO Services | Tekcroft",
         description,
-        canonical: "https://www.tekcroft.com/services/local-seo-services",
+        canonical: "https://www.tekcroft.com/local-seo-services",
       },
       null,
       2
@@ -1643,7 +1643,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
           ? titleMatch[1].trim()
           : "On-Page SEO Services | Tekcroft",
         description: descMatch ? descMatch[1] : "",
-        canonical: "https://www.tekcroft.com/services/on-page-seo-services",
+        canonical: "https://www.tekcroft.com/on-page-seo-services",
       },
       null,
       2
@@ -1993,7 +1993,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
         title: "Google Business Profile Optimization | Tekcroft",
         description,
         canonical:
-          "https://www.tekcroft.com/services/google-business-profile-optimization-services",
+          "https://www.tekcroft.com/google-business-profile-optimization-services",
       },
       null,
       2
@@ -2263,7 +2263,7 @@ html[data-theme="dark"] #services-2 .cn-sheet{ background:var(--n875) !important
         description:
           (descMatch && descMatch[1].trim()) ||
           "Native iOS, native Android and cross-platform mobile app development for startups and businesses across the US.",
-        canonical: "https://www.tekcroft.com/services/mobile-app-development-services",
+        canonical: "https://www.tekcroft.com/mobile-app-development-services",
       },
       null,
       2

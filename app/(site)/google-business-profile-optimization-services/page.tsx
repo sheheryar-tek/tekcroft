@@ -34,14 +34,17 @@ export const metadata: Metadata = {
 };
 
 export default function GoogleBusinessProfileOptimizationPage() {
-  const html = fs.readFileSync(
-    path.join(
-      process.cwd(),
-      "lib",
-      "google-business-profile-optimization-body.html"
-    ),
-    "utf8"
-  );
+  // Strip UTF-8 BOM — otherwise a U+FEFF text node leaves a white gap above the hero.
+  const html = fs
+    .readFileSync(
+      path.join(
+        process.cwd(),
+        "lib",
+        "google-business-profile-optimization-body.html"
+      ),
+      "utf8"
+    )
+    .replace(/^\uFEFF/, "");
 
   return (
     <>

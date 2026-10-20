@@ -340,7 +340,7 @@ fs.writeFileSync(
     {
       title: "AI SEO Services | Tekcroft",
       description: desc,
-      canonical: "https://www.tekcroft.com/services/ai-seo-services",
+      canonical: "https://www.tekcroft.com/ai-seo-services",
     },
     null,
     2

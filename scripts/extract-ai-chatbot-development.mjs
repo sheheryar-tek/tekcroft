@@ -738,7 +738,7 @@ fs.writeFileSync(
         (descMatch && descMatch[1].trim()) ||
         "AI chatbot development services that connect to your real systems.",
       canonical:
-        "https://www.tekcroft.com/services/ai-chatbot-development-services",
+        "https://www.tekcroft.com/ai-chatbot-development-services",
     },
     null,
     2

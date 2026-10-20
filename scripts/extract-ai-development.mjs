@@ -749,7 +749,7 @@ fs.writeFileSync(
         (descMatch && descMatch[1].trim()) ||
         "Tekcroft builds custom AI development services for production. Generative AI, machine learning, and AI agents for US businesses. Talk to an AI engineer.",
       canonical:
-        "https://www.tekcroft.com/services/ai-development-services",
+        "https://www.tekcroft.com/ai-development-services",
     },
     null,
     2

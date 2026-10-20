@@ -272,7 +272,7 @@ t = t.replace(
 );
 t = t.replace(
   /https:\/\/www\.tekcroft\.com\/services\/ai-agent-development-services/g,
-  "https://www.tekcroft.com/services/ai-development-services"
+  "https://www.tekcroft.com/ai-development-services"
 );
 // TYPE_SCALE content-visibility list — add new section ids
 t = t.replace(

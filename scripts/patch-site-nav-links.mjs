@@ -26,17 +26,17 @@ for (const f of files) {
   s = s.replace(
     /(<b>Our services<\/b>\s*)<a href="\/#services">SEO services<\/a>\s*<a href="\/#services">AI development<\/a>\s*<a href="\/#services">Automation<\/a>\s*<a href="\/#services">Web development<\/a>\s*<a href="\/#services">Software development<\/a>\s*<a href="\/#services">Digital marketing<\/a>/g,
     `$1<a href="/#services">SEO services</a>
-            <a href="/services/ai-chatbot-development-services">AI development</a>
-            <a href="/services/ai-agent-development-services">Automation</a>
-            <a href="/services/web-design-and-development-services">Web development</a>
-            <a href="/services/custom-software-development-services">Software development</a>
-            <a href="/services/mobile-app-development-services">Digital marketing</a>`
+            <a href="/ai-chatbot-development-services">AI development</a>
+            <a href="/ai-agent-development-services">Automation</a>
+            <a href="/web-design-and-development-services">Web development</a>
+            <a href="/custom-software-development-services">Software development</a>
+            <a href="/mobile-app-development-services">Digital marketing</a>`
   );
 
   // "Digital marketing" → mobile app is wrong. Prefer local SEO / contact as last marketing-ish page.
   // Re-fix: Digital marketing has no page — keep /#services
   s = s.replace(
-    '<a href="/services/mobile-app-development-services">Digital marketing</a>',
+    '<a href="/mobile-app-development-services">Digital marketing</a>',
     '<a href="/#services">Digital marketing</a>'
   );
 

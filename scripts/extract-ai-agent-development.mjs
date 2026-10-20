@@ -750,7 +750,7 @@ fs.writeFileSync(
         (descMatch && descMatch[1].trim()) ||
         "Custom AI agent development for real business workloads.",
       canonical:
-        "https://www.tekcroft.com/services/ai-agent-development-services",
+        "https://www.tekcroft.com/ai-agent-development-services",
     },
     null,
     2

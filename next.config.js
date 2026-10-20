@@ -15,50 +15,62 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      /* Short legacy aliases → root service slugs */
       {
         source: "/services/ecommerce-seo",
-        destination: "/services/ecommerce-seo-services",
+        destination: "/ecommerce-seo-services",
         permanent: true,
       },
       {
         source: "/services/on-page-seo",
-        destination: "/services/on-page-seo-services",
+        destination: "/on-page-seo-services",
         permanent: true,
       },
       {
         source: "/services/technical-seo",
-        destination: "/services/technical-seo-services",
+        destination: "/technical-seo-services",
         permanent: true,
       },
       {
         source: "/services/local-seo",
-        destination: "/services/local-seo-services",
+        destination: "/local-seo-services",
         permanent: true,
       },
       {
         source: "/services/google-business-profile-optimization",
-        destination:
-          "/services/google-business-profile-optimization-services",
+        destination: "/google-business-profile-optimization-services",
         permanent: true,
       },
       {
         source: "/services/franchise-seo",
-        destination: "/services/franchise-seo-services",
+        destination: "/franchise-seo-services",
         permanent: true,
       },
       {
         source: "/services/web-design-and-development",
-        destination: "/services/web-design-and-development-services",
+        destination: "/web-design-and-development-services",
         permanent: true,
       },
       {
         source: "/services/software-development-services",
-        destination: "/services/custom-software-development-services",
+        destination: "/custom-software-development-services",
         permanent: true,
       },
       {
         source: "/services/mobile-app-development",
-        destination: "/services/mobile-app-development-services",
+        destination: "/mobile-app-development-services",
+        permanent: true,
+      },
+      /* Bare /services → homepage services section */
+      {
+        source: "/services",
+        destination: "/#services",
+        permanent: true,
+      },
+      /* /services/<slug> → /<slug> (SEO permanent redirect) */
+      {
+        source: "/services/:slug*",
+        destination: "/:slug*",
         permanent: true,
       },
     ];

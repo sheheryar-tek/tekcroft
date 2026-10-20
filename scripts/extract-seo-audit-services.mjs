@@ -213,11 +213,11 @@ const bundled = scripts.map((m, i) => {
   if (id === "mm-script") {
     code = code.replace(
       /\{name:"SEO Audit Services", href:"\/#services"/g,
-      '{name:"SEO Audit Services", href:"/services/seo-audit-services"'
+      '{name:"SEO Audit Services", href:"/seo-audit-services"'
     );
     code = code.replace(
       /\{name:"SEO Audit", href:"\/#services"/g,
-      '{name:"SEO Audit Services", href:"/services/seo-audit-services"'
+      '{name:"SEO Audit Services", href:"/seo-audit-services"'
     );
     code = code.replace(
       /title:"SEO \(Core, Technical & Ecommerce\)"/g,
@@ -265,7 +265,7 @@ fs.writeFileSync(
         ? decodeEntities(titleMatch[1].trim())
         : "SEO Audit Services | Tekcroft",
       description: descMatch ? decodeEntities(descMatch[1]) : "",
-      canonical: "https://www.tekcroft.com/services/seo-audit-services",
+      canonical: "https://www.tekcroft.com/seo-audit-services",
     },
     null,
     2

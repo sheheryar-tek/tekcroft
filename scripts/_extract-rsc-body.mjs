@@ -1,7 +1,7 @@
 import fs from "fs";
 
 const html = fs.readFileSync(
-  "c:/Tekcroft/.next/server/app/services/ai-seo-services.html",
+  "c:/Tekcroft/.next/server/app/(site)/ai-seo-services.html",
   "utf8"
 );
 

@@ -13,14 +13,14 @@ import { fileURLToPath } from "url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const PAGES = [
-  { body: "lib/local-seo-body.html", id: "services-2", path: "/services/local-seo-services" },
-  { body: "lib/technical-seo-body.html", id: "model", path: "/services/technical-seo-services" },
-  { body: "lib/ai-seo-body.html", id: "model", path: "/services/ai-seo-services" },
-  { body: "lib/franchise-seo-body.html", id: "franchise-covers", path: "/services/franchise-seo-services" },
+  { body: "lib/local-seo-body.html", id: "services-2", path: "/local-seo-services" },
+  { body: "lib/technical-seo-body.html", id: "model", path: "/technical-seo-services" },
+  { body: "lib/ai-seo-body.html", id: "model", path: "/ai-seo-services" },
+  { body: "lib/franchise-seo-body.html", id: "franchise-covers", path: "/franchise-seo-services" },
   {
     body: "lib/google-business-profile-optimization-body.html",
     id: "gbp-process",
-    path: "/services/google-business-profile-optimization-services",
+    path: "/google-business-profile-optimization-services",
   },
 ];
 

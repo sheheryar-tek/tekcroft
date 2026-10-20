@@ -3,8 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const OLD = "/services/mobile-app-development-services";
-const NEW = "/services/mobile-app-development-services";
+const OLD = "/mobile-app-development-services";
+const NEW = "/mobile-app-development-services";
 const roots = ["lib", "public", "scripts", "app"];
 let n = 0;
 
@@ -32,7 +32,7 @@ function walk(d) {
     );
     next = next.replace(
       /app\/services\/mobile-app-development\/page\.tsx/g,
-      "app/services/mobile-app-development-services/page.tsx"
+      "app/(site)/mobile-app-development-services/page.tsx"
     );
 
     if (next !== t) {

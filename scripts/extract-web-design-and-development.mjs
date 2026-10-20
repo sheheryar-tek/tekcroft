@@ -730,7 +730,7 @@ fs.writeFileSync(
         (descMatch && descMatch[1].trim()) ||
         "Custom website design and development that makes it easy for visitors to find what they need and trust your business.",
       canonical:
-        "https://www.tekcroft.com/services/web-design-and-development-services",
+        "https://www.tekcroft.com/web-design-and-development-services",
     },
     null,
     2

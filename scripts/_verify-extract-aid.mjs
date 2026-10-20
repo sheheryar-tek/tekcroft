@@ -8,7 +8,7 @@ const checks = {
   css: t.includes("ai-development.css"),
   body: t.includes("ai-development-body.html"),
   js: t.includes("tekcroft-ai-development.js"),
-  canonical: t.includes("/services/ai-development-services"),
+  canonical: t.includes("/ai-development-services"),
   multi: t.includes("matches.length > 1"),
   aag: (t.match(/aag/g) || []).length,
   agentLeftover: (t.match(/ai-agent/g) || []).length,

@@ -765,7 +765,7 @@ fs.writeFileSync(
         (descMatch && descMatch[1].trim()) ||
         "Franchise SEO programs that put every location on the map while keeping your national brand authority intact.",
       canonical:
-        "https://www.tekcroft.com/services/franchise-seo-services",
+        "https://www.tekcroft.com/franchise-seo-services",
     },
     null,
     2

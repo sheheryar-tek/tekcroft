@@ -213,7 +213,7 @@ const bundled = scripts.map((m, i) => {
   if (id === "mm-script") {
     code = code.replace(
       /\{name:"Ecommerce SEO Services", href:"\/#services"/g,
-      '{name:"Ecommerce SEO Services", href:"/services/ecommerce-seo-services"'
+      '{name:"Ecommerce SEO Services", href:"/ecommerce-seo-services"'
     );
     code = code.replace(
       /title:"SEO \(Core, Technical & Ecommerce\)"/g,
@@ -250,7 +250,7 @@ fs.writeFileSync(
     {
       title: titleMatch ? titleMatch[1].trim() : "Ecommerce SEO Services | Tekcroft",
       description: descMatch ? descMatch[1] : "",
-      canonical: "https://www.tekcroft.com/services/ecommerce-seo-services",
+      canonical: "https://www.tekcroft.com/ecommerce-seo-services",
     },
     null,
     2

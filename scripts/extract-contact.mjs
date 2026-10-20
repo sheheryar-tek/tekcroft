@@ -220,7 +220,7 @@ const bundled = scripts.map((m, i) => {
   if (id === "mm-script") {
     code = code.replace(
       /\{name:"Ecommerce SEO Services", href:"\/#services"/g,
-      '{name:"Ecommerce SEO Services", href:"/services/ecommerce-seo-services"'
+      '{name:"Ecommerce SEO Services", href:"/ecommerce-seo-services"'
     );
     code = code.replace(
       /title:"SEO \(Core, Technical & Ecommerce\)"/g,

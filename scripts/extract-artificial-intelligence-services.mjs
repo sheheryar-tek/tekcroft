@@ -467,7 +467,7 @@ fs.writeFileSync(
         (descMatch && descMatch[1].trim()) ||
         "Tekcroft helps businesses scale by applying AI innovation to drive optimal results and reduce operational costs. Get Your AI Business Solution Now.",
       canonical:
-        "https://www.tekcroft.com/services/artificial-intelligence-services",
+        "https://www.tekcroft.com/artificial-intelligence-services",
     },
     null,
     2

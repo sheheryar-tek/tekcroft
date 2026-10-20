@@ -439,7 +439,7 @@ fs.writeFileSync(
       description: descMatch
         ? decodeEntities(descMatch[1])
         : "Get found by Google and answer engines. Tekcroft's digital marketing, web development, and SEO experts help you generate more revenue for your business.",
-      canonical: "https://www.tekcroft.com/services/seo-services",
+      canonical: "https://www.tekcroft.com/seo-services",
       keywords: "SEO Services",
     },
     null,
