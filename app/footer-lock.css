@@ -57,6 +57,8 @@ html body .ft4-top{
   gap:clamp(26px,3.2vw,48px) !important;
 }
 html body .ft4-brand .logo{margin-bottom:16px; --logo:var(--logo-ink);}
+/* Dark footer plate: same white lockup the header uses on dark surfaces */
+html[data-theme="dark"] body .ft4-brand .logo{--logo:var(--logo-white);}
 html body .ft4-brand p{font-size:13.8px; line-height:1.65; color:var(--muted); max-width:32ch;}
 html body .ft4-brand .ft-soc{margin-top:20px;}
 html body .ft-soc{display:flex; gap:9px;}
