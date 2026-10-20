@@ -373,25 +373,31 @@ function mxIc(n){
 
 
 /* ---------------- FAQ accordion ----------------
-   One open at a time. The panel is a grid row moving between 0fr and 1fr,
-   so it opens to whatever height its own text needs and nothing has to be
-   measured; height:auto cannot be transitioned, and measuring scrollHeight
-   forces a layout on every open. */
+   One open at a time. Skip on the homepage (#tekcroft-root): Homepage.tsx
+   wireFaq owns that accordion. Duplicate toggles cancel close-on-reclick. */
 (function(){
+  if (document.getElementById('tekcroft-root')) return;
   var list = document.querySelector('.faq-list');
   if(!list) return;
   list.addEventListener('click', function(e){
     var btn = e.target.closest('.faq-q');
     if(!btn) return;
     var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
     var isOpen = btn.getAttribute('aria-expanded') === 'true';
     list.querySelectorAll('.faq-q').forEach(function(b){
       b.setAttribute('aria-expanded','false');
-      document.getElementById(b.getAttribute('aria-controls')).dataset.open = 'false';
+      var p = document.getElementById(b.getAttribute('aria-controls'));
+      if (p) p.dataset.open = 'false';
     });
     if(!isOpen){
       btn.setAttribute('aria-expanded','true');
       panel.dataset.open = 'true';
+      var wrap = list.closest('.faq-wrap');
+      if (wrap){
+        var qs = Array.prototype.slice.call(list.querySelectorAll('.faq-q'));
+        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+      }
     }
   });
 })();

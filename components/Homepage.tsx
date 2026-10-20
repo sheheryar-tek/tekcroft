@@ -47,6 +47,8 @@ function panelFor(btn: Element): HTMLElement | null {
 }
 
 function wireFaq(root: HTMLElement) {
+  // Capture + stopImmediatePropagation so tekcroft-main / tekcroft-mm
+  // FAQ listeners (also toggles) cannot cancel open↔close on the homepage.
   const onClick = (e: MouseEvent) => {
     const raw = e.target;
     const t =
@@ -66,6 +68,9 @@ function wireFaq(root: HTMLElement) {
     if (!panel) return;
 
     e.preventDefault();
+    e.stopImmediatePropagation();
+
+    const openIndex = Array.from(list.querySelectorAll(".faq-q")).indexOf(btn);
     const willOpen = btn.getAttribute("aria-expanded") !== "true";
 
     list.querySelectorAll(".faq-q").forEach((b) => {
@@ -83,14 +88,13 @@ function wireFaq(root: HTMLElement) {
       panel.classList.add("is-open");
       const wrap = list.closest(".faq-wrap");
       if (wrap instanceof HTMLElement) {
-        const qs = Array.from(list.querySelectorAll(".faq-q"));
-        wrap.dataset.at = String(qs.indexOf(btn) + 1);
+        wrap.dataset.at = String(openIndex + 1);
       }
     }
   };
 
-  root.addEventListener("click", onClick);
-  return () => root.removeEventListener("click", onClick);
+  root.addEventListener("click", onClick, true);
+  return () => root.removeEventListener("click", onClick, true);
 }
 
 const HERO_CLIENTS = [

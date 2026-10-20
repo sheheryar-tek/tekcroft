@@ -4799,7 +4799,13 @@ html[data-theme="dark"] .modal .field.sel select{
    is the reference layout: one column of questions, opened one at a time,
    with a standing invitation beside it.
    ?????????????????????????????????????????????????????????????????????? */
-:root{ --faq-shot:url("/images/faq-shot.webp"); }
+:root{ --faq-shot:url("/images/home-faq-cede35b294.webp"); }
+
+/* Single FAQ aside photo (homepage) */
+#faq .faq-pic{position:absolute; inset:0; background:none; opacity:1;}
+#faq .faq-pic > img{position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center top; display:block;}
+
 .faq-wrap{
   margin-top:clamp(28px,3.4vw,46px);
   display:grid; grid-template-columns:clamp(280px,27vw,340px) 1fr;
