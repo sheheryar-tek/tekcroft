@@ -174,7 +174,7 @@ html[data-theme="dark"]{
 
 /* ---------- base ---------- */
 *{box-sizing:border-box;}
-html{font-family:var(--font); scroll-behavior:smooth; -webkit-text-size-adjust:100%;
+html{font-family:var(--font); -webkit-text-size-adjust:100%;
   scroll-padding-top:calc(var(--nav-h) + 12px);}
 body{margin:0; background:var(--bg); color:var(--text); font-size:var(--body); line-height:1.65;
   -webkit-font-smoothing:antialiased; overflow-x:hidden;

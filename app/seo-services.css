@@ -214,7 +214,7 @@ html[data-theme="dark"] #seo-services-page{
 
 #seo-services-page *{box-sizing:border-box;}
 
-#seo-services-page{font-family:var(--font); scroll-behavior:smooth; -webkit-text-size-adjust:100%;
+#seo-services-page{font-family:var(--font); -webkit-text-size-adjust:100%;
   scroll-padding-top:calc(var(--nav-h) + 12px);}
 
 #seo-services-page{margin:0; background:var(--bg); color:var(--text); font-size:16px; line-height:1.65;
