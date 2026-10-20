@@ -10,11 +10,11 @@
     <a class="logo" href="/"><span class="sr-only">Tekcroft</span></a>
         <div class="nav-links">
       <a href="/">HOME</a>
-      <a href="/#about">ABOUT US</a>
+      <a href="/about-us">ABOUT US</a>
       <button class="mm-trigger" id="mmTrigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mmPanel">SERVICES<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <a href="/#work">CASE STUDIES</a>
+      <a href="/case-studies">CASE STUDIES</a>
       <a href="/blog">BLOG</a>
-      <a href="/contact">CONTACT US</a>
+      <a href="/contact-us">CONTACT US</a>
     </div>
     <div class="nav-right">
       <button class="theme-btn js-theme" aria-label="Switch theme" title="Switch theme">
@@ -52,11 +52,11 @@
 
     <div class="mnav js-mnav">
     <a href="/">HOME</a>
-    <a href="/#about">ABOUT US</a>
+    <a href="/about-us">ABOUT US</a>
     <div id="mmMobile"></div>
-    <a href="/#work">CASE STUDIES</a>
+    <a href="/case-studies">CASE STUDIES</a>
     <a href="/blog">BLOG</a>
-    <a href="/contact">CONTACT US</a>
+    <a href="/contact-us">CONTACT US</a>
     <button class="btn btn-primary" type="button" data-jump>Get a Free Proposal</button>
   </div>
 </div>
@@ -97,7 +97,7 @@
       <p class="hs-act">
         <button class="btn btn-primary btn-lg" type="button" data-jump>Get a Free Consultation
           <span class="arw">&uarr;</span></button>
-        <a class="btn btn-line btn-lg" href="/#work">See Our Work
+        <a class="btn btn-line btn-lg" href="/case-studies">See Our Work
           <span class="arw">&uarr;</span></a>
       </p>
     </div>
@@ -443,7 +443,7 @@
         </div>
     </div>
 
-    <div class="tm-cta rv"><a class="btn btn-primary" href="#contact"><span class="btn-label">Explore all services</span><span class="arw">&uarr;</span></a></div>
+    <div class="tm-cta rv"><button type="button" class="btn btn-primary" data-scroll="contact"><span class="btn-label">Explore all services</span><span class="arw">&uarr;</span></button></div>
 
   </div>
 </section>
@@ -512,7 +512,7 @@
     </div>
 
     <div class="dv-grid">
-      <a class="dv-card dv-ios rv" style="--d:120ms" href="#contact">
+      <button type="button" class="dv-card dv-ios rv" style="--d:120ms" data-scroll="contact">
         <span class="dv-art"><svg class="dv-svg dv-card-svg" viewBox="0 0 220 210" role="img" aria-label="iPhone app built natively with Swift"><defs>
   <linearGradient id="dviosios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="dviosand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -538,8 +538,8 @@
           <span class="dv-tag">Swift + Apple Frameworks</span>
         </span>
         <span class="dv-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="dv-card dv-android rv" style="--d:180ms" href="#contact">
+      </button>
+      <button type="button" class="dv-card dv-android rv" style="--d:180ms" data-scroll="contact">
         <span class="dv-art"><svg class="dv-svg dv-card-svg" viewBox="0 0 220 210" role="img" aria-label="Android phone running a native Kotlin app"><defs>
   <linearGradient id="dvandroidios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="dvandroidand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -563,8 +563,8 @@
           <span class="dv-tag">Kotlin</span>
         </span>
         <span class="dv-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="dv-card dv-cross is-key rv" style="--d:240ms" href="#contact">
+      </button>
+      <button type="button" class="dv-card dv-cross is-key rv" style="--d:240ms" data-scroll="contact">
         <span class="dv-art"><svg class="dv-svg dv-card-svg" viewBox="0 0 220 210" role="img" aria-label="Flutter and React Native apps on two phones"><defs>
   <linearGradient id="dvcrossios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="dvcrossand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -591,8 +591,8 @@
           <span class="dv-tag">Flutter / React Native</span>
         </span>
         <span class="dv-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="dv-card dv-pwa rv" style="--d:300ms" href="#contact">
+      </button>
+      <button type="button" class="dv-card dv-pwa rv" style="--d:300ms" data-scroll="contact">
         <span class="dv-art"><svg class="dv-svg dv-card-svg" viewBox="0 0 220 210" role="img" aria-label="Progressive web app installed from the browser"><defs>
   <linearGradient id="dvpwaios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="dvpwaand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -624,7 +624,7 @@
           <span class="dv-tag">PWA</span>
         </span>
         <span class="dv-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
+      </button>
     </div>
 
     <div class="dv-cmp">
@@ -705,7 +705,7 @@
     <div class="pf-carousel">
       <div class="pf-rail">
         <div class="pf-track">
-            <a class="pf-card pf-c1 rv" style="--d:70ms" href="#contact">
+            <button type="button" class="pf-card pf-c1 rv" style="--d:70ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">01</span>
@@ -713,8 +713,8 @@
               <h3><em>Healthcare</em> Mobile App Development Services</h3>
               <p>For patient portals, telehealth, appointment management, etc. We know that apps handling patient data need to be HIPAA-compliant from the architecture stage.</p>
               <span class="pf-go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 17.4 17.4 6.6"/><path d="M8.4 6.6h9v9"/></svg></i></span>
-            </a>
-            <a class="pf-card pf-c2 rv" style="--d:140ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c2 rv" style="--d:140ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">02</span>
@@ -722,8 +722,8 @@
               <h3><em>Fintech</em> Mobile App Development Services</h3>
               <p>Payment processing, account data, transaction flows, all require a PCI DSS-aligned architecture and airtight security.</p>
               <span class="pf-go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 17.4 17.4 6.6"/><path d="M8.4 6.6h9v9"/></svg></i></span>
-            </a>
-            <a class="pf-card pf-c3 rv" style="--d:210ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c3 rv" style="--d:210ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">03</span>
@@ -731,8 +731,8 @@
               <h3><em>eCommerce</em> Mobile App Development Services</h3>
               <p>Apps built around conversion, fast checkout, inventory sync, integration with the payment/shipping stack you already run.</p>
               <span class="pf-go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 17.4 17.4 6.6"/><path d="M8.4 6.6h9v9"/></svg></i></span>
-            </a>
-            <a class="pf-card pf-c4 rv" style="--d:280ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c4 rv" style="--d:280ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">04</span>
@@ -740,8 +740,8 @@
               <h3><em>Mobile Banking</em> App Development Services</h3>
               <p>Apps need secure mobile experiences for account management, transfers, payments, card controls, or transaction tracking. It includes biometric login, MFA, real-time transaction alerts, KYC verification, fraud monitoring, etc.</p>
               <span class="pf-go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 17.4 17.4 6.6"/><path d="M8.4 6.6h9v9"/></svg></i></span>
-            </a>
-            <a class="pf-card pf-c5 rv" style="--d:350ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c5 rv" style="--d:350ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">05</span>
@@ -749,8 +749,8 @@
               <h3><em>eLearning</em> Mobile App Development Services</h3>
               <p>The apps we build have a learner experience around courses, assessments, progress tracking, live or offline content, or anything else you need. They also provide instructors with the tools they need to manage students and measure engagement.</p>
               <span class="pf-go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 17.4 17.4 6.6"/><path d="M8.4 6.6h9v9"/></svg></i></span>
-            </a>
-            <a class="pf-card pf-c6 rv" style="--d:420ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c6 rv" style="--d:420ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">06</span>
@@ -758,14 +758,14 @@
               <h3><em>Logistics &amp; Field Services</em></h3>
               <p>The developed apps have real-time tracking, offline-first functionality, and integrations with dispatch/fleet systems.</p>
               <span class="pf-go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 17.4 17.4 6.6"/><path d="M8.4 6.6h9v9"/></svg></i></span>
-            </a>
+            </button>
         </div>
       </div>
     </div>
 
     <div class="pf-cta rv">
-      <a class="btn btn-primary btn-lg" href="#contact" data-jump>Talk to an Expert
-        <span class="arw">&uarr;</span></a>
+      <button type="button" class="btn btn-primary btn-lg" data-jump>Talk to an Expert
+        <span class="arw">&uarr;</span></button>
     </div>
 
   </div>
@@ -863,8 +863,8 @@
     </div>
 
     <div class="eg-cta rv" style="--d:200ms">
-      <a class="btn btn-primary btn-lg" href="#contact">Get Started with Your App Project
-        <span class="arw">&uarr;</span></a>
+      <button type="button" class="btn btn-primary btn-lg" data-scroll="contact">Get Started with Your App Project
+        <span class="arw">&uarr;</span></button>
     </div>
 
   </div>
@@ -879,7 +879,7 @@
     </div>
 
     <div class="em-grid">
-      <a class="em-card rv" style="--d:0ms" href="#contact">
+      <button type="button" class="em-card rv" style="--d:0ms" data-scroll="contact">
         <span class="em-art"><svg class="fw-svg" viewBox="0 0 170 150" role="img" aria-label="Fixed-price quote with a dollar coin and approval check"><defs>
   <linearGradient id="em1ios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="em1and" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -900,8 +900,8 @@
           <p>Defined scope, defined cost, defined timeline. Best when requirements are locked.</p>
           <span class="em-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </span>
-      </a>
-      <a class="em-card rv" style="--d:90ms" href="#contact">
+      </button>
+      <button type="button" class="em-card rv" style="--d:90ms" data-scroll="contact">
         <span class="em-art"><svg class="fw-svg" viewBox="0 0 170 150" role="img" aria-label="A dedicated team with a code badge"><defs>
   <linearGradient id="em2ios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="em2and" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -919,8 +919,8 @@
           <p>A team embedded with your product, working as an extension of your own, best for ongoing, evolving products.</p>
           <span class="em-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </span>
-      </a>
-      <a class="em-card rv" style="--d:180ms" href="#contact">
+      </button>
+      <button type="button" class="em-card rv" style="--d:180ms" data-scroll="contact">
         <span class="em-art"><svg class="fw-svg" viewBox="0 0 170 150" role="img" aria-label="A person joining a team, with a plus badge"><defs>
   <linearGradient id="em3ios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="em3and" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -938,7 +938,7 @@
           <p>Add specific skill sets to a team you&rsquo;re already running in-house.</p>
           <span class="em-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </span>
-      </a>
+      </button>
     </div>
   </div>
 </section>
@@ -1004,7 +1004,7 @@
     </ul>
 
     <div class="vs-go rv" style="--d:180ms">
-      <a class="btn btn-primary btn-lg" href="#contact">Get a Free Consultation <span class="arw">&uarr;</span></a>
+      <button type="button" class="btn btn-primary btn-lg" data-scroll="contact">Get a Free Consultation <span class="arw">&uarr;</span></button>
     </div>
 
   </div>
@@ -1070,7 +1070,7 @@
         <h3>Not sure which fits <em>your project?</em></h3>
         <p>Talk to us before you commit to a stack.</p>
       </div>
-      <a class="pr-go" href="#contact">Get in Touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button type="button" class="pr-go" data-scroll="contact">Get in Touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       <span class="pr-cta-art" aria-hidden="true"><svg class="pr-svg" viewBox="0 0 220 180" role="img" aria-label="A phone with a code badge"><defs>
   <linearGradient id="prios" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CCBF5"/><stop offset=".5" stop-color="#0096D5"/><stop offset="1" stop-color="#0B3C7A"/></linearGradient>
   <linearGradient id="prand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2A4A"/><stop offset="1" stop-color="#071526"/></linearGradient>
@@ -1189,7 +1189,7 @@
           </div>
 
     <div class="wy-cta rv" style="--d:200ms">
-      <a class="btn btn-primary btn-lg" href="#contact">Talk to our team to see if we&rsquo;re a fit <span class="arw">&uarr;</span></a>
+      <button type="button" class="btn btn-primary btn-lg" data-scroll="contact">Talk to our team to see if we&rsquo;re a fit <span class="arw">&uarr;</span></button>
           </div>
 
   </div>
@@ -1354,31 +1354,23 @@
             <p>Building search and AI visibility for US businesses since 2013,
               SEO, AI development, and web and software development, planned as one
               strategy.</p>
-            <div class="ft-soc">
-                            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-6.6 7.5L21.7 21h-6l-4.7-6.1L5.6 21h-3l7-8L2.6 3h6.2l4.2 5.6L17.5 3Zm-1 16h1.6L7.6 4.7H5.9L16.5 19Z"/></svg></a>
-                            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17" cy="7" r="1"/></svg></a>
-                            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.8 3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3.2 9.2h3.2V21H3.2V9.2Zm5.6 0h3.1v1.6a3.4 3.4 0 0 1 3-1.7c3.2 0 3.8 2.1 3.8 4.9V21h-3.2v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H8.8V9.2Z"/></svg></a>
-                            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a>
-                          </div>
+
           </div>
 
           <div class="ft-col">
             <b>Quick links</b>
-            <a href="/#about">About us</a>
-            <a href="/#services">Our services</a>
-            <a href="/#work">Case studies</a>
-            <a href="/#reviews">Testimonials</a>
-            <a href="#">Our team</a>
-            <a href="#">Careers</a>
+            <a href="/about-us">About us</a>
+            <a href="/seo-services">Our services</a>
+            <a href="/case-studies">Case studies</a>
           </div>
           <div class="ft-col">
             <b>Our services</b>
-            <a href="/#services">SEO services</a>
+            <a href="/seo-services">SEO services</a>
             <a href="/ai-development-services">AI development</a>
             <a href="/ai-agent-development-services">Automation</a>
             <a href="/web-design-and-development-services">Web development</a>
             <a href="/custom-software-development-services">Software development</a>
-            <a href="/#services">Digital marketing</a>
+            <a href="/seo-services">Digital marketing</a>
           </div>
 
           <div class="ft-col ft4-contact">
@@ -1391,8 +1383,7 @@
 
         <div class="ft4-bar">
           <span>&copy; 2026 Tekcroft. All rights reserved.</span>
-          <nav><a href="#">Terms of service</a><a href="/privacy">Privacy policy</a>
-            <a href="#">Cookie policy</a><a href="#">Sitemap</a></nav>
+          <nav><a href="/privacy">Privacy policy</a><a href="/sitemap.xml">Sitemap</a></nav>
         </div>
         </div>
       </div>

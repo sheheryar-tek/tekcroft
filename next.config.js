@@ -61,10 +61,10 @@ const nextConfig = {
         destination: "/mobile-app-development-services",
         permanent: true,
       },
-      /* Bare /services → homepage services section */
+      /* Bare /services → home (no hash URLs) */
       {
         source: "/services",
-        destination: "/#services",
+        destination: "/",
         permanent: true,
       },
       /* /services/<slug> → /<slug> (SEO permanent redirect) */
@@ -72,6 +72,22 @@ const nextConfig = {
         source: "/services/:slug*",
         destination: "/:slug*",
         permanent: true,
+      },
+      /* TEMP: pages not built yet — remove when /about-us, /case-studies, /contact-us ship */
+      {
+        source: "/about-us",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/case-studies",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/contact-us",
+        destination: "/",
+        permanent: false,
       },
     ];
   },

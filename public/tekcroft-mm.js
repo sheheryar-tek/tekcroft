@@ -21,7 +21,8 @@ var SERVICES = [
       {name:"Google Business Profile Optimization Services", href:"/google-business-profile-optimization-services", note:"Turn the listing into calls and visits.", img:"localGbp"},
       {name:"Franchise SEO Services", href:"/franchise-seo-services", note:"One system across every location.", img:"localFranchise"}
     ]},
-  { title:"Web and Software Development", href:"/#services", icon:"code", img:"web",
+  /* No hub page for this pillar — heading is dropdown-only (no href). */
+  { title:"Web and Software Development", href:"", icon:"code", img:"web",
     items:[
       {name:"Web Design and Development Services", href:"/web-design-and-development-services", note:"Sites built to convert, not just to look good.", img:"webDesign"},
       {name:"Custom Software Development Services", href:"/custom-software-development-services", note:"Custom platforms and internal tools.", img:"webSoftware"},
@@ -82,9 +83,13 @@ if(!panel || !btn) return;
 
 /* ── one column per core service ── */
 document.getElementById('mmCols').innerHTML = SERVICES.map(function(s){
+  var gpAttrs = ' class="mm-gp" data-img="'+s.img+'" data-title="'+esc(s.title)+'"'
+    + ' data-note="Everything under '+esc(s.title)+'."';
+  var gp = s.href
+    ? '<a'+gpAttrs+' href="'+s.href+'">'+esc(s.title)+'</a>'
+    : '<span'+gpAttrs+' role="presentation">'+esc(s.title)+'</span>';
   return '<div class="mm-svc-col">'
-    + '<a class="mm-gp" href="'+s.href+'" data-img="'+s.img+'" data-title="'+esc(s.title)+'"'
-    + ' data-note="Everything under '+esc(s.title)+'.">'+esc(s.title)+'</a>'
+    + gp
     + s.items.map(function(it){
         return '<a class="mm-row" href="'+it.href+'" data-img="'+it.img+'"'
           + ' data-title="'+esc(it.name)+'" data-note="'+esc(it.note)+'">'
@@ -101,7 +106,7 @@ function imgKeyForPath(pathname){
   if(!here) return null;
   for(var i=0;i<SERVICES.length;i++){
     var s = SERVICES[i];
-    try{ if(new URL(s.href, location.href).pathname.replace(/\/+$/,'').toLowerCase()===here) return s.img; }catch(e){}
+    try{ if(s.href && new URL(s.href, location.href).pathname.replace(/\/+$/,'').toLowerCase()===here) return s.img; }catch(e){}
     for(var j=0;j<s.items.length;j++){
       try{ if(new URL(s.items[j].href, location.href).pathname.replace(/\/+$/,'').toLowerCase()===here) return s.items[j].img; }catch(e){}
     }
@@ -222,10 +227,10 @@ function mxIc(n){
     return (a && a.getAttribute('href')) || fallback;
   }
   var homeHref = hrefAt(0, '/');
-  var aboutHref = hrefAt(1, '/#about');
-  var workHref = hrefAt(2, '/#work');
+  var aboutHref = hrefAt(1, '/about-us');
+  var workHref = hrefAt(2, '/case-studies');
   var blogHref = hrefAt(3, '/blog');
-  var contactHref = hrefAt(4, '/contact');
+  var contactHref = hrefAt(4, '/contact-us');
   var oldCta = mnav.querySelector(':scope > .btn, :scope > button[data-jump], :scope > button[data-modal]');
   var ctaModal = oldCta && oldCta.hasAttribute('data-modal');
   var ctaAttrs = ctaModal ? ' data-modal' : ' data-jump';
@@ -237,10 +242,14 @@ function mxIc(n){
     var subs = items.map(function(it){
       return '<a class="mx-sub" href="'+it.href+'">'+esc(it.name)+'</a>';
     }).join('');
-    var mainHref = s.href || '#';
+    var mainHref = s.href || '';
+    var mainInner = mxIc(s.icon)+'<span class="mx-t">'+esc(s.title)+'</span>';
+    var mainEl = mainHref
+      ? '<a class="mx-main" href="'+mainHref+'">'+mainInner+'</a>'
+      : '<span class="mx-main mx-main--nolink">'+mainInner+'</span>';
     return '<div class="mx-svc" data-i="'+i+'">'
       + '<div class="mx-row">'
-      + '<a class="mx-main" href="'+mainHref+'">'+mxIc(s.icon)+'<span class="mx-t">'+esc(s.title)+'</span></a>'
+      + mainEl
       + '<button class="mx-tg" type="button" aria-expanded="false" aria-controls="mxdrop'+i+'" aria-label="Show '+esc(s.title)+'">'+MX_CHEV+'</button>'
       + '</div>'
       + '<div class="mx-drop" id="mxdrop'+i+'"><div>'+subs+'</div></div>'
@@ -709,5 +718,32 @@ function mxIc(n){
   clearHeroInlineSizes();
   window.__tekcroftMeasureNavH = measureNavH;
   window.__tekcroftCloseMnav = closeMenu;
+
+  /* In-page section scroll without writing # into the URL */
+  if (!window.__tekcroftDataScroll) {
+    window.__tekcroftDataScroll = true;
+    document.addEventListener(
+      "click",
+      function (e) {
+        var el = e.target.closest("[data-scroll]");
+        if (!el) return;
+        e.preventDefault();
+        var id = el.getAttribute("data-scroll");
+        if (!id) return;
+        if (id === "top") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        var target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        var form = document.querySelector(".hs:not([hidden]) form[data-lead]");
+        if (form) form.scrollIntoView({ behavior: "smooth", block: "center" });
+      },
+      true
+    );
+  }
 })();
 

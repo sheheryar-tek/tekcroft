@@ -128,7 +128,8 @@
     min-height: 52px;
     box-sizing: border-box;
   }
-  .mnav.mnav-v2 .mx-main {
+  .mnav.mnav-v2 .mx-main,
+  .mnav.mnav-v2 .mx-main--nolink {
     flex: 1 1 auto !important;
     min-width: 0 !important;
     width: auto !important;
@@ -139,6 +140,9 @@
     text-decoration: none !important;
     color: inherit !important;
     box-sizing: border-box;
+  }
+  .mnav.mnav-v2 .mx-main--nolink {
+    cursor: default;
   }
   .mnav.mnav-v2 .mx-ic {
     flex: none;

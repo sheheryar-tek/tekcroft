@@ -10,11 +10,11 @@
     <a class="logo" href="/"><span class="sr-only">Tekcroft</span></a>
         <div class="nav-links">
       <a href="/">HOME</a>
-      <a href="/#about">ABOUT US</a>
+      <a href="/about-us">ABOUT US</a>
       <button class="mm-trigger" id="mmTrigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mmPanel">SERVICES<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <a href="/#work">CASE STUDIES</a>
+      <a href="/case-studies">CASE STUDIES</a>
       <a href="/blog">BLOG</a>
-      <a href="/contact">CONTACT US</a>
+      <a href="/contact-us">CONTACT US</a>
     </div>
     <div class="nav-right">
       <button class="theme-btn js-theme" aria-label="Switch theme" title="Switch theme">
@@ -52,11 +52,11 @@
 
     <div class="mnav js-mnav">
     <a href="/">HOME</a>
-    <a href="/#about">ABOUT US</a>
+    <a href="/about-us">ABOUT US</a>
     <div id="mmMobile"></div>
-    <a href="/#work">CASE STUDIES</a>
+    <a href="/case-studies">CASE STUDIES</a>
     <a href="/blog">BLOG</a>
-    <a href="/contact">CONTACT US</a>
+    <a href="/contact-us">CONTACT US</a>
     <button class="btn btn-primary" type="button" data-jump>Get a Free Proposal</button>
   </div>
 </div>
@@ -91,8 +91,8 @@
       <p class="hs-act">
         <button class="btn btn-primary btn-lg" type="button" data-jump>Talk to an AI Engineer
           <span class="arw">&uarr;</span></button>
-        <a class="btn btn-line btn-lg" href="#process">See Our Process
-          <span class="arw">&uarr;</span></a>
+        <button type="button" class="btn btn-line btn-lg" data-scroll="process">See Our Process
+          <span class="arw">&uarr;</span></button>
       </p>
     </div>
 
@@ -411,7 +411,7 @@
           </div>
         </div>
     </div>
-    <div class="tm-cta rv"><a class="btn btn-primary btn-lg" href="#contact">See Which Services Fit Best <span class="arw">&uarr;</span></a></div>
+    <div class="tm-cta rv"><button type="button" class="btn btn-primary btn-lg" data-scroll="contact">See Which Services Fit Best <span class="arw">&uarr;</span></button></div>
   </div>
 </section>
 
@@ -494,8 +494,8 @@
     <div class="fw-foot rv" style="--d:160ms">
       <span class="fw-foot-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.8h17M8 3v4M16 3v4M9 14.5l2 2 4-4.2"/></svg></span>
       <p><b>You&rsquo;ve seen how we build it.</b> Now let&rsquo;s map what it looks like for your AI project</p>
-      <a class="btn btn-primary btn-lg" href="#contact">Talk to an AI Engineer
-        <span class="arw">&uarr;</span></a>
+      <button type="button" class="btn btn-primary btn-lg" data-scroll="contact">Talk to an AI Engineer
+        <span class="arw">&uarr;</span></button>
     </div>
 
   </div>
@@ -707,11 +707,8 @@
         <div>
           <span class="gr-name">Tekcroft, AI Development Services</span>
           <span class="gr-score"><b>4.8</b><span id="grBarStars"></span></span>
-          <a class="gr-src" href="#" rel="noopener">Based on 320+ Google reviews</a>
         </div>
         <div class="gr-acts">
-          <a class="btn btn-line" href="#" rel="noopener">Write a review</a>
-          <a class="btn btn-primary" href="#" rel="noopener">View all on Google <span class="arw">&uarr;</span></a>
         </div>
       </div>
 
@@ -728,7 +725,6 @@
       </div>
 
       <div class="gr-end">
-        <a class="btn btn-primary btn-lg" href="#" rel="noopener">View All on Google <span class="arw">&uarr;</span></a>
       </div>
 
     </div>
@@ -773,7 +769,7 @@
     <div class="pf-carousel">
       <div class="pf-rail">
         <div class="pf-track">
-            <a class="pf-card pf-c2 rv" style="--d:60ms" href="#contact">
+            <button type="button" class="pf-card pf-c2 rv" style="--d:60ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">01</span>
@@ -781,8 +777,8 @@
               <h3><em>Healthcare</em></h3>
               <p>Models for patient intake process automation, appointment scheduling, and clinical documentation.</p>
               
-            </a>
-            <a class="pf-card pf-c3 rv" style="--d:120ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c3 rv" style="--d:120ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">02</span>
@@ -790,8 +786,8 @@
               <h3><em>Finance</em></h3>
               <p>Systems to detect fraud and automate compliance processes, as well as predictive models based on your data.</p>
               
-            </a>
-            <a class="pf-card pf-c1 rv" style="--d:180ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c1 rv" style="--d:180ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">03</span>
@@ -799,8 +795,8 @@
               <h3><em>Retail / E-commerce</em></h3>
               <p>Forecasting inventory, recommendation systems, and customer support automation.</p>
               
-            </a>
-            <a class="pf-card pf-c9 rv" style="--d:240ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c9 rv" style="--d:240ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">04</span>
@@ -808,8 +804,8 @@
               <h3><em>Insurance</em></h3>
               <p>Claim processing systems, eligibility checkers, and document extraction from unstructured documents.</p>
               
-            </a>
-            <a class="pf-card pf-c5 rv" style="--d:300ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c5 rv" style="--d:300ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">05</span>
@@ -817,8 +813,8 @@
               <h3><em>SaaS / Technology</em></h3>
               <p>Ticket automation, internal knowledge bots, and embedded AI in products.</p>
               
-            </a>
-            <a class="pf-card pf-c4 rv" style="--d:360ms" href="#contact">
+            </button>
+            <button type="button" class="pf-card pf-c4 rv" style="--d:360ms" data-scroll="contact">
               <span class="pf-top">
                 <span class="pf-ic"><span class="pf-mk" aria-hidden="true"></span></span>
                 <span class="pf-n">06</span>
@@ -826,14 +822,14 @@
               <h3><em>Manufacturing</em></h3>
               <p>Data analysis of production processes, predictive maintenance detection, computer vision for quality control.</p>
               
-            </a>
+            </button>
         </div>
       </div>
     </div>
 
     <div class="pf-cta rv">
-      <a class="btn btn-primary btn-lg" href="#contact" data-jump>Talk to an AI Engineer
-        <span class="arw">&uarr;</span></a>
+      <button type="button" class="btn btn-primary btn-lg" data-jump>Talk to an AI Engineer
+        <span class="arw">&uarr;</span></button>
     </div>
 
   </div>
@@ -876,9 +872,9 @@
         <button class="wk-arw" type="button" data-wk="-1" aria-label="Previous case study"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
         <button class="wk-arw" type="button" data-wk="1" aria-label="Next case study"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <ol class="wk-rail" id="wkRail" tabindex="0" aria-label="Case studies"><li class="wk-card"><figure class="wk-shot" role="img" aria-label="AI Chatbot for Customer Support"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Handoff with full context</div><div class="ax-msg me">Where is my refund?</div><div class="ax-msg bot">Checking your order&hellip; passing you to Sarah.</div><div class="ax-ctx"><span>Context passed</span><span>Order #4821</span><span>Chat history</span></div><div class="ax-gf">Sample view &middot; nobody starts from zero</div></div></span><span class="wk-url">Case study 01</span><a class="wk-visit" href="#contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></a></figure><div class="wk-say"><h3><i>01</i>AI Chatbot for Customer Support</h3><p>Conversational assistant trained on your product and support data, with a handoff that carries full context to your team.</p><ul class="wk-tags"><li>AI Chatbot</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="AI Agent for Operations"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Guardrail before action</div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Read ticket #4821</b><em class="g">Auto</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Update CRM record</b><em class="g">Auto</em></div><div class="ax-row"><i class="ax-st wait"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></i><b>Issue $480 refund</b><em class="a">Needs approval</em></div><div class="ax-gf">Sample view &middot; high-risk actions wait for a human</div></div></span><span class="wk-url">Case study 02</span><a class="wk-visit" href="#contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></a></figure><div class="wk-say"><h3><i>02</i>AI Agent for Operations</h3><p>Autonomous agent completing multi-step tasks across CRM and ticketing, with high-risk actions held for approval.</p><ul class="wk-tags"><li>AI Agent</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Model Monitoring and Retraining"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Model accuracy after launch</div><svg class="ax-line" viewBox="0 0 260 112" aria-hidden="true"><path d="M8 22H252M8 54H252M8 86H252" class="ax-grid"/><path d="M10 32 L52 30 L90 36 L120 52 L146 76" class="ax-ln warn"/><path d="M146 76 L176 44 L214 30 L250 28" class="ax-ln"/><circle cx="146" cy="76" r="5" class="ax-dot warn"/><circle cx="250" cy="28" r="5" class="ax-dot"/><text x="132" y="100" class="ax-lt">Drift alert</text><text x="196" y="20" class="ax-lt">Retrained</text></svg><div class="ax-gf">Sample view &middot; alerts fire before accuracy shows</div></div></span><span class="wk-url">Case study 03</span><a class="wk-visit" href="#contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></a></figure><div class="wk-say"><h3><i>03</i>Model Monitoring and Retraining</h3><p>Deployed model watched for drift, with alerts and retraining before accuracy becomes a visible problem.</p><ul class="wk-tags"><li>Machine Learning</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Computer Vision on Real Footage"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Validated on your footage</div><div class="ax-bar-row"><span>Line cam 1</span><span class="ax-track"><i style="--w:98%"></i></span><b>98%</b></div><div class="ax-bar-row"><span>Line cam 2</span><span class="ax-track"><i style="--w:94%"></i></span><b>94%</b></div><div class="ax-bar-row"><span>Low light</span><span class="ax-track"><i style="--w:91%"></i></span><b>91%</b></div><div class="ax-ctx"><span>Your cameras</span><span>Your lighting</span><span>Validated on site</span></div><div class="ax-gf">Sample view &middot; tested on real video before handover</div></div></span><span class="wk-url">Case study 04</span><a class="wk-visit" href="#contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></a></figure><div class="wk-say"><h3><i>04</i>Computer Vision on Real Footage</h3><p>Detection model trained on your cameras and lighting, validated on actual video before handover.</p><ul class="wk-tags"><li>Computer Vision</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Enterprise AI Integration"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Permission check</div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>CRM &middot; read contacts</b><em class="g">Allowed</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>ERP &middot; write orders</b><em class="g">Allowed</em></div><div class="ax-row"><i class="ax-st no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></i><b>Restricted records</b><em class="r">Blocked</em></div><div class="ax-gf">Sample view &middot; tested against your access controls</div></div></span><span class="wk-url">Case study 05</span><a class="wk-visit" href="#contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></a></figure><div class="wk-say"><h3><i>05</i>Enterprise AI Integration</h3><p>AI connected to CRM and ERP through your existing access controls, tested against your real permission structure.</p><ul class="wk-tags"><li>Integration</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Generative AI with Review Cycle"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Review before go-live</div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Draft answer generated</b><em class="g">Done</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Checked against source</b><em class="g">Verified</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Reviewer sign-off</b><em class="g">Approved</em></div><div class="ax-bar-row"><span>Source match</span><span class="ax-track"><i style="--w:96%"></i></span><b>96%</b></div><div class="ax-gf">Sample view &middot; responses checked before launch</div></div></span><span class="wk-url">Case study 06</span><a class="wk-visit" href="#contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></a></figure><div class="wk-say"><h3><i>06</i>Generative AI with Review Cycle</h3><p>Custom generative application where responses are checked against source material before going live.</p><ul class="wk-tags"><li>Generative AI</li><li>Client placeholder</li></ul></div></li></ol>
+      <ol class="wk-rail" id="wkRail" tabindex="0" aria-label="Case studies"><li class="wk-card"><figure class="wk-shot" role="img" aria-label="AI Chatbot for Customer Support"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Handoff with full context</div><div class="ax-msg me">Where is my refund?</div><div class="ax-msg bot">Checking your order&hellip; passing you to Sarah.</div><div class="ax-ctx"><span>Context passed</span><span>Order #4821</span><span>Chat history</span></div><div class="ax-gf">Sample view &middot; nobody starts from zero</div></div></span><span class="wk-url">Case study 01</span><button type="button" class="wk-visit" data-scroll="contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></button></figure><div class="wk-say"><h3><i>01</i>AI Chatbot for Customer Support</h3><p>Conversational assistant trained on your product and support data, with a handoff that carries full context to your team.</p><ul class="wk-tags"><li>AI Chatbot</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="AI Agent for Operations"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Guardrail before action</div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Read ticket #4821</b><em class="g">Auto</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Update CRM record</b><em class="g">Auto</em></div><div class="ax-row"><i class="ax-st wait"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></i><b>Issue $480 refund</b><em class="a">Needs approval</em></div><div class="ax-gf">Sample view &middot; high-risk actions wait for a human</div></div></span><span class="wk-url">Case study 02</span><button type="button" class="wk-visit" data-scroll="contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></button></figure><div class="wk-say"><h3><i>02</i>AI Agent for Operations</h3><p>Autonomous agent completing multi-step tasks across CRM and ticketing, with high-risk actions held for approval.</p><ul class="wk-tags"><li>AI Agent</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Model Monitoring and Retraining"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Model accuracy after launch</div><svg class="ax-line" viewBox="0 0 260 112" aria-hidden="true"><path d="M8 22H252M8 54H252M8 86H252" class="ax-grid"/><path d="M10 32 L52 30 L90 36 L120 52 L146 76" class="ax-ln warn"/><path d="M146 76 L176 44 L214 30 L250 28" class="ax-ln"/><circle cx="146" cy="76" r="5" class="ax-dot warn"/><circle cx="250" cy="28" r="5" class="ax-dot"/><text x="132" y="100" class="ax-lt">Drift alert</text><text x="196" y="20" class="ax-lt">Retrained</text></svg><div class="ax-gf">Sample view &middot; alerts fire before accuracy shows</div></div></span><span class="wk-url">Case study 03</span><button type="button" class="wk-visit" data-scroll="contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></button></figure><div class="wk-say"><h3><i>03</i>Model Monitoring and Retraining</h3><p>Deployed model watched for drift, with alerts and retraining before accuracy becomes a visible problem.</p><ul class="wk-tags"><li>Machine Learning</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Computer Vision on Real Footage"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Validated on your footage</div><div class="ax-bar-row"><span>Line cam 1</span><span class="ax-track"><i style="--w:98%"></i></span><b>98%</b></div><div class="ax-bar-row"><span>Line cam 2</span><span class="ax-track"><i style="--w:94%"></i></span><b>94%</b></div><div class="ax-bar-row"><span>Low light</span><span class="ax-track"><i style="--w:91%"></i></span><b>91%</b></div><div class="ax-ctx"><span>Your cameras</span><span>Your lighting</span><span>Validated on site</span></div><div class="ax-gf">Sample view &middot; tested on real video before handover</div></div></span><span class="wk-url">Case study 04</span><button type="button" class="wk-visit" data-scroll="contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></button></figure><div class="wk-say"><h3><i>04</i>Computer Vision on Real Footage</h3><p>Detection model trained on your cameras and lighting, validated on actual video before handover.</p><ul class="wk-tags"><li>Computer Vision</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Enterprise AI Integration"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Permission check</div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>CRM &middot; read contacts</b><em class="g">Allowed</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>ERP &middot; write orders</b><em class="g">Allowed</em></div><div class="ax-row"><i class="ax-st no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></i><b>Restricted records</b><em class="r">Blocked</em></div><div class="ax-gf">Sample view &middot; tested against your access controls</div></div></span><span class="wk-url">Case study 05</span><button type="button" class="wk-visit" data-scroll="contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></button></figure><div class="wk-say"><h3><i>05</i>Enterprise AI Integration</h3><p>AI connected to CRM and ERP through your existing access controls, tested against your real permission structure.</p><ul class="wk-tags"><li>Integration</li><li>Client placeholder</li></ul></div></li><li class="wk-card"><figure class="wk-shot" role="img" aria-label="Generative AI with Review Cycle"><span class="wk-img wk-ph"><div class="ax-g"><div class="ax-gt">Review before go-live</div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Draft answer generated</b><em class="g">Done</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Checked against source</b><em class="g">Verified</em></div><div class="ax-row"><i class="ax-st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.6 4.6 4.6L19 7.6"/></svg></i><b>Reviewer sign-off</b><em class="g">Approved</em></div><div class="ax-bar-row"><span>Source match</span><span class="ax-track"><i style="--w:96%"></i></span><b>96%</b></div><div class="ax-gf">Sample view &middot; responses checked before launch</div></div></span><span class="wk-url">Case study 06</span><button type="button" class="wk-visit" data-scroll="contact">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8"/><path d="M9 8h7v7"/></svg></button></figure><div class="wk-say"><h3><i>06</i>Generative AI with Review Cycle</h3><p>Custom generative application where responses are checked against source material before going live.</p><ul class="wk-tags"><li>Generative AI</li><li>Client placeholder</li></ul></div></li></ol>
     </div>
-    <div class="wk-cta rv" style="--d:200ms"><a class="btn btn-primary btn-lg" href="#contact">View all case studies <span class="arw">&uarr;</span></a></div>
+    <div class="wk-cta rv" style="--d:200ms"><button type="button" class="btn btn-primary btn-lg" data-scroll="contact">View all case studies <span class="arw">&uarr;</span></button></div>
   </div></div>
 </section>
 
@@ -1106,31 +1102,23 @@
             <p>Building search and AI visibility for US businesses since 2013,
               SEO, AI development, and web and software development, planned as one
               strategy.</p>
-            <div class="ft-soc">
-                            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-6.6 7.5L21.7 21h-6l-4.7-6.1L5.6 21h-3l7-8L2.6 3h6.2l4.2 5.6L17.5 3Zm-1 16h1.6L7.6 4.7H5.9L16.5 19Z"/></svg></a>
-                            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17" cy="7" r="1"/></svg></a>
-                            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.8 3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3.2 9.2h3.2V21H3.2V9.2Zm5.6 0h3.1v1.6a3.4 3.4 0 0 1 3-1.7c3.2 0 3.8 2.1 3.8 4.9V21h-3.2v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H8.8V9.2Z"/></svg></a>
-                            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a>
-                          </div>
+
           </div>
 
           <div class="ft-col">
             <b>Quick links</b>
-            <a href="/#about">About us</a>
-            <a href="/#services">Our services</a>
-            <a href="/#work">Case studies</a>
-            <a href="/#reviews">Testimonials</a>
-            <a href="#">Our team</a>
-            <a href="#">Careers</a>
+            <a href="/about-us">About us</a>
+            <a href="/seo-services">Our services</a>
+            <a href="/case-studies">Case studies</a>
           </div>
           <div class="ft-col">
             <b>Our services</b>
-            <a href="/#services">SEO services</a>
+            <a href="/seo-services">SEO services</a>
             <a href="/ai-development-services">AI development</a>
             <a href="/ai-agent-development-services">Automation</a>
             <a href="/web-design-and-development-services">Web development</a>
             <a href="/custom-software-development-services">Software development</a>
-            <a href="/#services">Digital marketing</a>
+            <a href="/seo-services">Digital marketing</a>
           </div>
 
           <div class="ft-col ft4-contact">
@@ -1143,8 +1131,7 @@
 
         <div class="ft4-bar">
           <span>&copy; 2026 Tekcroft. All rights reserved.</span>
-          <nav><a href="#">Terms of service</a><a href="/privacy">Privacy policy</a>
-            <a href="#">Cookie policy</a><a href="#">Sitemap</a></nav>
+          <nav><a href="/privacy">Privacy policy</a><a href="/sitemap.xml">Sitemap</a></nav>
         </div>
         </div>
       </div>

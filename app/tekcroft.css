@@ -439,12 +439,25 @@ html[data-theme="dark"] .nav.stuck .nav-shell{box-shadow:0 16px 38px -22px rgba(
   background-position:left center; background-size:contain;}
 .nav-links{display:flex; gap:22px; font-size:14.5px; font-weight:500; color:var(--muted);
   text-transform:uppercase; letter-spacing:.04em;}
-.nav-links a{position:relative; padding:5px 0; transition:color .18s var(--ease);}
-.nav-links a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:2px;
+.nav-links a,
+.nav-links > button:not(.mm-trigger){
+  position:relative; padding:5px 0; transition:color .18s var(--ease);
+  background:none; border:0; font:inherit; color:inherit; letter-spacing:inherit;
+  text-transform:inherit; cursor:pointer;}
+.nav-links a::after,
+.nav-links > button:not(.mm-trigger)::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:2px;
   background:var(--primary); transition:right .25s var(--ease);}
-.nav-links a:hover{color:var(--text);}
-.nav-links a:hover::after{right:0;}
+.nav-links a:hover,
+.nav-links > button:not(.mm-trigger):hover{color:var(--text);}
+.nav-links a:hover::after,
+.nav-links > button:not(.mm-trigger):hover::after{right:0;}
 .nav-right{display:flex; align-items:center; gap:10px; margin-left:auto;}
+/* In-page scroll controls that used to be <a href="#…"> */
+button.btn{font:inherit; cursor:pointer;}
+button.pf-card, button.wk-visit{
+  display:block; width:100%; text-align:left; font:inherit; color:inherit;
+  background:none; border:0; cursor:pointer; padding:0;}
+button.wk-visit{width:auto; display:inline-flex; align-items:center;}
 
 .theme-btn{width:44px; height:44px; border-radius:50%; border:1px solid var(--border);
   background:transparent; color:var(--text-2); display:grid; place-items:center; flex-shrink:0;
@@ -510,8 +523,11 @@ html[data-theme="dark"] .theme-btn .sun{display:none;}
   border-radius:0 0 25px 25px;
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);}
 .mnav.open{display:flex;}
-.mnav a{padding:11px 0; font-size:15.5px; font-weight:600; border-bottom:1px solid var(--border-soft);
-  text-transform:uppercase; letter-spacing:.04em;}
+.mnav a,
+.mnav > button[data-scroll]{padding:11px 0; font-size:15.5px; font-weight:600; border-bottom:1px solid var(--border-soft);
+  text-transform:uppercase; letter-spacing:.04em;
+  background:none; border-left:0; border-right:0; border-top:0; font:inherit; color:inherit;
+  text-align:left; cursor:pointer; width:100%;}
 .mnav .mm-acc{text-transform:uppercase; letter-spacing:.04em;}
 .mnav .mm-accp a{text-transform:none; letter-spacing:0;}
 .mnav .btn{margin-top:12px; border-bottom:none; text-transform:none; letter-spacing:0;}

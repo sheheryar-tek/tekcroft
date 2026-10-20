@@ -15,6 +15,23 @@
     });
   });
 
+  /* In-page section scroll — never write # into the URL */
+  if (!window.__tekcroftDataScroll) {
+    window.__tekcroftDataScroll = true;
+    document.addEventListener("click", function(e){
+      var el = e.target.closest("[data-scroll]");
+      if (!el) return;
+      e.preventDefault();
+      var id = el.getAttribute("data-scroll");
+      if (!id) return;
+      if (id === "top"){ window.scrollTo({ top:0, behavior:"smooth" }); return; }
+      var target = document.getElementById(id);
+      if (target){ target.scrollIntoView({ behavior:"smooth", block:"start" }); return; }
+      var form = document.querySelector(".hs:not([hidden]) form[data-lead], form[data-lead]");
+      if (form) form.scrollIntoView({ behavior:"smooth", block:"center" });
+    }, true);
+  }
+
   /* ---------------- button labels ----------------
      A button has one hover move: the ink wipe. The label used to roll its
      letters at the same time, so the roll is gone. The label still has to
@@ -250,7 +267,7 @@
 
   /* Boot logo intro — restored original fly-to-nav sequence.
      PERF: do not wait on webfonts; start on next frame; failsafe timeout. */
-  if (!boot || calm || (location.hash && location.hash !== "#top")){
+  if (!boot || calm){
     skipBoot();
   } else {
     document.body.classList.add("booting");
@@ -868,9 +885,6 @@
 
   function armAutoInvite(){
     if (seenThisSession()) return;
-    /* someone who arrived on a deep link is mid-task — don't interrupt them */
-    if (location.hash && location.hash !== "#top") return;
-
     var armed = false;
 
     function fire(){

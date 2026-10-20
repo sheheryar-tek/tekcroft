@@ -6,7 +6,7 @@ const assets = JSON.parse(
 const html = await (await fetch(BASE + "/")).text();
 const checks = [
   ["boot markup", html.includes('id="boot"') && html.includes('id="bootLogo"')],
-  ["nav logo", html.includes('class="logo" href="#top"')],
+  ["nav logo", html.includes('class="logo" href="/"')],
   ["logo-white preload", html.includes("/images/logo-white.webp")],
   ["main script ref", html.includes(assets.main)],
 ];
