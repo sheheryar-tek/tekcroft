@@ -7,6 +7,7 @@ import "./../footer-lock.css";
 import "./../site-consistency.css";
 import "./../mobile-menu.css";
 import "./../stats-strip.css";
+import "./../pf-mode-lock.css";
 import "./../a11y-lock.css";
 
 export default function LocalSeoLayout({

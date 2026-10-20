@@ -870,7 +870,7 @@ var $$ = function(s, r){
   if (!track) return;
 
   /* the breakpoint the stylesheet stacks at, asked the same way here */
-  var running = window.matchMedia("(min-width: 601px)");
+  var running = window.matchMedia("(min-width: 901px)");
 
   /* The list is snapshotted before anything is appended. track.children
      is a live collection: appending one of its members back into the

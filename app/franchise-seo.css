@@ -2166,7 +2166,7 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 @media (max-width:760px){
   .pf-card{flex-basis:calc(100cqw - 42px);}
 }
-@media (max-width:600px){
+@media (max-width:900px){
   /* On a phone the four cards stack rather than scroll past: each one is
      sticky at a slightly lower stop than the one before, so as the page
      moves they come to rest on top of each other like a hand of cards
@@ -4030,6 +4030,33 @@ html[data-theme="dark"] #gbp-what{
 /* === wc-app === */
 /* Why choose us on the app page: white ground between two tinted sections */
 #why{--ground:var(--bg); --panel:var(--surface);}
+
+/* Why Choose Us — keep tabs/panel/CTA inside the same centered .wrap
+   column as every other section (max-width + margin auto). */
+#why > .wrap.wy-in{
+  width:100%;
+  max-width:var(--maxw, 1220px);
+  margin-inline:auto;
+  padding-inline:var(--wrap-x, 26px);
+  box-sizing:border-box;
+  justify-items:stretch;
+}
+#why .wy-box,
+#why .wy-rail,
+#why .wy-panes{
+  width:100%;
+  max-width:100%;
+  margin-inline:auto;
+  box-sizing:border-box;
+}
+#why .wy-cta{
+  width:100%;
+  max-width:100%;
+  margin-inline:auto;
+  display:flex;
+  justify-content:center;
+  box-sizing:border-box;
+}
 
 /* === dv-styles === */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -7251,17 +7278,38 @@ html[data-theme="dark"] .cq-table .c-fr{background:hsl(var(--brand-h) 45% 14%);}
 .gv-head h2{margin:0; text-transform:none;} .gv-head h2 em{font-style:normal; color:var(--brand-text); display:block;}
 .gv-head .sec-lede{margin-top:clamp(10px,1.1vw,14px);}
 .gv-hold{margin-top:clamp(20px,2.4vw,30px); border:1px solid var(--border); border-radius:22px; background:var(--surface); overflow:hidden;
-  box-shadow:0 22px 46px -36px rgba(15,23,42,.35);}
-.gv-table{width:100%; border-collapse:collapse; table-layout:fixed;}
-.gv-table col.c-task{width:38%;} .gv-table col.c-corp{width:31%;} .gv-table col.c-fr{width:31%;}
-.gv-table thead th{padding:14px 22px; text-align:left; background:hsl(var(--brand-h) 80% 96%); border-bottom:1px solid var(--border);
+  box-shadow:0 22px 46px -36px rgba(15,23,42,.35); width:100%;}
+/* responsive.css sets table{display:block}, which drops colgroup widths and
+   leaves ~230px empty after Franchisee while .gv-base still spans the card. */
+@media (min-width:761px){
+  #governance .gv-table{
+    display:table !important;
+    width:100% !important;
+    max-width:none !important;
+    min-width:0 !important;
+    border-collapse:collapse !important;
+    border-spacing:0 !important;
+    table-layout:fixed !important;
+  }
+  #governance .gv-table colgroup{display:table-column-group !important;}
+  #governance .gv-table col{display:table-column !important;}
+  #governance .gv-table thead{display:table-header-group !important;}
+  #governance .gv-table tbody{display:table-row-group !important;}
+  #governance .gv-table tr{display:table-row !important;}
+  #governance .gv-table th,
+  #governance .gv-table td{display:table-cell !important;}
+}
+#governance .gv-table col.c-task{width:40%;}
+#governance .gv-table col.c-corp{width:30%;}
+#governance .gv-table col.c-fr{width:30%;}
+.gv-table thead th{padding:16px 20px; text-align:left; background:hsl(var(--brand-h) 80% 96%); border-bottom:1px solid var(--border);
   font-family:var(--font-display); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--brand-text);}
 html[data-theme="dark"] .gv-table thead th{background:hsl(var(--brand-h) 40% 15%);}
 .gv-h{display:inline-flex; align-items:center; gap:9px; font-size:13px; letter-spacing:.02em; text-transform:none; color:var(--text);}
 .gv-hic{display:grid; place-items:center; width:28px; height:28px; border-radius:9px; background:var(--primary); color:#fff;}
 .gv-hic-f{background:var(--surface); color:var(--brand-text); border:1px solid hsl(var(--brand-h) 70% 80%);}
 .gv-hic svg{width:16px; height:16px;}
-.gv-table tbody th,.gv-table tbody td{padding:13px 22px; text-align:left; vertical-align:middle; border-bottom:1px solid var(--border-soft);}
+.gv-table tbody th,.gv-table tbody td{padding:16px 20px; text-align:left; vertical-align:middle; border-bottom:1px solid var(--border-soft);}
 .gv-table tbody th{font-family:var(--font-display); font-weight:700; font-size:14.4px; letter-spacing:-.015em; color:var(--text);}
 .gv-table tbody tr{transition:background .25s var(--ease);}
 .gv-table tbody tr:hover{background:hsl(var(--brand-h) 100% 50% / .035);}
@@ -7272,11 +7320,11 @@ html[data-theme="dark"] .gv-table thead th{background:hsl(var(--brand-h) 40% 15%
 .gv-f{background:var(--surface); color:var(--text); border:1px solid var(--border);}
 html[data-theme="dark"] .gv-c{background:hsl(var(--brand-h) 40% 18%);}
 .gv-none{color:var(--muted); font-weight:700;}
-/* the foundation under both role columns */
-.gv-base{display:block; border-top:1px solid var(--border);}
+/* the foundation under both role columns — full card width, matches table */
+.gv-base{display:block; width:100%; border-top:1px solid var(--border);}
 .gv-base-spacer{display:none;}
-.gv-base p{margin:0; padding:14px 22px; display:flex; align-items:center; justify-content:center; text-align:center; gap:12px; background:var(--primary); color:#fff;
-  font-size:14.4px; line-height:1.5;}
+.gv-base p{margin:0; padding:14px 20px; display:flex; align-items:center; justify-content:center; text-align:center; gap:12px; background:var(--primary); color:#fff;
+  font-size:14.4px; line-height:1.5; width:100%; box-sizing:border-box;}
 .gv-base b{font-family:var(--font-display); font-weight:800;}
 .gv-base p::before,.dc-result p::before{content:""; flex:none; width:24px; height:24px; background:url("/images/fseo-css1-b808166126.webp") center/contain no-repeat;}
 @media (max-width:760px){

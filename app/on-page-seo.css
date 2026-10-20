@@ -1613,7 +1613,7 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 @media (max-width:760px){
   .pf-card{flex-basis:calc(100cqw - 42px);}
 }
-@media (max-width:600px){
+@media (max-width:900px){
   /* On a phone the four cards stack rather than scroll past: each one is
      sticky at a slightly lower stop than the one before, so as the page
      moves they come to rest on top of each other like a hand of cards

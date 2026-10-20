@@ -987,7 +987,7 @@ html[data-theme="dark"] .pf-c7 .pf-ic{background:#fff;}
   .pf-head .sec-lede{max-width:none;}
   .pf-orbit{width:100%; max-width:440px; margin:0 auto;}
 }
-@media (max-width:600px){
+@media (max-width:900px){
   /* On a phone the four cards stack rather than scroll past: each one is
      sticky at a slightly lower stop than the one before, so as the page
      moves they come to rest on top of each other like a hand of cards

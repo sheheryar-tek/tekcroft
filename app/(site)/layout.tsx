@@ -6,6 +6,7 @@ import "./../site-consistency.css";
 import "./../mobile-menu.css";
 import "./../stats-strip.css";
 import "./../vs-halo-lock.css";
+import "./../pf-mode-lock.css";
 import "./../a11y-lock.css";
 
 export default function SiteLayout({

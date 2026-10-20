@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import assets from "@/lib/asset-manifest.json";
 
 type HomepageProps = {
   html: string;
   /** Skip site-consistency overrides (page ships its own design lock). */
   rawDesign?: boolean;
+  /** Marker string inside html; children render between the two halves. */
+  slot?: string;
+  children?: ReactNode;
 };
 
 const mmPromises = new Map<string, Promise<void>>();
@@ -117,7 +120,12 @@ function fillHeroMarq() {
   el.innerHTML = row + row;
 }
 
-export default function Homepage({ html, rawDesign = false }: HomepageProps) {
+export default function Homepage({
+  html,
+  rawDesign = false,
+  slot,
+  children,
+}: HomepageProps) {
   useEffect(() => {
     if (rawDesign) {
       document.documentElement.setAttribute("data-design", "raw");
@@ -174,6 +182,25 @@ export default function Homepage({ html, rawDesign = false }: HomepageProps) {
       }
     };
   }, [rawDesign]);
+
+  if (slot && children != null && html.includes(slot)) {
+    const at = html.indexOf(slot);
+    const before = html.slice(0, at);
+    const after = html.slice(at + slot.length);
+    return (
+      <div id="tekcroft-root" suppressHydrationWarning>
+        <div
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: before }}
+        />
+        {children}
+        <div
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: after }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div

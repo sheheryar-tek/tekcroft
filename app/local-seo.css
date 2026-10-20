@@ -1267,7 +1267,7 @@ html[data-theme="dark"] .pf-card:hover::after{opacity:.24;}
 @media (max-width:760px){
   .pf-card{flex-basis:calc(100cqw - 42px);}
 }
-@media (max-width:600px){
+@media (max-width:900px){
   /* On a phone the four cards stack rather than scroll past: each one is
      sticky at a slightly lower stop than the one before, so as the page
      moves they come to rest on top of each other like a hand of cards
@@ -3826,6 +3826,52 @@ html[data-theme="dark"] #fit .c-us .vs-m{
   color:#3DDB7E;
 }
 html[data-theme="dark"] #fit .vs-m.is-yes{ color:#3DDB7E; }
+
+/* Mobile cards: beat #fit .vs-table{background:#FFFFFF} so the section
+   photo shows between cards — only each row is a white card. Desktop
+   keeps the single white table frame above. */
+@media (max-width:900px){
+  #fit .vs-hold,
+  #fit .vs-scroll,
+  #fit .vs-stage,
+  #fit .vs-table,
+  #fit .vs-table tbody{
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    border-radius:0 !important;
+    padding:0 !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  #fit .vs-scroll{
+    overflow:visible !important;
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+  }
+  #fit .vs-stage{ min-width:0 !important; overflow:visible !important; }
+  #fit .vs-table{
+    display:block !important;
+    overflow:visible !important;
+    width:100% !important;
+  }
+  #fit .vs-table tbody{
+    display:grid !important;
+    gap:14px !important;
+  }
+  #fit .vs-table tr{
+    display:block !important;
+    background:#FFFFFF !important;
+    border:0 !important;
+    border-radius:18px !important;
+    box-shadow:0 14px 30px -20px rgba(0,0,0,.45) !important;
+    padding:clamp(13px,2vw,17px) clamp(15px,2.4vw,20px) !important;
+  }
+  html[data-theme="dark"] #fit .vs-table tr{
+    background:var(--surface) !important;
+    box-shadow:0 14px 30px -20px rgba(0,0,0,.55) !important;
+  }
+}
 
 
 #proof,

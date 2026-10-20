@@ -454,10 +454,14 @@ html[data-theme="dark"] .nav.stuck .nav-shell{box-shadow:0 16px 38px -22px rgba(
 .nav-right{display:flex; align-items:center; gap:10px; margin-left:auto;}
 /* In-page scroll controls that used to be <a href="#…"> */
 button.btn{font:inherit; cursor:pointer;}
-button.pf-card, button.wk-visit{
-  display:block; width:100%; text-align:left; font:inherit; color:inherit;
-  background:none; border:0; cursor:pointer; padding:0;}
-button.wk-visit{width:auto; display:inline-flex; align-items:center;}
+/* .pf-card keeps page flex/padding/border/background — only reset UA button bits.
+   background:none here made sticky stacks show lower-card text through. */
+button.pf-card{
+  display:flex; flex-direction:column; width:100%; text-align:left;
+  font:inherit; color:inherit; cursor:pointer;}
+button.wk-visit{
+  display:inline-flex; align-items:center; width:auto; text-align:left;
+  font:inherit; color:inherit; background:none; border:0; cursor:pointer; padding:0;}
 
 .theme-btn{width:44px; height:44px; border-radius:50%; border:1px solid var(--border);
   background:transparent; color:var(--text-2); display:grid; place-items:center; flex-shrink:0;

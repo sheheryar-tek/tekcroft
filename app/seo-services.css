@@ -3607,7 +3607,7 @@ divided three ways.
 #seo-services-page .pf-card{flex-basis:calc(100cqw - 42px);}
 }
 
-@media (max-width:600px){
+@media (max-width:900px){
 #seo-services-page .pf{overflow:visible;}
 
 #seo-services-page .pf-rail{overflow:visible; padding:0; margin:0;

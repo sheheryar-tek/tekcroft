@@ -2914,7 +2914,7 @@ html[data-design="raw"] .pf-card{flex:0 0 calc((100cqw - 2 * var(--pf-gap)) / 3)
 @media (max-width:760px){
   html[data-design="raw"] .pf-card{flex-basis:calc(100cqw - 42px) !important;}
 }
-@media (max-width:600px){
+@media (max-width:900px){
   /* On a phone the four cards stack rather than scroll past: each one is
      sticky at a slightly lower stop than the one before, so as the page
      moves they come to rest on top of each other like a hand of cards

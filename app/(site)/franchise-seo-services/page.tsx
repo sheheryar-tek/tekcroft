@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import Script from "next/script";
 import Homepage from "@/components/Homepage";
+import FranchiseWhyChoose from "@/components/FranchiseWhyChoose";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/franchise-seo-meta.json";
 import lcp from "@/lib/franchise-seo-lcp.json";
@@ -55,7 +56,9 @@ export default function FranchiseSeoServicesPage() {
         media={lcp.mobileMedia}
         fetchPriority="high"
       />
-      <Homepage html={html} />
+      <Homepage html={html} slot="<!--FRANCHISE_WHY_SLOT-->">
+        <FranchiseWhyChoose />
+      </Homepage>
       <Script src={assets.franchiseSeo} strategy="afterInteractive" />
     </>
   );
