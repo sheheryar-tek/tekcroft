@@ -34,17 +34,23 @@
   /* ---------------- nav ---------------- */
   var nav = $("#nav"), burger = $(".js-burger"), mnav = $(".js-mnav");
 
+  var navMeasureQueued = false;
   function navHeight(){
-    if (nav){
-    var __bar = nav.querySelector(".nav-in");
-    var __cs = getComputedStyle(nav);
-    var __h = (__bar ? __bar.offsetHeight : 64)
-      + (parseFloat(__cs.paddingTop) || 0)
-      + (parseFloat(__cs.paddingBottom) || 0);
-    root.style.setProperty("--nav-h", Math.round(__h) + "px");
+    if (!nav || navMeasureQueued) return;
+    navMeasureQueued = true;
+    requestAnimationFrame(function(){
+      navMeasureQueued = false;
+      var __bar = nav.querySelector(".nav-in");
+      var __cs = getComputedStyle(nav);
+      var __h = (__bar ? __bar.offsetHeight : 64)
+        + (parseFloat(__cs.paddingTop) || 0)
+        + (parseFloat(__cs.paddingBottom) || 0);
+      root.style.setProperty("--nav-h", Math.round(__h) + "px");
+    });
   }
-  }
-  navHeight();
+  /* Defer first measure — avoid forced reflow on boot before first paint */
+  if ("requestIdleCallback" in window) requestIdleCallback(navHeight, { timeout: 400 });
+  else setTimeout(navHeight, 0);
   window.addEventListener("resize", navHeight);
 
   var queued = false;
@@ -86,16 +92,13 @@
     });
   });
 
-  /* ---------------- the hero's one entrance ---------------- */
+  /* ---------------- the hero's one entrance ----------------
+     Copy/form already paint via CSS (LCP). Mark .play without forced reflow. */
   function play(sec){
     if (!sec) return;
-    sec.classList.remove("play");
-    void sec.offsetWidth;              /* let the removal land before it replays */
     sec.classList.add("play");
   }
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){ play($(".hs:not([hidden])")); });
-  });
+  requestAnimationFrame(function(){ play($(".hs:not([hidden])")); });
 
   /* ---------------- the forms ----------------
      The rules hang off each field's own data-rule rather than an id, so the
@@ -176,10 +179,12 @@
   }, { threshold:0, rootMargin:"0px 0px -70px 0px" });
   $$(".rv").forEach(function(el){ io.observe(el); });
 
-  /* safety net: anything already above the fold shows without waiting */
+  /* safety net: batch reads then writes (no layout thrash per node) */
   requestAnimationFrame(function(){
-    $$(".rv").forEach(function(el){
-      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("in");
+    var vh = window.innerHeight;
+    var tops = $$(".rv").map(function(el){ return { el: el, top: el.getBoundingClientRect().top }; });
+    tops.forEach(function(row){
+      if (row.top < vh) row.el.classList.add("in");
     });
   });
 
@@ -226,6 +231,16 @@
     if (el.closest && el.closest("#what-local .ls-ring")) return;
     ioCount.observe(el);
   });
+})();
+
+/* Hero client ticker (was Homepage.tsx fillHeroMarq) */
+(function(){
+  var el = document.getElementById("marqTrack");
+  if (!el || el.childElementCount > 0) return;
+  var names = ["MedVital","CarePoint","ServiClean","FixMaster","BrightWay",
+    "CloudScale","DataDrive","ShopSphere","PeakCart","GrowPilot"];
+  var row = names.map(function(t){ return "<span>" + t + "</span>"; }).join("");
+  el.innerHTML = row + row;
 })();
 
 /* === ft-script === */

@@ -123,3 +123,19 @@ fs.writeFileSync(
   JSON.stringify(manifest, null, 2) + "\n"
 );
 console.log("manifest written");
+
+/* Keep deferred CSS copies in /public/css (Local SEO slim layout + similar) */
+const cssOut = path.join(pub, "css");
+fs.mkdirSync(cssOut, { recursive: true });
+const localSeoCss = path.join(ROOT, "app", "local-seo.css");
+if (fs.existsSync(localSeoCss)) {
+  fs.copyFileSync(localSeoCss, path.join(cssOut, "local-seo.css"));
+  console.log("synced public/css/local-seo.css");
+}
+const tekcroftCss = path.join(ROOT, "app", "tekcroft.css");
+if (fs.existsSync(tekcroftCss)) {
+  const lines = fs.readFileSync(tekcroftCss, "utf8").split(/\n/);
+  /* Lines 0–559 = tekcroft-critical.css (blocking); remainder deferred */
+  fs.writeFileSync(path.join(cssOut, "tekcroft-defer.css"), lines.slice(560).join("\n"));
+  console.log("synced public/css/tekcroft-defer.css");
+}

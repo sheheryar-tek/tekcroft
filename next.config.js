@@ -6,6 +6,10 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error"] } : false,
   },
+  experimental: {
+    /* Critters: inline above-the-fold CSS, defer the rest (LCP/FCP) */
+    optimizeCss: true,
+  },
   images: {
     formats: ["image/webp", "image/avif"],
   },

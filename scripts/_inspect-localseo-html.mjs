@@ -1,0 +1,11 @@
+const html = await (await fetch("http://127.0.0.1:3010/services/local-seo-services")).text();
+const styles = (html.match(/<style[^>]*>/g) || []).length;
+const links = [...html.matchAll(/<link[^>]+>/gi)].map((m) => m[0]);
+const sheets = links.filter((l) => /rel=["']stylesheet["']/.test(l));
+console.log("html KB", +(html.length / 1024).toFixed(1));
+console.log("style tags", styles);
+console.log("stylesheet links", sheets.length);
+sheets.forEach((l) => console.log(l.slice(0, 160)));
+console.log("preload hero", /localseo-hero/.test(html));
+console.log("deferred local-seo in HTML", /css\/local-seo\.css/.test(html));
+console.log("inline style bytes", [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].reduce((n, m) => n + m[1].length, 0));

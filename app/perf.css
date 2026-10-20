@@ -17,6 +17,8 @@
 #ai-ecosystem,
 .hero,
 #top,
+#hero-1,
+.hs,
 .boot,
 #boot,
 #why {
@@ -27,7 +29,9 @@
 /* Hero must never wait on IntersectionObserver / JS for visibility (LCP) */
 .hero .rv,
 .hero .lamp .ln > span,
-.hero .hero-rail .it {
+.hero .hero-rail .it,
+#hero-1 .hs-copy > *,
+#hero-1 .hs-form-wrap {
   opacity: 1 !important;
   transform: none !important;
 }

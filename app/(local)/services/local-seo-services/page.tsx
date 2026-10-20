@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import Script from "next/script";
-import Homepage from "@/components/Homepage";
+import DeferredStylesheet from "@/components/DeferredStylesheet";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/local-seo-meta.json";
 import lcp from "@/lib/local-seo-lcp.json";
-import "@/app/local-seo.css";
-import "@/app/footer-lock.css";
+/* Tiny above-the-fold hero paint (LCP) — full page CSS loads deferred */
+import "@/app/local-seo-critical.css";
 /* Shared service hero shell — same style/design on every /services page */
 import "@/app/service-hero-lock.css";
 /* Expanding panels shell — shared intro line + centered CTA */
@@ -57,8 +57,15 @@ export default function LocalSeoPage() {
         media={lcp.mobileMedia}
         fetchPriority="high"
       />
-      <Homepage html={html} />
-      <Script src={assets.localSeo} strategy="afterInteractive" />
+      {/* Large page CSS off critical path — hero covered by critical + lock CSS */}
+      <DeferredStylesheet href="/css/local-seo.css" />
+      {/* Server HTML only — avoid hydrating the full markup tree (TBT) */}
+      <div
+        id="tekcroft-root"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+      <Script src={assets.localSeo} strategy="lazyOnload" />
     </>
   );
 }

@@ -1,0 +1,561 @@
+/* Critical chrome (tokens/nav/btn/wrap/tag) — rest deferred */
+/* Extracted from tekcroft-site-mega-menus ? do not reformat */
+
+/* ============================================================
+   TEKCROFT ? SPOTLIGHT LANDING PAGE
+   Signature: one slow beam of attention drifts across the dark slabs
+   and lights the copy itself, so the promise ("impossible to scroll
+   past") is demonstrated, not stated. Nothing on the page tracks the
+   pointer ? the light keeps its own time.
+   Two typefaces only ? Sora (display) + Inter (body & data).
+   Works in both light and dark theme.
+   ============================================================ */
+:root{
+  /* The lockup ships in two cuts ? one with the wordmark in ink, one with
+     it in white. --logo picks whichever the surface underneath calls for,
+     so a single background-image serves the nav, the boot and the footer
+     in both themes. Brand blue in the artwork is #0096D5, the page's own
+     --primary, so the mark and the accent are the same blue by build. */
+  /* The seven case-study screenshots live here rather than in an <img>,
+     because two variants show the same seven pictures and an inline copy
+     each would have put 233 KB of base64 into the file twice. */
+  --cs-1:url("/images/cs-1.webp");
+  --cs-2:url("/images/cs-2.webp");
+  --cs-3:url("/images/cs-3.webp");
+  --cs-4:url("/images/cs-4.webp");
+  --cs-5:url("/images/cs-5.webp");
+  --cs-6:url("/images/cs-6.webp");
+  --cs-7:url("/images/cs-7.webp");
+
+  /* The mark on its own, cut out of the icon. It is carried as a mask
+     rather than as a picture, so one copy serves every colour it has to be:
+     white inside the brand seal, brand blue on a white disc. */
+  --mark:url("/images/mark.webp");
+
+  --logo-ink:url("/images/logo-ink.webp");
+  --logo-white:url("/images/logo-white.webp");
+  /* the mark on its own, cut out of the white lockup ? the lockup's first
+     240px are the symbol and the rest is the wordmark, so it is the same
+     artwork rather than a second drawing of it */
+  --mark-white:url("/images/mark-white.webp");
+
+  /* Branding type — next/font vars from layout.tsx (Inter body, Sora display) */
+  --font:var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display:var(--font-sora), 'Sora', var(--font-inter), 'Inter', sans-serif;
+
+  /* ===== THEME CONFIG ? sirf ye 2 lines badlein ===== */
+  --brand-h:198;    /* primary hue : 198=blue, 15=orange, 262=violet, 152=green */
+  --accent-h:29;    /* accent hue  : 29=amber */
+
+  /* poori scale upar wale hue se derive hoti hai */
+  --p50 :hsl(var(--brand-h)  62% 91%);    /* #DAEEF6 ? light section alt */
+  --p100:hsl(var(--brand-h)  58% 90%);
+  --p200:hsl(var(--brand-h)  55% 80%);    /* dark bg par muted body text ? brand highlight NAHI */
+  --p300:hsl(var(--brand-h)  58% 68%);
+  --p400:hsl(var(--brand-h)  85% 55%);    /* SIRF button hover ? primary se lighter */
+  --primary:#0096D5;                      /* poori site ka aik hi brand colour */
+  --p600:hsl(var(--brand-h) 100% 33%);    /* pressed / active */
+  --p700:hsl(var(--brand-h)  90% 26%);
+  --p800:hsl(var(--brand-h)  80% 20%);
+  --p900:hsl(var(--brand-h)  70% 14%);
+  --accent:hsl(var(--accent-h) 69% 51%); --accent-dark:hsl(var(--accent-h) 74% 37%);
+
+  --n0:#FFFFFF; --n50:#FAFAFC; --n100:#EFF2F5; --n200:#DEE3E9; --n300:#C2CAD3;
+  --n400:#98A3B0; --n500:#6B7686; --n600:#545F6D; --n700:#3D4855;
+  --n800:#262626; --n810:#1E1E1E; --n825:#1A1A1A; --n850:#171717;
+  /* Neutral black from n800 down, not navy. These are both the heading
+     colour and every dark plate in light mode, so the change belongs here
+     rather than on the dozen rules that read them. */
+  --n875:#141414; --n900:#101010; --n925:#0C0C0C; --n950:#080808; --n975:#050505;
+  /* every one of those navies measures hue 211?215 ? the ink hue. Together
+     with the brand hue above they are the only two hues in the sheet; the
+     rest is white, and black used purely as a mask. */
+  --ink-rgb:16,16,16;                     /* n900, for shadows */
+  --overlay:rgba(12,28,50,.86);
+
+  --r-lg:18px;   /* panels. Buttons are pills, so there is no small step */
+
+  /* THE TYPE SCALE. Every heading reads its size from these four and from
+     nowhere else, so a level is the same size in whichever section it turns
+     up in. Sections each used to name their own clamp, which is how an h3
+     ended up anywhere between 15px and 34px depending on where you found
+     one. Changing a level is now one line, here. */
+  --h1:clamp(30px,4.4vw,58px);
+  --h2:clamp(29px,3.6vw,46px);
+  --h3:clamp(17px,1.8vw,22px);
+  --h4:clamp(14px,1.3vw,16px);
+  --h5:clamp(12.5px,1.15vw,14px);
+
+  /* Body + standfirst ? same idea as the heading scale: one size each, everywhere. */
+  --body:16px;
+  --lede:16px; /* same as --body ? one reading size site-wide */
+
+  /* The only two colours on the page that are not the brand hue or a grey.
+     Both are inside the illustrated search panel, where they are reporting
+     something rather than decorating: a star rating is gold and an open
+     shop is green everywhere a person has ever seen one, and painting them
+     brand blue would make the illustration say the wrong thing. Declared
+     here so they are two known exceptions rather than two loose hexes. */
+  /* Every near-black plate on the page: the hero's base, the services
+     console, the FAQ's ask panel, the footer plate, the small ink discs, and
+     the disc that crosses a button on hover. They used to read --n950, which
+     is a ramp step and so a different colour in each theme; these are meant
+     to be one ink whichever theme is on, so they read this instead. The ones
+     that also have a dark rule still take the dark theme's own surface
+     there ? this is their light value. */
+  --ink-plate:#101010;
+
+  --ui-star:#F0B429;
+  --ui-open:#2A9D5C;
+  /* the one red on the site: a field that has been left wrong */
+  --ui-bad:#D6453C;
+  --r-btn:999px;  /* every button on the page is a pill, from this one line */
+  --maxw:1220px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --pop:cubic-bezier(.16,1,.3,1);        /* decelerating ? things that grow into place */
+  --press:cubic-bezier(.5,0,.75,0);      /* accelerating ? things that leave */
+  --nav-h:74px;
+
+  /* the four plates, declared once for every section that wants one */
+  --shot-1:url("/images/shot-1.webp");
+  --shot-2:url("/images/shot-2.webp");
+  --shot-3:url("/images/shot-3.webp");
+  --shot-4:url("/images/shot-4.webp");
+  /* the invitation's own frame ? bright, and busy where it needs to be,
+     so the pane on top of it has something to bend */
+  --cta-shot:url("/images/cta-shot.webp");
+  /* the services rail's frame. Portrait, because the rail is a tall
+     narrow column and a landscape frame would have to be cropped to
+     nothing to fit it */
+  --cn-shot:url("/images/cn-seo.webp");
+
+  --sec-y:clamp(58px, 6vw, 92px); /* locked ? equal section padding site-wide */
+}
+html[data-theme="light"]{
+  --logo:var(--logo-ink);
+  --bg:var(--n50); --bg-alt:var(--p50);
+  --surface:var(--n0); --surface-2:var(--p100);
+  --border:var(--n200); --border-soft:var(--n100);
+  --text:var(--n900); --text-2:var(--n600); --muted:var(--n500); --subtle:var(--n400);
+  --brand-text:var(--primary); --brand-soft:var(--p100); --brand-on-soft:var(--p800);
+  --shadow:0 14px 36px -18px rgba(12,28,50,.28);
+  --shadow-lift:0 26px 54px -26px rgba(12,28,50,.34);
+  --nav-bg:rgba(250,250,252,.88);
+  --dot:rgba(12,28,50,.30);
+  --glass:rgba(12,28,50,.045); --glass-br:var(--n200); --glass-tx:var(--p800);
+  --beam:.15;
+  --ico-bg:var(--brand-soft); --ico-fg:var(--primary);
+  --disc:hsl(var(--brand-h) 92% 95%);
+}
+html[data-theme="dark"]{
+  --logo:var(--logo-white);
+  /* The dark end of the scale is re-cut neutral for this theme only. The
+     navy greys read as a colour once the whole page is dark ? and this page
+     is meant to have exactly one. Light mode keeps the navy, where it sits
+     under a headline rather than behind everything. */
+  --n800:#3C4043; --n810:#35363A; --n825:#303133; --n850:#2A2B2D;
+  --n875:#232425; --n900:#1E1F20; --n925:#171718; --n950:#131314; --n975:#0B0B0C;
+  --n50:#E8EAED; --n300:#BDC1C6; --n400:#9AA0A6; --n500:#80868B;
+
+  --bg:var(--n950); --bg-alt:var(--n975);
+  --surface:var(--n900); --surface-2:var(--n875);
+  --border:var(--n800); --border-soft:var(--n810);
+  --text:var(--n50); --text-2:var(--n300); --muted:var(--n400); --subtle:var(--n500);
+  --brand-text:var(--primary); --brand-soft:rgba(0,150,213,.16); --brand-on-soft:var(--p200);
+  --shadow:0 22px 48px -24px rgba(0,0,0,.85);
+  --shadow-lift:0 30px 60px -28px rgba(0,0,0,.9);
+  --nav-bg:rgba(30,31,32,.86);
+  --dot:rgba(232,234,237,.28);
+  --ink-rgb:0,0,0;
+  --glass:rgba(255,255,255,.10); --glass-br:rgba(255,255,255,.20); --glass-tx:#fff;
+  --beam:.26;
+  --ico-bg:var(--brand-soft); --ico-fg:var(--primary);
+  --disc:rgba(0,150,213,.16);
+}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box;}
+html{font-family:var(--font); scroll-behavior:smooth; -webkit-text-size-adjust:100%;
+  scroll-padding-top:calc(var(--nav-h) + 12px);}
+body{margin:0; background:var(--bg); color:var(--text); font-size:var(--body); line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  transition:background .35s var(--ease), color .35s var(--ease);}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display); margin:0; line-height:1.14;
+  letter-spacing:-0.03em; font-weight:800;}
+h1{font-size:var(--h1);} h3{font-size:var(--h3);}
+h4{font-size:var(--h4);} h5,h6{font-size:var(--h5);}
+p{margin:0;}
+ul{margin:0; padding:0; list-style:none;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer; color:inherit;}
+input{font-family:inherit;}
+.wrap{width:100%; max-width:var(--maxw); margin:0 auto; padding:0 26px;}
+:focus-visible{outline:2px solid var(--primary); outline-offset:3px; border-radius:4px;}
+.sr-only{position:absolute; width:1px; height:1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap;}
+
+/* ---------- buttons ----------
+   One blue on the whole page: --primary, and nothing near it. The button
+   is #0096D5 at rest, on hover and while pressed ? exactly the blue the
+   headings are accented in, so the two can never read as different. The
+   hover is carried entirely by lift and a brand-tinted glow rather than
+   by a second colour, and the outline button turns that same blue.
+   ------------------------------------------------------------------ */
+.btn{position:relative; display:inline-flex; align-items:center; justify-content:center;
+  gap:9px; border-radius:var(--r-btn); font-size:15px; font-weight:700; padding:16px 26px;
+  border:1px solid transparent; text-align:center; letter-spacing:-0.005em;
+  white-space:nowrap;   /* a label is one line whether the roll built or not */
+  line-height:1.2;   /* buttons size off their padding, not the body leading */
+  transition:border-color .2s var(--ease), transform .2s var(--ease),
+             box-shadow .2s var(--ease), color .2s var(--ease);}
+/* The size modifiers change how much room a button takes, not how big its
+   label is. There were four button text sizes on the page ? 15, 16.5, 14 and
+   the dialog's own ? and a button is one thing, so it reads at one size
+   wherever it turns up. */
+.btn-lg{padding:19px 32px;}
+.btn-sm{padding:11px 18px;}
+/* ---- the wipe ----
+   A skewed panel that opens from the middle of the button outward. It is
+   inset past both ends by a fifth, so that once the skew has slanted it the
+   corners are still covered ? a straight-edged panel at exactly the button's
+   width would leave two triangles of the old fill behind.
+
+   It sits at z-index 0 with the label above it at 1, rather than at -1 as the
+   pattern this came from does. A negative index would put it behind the
+   button's own background: fine on a transparent button, invisible on a
+   filled one, and half of these are filled. */
+.btn{overflow:hidden; isolation:isolate;}
+.btn > *{position:relative; z-index:1;}
+.btn::before{content:""; position:absolute; z-index:0;
+  left:-20%; right:-20%; top:0; bottom:0;
+  transform:skewX(-45deg) scaleX(0);
+  transition:transform .5s var(--ease);}
+.btn:hover::before{transform:skewX(-45deg) scaleX(1);}
+/* The panel is the page's near-black ? the same value the footer plate and
+   the other ink surfaces take, so it is one colour with one name rather than
+   a hex per rule. White on it is 19:1. */
+.btn-primary::before,
+.btn-line::before{background:var(--ink-plate);}
+
+/* ---- the arrow ----
+   Ringed, sitting at forty-five degrees, turning to ninety on hover. The
+   negative margins keep it from making the button taller than it was. */
+.btn .arw{display:grid; place-items:center; flex-shrink:0;
+  width:32px; height:32px; margin:-7px -9px -7px 0;
+  border-radius:50%; border:1px solid currentColor; font-size:14px;
+  transform:rotate(45deg);
+  transition:transform .3s linear, background .3s var(--ease),
+             color .3s var(--ease), border-color .3s var(--ease);}
+.btn:hover .arw{transform:rotate(90deg); background:var(--n0);
+  color:var(--ink-plate); border-color:transparent;}
+
+/* ---- the label rolls ----
+   On hover each letter of the label drops out of the bottom while a second
+   copy of the same letters arrives from the top, one after another. The two
+   stacks share one box: the first is in flow and therefore sets the width,
+   the second is absolute on top of it and so cannot change it. That is what
+   keeps the button exactly the same size before, during and after.
+
+   The stagger is a custom property per letter rather than a list of
+   nth-child rules. The pattern this came from stops at six children, so any
+   word longer than six letters loses the effect halfway through; --k counts
+   as far as the label goes.
+
+   This runs alongside the wipe and the turning arrow above: three things
+   answer the same hover, and they are timed apart ? the arrow at 300ms, the
+   letters at 340ms, the wipe at 500ms ? so they read as one gesture rather
+   than three that happen to start together. */
+/* The wrapper is exactly one line tall and both copies move by exactly that,
+   written the same way in both places. It was a percentage of each span
+   before, which is only the same number while nothing else touches the line
+   box ? and in a narrow button something always does.
+
+   The label is held on one line by nowrap on the button itself. This used
+   to also carry flex-shrink:0, which meant a long label in a narrow column
+   could only push the button wider than the column ? which it did. */
+.btn-roll{position:relative; display:inline-flex; overflow:hidden;
+  height:1.25em; white-space:nowrap;}
+.btn-roll b{display:flex; align-items:center; height:1.25em;}
+/* The stacks are b elements sitting inside whatever section the button is
+   in, and this page styles b freely per section ? headings, stat figures,
+   labels. Each of those rules is a class plus a type, so on source order
+   alone it would outrank a plain .btn-roll b. The stacks take their type
+   from the button and nothing else, and the .btn on the front is what keeps
+   it that way. Only type is raised like this: the layout above stays at its
+   own weight so the touch and reduced-motion rules can still switch the
+   second stack off. */
+.btn .btn-roll b{margin:0; padding:0;
+  font:inherit; font-weight:inherit; letter-spacing:inherit; color:inherit;
+  text-transform:inherit;}
+/* The arriving copy is pinned to the top-left corner and left to be its own
+   size. It used to be inset:0, which stretched it to the wrapper ? and a
+   stretched flex item sets its text at the top of that box while the copy in
+   flow sits on its own line. The two stacks then stood at different heights
+   and the offset that was meant to hide one of them no longer cleared the
+   other, so both were on screen at once. */
+.btn-roll b + b{position:absolute; left:0; top:0; width:100%;}
+.btn-roll span{display:inline-block; white-space:pre;
+  transition:transform .34s var(--ease) calc(var(--k) * 24ms);}
+.btn-roll b + b span{transform:translateY(-1.25em);}
+.btn:hover .btn-roll b:first-child span{transform:translateY(1.25em);}
+.btn:hover .btn-roll b + b span{transform:none;}
+
+/* ---- where there is no pointer, there is no roll ----
+   A touch screen cannot hover, so the second copy of the label can never be
+   asked for ? it is dead weight that only sits there waiting to break the
+   layout, which is exactly what it did: two stacks of unbreakable letters
+   in a narrow panel push the button wider than the panel holding it. */
+/* Hiding the arriving copy was not enough: the copy in flow was still being
+   sent down on hover, and on anything that fires hover without a pointer ?
+   a device emulator, a hybrid laptop ? the label rolled out and nothing
+   came back. Either both move or neither does. */
+@media (hover:none){
+  .btn-roll b + b{display:none;}
+  .btn:hover .btn-roll b:first-child span{transform:none;}
+}
+/* and it can never be wider than what is holding it */
+.btn{max-width:100%;}
+.btn-roll{min-width:0;}
+.btn-roll b{min-width:0;}
+
+@media (prefers-reduced-motion:reduce){
+  .btn::before{transition:none;}
+  .btn .arw{transition:none;}
+  .btn-roll span{transition:none;}
+  .btn:hover .btn-roll b:first-child span{transform:none;}
+  .btn-roll b + b{display:none;}
+}
+
+.btn-primary{background:var(--primary); color:#fff; border-color:var(--primary);
+  box-shadow:0 6px 16px -8px hsl(var(--brand-h) 100% 32% / .5);}
+.btn-primary:hover{transform:translateY(-3px);}
+.btn-primary:active{transform:translateY(0);
+  box-shadow:0 4px 12px -6px hsl(var(--brand-h) 100% 32% / .6);}
+
+.btn-line{background:transparent; color:var(--text); border-color:var(--border);}
+.btn-line:hover{color:var(--n0); border-color:var(--ink-plate);
+  transform:translateY(-3px);}
+.btn-line:active{transform:translateY(0);}
+
+.on-dark .btn-line{color:#fff; border-color:rgba(255,255,255,.30);}
+.on-dark .btn-line:hover{color:var(--primary); border-color:var(--primary);}
+
+/* ============================================================
+   BOOT ? the logo lands in the navbar
+   The mark is shown large and centered, then flies to the exact
+   slot it will occupy in the nav. The flight is a FLIP: the boot
+   logo is pinned over the real one and starts life transformed
+   out to the middle of the screen, so it can only land in the
+   right place.
+   ============================================================ */
+body.booting{overflow:hidden;}
+/* The overlay is sized in explicit viewport units rather than trusting an
+   inset shorthand to give it the screen: if that box comes out short, the
+   curtain shrinks to a band and everything centred inside it rides up with
+   it, which is exactly the failure this had. */
+.boot{--s:2.7; position:fixed; top:0; left:0; width:100%;
+  height:100vh; height:100dvh; z-index:200; pointer-events:none;}
+.boot-bg{position:absolute; inset:0; background:var(--n900);
+  transition:opacity 1s var(--ease);}
+.boot-bg::after{content:""; position:absolute; left:50%; top:50%; width:min(760px,120vw);
+  aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%;
+  background:radial-gradient(circle, hsl(var(--brand-h) 100% 48% / .16) 0%, transparent 66%);}
+.boot.clear .boot-bg{opacity:0;}
+/* The logo is pinned onto the real one in the nav and starts life pushed out
+   to the middle of the screen. The flight home is therefore a return to
+   transform:none ? it cannot land anywhere except exactly on the nav logo,
+   whatever the overlay's own box happens to be doing. */
+.boot .logo{position:fixed; z-index:2; --logo:var(--logo-white); margin:0;
+  transform-origin:50% 50%; opacity:0; will-change:transform;
+  transition:opacity .55s var(--ease), transform 1.4s cubic-bezier(.58,.02,.18,1);}
+.boot.lit .logo{opacity:1;}
+/* a hairline that draws under the mark while it waits, then leaves with it */
+/* the rule sits under wherever the logo is waiting, so it is measured from
+   the viewport too rather than from the overlay's box */
+.boot-rule{position:fixed; left:50%; top:50vh; height:2px; border-radius:2px;
+  width:min(320px,56vw); transform:translate(-50%,58px); overflow:hidden; opacity:.9;
+  z-index:2; transition:opacity .35s var(--ease);}
+.boot-rule i{display:block; height:100%; background:var(--brand-text);
+  transform:scaleX(0); transform-origin:0 50%;
+  transition:transform .85s var(--ease) .25s;}
+.boot.lit .boot-rule i{transform:scaleX(1);}
+.boot.flying .boot-rule{opacity:0;}
+.boot.done{display:none;}
+@media (max-width:760px){ .boot{--s:2.05;} }
+/* the real logo stays hidden until the boot logo has landed on it */
+body.booting .nav .logo{opacity:0;}
+.nav .logo{transition:opacity .3s var(--ease);}
+
+/* ---------- nav ---------- */
+/* Two full-width strips, one on ink and one on the surface, each with its
+   contents held to the page column so the logo lines up with everything
+   below it. Sticky rather than fixed, so the hero begins under the bar
+   instead of behind it. */
+.nav{--nav-gap:14px; position:fixed; left:0; right:0; top:0; z-index:60;
+  padding:var(--nav-gap);}
+/* The card floats over the hero with nothing behind it, so the photograph is
+   uninterrupted. It only takes a plate once the page has been scrolled and
+   there is real content underneath that the bar has to sit on top of.
+   Over the picture everything in it goes white; on the plate it returns to
+   the theme's own colours. */
+/* The bar is the width of the page's own column, not of the window. At
+   1560px it was 170px wider than the content on each side, so the logo
+   sat marooned in the middle of the pill. On --maxw the pill's edge is
+   the same edge every section's .wrap has, and because .nav-in is a
+   .wrap too, the logo lines up with the first word of every section
+   below it rather than merely being near it. */
+.nav-shell{position:relative; max-width:var(--maxw); margin:0 auto;
+  border-radius:999px; border:1px solid transparent; background:transparent;
+  transition:background .32s var(--ease), border-color .32s var(--ease),
+             box-shadow .32s var(--ease), backdrop-filter .32s var(--ease);}
+.nav.stuck .nav-shell{background:var(--nav-bg); border-color:var(--border);
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:0 16px 38px -22px rgba(var(--ink-rgb),.5);}
+html[data-theme="dark"] .nav.stuck .nav-shell{box-shadow:0 16px 38px -22px rgba(0,0,0,.85);}
+
+/* over the hero the bar has no plate, so the wordmark takes its white cut
+   regardless of which theme is set */
+.nav:not(.stuck) .nav-shell{border-color:rgba(255,255,255,.18);}
+.nav:not(.stuck) .logo{--logo:var(--logo-white);}
+.nav:not(.stuck) .nav-links a{color:rgba(255,255,255,.8);}
+.nav:not(.stuck) .nav-links a:hover{color:#fff;}
+.nav:not(.stuck) .theme-btn{color:rgba(255,255,255,.85); border-color:rgba(255,255,255,.3);}
+.nav:not(.stuck) .theme-btn:hover{color:#fff; border-color:#fff;}
+.nav:not(.stuck) .burger{border-color:rgba(255,255,255,.3);}
+.nav:not(.stuck) .burger i{background:#fff;}
+
+.nav-in{position:relative; display:flex; align-items:center; height:74px; gap:16px;}
+/* centred on the bar itself, not on what is left over between the logo and
+   the buttons ? otherwise the menu drifts whenever either side changes width */
+.nav-links{position:absolute; left:50%; transform:translateX(-50%);}
+.nav-right{margin-left:auto;}
+/* 130px, not 120: at 26px tall this lockup draws 129 wide and the white one
+   draws 120, so the box is whatever the wider of the two needs.
+   background-size:contain then gives each its full height ? the white one
+   simply takes 120 of the 130 ? and left keeps them flush with whatever sits
+   beside them. */
+.logo{display:block; width:130px; height:26px; background-position:left center; flex-shrink:0;
+  background-image:var(--logo); background-repeat:no-repeat;
+  background-position:left center; background-size:contain;}
+.nav-links{display:flex; gap:22px; font-size:14.5px; font-weight:500; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.04em;}
+.nav-links a{position:relative; padding:5px 0; transition:color .18s var(--ease);}
+.nav-links a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:2px;
+  background:var(--primary); transition:right .25s var(--ease);}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{right:0;}
+.nav-right{display:flex; align-items:center; gap:10px; margin-left:auto;}
+
+.theme-btn{width:44px; height:44px; border-radius:50%; border:1px solid var(--border);
+  background:transparent; color:var(--text-2); display:grid; place-items:center; flex-shrink:0;
+  transition:border-color .18s var(--ease), color .18s var(--ease), transform .45s var(--ease);}
+.theme-btn:hover{border-color:var(--primary); color:var(--primary);}
+.theme-btn svg{width:17px; height:17px;}
+.theme-btn .moon{display:none;}
+html[data-theme="dark"] .theme-btn .moon{display:block;}
+html[data-theme="dark"] .theme-btn .sun{display:none;}
+.theme-btn.spin{transform:rotate(180deg);}
+
+.burger{display:none; width:44px; height:44px; border-radius:50%;
+  border:1px solid var(--border); background:transparent; padding:0; position:relative;
+  flex-shrink:0; transition:border-color .18s var(--ease);}
+.burger:hover{border-color:var(--primary);}
+.burger i{position:absolute; left:13px; width:18px; height:2px; border-radius:2px;
+  background:var(--text); font-style:normal;
+  transition:transform .3s var(--ease), opacity .2s var(--ease);}
+.burger i:nth-child(1){top:16px;} .burger i:nth-child(2){top:21px;} .burger i:nth-child(3){top:26px;}
+.burger.open i:nth-child(1){transform:translateY(5px) rotate(45deg);}
+.burger.open i:nth-child(2){opacity:0;}
+.burger.open i:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
+/* ---- the light that runs the rim ----
+   A stroked rect laid over the border, with pathLength set to 100. That is
+   the whole trick: the dash pattern is then read in hundredths of the
+   perimeter rather than in pixels, so the lit arc stays the same fraction
+   of the rim and travels at the same speed whether the bar is 1220px wide
+   or 360px. Nothing has to be measured, and nothing has to be re-measured
+   when the window changes.
+
+   A conic gradient would have been fewer lines and wrong: its sweep is
+   angular, so on a bar this wide the light would crawl at the two ends and
+   bolt across the long sides. Following the outline keeps it even.
+
+   Three copies of the same rect, sharing one leading edge and differing
+   only in how far each dash reaches back from it, are what turn a single
+   hard line into a light: the short bright one is the head, and the two
+   longer, dimmer ones behind it are the glow it is casting ? so together
+   they read as one soft shape sweeping the whole rim, not a lit segment
+   with two hard ends. */
+.nav-beam{position:absolute; inset:.75px; z-index:0; pointer-events:none;
+  /* disabled for now ? remove this line to bring the rim light back */
+  display:none;
+  width:calc(100% - 1.5px); height:calc(100% - 1.5px); overflow:visible;}
+.nav-beam rect{fill:none; stroke:var(--primary); stroke-linecap:round;
+  animation:navBeam 6s linear infinite;}
+.nav-beam-trail{stroke-width:2.6; stroke-dasharray:46 54; opacity:.16;
+  filter:blur(5px);}
+.nav-beam-mid{stroke-width:2; stroke-dasharray:24 76; opacity:.4;
+  filter:blur(2.5px);}
+.nav-beam-head{stroke-width:1.6; stroke-dasharray:7 93; opacity:1;
+  filter:drop-shadow(0 0 6px hsl(var(--brand-h) 100% 50% / .9));}
+@keyframes navBeam{to{stroke-dashoffset:-100;}}
+/* while the menu is open the bar is neither this tall nor this round */
+.nav-shell:has(.mnav.open) .nav-beam{display:none;}
+@media (prefers-reduced-motion:reduce){ .nav-beam{display:none;} }
+
+/* an open menu makes the bar tall, and a pill radius on a tall box is a
+   capsule ? so the shell drops to a card radius for as long as it is open */
+.nav-shell:has(.mnav.open){border-radius:26px;}
+.mnav{display:none; flex-direction:column; gap:4px; padding:10px 20px 20px;
+  background:var(--nav-bg); border-top:1px solid var(--border);
+  border-radius:0 0 25px 25px;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);}
+.mnav.open{display:flex;}
+.mnav a{padding:11px 0; font-size:15.5px; font-weight:600; border-bottom:1px solid var(--border-soft);
+  text-transform:uppercase; letter-spacing:.04em;}
+.mnav .mm-acc{text-transform:uppercase; letter-spacing:.04em;}
+.mnav .mm-accp a{text-transform:none; letter-spacing:0;}
+.mnav .btn{margin-top:12px; border-bottom:none; text-transform:none; letter-spacing:0;}
+
+/* ---------- shared section furniture ---------- */
+.sec{padding:var(--sec-y) 0; position:relative;}
+.sec-head{max-width:62ch;}
+.sec-head.mid{margin:0 auto; text-align:center;}
+.tag{display:inline-flex; align-items:center; gap:9px; background:var(--glass);
+  border:1px solid var(--glass-br); color:var(--glass-tx); padding:7px 15px;
+  border-radius:30px; font-size:12px; font-weight:600; letter-spacing:.02em; margin-bottom:20px;}
+.tag i{width:6px; height:6px; border-radius:50%; background:var(--primary);
+  font-style:normal; flex-shrink:0;}
+.on-dark .tag{background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.20); color:#fff;}
+
+h2{font-size:var(--h2); letter-spacing:-0.042em;}
+h2 em{font-style:normal; color:var(--brand-text);}
+.sec-lede{font-size:var(--body); color:var(--text-2); margin-top:16px; max-width:56ch;}
+.sec-head.mid .sec-lede{margin-left:auto; margin-right:auto;}
+.on-dark{color:#fff;}
+
+.on-dark .sec-lede{color:rgba(255,255,255,.70);}
+
+/* scroll reveal */
+.rv{opacity:0; transform:translateY(20px);
+  transition:opacity .7s var(--ease) var(--d,0ms), transform .7s var(--ease) var(--d,0ms);}
+.rv.in{opacity:1; transform:none;}
+
+/* ============================================================
+   THE DARK SLABS ? a fixed wash, not a light
+   Nothing here moves and nothing follows anything. The dot grid is
+   faded off at the edges and a single soft gradient sits under the
+   top of the section, so the slab has depth without ever drawing
+   attention to itself.
+   ============================================================ */
+.beam-zone{position:relative; overflow:hidden;}
+.z-dots{position:absolute; inset:0; pointer-events:none; opacity:.55;
+  background-image:radial-gradient(circle, var(--dot) 1px, transparent 1px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(115% 85% at 50% 0%, #000 0%, transparent 72%);
+  mask-image:radial-gradient(115% 85% at 50% 0%, #000 0%, transparent 72%);}
+.z-beam{position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(900px 520px at 50% -14%,
+    hsl(var(--brand-h) 100% 45% / var(--beam)) 0%, transparent 70%);}
+
+/* ============================================================
