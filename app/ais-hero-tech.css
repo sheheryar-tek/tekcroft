@@ -151,7 +151,7 @@ html[data-theme="dark"]{
 .hs-in{position:relative; z-index:3;
   display:grid; align-items:center;
   grid-template-columns:minmax(0,1fr) minmax(344px,412px);
-  gap:clamp(24px, 2.6vw, 46px);}
+  gap:clamp(48px, 3.2vw, 64px);}
 
 /* ─────────────────────────────────────────────────────────────
    THE CLAIM
@@ -167,12 +167,14 @@ html[data-theme="dark"]{
 .hs .tag{--d:40ms; margin-bottom:clamp(18px,2vw,26px);}
 
 .hs-h1{--d:130ms; margin:0 0 clamp(18px,2vw,26px);
-  font-family:var(--font-display); font-weight:800; letter-spacing:-0.04em;
-  line-height:1.08; font-size:var(--h1); color:#fff;}
+  font-family:var(--font-display); font-weight:800; letter-spacing:-.045em;
+  line-height:1.04; font-size:var(--h1); color:#fff;}
 .hs-h1 em{font-style:normal; color:var(--primary);}
-/* Natural wrap only — balance parked the blue phrase alone on a line */
-#hero-1 .hs-h1{text-wrap:wrap;}
+#hero-1 .hs-h1{text-wrap:balance; width:100%; max-width:100%; box-sizing:border-box;}
 #hero-1 .hs-h1 em{display:inline; white-space:normal;}
+@media (max-width:960px){
+  #hero-1 .hs-h1{text-wrap:wrap;}
+}
 
 .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px); max-width:48ch;
   font-size:clamp(15px,1.05vw,16.5px); line-height:1.65; color:rgba(255,255,255,.76);}
@@ -977,14 +979,18 @@ html[data-theme="dark"] #tech-v4 .g1-l.s{border-color:var(--border);}
   align-self: stretch !important;
 }
 
-/* AIS hero H1 only — beat unlock/raw !important if it reintroduces balance/nowrap */
+/* AIS hero H1 only — stay inside the copy column (never grow toward the form) */
 html[data-design="raw"] #hero-1 .hs-h1{
-  text-wrap:wrap !important;
-  /* "AI Development Services:" is ~4px wider than the copy column at --h1;
-     borrow a sliver of the grid gap so that phrase stays on one line. */
-  width:calc(100% + 12px);
-  max-width:none;
-  box-sizing:border-box;
+  text-wrap:balance !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  font-size:var(--h1) !important;
+  line-height:1.04 !important;
+  letter-spacing:-.045em !important;
+}
+@media (max-width:960px){
+  html[data-design="raw"] #hero-1 .hs-h1{text-wrap:wrap !important;}
 }
 html[data-design="raw"] #hero-1 .hs-h1 span{
   display:inline !important;

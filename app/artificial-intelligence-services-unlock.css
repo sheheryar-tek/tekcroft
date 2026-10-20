@@ -56,7 +56,7 @@ html[data-design="raw"] .hs-veil{position:absolute !important; inset:0 !importan
 html[data-design="raw"] .hs-in{position:relative !important; z-index:3 !important;
   display:grid !important; align-items:center !important;
   grid-template-columns:minmax(0,1fr) minmax(344px,412px) !important;
-  gap:clamp(24px, 2.6vw, 46px) !important;}
+  gap:clamp(48px, 3.2vw, 64px) !important;}
 
 /* ─────────────────────────────────────────────────────────────
    THE CLAIM
@@ -72,16 +72,20 @@ html[data-design="raw"] .hs.play .hs-copy > *{opacity:1 !important; transform:no
 html[data-design="raw"] .hs .tag{--d:40ms; margin-bottom:clamp(18px,2vw,26px) !important;}
 
 html[data-design="raw"] .hs-h1{--d:130ms; margin:0 0 clamp(18px,2vw,26px) !important;
-  font-family:var(--font-display) !important; font-weight:800 !important; letter-spacing:-0.04em !important;
-  line-height:1.08 !important; font-size:var(--h1) !important; color:#fff !important;}
+  font-family:var(--font-display) !important; font-weight:800 !important; letter-spacing:-.045em !important;
+  line-height:1.04 !important; font-size:var(--h1) !important; color:#fff !important;}
 html[data-design="raw"] .hs-h1 em{font-style:normal !important; color:var(--primary) !important;}
-/* Natural wrap only — balance was parking the blue phrase on its own line */
+/* Stay inside the copy column — never borrow gap / grow toward the form */
 html[data-design="raw"] #hero-1 .hs-h1{
-  text-wrap:wrap !important;
-  width:calc(100% + 12px) !important;
-  max-width:none !important;
+  text-wrap:balance !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
 }
 html[data-design="raw"] #hero-1 .hs-h1 em{display:inline !important; white-space:normal !important;}
+@media (max-width:960px){
+  html[data-design="raw"] #hero-1 .hs-h1{text-wrap:wrap !important;}
+}
 
 html[data-design="raw"] .hs-lede{--d:210ms; margin:0 0 clamp(26px,2.8vw,36px) !important; max-width:48ch !important;
   font-size:clamp(15px,1.05vw,16.5px) !important; line-height:1.65 !important; color:rgba(255,255,255,.76) !important;}
