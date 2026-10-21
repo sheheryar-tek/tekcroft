@@ -6433,35 +6433,27 @@ html[data-theme="dark"] .m-logrow{fill:hsl(var(--brand-h) 25% 14%);}
 }
 
 /* === rhythm-app === */
-/* section rhythm for this page: tinted and plain bands alternate; the photo band resets it */
-#systems{--ground:var(--bg-alt);}
-#types{--ground:var(--bg);}
-#industries{--ground:var(--bg-alt);}
-#process{--ground:var(--bg);}
-#reviews{--ground:var(--bg-alt);}
-#work{--ground:var(--bg);}
-#guide{--ground:var(--bg-alt);}
-#whyus{--ground:var(--bg);}
-#faq{--ground:var(--bg-alt);}
-/* Section grounds — white / tint alternation; #whyus stays tinted so
-   the white folder tabs read against the section ground */
-#services-2,
-#types,
+/* Strict white/tint from HTML data-ground:
+   services(t) → systems(w) → types(t) → industries(w) → process(t)
+   → reviews(w) → work(t) → why(w) → faq(t) → contact(CTA) */
+#systems,
 #industries,
 #reviews,
 #guide,
-#faq{
-  --ground:var(--surface);
+#why{
+  --ground:var(--surface) !important;
   --panel:var(--bg-alt);
 }
 
-#systems,
+#services-2,
+#types,
 #stack,
 #process,
 #work,
 #whyus,
+#faq,
 #contact{
-  --ground:var(--bg-alt);
+  --ground:var(--bg-alt) !important;
   --panel:var(--surface);
 }
 

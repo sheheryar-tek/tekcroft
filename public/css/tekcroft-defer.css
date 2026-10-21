@@ -1,3 +1,7 @@
+.rv.in{opacity:1; transform:none;}
+
+/* ============================================================
+   THE DARK SLABS ? a fixed wash, not a light
    Nothing here moves and nothing follows anything. The dot grid is
    faded off at the edges and a single soft gradient sits under the
    top of the section, so the slab has depth without ever drawing
@@ -18,9 +22,9 @@
    One headline, in the page's normal ink, with the rotating keyword
    carrying the brand colour. Nothing is lit and nothing is tracked.
    ============================================================ */
-.hero{position:relative; min-height:100vh; min-height:100svh; display:flex;
-  flex-direction:column; justify-content:center; color:#fff; overflow:hidden;
-  padding:calc(var(--nav-h) + 62px) 0 104px;
+.hero{position:relative; min-height:100vh; min-height:100svh; height:auto; display:flex;
+  flex-direction:column; justify-content:flex-start; color:#fff; overflow:hidden;
+  padding:calc(var(--nav-h) + 62px) 0 20px;
   /* the floor the slider sits on. If every photo fails to load the hero is
      still a finished dark slab rather than a hole. */
   background:linear-gradient(160deg, var(--n900) 0%, var(--ink-plate) 55%, #050505 100%);}
@@ -71,7 +75,7 @@
 .hero-rail .nm{display:block; font-family:var(--font-display); font-size:15px; font-weight:700;
   letter-spacing:-0.02em; color:#fff;}
 
-.hero-in{position:relative; z-index:3; text-align:center; width:100%;}
+.hero-in{position:relative; z-index:3; text-align:center; width:100%; margin-block:auto;}
 .hero .tag{margin-bottom:26px;}
 
 .lamp{position:relative; display:block; width:fit-content; max-width:100%;
@@ -113,12 +117,12 @@
 .hero-note b{color:#fff; font-weight:600;}
 .hero-note s{text-decoration:none; color:rgba(255,255,255,.35);}
 
-/* client ticker along the base ? homepage .hero and service .hs heroes */
-.ticker{position:absolute; left:0; right:0; bottom:0; z-index:3; padding:18px 0;
-  border-top:1px solid rgba(255,255,255,.16);}
+/* client ticker — in-flow under CTAs (homepage .hero + service .hs) */
+.ticker{position:relative; z-index:3; width:100%; margin-top:32px; margin-bottom:0;
+  padding:14px 0 16px; border-top:1px solid rgba(255,255,255,.16);}
 .hs > .ticker{z-index:4;}
-.hs:has(> .ticker){
-  padding-bottom:max(clamp(48px,5.4vw,104px), 88px);}
+.hs:has(> .ticker),
+.hero:has(> .ticker){padding-bottom:20px;}
 .marq{overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
@@ -3359,7 +3363,8 @@ html[data-theme="dark"] .ax{
 .ft4-top{display:grid;
   grid-template-columns:minmax(0,1.45fr) repeat(3,minmax(0,1fr));
   gap:clamp(26px,3.2vw,48px);}
-.ft4-brand .logo{margin-bottom:16px;}
+.ft4-brand .logo{margin-bottom:16px; --logo:var(--logo-ink);}
+html[data-theme="dark"] .ft4-brand .logo{--logo:var(--logo-white);}
 .ft4-brand p{font-size:13.8px; line-height:1.65; color:var(--muted); max-width:32ch;}
 .ft4-brand .ft-soc{margin-top:20px;}
 
@@ -3408,7 +3413,9 @@ html[data-theme="dark"] .ax{
   /* --sec-y / gutters: site-consistency responsive spacing system */
   .wrap{padding:0 var(--wrap-x, 16px);}
   .nav-right > .btn{display:none;}
-  .hero{padding:calc(var(--nav-h) + var(--hero-pad-top, 52px)) 0 var(--hero-pad-bot, 96px);}
+  .hero{height:auto; min-height:0; padding:calc(var(--nav-h) + var(--hero-pad-top, 26px)) 0 var(--hero-pad-bot, 20px);}
+  .hero-in{margin-block:0;}
+  .ticker{margin-top:28px;}
   .hero-actions .btn{flex:1 1 auto;}
   .ledger{grid-template-columns:1fr;}
   .col-them{order:2;}
@@ -5742,28 +5749,20 @@ html[data-theme="dark"] .ig-ic{background:hsl(var(--brand-h) 40% 18%);}
 #industries{padding-block:var(--sec-y); background:var(--surface);}
 .ix-grid{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(24px,3.2vw,52px);
   align-items:center;}
+.ix-say{min-width:0;}
 .ix-say .smark{margin-bottom:12px;}
 #industries h2{margin:0; font-size:var(--h2); line-height:1.08; letter-spacing:-.04em;
   text-transform:none;}
 #industries h2 em{font-style:normal; color:var(--brand-text);}
 .ix-say p{margin:14px 0 0; font-size:clamp(13.6px,1.05vw,15px); line-height:1.65; color:var(--text-2); max-width:44ch;}
-.ix-meta{display:flex; align-items:center; gap:clamp(14px,1.8vw,24px); margin-top:clamp(16px,2vw,24px);
-  flex-wrap:wrap;}
-.ix-count{display:flex; flex-direction:column; padding-right:clamp(14px,1.8vw,24px);
-  border-right:1px solid var(--border);}
-.ix-count b{font-family:var(--font-display); font-size:clamp(28px,3vw,40px); font-weight:800;
-  letter-spacing:-.04em; line-height:1; color:var(--brand-text);}
-.ix-count i{margin-top:5px; font-style:normal; font-size:11.5px; font-weight:700; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--muted);}
-/* Industries CTA ? same pill + ringed arrow as the rest of the site, sized to the mock */
-#industries .ix-meta .btn{
-  flex:none;
+#industries .ix-say > .btn{
+  margin-top:28px;
+  width:auto;
+  padding:16px 28px;
+  font-size:16px;
   box-shadow:0 12px 28px -14px hsl(var(--brand-h) 100% 34% / .55);
 }
-#industries .ix-meta .btn .arw{
-  color:#fff;
-  border-color:rgba(255,255,255,.92);
-}
+#industries .ix-say > .btn .arw{color:#fff; border-color:rgba(255,255,255,.92);}
 
 .ix-board{padding:clamp(16px,1.8vw,24px); border-radius:24px; background:var(--bg-alt);
   border:1px solid var(--border); position:relative; overflow:hidden;}
@@ -5791,10 +5790,15 @@ html[data-theme="dark"] .ix-chip i{background:hsl(var(--brand-h) 40% 18%);}
   .ix-say p{max-width:none;}
 }
 @media (max-width:640px){
-  .ix-meta{gap:14px;}
-  .ix-count{padding-right:14px;}
-  .ix-meta .btn{width:100%; justify-content:center;}
   .ix-chip{font-size:11.4px; padding:7px 11px;}
+}
+@media (max-width:600px){
+  #industries .ix-say > .btn{
+    margin-top:24px;
+    width:100%;
+    justify-content:center;
+    text-align:center;
+  }
 }
 @media (prefers-reduced-motion:reduce){ .ix-chip{transition:none;} }
 
@@ -6546,7 +6550,7 @@ html[data-theme="dark"] .iw-box{background:hsl(var(--brand-h) 45% 12%);}
   --wrap-x:clamp(16px,4vw,26px);
   --cta-pad-y:clamp(28px,3.6vw,48px);
   --hero-pad-top:clamp(30px,3.4vw,62px);
-  --hero-pad-bot:clamp(48px,5.4vw,104px);
+  --hero-pad-bot:20px;
 }
 
 /* Future-proof layout primitives (optional on new sections) */
@@ -6966,7 +6970,7 @@ html body .gw-say > p{
     --wrap-x:clamp(16px,3.5vw,22px) !important;
     --cta-pad-y:clamp(26px,4vw,40px) !important;
     --hero-pad-top:clamp(26px,3vw,48px) !important;
-    --hero-pad-bot:clamp(40px,5vw,72px) !important;
+    --hero-pad-bot:20px !important;
   }
 }
 
@@ -6986,7 +6990,7 @@ html body .gw-say > p{
     --wrap-x:16px !important;
     --cta-pad-y:clamp(24px,6vw,36px) !important;
     --hero-pad-top:26px !important;
-    --hero-pad-bot:36px !important;
+    --hero-pad-bot:20px !important;
     --body-lh:1.65 !important;
   }
 

@@ -6812,7 +6812,7 @@ html[data-theme="dark"] .ts-lg{background:hsl(var(--brand-h) 20% 22%);}
 #process,
 #reviews,
 #work,
-#tech-stack{
+#faq{
   --ground:var(--surface) !important;
   --panel:var(--bg-alt);
 }
@@ -6821,7 +6821,7 @@ html[data-theme="dark"] .ts-lg{background:hsl(var(--brand-h) 20% 22%);}
 #industries,
 #why,
 #pricing,
-#faq{
+#tech-stack{
   --ground:var(--bg-alt) !important;
   --panel:var(--surface);
 }

@@ -57,6 +57,9 @@ export default function RootLayout({
       className={`${inter.variable} ${sora.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <meta charSet="utf-8" />
+      </head>
       <body className={inter.className} suppressHydrationWarning>
         {/* Strip hash before paint so the browser never lands on a section id */}
         <Script id="no-hash-scroll-boot" strategy="beforeInteractive">

@@ -4,6 +4,7 @@ import path from "path";
 import Script from "next/script";
 import Homepage from "@/components/Homepage";
 import FranchiseWhyChoose from "@/components/FranchiseWhyChoose";
+import FranchiseCovers from "@/components/FranchiseCovers";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/franchise-seo-meta.json";
 import lcp from "@/lib/franchise-seo-lcp.json";
@@ -13,6 +14,8 @@ import "@/app/footer-lock.css";
 import "@/app/service-hero-lock.css";
 /* Expanding panels shell — shared intro line + centered CTA */
 import "@/app/tm-shell-lock.css";
+/* Pixel-lock: Tekcroft's Franchise SEO Covers (design file) */
+import "@/app/franchise-covers-lock.css";
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -59,6 +62,7 @@ export default function FranchiseSeoServicesPage() {
       <Homepage html={html} slot="<!--FRANCHISE_WHY_SLOT-->">
         <FranchiseWhyChoose />
       </Homepage>
+      <FranchiseCovers />
       <Script src={assets.franchiseSeo} strategy="afterInteractive" />
     </>
   );
