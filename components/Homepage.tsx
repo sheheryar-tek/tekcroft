@@ -135,6 +135,34 @@ export default function Homepage({
 
     fillHeroMarq();
 
+    // Desktop nav: mark the current page (HighGate-style active pill)
+    const path = (location.pathname || "/").replace(/\/+$/, "") || "/";
+    root?.querySelectorAll(".nav-links a[href]").forEach((a) => {
+      const href = (a.getAttribute("href") || "").replace(/\/+$/, "") || "/";
+      if (href === path) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    const mm = document.getElementById("mmTrigger");
+    if (mm) {
+      const onService =
+        path === "/seo-services" ||
+        path.startsWith("/seo-") ||
+        path.startsWith("/local-seo") ||
+        path.startsWith("/ecommerce-seo") ||
+        path.startsWith("/on-page-seo") ||
+        path.startsWith("/technical-seo") ||
+        path.startsWith("/ai-seo") ||
+        path.startsWith("/franchise-seo") ||
+        path.startsWith("/google-business-profile") ||
+        path.startsWith("/artificial-intelligence") ||
+        path.startsWith("/ai-") ||
+        path.startsWith("/web-design") ||
+        path.startsWith("/custom-software") ||
+        path.startsWith("/mobile-app");
+      if (onService) mm.setAttribute("aria-current", "page");
+      else mm.removeAttribute("aria-current");
+    }
+
     // Sync open class with server-rendered data-open="true" panels
     root?.querySelectorAll(".faq-a[data-open='true']").forEach((el) => {
       el.classList.add("is-open");

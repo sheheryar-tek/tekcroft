@@ -9,6 +9,7 @@ import "./../mobile-menu.css";
 import "./../stats-strip.css";
 import "./../pf-mode-lock.css";
 import "./../a11y-lock.css";
+import "./../nav-pill.css";
 
 export default function LocalSeoLayout({
   children,

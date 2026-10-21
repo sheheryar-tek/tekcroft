@@ -103,9 +103,42 @@
 
   function navPlate(){
     var booting = document.body.classList.contains("booting");
-    nav.classList.toggle("stuck", !booting && window.scrollY > 12);
+    var was = nav.classList.contains("stuck");
+    var now = !booting && window.scrollY > 12;
+    nav.classList.toggle("stuck", now);
+    if (was !== now) navHeight();
   }
   onScrollAdd(function(){ navPlate(); });
+
+  /* Active page pill on desktop nav links (and Services on service routes) */
+  (function markNavCurrent(){
+    var path = (location.pathname || "/").replace(/\/+$/, "") || "/";
+    $$(".nav-links a[href]").forEach(function(a){
+      var href = (a.getAttribute("href") || "").replace(/\/+$/, "") || "/";
+      var on = href === path;
+      if (on) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    var mm = $("#mmTrigger");
+    if (!mm) return;
+    var service =
+      path === "/seo-services" ||
+      path.indexOf("/seo-") === 0 ||
+      path.indexOf("/local-seo") === 0 ||
+      path.indexOf("/ecommerce-seo") === 0 ||
+      path.indexOf("/on-page-seo") === 0 ||
+      path.indexOf("/technical-seo") === 0 ||
+      path.indexOf("/ai-seo") === 0 ||
+      path.indexOf("/franchise-seo") === 0 ||
+      path.indexOf("/google-business-profile") === 0 ||
+      path.indexOf("/artificial-intelligence") === 0 ||
+      path.indexOf("/ai-") === 0 ||
+      path.indexOf("/web-design") === 0 ||
+      path.indexOf("/custom-software") === 0 ||
+      path.indexOf("/mobile-app") === 0;
+    if (service) mm.setAttribute("aria-current", "page");
+    else mm.removeAttribute("aria-current");
+  })();
 
   function closeMenu(){
     if (!mnav) return;

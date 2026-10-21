@@ -1,0 +1,263 @@
+/* HighGate-style shared nav pill — Tekcroft blue. Look only; mega/burger structure untouched. */
+
+.nav{
+  transition: padding .3s var(--ease);
+}
+.nav-shell{
+  border-style:solid !important;
+  border-width:1.5px !important;
+  border-color:hsl(var(--brand-h) 85% 72% / .55) !important;
+  border-radius:999px;
+  background:transparent !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:none !important;
+  transition:
+    background .3s var(--ease),
+    border-color .3s var(--ease),
+    box-shadow .3s var(--ease),
+    backdrop-filter .3s var(--ease),
+    -webkit-backdrop-filter .3s var(--ease) !important;
+}
+
+/* ---- Inner layout: logo | centered links | theme+CTA ----
+   3-column grid keeps links truly centered without squeezing them
+   into a flex:1 strip (which forced word-wrap into tall pills). */
+.nav-shell > .nav-in,
+.nav .nav-in{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:12px !important;
+  row-gap:0 !important;
+  height:68px !important;
+  padding-left:20px !important;
+  padding-right:12px !important;
+  box-sizing:border-box !important;
+  transition:height .3s var(--ease);
+}
+.nav .logo{
+  grid-column:1 !important;
+  justify-self:start !important;
+  flex:none !important;
+  position:relative;
+  z-index:2;
+}
+.nav-links{
+  grid-column:2 !important;
+  position:static !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  flex:0 0 auto !important;
+  flex-wrap:nowrap !important;
+  gap:4px !important;
+  width:max-content !important;
+  max-width:none !important;
+  min-width:0 !important;
+  font-size:15px;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  color:inherit;
+  white-space:nowrap !important;
+}
+.nav-links a,
+.nav-links .mm-trigger{
+  display:inline-flex !important;
+  align-items:center !important;
+  flex:0 0 auto !important;
+  width:auto !important;
+  max-width:none !important;
+  min-width:auto !important;
+  height:36px !important;
+  padding:8px 14px !important;
+  border-radius:999px !important;
+  line-height:1 !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  white-space:nowrap !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  background:transparent;
+  color:inherit;
+  box-sizing:border-box !important;
+  transition:
+    color .18s var(--ease),
+    background .18s var(--ease) !important;
+}
+/* Drop the old underline rail */
+.nav-links a::after,
+.nav-links > button:not(.mm-trigger)::after,
+.nav-links .mm-trigger::after{
+  content:none !important;
+  display:none !important;
+}
+.nav-links .mm-trigger svg{
+  width:12px;
+  height:12px;
+  flex-shrink:0;
+  margin-left:2px;
+}
+.nav-right{
+  grid-column:3 !important;
+  justify-self:end !important;
+  flex:none !important;
+  margin-left:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  position:relative;
+  z-index:2;
+}
+.nav-right .theme-btn,
+.nav-right .burger{
+  flex:0 0 auto !important;
+}
+
+/* ---- CTA: brand blue gradient pill ---- */
+.nav-right > .btn.btn-primary{
+  height:48px !important;
+  padding:0 24px !important;
+  white-space:nowrap !important;
+  max-width:none !important;
+  flex:0 0 auto !important;
+  background:linear-gradient(135deg, hsl(var(--brand-h) 100% 48%), hsl(var(--brand-h) 95% 38%)) !important;
+  border-color:transparent !important;
+  color:#fff !important;
+  box-shadow:0 10px 22px -12px hsl(var(--brand-h) 90% 28% / .6);
+}
+.nav-right > .btn.btn-primary:hover{
+  box-shadow:0 14px 28px -12px hsl(var(--brand-h) 90% 28% / .7);
+}
+
+/* ---- Top (over dark hero): transparent + border ---- */
+.nav:not(.stuck) .nav-shell{
+  background:transparent !important;
+  border-color:hsl(var(--brand-h) 85% 72% / .55) !important;
+  box-shadow:none !important;
+}
+.nav:not(.stuck) .logo{--logo:var(--logo-white);}
+.nav:not(.stuck) .nav-links a,
+.nav:not(.stuck) .nav-links .mm-trigger{
+  color:rgba(255,255,255,.88) !important;
+}
+.nav:not(.stuck) .nav-links a:hover,
+.nav:not(.stuck) .nav-links a[aria-current="page"],
+.nav:not(.stuck) .nav-links .mm-trigger:hover,
+.nav:not(.stuck) .nav-links .mm-trigger[aria-expanded="true"],
+.nav:not(.stuck) .nav-links .mm-trigger[aria-current="page"]{
+  color:#fff !important;
+  background:rgba(255,255,255,.14) !important;
+}
+.nav:not(.stuck) .theme-btn{
+  color:rgba(255,255,255,.85);
+  border-color:rgba(255,255,255,.3);
+}
+.nav:not(.stuck) .theme-btn:hover{color:#fff; border-color:#fff;}
+.nav:not(.stuck) .burger{border-color:rgba(255,255,255,.3);}
+.nav:not(.stuck) .burger i{background:#fff;}
+
+/* ---- Sticky: solid white + border + shadow ---- */
+.nav.stuck{
+  --nav-gap:10px;
+}
+.nav.stuck .nav-shell{
+  background:#FFFFFF !important;
+  border-color:hsl(var(--brand-h) 85% 72% / .6) !important;
+  box-shadow:0 14px 34px -18px hsl(var(--brand-h) 60% 25% / .35) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+.nav.stuck .nav-in{height:68px !important;}
+.nav.stuck .logo{--logo:var(--logo-ink);}
+.nav.stuck .nav-links a,
+.nav.stuck .nav-links .mm-trigger{
+  color:#0F1720 !important;
+}
+.nav.stuck .nav-links a:hover,
+.nav.stuck .nav-links a[aria-current="page"],
+.nav.stuck .nav-links .mm-trigger:hover,
+.nav.stuck .nav-links .mm-trigger[aria-expanded="true"],
+.nav.stuck .nav-links .mm-trigger[aria-current="page"]{
+  color:var(--primary) !important;
+  background:hsl(var(--brand-h) 90% 94%) !important;
+}
+.nav.stuck .theme-btn{
+  color:#0F1720;
+  border-color:hsl(var(--brand-h) 40% 80% / .55);
+}
+.nav.stuck .theme-btn:hover{
+  color:var(--primary);
+  border-color:var(--primary);
+}
+.nav.stuck .burger{border-color:hsl(var(--brand-h) 40% 80% / .55);}
+.nav.stuck .burger i{background:#0F1720;}
+
+/* ---- Dark mode sticky ---- */
+html[data-theme="dark"] .nav.stuck .nav-shell{
+  background:#15191E !important;
+  border-color:hsl(var(--brand-h) 70% 55% / .35) !important;
+  box-shadow:0 14px 34px -18px rgba(0,0,0,.55) !important;
+}
+html[data-theme="dark"] .nav.stuck .logo{--logo:var(--logo-white);}
+html[data-theme="dark"] .nav.stuck .nav-links a,
+html[data-theme="dark"] .nav.stuck .nav-links .mm-trigger{
+  color:rgba(255,255,255,.9) !important;
+}
+html[data-theme="dark"] .nav.stuck .nav-links a:hover,
+html[data-theme="dark"] .nav.stuck .nav-links a[aria-current="page"],
+html[data-theme="dark"] .nav.stuck .nav-links .mm-trigger:hover,
+html[data-theme="dark"] .nav.stuck .nav-links .mm-trigger[aria-expanded="true"],
+html[data-theme="dark"] .nav.stuck .nav-links .mm-trigger[aria-current="page"]{
+  color:#fff !important;
+  background:rgba(255,255,255,.08) !important;
+}
+html[data-theme="dark"] .nav.stuck .theme-btn{
+  color:rgba(255,255,255,.85);
+  border-color:rgba(255,255,255,.22);
+}
+html[data-theme="dark"] .nav.stuck .burger{border-color:rgba(255,255,255,.22);}
+html[data-theme="dark"] .nav.stuck .burger i{background:#fff;}
+
+/* Tighter links on mid desktops — still one line, never wrap */
+@media (max-width:1200px){
+  .nav-links{gap:2px !important;}
+  .nav-links a,
+  .nav-links .mm-trigger{
+    padding:8px 10px !important;
+    font-size:14px !important;
+    height:34px !important;
+  }
+  .nav-shell > .nav-in,
+  .nav .nav-in{
+    padding-left:16px !important;
+    padding-right:10px !important;
+  }
+}
+
+/* Open mobile sheet: keep card radius (existing), border still brand-tinted */
+.nav-shell:has(.mnav.open){
+  border-radius:26px;
+}
+
+/* Mobile: burger layout — hide desktop links (beat our own flex !important) */
+@media (max-width:1080px){
+  .nav-shell > .nav-in,
+  .nav .nav-in{
+    display:flex !important;
+    grid-template-columns:none !important;
+  }
+  .nav-links{display:none !important;}
+  .nav .logo{grid-column:auto !important;}
+  .nav-right{
+    grid-column:auto !important;
+    justify-self:auto !important;
+    margin-left:auto !important;
+  }
+}

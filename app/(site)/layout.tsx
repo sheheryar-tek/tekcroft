@@ -8,6 +8,7 @@ import "./../stats-strip.css";
 import "./../vs-halo-lock.css";
 import "./../pf-mode-lock.css";
 import "./../a11y-lock.css";
+import "./../nav-pill.css";
 
 export default function SiteLayout({
   children,
