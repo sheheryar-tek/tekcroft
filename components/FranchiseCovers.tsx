@@ -10,8 +10,9 @@ export default function FranchiseCovers() {
   useEffect(() => {
     const root = document.getElementById("franchise-covers");
     if (!root) return;
-    const rail = root.querySelector<HTMLElement>("[data-tm]");
-    if (!rail) return;
+    const railNode = root.querySelector<HTMLElement>("[data-tm]");
+    if (!railNode) return;
+    const rail: HTMLElement = railNode;
     // Prevent the page bundle's generic [data-tm] init from double-binding.
     if (rail.dataset.tmWired === "1") return;
     rail.dataset.tmWired = "1";
