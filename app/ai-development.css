@@ -374,9 +374,8 @@ html[data-theme="dark"] .tb-figs{background:var(--surface);}
    ══════════════════════════════════════════════════════════════════════ */
 .hs-h1 em{white-space:nowrap;}
 
-/* The claim runs to two paragraphs here. They read as one block, so the
-   first sits closer to the second than the block does to the buttons. */
-.hs-lede-1{margin-bottom:clamp(12px,1.2vw,16px);}
+/* Single lede (stat line folded in) — normal gap down to the buttons */
+.hs-lede-1{margin-bottom:clamp(26px,2.8vw,36px);}
 
 /* Below the full column, and on every screen in variant 02 — where the
    headline shares its row with two more columns and never has the width
@@ -7023,8 +7022,8 @@ html[data-theme="dark"] #cmp .vs-h:not(.is-us) .vs-hic{background:hsl(var(--bran
 @media(max-width:860px){#guide-v4 .v4wrap{padding:44px 18px 28px}#guide-v4 .break{grid-template-columns:1fr;row-gap:14px}#guide-v4 .phone{order:-1;margin:0 auto}#guide-v4 .bottom{margin-top:14px}#guide-v4 .bottom .card:before,#guide-v4 .bottom .card:after{display:none}#guide-v4 .foot{margin:28px -18px -28px}#guide-v4 .foot:before,#guide-v4 .foot:after{width:30px}#guide-v4 .L .card:after,#guide-v4 .R .card:before,#guide-v4 .sc:after,#guide-v4 .sc:before{display:none!important}#guide-v4 .steps{grid-template-columns:repeat(2,1fr);gap:26px 14px}#guide-v4 .cta{flex-direction:column;align-items:flex-start}}
 
 /* sit like every other section: full-width ground, the page container, no inner box */
-#guide-v4{background:#fff !important; padding:clamp(56px,6vw,96px) 0 !important;}
-html[data-theme="dark"] #guide-v4{background:var(--bg) !important;}
+#guide-v4{padding:clamp(56px,6vw,96px) 0 !important;}
+/* background owned by data-ground lock */
 #guide-v4 .v4wrap{max-width:var(--maxw,1200px); width:min(100% - 48px,1200px); margin:0 auto; padding:0 !important; background:none !important; border-radius:0 !important; overflow:visible;}
 #guide-v4 .v4wrap:after{top:0 !important; right:8% !important;}
 #guide-v4 .break{grid-template-columns:1fr 270px 1fr !important; align-items:center !important;}
@@ -7075,8 +7074,8 @@ html[data-theme="dark"] #guide-v4 .screen{background:#E9F2F8;}
 /* === sc3-styles === */
 /* SECURITY & COMPLIANCE — the claim and the five standards on the left; on the right the project
    scope from day one, where the standards are the first thing ticked, before anything is built */
-#security.sc3{padding-block:clamp(56px,6vw,96px); background:#DAEEF6;}
-html[data-theme="dark"] #security.sc3{background:var(--bg-alt);}
+#security.sc3{padding-block:clamp(56px,6vw,96px);}
+/* background owned by data-ground lock */
 .sc3-wrap{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,80px); align-items:center;}
 .sc3 h2{margin:0; font-family:var(--font-display); font-size:clamp(32px,3.5vw,52px); font-weight:800; letter-spacing:-.045em; line-height:1.04; color:var(--text);}
 .sc3 h2 em{font-style:normal; color:var(--primary);}
@@ -7639,9 +7638,10 @@ html[data-theme="dark"] #proof .tb-figs{background:var(--surface) !important;}
 #proof.tb::before{display:none !important;}
 
 /* === footer restore (site chrome) === */
+/* FAQ is tint — contact (photo CTA) sits on white */
 #contact.cta,
 #contact.sec.cta{
-  background:var(--bg-alt) !important;
+  background:var(--surface) !important;
 }
 #contact.cta > .wrap::before{
   background:var(--cta-shot, var(--shot-2, url("/images/home-cta-v2.webp"))) 58% 45% / cover no-repeat !important;
@@ -8970,16 +8970,18 @@ html[data-theme="dark"] #services-2 .tm-viz .ax-row{background:var(--bg-alt); bo
   #services-2 .tm-item.on .tm-prog{animation:none; width:100%;}
 }
 
-/* AID page: locked white / tint section alternation */
-/* After the dark hero: white → tint → white → tint … through FAQ.
-   Contact keeps its photo CTA. Beats earlier per-section background locks. */
+/* AID page: locked white / tint section alternation
+   Stats white → … → cmp tint. Guide variants (v1–v4) are mutually exclusive
+   and all sit on white after cmp. Then reviews tint → … → faq tint.
+   Contact (photo CTA) flips to white after tint FAQ. */
 #proof-v2[data-ground="white"],
 #process[data-ground="white"],
 #guide[data-ground="white"],
+#guide-v2[data-ground="white"],
 #guide-v3[data-ground="white"],
-#reviews[data-ground="white"],
-#security[data-ground="white"],
-#faq[data-ground="white"]{
+#guide-v4[data-ground="white"],
+#industries[data-ground="white"],
+#work[data-ground="white"]{
   --ground:var(--surface) !important;
   --panel:var(--bg-alt) !important;
   background:var(--surface) !important;
@@ -8987,38 +8989,47 @@ html[data-theme="dark"] #services-2 .tm-viz .ax-row{background:var(--bg-alt); bo
 #services-2[data-ground="tint"],
 #services-2.tm[data-ground="tint"],
 #cmp[data-ground="tint"],
-#guide-v2[data-ground="tint"],
-#guide-v4[data-ground="tint"],
-#industries[data-ground="tint"],
-#work[data-ground="tint"]{
+#reviews[data-ground="tint"],
+#security[data-ground="tint"],
+#faq[data-ground="tint"]{
   --ground:var(--bg-alt) !important;
   --panel:var(--surface) !important;
   background:var(--bg-alt) !important;
 }
+/* Stats strip: solid white (no tint wash) */
+html body #proof-v2.st.sec[data-ground="white"]{
+  background:#FFFFFF !important;
+  --ground:#FFFFFF !important;
+}
 html[data-theme="dark"] #proof-v2[data-ground="white"],
 html[data-theme="dark"] #process[data-ground="white"],
 html[data-theme="dark"] #guide[data-ground="white"],
+html[data-theme="dark"] #guide-v2[data-ground="white"],
 html[data-theme="dark"] #guide-v3[data-ground="white"],
-html[data-theme="dark"] #reviews[data-ground="white"],
-html[data-theme="dark"] #security[data-ground="white"],
-html[data-theme="dark"] #faq[data-ground="white"]{
+html[data-theme="dark"] #guide-v4[data-ground="white"],
+html[data-theme="dark"] #industries[data-ground="white"],
+html[data-theme="dark"] #work[data-ground="white"]{
   --ground:var(--surface) !important;
   background:var(--surface) !important;
+}
+html[data-theme="dark"] body #proof-v2.st.sec[data-ground="white"]{
+  background:var(--surface) !important;
+  --ground:var(--surface) !important;
 }
 html[data-theme="dark"] #services-2[data-ground="tint"],
 html[data-theme="dark"] #services-2.tm[data-ground="tint"],
 html[data-theme="dark"] #cmp[data-ground="tint"],
-html[data-theme="dark"] #guide-v2[data-ground="tint"],
-html[data-theme="dark"] #guide-v4[data-ground="tint"],
-html[data-theme="dark"] #industries[data-ground="tint"],
-html[data-theme="dark"] #work[data-ground="tint"]{
+html[data-theme="dark"] #reviews[data-ground="tint"],
+html[data-theme="dark"] #security[data-ground="tint"],
+html[data-theme="dark"] #faq[data-ground="tint"]{
   --ground:var(--bg-alt) !important;
   background:var(--bg-alt) !important;
 }
 /* Soften old hard-coded section fills so the lock above wins cleanly */
 #guide.sy[data-ground="white"],
+#guide-v2[data-ground="white"],
 #guide-v3[data-ground="white"],
-#guide-v4[data-ground="tint"],
-#security.sc3[data-ground="white"]{
+#guide-v4[data-ground="white"],
+#security.sc3[data-ground="tint"]{
   background:var(--ground) !important;
 }
