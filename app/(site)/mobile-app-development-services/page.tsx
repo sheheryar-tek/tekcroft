@@ -15,6 +15,8 @@ import "@/app/footer-lock.css";
 import "@/app/service-hero-lock.css";
 /* Expanding panels shell — shared intro line + centered CTA */
 import "@/app/tm-shell-lock.css";
+/* Page hero tweaks (form vertical center, no stat divider) — after shared lock */
+import "@/app/mobile-app-hero-fix.css";
 
 const caveat = Caveat({
   subsets: ["latin"],

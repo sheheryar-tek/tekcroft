@@ -1,0 +1,36 @@
+/* Mobile-app hero only — loaded after service-hero-lock.css */
+
+/* 1) Desktop: vertically center the consultation form with left claim column */
+@media (min-width:981px){
+  html body #hero-1 .hs-in{
+    align-items:center !important;
+  }
+  html body #hero-1 .hs-form-wrap{
+    align-self:center !important;
+    margin-top:0 !important;
+    top:auto !important;
+  }
+}
+
+/* ≤980: keep form under copy (shared lock); do not force vertical center */
+@media (max-width:980px){
+  html body #hero-1 .hs-in{
+    align-items:stretch !important;
+  }
+  html body #hero-1 .hs-form-wrap{
+    align-self:stretch !important;
+  }
+}
+
+/* 2–3) No divider under paragraph; market stat sits tight below lede */
+html body #hero-1 .hs-stat{
+  border-top:0 !important;
+  padding-top:0 !important;
+  margin-top:13px !important;
+}
+html body #hero-1 .hs-copy > .hs-lede{
+  margin-bottom:0 !important;
+}
+html body #hero-1 .hs-stat i{
+  margin-top:calc((1.55em - 8px) / 2) !important;
+}

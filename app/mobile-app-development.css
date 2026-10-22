@@ -505,28 +505,31 @@
 @media (max-width:440px){ .hs .hs-h1 em{white-space:normal;} }
 
 /* === hs-stat === */
-/* the market figure under the hero copy: one line, set apart from the
-   paragraph by a rule and a live dot rather than by size */
+/* Market figure under the hero copy — tight under the paragraph, blue dot,
+   no horizontal rule. */
 .hs-stat{display:flex; align-items:flex-start; gap:10px; max-width:58ch;
-  margin:clamp(6px,.8vw,10px) 0 clamp(24px,2.6vw,32px);
-  padding-top:clamp(12px,1.2vw,14px); border-top:1px solid rgba(255,255,255,.14);
+  margin:13px 0 clamp(24px,2.6vw,32px);
+  padding-top:0; border-top:0;
   font-size:clamp(13.4px,.95vw,14.6px); line-height:1.55; color:rgba(255,255,255,.68);}
 .hs-stat b{color:#fff; font-weight:700; white-space:nowrap;}
-.hs-stat i{flex:none; width:8px; height:8px; margin-top:.5em; border-radius:50%;
+.hs-stat i{flex:none; width:8px; height:8px; margin-top:calc((1.55em - 8px) / 2); border-radius:50%;
   background:var(--primary); box-shadow:0 0 0 4px hsl(var(--brand-h) 100% 50% / .22);}
 
-/* Hero only: tight lede → divider (20px) → stat (16px); no extra lede margin */
+/* Hero only: lede → 13px → stat (no divider); gap under stat to buttons unchanged */
 #hero-1 .hs-copy > .hs-lede{
   margin-bottom:0 !important;
 }
 #hero-1 .hs-copy > .hs-stat{
-  margin-top:20px !important;
-  padding-top:16px !important;
+  margin-top:13px !important;
+  margin-bottom:clamp(24px,2.6vw,32px) !important;
+  padding-top:0 !important;
+  border-top:0 !important;
 }
 @media (max-width:600px){
   #hero-1 .hs-copy > .hs-stat{
-    margin-top:16px !important;
-    padding-top:14px !important;
+    margin-top:12px !important;
+    padding-top:0 !important;
+    border-top:0 !important;
   }
 }
 
@@ -6124,7 +6127,8 @@ html[data-theme="dark"] #engagement-models .sl2.add{background:rgba(0,150,213,.1
 /* ===== v3: a subsection of the Framework (process) block. Same white background, continues right under the
    process CTA with a thin divider; smaller H3 heading; three compact cards in the process-card style
    (white, thin border, black icon tile, blue active border on hover), each with a one-line visual of the model. ===== */
-#engagement-models.em3{background:#fff; padding-block:0 clamp(44px,4.2vw,64px);}
+/* Bottom padding comes from #process.eg-sec padding-block only — keep top/bottom equal */
+#engagement-models.em3{background:#fff; padding-block:0;}
 html[data-theme="dark"] #engagement-models.em3{background:var(--surface);}
 #engagement-models .em3-in{max-width:1040px; margin:0 auto; padding-top:clamp(28px,3vw,40px); border-top:0;}
 #engagement-models .em3-head{text-align:center; margin-bottom:clamp(16px,1.8vw,24px);}
