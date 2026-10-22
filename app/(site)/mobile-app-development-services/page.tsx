@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import Script from "next/script";
+import { Caveat } from "next/font/google";
 import Homepage from "@/components/Homepage";
+import AppJourney from "@/components/AppJourney";
+import DevelopApps from "@/components/DevelopApps";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/mobile-app-development-meta.json";
 import lcp from "@/lib/mobile-app-development-lcp.json";
@@ -12,6 +15,13 @@ import "@/app/footer-lock.css";
 import "@/app/service-hero-lock.css";
 /* Expanding panels shell — shared intro line + centered CTA */
 import "@/app/tm-shell-lock.css";
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-caveat",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -38,7 +48,7 @@ export default function MobileAppDevelopmentPage() {
   );
 
   return (
-    <>
+    <div className={caveat.variable}>
       <link
         rel="preload"
         as="image"
@@ -56,7 +66,9 @@ export default function MobileAppDevelopmentPage() {
         fetchPriority="high"
       />
       <Homepage html={html} />
+      <AppJourney />
+      <DevelopApps />
       <Script src={assets.mobileAppDevelopment} strategy="afterInteractive" />
-    </>
+    </div>
   );
 }
