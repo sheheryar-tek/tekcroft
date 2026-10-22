@@ -2024,7 +2024,6 @@ html[data-theme="dark"] .dv{--il-blob:hsl(var(--brand-h) 45% 15%); --il-glow:hsl
    then three engagement cards. Illustrations are SVG in brand blue.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #process{--ground:var(--bg-alt); --panel:var(--surface);}
-#engagement{--ground:var(--bg); --panel:var(--surface);}
 .fw,.em{
   --il-blob:hsl(var(--brand-h) 85% 95%); --il-tile:#FFFFFF; --il-soft:hsl(var(--brand-h) 80% 94%);
   --il-line:hsl(var(--brand-h) 40% 86%); --il-card:#FFFFFF; --il-ink:#16263A; --il-screen:#F4FAFD;}
@@ -3326,7 +3325,7 @@ html[data-theme="dark"] .ftm{
 .eh-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
 /* Section grounds — strict white / tint alternation after the dark hero
    Order: proof(w) → services(t) → build(w) → industries(t) → process(w)
-          → engagement(t) → fit(photo) → pricing(w) → why(t) → faq(w) → contact(cta) */
+          → fit(photo) → pricing(w) → why(t) → faq(w) → contact(cta) */
 #proof,
 #build,
 #process,
@@ -3337,7 +3336,6 @@ html[data-theme="dark"] .ftm{
 }
 #services-2,
 #industries,
-#engagement,
 #why{
   --ground:var(--bg-alt);
   --panel:var(--surface);
@@ -3352,8 +3350,7 @@ html[data-theme="dark"] #fit{ --panel:var(--surface); }
 html[data-theme="dark"] #process .fw-card,
 html[data-theme="dark"] #process .fw-step,
 html[data-theme="dark"] #pricing .pr-card,
-html[data-theme="dark"] #build .dv-card,
-html[data-theme="dark"] #engagement .em-card{
+html[data-theme="dark"] #build .dv-card{
   background:var(--surface);
   border-color:var(--border);
   color:var(--text);
@@ -3365,7 +3362,6 @@ html[data-theme="dark"] #engagement .em-card{
 #build,
 #industries,
 #process,
-#engagement,
 #pricing,
 #why,
 #faq{
@@ -6032,3 +6028,112 @@ html body .gw-say > p{
     --block-gap:clamp(22px,2.4vw,36px) !important;
   }
 }
+
+
+/* === em-styles (engagement-models subsection) === */
+/* OUR ENGAGEMENT MODELS: three models side by side; each visual shows what the model actually is:
+   a signed agreement with scope/cost/timeline locked, one product team made of your people + ours on an
+   ongoing sprint, and your in-house team with one specific skill slotted in. */
+#engagement-models{padding-block:clamp(44px,4.2vw,68px); background:#DAEEF6; text-transform:none;}
+html[data-theme="dark"] #engagement-models{background:#0F1A22;}
+#engagement-models .em-head{text-align:center; margin:0 auto clamp(22px,2.4vw,34px);}
+#engagement-models .em-head h2{margin:0; font-family:var(--font-display); font-size:clamp(28px,3vw,44px); font-weight:800; letter-spacing:-.045em; line-height:1.08; color:var(--text); text-transform:none;}
+#engagement-models .em-head h2 em{font-style:normal; color:var(--primary);}
+#engagement-models .ems{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,1.4vw,18px);}
+#engagement-models .emc{display:flex; flex-direction:column; padding:8px; border-radius:24px; background:#fff; border:1px solid #CFE3EE; transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s, border-color .3s;}
+#engagement-models .emc:hover{transform:translateY(-4px); border-color:var(--primary); box-shadow:0 28px 46px -32px rgba(0,80,130,.6);}
+html[data-theme="dark"] #engagement-models .emc{background:#141F27; border-color:rgba(255,255,255,.09);}
+#engagement-models .emv{position:relative; height:220px; border-radius:18px; overflow:hidden; background:radial-gradient(circle at 50% 35%,#fff 0 20%,transparent 66%),linear-gradient(180deg,#EEF8FD,#E1F1F9);}
+#engagement-models .emv::before{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(0,150,213,.15) 1px,transparent 1.2px); background-size:16px 16px;}
+html[data-theme="dark"] #engagement-models .emv{background:radial-gradient(circle at 50% 35%,rgba(0,150,213,.16) 0 20%,transparent 66%),#101A21;}
+#engagement-models .emt{padding:16px 14px 14px;}
+#engagement-models .emt h3{margin:0 0 6px; font-family:var(--font-display); font-size:clamp(17px,1.35vw,20px); font-weight:800; letter-spacing:-.02em; line-height:1.25; color:var(--text); text-transform:none;}
+#engagement-models .emt p{margin:0; font-size:14.5px; line-height:1.6; color:var(--text-2);}
+/* shared visual bits */
+#engagement-models .ev{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:18px;}
+#engagement-models :is(.doc,.board,.org){position:relative; width:100%; max-width:290px; padding:12px; border-radius:16px; background:#fff; border:1px solid #DCE9F1; box-shadow:0 22px 38px -24px rgba(0,50,80,.55); box-sizing:border-box; color:#0F1720;}
+html[data-theme="dark"] #engagement-models :is(.doc,.board,.org,.nw){background:#1B2730; border-color:rgba(255,255,255,.1); color:#E8EEF2;}
+#engagement-models :is(.doc-h,.bd-h,.og-h){display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:9px;}
+#engagement-models :is(.doc-h,.bd-h,.og-h) b{font:800 12.5px/1 var(--font-display);}
+#engagement-models .av2{display:grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--c); color:#fff; font:800 10.5px/1 var(--font-display); font-style:normal; box-shadow:0 0 0 2px #fff;}
+html[data-theme="dark"] #engagement-models .av2{box-shadow:0 0 0 2px #1B2730;}
+/* 1 fixed price */
+#engagement-models .sg{padding:4px 8px; border-radius:99px; background:#E6F6EE; color:#13804B; font:800 10px/1 var(--font-display);}
+#engagement-models .lr{display:flex; align-items:center; gap:9px; padding:8px 9px; border-radius:11px; background:#F5F9FB; border:1px solid #E6EFF4; opacity:0; animation:emIn .5s ease forwards; animation-delay:calc(.2s + var(--k)*.15s);}
+#engagement-models .lr+.lr{margin-top:6px;}
+html[data-theme="dark"] #engagement-models .lr{background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.07);}
+#engagement-models .li{flex:none; display:grid; place-items:center; width:28px; height:28px; border-radius:8px; background:#E3F3FB; color:var(--primary);}
+#engagement-models .lt{flex:1; display:flex; flex-direction:column; gap:2px;} #engagement-models .lt small{font-size:9.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#7A8B97;} #engagement-models .lt b{font:800 13px/1.1 var(--font-display);}
+#engagement-models .lk{flex:none; display:grid; place-items:center; width:24px; height:24px; border-radius:7px; background:#0F1720; color:#fff;}
+html[data-theme="dark"] #engagement-models .lk{background:#E8EEF2; color:#0F1720;}
+@keyframes emIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+/* 2 dedicated team */
+#engagement-models .spr{display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:99px; background:#E3F3FB; color:#0077AA; font:800 9.5px/1 var(--font-display);}
+#engagement-models .spr::before{content:""; width:6px; height:6px; border-radius:50%; background:#22A06B; animation:emBeat 1.4s ease-in-out infinite;}
+@keyframes emBeat{50%{opacity:.3}}
+#engagement-models .tm2{display:flex; align-items:center; gap:8px; padding:10px; border-radius:12px; background:#F5F9FB; border:1px dashed #BFD7E5;}
+html[data-theme="dark"] #engagement-models .tm2{background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.14);}
+#engagement-models .grp{display:flex; flex-direction:column; gap:5px;} #engagement-models .grp small{font-size:9.5px; font-weight:700; color:#7A8B97;} #engagement-models .grp.us small{color:var(--primary);}
+#engagement-models .avs{display:flex;} #engagement-models .avs .av2+.av2{margin-left:-7px;}
+#engagement-models .plus{display:grid; place-items:center; width:20px; height:20px; margin-top:14px; border-radius:50%; background:var(--primary); color:#fff; font:800 13px/1 var(--font-display);}
+#engagement-models .kb{display:flex; flex-direction:column; gap:5px; margin-top:9px;}
+#engagement-models .kb span{display:flex; align-items:center; gap:7px; padding:6px 8px; border-radius:8px; background:#F5F9FB; font:700 11px/1 var(--font-display);}
+html[data-theme="dark"] #engagement-models .kb span{background:rgba(255,255,255,.04);}
+#engagement-models .kb i{width:8px; height:8px; border-radius:50%;} #engagement-models .kb .d{background:#22A06B;} #engagement-models .kb .p{background:#F59E0B;} #engagement-models .kb .t{background:#CBD8E1;}
+#engagement-models .loop{position:absolute; right:12px; bottom:12px; width:22px; height:22px; fill:none; stroke:var(--primary); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; animation:emSpin 4s linear infinite;}
+@keyframes emSpin{to{transform:rotate(360deg)}}
+/* 3 staff augmentation */
+#engagement-models .og-g{display:grid; grid-template-columns:repeat(5,1fr); gap:6px;}
+#engagement-models .sl2{display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 2px 6px; border-radius:10px; background:#F5F9FB;}
+html[data-theme="dark"] #engagement-models .sl2{background:rgba(255,255,255,.04);}
+#engagement-models .sl2 small{font-size:8.5px; font-weight:700; color:#5B6B78; white-space:nowrap;}
+#engagement-models .sl2.add{border:1.5px dashed var(--primary); background:#EEF8FD; justify-content:center;}
+#engagement-models .sl2.add .av2{background:transparent; box-shadow:none; color:var(--primary); font-size:16px;}
+#engagement-models .sl2.add .av2::before{content:"+";}
+html[data-theme="dark"] #engagement-models .sl2.add{background:rgba(0,150,213,.1);}
+#engagement-models .ev3{flex-direction:column; gap:10px;}
+#engagement-models .nw{display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:14px; background:#fff; border:1.5px solid var(--primary); box-shadow:0 0 0 4px rgba(0,150,213,.12),0 18px 30px -18px rgba(0,60,100,.6); animation:emSlot 3.2s cubic-bezier(.3,1.2,.5,1) infinite;}
+@keyframes emSlot{0%{transform:translateY(18px); opacity:0} 18%,80%{transform:none; opacity:1} 100%{transform:none; opacity:1}}
+#engagement-models .nw-av{position:relative;} #engagement-models .nw-av em{position:absolute; right:-5px; bottom:-4px;} #engagement-models .nw-av em svg{width:14px; height:14px; border-radius:4px; display:block;}
+#engagement-models .nw-t{display:flex; flex-direction:column; gap:2px;} #engagement-models .nw-t b{font:800 12px/1 var(--font-display);} #engagement-models .nw-t small{font-size:9.5px; color:var(--primary); font-weight:700;}
+#engagement-models .nw-p{margin-left:6px; padding:4px 8px; border-radius:99px; background:#E6F6EE; color:#13804B; font:800 9.5px/1 var(--font-display);}
+
+@media (max-width:980px){ #engagement-models .ems{grid-template-columns:minmax(0,1fr); max-width:520px; margin:0 auto;} }
+@media (prefers-reduced-motion:reduce){ #engagement-models *{animation:none !important; opacity:1 !important;} }
+#engagement-models .lr{padding:6px 9px;} #engagement-models .li{width:26px; height:26px;}
+
+/* ===== v3: a subsection of the Framework (process) block. Same white background, continues right under the
+   process CTA with a thin divider; smaller H3 heading; three compact cards in the process-card style
+   (white, thin border, black icon tile, blue active border on hover), each with a one-line visual of the model. ===== */
+#engagement-models.em3{background:#fff; padding-block:0 clamp(44px,4.2vw,64px);}
+html[data-theme="dark"] #engagement-models.em3{background:var(--surface);}
+#engagement-models .em3-in{max-width:1040px; margin:0 auto; padding-top:clamp(28px,3vw,40px); border-top:0;}
+#engagement-models .em3-head{text-align:center; margin-bottom:clamp(16px,1.8vw,24px);}
+#engagement-models .em3-head h3{margin:0; font-family:var(--font-display); font-size:clamp(22px,2.1vw,30px); font-weight:800; letter-spacing:-.035em; line-height:1.15; color:var(--text); text-transform:none;}
+#engagement-models .em3-head h3 em{font-style:normal; color:var(--primary);}
+#engagement-models .mcs{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px;}
+#engagement-models .mc{display:flex; flex-direction:column; gap:8px; padding:16px; border-radius:12px; background:#fff; border:1px solid #DCE7EE; transition:border-color .3s, box-shadow .35s, transform .35s;}
+#engagement-models .mc:hover{border-color:var(--primary); box-shadow:0 14px 30px -22px rgba(0,110,170,.7); transform:translateY(-2px);}
+#engagement-models .mc:hover .mc-ic{background:var(--primary);}
+html[data-theme="dark"] #engagement-models .mc{background:#141F27; border-color:rgba(255,255,255,.1);}
+#engagement-models .mc-h{display:flex; align-items:center; gap:10px;}
+#engagement-models .mc-ic{flex:none; display:grid; place-items:center; width:26px; height:26px; border-radius:7px; background:#0F1720; color:#fff; transition:background .3s;}
+html[data-theme="dark"] #engagement-models .mc-ic{background:#E8EEF2; color:#0F1720;}
+#engagement-models .mc h4{margin:0; font:800 clamp(16px,1.25vw,18px)/1.25 var(--font-display); letter-spacing:-.02em; color:var(--text); text-transform:none;}
+#engagement-models .mc p{margin:0; font-size:14px; line-height:1.55; color:var(--text-2); flex:1;}
+/* one-line model visuals */
+#engagement-models .mv{display:flex; align-items:center; gap:6px; margin-top:4px; padding:9px 10px; border-radius:10px; background:#F5F9FB; border:1px solid #E6EFF4; min-height:50px; box-sizing:border-box;}
+html[data-theme="dark"] #engagement-models .mv{background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.07);}
+#engagement-models .mv1{justify-content:space-between;}
+#engagement-models .mv1 > span{display:inline-flex; align-items:center; gap:5px; padding:6px 9px; border-radius:8px; background:#0F1720; color:#fff; font:700 11px/1 var(--font-display);}
+html[data-theme="dark"] #engagement-models .mv1 > span{background:#E8EEF2; color:#0F1720;}
+#engagement-models .mv .g{display:flex; flex-direction:column; gap:4px;} #engagement-models .mv .g small{font-size:9px; font-weight:700; color:#7A8B97; white-space:nowrap;} #engagement-models .mv .g.us small{color:var(--primary);}
+#engagement-models .mv .av2{width:22px; height:22px; font-size:9.5px;} #engagement-models .mv .avs .av2+.av2{margin-left:-6px;}
+#engagement-models .mv .pl{display:grid; place-items:center; flex:none; width:18px; height:18px; margin-top:12px; border-radius:50%; background:var(--primary); color:#fff; font:800 12px/1 var(--font-display);}
+#engagement-models .mv2 .on{margin-left:auto; display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:99px; background:#E3F3FB; color:#0077AA; font:800 9.5px/1 var(--font-display); white-space:nowrap;}
+#engagement-models .mv2 .on i{width:6px; height:6px; border-radius:50%; background:#22A06B; animation:emBeat 1.4s ease-in-out infinite;}
+#engagement-models .mv3 .add{margin-left:auto; display:inline-flex; align-items:center; gap:6px; padding:5px 8px 5px 5px; border-radius:10px; background:#fff; border:1.5px solid var(--primary); box-shadow:0 0 0 3px rgba(0,150,213,.1);}
+html[data-theme="dark"] #engagement-models .mv3 .add{background:#1B2730;}
+#engagement-models .mv3 .add > span{display:flex; flex-direction:column; gap:2px;} #engagement-models .mv3 .add b{font:800 10.5px/1 var(--font-display); color:var(--text); white-space:nowrap;} #engagement-models .mv3 .add small{font-size:8.5px; font-weight:700; color:#13804B;}
+@media (max-width:1100px){ #engagement-models .mv2 .on{display:none;} }
+@media (max-width:980px){ #engagement-models .mcs{grid-template-columns:minmax(0,1fr); max-width:560px; margin:0 auto;} #engagement-models .mv2 .on{display:inline-flex;} }
