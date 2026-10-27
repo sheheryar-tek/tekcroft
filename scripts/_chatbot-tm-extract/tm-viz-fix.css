@@ -1,0 +1,3 @@
+/* the AI wires run under the engine chips, not through them */
+#chatbot-services .tv-ai svg{inset:46px 20px 30px; height:auto;}
+#chatbot-services .tv-ai{gap:12px; padding-bottom:18px;}

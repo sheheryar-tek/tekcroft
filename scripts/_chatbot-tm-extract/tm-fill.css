@@ -1,0 +1,10 @@
+/* the card fills the open panel top to bottom, so no empty photo is left
+   above or below it, and its copy sits in the middle */
+#chatbot-services .tm-open{align-items:stretch;}
+#chatbot-services .tm-card{display:flex; flex-direction:column; justify-content:center;
+  width:min(52%,470px); max-height:none; overflow:auto;}
+#chatbot-services .tm-card p{margin-bottom:16px;}
+#chatbot-services .tm-chip{align-self:flex-start;}
+@media (max-width:980px){
+  #chatbot-services .tm-card{width:100%; justify-content:flex-start;}
+}

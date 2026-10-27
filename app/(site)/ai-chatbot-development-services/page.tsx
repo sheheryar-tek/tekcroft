@@ -3,10 +3,13 @@ import fs from "fs";
 import path from "path";
 import Script from "next/script";
 import Homepage from "@/components/Homepage";
+import ChatbotTypesScript from "@/components/ChatbotTypesScript";
 import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/ai-chatbot-development-meta.json";
 import lcp from "@/lib/ai-chatbot-development-lcp.json";
 import "@/app/ai-chatbot-development.css";
+import "@/app/ai-chatbot-services-tm.css";
+import "@/app/ai-chatbot-types.css";
 import "@/app/footer-lock.css";
 /* Shared service hero shell — same style/design on every /services page */
 import "@/app/service-hero-lock.css";
@@ -46,6 +49,7 @@ export default function AiChatbotDevelopmentServicesPage() {
         fetchPriority="high"
       />
       <Homepage html={html} />
+      <ChatbotTypesScript />
       <Script src={assets.aiChatbotDevelopment} strategy="afterInteractive" />
     </>
   );

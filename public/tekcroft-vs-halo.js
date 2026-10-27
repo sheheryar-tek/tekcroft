@@ -7,11 +7,17 @@
 
   function syncStage(stage) {
     var table = stage.querySelector("table.vs-table, table.st-table, table");
-    var halo = stage.querySelector(":scope > .vs-halo");
+    var hold = stage.closest ? stage.closest(".vs-hold") : null;
+    /* Prefer stage child (scrolls with columns); fall back to card child */
+    var halo =
+      stage.querySelector(":scope > .vs-halo") ||
+      (hold && hold.querySelector(":scope > .vs-halo"));
     var us = table && table.querySelector("thead th.c-us");
     if (!table || !halo || !us) return;
 
-    if (window.matchMedia(MQ).matches) {
+    /* #stack keeps the pop-out highlight on mobile/tablet too */
+    var keepMobile = !!(stage.closest && stage.closest("#stack"));
+    if (window.matchMedia(MQ).matches && !keepMobile) {
       halo.style.left = "";
       halo.style.width = "";
       halo.style.top = "";
@@ -21,15 +27,14 @@
       return;
     }
 
-    var sr = stage.getBoundingClientRect();
+    /* Absolute coords relative to the halo's positioned parent (stage or hold). */
+    var box = halo.parentElement === hold ? hold : stage;
+    var sr = box.getBoundingClientRect();
     var ur = us.getBoundingClientRect();
     if (!sr.width || !ur.width) return;
 
-    var left = ur.left - sr.left;
-    var width = ur.width;
-
-    halo.style.left = left + "px";
-    halo.style.width = width + "px";
+    halo.style.left = ur.left - sr.left + "px";
+    halo.style.width = ur.width + "px";
     halo.style.right = "auto";
     halo.style.top = -PAD + "px";
     halo.style.bottom = -PAD + "px";
@@ -57,6 +62,8 @@
         ro.observe(stages[i]);
         var table = stages[i].querySelector("table");
         if (table) ro.observe(table);
+        var hold = stages[i].closest && stages[i].closest(".vs-hold");
+        if (hold) ro.observe(hold);
       }
     }
 

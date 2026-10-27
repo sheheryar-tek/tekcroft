@@ -1,6 +1,7 @@
 /* Shared comparison-table highlighted-column halo
    Applies to every .vs-stage that carries a .vs-halo + th.c-us.
-   Position (left/width) is set by public/tekcroft-vs-halo.js. */
+   Position (left/width) is set by public/tekcroft-vs-halo.js.
+   #stack: no overflow-x:auto scroller above 768px (wheel must scroll the page). */
 
 @media (min-width:901px){
   html body .vs-hold,
@@ -17,7 +18,9 @@
     overflow:visible !important;
   }
 
-  /* Room so the halo can sit 14px above/below the white card without clipping */
+  /* Room so the halo can sit 14px above/below the white card without clipping.
+     Do NOT apply to #stack — overflow-x:auto makes overflow-y compute to auto
+     and traps the mouse wheel inside the table. */
   .vs-hold .vs-scroll{
     overflow-x:auto !important;
     overflow-y:visible !important;
@@ -25,6 +28,15 @@
     padding-bottom:22px !important;
     margin-top:-8px !important;
     margin-bottom:-8px !important;
+  }
+  html body #stack .vs-hold .vs-scroll{
+    overflow:visible !important;
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+    padding:0 !important;
+    margin:0 !important;
+    height:auto !important;
+    max-height:none !important;
   }
 
   /* responsive.css sets table{display:block} — restore real table layout */
@@ -56,10 +68,11 @@
     padding:16px 20px !important;
   }
 
-  /* Halo box — left/width/top/bottom set by JS; kill hard-coded % fallbacks.
-     html body + child combinator beats page #stack/#cmp display:none rules. */
+  /* Halo box — left/width/top/bottom set by JS */
   html body .vs-stage > .vs-halo,
+  html body .vs-hold > .vs-halo,
   html body #stack .vs-stage > .vs-halo,
+  html body #stack .vs-hold > .vs-halo,
   html body #cmp .vs-stage > .vs-halo,
   html body #fit .vs-stage > .vs-halo,
   html body #vs .vs-stage > .vs-halo{
@@ -78,7 +91,9 @@
   }
 
   html[data-theme="dark"] body .vs-stage > .vs-halo,
+  html[data-theme="dark"] body .vs-hold > .vs-halo,
   html[data-theme="dark"] body #stack .vs-stage > .vs-halo,
+  html[data-theme="dark"] body #stack .vs-hold > .vs-halo,
   html[data-theme="dark"] body #cmp .vs-stage > .vs-halo,
   html[data-theme="dark"] body #fit .vs-stage > .vs-halo,
   html[data-theme="dark"] body #vs .vs-stage > .vs-halo{
@@ -86,7 +101,8 @@
     border-color:var(--primary) !important;
   }
 
-  .vs-stage > .vs-halo .vs-badge{
+  .vs-stage > .vs-halo .vs-badge,
+  .vs-hold > .vs-halo .vs-badge{
     position:absolute !important;
     left:50% !important;
     top:0 !important;
@@ -95,6 +111,8 @@
   }
 
   /* No cell-level double border / wash — the halo is the only highlight */
+  .vs-hold:has(> .vs-halo) thead th.c-us,
+  .vs-hold:has(> .vs-halo) tbody td.c-us,
   .vs-stage:has(> .vs-halo) thead th.c-us,
   .vs-stage:has(> .vs-halo) tbody td.c-us{
     background-color:transparent !important;
@@ -103,15 +121,18 @@
     border-right-color:transparent !important;
     border-top-color:transparent !important;
   }
+  .vs-hold:has(> .vs-halo) thead th.c-us,
   .vs-stage:has(> .vs-halo) thead th.c-us{
     border-radius:0 !important;
   }
+  .vs-hold:has(> .vs-halo) tbody tr:last-child td.c-us,
   .vs-stage:has(> .vs-halo) tbody tr:last-child td.c-us{
     border-radius:0 !important;
     border-bottom-color:transparent !important;
   }
 
   /* Badge must live in .vs-halo, not inside the header cell */
+  .vs-hold:has(> .vs-halo) thead th.c-us > .vs-badge,
   .vs-stage:has(> .vs-halo) thead th.c-us > .vs-badge{
     display:none !important;
   }
@@ -120,5 +141,39 @@
 @media (max-width:900px){
   .vs-stage > .vs-halo{
     display:none !important;
+  }
+  /* #stack keeps its pop-out highlight */
+  html body #stack .vs-hold,
+  html body #stack .vs-stage{
+    position:relative !important;
+    overflow:visible !important;
+  }
+  html body #stack .vs-hold > .vs-halo,
+  html body #stack .vs-stage > .vs-halo{
+    display:block !important;
+  }
+}
+
+/* #stack mobile ONLY (≤768): horizontal scroll; never vertical */
+@media (max-width:768px){
+  html body #stack .vs-hold{
+    overflow:visible !important;
+  }
+  html body #stack .vs-hold .vs-scroll{
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    overscroll-behavior-x:contain !important;
+    padding:28px 0 22px !important;
+    margin:0 !important;
+    height:auto !important;
+    max-height:none !important;
+  }
+  html body #stack .vs-stage{
+    min-width:640px !important;
+  }
+  html body #stack .vs-hold > .vs-halo,
+  html body #stack .vs-stage > .vs-halo{
+    display:block !important;
   }
 }

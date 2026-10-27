@@ -1,0 +1,13 @@
+/* no service text is cut: the rail is a little taller, the card sizes to
+   its own copy, and the longest one scrolls inside itself rather than
+   losing a line */
+#chatbot-services .tm-rail{height:clamp(390px,40vw,500px);}
+#chatbot-services .tm-card p{max-height:none;}
+#chatbot-services .tm-card{max-height:100%; overflow:auto; scrollbar-width:thin;}
+#chatbot-services .tm-card::-webkit-scrollbar{width:6px;}
+#chatbot-services .tm-card::-webkit-scrollbar-thumb{background:hsl(var(--brand-h) 60% 84%); border-radius:99px;}
+#chatbot-services .tm-item.on{min-width:340px;}
+@media (max-width:980px){
+  #chatbot-services .tm-rail{height:auto;}
+  #chatbot-services .tm-card{max-height:none; overflow:visible;}
+}
