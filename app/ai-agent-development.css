@@ -6803,23 +6803,24 @@ html[data-theme="dark"] .ts-lg{background:hsl(var(--brand-h) 20% 22%);}
 /* === rhythm-app === */
 /* Strict white / tint alternation after the dark hero (DOM order).
    white = --surface, tint = --bg-alt
-   proof(w) â†’ problem(t) â†’ services-2(w) â†’ industries(t) â†’ process(w)
-   â†’ why(t) â†’ reviews(w) â†’ pricing(t) â†’ work(w) â†’ tech-stack(t) â†’ faq(w)
+   proof(w) → problem(t) → agent-services(w) → industries(t) → process(w)
+   → why(t) → reviews(w) → work(t) → tech-stack(w) → faq(t)
    #contact keeps its own CTA plate */
 
 #proof,
 #services-2,
 #process,
 #reviews,
-#work,
-#faq{
+#tech-stack{
   --ground:var(--surface) !important;
   --panel:var(--bg-alt);
 }
 #problem,
-#problem-v2,
+  #problem-v2,
 #industries,
 #why,
+#work,
+#faq,
 #pricing{
   --ground:var(--bg-alt) !important;
   --panel:var(--surface);

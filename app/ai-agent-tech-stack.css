@@ -16,8 +16,8 @@
 
 /* TECH STACK — the stack, literally: three isometric layers (framework on top, platforms, data & memory at the base).
    The layer named in the list lifts out and lights up. */
-#tech-stack.ts{padding-block:clamp(48px,5vw,84px); background:#DAEEF6 !important; overflow:hidden;}
-html[data-theme="dark"] #tech-stack.ts{background:var(--bg-alt) !important;}
+#tech-stack.ts{padding-block:clamp(48px,5vw,84px); background:var(--surface) !important; overflow:hidden;}
+html[data-theme="dark"] #tech-stack.ts{background:var(--surface) !important;}
 #tech-stack .ts-wrap{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(24px,4vw,64px); align-items:center;}
 #tech-stack h2{margin:0; font-family:var(--font-display); font-size:clamp(30px,3.1vw,46px); font-weight:800; letter-spacing:-.04em; line-height:1.06; color:var(--text); text-transform:none;}
 #tech-stack h2 em{font-style:normal; color:var(--primary);}
@@ -63,7 +63,7 @@ html[data-theme="dark"] #tech-stack.ts{background:var(--bg-alt) !important;}
   height:14px !important;
   margin:-7px 0 0 0 !important;
   border-radius:50% !important;
-  background:#DAEEF6 !important;
+  background:#fff !important;
   border:2px solid #8CC4DE !important;
   z-index:1 !important;
   transition:background .4s, border-color .4s, box-shadow .4s;
@@ -77,7 +77,7 @@ html[data-theme="dark"] #tech-stack.ts{background:var(--bg-alt) !important;}
 
 /* dark mode */
 html[data-theme="dark"] #tech-stack .ts-list::before{background:rgba(255,255,255,.12) !important;}
-html[data-theme="dark"] #tech-stack .ts-list li::before{background:var(--bg-alt) !important; border-color:rgba(255,255,255,.25) !important;}
+html[data-theme="dark"] #tech-stack .ts-list li::before{background:var(--surface) !important; border-color:rgba(255,255,255,.25) !important;}
 html[data-theme="dark"] #tech-stack .ts-list li:has(.on)::before,
 html[data-theme="dark"] #tech-stack .ts-list li.is-on::before{background:#0096D5 !important; border-color:#0096D5 !important;}
 
@@ -211,6 +211,6 @@ html[data-theme="dark"] #tech-stack .ts-row:not(.on) .ts-ic{background:rgba(255,
 /* neutralize legacy #tech-stack.st block if still present in markup */
 #tech-stack.st{display:none !important;}
 
-/* final bg lock (after all page CSS) */
-#tech-stack.ts{background:#DAEEF6 !important;}
-html[data-theme="dark"] #tech-stack.ts{background:var(--bg-alt) !important;}
+/* final bg lock — white so it alternates after tinted #work */
+#tech-stack.ts{background:var(--surface) !important;}
+html[data-theme="dark"] #tech-stack.ts{background:var(--surface) !important;}
