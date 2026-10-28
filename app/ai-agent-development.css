@@ -8898,10 +8898,11 @@ html body .gw-say > p{
   }
 }
 
-/* AAG CTA shot carrier + band photo */
+/* AAG CTA shot carrier + band photo
+   White band so it alternates after tinted #faq (not the same blue). */
 #contact.cta,
 #contact.sec.cta{
-  background:var(--bg-alt) !important;
+  background:var(--surface) !important;
   --cta-pic:url("/images/aag-cta-3a733870fa.webp") !important;
   --cta-shot:url("/images/aag-cta-3a733870fa.webp") !important;
 }

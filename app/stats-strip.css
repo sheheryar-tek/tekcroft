@@ -31,3 +31,24 @@ html body #proof-v2.st.sec{
 @media (max-width:900px){
   html[data-theme="dark"] #proof-v2 .st-c:nth-child(n+3){border-top-color:var(--border);}
 }
+
+/* Class collision: legacy / timeline .st-row:hover + .st-row::before
+   (tech-stack rail-dot look) hit this strip. Neutralize here only —
+   do not touch fonts, spacing, or the section's normal background. */
+#proof-v2 .st-row:hover,
+#proof-v2 .st-row.on,
+#proof-v2 .st-c:hover{
+  background:transparent !important;
+  border-color:transparent !important;
+  box-shadow:none !important;
+}
+#proof-v2 .st-row::before,
+#proof-v2 .st-row.on::before,
+#proof-v2 .st-row.done::before{
+  content:none !important;
+  display:none !important;
+  border:0 !important;
+  width:0 !important;
+  height:0 !important;
+  box-shadow:none !important;
+}
