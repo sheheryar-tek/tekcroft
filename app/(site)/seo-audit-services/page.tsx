@@ -10,6 +10,7 @@ import "@/app/seo-audit-services.css";
 import "@/app/footer-lock.css";
 /* Shared service hero shell — same style/design on every /services page */
 import "@/app/service-hero-lock.css";
+import "@/app/seo-audit-hero-lede.css";
 
 export const metadata: Metadata = {
   title: meta.title,

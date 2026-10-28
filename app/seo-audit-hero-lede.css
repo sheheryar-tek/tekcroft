@@ -1,0 +1,15 @@
+/* seo-audit-services hero — tighten gap between the two .hs-lede paragraphs only.
+   Loaded after service-hero-lock.css so these win. Button spacing (2nd lede → .hs-act) unchanged. */
+
+#hero-1.seo-audit-hero .hs-copy > .hs-lede:has(+ .hs-lede){
+  margin-bottom:12px !important;
+}
+#hero-1.seo-audit-hero .hs-copy > .hs-lede + .hs-lede{
+  margin-top:0 !important;
+}
+
+@media (max-width:640px){
+  #hero-1.seo-audit-hero .hs-copy > .hs-lede:has(+ .hs-lede){
+    margin-bottom:10px !important;
+  }
+}
