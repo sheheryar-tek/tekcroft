@@ -6687,7 +6687,7 @@ html[data-theme="dark"] .s-step.is-on{background:hsl(var(--brand-h) 40% 16%);}
    underneath), joined by a spine that a signal runs down. Each layer
    names its tools as chips.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-#tech-stack{padding-block:clamp(36px,4vw,56px);}
+/* neutralized old */ #tech-stack:not(.ts):not(.st){padding-block:clamp(36px,4vw,56px);}
 .ts-grid{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,4vw,64px); align-items:center;}
 .ts-head .smark{margin-bottom:clamp(12px,1.3vw,16px);}
 .ts-head h2{margin:0;} .ts-head h2 em{font-style:normal; color:var(--brand-text); display:block;}
@@ -6708,10 +6708,10 @@ html[data-theme="dark"] .ts-spine{background:hsl(var(--brand-h) 30% 26%);}
 .ts-layer:hover{transform:translateX(calc(var(--k) * 10px + 6px)); border-color:hsl(var(--brand-h) 100% 45% / .45);
   box-shadow:0 20px 38px -26px hsl(var(--brand-h) 100% 36% / .45);}
 .ts-name{display:flex; align-items:center; gap:12px;}
-.ts-ic{display:grid; place-items:center; width:42px; height:42px; flex:none; border-radius:12px; color:var(--brand-text); background:var(--brand-soft);
+.ts-legacy-dead .ts-ic{display:grid; place-items:center; width:42px; height:42px; flex:none; border-radius:12px; color:var(--brand-text); background:var(--brand-soft);
   transition:background .3s var(--ease), color .3s var(--ease), transform .45s var(--pop);}
-.ts-ic svg{width:21px; height:21px;}
-.ts-layer:hover .ts-ic{background:var(--primary); color:#fff; transform:rotate(-8deg);}
+.ts-legacy-dead .ts-ic svg{width:21px; height:21px;}
+.ts-layer:hover .ts-legacy-dead .ts-ic{background:var(--primary); color:#fff; transform:rotate(-8deg);}
 .ts-name b{white-space:nowrap; font-family:var(--font-display); font-weight:700; font-size:clamp(15px,1.3vw,17px); letter-spacing:-.03em; color:var(--text);}
 .ts-chips{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px;}
 .ts-chips li{display:inline-flex; align-items:center; gap:8px; padding:6px 12px 6px 6px; border-radius:99px; border:1px solid var(--border);
@@ -6732,7 +6732,7 @@ html[data-theme="dark"] .ts-lg{background:hsl(var(--brand-h) 20% 22%);}
   .ts-layer:hover{transform:translateX(4px);}
   .ts-stack{padding-left:28px;}
 }
-@media (prefers-reduced-motion:reduce){ .ts-spine i{animation:none; display:none;} .ts-layer,.ts-chips li,.ts-ic{transition:none;} .ts-layer.in .ts-chips li{animation:none;} }
+@media (prefers-reduced-motion:reduce){ .ts-spine i{animation:none; display:none;} .ts-layer,.ts-chips li,.ts-legacy-dead .ts-ic{transition:none;} .ts-layer.in .ts-chips li{animation:none;} }
 
 /* === ps-styles === */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -6786,7 +6786,7 @@ html[data-theme="dark"] .ts-lg{background:hsl(var(--brand-h) 20% 22%);}
 .ts-layer.is-on::before{background:var(--primary); transform:scale(1.15); box-shadow:0 0 0 6px hsl(var(--brand-h) 100% 50% / .18);
   animation:tsRing 1.6s ease-out infinite;}
 @keyframes tsRing{0%{box-shadow:0 0 0 0 hsl(var(--brand-h) 100% 50% / .35)} 100%{box-shadow:0 0 0 12px hsl(var(--brand-h) 100% 50% / 0)}}
-.ts-layer.is-on .ts-ic{background:var(--primary); color:#fff;}
+.ts-layer.is-on .ts-legacy-dead .ts-ic{background:var(--primary); color:#fff;}
 .ts-layer.is-on .ts-name b{color:var(--brand-text);}
 .ts-chips li{transition:border-color .3s var(--ease), background .3s var(--ease), transform .45s var(--pop), box-shadow .3s var(--ease);}
 .ts-layer.is-on .ts-chips li{border-color:hsl(var(--brand-h) 90% 72%); transform:translateY(-3px);
@@ -6820,8 +6820,7 @@ html[data-theme="dark"] .ts-lg{background:hsl(var(--brand-h) 20% 22%);}
 #problem-v2,
 #industries,
 #why,
-#pricing,
-#tech-stack{
+#pricing{
   --ground:var(--bg-alt) !important;
   --panel:var(--surface);
 }
@@ -6846,7 +6845,6 @@ html[data-theme="dark"] #pricing .pr-row{
 #reviews,
 #pricing,
 #work,
-#tech-stack,
 #faq{
   background:var(--ground) !important;
   border-block:0 !important;
@@ -8001,8 +7999,8 @@ html[data-theme="dark"] #services-2 .ac-card,html[data-theme="dark"] #services-2
 /* === agent tech-stack st (exact from source) === */
 /* TECH STACK — the stack, literally: three layers seen from above, one on another.
    Point at a layer in the list and it lifts out of the stack. */
-#tech-stack.st{padding-block:clamp(40px,4.4vw,68px); background:#fff; overflow:hidden;}
-html[data-theme="dark"] #tech-stack.st{background:var(--bg);}
+#tech-stack.st-legacy-disabled{padding-block:clamp(40px,4.4vw,68px); background:#fff; overflow:hidden;}
+html[data-theme="dark"] #tech-stack.st-legacy-disabled{background:var(--bg);}
 .st-wrap{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(24px,4vw,64px); align-items:center;}
 .st h2{margin:0; font-family:var(--font-display); font-size:clamp(28px,2.8vw,42px); font-weight:800; letter-spacing:-.04em; line-height:1.06; color:var(--text); text-transform:none;}
 .st h2 em{font-style:normal; color:var(--primary);}
@@ -8020,19 +8018,19 @@ html[data-theme="dark"] #tech-stack.st{background:var(--bg);}
 .st-tx b{display:block; font-family:var(--font-display); font-size:15.5px; font-weight:800; letter-spacing:-.015em; color:var(--text);}
 .st-tools{display:flex; flex-wrap:wrap; margin-top:3px; font-size:13.6px; color:var(--text-2);}
 .st-tools i{font-style:normal;}
-.st-tools i:not(:last-child)::after{content:"Â·"; margin:0 7px; color:hsl(var(--brand-h) 50% 70%);}
+.st-legacy-dead .st-tools i:not(:last-child)::after{content:"\00B7"; margin:0 7px; color:hsl(var(--brand-h) 50% 70%);}
 /* the stack */
 .st-scene{position:relative; height:clamp(340px,32vw,420px); display:grid; place-items:center; perspective:1600px;}
 .st-scene::before{content:""; position:absolute; left:50%; top:68%; width:78%; height:26%; transform:translate(-50%,-50%); border-radius:50%;
   background:radial-gradient(closest-side,hsl(var(--brand-h) 60% 40% / .18),transparent); filter:blur(8px);}
 .st-iso{position:relative; width:clamp(200px,18vw,248px); aspect-ratio:1; transform:translateY(14%) rotateX(56deg) rotateZ(-45deg); transform-style:preserve-3d;}
-.st-plate{--lift:0px; position:absolute; inset:0; border-radius:22px; transform:translateZ(calc(var(--z) * 1px + var(--lift))); transform-style:preserve-3d;
+.st-legacy-dead .st-plate{--lift:0px; position:absolute; inset:0; border-radius:22px; transform:translateZ(calc(var(--z) * 1px + var(--lift))); transform-style:preserve-3d;
   background:rgba(255,255,255,.9); border:1.5px solid hsl(var(--brand-h) 40% 84%);
   box-shadow:0 0 0 1px rgba(255,255,255,.6) inset, -14px 14px 30px -10px hsl(var(--brand-h) 40% 30% / .22);
   opacity:.6;
   transition:opacity .9s ease, transform 1s cubic-bezier(.45,0,.2,1), background .5s, border-color .5s, box-shadow .5s, opacity .5s;}
 .st-edge{position:absolute; inset:0; border-radius:22px; transform:translateZ(-9px); background:hsl(var(--brand-h) 30% 86%); z-index:-1;}
-.st-plate.on{--lift:14px; opacity:1; background:linear-gradient(135deg,hsl(var(--brand-h) 95% 58%),hsl(var(--brand-h) 90% 44%)); border-color:hsl(var(--brand-h) 90% 50%);
+.st-legacy-dead .st-plate.on{--lift:14px; opacity:1; background:linear-gradient(135deg,hsl(var(--brand-h) 95% 58%),hsl(var(--brand-h) 90% 44%)); border-color:hsl(var(--brand-h) 90% 50%);
   box-shadow:-22px 22px 40px -12px hsl(var(--brand-h) 80% 30% / .45);}
 .st-plate.on .st-edge{background:hsl(var(--brand-h) 85% 34%);}
 /* plate surfaces: each layer drawn as what it is */
@@ -8070,10 +8068,10 @@ html[data-theme="dark"] #tech-stack.st{background:var(--bg);}
   .st-wrap{grid-template-columns:minmax(0,1fr);}
   .st-scene{height:300px;}
 }
-@media (prefers-reduced-motion:reduce){ .st-plate{transition:none;} }
+@media (prefers-reduced-motion:reduce){ .st-legacy-dead .st-plate{transition:none;} }
 
 /* a plate that has to pass the others slides out along the floor of the stack and back in */
-.st-plate.arc{animation:stArc 1s cubic-bezier(.45,0,.2,1) both;}
+.st-legacy-dead .st-plate.arc{animation:stArc 1s cubic-bezier(.45,0,.2,1) both;}
 @keyframes stArc{
   0%{transform:translateZ(calc(var(--z0) * 1px + var(--lift0)));}
   50%{transform:translate3d(-62%,62%,calc((var(--z0) + var(--z)) * .5px + 20px));}

@@ -9,6 +9,7 @@ import lcp from "@/lib/ai-agent-development-lcp.json";
 import "@/app/ai-agent-development.css";
 import "@/app/ai-agent-acv-head.css";
 import "@/app/ai-agent-services-tm.css";
+import "@/app/ai-agent-tech-stack.css";
 import "@/app/footer-lock.css";
 /* Shared service hero shell — same style/design on every /services page */
 import "@/app/service-hero-lock.css";
