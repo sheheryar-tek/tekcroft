@@ -50,43 +50,87 @@ section.tm .tm-cta .btn{flex:none;}
   section.tm .tm-cta .btn{width:100%; justify-content:center;}
 }
 
-/* Smooth panel open (.tm): flex-basis ease + delayed .tm-open fade/slide.
-   Desktop only. --tm-n / optional --tm-slim|--tm-gap set on each .tm-rail.
-   !important beats per-page transition:flex and AIS unlock.css !important. */
+/* Smooth panel open — shared for every [data-tm] rail.
+   Timing/easing match ai-agent-development-services.
+   Flex-basis sizing stays desktop-only; mobile layouts unchanged. */
 @media (min-width:981px){
   .tm-rail,
-  html[data-design="raw"] .tm-rail{
+  [data-tm].tm-rail,
+  .tm-rail[data-tm],
+  html[data-design="raw"] .tm-rail,
+  html[data-design="raw"] [data-tm].tm-rail,
+  html[data-design="raw"] .tm-rail[data-tm]{
     --tm-slim:64px; --tm-gap:7px; container-type:inline-size;
   }
   .tm-item, .tm-item:not(.on), .tm-item.on,
+  [data-tm] .tm-item, [data-tm] .tm-item:not(.on), [data-tm] .tm-item.on,
   html[data-design="raw"] .tm-item,
   html[data-design="raw"] .tm-item:not(.on),
-  html[data-design="raw"] .tm-item.on{
+  html[data-design="raw"] .tm-item.on,
+  html[data-design="raw"] [data-tm] .tm-item,
+  html[data-design="raw"] [data-tm] .tm-item:not(.on),
+  html[data-design="raw"] [data-tm] .tm-item.on{
     flex-grow:0 !important; flex-shrink:0 !important; min-width:0 !important;
-    transition:flex-basis .8s cubic-bezier(.65,0,.35,1), border-color .5s ease, box-shadow .6s ease !important;
+    transition:flex-basis 1.3s cubic-bezier(.45,.05,.2,1), border-color .8s ease, box-shadow 1s ease !important;
+    will-change:flex-basis;
   }
   .tm-item:not(.on),
-  html[data-design="raw"] .tm-item:not(.on){
+  [data-tm] .tm-item:not(.on),
+  html[data-design="raw"] .tm-item:not(.on),
+  html[data-design="raw"] [data-tm] .tm-item:not(.on){
     flex-basis:var(--tm-slim) !important;
   }
   .tm-item.on,
-  html[data-design="raw"] .tm-item.on{
+  [data-tm] .tm-item.on,
+  html[data-design="raw"] .tm-item.on,
+  html[data-design="raw"] [data-tm] .tm-item.on{
     flex-basis:calc(100% - (var(--tm-n) - 1) * (var(--tm-slim) + var(--tm-gap))) !important;
   }
-  .tm-bg,
-  html[data-design="raw"] .tm-bg{ transition:opacity .7s ease .1s !important; }
-  .tm-slim,
-  html[data-design="raw"] .tm-slim{ transition:opacity .35s ease !important; }
   .tm-open,
-  html[data-design="raw"] .tm-open{
+  [data-tm] .tm-open,
+  html[data-design="raw"] .tm-open,
+  html[data-design="raw"] [data-tm] .tm-open{
     right:auto !important; max-width:none !important;
     width:calc(100cqw - (var(--tm-n) - 1) * (var(--tm-slim) + var(--tm-gap))) !important;
-    transform:translateY(14px) !important;
-    transition:opacity .35s ease, transform .5s cubic-bezier(.2,.8,.2,1) !important;
   }
-  .tm-item.on .tm-open,
-  html[data-design="raw"] .tm-item.on .tm-open{
-    transform:none !important;
-    transition:opacity .55s ease .5s, transform .7s cubic-bezier(.2,.8,.2,1) .5s !important;
-  }
+}
+
+/* panel width opens slowly with an ease-in-out */
+[data-tm] .tm-item,
+[data-tm] .tm-item:not(.on),
+[data-tm] .tm-item.on{
+  transition:flex-basis 1.3s cubic-bezier(.45,.05,.2,1), border-color .8s ease, box-shadow 1s ease !important;
+  will-change:flex-basis;
+}
+
+/* background photo: fade + gentle zoom-out */
+[data-tm] .tm-bg{
+  transition:opacity 1.1s ease, transform 1.8s cubic-bezier(.45,.05,.2,1) !important;
+  transform:scale(1.06) !important;
+}
+[data-tm] .tm-item.on .tm-bg{transform:scale(1) !important;}
+
+/* vertical title strip */
+[data-tm] .tm-slim{transition:opacity .45s ease .15s !important;}
+[data-tm] .tm-item.on .tm-slim{transition:opacity .25s ease !important;}
+
+/* content (text card + visual): leaves fast, arrives after the panel has opened */
+[data-tm] .tm-open{
+  transform:translateY(10px) !important;
+  transition:opacity .3s ease, transform .4s ease !important;
+}
+[data-tm] .tm-item.on .tm-open{
+  transform:none !important;
+  transition:opacity .8s ease .75s, transform 1s cubic-bezier(.22,1,.36,1) .75s !important;
+}
+
+/* visual window settles in last */
+[data-tm] .tm-item.on .tm-viz > *{
+  animation:tmWinIn 1s cubic-bezier(.22,1,.36,1) .9s both !important;
+}
+@keyframes tmWinIn{from{opacity:0; transform:translateY(12px) scale(.98)} to{opacity:1; transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  [data-tm] .tm-item,[data-tm] .tm-bg,[data-tm] .tm-open{transition:none !important;}
+  [data-tm] .tm-item.on .tm-viz > *{animation:none !important;}
 }

@@ -49,7 +49,7 @@
    THE CLAIM
    ───────────────────────────────────────────────────────────── */
 .hs-copy{min-width:0;}
-.hs-copy > *{opacity:0; transform:translateY(14px);
+.hs-copy > *{opacity:0; transform:translateY(10px);
   transition:opacity .7s var(--ease) var(--d,0ms), transform .7s var(--pop) var(--d,0ms);}
 .hs.play .hs-copy > *{opacity:1; transform:none;}
 
@@ -4217,7 +4217,7 @@ html[data-theme="dark"] .dv{--il-blob:hsl(var(--brand-h) 45% 15%); --il-glow:hsl
 .dv-card.rv{transform:translateY(26px) scale(.985);}
 .dv-card.rv.in{transform:none;}
 .dv-card.in .dv-card-svg{animation:dvArtIn .9s var(--pop) both; animation-delay:calc(var(--d,0ms) + 120ms);}
-@keyframes dvArtIn{from{opacity:0; transform:translateY(14px) scale(.9) rotate(-3deg)} to{opacity:1; transform:none}}
+@keyframes dvArtIn{from{opacity:0; transform:translateY(10px) scale(.9) rotate(-3deg)} to{opacity:1; transform:none}}
 .dv-card.in .dv-n,.dv-card.in h3,.dv-card.in p,.dv-card.in .dv-tag{animation:dvUp .6s var(--ease) both;}
 .dv-card.in .dv-n{animation-delay:calc(var(--d,0ms) + 180ms);}
 .dv-card.in h3{animation-delay:calc(var(--d,0ms) + 240ms);}

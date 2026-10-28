@@ -56,7 +56,7 @@
    THE CLAIM
    ───────────────────────────────────────────────────────────── */
 .hs-copy{min-width:0;}
-.hs-copy > *{opacity:0; transform:translateY(14px);
+.hs-copy > *{opacity:0; transform:translateY(10px);
   transition:opacity .7s var(--ease) var(--d,0ms), transform .7s var(--pop) var(--d,0ms);}
 .hs.play .hs-copy > *{opacity:1; transform:none;}
 

@@ -62,7 +62,7 @@ html[data-design="raw"] .hs-in{position:relative !important; z-index:3 !importan
    THE CLAIM
    ───────────────────────────────────────────────────────────── */
 html[data-design="raw"] .hs-copy{min-width:0 !important;}
-html[data-design="raw"] .hs-copy > *{opacity:0 !important; transform:translateY(14px) !important;
+html[data-design="raw"] .hs-copy > *{opacity:0 !important; transform:translateY(10px) !important;
   transition:opacity .7s var(--ease) var(--d,0ms), transform .7s var(--pop) var(--d,0ms) !important;}
 html[data-design="raw"] .hs.play .hs-copy > *{opacity:1 !important; transform:none !important;}
 

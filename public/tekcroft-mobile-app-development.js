@@ -909,7 +909,7 @@
   function hold(){ held=true; stop(); rail.classList.add('paused'); clearTimeout(hold._t);
     hold._t=setTimeout(function(){ held=false; play(); },12000); }
   items.forEach(function(el,i){
-    el.addEventListener('mouseenter',function(){ show(i); });
+    el.addEventListener('mouseenter',function(){ clearTimeout(rail._hi); rail._hi=setTimeout(function(){ if(at!==i) show(i); },220); }); el.addEventListener('mouseleave',function(){ clearTimeout(rail._hi); });
     el.addEventListener('click',function(){ hold(); show(i); });
     el.addEventListener('keydown',function(e){
       if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hold(); show(i); return; }

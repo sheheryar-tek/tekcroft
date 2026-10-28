@@ -7,6 +7,7 @@ import assets from "@/lib/asset-manifest.json";
 import meta from "@/lib/seo-services-meta.json";
 import lcp from "@/lib/seo-services-lcp.json";
 import "@/app/seo-services.css";
+import "@/app/tm-shell-lock.css";
 import "@/app/footer-lock.css";
 import "@/app/service-hero-lock.css";
 

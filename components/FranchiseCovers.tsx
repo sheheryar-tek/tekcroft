@@ -12,7 +12,8 @@ export default function FranchiseCovers() {
     if (!root) return;
     const railNode = root.querySelector<HTMLElement>("[data-tm]");
     if (!railNode) return;
-    const rail: HTMLElement = railNode;
+    type RailEl = HTMLElement & { _hi?: ReturnType<typeof setTimeout> };
+    const rail = railNode as RailEl;
     // Prevent the page bundle's generic [data-tm] init from double-binding.
     if (rail.dataset.tmWired === "1") return;
     rail.dataset.tmWired = "1";
@@ -78,7 +79,13 @@ export default function FranchiseCovers() {
     }
 
     const onEnter = (i: number) => () => {
-      show(i);
+      clearTimeout(rail._hi);
+      rail._hi = setTimeout(() => {
+        if (at !== i) show(i);
+      }, 220);
+    };
+    const onLeave = () => {
+      clearTimeout(rail._hi);
     };
     const onClick = (i: number) => () => {
       hold();
@@ -105,17 +112,21 @@ export default function FranchiseCovers() {
     };
 
     const enterHandlers: Array<() => void> = [];
+    const leaveHandlers: Array<() => void> = [];
     const clickHandlers: Array<() => void> = [];
     const keyHandlers: Array<(e: KeyboardEvent) => void> = [];
 
     items.forEach((el, i) => {
       const enter = onEnter(i);
+      const leave = onLeave;
       const click = onClick(i);
       const key = onKey(i);
       enterHandlers.push(enter);
+      leaveHandlers.push(leave);
       clickHandlers.push(click);
       keyHandlers.push(key);
       el.addEventListener("mouseenter", enter);
+      el.addEventListener("mouseleave", leave);
       el.addEventListener("click", click);
       el.addEventListener("keydown", key);
     });
@@ -147,11 +158,13 @@ export default function FranchiseCovers() {
     return () => {
       stop();
       if (holdTimer != null) clearTimeout(holdTimer);
+      clearTimeout(rail._hi);
       io.disconnect();
       rail.removeEventListener("mouseenter", onRailEnter);
       rail.removeEventListener("mouseleave", onRailLeave);
       items.forEach((el, i) => {
         el.removeEventListener("mouseenter", enterHandlers[i]);
+        el.removeEventListener("mouseleave", leaveHandlers[i]);
         el.removeEventListener("click", clickHandlers[i]);
         el.removeEventListener("keydown", keyHandlers[i]);
       });
