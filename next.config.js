@@ -73,12 +73,7 @@ const nextConfig = {
         destination: "/:slug*",
         permanent: true,
       },
-      /* TEMP: pages not built yet — remove when /about-us, /case-studies, /contact-us ship */
-      {
-        source: "/about-us",
-        destination: "/",
-        permanent: false,
-      },
+      /* TEMP: pages not built yet — remove when /case-studies, /contact-us ship */
       {
         source: "/case-studies",
         destination: "/",
@@ -86,7 +81,7 @@ const nextConfig = {
       },
       {
         source: "/contact-us",
-        destination: "/",
+        destination: "/contact",
         permanent: false,
       },
     ];
@@ -104,6 +99,7 @@ const nextConfig = {
       { source: "/tekcroft-mm.:hash.js", headers: immutable },
       { source: "/tekcroft-vs-halo.:hash.js", headers: immutable },
       { source: "/tekcroft-contact.:hash.js", headers: immutable },
+      { source: "/tekcroft-about-us.:hash.js", headers: immutable },
       { source: "/tekcroft-ecommerce-seo.:hash.js", headers: immutable },
       { source: "/tekcroft-seo-audit-services.:hash.js", headers: immutable },
       { source: "/tekcroft-technical-seo.:hash.js", headers: immutable },
